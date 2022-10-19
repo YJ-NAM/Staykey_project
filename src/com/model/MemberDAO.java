@@ -25,8 +25,6 @@ public class MemberDAO {
 
     private MemberDAO() {}
 
-
-
     public static MemberDAO getInstance() {
         if(instance == null) {
             instance = new MemberDAO();
@@ -75,9 +73,9 @@ public class MemberDAO {
 
 
 
-    ////////////////////////////////////////////////////////
+    // ======================================================
     // DB 전체 데이터 갯수 메서드
-    ////////////////////////////////////////////////////////
+    // ======================================================
     public int getTotalCount(Map<String, Object> map) {
         int result = 0;
 
@@ -120,9 +118,9 @@ public class MemberDAO {
 
 
 
-    ////////////////////////////////////////////////////////
+    // ======================================================
     // 회원 목록 메서드
-    ////////////////////////////////////////////////////////
+    // ======================================================
     public List<MemberDTO> memberList(int page, int rowsize, Map<String, Object> map) {
         List<MemberDTO> list = new ArrayList<MemberDTO>();
 
@@ -214,34 +212,30 @@ public class MemberDAO {
         }
 
         return list;
-    } // 회원 검색 페이징 메서드 end
+    }
 
 
 
 
 
+    // ======================================================
+    // 회원 등록 메서드
+    // ======================================================
 	public int registerMember(MemberDTO dto) {
-		
 		int result = 0, count = 0;
-		
+
 		try {
-			
 			openConn();
-			
+
 			sql = "select max(member_no) from staykey_member";
-			
 			pstmt = con.prepareStatement(sql);
-			
 			rs = pstmt.executeQuery();
+
+			if(rs.next()) count = rs.getInt(1) + 1;
 			
-			if(rs.next()) {
-				count = rs.getInt(1) + 1;
-			}
-			
-			sql = "insert into staykey_member values(?, ?, ?, ?, ?, ?, ?, '', '', ?, sysdate)";
-			
+			sql = "insert into staykey_member values(?, ?, ?, ?, ?, ?, ?, default, default, ?, sysdate)";
 			pstmt = con.prepareStatement(sql);
-			
+
 			pstmt.setInt(1, count);
 			pstmt.setString(2, dto.getMember_type());
 			pstmt.setString(3, dto.getMember_id());
@@ -250,44 +244,40 @@ public class MemberDAO {
 			pstmt.setString(6, dto.getMember_email());
 			pstmt.setString(7, dto.getMember_phone());
 			pstmt.setString(8, dto.getMember_photo());
-			
+
 			result = pstmt.executeUpdate();
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
+
 		}finally {
 			closeConn(rs, pstmt, con);
 		}
-		
+
 		return result;
 	}
-	
-	
-	
-	
-	
-	///////////////////////////////////////////////
+
+
+
+
+
+    // ======================================================
 	// 글번호에 해당하는 게시글의 상세 내역을 조회하는 메서드.
-	///////////////////////////////////////////////
+    // ======================================================
 	public MemberDTO uploadDetails(int no) {
 		MemberDTO dto = null;
-		
+
 		try {
-			
 			openConn();
-			
+
 			sql = "select * from staykey_member where member_no = ?";
-			
 			pstmt = con.prepareStatement(sql);
-			
 			pstmt.setInt(1, no);
-			
 			rs = pstmt.executeQuery();
-			
+
 			if(rs.next()) {
 				dto = new MemberDTO();
-				
+
 				dto.setMember_no(rs.getInt("member_no"));
 				dto.setMember_type(rs.getString("member_type"));
 				dto.setMember_id(rs.getString("member_id"));
@@ -299,19 +289,24 @@ public class MemberDAO {
 				dto.setMember_reserv(rs.getInt("member_reserv"));
 				dto.setMember_photo(rs.getString("member_photo"));
 				dto.setMember_joindate(rs.getString("member_joindate"));
-				
 			}
-		} catch (SQLException e) {
+
+		} catch(SQLException e) {
 			e.printStackTrace();
-		}finally {
+
+		}finally{
 			closeConn(rs, pstmt, con);
 		}
-		
+
 		return dto;
-	}	
-	
-	//////////////////////////////////////////////////////
-	// 글번호에 해당하는 게시글의 상세 내역을 조회하는 메서드 End
-	//////////////////////////////////////////////////////
+	}
+
+
+
+
+
+
+
+
 
 }
