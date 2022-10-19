@@ -263,8 +263,33 @@ h1, h2, h3, h4, h5 {
 /* Footer
 /*************************/
 
+.stayKey-footer{
+	display: none;
+}
 
-
+	.footer-container {
+	padding-top: 80px;
+	padding-bottom: 80px;
+	position: relative;
+	}
+	
+	.footer-logo {
+	line-height:1;
+	margin-top: 10px;
+	width: 180px;
+	}
+	
+	.footer-logo img {
+	width: 100%
+	}
+	
+	.footer-info{
+	font-size: 25px;
+	letter-spacing: 1em;
+	text-align: center;
+	
+	}
+		
 
 /*************************/
 /* Container
