@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
-encoding//src/com/stay/controller/mapping.properties=UTF-8
+encoding//WebContent/admin/layout/layout_footer.jsp=UTF-8
+encoding//src/com/controller/mapping.properties=UTF-8

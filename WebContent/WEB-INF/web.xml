@@ -21,6 +21,12 @@
     </servlet-mapping>
 
 
+    <!-- 세션 유지시간(분)(24시간) -->
+    <session-config>
+        <session-timeout>1440</session-timeout>
+    </session-config>
+
+
     <!-- post 전송시 한글 설정 -->
     <filter>
         <filter-name>SetCharEncoding</filter-name>
