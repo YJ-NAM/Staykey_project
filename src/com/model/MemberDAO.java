@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -14,242 +15,209 @@ import javax.sql.DataSource;
 
 
 
-
 public class MemberDAO {
-	
-	// DB와 연동하는 객체.
-	Connection con = null;
-	
-	// DB에 SQL문을 전송하는 객체
-	PreparedStatement pstmt = null;
-	
-	// SQL문을 실행한 후에 결과 값을 가지고 있는 객체.
-	ResultSet rs = null;
-	
-	// 쿼리문을 저장할 변수
-	String sql = null;
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    String sql = null;
 
-	
-	// EmpDAO 객체를 싱글턴 방식으로 만들어 보자.
-	// 1단계 : 싱글턴 방식으로 객체를 만들기 위해서는 우선적으로
-	//		  기본생성자의 접근제어자를 public이 아닌 private
-	//		  으로 바꾸어 주어야 한다.
-	//	      즉, 외부에서 직접적으로 기본생성자를 호출하지 못하게 하는 방법이다.
+    private static MemberDAO instance;
 
-	
-	// 2단계 : EmpDAO 객체를 정적(static) 멤버로 선언을 해주어야 한다.
-	private static MemberDAO instance;
-	
-	// 1단계
-	private MemberDAO() {	} // 기본생성자
-	
-	// 3단계 : 기본 생성자 대신에 싱글턴 객체를 return 해 주는 getInstance() 라는 메서드를 만들어서
-	// 		  해당 getInstance() 라는 메서드를 외부에서 접글할 수 있도록 해 주면 됨.
-	public static MemberDAO getInstance() {
-		
-		if(instance == null) {
-			instance = new MemberDAO();	// 객체생성하면 주소값이 나온다. 주소값 저장
-		}
-		return instance;
-		
-	}
-	
-	
-	// DB를 연동하는 작업을 진행하는 메서드. (커넥션 풀 방법) !!!!!
-	public void openConn() {
+    private MemberDAO() {}
 
-		try {
-			// 1단계 : JNDI 서버 객체 생성
-			Context ctx = new InitialContext();
-			
-			// 2단계 : lookup() 메서드를 이용하여 매칭되는
-			// 		  커넥션을 찾는다.
-			DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
-			
-			// 3단계 : DataSource 객체를 이용하여 커넥션을 하나 가져온다.
-			con = ds.getConnection();
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 
-	}	// openConn() 메서드 end
-	
-	
-	// DB에 연결된 자원 종료하는 메서드
-	public void closeConn(ResultSet rs, PreparedStatement pstmt, Connection con) {
-		
-		try {
-			if(rs != null) {rs.close();}
-			
-			if(pstmt != null) {pstmt.close();}
-			
-			if(con != null) {con.close();}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-	}	//closeConn 메서드 end
 
-	
-	// 회원 목록 불러오는 메서드 (AdminMemberListAction에서 사용) 
-	public List<MemberDTO> memberList() {
-		
-		
-		List<MemberDTO> list = new ArrayList<MemberDTO>();
-		
-		
-		try {
+    public static MemberDAO getInstance() {
+        if(instance == null) {
+            instance = new MemberDAO();
+        }
 
-			sql = "select * from staykey_member order by member_no desc";
-			
-			openConn();
-			
-			pstmt = con.prepareStatement(sql);
-			
-			rs = pstmt.executeQuery();
-			
-			
-			while(rs.next()) {
-				
-				MemberDTO dto = new MemberDTO();
-				
-				dto.setMember_no(rs.getInt("member_no"));
-				dto.setMember_type(rs.getString("member_type"));
-				dto.setMember_id(rs.getString("member_id"));
-				dto.setMember_pw(rs.getString("member_pw"));
-				dto.setMember_name(rs.getString("member_name"));
-				dto.setMember_email(rs.getString("member_email"));
-				dto.setMember_phone(rs.getString("member_phone"));
-				dto.setMember_point(rs.getInt("member_point"));
-				dto.setMember_reserv(rs.getInt("member_reserv"));
-				dto.setMember_photo(rs.getString("member_photo"));
-				dto.setMember_joindate(rs.getString("member_joindate"));
-				
-				list.add(dto);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			closeConn(rs, pstmt, con);
-		}
-		
-		return list;
-		
-	}	// 전체 목록 조회 메서드 끝
-	
-	
-	// 회원 검색어에 해당하는 게시물의 수를 조회하는 메서드.
-	public int memberSearchListCount(String field, String keyword) {
-		
-		int count = 0;
-		
-		openConn();
-		
-		try {
-			
-			String searchSql = "";
-			
-			if(field != null && keyword != null) {
-				if(field.equals("type")) {
-					searchSql = "where member_type like '%"+keyword+"%'";
-				}else if(field.equals("id")) {
-					searchSql = "where member_id like '%"+keyword+"%'";
-				}else {	// 이름과 일치하는거 찾기
-					searchSql = "where member_name like '%"+keyword+"%'";
-				}
-			}
-			
-			sql = "select count(*) from staykey_member "+searchSql;
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				// if문으로 돌려서 여기서 값이 있으면 커서가 한개 씩 내려 가니까 + 1을 해놓으면 rs.next만큼 도니까 계속 더해진다.
-				count = rs.getInt(1);
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}finally {
-			closeConn(rs, pstmt, con);
-		}
-		return count;
+        return instance;
+    }
 
-	}	// 검색 게시물 수 메서드 end
 
-	
-	// 회원 테이블에서 검색한 내용을 가지고 페이징처리를 하는 메서드 
-	public List<MemberDTO> memberSearchList(String field, String keyword, int page, int rowsize) {
-		
-		List<MemberDTO> list = new ArrayList<MemberDTO>();
-		
-		// 해당 페이지에서 시작 번호
-		int startNo = (page * rowsize) - (rowsize -1);
-		
-		// 해당 페이지에서 마지막 번호
-		int endNo = (page * rowsize);
-		
-		openConn();
-		
-		String searchSql = "";
-		
-		if(field.equals("type")) {	// 유형 찾기
-			
-			searchSql = "select * from (select row_number() over(order by member_no desc) rnum, b.* from staykey_member b where member_type like '%"+keyword+"%') where rnum >= ? and rnum <= ?";
-		
-		}else if(field.equals("id")) {	// 아이디 찾기
-			
-			searchSql = "select * from (select row_number() over(order by member_id desc) rnum, b.* from staykey_member b where member_type like '%"+keyword+"%') where rnum >= ? and rnum <= ?";
-		
-		}else {		// 이름 찾기
-			
-			searchSql = "select * from (select row_number() over(order by member_name desc) rnum, b.* from staykey_member b where member_type like '%"+keyword+"%') where rnum >= ? and rnum <= ?";
-		}
-		
-		try {
-			
-			sql = searchSql;
-			
-			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setInt(1, startNo);
-			pstmt.setInt(2, endNo);
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				
-				MemberDTO dto = new MemberDTO();
-				
-				dto.setMember_no(rs.getInt("member_no"));
-				dto.setMember_type(rs.getString("member_type"));
-				dto.setMember_id(rs.getString("member_id"));
-				dto.setMember_pw(rs.getString("member_pw"));
-				dto.setMember_name(rs.getString("member_name"));
-				dto.setMember_email(rs.getString("member_email"));
-				dto.setMember_phone(rs.getString("member_phone"));
-				dto.setMember_point(rs.getInt("member_point"));
-				dto.setMember_reserv(rs.getInt("member_reserv"));
-				dto.setMember_photo(rs.getString("member_photo"));
-				dto.setMember_joindate(rs.getString("member_joindate"));
-				
-				list.add(dto);
+    // ======================================================
+    // DB 연동하는 작업을 진행하는 메서드
+    // ======================================================
+    public void openConn() {
+        try {
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
+            con = ds.getConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			closeConn(rs, pstmt, con);
-		}		
-		return list;
-	}	// 회원 검색 페이징 메서드 end
+
+    // ======================================================
+    // DB에 연결된 자원 종료하는 메서드
+    // ======================================================
+    public void closeConn(ResultSet rs, PreparedStatement pstmt, Connection con) {
+        try {
+            if(rs != null) rs.close();
+            if(pstmt != null) pstmt.close();
+            if(con != null) con.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void closeConn(PreparedStatement pstmt, Connection con) {
+        try {
+            if(pstmt != null) pstmt.close();
+            if(con != null) con.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+    ////////////////////////////////////////////////////////
+    // DB 전체 데이터 갯수 메서드
+    ////////////////////////////////////////////////////////
+    public int getTotalCount(Map<String, Object> map) {
+        int result = 0;
+
+        // 검색용 설정
+        String search_sql = " where member_no > 0";
+        if(map.get("ps_type").equals("user")){
+            search_sql += " and member_type = 'user'";
+        }else if(map.get("ps_type").equals("admin")){
+            search_sql += " and member_type = 'admin'";
+        }
+        if(map.get("ps_name") != null){
+            search_sql += " and member_name like '%"+map.get("ps_name")+"%'";
+        }
+        if(map.get("ps_id") != null){
+            search_sql += " and member_id like '%"+map.get("ps_id")+"%'";
+        }
+        if(map.get("ps_email") != null){
+            search_sql += " and member_email like '%"+map.get("ps_email")+"%'";
+        }
+
+        try {
+            openConn();
+
+            sql = "select count(*) from staykey_member" + search_sql;
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) result = rs.getInt(1);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
+    }
+
+
+
+
+    ////////////////////////////////////////////////////////
+    // 회원 목록 메서드
+    ////////////////////////////////////////////////////////
+    public List<MemberDTO> memberList(int page, int rowsize, Map<String, Object> map) {
+        List<MemberDTO> list = new ArrayList<MemberDTO>();
+
+        int startNo = (page * rowsize) - (rowsize - 1);
+        int endNo = (page * rowsize);
+
+
+        // 검색용 설정
+        String search_sql1 = " where member_no > 0";
+        String search_sql2 = "";
+
+        if(map.get("ps_type").equals("user")){
+            search_sql2 += " and member_type = 'user'";
+        }else if(map.get("ps_type").equals("admin")){
+            search_sql2 += " and member_type = 'admin'";
+        }
+        if(map.get("ps_name") != null){
+            search_sql2 += " and member_name like '%"+map.get("ps_name")+"%'";
+        }
+        if(map.get("ps_id") != null){
+            search_sql2 += " and member_id like '%"+map.get("ps_id")+"%'";
+        }
+        if(map.get("ps_email") != null){
+            search_sql2 += " and member_email like '%"+map.get("ps_email")+"%'";
+        }
+
+        search_sql1 += search_sql2;
+
+
+        // 정렬용 설정
+        String order_sql = "member_joindate";
+        if(map.get("ps_order").equals("register_desc")){
+            order_sql = "member_joindate desc";
+        }else if(map.get("ps_order").equals("register_asc")){
+            order_sql = "member_joindate asc";
+        }else if(map.get("ps_order").equals("id_desc")){
+            order_sql = "member_id desc";
+        }else if(map.get("ps_order").equals("id_asc")){
+            order_sql = "member_id asc";
+        }else if(map.get("ps_order").equals("name_desc")){
+            order_sql = "member_name desc";
+        }else if(map.get("ps_order").equals("name_asc")){
+            order_sql = "member_name asc";
+        }else if(map.get("ps_order").equals("point_desc")){
+            order_sql = "member_point desc";
+        }else if(map.get("ps_order").equals("point_asc")){
+            order_sql = "member_point asc";
+        }else if(map.get("ps_order").equals("count_desc")){
+            order_sql = "member_reserv desc";
+        }else if(map.get("ps_order").equals("count_asc")){
+            order_sql = "member_reserv asc";
+        }
+
+
+        try {
+            openConn();
+
+            sql = "select * from "
+                + "(select row_number() over(order by "+order_sql+") rnum, b.* from staykey_member b"+search_sql1+") "
+                + "where rnum >= ? and rnum <= ?" + search_sql2;
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, startNo);
+            pstmt.setInt(2, endNo);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                MemberDTO dto = new MemberDTO();
+
+                dto.setMember_no(rs.getInt("member_no"));
+                dto.setMember_type(rs.getString("member_type"));
+                dto.setMember_id(rs.getString("member_id"));
+                dto.setMember_pw(rs.getString("member_pw"));
+                dto.setMember_name(rs.getString("member_name"));
+                dto.setMember_email(rs.getString("member_email"));
+                dto.setMember_phone(rs.getString("member_phone"));
+                dto.setMember_point(rs.getInt("member_point"));
+                dto.setMember_reserv(rs.getInt("member_reserv"));
+                dto.setMember_photo(rs.getString("member_photo"));
+                dto.setMember_joindate(rs.getString("member_joindate"));
+
+                list.add(dto);
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return list;
+    } // 회원 검색 페이징 메서드 end
+
+
+
 
 
 	public int registerMember(MemberDTO dto) {
@@ -287,7 +255,6 @@ public class MemberDAO {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			closeConn(rs, pstmt, con);
@@ -303,7 +270,6 @@ public class MemberDAO {
 	///////////////////////////////////////////////
 	// 글번호에 해당하는 게시글의 상세 내역을 조회하는 메서드.
 	///////////////////////////////////////////////
-	
 	public MemberDTO uploadDetails(int no) {
 		MemberDTO dto = null;
 		
@@ -336,7 +302,6 @@ public class MemberDAO {
 				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			closeConn(rs, pstmt, con);
@@ -348,10 +313,5 @@ public class MemberDAO {
 	//////////////////////////////////////////////////////
 	// 글번호에 해당하는 게시글의 상세 내역을 조회하는 메서드 End
 	//////////////////////////////////////////////////////
-	
-	
-	
-	
-	
-	
+
 }
