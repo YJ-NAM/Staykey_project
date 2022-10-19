@@ -13,9 +13,7 @@
 </div>
 
 
-
 <div>
-
     <form name="search_form" method="post" action="memberList.do">
     <table class="table-form ml-0 mb-4 border rounded-lg">
         <colgroup>
@@ -179,10 +177,7 @@
                 </td>
             </tr>
         </tfoot>
-
     </table>
-
-
 </div>
 
 
