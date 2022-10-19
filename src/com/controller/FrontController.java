@@ -24,7 +24,7 @@ public class FrontController extends HttpServlet {
 
         String uri = request.getRequestURI();
         String command = uri.replace(request.getContextPath()+"/", "");
-         System.out.println("* Now >>> " + command);
+        System.out.println("* Now >>> " + command);
 
 
         Action action = null;
