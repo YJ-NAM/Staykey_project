@@ -41,6 +41,7 @@
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/bootstrap.bundle.min.js"></script>
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/bs-custom-file-input.min.js"></script>
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/bootstrap-colorpicker.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.0/standard-all/ckeditor.js"></script>
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/script.js?<%=time%>"></script>
 </head>
 <body>
