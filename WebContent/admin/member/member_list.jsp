@@ -162,7 +162,7 @@
 					
 					<%-- 프로필 사진이 있으면 --%>
 					<c:if test="${!empty dto.getMember_photo() }">
-						<td>X</td>
+						<td>${dto.getMember_photo() }</td>
 					</c:if>
 					<%-- 프로필 사진이 없으면 --%>
 					<c:if test="${empty dto.getMember_photo() }">
@@ -183,8 +183,9 @@
 			</c:if>
 
 			<tr>
-				<td colspan="4" align="center"><input type="button" value="글쓰기"
-					onclick="location.href='board_write.do'"></td>
+				<%-- 회원 추가하는 버튼 --%>
+				<td colspan="4" align="center"><input type="button" value="회원 추가"
+					onclick="location.href='writeMember.do'"></td>
 			</tr>
 		</table>
 	
