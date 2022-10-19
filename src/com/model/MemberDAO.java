@@ -251,8 +251,49 @@ public class MemberDAO {
 	}	// 회원 검색 페이징 메서드 end
 
 
-	
-	
+	public int registerMember(MemberDTO dto) {
+		
+		int result = 0, count = 0;
+		
+		try {
+			
+			openConn();
+			
+			sql = "select max(member_no) from staykey_member";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1) + 1;
+			}
+			
+			sql = "insert into staykey_member values(?, ?, ?, ?, ?, ?, ?, '', '', ?, sysdate)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, count);
+			pstmt.setString(2, dto.getMember_type());
+			pstmt.setString(3, dto.getMember_id());
+			pstmt.setString(4, dto.getMember_pw());
+			pstmt.setString(5, dto.getMember_name());
+			pstmt.setString(6, dto.getMember_email());
+			pstmt.setString(7, dto.getMember_phone());
+			pstmt.setString(8, dto.getMember_photo());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, con);
+		}
+		
+		return result;
+	}
 	
 	
 	
