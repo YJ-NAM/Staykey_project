@@ -4,7 +4,7 @@
 
 
 
-
+<script type="text/javascript">$("#nav-member").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
 	<h2>페이지 목록</h2>
 	<small>페이지 설명</small>

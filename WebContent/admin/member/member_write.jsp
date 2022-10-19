@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
 
+
+<script type="text/javascript">$("#nav-member").addClass("now");</script>
+
 	<div align="center">
 		<hr width="50%" color="red">
 			<h3>회원 등록 페이지</h3>	

@@ -256,6 +256,12 @@ input[type='password'] {
     font-weight: 400;
     color: rgba(255, 255, 255, 0.7);
 }
+.navbar .navbar-nav .nav-item {
+    border-radius: 15px;
+}
+.navbar .navbar-nav .nav-item.now {
+    background: rgba(255,255,255,0.15);
+}
 .navbar .navbar-nav .nav-link:hover {
     color: #fff;
 }
