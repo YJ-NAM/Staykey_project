@@ -286,6 +286,7 @@ h1, h2, h3, h4, h5 {
     text-align: center;
     font-size: 0;
     line-height: 0;
+    vertical-align: top;
 }
 .page-paging ol {
     display: inline-block;
@@ -349,7 +350,7 @@ h1, h2, h3, h4, h5 {
     text-align: center;
     font-family: verdana;
     font-size: 14px;
-    color: #007bff;
+    color: #007bff !important;
     text-decoration: none;
     letter-spacing: -1px;
 }
@@ -362,7 +363,7 @@ h1, h2, h3, h4, h5 {
 }
 .page-paging a:hover {
     color: #000;
-    background: #f3f3f3;
+    background: #f3f3f3 !important;
     text-decoration: none;
 }
 
@@ -370,7 +371,7 @@ h1, h2, h3, h4, h5 {
     width: 38px;
     height: 38px;
     color: #fff;
-    background: #007bff;
+    background: #007bff !important;
     border-top: 1px solid #007bff;
     border-bottom: 1px solid #007bff;
     font-family: verdana;
