@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.controller.Action;
 import com.controller.ActionForward;
 import com.model.MemberDAO;
+import com.model.MemberDTO;
 
 public class AdminMemberListAction implements Action {
 
@@ -18,14 +19,13 @@ public class AdminMemberListAction implements Action {
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		
-		List<MemberDAO> list = dao.getUploadList();
+		// 목록 조회 리스트 메서드.
+		List<MemberDTO> list = dao.memberList();
 		
 		request.setAttribute("List", list);
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("member/member_list.jsp");
-
-
 
 		return forward;
 	}
