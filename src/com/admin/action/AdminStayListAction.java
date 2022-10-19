@@ -20,11 +20,11 @@ public class AdminStayListAction implements Action {
     	
     	// 숙소 전체 목록 조회 메서드 : getStayList()
     	List<StayDTO> list = dao.getStayList(); 
+    	request.setAttribute("StayList", list);
     	
     	ActionForward forward = new ActionForward();
-    	request.setAttribute("StayList", list);
     	forward.setRedirect(false);
-    	forward.setPath("admin/stay/stay_list.jsp");
+    	forward.setPath("stay/stay_list.jsp");
 
         return forward;
     }
