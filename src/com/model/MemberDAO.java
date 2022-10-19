@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 
 
+
 public class MemberDAO {
 	
 	// DB와 연동하는 객체.
@@ -294,6 +295,61 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+	
+	
+	
+	
+	///////////////////////////////////////////////
+	// 글번호에 해당하는 게시글의 상세 내역을 조회하는 메서드.
+	///////////////////////////////////////////////
+	
+	public MemberDTO uploadDetails(int no) {
+		MemberDTO dto = null;
+		
+		try {
+			
+			openConn();
+			
+			sql = "select * from staykey_member where member_no = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new MemberDTO();
+				
+				dto.setMember_no(rs.getInt("member_no"));
+				dto.setMember_type(rs.getString("member_type"));
+				dto.setMember_id(rs.getString("member_id"));
+				dto.setMember_pw(rs.getString("member_pw"));
+				dto.setMember_name(rs.getString("member_name"));
+				dto.setMember_email(rs.getString("member_email"));
+				dto.setMember_phone(rs.getString("member_phone"));
+				dto.setMember_point(rs.getInt("member_point"));
+				dto.setMember_reserv(rs.getInt("member_reserv"));
+				dto.setMember_photo(rs.getString("member_photo"));
+				dto.setMember_joindate(rs.getString("member_joindate"));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, con);
+		}
+		
+		return dto;
+	}	
+	
+	//////////////////////////////////////////////////////
+	// 글번호에 해당하는 게시글의 상세 내역을 조회하는 메서드 End
+	//////////////////////////////////////////////////////
+	
+	
 	
 	
 	

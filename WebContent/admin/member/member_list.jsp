@@ -162,7 +162,7 @@
 					
 					<%-- 프로필 사진이 있으면 --%>
 					<c:if test="${!empty dto.getMember_photo() }">
-						<td>X</td>
+						<td>${dto.getMember_photo() }</td>
 					</c:if>
 					<%-- 프로필 사진이 없으면 --%>
 					<c:if test="${empty dto.getMember_photo() }">
