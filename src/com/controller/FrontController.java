@@ -24,7 +24,7 @@ public class FrontController extends HttpServlet {
 
         String uri = request.getRequestURI();
         String command = uri.replace(request.getContextPath()+"/", "");
-         System.out.println("* Now >>> " + command);
+        System.out.println("* Now >>> " + command);
 
 
         Action action = null;
@@ -32,7 +32,7 @@ public class FrontController extends HttpServlet {
 
         Properties pro = new Properties();
 
-        String properties_file = request.getSession().getServletContext().getRealPath("/").replace("WebContent", "src") + "com\\stay\\controller\\mapping.properties";
+        String properties_file = request.getSession().getServletContext().getRealPath("/").replace("WebContent", "src") + "com\\controller\\mapping.properties";
         FileInputStream fis = new FileInputStream(properties_file);
         pro.load(fis);
 
