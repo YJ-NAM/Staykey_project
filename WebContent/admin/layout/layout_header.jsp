@@ -6,11 +6,12 @@
     <meta charset="UTF-8">
     <title>관리자 모드 :: 스테이키 (StayKey)</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="Content-Script-Type" content="text/javascript" />
-    <meta http-equiv="Content-Style-Type" content="text/css" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="CONTENT-TYPE" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1200">
 
     <meta name="robots" content="noindex">
 
@@ -23,17 +24,25 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%=request.getContextPath()%>/asset/images/favicon_114x114.png" />
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%=request.getContextPath()%>/asset/images/favicon_144x144.png" />
 
-    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/jquery-ui.min.css" />
-    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/font_awesome.css" />
-    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/simple-line-icons.css" />
-    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/style.css?<%=time%>" />
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/jquery-ui.min.css" />
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/bootstrap-reboot.min.css" />
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/bootstrap-utilities.min.css" />
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/bootstrap-grid.min.css" />
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/bootstrap-colorpicker.css?<?=$gw_now_time?>" />
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/font_awesome.css" />
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/simple-line-icons.css" />
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/style.css?<%=time%>" />
 
 
-    <script language="javascript" src="<%=request.getContextPath()%>/asset/js/jquery-3.5.1.min.js"></script>
-    <script language="javascript" src="<%=request.getContextPath()%>/asset/js/jquery-ui.min.js"></script>
-    <script language="javascript" src="<%=request.getContextPath()%>/asset/js/bootstrap.min.js"></script>
-    <script language="javascript" src="<%=request.getContextPath()%>/asset/js/script.js?<%=time%>"></script>
+    <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/jquery-3.5.1.min.js"></script>
+    <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/jquery-ui.min.js"></script>
+    <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/bootstrap.min.js"></script>
+    <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/bootstrap.bundle.min.js"></script>
+    <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/bs-custom-file-input.min.js"></script>
+    <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/bootstrap-colorpicker.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.0/standard-all/ckeditor.js"></script>
+    <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/script.js?<%=time%>"></script>
 </head>
 <body>
     <!-- #ajax-loader //START -->
@@ -51,15 +60,37 @@
 
 
 
-    <!-- header //START -->
-    <header id="header">
-        관리자 header
+    <!-- #header // START -->
+    <header class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-xl">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsCont" aria-controls="navbarsCont" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsCont">
+                <ul class="navbar-nav mr-auto justify-content-between">
+                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-home"></i> 숙소관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-plane"></i> 예약관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/memberList.do"><i class="icon-people"></i> 회원관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-note"></i> 후기관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-speech"></i> 문의관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-book-open"></i> 매거진관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-event"></i> 이벤트관리</a></li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item text-nowrap pl-2">
+                        <a class="nav-link" href="#" onClick="return confirm('로그아웃 하시겠습니까?');"><i class="icon-power"></i> 로그아웃</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </header>
-    <!-- header //END -->
+    <!-- #header // END -->
 
 
 
-    <!-- #container //START -->
-    <main role="main" id="container">
+    <!-- #contents // START -->
+    <main role="main" class="container">
 
 
