@@ -263,8 +263,59 @@ h1, h2, h3, h4, h5 {
 /* Footer
 /*************************/
 
+	.footer-top {
+	display: -webkit-flex;
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 80px;
+	padding-bottom: 80px;
+	width: 100%;
+	background-color: white;
+	position: absolute;
+	
+	}
+	
+	.footer-logo {
+	line-height: 1;
+	margin-top: 10px;
+	width: 180px;
+	}
+	
+	.footer-logo img {
+	width: 100%
+	}
+	
+	.footer-info {
+	font-size: 15px;
+	font-family: serif;
+	color: #624621;
+	letter-spacing: 0.3em;
+	text-align: right;
 
-
+	}
+	
+	.footer-info-cs > mtm, com-join, com-fam {
+	align-items: center;
+	display: flex;
+	font-family: serif; 
+	letter-spacing: 0.3em;
+	color: black;
+	position: absolute;
+	}
+	
+/* 	.footer-bottom {
+	display: -webkit-flex;
+		display: flex;
+		margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	background-color: brown;
+		
+	}
+	 */
+	
+		
 
 /*************************/
 /* Container
