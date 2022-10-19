@@ -4,9 +4,25 @@
 <jsp:include page="../layout/layout_header.jsp" />
 <c:set var="list" value="${ stayView }" />
 
+<script>
+	
+	$(function() {
+		$(".btn").click(function() {
+			let button = $(".btn").index(this);
+			if(button == 0) { // Room 구성 보기
+				location.href='stayRoomList.do?stay_no=${ list.stay_no }';
+			}else if(button == 1){ // 수정하기
+				location.href='stayModify.do?stay_no=${ list.stay_no }';
+			}else if(button == 2){ // 삭제하기
+				location.href='';
+			}
+		})
+	})
+
+</script>
 <div>
 	<hr />
-	<h4>${ stayView.stay_name }</h4>
+	<h4>About <b>${ stayView.stay_name }</b></h4>
 	<hr />
 	<table>
 		<tr>
@@ -68,7 +84,7 @@
 		</c:choose>
 		<tr>
 			<td colspan="31">
-				<button type="button" class="btn">등록하기</button>
+				<button type="button" class="btn">Rooms(방 목록)</button>
 				<button type="button" class="btn">수정하기</button>
 				<button type="button" class="btn">삭제하기</button>
 			</td>

@@ -12,7 +12,10 @@ public class AdminStayWriteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// 
+		// 숙소 등록하기
+		
+		
+		
 		
 		return null;
 	}
