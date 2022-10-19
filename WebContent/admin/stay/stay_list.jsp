@@ -3,6 +3,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../layout/layout_header.jsp" />
 <c:set var="stayList" value="${ stayList }" />
+
+<script>
+	
+	$(function() {
+		
+		$(".btn").click(function() {
+			let button = $(".btn").index(this);
+			if(button.index == 0) { // 등록하기
+				location.href='';
+			}else if(button.index == 1){ // 수정하기
+				location.href='';
+			}else if(button.index == 2){ // 삭제하기
+				location.href='';
+			}
+		})
+	})
+
+</script>
+
 <div>
 	<hr />
 	<h4>숙소 전체 목록 조회</h4>
@@ -31,6 +50,7 @@
 			<th>숙소 조회수</th> 
 			<th>숙소 예약수</th> 
 			<th>숙소 등록일자</th> 
+			<th>삭제하기</th>
 		</tr>
 		<c:choose>
 			<c:when test="${ !empty stayList }">
@@ -67,6 +87,13 @@
 			</tr>
 			</c:otherwise>
 		</c:choose>
+		<tr>
+			<td colspan="31">
+				<button type="button" class="btn">등록하기</button>
+				<button type="button" class="btn">수정하기</button>
+				<button type="button" class="btn">삭제하기</button>
+			</td>
+		</tr>
 	</table>
 </div>
 
