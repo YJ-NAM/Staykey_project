@@ -17,13 +17,13 @@
     	 		</div>
    
    				<div class= "footer-info-cs">
-    	 				<a href=> 1:1 문의 </a> 
+    	 				<a href="" id="mtm"> 1:1 문의 </a> 
     	 				&nbsp;&nbsp;
     	 			
-    	 				<a href=> 입점문의 </a>
+    	 				<a href="" id= "com-join"> 입점문의 </a>
     	 				&nbsp;&nbsp;
     	 	
-    	 				<a href=> 제휴문의 </a>
+    	 				<a href="" id= "com-fam"> 제휴문의 </a>
     	 		</div>
     	 		
     	 		<div class= "footer-cs-time">

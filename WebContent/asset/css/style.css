@@ -268,9 +268,13 @@ h1, h2, h3, h4, h5 {
 }
 
 	.footer-container {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+			align-items: center;
 	padding-top: 80px;
 	padding-bottom: 80px;
-	position: relative;
+	position: absolute;
 	}
 	
 	.footer-logo {
@@ -281,12 +285,18 @@ h1, h2, h3, h4, h5 {
 	
 	.footer-logo img {
 	width: 100%
+	
 	}
 	
-	.footer-info{
+	.footer-info {
 	font-size: 25px;
+	font-family: serif;
 	letter-spacing: 1em;
 	text-align: center;
+	
+	}
+	
+	.footer-info-cs {
 	
 	}
 		
