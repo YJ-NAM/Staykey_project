@@ -69,18 +69,18 @@
 
             <div class="collapse navbar-collapse" id="navbarsCont">
                 <ul class="navbar-nav mr-auto justify-content-between">
-                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-home"></i> 숙소관리</a></li>
-                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-plane"></i> 예약관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/stayList.do"><i class="icon-home"></i> 숙소관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/reservList.do"><i class="icon-plane"></i> 예약관리</a></li>
                     <li class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/memberList.do"><i class="icon-people"></i> 회원관리</a></li>
-                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-note"></i> 후기관리</a></li>
-                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-speech"></i> 문의관리</a></li>
-                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-book-open"></i> 매거진관리</a></li>
-                    <li class="nav-item px-3"><a class="nav-link" href="#"><i class="icon-event"></i> 이벤트관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/reviewList.do"><i class="icon-note"></i> 후기관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/qnaList.do"><i class="icon-speech"></i> 문의관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/magazineList.do"><i class="icon-book-open"></i> 매거진관리</a></li>
+                    <li class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/eventList.do"><i class="icon-event"></i> 이벤트관리</a></li>
                 </ul>
 
                 <ul class="navbar-nav">
                     <li class="nav-item text-nowrap pl-2">
-                        <a class="nav-link" href="#" onClick="return confirm('로그아웃 하시겠습니까?');"><i class="icon-power"></i> 로그아웃</a>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/memberLogout.do" onClick="return confirm('로그아웃 하시겠습니까?');"><i class="icon-power"></i> 로그아웃</a>
                     </li>
                 </ul>
             </div>

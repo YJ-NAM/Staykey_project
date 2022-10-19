@@ -15,6 +15,7 @@
 
 <div>
     <form name="search_form" method="post" action="memberList.do">
+    <input type="hidden" name="ps_order" value="${map.ps_order}" />
     <table class="table-form ml-0 mb-4 border rounded-lg">
         <colgroup>
             <col width="120" />
