@@ -15,7 +15,7 @@
 <div>
 
 	<form name="search_form" method="post" action="<?=$PHP_SELF?>">
-	<table class="table-form ml-0 mb-4 border rounded-lg">
+	<table class="table-form ml-0 mb-3 border rounded-lg">
 		<colgroup>
 			<col width="130" />
 			<col width="350" />

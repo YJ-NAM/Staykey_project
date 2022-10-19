@@ -17,7 +17,7 @@
 <div>
     <form name="search_form" method="post" action="memberList.do">
     <input type="hidden" name="ps_order" value="${map.ps_order}" />
-    <table class="table-form ml-0 mb-4 border rounded-lg">
+    <table class="table-form ml-0 mb-3 border rounded-lg">
         <colgroup>
             <col width="120" />
             <col width="245" />
@@ -88,7 +88,7 @@
         <colgroup>
             <col width="50">
             <col width="80">
-            <col width="120">
+            <col width="80">
             <col width="120">
             <col width="200">
             <col width="150">
@@ -101,9 +101,9 @@
         <thead>
             <tr>
                 <th>No.</th>
+                <th>유형</th>
                 <th>사진</th>
-                <th>아이디</th>
-                <th>이름</th>
+                <th>아이디/이름</th>
                 <th>이메일</th>
                 <th>전화번호</th>
                 <th>보유적립금</th>
@@ -119,20 +119,27 @@
             <c:forEach items="${list}" var="dto">
             <tr>
                 <td>${dto.getMember_no()}</td>
+                <td><c:choose><c:when test="${dto.getMember_type() == 'admin'}">관리자</c:when><c:otherwise>회원</c:otherwise></c:choose></td>
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}">
-                        <c:if test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>/data/profile/${dto.getMember_photo()}" width="60" alt="" /></c:if>
-                        <c:if test="${empty dto.getMember_photo() }">
+                        <c:choose>
+                        <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>/data/profile/${dto.getMember_photo()}" width="60" alt="" /></c:when>
+                        <c:otherwise>
                         <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
                             <title>${dto.getMember_name()}</title>
                             <rect width="100%" height="100%" fill="#eee"></rect>
                             <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
                         </svg>
-                        </c:if>
+                        </c:otherwise>
+                        </c:choose>
                     </a>
                 </td>
-                <td><a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}" class="text-left">${dto.getMember_id()}</a></td>
-                <td>${dto.getMember_name()}</td>
+                <td>
+                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}" class="text-left">
+                        <p class="mb-1"><b>${dto.getMember_id()}</b></p>
+                        <p>${dto.getMember_name()}</p>
+                    </a>
+                </td>
                 <td>${dto.getMember_email()}</td>
                 <td>${dto.getMember_phone()}</td>
                 <td><fmt:formatNumber value="${dto.getMember_point()}" />점</td>
