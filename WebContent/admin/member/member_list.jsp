@@ -135,7 +135,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}" class="text-left">
+                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}">
                         <p class="mb-1"><b>${dto.getMember_id()}</b></p>
                         <p>${dto.getMember_name()}</p>
                     </a>
