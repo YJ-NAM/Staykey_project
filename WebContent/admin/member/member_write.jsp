@@ -7,6 +7,69 @@
 $("#nav-member").addClass("now");
 
 
+$(function(){
+	$("input[name='member_id']").keyup(function(){
+        let userId = $(this).val();
+
+        if($.trim(userId).length < 4){
+            $("#idchk-txt").html("<span class=\"text-danger\">* 아이디는 4글자 이상이어야 합니다.</span>");
+            return false;
+        }
+
+        // 아이디 중복여부 확인
+        $.ajax({
+            type : "post",
+            url : "<%=request.getContextPath()%>/memberIdCheck.do",
+            data : { paramId : userId },
+            datatype : "html",
+
+            success : function(data){
+            	console.log(data);
+                let ajaxTxt = "";
+                if(data.trim() > 0){
+                    ajaxTxt = "<span class=\"text-danger\">* 이미 사용중인 아이디입니다.</span>";
+                }else{
+                    ajaxTxt = "<span class=\"text-primary\">* 사용 할 수 있는 아이디입니다.</span>";
+                }
+                $("#idchk-txt").html(ajaxTxt);
+            },
+
+            error : function(e){
+                alert("Error : " + e.status);
+            }
+        });
+	});
+});
+
+
+join_check = function(){
+    var form = document.write_form;
+
+    if(form.member_pw.value.length > 0 && form.member_pw_re.value.length > 0){
+        if(form.member_pw.value != form.member_pw_re.value){
+            alert("[비밀번호]가 일치하지 않습니다.");
+            form.member_pw.focus();
+            return false;
+        }
+    }
+
+    if(form.member_email.value == ""){
+        alert("[이메일]을 입력해 주세요.");
+        form.member_email.focus();
+        return false;
+    }
+
+    // 이메일 형식 체크
+    var TEmailChk = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    if(form.member_email.value.match(TEmailChk) != null){
+    }else{
+        alert("잘못된 이메일 형식입니다.\n[이메일]을 다시 입력해 주세요.");
+        form.member_email.focus();
+        return false;
+    }
+
+    form.submit();
+};
 </script>
 
 
@@ -20,7 +83,7 @@ $("#nav-member").addClass("now");
 
 
 <div class="pb100">
-    <form name="write_form" method="post" enctype="multipart/form-data" action="<%= request.getContextPath() %>/admin/memberWriteOk.do">
+    <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin/memberWriteOk.do" onsubmit="return join_check();">
     <table class="table-form">
         <colgroup>
             <col width="16%" />
@@ -47,15 +110,15 @@ $("#nav-member").addClass("now");
         <tr>
             <th>아이디</th>
             <td colspan="3">
-                <input type="text" name="member_id" value="" class="form-control d-inline w-30" required />
-                <div id="idchk-txt" class="d-inline ml-2"><span class="text-danger">* 이미 등록된 아이디입니다.</span></div>
+                <input type="text" name="member_id" value="" maxlength="30" class="form-control d-inline w-30" required />
+                <div id="idchk-txt" class="d-inline ml-2"></div>
             </td>
         </tr>
         <tr>
             <th>비밀번호</th>
-            <td><input type="password" name="member_pw" value="" class="form-control w-80" required /></td>
+            <td><input type="password" name="member_pw" value="" maxlength="50" class="form-control w-80" required /></td>
             <th>비밀번호 확인</th>
-            <td><input type="password" name="member_pw_re" value="" class="form-control w-80" required /></td>
+            <td><input type="password" name="member_pw_re" value="" maxlength="50" class="form-control w-80" required /></td>
         </tr>
 
         <tr>
@@ -64,13 +127,13 @@ $("#nav-member").addClass("now");
 
         <tr>
             <th>이름</th>
-            <td colspan="3"><input type="text" name="member_name" value="" class="form-control w-30" required /></td>
+            <td colspan="3"><input type="text" name="member_name" value="" maxlength="50" class="form-control w-30" required /></td>
         </tr>
         <tr>
             <th>이메일</th>
-            <td><input type="text" name="member_email" value="" class="form-control" required /></td>
+            <td><input type="text" name="member_email" value="" maxlength="100" class="form-control" required /></td>
             <th>연락처</th>
-            <td><input type="text" name="member_phone" value="" class="form-control" /></td>
+            <td><input type="text" name="member_phone" value="" maxlength="15" class="form-control" required /></td>
         </tr>
 
         <tr>
