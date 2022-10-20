@@ -6,63 +6,42 @@
 
     <!-- footer //START -->
     <footer class= "footer">
-    	
-    	<div class= "footer-container">
-    	
-    	 		<div class= "logo">
-    	 			<img src= "asset/images/staykey_logo_demoset.png" alt= "STAY:KEY">
-    	 		</div>
-    	 		
-    	 		<div class="info">
-    	 			<h4> Info </h4>
-    	 			
-   					<ul class= "info-cs">
-	   						<li>
-	    	 					<a href="" > 1:1 문의 </a> 
-	    	 				</li>
-	    	 				
-	    	 				<li>
-	    	 					<a href="" > 입점문의 </a>
-	    	 				</li>
-	    	 				
-	    	 				<li>
-	    	 					<a href=""> 제휴문의 </a>
-	    	 				</li>
-	    	 				
-    	 				</ul>
-   
-    	 		</div>
-    
-    	 		<div class= "cs-time">
-    	 			운영 시간 : 09:00 - 18:00
-    	 			
-    	 			<small> (점심시간 : 12:50 - 13:50)</small>
-    	 		</div>
-    	 		
-    	 		
-    	 		<div class= "footer-cs-contact">
-    	 		 
-    	 			<a target= "_blank" rel="noreferrer" 
-    	 			href="https://www.mss.go.kr/site/smba/07/20704000000002019081930.jsp"> 
-    	 				이용약관 </a>
-    	 				
-    	 			<a target= "_blank" rel= "noreferrer" class= "bold"
-    	 			href="https://www.mss.go.kr/site/smba/07/20705000000002019081953.jsp">
-    	 				개인정보 처리방침 </a>
-    	 			
-    	 				
-    	 			<div class= "footer-copyright"> 
-    	 			Copyright©STAY:KEY 
-    	 			
-    				</div>
-    				
-    			</div>
-    	
-    	  	 </div>	
-    	 	
-   	
-	
+
+		<div class="f-wrap">
+
+			<div class="fw-top d-flex">
+				<div class="fwt-social"><img src= "asset/images/staykey_logo.png" alt="">
+				<ul class="fwt-menu">
+					<li><a href="#">About us</a></li>
+				</ul>
+			</div>
+				<div class="fwt-cs">
+					<h4>고객센터</h4>
+					<div class="btn">
+						<a href="#">1:1문의</a>
+						<a href="#">입점 문의</a>
+						<a href="#">제휴 문의</a>
+					</div>
+					<p>운영시간: 10:00 ~ 18:00<span>(점심시간: 12:30 ~ 13:30)</span></p>
+					<div class="link">
+						<a href="#">이용약관</a>
+						<a href="#"><b>개인정보처리방침</b></a>
+					</div>
+				</div>
+
+				
+			</div>
+			
+
+			<div class="fw-bottom">
+				<p>(주) 스테이폴리오 | 대표자 : 이상묵 | 서울특별시 종로구 자하문로9길 24, 2층(통인동) | TEL: 1670-4123 | EMAIL:help@stayfolio.com | 사업자등록번호: 676-87-00055 | 통신판매업신고 : 제2015-서울종로-0499호 | 관광사업자등록 : 일반여행업 2018-000049호(종로구청)</p>
+			</div>
+		</div>
+		
    </footer>
     <!-- footer //END -->
+
+	
+
 </body>
 </html>
