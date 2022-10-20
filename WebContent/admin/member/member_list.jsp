@@ -167,9 +167,9 @@
                 <td colspan="10">
                     <table class="paging-table">
                         <colgroup>
-                            <col width="300">
+                            <col width="120">
                             <col>
-                            <col width="300">
+                            <col width="120">
                         </colgroup>
                         <tbody>
                             <tr>
