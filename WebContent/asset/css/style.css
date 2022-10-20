@@ -263,42 +263,52 @@ h1, h2, h3, h4, h5 {
 /* Footer
 /*************************/
 
-.stayKey-footer{
-	display: none;
-}
-
-	.footer-container {
+	.footer-top {
 	display: -webkit-flex;
 	display: flex;
-	-webkit-align-items: center;
-			align-items: center;
+	margin-left: auto;
+	margin-right: auto;
 	padding-top: 80px;
 	padding-bottom: 80px;
+	width: 100%;
+	background-color: #fff0dd;
 	position: absolute;
-	}
-	
-	.footer-logo {
-	line-height:1;
-	margin-top: 10px;
-	width: 180px;
-	}
-	
-	.footer-logo img {
-	width: 100%
 	
 	}
 	
-	.footer-info {
-	font-size: 25px;
+	
+	.info {
+	
+	width: 130px;
+	font-size: 15px;
 	font-family: serif;
-	letter-spacing: 1em;
-	text-align: center;
-	
+	color: #624621;
+	letter-spacing: 0.3em;
+	text-align: right;
+
 	}
 	
-	.footer-info-cs {
 	
+	.cs .cs-list ul > li {
+	list-style:none;
+	display: inline-block;
+	font-size: 14px;
+	color: #624621;
 	}
+	
+	.cs .cs-list li+li{
+	margin-top: 30px;
+	}
+	
+	.cs .cs-list li a{
+	float: left;
+	font-size: 14px;
+	color: #624621;
+	}
+	
+	
+	
+
 		
 
 /*************************/
