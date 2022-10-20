@@ -19,11 +19,11 @@
     <input type="hidden" name="ps_order" value="${map.ps_order}" />
     <table class="table-form ml-0 mb-3 border rounded-lg">
         <colgroup>
-            <col width="120" />
-            <col width="245" />
-            <col width="120" />
-            <col width="245" />
-            <col width="120" />
+            <col width="10%" />
+            <col width="22%" />
+            <col width="10%" />
+            <col width="22%" />
+            <col width="10%" />
             <col />
         </colgroup>
         <tr>
@@ -42,11 +42,11 @@
         </tr>
         <tr>
             <th>회원 이름</th>
-            <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="50" class="form-control" /></td>
+            <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="50" class="form-control w-90" /></td>
             <th>회원 아이디</th>
-            <td><input type="text" name="ps_id" value="${map.ps_id}" maxlength="30" class="form-control" /></td>
+            <td><input type="text" name="ps_id" value="${map.ps_id}" maxlength="30" class="form-control w-90" /></td>
             <th>회원 이메일</th>
-            <td><input type="text" name="ps_email" value="${map.ps_email}" maxlength="255" class="form-control" /></td>
+            <td><input type="text" name="ps_email" value="${map.ps_email}" maxlength="255" class="form-control w-90" /></td>
         </tr>
     </table>
 
@@ -63,7 +63,7 @@
     <div class="table-top clear">
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 명의 회원</div>
         <div class="tt-right">
-            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/memberList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
+            <select name="ps_order" class="form-select rounded" onChange="location.href='<%=request.getContextPath()%>/admin/memberList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
                 <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>등록일 최신</option>
                 <option value="register_asc"<c:if test="${map.ps_order == 'register_asc'}"> selected="selected"</c:if>>등록일 예전</option>
                 <option value="" disabled="disabled">---------------</option>
@@ -86,16 +86,16 @@
 
     <table class="table-list hover">
         <colgroup>
-            <col width="50">
-            <col width="80">
-            <col width="80">
-            <col width="120">
-            <col width="200">
-            <col width="150">
-            <col width="100">
-            <col width="80">
+            <col width="4.5%">
+            <col width="7.2%">
+            <col width="7.2%">
+            <col width="10%">
+            <col width="18%">
+            <col width="13.5%">
+            <col width="9%">
+            <col width="7.2%">
             <col />
-            <col width="100">
+            <col width="10%">
         </colgroup>
 
         <thead>
@@ -146,8 +146,8 @@
                 <td><fmt:formatNumber value="${dto.getMember_reserv()}" />번</td>
                 <td>${dto.getMember_joindate().substring(0, 10)}<br />${dto.getMember_joindate().substring(11)}</td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}" class="btn btn-sm btn-outline-primary">수정</a>
-                    <a href="<%=request.getContextPath()%>/admin/memberDelete.do?no=${dto.getMember_no()}" class="btn btn-sm btn-outline-danger ml-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}" class="btn btn-sm btn-outline-primary m-1">수정</a>
+                    <a href="<%=request.getContextPath()%>/admin/memberDelete.do?no=${dto.getMember_no()}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
             </tr>
             </c:forEach>
