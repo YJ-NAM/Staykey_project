@@ -63,7 +63,7 @@
     <div class="table-top clear">
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 명의 회원</div>
         <div class="tt-right">
-            <select name="ps_order" class="form-select rounded" onChange="location.href='<%=request.getContextPath()%>/admin/memberList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
+            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/memberList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
                 <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>등록일 최신</option>
                 <option value="register_asc"<c:if test="${map.ps_order == 'register_asc'}"> selected="selected"</c:if>>등록일 예전</option>
                 <option value="" disabled="disabled">---------------</option>
@@ -123,7 +123,7 @@
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}">
                         <c:choose>
-                        <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>/data/profile/${dto.getMember_photo()}" width="60" alt="" /></c:when>
+                        <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" width="60" height="60" alt="" /></c:when>
                         <c:otherwise>
                         <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
                             <title>${dto.getMember_name()}</title>

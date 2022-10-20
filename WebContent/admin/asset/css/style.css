@@ -495,6 +495,10 @@ ul.table-ui > li > .cell.del {}
 
 
 
+.form-select {
+    border-radius: 5px;
+    padding: 4px 8px 4px 5px;
+}
 
 
 /*************************/
@@ -505,11 +509,21 @@ ul.table-ui > li > .cell.del {}
 }
 .table-form {
     position: relative;
-    width: calc(100% - 17px);
-    margin: 0 0 0 17px;
+    width: 100%;
+    margin: 35px auto 0 auto;
     padding: 0;
     box-sizing: border-box;
     border-top: 1px solid #ddd;
+}
+@media (min-width: 768px) {
+    .table-form {
+        width: 85%;
+    }
+}
+@media (min-width: 576px) {
+    .table-form {
+        width: 70%;
+    }
 }
 .table-form.ml-0 {
     width: 100%;

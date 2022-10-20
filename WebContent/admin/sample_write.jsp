@@ -15,7 +15,6 @@
 
 <div class="pb100">
 	<form name="write_form" method="post" enctype="multipart/form-data" action="#">
-	<h4 class="mb-2">섹션 타이틀</h4>
 	<table class="table-form">
 		<colgroup>
 			<col width="130" />
@@ -53,7 +52,6 @@
 
 
 
-	<h4 class="mb-2 mt-5">섹션 타이틀</h4>
 	<table class="table-form">
 		<colgroup>
 			<col width="130" />
@@ -98,8 +96,6 @@
 
 
 
-
-	<h4 class="mb-2 mt-5">섹션 타이틀</h4>
 	<table class="table-form">
 		<colgroup>
 			<col width="130" />
@@ -114,7 +110,6 @@
 
 
 
-	<h4 class="mb-2 mt-5">상품 설명 (한국어)</h4>
 	<table class="table-form">
 		<tr>
 			<td>
