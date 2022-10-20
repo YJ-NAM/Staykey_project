@@ -179,7 +179,7 @@ public class MemberDAO {
             openConn();
 
             sql = "select * from "
-                + "(select row_number() over(order by "+order_sql+") rnum, b.* from staykey_member b"+search_sql1+") "
+                + "(select row_number() over(order by "+order_sql+") rnum, b.* from staykey_member b "+search_sql1+") "
                 + "where rnum >= ? and rnum <= ?" + search_sql2;
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
