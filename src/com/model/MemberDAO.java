@@ -291,15 +291,15 @@ public class MemberDAO {
     // ======================================================
 	// 회원 정보 가져오는 메서드
     // ======================================================
-	public MemberDTO getMemberInfo(int no) {
+	public MemberDTO getMemberInfo(String member_id) {
 		MemberDTO dto = null;
 
 		try {
 			openConn();
 
-			sql = "select * from staykey_member where member_no = ?";
+			sql = "select * from staykey_member where member_id = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, no);
+			pstmt.setString(1, member_id);
 			rs = pstmt.executeQuery();
 
 			if(rs.next()) {
