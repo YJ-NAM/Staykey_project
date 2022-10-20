@@ -9,15 +9,13 @@
     	
     	<div class= "footer-container">
     	
-			 <div class= "footer-top">
-			 
     	 		<div class= "logo">
-    	 			<img src= "../asset/images/staykey_logo_demo.png" alt= "STAY:KEY">
+    	 			<img src= "asset/images/staykey_logo_demoset.png" alt= "STAY:KEY">
     	 		</div>
     	 		
     	 		<div class="info">
     	 			<h4> Info </h4>
-    	 		
+    	 			
    					<ul class= "info-cs">
 	   						<li>
 	    	 					<a href="" > 1:1 문의 </a> 
@@ -32,10 +30,10 @@
 	    	 				</li>
 	    	 				
     	 				</ul>
-    	 			</div>
-    	 		
+   
+    	 		</div>
     
-    	 		<div class= "footer-cs-time">
+    	 		<div class= "cs-time">
     	 			운영 시간 : 09:00 - 18:00
     	 			
     	 			<small> (점심시간 : 12:50 - 13:50)</small>
@@ -61,9 +59,7 @@
     			</div>
     	
     	  	 </div>	
-    	 		
-	 			
-    		</div>
+    	 	
    	
 	
    </footer>
