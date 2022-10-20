@@ -67,8 +67,7 @@ public class AdminMemberListAction implements Action {
             page = 1;
         }
 
-        int startNo = (page * rowsize) - (rowsize - 1);
-        int endNo = (page * rowsize);
+
         int startBlock = (((page - 1) / block) * block) + 1;
         int endBlock = (((page - 1) / block) * block) + block;
 

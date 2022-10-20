@@ -63,7 +63,7 @@
     <div class="table-top clear">
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 명의 회원</div>
         <div class="tt-right">
-            <select name="ps_order" class="form-select rounded" onChange="location.href='<%=request.getContextPath()%>/admin/memberList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
+            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/memberList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
                 <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>등록일 최신</option>
                 <option value="register_asc"<c:if test="${map.ps_order == 'register_asc'}"> selected="selected"</c:if>>등록일 예전</option>
                 <option value="" disabled="disabled">---------------</option>
@@ -121,9 +121,9 @@
                 <td>${dto.getMember_no()}</td>
                 <td><c:choose><c:when test="${dto.getMember_type() == 'admin'}">관리자</c:when><c:otherwise>회원</c:otherwise></c:choose></td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}">
+                    <a href="<%=request.getContextPath()%>/admin/memberView.do?id=${dto.getMember_id()}">
                         <c:choose>
-                        <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>/data/profile/${dto.getMember_photo()}" width="60" alt="" /></c:when>
+                        <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" width="60" height="60" alt="" /></c:when>
                         <c:otherwise>
                         <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
                             <title>${dto.getMember_name()}</title>
@@ -135,7 +135,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}">
+                    <a href="<%=request.getContextPath()%>/admin/memberView.do?id=${dto.getMember_id()}">
                         <p class="mb-1"><b>${dto.getMember_id()}</b></p>
                         <p>${dto.getMember_name()}</p>
                     </a>
@@ -146,8 +146,8 @@
                 <td><fmt:formatNumber value="${dto.getMember_reserv()}" />번</td>
                 <td>${dto.getMember_joindate().substring(0, 10)}<br />${dto.getMember_joindate().substring(11)}</td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}" class="btn btn-sm btn-outline-primary m-1">수정</a>
-                    <a href="<%=request.getContextPath()%>/admin/memberDelete.do?no=${dto.getMember_no()}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?id=${dto.getMember_id()}" class="btn btn-sm btn-outline-primary m-1">수정</a>
+                    <a href="<%=request.getContextPath()%>/admin/memberDeleteOk.do?id=${dto.getMember_id()}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
             </tr>
             </c:forEach>
