@@ -15,6 +15,10 @@
 		})
 	})
 </script>
+
+
+<script type="text/javascript">$("#nav-stay").addClass("now");</script>
+
 <div>
 	<hr />
 	<h4>숙소 전체 목록 조회</h4>

@@ -1,259 +1,195 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<style>
-.page-paging {
-	display: inline-block;
-	padding: 0;
-	text-align: center;
-	font-size: 0;
-	line-height: 0;
-}
-
-.page-paging ol {
-	display: inline-block;
-	vertical-align: top;
-	margin: 0;
-	padding: 0;
-}
-
-.page-paging span, .page-paging ol li {
-	display: inline-block;
-	margin-left: -1px;
-	background: #fefefe;
-	line-height: 36px;
-	letter-spacing: -1px;
-	color: #6c757d;
-	vertical-align: top;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	border-left: 1px solid #ccc;
-}
-
-.page-paging span {
-	width: 38px;
-	font-size: 16px;
-	overflow: hidden;
-}
-
-.page-paging span.nolink {
-	width: 38px;
-	height: 38px;
-	text-align: center;
-	box-sizing: border-box;
-}
-
-.page-paging span:first-child {
-	margin-left: 0;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	border-left: 1px solid #ccc;
-	-webkit-border-top-left-radius: 5px;
-	-webkit-border-bottom-left-radius: 5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-bottomleft: 5px;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-}
-
-.page-paging span:last-child {
-	margin-left: 0;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	-webkit-border-top-right-radius: 5px;
-	-webkit-border-bottom-right-radius: 5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-bottomleft: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-.page-paging a {
-	display: block;
-	width: 38px;
-	text-align: center;
-	font-family: verdana;
-	font-size: 14px;
-	color: #007bff;
-	text-decoration: none;
-	letter-spacing: -1px;
-}
-
-.page-paging span a {
-	width: 38px;
-	height: 36px;
-	font-size: 16px;
-	text-decoration: none;
-	letter-spacing: -1px;
-}
-
-.page-paging a:hover {
-	color: #000;
-	background: #f3f3f3;
-	text-decoration: none;
-}
-
-.page-paging li.now {
-	width: 38px;
-	height: 38px;
-	color: #fff;
-	background: #007bff;
-	border-top: 1px solid #007bff;
-	border-bottom: 1px solid #007bff;
-	font-family: verdana;
-	font-size: 13px;
-	text-align: center;
-	box-sizing: border-box;
-}
-</style>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-회원관리 목록
+<c:set var="list" value="${List}" />
 
 
-	<div align="center">
-		<hr width="50%" color="red">
-		<h3>회원 테이블 게시물 전체 리스트 페이지</h3>
-		<hr width="50%" color="red">
-		<br>
-		<table border="1" cellspacing="0" width="1000">
-			<tr>
-				<th>회원 번호</th>
-				<th>유형(user/admin)</th>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>이메일</th>
-				<th>전화번호</th>
-				<th>적립금</th>
-				<th>예약횟수</th>
-				<th>프로필 사진</th>
-				<th>가입 일자</th>
-				
-			</tr>
-			<c:set var="list" value="${List }" />
-			<c:if test="${!empty list }" />
+<script type="text/javascript">$("#nav-member").addClass("now");</script>
+<div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
+    <h2>회원 목록</h2>
+    <small>등록된 회원/관리자 목록을 확인하고 관리 할 수 있습니다.</small>
+</div>
 
-			<c:forEach items="${list }" var="dto">
 
-				<tr>
-				
-					<td>		<%-- 회원 번호 --%>
-						<a href="<%= request.getContextPath() %>/admin/memberView.do?no=${dto.getMember_no() }">${dto.getMember_no() }</a>	
-					</td>		
-					
-					<%-- 회원의 아이디가 user면 회원 저장 --%>
-					<c:if test="${dto.getMember_type() == 'user'}">
-						<td>회원</td>
-					</c:if>
-					
-					<%-- 회원의 아이디가 admin면 관리자로 저장 --%>
-					<c:if test="${dto.getMember_type() == 'admin'}">
-						<td>관리자</td>			
-					</c:if>
-					
-					<td>${dto.getMember_id() }</td>			<%-- 아이디 --%>
-					<td>${dto.getMember_name() }</td>		<%-- 이름 --%>
-					<td>${dto.getMember_email() }</td>		<%-- 이메일 --%>
-					<td>${dto.getMember_phone() }</td>		<%-- 전화번호 --%>
-					<td>${dto.getMember_point() }</td>		<%-- 적립금 --%>
-					<td>${dto.getMember_reserv() }</td>		<%-- 예약 횟수 --%>
-					
-					<%-- 프로필 사진이 있으면 --%>
-					<c:if test="${!empty dto.getMember_photo() }">
-						<td>X</td>
-					</c:if>
-					<%-- 프로필 사진이 없으면 --%>
-					<c:if test="${empty dto.getMember_photo() }">
-						<td>X</td>
-					</c:if>
-					
-					<td>${dto.getMember_joindate().substring(0, 10) }</td>	<%-- 가입일자 --%>
-					
-				</tr>
-			</c:forEach>
+<div>
+    <form name="search_form" method="post" action="memberList.do">
+    <input type="hidden" name="ps_order" value="${map.ps_order}" />
+    <table class="table-form ml-0 mb-3 border rounded-lg">
+        <colgroup>
+            <col width="10%" />
+            <col width="22%" />
+            <col width="10%" />
+            <col width="22%" />
+            <col width="10%" />
+            <col />
+        </colgroup>
+        <tr>
+            <th>회원 구분</th>
+            <td colspan="5">
+                <div class="form-check form-check-inline ml-1">
+                    <label class="form-check-label"><input type="radio" name="ps_type" value="all" class="form-check-input"<c:if test="${map.ps_type == 'all'}"> checked="checked"</c:if> /> 전체</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="radio" name="ps_type" value="user" class="form-check-input"<c:if test="${map.ps_type == 'user'}"> checked="checked"</c:if> /> 일반회원</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="radio" name="ps_type" value="admin" class="form-check-input"<c:if test="${map.ps_type == 'admin'}"> checked="checked"</c:if> /> 관리자</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>회원 이름</th>
+            <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="50" class="form-control w-90" /></td>
+            <th>회원 아이디</th>
+            <td><input type="text" name="ps_id" value="${map.ps_id}" maxlength="30" class="form-control w-90" /></td>
+            <th>회원 이메일</th>
+            <td><input type="text" name="ps_email" value="${map.ps_email}" maxlength="255" class="form-control w-90" /></td>
+        </tr>
+    </table>
 
-			<c:if test="${empty list }">
-				<tr>
-					<td colspan="4" align="center">
-						<h3>전체 게시물 리스트가 없습니다.....</h3>
-					</td>
-				</tr>
-			</c:if>
+    <div class="text-center mb-5">
+        <a href="<%=request.getContextPath()%>/admin/memberList.do" class="btn btn-outline-secondary"><i class="fa fa-power-off"></i> 검색초기화</a>
+        <button type="submit" class="btn btn-secondary mx-2"><i class="fa fa-search"></i> 회원검색</button>
+    </div>
+    </form>
 
-			<tr>
-				<td colspan="4" align="center"><input type="button" value="글쓰기"
-					onclick="location.href='board_write.do'"></td>
-			</tr>
-		</table>
-	
-				<%-- 검색 페이징 처리 영역 --%>
 
-		<div align="center">
-			<div class="page-paging">
-				<c:if test="${startBlock > 1}">
-					<span><a href="board_search.do?page=1&search_field=${field}&search_keyword=${keyword}">&lt;&lt;</a></span>
-				</c:if>
-				<c:if test="${startBlock <= 1}">
-					<span class="nolink">&lt;&lt;</span>
-				</c:if>
 
-				<c:if test="${page > 1}">
-					<span><a href="board_search.do?page=${page - 1}&search_field=${field}&search_keyword=${keyword}">&lt;</a></span>
-				</c:if>
-				<c:if test="${page <= 1}">
-					<span class="nolink">&lt;</span>
-				</c:if>
 
-				<ol>
-					<c:forEach begin="${startBlock}" end="${endBlock}" var="i">
-						<c:if test="${i == page}">
-							<li class="now">${i}</li>
-						</c:if>
-						<c:if test="${i != page}">
-							<li><a
-								href="board_search.do?page=${i}&search_field=${field}&search_keyword=${keyword}">${i}</a></li>
-						</c:if>
-					</c:forEach>
-				</ol>
 
-				<c:if test="${page < allPage}">
-					<span><a href="board_search.do?page=${page + 1}&search_field=${field}&search_keyword=${keyword}">&gt;</a></span>
-				</c:if>
-				<c:if test="${page >= allPage}">
-					<span class="nolink">&gt;</span>
-				</c:if>
+    <div class="table-top clear">
+        <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 명의 회원</div>
+        <div class="tt-right">
+            <select name="ps_order" class="form-select rounded" onChange="location.href='<%=request.getContextPath()%>/admin/memberList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
+                <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>등록일 최신</option>
+                <option value="register_asc"<c:if test="${map.ps_order == 'register_asc'}"> selected="selected"</c:if>>등록일 예전</option>
+                <option value="" disabled="disabled">---------------</option>
+                <option value="id_desc"<c:if test="${map.ps_order == 'id_desc'}"> selected="selected"</c:if>>아이디 역순</option>
+                <option value="id_asc"<c:if test="${map.ps_order == 'id_asc'}"> selected="selected"</c:if>>아이디 순</option>
+                <option value="" disabled="disabled">---------------</option>
+                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>회원이름 역순</option>
+                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>회원이름 순</option>
+                <option value="" disabled="disabled">---------------</option>
+                <option value="point_desc"<c:if test="${map.ps_order == 'point_desc'}"> selected="selected"</c:if>>적립금 높은</option>
+                <option value="point_asc"<c:if test="${map.ps_order == 'point_asc'}"> selected="selected"</c:if>>적립금 낮은</option>
+                <option value="" disabled="disabled">---------------</option>
+                <option value="count_desc"<c:if test="${map.ps_order == 'count_desc'}"> selected="selected"</c:if>>예약횟수 높은</option>
+                <option value="count_asc"<c:if test="${map.ps_order == 'count_asc'}"> selected="selected"</c:if>>예약횟수 낮은</option>
+            </select>
+        </div>
+    </div>
 
-				<c:if test="${endBlock < allPage}">
-					<span><a href="board_search.do?page=${allPage}&search_field=${field}&search_keyword=${keyword}">&gt;&gt;</a></span>
-				</c:if>
-				<c:if test="${endBlock >= allPage}">
-					<span class="nolink">&gt;&gt;</span>
-				</c:if>
-			</div>
-		</div>
-		
- 		<br>
- 		<hr width="50%" color="red">
- 		<br>
- 		
- 		
-		<%-- 검색 기능 처리 --%>
-		
-		<form action="<%= request.getContextPath() %>/admin/memberSearch.do" method="post">
-			
-			<select name="search_field">
-				<option value="type">유형</option>
-				<option value="id">아이디</option>
-				<option value="name">이름</option>
-			</select>
-			
-			<input name="search_keyword">&nbsp;&nbsp;
-			<input type="submit" value="검색">		
-		
-		</form>	
-	
+
+
+    <table class="table-list hover">
+        <colgroup>
+            <col width="4.5%">
+            <col width="7.2%">
+            <col width="7.2%">
+            <col width="10%">
+            <col width="18%">
+            <col width="13.5%">
+            <col width="9%">
+            <col width="7.2%">
+            <col />
+            <col width="10%">
+        </colgroup>
+
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>유형</th>
+                <th>사진</th>
+                <th>아이디/이름</th>
+                <th>이메일</th>
+                <th>전화번호</th>
+                <th>보유적립금</th>
+                <th>예약횟수</th>
+                <th>등록일</th>
+                <th>기능</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <c:choose>
+            <c:when test="${!empty list }">
+            <c:forEach items="${list}" var="dto">
+            <tr>
+                <td>${dto.getMember_no()}</td>
+                <td><c:choose><c:when test="${dto.getMember_type() == 'admin'}">관리자</c:when><c:otherwise>회원</c:otherwise></c:choose></td>
+                <td>
+                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}">
+                        <c:choose>
+                        <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>/data/profile/${dto.getMember_photo()}" width="60" alt="" /></c:when>
+                        <c:otherwise>
+                        <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                            <title>${dto.getMember_name()}</title>
+                            <rect width="100%" height="100%" fill="#eee"></rect>
+                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+                        </svg>
+                        </c:otherwise>
+                        </c:choose>
+                    </a>
+                </td>
+                <td>
+                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}">
+                        <p class="mb-1"><b>${dto.getMember_id()}</b></p>
+                        <p>${dto.getMember_name()}</p>
+                    </a>
+                </td>
+                <td>${dto.getMember_email()}</td>
+                <td>${dto.getMember_phone()}</td>
+                <td><fmt:formatNumber value="${dto.getMember_point()}" />점</td>
+                <td><fmt:formatNumber value="${dto.getMember_reserv()}" />번</td>
+                <td>${dto.getMember_joindate().substring(0, 10)}<br />${dto.getMember_joindate().substring(11)}</td>
+                <td>
+                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}" class="btn btn-sm btn-outline-primary m-1">수정</a>
+                    <a href="<%=request.getContextPath()%>/admin/memberDelete.do?no=${dto.getMember_no()}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                </td>
+            </tr>
+            </c:forEach>
+            </c:when>
+
+            <c:otherwise>
+            <tr>
+                <td colspan="10" class="nodata">등록된 회원이 없습니다.</td>
+            </tr>
+            </c:otherwise>
+            </c:choose>
+        </tbody>
+
+
+        <tfoot>
+            <tr>
+                <td colspan="10">
+                    <table class="paging-table">
+                        <colgroup>
+                            <col width="300">
+                            <col>
+                            <col width="300">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td class="text-left"></td>
+
+                                <td class="text-center">
+                                    ${map.pagingWrite}
+                                </td>
+
+                                <td class="text-right"><a href="<%=request.getContextPath()%>/admin/memberWrite.do" class="btn btn-primary"><i class="fa fa-pencil"></i> 회원등록</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
 
 
 <jsp:include page="../layout/layout_footer.jsp" />

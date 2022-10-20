@@ -4,22 +4,24 @@
 
 
 
-
+<script type="text/javascript">$("#nav-member").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
 	<h2>페이지 목록</h2>
 	<small>페이지 설명</small>
 </div>
 
 
+<h1 class="text-danger">회원관리 목록 페이지 파일 참고 할 것</h1>
+
 
 <div>
 
 	<form name="search_form" method="post" action="<?=$PHP_SELF?>">
-	<table class="table-form ml-0 mb-4 border rounded-lg">
+	<table class="table-form ml-0 mb-3 border rounded-lg">
 		<colgroup>
-			<col width="130" />
-			<col width="350" />
-			<col width="130" />
+			<col width="10%" />
+			<col width="40%" />
+			<col width="10%" />
 			<col />
 		</colgroup>
 		<tr>
