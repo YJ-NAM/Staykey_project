@@ -102,12 +102,12 @@ public class AdminStayRoomWriteAction implements Action {
         File stayRoom_photo = multi.getFile("member_photo");
         if (stayRoom_photo != null) {
             String fileExt = stayRoom_photo.getName().substring(stayRoom_photo.getName().lastIndexOf(".") + 1);
-            String member_photo_flie_rename = stayRoom_roomStayNo + "_" + System.currentTimeMillis() + "." + fileExt;
-            stayRoom_photo.renameTo(new File(saveFolder + "/" + member_photo_flie_rename));
+            String stayRoom_photo_rename = stayRoom_roomStayNo + "_" + System.currentTimeMillis() + "." + fileExt;
+            stayRoom_photo.renameTo(new File(saveFolder + "/" + stayRoom_photo_rename));
 
             // DB에 저장되는 파일 이름
             // 저장이름 : /data/저장폴더/회원아이디_현재날짜(유닉스타임)
-            String fileDBName = thisFolder + member_photo_flie_rename;
+            String fileDBName = thisFolder + stayRoom_photo_rename;
             dto.setRoom_photo1(fileDBName);
         }
 
