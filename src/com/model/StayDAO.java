@@ -191,7 +191,7 @@ public class StayDAO {
 	/////////////////////////////////////////////////////////////
 	// 각 숙소당 방 전체 목록 조회
 	/////////////////////////////////////////////////////////////
-	public List<StayRoomDTO> getStayLoomList(int no){
+	public List<StayRoomDTO> getStayRoomList(int no){
 		
 		List<StayRoomDTO> list = new ArrayList<StayRoomDTO>();
 		openConn();
@@ -272,8 +272,7 @@ public class StayDAO {
 			pstmt.setString(16, dto.getRoom_photo4());
 			pstmt.setString(17, dto.getRoom_photo5());
 			
-			result = pstmt.executeUpdate();
-			
+			result = pstmt.executeUpdate();			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
