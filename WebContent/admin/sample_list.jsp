@@ -11,15 +11,17 @@
 </div>
 
 
+<h1 class="text-danger">회원관리 목록 페이지 파일 참고 할 것</h1>
+
 
 <div>
 
 	<form name="search_form" method="post" action="<?=$PHP_SELF?>">
 	<table class="table-form ml-0 mb-3 border rounded-lg">
 		<colgroup>
-			<col width="130" />
-			<col width="350" />
-			<col width="130" />
+			<col width="10%" />
+			<col width="40%" />
+			<col width="10%" />
 			<col />
 		</colgroup>
 		<tr>
