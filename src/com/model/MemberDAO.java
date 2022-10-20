@@ -217,6 +217,33 @@ public class MemberDAO {
 
 
 
+    // ======================================================
+    // 회원 아이디 체크 메서드
+    // ======================================================
+    public int idCheck(String member_id) {
+        int result = 0;
+
+        try {
+            openConn();
+
+            sql = "select * from staykey_member where member_id = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, member_id);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) result = rs.getInt(1);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
+    }
+
+
 
     // ======================================================
     // 회원 등록 메서드
