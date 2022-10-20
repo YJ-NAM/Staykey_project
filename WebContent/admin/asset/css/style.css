@@ -255,6 +255,9 @@ input[type='password'] {
     font-size: 1rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .navbar .navbar-nav .nav-item {
     border-radius: 15px;
