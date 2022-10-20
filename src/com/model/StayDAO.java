@@ -128,7 +128,7 @@ public class StayDAO {
 	} // getStayList() 종료
 	
 	/////////////////////////////////////////////////////////////
-	// 숙소 전체 목록 조회(날짜 역순)
+	// 상세 목록 조회
 	/////////////////////////////////////////////////////////////
 	public StayDTO getStayView(int no) {
 		
@@ -229,7 +229,55 @@ public class StayDAO {
 		return list;
 	} //getStayLoomList() 종료
 	
-	
+
+	/////////////////////////////////////////////////////////////
+	// 방 등록 메서드 + 방 번호 지정
+	/////////////////////////////////////////////////////////////
+	public int registerStayRoom(StayRoomDTO dto) {
+		
+		int result = 0, count = 0;
+		openConn();
+		
+		try {
+			sql = "select max(room_no) from staykey_stay_room where room_stayno = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dto.getRoom_stayno());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1) + 1;
+			}
+			
+			sql = "insert into staykey_stay_room values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			pstmt.setInt(2, dto.getRoom_stayno());
+			pstmt.setString(3, dto.getRoom_name());
+			pstmt.setString(4, dto.getRoom_desc());
+			pstmt.setString(5, dto.getRoom_checkin());
+			pstmt.setString(6, dto.getRoom_checkout());
+			pstmt.setInt(7, dto.getRoom_people_min());
+			pstmt.setInt(8, dto.getRoom_people_max());
+			pstmt.setInt(9, dto.getRoom_size());
+			pstmt.setString(10, dto.getRoom_features());
+			pstmt.setString(11, dto.getRoom_amenities());
+			pstmt.setString(12, dto.getRoom_service());
+			pstmt.setString(13, dto.getRoom_photo1());
+			pstmt.setString(14, dto.getRoom_photo2());
+			pstmt.setString(15, dto.getRoom_photo3());
+			pstmt.setString(16, dto.getRoom_photo4());
+			pstmt.setString(17, dto.getRoom_photo5());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+		return result;
+	} // registerStayRoom() 종료
 	
 
 }
