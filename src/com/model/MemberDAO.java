@@ -328,8 +328,60 @@ public class MemberDAO {
 		return dto;
 	}
 
+	
+	
+	
+	
+    // ======================================================
+	// 회원정보 삭제하는 메서드
+    // ======================================================
+	public int deleteMember(String memberId) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "delete from staykey_member where member_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, con);
+		}
+		
+		return result;
+	}
+	
+	
+	
+    // ======================================================
+	// 회원번호 재작업하는 메서드
+    // ======================================================
 
-
+	public void updateNo(int no) {
+		try {
+			openConn();
+			
+			sql = "update staykey_member set member_no = member_no - 1 where member_no > ?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			
+			pstmt.executeUpdate();
+			
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}	// updateSequence() 메서드 end
 
 
 
