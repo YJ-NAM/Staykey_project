@@ -7,12 +7,14 @@ create table staykey_stay(
     stay_desc varchar2(100),
     stay_location varchar2(50) not null,
     stay_addr varchar2(100) not null,
-    stay_content1 varchar2(2000),
-    stay_content2 varchar2(2000),
-    stay_content3 varchar2(2000),
-    stay_info1 varchar2(2000),
-    stay_info2 varchar2(2000),
-    stay_info3 varchar2(2000),
+    stay_phone varchar2(20) not null,
+    stay_email varchar2(100) not null,
+    stay_content1 varchar2(4000),
+    stay_content2 varchar2(4000),
+    stay_content3 varchar2(4000),
+    stay_info1 varchar2(4000),
+    stay_info2 varchar2(4000),
+    stay_info3 varchar2(4000),
     stay_file1 varchar2(200),
     stay_file2 varchar2(200),
     stay_file3 varchar2(200),
@@ -40,6 +42,8 @@ comment on column staykey_stay.stay_name is '숙소 이름';
 comment on column staykey_stay.stay_desc is '간략 설명';
 comment on column staykey_stay.stay_location is '숙소 위치';
 comment on column staykey_stay.stay_addr is '숙소 주소';
+comment on column staykey_stay.stay_phone is '숙소 연락처';
+comment on column staykey_stay.stay_email is '숙소 이메일';
 comment on column staykey_stay.stay_content1 is '내용 컨텐츠 1';
 comment on column staykey_stay.stay_content2 is '내용 컨텐츠 2';
 comment on column staykey_stay.stay_content3 is '내용 컨텐츠 3';
@@ -67,8 +71,8 @@ comment on column staykey_stay.stay_hit is '숙소 조회수';
 comment on column staykey_stay.stay_reserv is '숙소 예약수';
 comment on column staykey_stay.stay_date is '숙소 등록일자';
 
-insert into staykey_stay values(1, '숙소 이름', '간략 설명', '강원 / 속초', '강원도 속초시 대포동 457-1', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 12, 1, sysdate);
-insert into staykey_stay values(2, '숙소 이름2', '간략 설명22', '서울 / 중구', '강원도 속초시 대포동 457-1', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 12, 1, sysdate);
-insert into staykey_stay values(3, '숙소 이름3', '간략 설명22', '강원 / 속초', '강원도 속초시 대포동 457-1', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 12, 1, sysdate);
+insert into staykey_stay values(1, '바구니호스텔', '여행자를 위한 모든 것을 담다', '전라/순천시', '전라남도 순천시 조곡동 153-16', '010-6404-8925', 'bagunihostel@naver.com', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 12, 1, sysdate);
+insert into staykey_stay values(2, '숙소 이름2', '간략 설명22', '서울/중구', '강원도 속초시 대포동 457-1', '010-2222-2222', 'stayhotel22@stay.com', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 12, 1, sysdate);
+insert into staykey_stay values(3, '숙소 이름3', '간략 설명22', '강원/속초', '강원도 속초시 대포동 457-1', '010-3333-3333', 'stayhotel33@stay.com', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 12, 1, sysdate);
 
 commit;

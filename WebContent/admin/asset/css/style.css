@@ -1263,4 +1263,53 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 
 
 
+/*************************/
+/* 숙소 관리
+/*************************/
+.table-list .stay-list {
+    display: block;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: 30px;
+}
+.table-list .stay-list .sl-loc {
+    display: inline-block;
+    padding: 1px 5px 2px 5px;
+    margin-bottom: 10px;
+    background: #bff2ff;
+    border: 1px solid #7bd8f0;
+    font-size: 13px;
+    color: #111;
+    border-radius: 5px;
+}
+.table-list .stay-list .sl-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+.table-list .stay-list .sl-desc {
+    font-size: 14px;
+    color: #666;
+}
+.table-list .stay-list .sl-addr {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #111;
+}
+.table-list .stay-list .sl-addr:before {
+    font-family: 'FontAwesome';
+    content: "\f041";
+    margin-right: 5px;
+}
+
+.table-list .stay-list:hover .sl-name {
+    color: #0069d9;
+}
+
+
+
+
+
 
