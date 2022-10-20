@@ -262,9 +262,9 @@ public class MemberDAO {
 
 
     // ======================================================
-	// 글번호에 해당하는 게시글의 상세 내역을 조회하는 메서드.
+	// 회원 정보를 가져오는 메서드.
     // ======================================================
-	public MemberDTO uploadDetails(int no) {
+	public MemberDTO getMemberInfo(int no) {
 		MemberDTO dto = null;
 
 		try {
