@@ -8,6 +8,7 @@ create table staykey_magazine(
     bbs_file1 varchar2(200),
     bbs_file2 varchar2(200),
     bbs_file3 varchar2(200),
+    bbs_file4 varchar2(200),
     bbs_file5 varchar2(200),
     bbs_stayno varchar2(100),
     bbs_hit number(5) default 0 not null,
