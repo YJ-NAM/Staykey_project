@@ -25,13 +25,13 @@ public class AdminMemberDeleteOkAction implements Action {
         String saveFolder = request.getSession().getServletContext().getRealPath("/");
 
         MemberDTO dto = dao.getMemberInfo(member_id);
-		String pimage = dto.getMember_photo();
+		String member_photo = dto.getMember_photo();
 		int memberNo = dto.getMember_no();
 		
 		
-		if(pimage != null){
-			System.out.println(saveFolder+pimage);
-		    File del_pimage = new File(saveFolder+pimage);
+		if(member_photo != null){
+			System.out.println(saveFolder+member_photo);
+		    File del_pimage = new File(saveFolder+member_photo);
 		    if(del_pimage.exists()){
 		        if(del_pimage.delete()) {
 		            System.out.println("프로필 파일 삭제 완료");
