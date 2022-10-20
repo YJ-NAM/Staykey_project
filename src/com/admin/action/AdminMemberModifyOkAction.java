@@ -27,12 +27,17 @@ public class AdminMemberModifyOkAction implements Action {
 		String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
 		int fileSize = 10 * 1024 * 1024; // 10MB
 
+		// 업로드 폴더 체크 후 없으면 생성
+        File dirChk = new File(saveFolder);
+        if(!dirChk.exists()){
+            dirChk.mkdir();
+        }
+
 		// 파일 업로드 객체 생성
-		MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8",
-				new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 
 		// 비밀번호 변경 값
-		String member_pw = request.getParameter("member_pw_chg").trim();
+		String member_pw = multi.getParameter("member_pw_chg").trim();
 
 		// 비밀번호 변경 값이 없으면 기존에 히든으로 넘겨줬던 비밀번호 값을 받아준다.
 		if (member_pw == null) {
