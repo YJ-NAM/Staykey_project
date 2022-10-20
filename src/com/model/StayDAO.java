@@ -89,6 +89,8 @@ public class StayDAO {
 				dto.setStay_desc(rs.getString("stay_desc"));
 				dto.setStay_location(rs.getString("stay_location"));
 				dto.setStay_addr(rs.getString("stay_addr"));
+				dto.setStay_phone(rs.getString("stay_phone"));
+				dto.setStay_email(rs.getString("stay_email"));
 				dto.setStay_content1(rs.getString("stay_content1"));
 				dto.setStay_content2(rs.getString("stay_content2"));
 				dto.setStay_content3(rs.getString("stay_content3"));
@@ -148,6 +150,8 @@ public class StayDAO {
 				dto.setStay_desc(rs.getString("stay_desc"));
 				dto.setStay_location(rs.getString("stay_location"));
 				dto.setStay_addr(rs.getString("stay_addr"));
+				dto.setStay_phone(rs.getString("stay_phone"));
+				dto.setStay_email(rs.getString("stay_email"));
 				dto.setStay_content1(rs.getString("stay_content1"));
 				dto.setStay_content2(rs.getString("stay_content2"));
 				dto.setStay_content3(rs.getString("stay_content3"));
