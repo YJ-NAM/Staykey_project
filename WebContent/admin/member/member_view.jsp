@@ -86,8 +86,8 @@
 
     <!-- 버튼 //START -->
     <div class="d-flex justify-content-center mb-4">
-        <a href="<%=request.getContextPath()%>/admin/memberDeleteOk.do?no=${dto.getMember_no()}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?\n되돌릴 수 없습니다.');"><i class="fa fa-trash-o"></i> 삭제하기</a>
-        <a href="<%=request.getContextPath()%>/admin/memberModify.do?no=${dto.getMember_no()}" class="btn btn-primary mx-2"><i class="fa fa-pencil"></i> 수정하기</a>
+        <a href="<%=request.getContextPath()%>/admin/memberDeleteOk.do?id=${dto.getMember_id()}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?\n되돌릴 수 없습니다.');"><i class="fa fa-trash-o"></i> 삭제하기</a>
+        <a href="<%=request.getContextPath()%>/admin/memberModify.do?id=${dto.getMember_id()}" class="btn btn-primary mx-2"><i class="fa fa-pencil"></i> 수정하기</a>
         <a href="javascript:history.back();" class="btn btn-secondary"><i class="fa fa-bars"></i> 목록보기</a>
     </div>
     <!-- 버튼 //END -->
