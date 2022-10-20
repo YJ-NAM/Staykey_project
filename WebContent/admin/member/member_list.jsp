@@ -51,8 +51,8 @@
     </table>
 
     <div class="text-center mb-5">
-        <a href="<%=request.getContextPath()%>/admin/memberList.do" class="btn btn-outline-secondary"><i class="fa fa-power-off"></i> 검색초기화</a>
-        <button type="submit" class="btn btn-secondary mx-2"><i class="fa fa-search"></i> 회원검색</button>
+        <a href="<%=request.getContextPath()%>/admin/memberList.do" class="btn btn-outline-secondary"><i class="fa fa-power-off"></i> 검색 초기화</a>
+        <button type="submit" class="btn btn-secondary mx-2"><i class="fa fa-search"></i> 회원 검색</button>
     </div>
     </form>
 
@@ -179,7 +179,7 @@
                                     ${map.pagingWrite}
                                 </td>
 
-                                <td class="text-right"><a href="<%=request.getContextPath()%>/admin/memberWrite.do" class="btn btn-primary"><i class="fa fa-pencil"></i> 회원등록</a></td>
+                                <td class="text-right"><a href="<%=request.getContextPath()%>/admin/memberWrite.do" class="btn btn-primary"><i class="fa fa-pencil"></i> 회원 등록</a></td>
                             </tr>
                         </tbody>
                     </table>
