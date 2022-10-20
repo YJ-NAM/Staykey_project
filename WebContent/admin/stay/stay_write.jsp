@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../layout/layout_header.jsp" />
-
 <div>
 	<hr />
 	<h4>숙소 등록하기</h4>
@@ -13,7 +12,7 @@
 			<th>숙소명</th><td><input type="text" name="name" /></td>
 		</tr>
 		<tr>
-			<th>간략 설명</th><td><textarea name="" id="" cols="30" rows="10" ></textarea></td>
+			<th>간략 설명</th><td><textarea name="description" cols="30" rows="10" ></textarea></td>
 		</tr>
 		<tr>
 			<th>체크인 시간</th><td><input type="time" name="checkIn" /></td>
@@ -28,12 +27,13 @@
 			<th>최대인원</th><td><input type="number" min="1" max="15" name="maxNumber" /></td>
 		</tr>
 		<tr>			
-			<th>객실면적</th><td><input type="number" name="size" /></td>
+			<th>객실면적</th><td><input type="number" name="roomSize" />m<sup>2</sup></td>
 		</tr>
 		<tr>			
 			<th>FEATURES</th>
 			<td>
-				<input type="checkbox" name="features" id="outdoorFurniture"><label for=outdoorFurniture">야외가구</label>
+				<input type="checkbox" name="features" id="outdoorFurniture"><label for="outdoorFurniture">야외가구</label>
+				<input type="checkbox" name="features" id="skyLight"><label for="skyLight">천창</label>
 				<input type="checkbox" name="features" id="swimmingPool"><label for="swimmingPool">수영장</label>
 				<input type="checkbox" name="features" id="indoorSpa"><label for="indoorSpa">실내 스파</label>
 				<input type="checkbox" name="features" id="whirlpoolSpa"><label for="whirlpoolSpa">월풀 스파</label>
@@ -95,28 +95,28 @@
 			</td>
 		</tr>
 		<tr>			
-			<th>서비스</th>
+			<th>ADD-ON SERVICES</th>
 			<td>
-				<input type="checkbox" name="service" id="wineOpener"><label for="wineOpener">현금영수증</label>
-				<input type="checkbox" name="service" id="wineglass"><label for="wineglass">BBQ</label>
-				<input type="checkbox" name="service" id="towel"><label for="toster">토스터기</label>
-				<input type="checkbox" name="service" id="coffeeCapsule"><label for="coffeeCapsule">캡슐커피머신</label>
-				<input type="checkbox" name="service" id="plates"><label for="plates">다기</label>
-				<input type="checkbox" name="service" id="utensils"><label for="utensils">조리도구</label>
-				<input type="checkbox" name="service" id="flavouring"><label for="flavouring">조미료</label>
-				<input type="checkbox" name="service" id="purifier"><label for="purifier">정수기</label>
-				<input type="checkbox" name="service" id="sleepers"><label for="sleepers">룸 슬리퍼</label>
+				<input type="checkbox" name="services" id="cashReceipt"><label for="cashReceipt">현금영수증</label>
+				<input type="checkbox" name="services" id="wineglass"><label for="wineglass">BBQ</label>
+				<input type="checkbox" name="services" id="breakfast"><label for="breakfast">조식</label>
 			</td>
 		</tr>
 		<tr>			
 			<th>사진</th> 			
 			<td>
-				<input type="file" />	
-				<input type="file" />		
-				<input type="file" />		
-				<input type="file" />		
-				<input type="file" />		
+				<input type="file" name="stay_photo1" />	
+				<input type="file" name="stay_photo2" />		
+				<input type="file" name="stay_photo3" />		
+				<input type="file" name="stay_photo4" />		
+				<input type="file" name="stay_photo5" />		
 			</td> 		
+		</tr>
+		<tr>
+			<td colspan="2" align="right">
+				<input type="submit" value="등록하기" />
+				<input type="reset" value="초기화" />
+			</td>
 		</tr>
 	</table>
 	</form>
