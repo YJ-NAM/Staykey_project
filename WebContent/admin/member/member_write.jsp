@@ -84,7 +84,7 @@ join_check = function(){
 
 <div class="pb100">
     <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin/memberWriteOk.do" onsubmit="return join_check();">
-    <table class="table-form">
+    <table class="table-form mt-3">
         <colgroup>
             <col width="16%" />
             <col width="34%" />
