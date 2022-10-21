@@ -16,7 +16,7 @@
 				location.href='';
 			}
 		})
-	})
+	});
 </script>
 <div>
 	<hr />
@@ -74,6 +74,8 @@
 		</c:choose>
 		<tr>
 			<td colspan="17">
+			<button type="submit"></button>
+				<button class="btn btn-primary">hgfhgfhgf</button>
 				<input type="button" class="btn" value="방 추가하기" />
 				<input type="button" class="btn" value="방 수정하기" />
 				<input type="button" class="btn" value="방 삭제하기" />
