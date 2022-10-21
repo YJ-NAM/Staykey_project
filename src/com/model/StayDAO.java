@@ -85,6 +85,7 @@ public class StayDAO {
 			while(rs.next()) {
 				StayDTO dto = new StayDTO();
 				dto.setStay_no(rs.getInt("stay_no"));
+				dto.setStay_type(rs.getString("stay_type"));
 				dto.setStay_name(rs.getString("stay_name"));
 				dto.setStay_desc(rs.getString("stay_desc"));
 				dto.setStay_location(rs.getString("stay_location"));
@@ -146,6 +147,7 @@ public class StayDAO {
 			while(rs.next()) {
 				dto = new StayDTO();
 				dto.setStay_no(rs.getInt("stay_no"));
+				dto.setStay_type(rs.getString("stay_type"));
 				dto.setStay_name(rs.getString("stay_name"));
 				dto.setStay_desc(rs.getString("stay_desc"));
 				dto.setStay_location(rs.getString("stay_location"));
