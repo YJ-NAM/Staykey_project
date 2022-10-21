@@ -2,7 +2,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-
+@font-face {
+    font-family: 'NotoSerifKR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 /*************************/
@@ -266,31 +271,31 @@ h1, h2, h3, h4, h5 {
 .footer {
     position: relative;
     width: 100%;
-    background: #dbbdbd;
+    background:#FFE4E1;
     box-sizing: border-box;
     padding: 80px 100px;
 }
 
 .footer .f-wrap {
     position: relative;
-    width: 1000px;
+    width: 1200px;
     margin: 0 auto;
-}
-
-.footer .f-wrap .fw-top .fwt-social {
-   width: auto;
-   height: auto;
 
 }
+
 .footer .f-wrap .fw-top {
     position: relative;
     width: 100%;
 }
-.footer .f-wrap .fw-top .fwt-menu {
+
+.footer .f-wrap .fw-top .
+
+.footer .f-wrap .fw-top .fwt-info .fwt-menu {
     position: relative;
     display: block;
     text-align: center;
-    color: #6b5959;
+    font-family: 'NotoSerifKR';
+    color: 	#DB7093;
     margin: 20px;
     padding: 3px;
 }
@@ -300,7 +305,7 @@ h1, h2, h3, h4, h5 {
 .footer .f-wrap .fw-top .fwt-menu li a {
     font-family: 'Abril Fatface', cursive;
     font-size: 20px;
-    color: #6b5959;
+    color:#CD5C5C;
     letter-spacing: 0.3em;
     display: block;
     padding: 5px;
@@ -309,27 +314,58 @@ h1, h2, h3, h4, h5 {
     color: #fefefe;
 }
 .footer .f-wrap .fw-top .fwt-cs {
-    color:#6b5959;
-    position: absolute;
-    top: 0px;
-    left: 180px;
-  
+    position: relative;
+    width: 100%;
+    left: 80px;
+    border-left: 1px solid  #ffffff;
+    color:#800000;
+    font-family: 'NotoSerifKR';
 }
 
-.footer .f-wrap .btn {
-   display:block;
-   letter-spacing: 0.5em;
+.footer .f-wrap .fw-top .fwt-cs h4 {
+    margin-top: auto;
+    margin-left: 50px;
+
 }
 
+.footer .f-wrap .fw-top .fwt-cs .btn {
+   display: inline-block;
+   padding: 20px;
+   letter-spacing: 1em;
+   margin-left: 30px;
+}
+
+.footer .f-wrap .fw-top .fwt-cs .btn a {
+    font-family: 'NotoSerifKR';
+    color:#800000;
+    opacity: 60%;
+
+}
+
+.footer .f-wrap .fw-top .fwt-cs .btn a:hover{
+    color: #fefefe;
+}
+
+
+.footer .f-wrap .fw-top .fwt-cs p {
+    margin: 5px;
+    margin-left: 50px;
+    padding: auto;
+}
+
+.footer .f-wrap .fw-top .fwt-cs p span {
+    margin-top: 10px;
+    opacity: 60%;
+}
 
 .footer .f-wrap .fw-bottom {
     position: relative;
     width: 100%;
-    border-top: 1px solid #666;
-    margin-top: 50px;
-    padding-top: 40px;
+    opacity: 50%;
     font-size: 13px;
-    color: #555;
+    margin-top: 100px;
+    color:#CD5C5C;
+    
 }
 
 
