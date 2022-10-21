@@ -29,7 +29,7 @@ comment on column staykey_stay_room.room_no is '방 번호';
 comment on column staykey_stay_room.room_stayno is '숙소 번호';
 comment on column staykey_stay_room.room_name is '방 이름';
 comment on column staykey_stay_room.room_desc is '간략 설명';
-comment on column staykey_stay_room.room_desc is '방 타입';
+comment on column staykey_stay_room.room_type is '방 타입';
 comment on column staykey_stay_room.room_price is '숙박비';
 comment on column staykey_stay_room.room_checkin is '체크인 시간';
 comment on column staykey_stay_room.room_checkout is '체크아웃 시간';
