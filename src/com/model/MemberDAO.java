@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 
 
 
+
 public class MemberDAO {
     Connection con = null;
     PreparedStatement pstmt = null;
@@ -384,8 +385,43 @@ public class MemberDAO {
 	}	// updateSequence() 메서드 end
 
 
+	
+
+    // ======================================================
+	// 회원정보를 업데이트 하는 메서드
+    // ======================================================
+
+	public int memberModify(MemberDTO dto) {
+		int result = 0;
+		
+		try {
+			openConn();
+			sql = "update staykey_member set member_type = ?, member_pw = ?, member_name = ?, member_email = ?, member_phone = ?, member_photo = ? where member_id = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			
+			pstmt.setString(1, dto.getMember_type());
+			pstmt.setString(2, dto.getMember_pw());
+			pstmt.setString(3, dto.getMember_name());
+			pstmt.setString(4, dto.getMember_email());
+			pstmt.setString(5, dto.getMember_phone());
+			pstmt.setString(6, dto.getMember_photo());
+			pstmt.setString(7, dto.getMember_id());
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeConn(pstmt, con);
+		}
+		return result;
+	}	
 
 
-
+	
+	
+	
 
 }
