@@ -1,4 +1,4 @@
-d<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% long time = System.currentTimeMillis(); %>
 <!DOCTYPE html>
 <html>
@@ -53,14 +53,12 @@ d<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
 
 
     <!-- header //START -->
-    <header class="header">
+    <header class="header" style="background">
         <div class="h-wrap">
-
-            <div class="h-gnb">
-                <div class= "h-logo">
+            <div class= "h-logo">
                     <img src="asset/images/staykey_logo.png" alt="logo">
                 </div>
-        
+            <div class="h-gnb">
                 <div class= "h-location">
                     <button input="" class="location-where"><span>어디로 갈까요</span></button>
                     <button input="" class="location-when"><span>언제 떠날까요</span></button>
@@ -73,6 +71,7 @@ d<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
                         <li><a href="#">읽어보기</a></li>
                         <li><a href="#">앞서보기</a></li>
                     </ul>
+                </div>
                     <div class="menu-etc">
                         <div class="etc-login">
 
@@ -80,7 +79,6 @@ d<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
                         <div class="etc-lang">
 
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

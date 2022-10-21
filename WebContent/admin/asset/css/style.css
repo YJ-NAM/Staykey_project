@@ -1365,6 +1365,14 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 }
 
 
+.form-check-inline {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.input-group .input-group-text {
+    font-size: 0.85rem;
+}
+
 
 
 
