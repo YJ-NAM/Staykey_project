@@ -1,6 +1,5 @@
 package com.admin.action;
 
-import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,25 +16,27 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class AdminMemberModifyOkAction implements Action {
 
-	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// 회원 수정
+    @Override
+    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // 회원 수정
 
-		MemberDTO dto = new MemberDTO();
-		MemberDAO dao = MemberDAO.getInstance();
+        MemberDTO dto = new MemberDTO();
+        MemberDAO dao = MemberDAO.getInstance();
 
-		// 파일 업로드 설정
-		String thisFolder = "/data/profile/";
-		String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);	// 주소값
 
-		int fileSize = 10 * 1024 * 1024; // 10MB
+        // 파일 업로드 설정
+        String thisFolder = "/data/profile/";
+        String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
+        int fileSize = 10 * 1024 * 1024; // 10MB
 
-		// 업로드 폴더 체크 후 없으면 생성
+
+        // 업로드 폴더 체크 후 없으면 생성
         File dirChk = new File(saveFolder);
-        if(!dirChk.exists()){
+        if (!dirChk.exists()) {
             dirChk.mkdir();
         }
 
+        
 		// 파일 업로드 객체 생성	여기서 파일 생성
 		MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 
@@ -113,11 +114,18 @@ public class AdminMemberModifyOkAction implements Action {
 		}
        
 
-		
-
-
-
-
+        if (member_photo != null) {
+            System.out.println(saveFolder + member_photo);
+            File del_pimage = new File(saveFolder + member_photo);
+            // del_pimage.delete() 실제로 삭제시키는 메서드
+            if (del_pimage.exists()) {
+                if (del_pimage.delete()) {
+                    System.out.println("프로필 파일 삭제 완료");
+                } else {
+                    System.out.println("프로필 파일 삭제 실패");
+                }
+            }
+        }
 
 		return forward;
 	}
