@@ -39,6 +39,7 @@ $(document).ready(function(){
 		let location_value = $(this).attr('value');
 		$("input[name='ps_location']").val(location_value);
 	});
+	
 });
 
 </script>
@@ -110,7 +111,7 @@ $(document).ready(function(){
             		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="강원" >강원</button>
             		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="부산" >부산</button>
             		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경기" >경기</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="충청" >중청</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="충청" >충청</button>
             		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경상" >경상</button>
             		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전라" >전라</button>
             		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="인천" >인천</button>

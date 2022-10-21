@@ -1,12 +1,10 @@
 package com.model;
 
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -84,11 +82,11 @@ public class StayDAO {
 		int endNo = (page * rowsize);
 
 		// 검색용 설정
-		String search_sql1 = " where member_no > 0";
+		String search_sql1 = " where stay_no > 0";
 		String search_sql2 = "";
 
 		if (map.get("ps_name") != "" || map.get("ps_name") != null) {
-			search_sql2 += " and member_name like '%" + map.get("ps_name") + "%'";
+			search_sql2 += " and stay_name like '%" + map.get("ps_name") + "%'";
 		}
 		if (map.get("ps_id") != null) {
 			search_sql2 += " and member_id like '%" + map.get("ps_id") + "%'";
@@ -211,7 +209,6 @@ public class StayDAO {
 		if (map.get("ps_name") != "" && map.get("ps_name") != null) {
 			search_sql += " and stay_name like '%" + map.get("ps_name") + "%'";
 		}
-		
 		if (map.get("ps_location") != "" && map.get("ps_location") != null) {
 			search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
 		}
