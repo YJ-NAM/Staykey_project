@@ -100,15 +100,17 @@
 
         <thead>
             <tr>
-                <th>No.</th>
-                <th>유형</th>
-                <th>사진</th>
+                <th>NO.</th>
+                <th>리뷰 파일</th>
                 <th>아이디/이름</th>
-                <th>이메일</th>
-                <th>전화번호</th>
-                <th>보유적립금</th>
-                <th>예약횟수</th>
-                <th>등록일</th>
+                <th>숙소 번호</th>
+                <th>평점 접근성</th>
+                <th>평점 서비스</th>
+                <th>평점 객실시설</th>
+                <th>평점 부대시설</th>
+                <th>평점 식음료</th>
+                <th>평점 만족도</th>
+                <th>리뷰 작성일</th>
                 <th>기능</th>
             </tr>
         </thead>
@@ -118,15 +120,14 @@
             <c:when test="${!empty list }">
             <c:forEach items="${list}" var="dto">
             <tr>
-                <td>${dto.getMember_no()}</td>
-                <td><c:choose><c:when test="${dto.getMember_type() == 'admin'}">관리자</c:when><c:otherwise>회원</c:otherwise></c:choose></td>
+                <td>${dto.review_no}</td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.getMember_id()}">
+                    <a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">
                         <c:choose>
-                        <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" width="60" height="60" alt="" /></c:when>
+                        <c:when test="${!empty dto.review_file }"><img src="<%=request.getContextPath()%>${dto.review_file}" width="60" height="60" alt="" /></c:when>
                         <c:otherwise>
                         <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                            <title>${dto.getMember_name()}</title>
+                            <title>${dto.review_name}</title>
                             <rect width="100%" height="100%" fill="#eee"></rect>
                             <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
                         </svg>
@@ -134,21 +135,23 @@
                         </c:choose>
                     </a>
                 </td>
+				<td>
+					<a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">${dto.review_id}/${dto.review_name} </a>
+				</td>
+                <td>${dto.review_stayno}</td>
+                <td>${dto.review_point1}</td>
+                <td>${dto.review_point2}</td>
+                <td>${dto.review_point3}</td>
+                <td>${dto.review_point4}</td>
+                <td>${dto.review_point5}</td>
+                <td>${dto.review_point6}</td>
+				<td>${dto.review_date.substring(0, 10)}</td>
+                
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.getMember_id()}">
-                        <p class="mb-1"><b>${dto.getMember_id()}</b></p>
-                        <p>${dto.getMember_name()}</p>
-                    </a>
+                    <a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
+                    <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.review_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
-                <td>${dto.getMember_email()}</td>
-                <td>${dto.getMember_phone()}</td>
-                <td><fmt:formatNumber value="${dto.getMember_point()}" />점</td>
-                <td><fmt:formatNumber value="${dto.getMember_reserv()}" />번</td>
-                <td>${dto.getMember_joindate().substring(0, 10)}<br />${dto.getMember_joindate().substring(11)}</td>
-                <td>
-                    <a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.getMember_id()}" class="btn btn-sm btn-outline-primary m-1">수정</a>
-                    <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.getMember_id()}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-                </td>
+                
             </tr>
             </c:forEach>
             </c:when>
