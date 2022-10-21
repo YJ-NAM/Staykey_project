@@ -37,14 +37,26 @@ public class AdminStayListAction implements Action {
 
     	if(request.getParameterValues("ps_type") != null) { 
 			get_type = request.getParameterValues("ps_type");
-			for (int i = 0; i<get_type.length; i++){
-				ps_type += "/"+get_type[i];
+			System.out.println(get_type[0]);
+			if(get_type[0].equals("all")) {
+				ps_type = "";
+			}else {
+				for (int i = 0; i<get_type.length; i++){
+					ps_type += "/"+get_type[i];
+				}
 			}
 		}
 
     	if(request.getParameter("ps_name") != null){ ps_name = request.getParameter("ps_name").trim(); }else{ ps_name = ""; }
-    	if(request.getParameter("ps_location") != null){ ps_location = request.getParameter("ps_id").trim(); }else{ ps_location = ""; }
-    	if(request.getParameter("ps_phone") != null){ ps_phone = request.getParameter("ps_email").trim(); }else{ ps_phone = ""; }
+    	if(request.getParameter("ps_location") != null){ 
+    		ps_location = request.getParameter("ps_location").trim(); 
+    		if(ps_location.equals("전체")) {
+        		ps_location = ""; 
+    		}
+    	}else{ 
+    		ps_location = ""; 
+    	}
+    	if(request.getParameter("ps_phone") != null){ ps_phone = request.getParameter("ps_phone").trim(); }else{ ps_phone = ""; }
     	if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "register_desc"; }
     	
     	// 뷰에 전달할 매개변수 추가
