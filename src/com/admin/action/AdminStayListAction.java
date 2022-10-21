@@ -37,8 +37,13 @@ public class AdminStayListAction implements Action {
 
     	if(request.getParameterValues("ps_type") != null) { 
 			get_type = request.getParameterValues("ps_type");
-			for (int i = 0; i<get_type.length; i++){
-				ps_type += "/"+get_type[i];
+			System.out.println(get_type[0]);
+			if(get_type[0].equals("all")) {
+				ps_type = "";
+			}else {
+				for (int i = 0; i<get_type.length; i++){
+					ps_type += "/"+get_type[i];
+				}
 			}
 		}
 
