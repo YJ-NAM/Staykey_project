@@ -113,7 +113,7 @@ join_check = function(){
             <th>프로필 사진</th>
             <td colspan="3">
                 <input type="file" name="member_photo" class="form-control w-50" />
-                <c:if test="${!empty dto.getMember_photo()}"><p class="mt-2"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" style="width: auto; max-width: 250px; max-height: 250px;" alt="" /></p></c:if>
+                <c:if test="${!empty dto.getMember_photo()}"><p class="mt-2"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" style="max-width: 400px;" alt="" /></p></c:if>
             </td>
         </tr>
     </table>

@@ -141,19 +141,23 @@
                     </div>
                 </div>
                 <div class="row my-2">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text rounded-0">옵션설명</span>
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text rounded-0">옵션설명</span>
+                            </div>
+                            <input type="text" name="stay_option1_desc" value="" maxlength="200" class="form-control" />
                         </div>
-                        <input type="text" name="stay_option1_desc" value="" maxlength="200" class="form-control" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text rounded-0">옵션사진</span>
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text rounded-0">옵션사진</span>
+                            </div>
+                            <input type="file" name="stay_option1_photo" class="form-control w-50" />
                         </div>
-                        <input type="file" name="stay_option1_photo" class="form-control w-50" />
                     </div>
                 </div>
             </td>
@@ -181,19 +185,23 @@
                     </div>
                 </div>
                 <div class="row my-2">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text rounded-0">옵션설명</span>
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text rounded-0">옵션설명</span>
+                            </div>
+                            <input type="text" name="stay_option2_desc" value="" maxlength="200" class="form-control" />
                         </div>
-                        <input type="text" name="stay_option2_desc" value="" maxlength="200" class="form-control" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text rounded-0">옵션사진</span>
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text rounded-0">옵션사진</span>
+                            </div>
+                            <input type="file" name="stay_option2_photo" class="form-control w-50" />
                         </div>
-                        <input type="file" name="stay_option2_photo" class="form-control w-50" />
                     </div>
                 </div>
             </td>
@@ -221,19 +229,23 @@
                     </div>
                 </div>
                 <div class="row my-2">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text rounded-0">옵션설명</span>
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text rounded-0">옵션설명</span>
+                            </div>
+                            <input type="text" name="stay_option3_desc" value="" maxlength="200" class="form-control" />
                         </div>
-                        <input type="text" name="stay_option3_desc" value="" maxlength="200" class="form-control" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text rounded-0">옵션사진</span>
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text rounded-0">옵션사진</span>
+                            </div>
+                            <input type="file" name="stay_option3_photo" class="form-control w-50" />
                         </div>
-                        <input type="file" name="stay_option3_photo" class="form-control w-50" />
                     </div>
                 </div>
             </td>
