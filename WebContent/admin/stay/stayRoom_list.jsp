@@ -3,6 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../layout/layout_header.jsp" />
 <c:set var="stayRoomList" value="${ stayRoomList }" />
+<c:set var="stayNo" value="${ stayNo }" /> <!-- 숙소 번호 넘겨준 인자값! 필수 -->
+<script>
+	$(function() {
+		$(".btn").click(function() {
+			let button = $(".btn").index(this);
+			if(button == 0) { // 방 등록하기
+				location.href='stay/stayRoom_write.jsp?room_stayno=${ stayNo }'; // 경로 확인 완 - 숙소 번호 get으로 넘겨줌
+			}else if(button == 1){ // 방 수정하기 - 경로 재확인 필요
+				location.href='stayRoomModify.do?stay_no=${ list.room_stayno }';
+			}else if(button == 2){ // 방 삭제하기 - 경로 재확인 필요
+				location.href='';
+			}
+		})
+	});
+</script>
 <div>
 	<hr />
 	<h4>방 전체 목록</h4>
@@ -57,6 +72,15 @@
 			</tr>
 			</c:otherwise>
 		</c:choose>
+		<tr>
+			<td colspan="17">
+			<button type="submit"></button>
+				<button class="btn btn-primary">hgfhgfhgf</button>
+				<input type="button" class="btn" value="방 추가하기" />
+				<input type="button" class="btn" value="방 수정하기" />
+				<input type="button" class="btn" value="방 삭제하기" />
+			</td>
+		</tr>
 	</table>
 </div>
 

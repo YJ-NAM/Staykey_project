@@ -3,10 +3,13 @@ package com.model;
 public class StayDTO {
 	                                      
 		private int stay_no;				  // 숙소 고유번호
+		private String stay_type;             // 숙소 타입
 		private String stay_name;             // 숙소명
 		private String stay_desc;             // 숙소 간략 설명/description
 		private String stay_location;         // 위치
 		private String stay_addr;             // 주소
+		private String stay_phone;            // 연락처
+		private String stay_email;            // 이메일
 		private String stay_content1;         // 내용1
 		private String stay_content2;         // 내용2
 		private String stay_content3;         // 내용3
@@ -37,7 +40,13 @@ public class StayDTO {
 		public int getStay_no() {
 			return stay_no;
 		}
-		public void setStay_no(int stay_no) {
+		public String getStay_type() {
+            return stay_type;
+        }
+        public void setStay_type(String stay_type) {
+            this.stay_type = stay_type;
+        }
+        public void setStay_no(int stay_no) {
 			this.stay_no = stay_no;
 		}
 		public String getStay_name() {
@@ -58,12 +67,24 @@ public class StayDTO {
 		public void setStay_location(String stay_location) {
 			this.stay_location = stay_location;
 		}
-		public String getStay_addr() {
-			return stay_addr;
-		}
-		public void setStay_addr(String stay_addr) {
-			this.stay_addr = stay_addr;
-		}
+        public String getStay_addr() {
+            return stay_addr;
+        }
+        public void setStay_addr(String stay_addr) {
+            this.stay_addr = stay_addr;
+        }
+        public String getStay_phone() {
+            return stay_phone;
+        }
+        public void setStay_phone(String stay_phone) {
+            this.stay_phone = stay_phone;
+        }
+        public String getStay_email() {
+            return stay_email;
+        }
+        public void setStay_email(String stay_email) {
+            this.stay_email = stay_email;
+        }
 		public String getStay_content1() {
 			return stay_content1;
 		}

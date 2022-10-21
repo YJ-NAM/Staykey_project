@@ -85,10 +85,13 @@ public class StayDAO {
 			while(rs.next()) {
 				StayDTO dto = new StayDTO();
 				dto.setStay_no(rs.getInt("stay_no"));
+				dto.setStay_type(rs.getString("stay_type"));
 				dto.setStay_name(rs.getString("stay_name"));
 				dto.setStay_desc(rs.getString("stay_desc"));
 				dto.setStay_location(rs.getString("stay_location"));
 				dto.setStay_addr(rs.getString("stay_addr"));
+				dto.setStay_phone(rs.getString("stay_phone"));
+				dto.setStay_email(rs.getString("stay_email"));
 				dto.setStay_content1(rs.getString("stay_content1"));
 				dto.setStay_content2(rs.getString("stay_content2"));
 				dto.setStay_content3(rs.getString("stay_content3"));
@@ -128,7 +131,7 @@ public class StayDAO {
 	} // getStayList() 종료
 	
 	/////////////////////////////////////////////////////////////
-	// 숙소 전체 목록 조회(날짜 역순)
+	// 상세 목록 조회
 	/////////////////////////////////////////////////////////////
 	public StayDTO getStayView(int no) {
 		
@@ -144,10 +147,13 @@ public class StayDAO {
 			while(rs.next()) {
 				dto = new StayDTO();
 				dto.setStay_no(rs.getInt("stay_no"));
+				dto.setStay_type(rs.getString("stay_type"));
 				dto.setStay_name(rs.getString("stay_name"));
 				dto.setStay_desc(rs.getString("stay_desc"));
 				dto.setStay_location(rs.getString("stay_location"));
 				dto.setStay_addr(rs.getString("stay_addr"));
+				dto.setStay_phone(rs.getString("stay_phone"));
+				dto.setStay_email(rs.getString("stay_email"));
 				dto.setStay_content1(rs.getString("stay_content1"));
 				dto.setStay_content2(rs.getString("stay_content2"));
 				dto.setStay_content3(rs.getString("stay_content3"));
@@ -187,7 +193,7 @@ public class StayDAO {
 	/////////////////////////////////////////////////////////////
 	// 각 숙소당 방 전체 목록 조회
 	/////////////////////////////////////////////////////////////
-	public List<StayRoomDTO> getStayLoomList(int no){
+	public List<StayRoomDTO> getStayRoomList(int no){
 		
 		List<StayRoomDTO> list = new ArrayList<StayRoomDTO>();
 		openConn();
@@ -229,7 +235,54 @@ public class StayDAO {
 		return list;
 	} //getStayLoomList() 종료
 	
-	
+
+	/////////////////////////////////////////////////////////////
+	// 방 등록 메서드 + 방 번호 지정
+	/////////////////////////////////////////////////////////////
+	public int registerStayRoom(StayRoomDTO dto) {
+		
+		int result = 0, count = 0;
+		openConn();
+		
+		try {
+			sql = "select max(room_no) from staykey_stay_room where room_stayno = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dto.getRoom_stayno());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1) + 1;
+			}
+			
+			sql = "insert into staykey_stay_room values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			pstmt.setInt(2, dto.getRoom_stayno());
+			pstmt.setString(3, dto.getRoom_name());
+			pstmt.setString(4, dto.getRoom_desc());
+			pstmt.setString(5, dto.getRoom_checkin());
+			pstmt.setString(6, dto.getRoom_checkout());
+			pstmt.setInt(7, dto.getRoom_people_min());
+			pstmt.setInt(8, dto.getRoom_people_max());
+			pstmt.setInt(9, dto.getRoom_size());
+			pstmt.setString(10, dto.getRoom_features());
+			pstmt.setString(11, dto.getRoom_amenities());
+			pstmt.setString(12, dto.getRoom_service());
+			pstmt.setString(13, dto.getRoom_photo1());
+			pstmt.setString(14, dto.getRoom_photo2());
+			pstmt.setString(15, dto.getRoom_photo3());
+			pstmt.setString(16, dto.getRoom_photo4());
+			pstmt.setString(17, dto.getRoom_photo5());
+			
+			result = pstmt.executeUpdate();			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+		return result;
+	} // registerStayRoom() 종료
 	
 
 }

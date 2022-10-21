@@ -6,11 +6,14 @@ public class StayRoomDTO {
 		private int room_stayno;            // 숙소번호(Stay와 연결)
 		private String room_name;           // 방이름
 		private String room_desc;           // description
+		private String room_type;           // 방 타입
+		private int room_price;             // 숙박비
 		private String room_checkin;        // 체크인 시간
 		private String room_checkout;       // 체크아웃 시간
 		private int room_people_min;        // 투숙 최소 인원
 		private int room_people_max;        // 최대 인원
 		private int room_size;              // 소수점 없는 방사이즈
+		private String room_bed;            // 침대 정보
 		private String room_features;       // 특징1~5('/'로 tokenizing)
 		private String room_amenities;      // 어메니티1~(위와 동일)
 		private String room_service;        // 서비스1~(위와 동일)
@@ -19,6 +22,7 @@ public class StayRoomDTO {
 		private String room_photo3;         // 룸사진3
 		private String room_photo4;         // 룸사진4
 		private String room_photo5;         // 룸사진5
+		private String room_tag;            // 룸 태그
 		
 		public int getRoom_no() {
 			return room_no;
@@ -32,7 +36,31 @@ public class StayRoomDTO {
 		public void setRoom_stayno(int room_stayno) {
 			this.room_stayno = room_stayno;
 		}
-		public String getRoom_name() {
+		public String getRoom_type() {
+            return room_type;
+        }
+        public void setRoom_type(String room_type) {
+            this.room_type = room_type;
+        }
+        public int getRoom_price() {
+            return room_price;
+        }
+        public void setRoom_price(int room_price) {
+            this.room_price = room_price;
+        }
+        public String getRoom_bed() {
+            return room_bed;
+        }
+        public void setRoom_bed(String room_bed) {
+            this.room_bed = room_bed;
+        }
+        public String getRoom_tag() {
+            return room_tag;
+        }
+        public void setRoom_tag(String room_tag) {
+            this.room_tag = room_tag;
+        }
+        public String getRoom_name() {
 			return room_name;
 		}
 		public void setRoom_name(String room_name) {

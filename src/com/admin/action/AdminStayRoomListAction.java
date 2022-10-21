@@ -22,7 +22,8 @@ public class AdminStayRoomListAction implements Action {
 		StayDAO dao = StayDAO.getInstance();
 		
 		// 전체 room 정보 목록 조회 메서드 : getStayLoomList()
-		List<StayRoomDTO> list = dao.getStayLoomList(stayNo);
+		List<StayRoomDTO> list = dao.getStayRoomList(stayNo);
+		request.setAttribute("stayNo", stayNo);
 		request.setAttribute("stayRoomList", list);
 				
 		ActionForward forward = new ActionForward();

@@ -1,93 +1,273 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
-<c:set var="list" value="${ stayView }" />
 
-<script>
-	
-	$(function() {
-		$(".btn").click(function() {
-			let button = $(".btn").index(this);
-			if(button == 0) { // Room 구성 보기
-				location.href='stayRoomList.do?stay_no=${ list.stay_no }';
-			}else if(button == 1){ // 수정하기
-				location.href='stayModify.do?stay_no=${ list.stay_no }';
-			}else if(button == 2){ // 삭제하기
-				location.href='';
-			}
-		})
-	})
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-</script>
-<div>
-	<hr />
-	<h4>About <b>${ stayView.stay_name }</b></h4>
-	<hr />
-	<table>
-		<tr>
-			<th>숙소 번호</th> 
-			<th>숙소 이름</th> 
-			<th>간략 설명</th> 
-			<th>숙소 위치</th> 
-			<th>숙소 주소</th> 
-			<th>내용 컨텐츠1</th> 
-			<th>내용 컨텐츠2</th> 
-			<th>내용 컨텐츠3</th> 
-			<th>안내사항 1</th> 
-			<th>안내사항 2</th> 
-			<th>안내사항 3</th> 
-			<th>소개 사진 1</th> 
-			<th>소개 사진 2</th> 
-			<th>소개 사진 3</th> 
-			<th>소개 사진 4</th> 
-			<th>소개 사진 5</th>
-			<th>옵션1 이름</th> <th>옵션1 가격</th> <th>옵션1 설명</th> <th>옵션1 사진</th> 
-			<th>옵션2 이름</th> <th>옵션2 가격</th> <th>옵션2 설명</th> <th>옵션2 사진</th> 
-			<th>옵션3 이름</th> <th>옵션3 가격</th> <th>옵션3 설명</th> <th>옵션3 사진</th> 
-			<th>숙소 조회수</th> 
-			<th>숙소 예약수</th> 
-			<th>숙소 등록일자</th> 
-		</tr>
-		<c:choose>
-			<c:when test="${ !empty list }">
-				<tr>
-					<td>${ list.stay_no }</td> 
-					<td>${ list.stay_name }</td> 
-					<td>${ list.stay_desc }</td> 
-					<td>${ list.stay_location }</td> 
-					<td>${ list.stay_addr }</td> 
-					<td>${ list.stay_content1 }</td> 
-					<td>${ list.stay_content2 }</td> 
-					<td>${ list.stay_content3 }</td>
-					<td>${ list.stay_info1 }</td> 
-					<td>${ list.stay_info2 }</td> 
-					<td>${ list.stay_info3 }</td> 
-					<td>${ list.stay_file1 }</td> 
-					<td>${ list.stay_file2 }</td> 
-					<td>${ list.stay_file3 }</td> 
-					<td>${ list.stay_file4 }</td> 
-					<td>${ list.stay_file5 }</td>
-					<td>${ list.stay_option1_name }</td> <td>${ list.stay_option1_price }</td> <td>${ list.stay_option1_desc }</td> <td>${ list.stay_option1_photo }</td> 
-					<td>${ list.stay_option2_name }</td> <td>${ list.stay_option2_price }</td> <td>${ list.stay_option2_desc }</td> <td>${ list.stay_option2_photo }</td> 
-					<td>${ list.stay_option3_name }</td> <td>${ list.stay_option3_price }</td> <td>${ list.stay_option3_desc }</td> <td>${ list.stay_option3_photo }</td> 
-					<td>${ list.stay_hit }</td> 
-					<td>${ list.stay_reserv }</td> 
-					<td>${ list.stay_date.substring(0,10) }</td> 
-				</tr> 
-			</c:when>
-			<c:otherwise>
-			<tr>
-				<td colspan="31">조회된 목록이 없습니다...</td>
-			</tr>
-			</c:otherwise>
-		</c:choose>
-		<tr>
-			<td colspan="31">
-				<button type="button" class="btn">Rooms(방 목록)</button>
-				<button type="button" class="btn">수정하기</button>
-				<button type="button" class="btn">삭제하기</button>
-			</td>
-		</tr>
-	</table>
+<c:set var="view" value="${stayView}" />
+
+
+<script type="text/javascript">$("#nav-stay").addClass("now");</script>
+<div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
+    <h2>숙소 상세 정보</h2>
+    <small>등록된 숙소의 정보를 확인 할 수 있습니다.</small>
 </div>
+
+
+
+<div class="view-form">
+    <!-- 내용 //START -->
+    <div class="row vf-body">
+        <div class="col-lg mb-4">
+            <div class="card">
+                <div class="card-body p-4">
+
+                    <h2>
+                    	<p>${view.stay_name}</p>
+                    	<span>${view.stay_desc}</span>
+                   	</h2>
+
+                    <div class="d-flex py-2 border-bottom vfb-info">
+                        <div class="col text-left">
+                        	<i class="icon-location-pin"></i> ${view.stay_location}
+                        	<i class="icon-map ml-3"></i> ${view.stay_addr}
+                        </div>
+
+                        <div class="col text-right">
+                        	<i class="icon-phone"></i> 전화 : ${view.stay_phone}
+                        	<i class="icon-paper-plane ml-3"></i> 이메일 : ${view.stay_email}
+                        </div>
+                    </div>
+
+                    <div class="d-flex py-2 border-bottom vfb-info">
+                        <div class="col text-left">
+                        	<i class="icon-magnifier"></i> 조회 <b><fmt:formatNumber value="${view.stay_hit}" /></b>
+                        	<i class="icon-plane ml-3"></i> 예약 : <b><fmt:formatNumber value="${view.stay_reserv}" /></b>
+                        </div>
+
+                        <div class="col text-right">
+                        	<i class="icon-calendar"></i> 등록일 : ${view.stay_date}
+                        </div>
+                    </div>
+
+
+                    <c:if test="${!empty view.stay_file1 or !empty view.stay_file2 or !empty view.stay_file3 or !empty view.stay_file4 or !empty view.stay_file5}">
+                    <div class="d-flex py-3 border-bottom">
+                        <div class="col">
+                        	<ul class="stay-view-photo">
+                        		<c:if test="${!empty view.stay_file1}"><li><img src="<%=request.getContextPath()%>${view.stay_file1}" alt="" /></li></c:if>
+                        		<c:if test="${!empty view.stay_file2}"><li><img src="<%=request.getContextPath()%>${view.stay_file2}" alt="" /></li></c:if>
+                        		<c:if test="${!empty view.stay_file3}"><li><img src="<%=request.getContextPath()%>${view.stay_file3}" alt="" /></li></c:if>
+                        		<c:if test="${!empty view.stay_file4}"><li><img src="<%=request.getContextPath()%>${view.stay_file4}" alt="" /></li></c:if>
+                        		<c:if test="${!empty view.stay_file5}"><li><img src="<%=request.getContextPath()%>${view.stay_file5}" alt="" /></li></c:if>
+                        	</ul>
+                        </div>
+                    </div>
+                    </c:if>
+
+
+                    <c:if test="${!empty view.stay_option1_name or !empty view.stay_option2_name or !empty view.stay_option3_name}">
+                    <div class="d-flex py-3">
+                        <div class="col">
+                        	<ul class="stay-view-option">
+                        		<c:if test="${!empty view.stay_option1_name}">
+                        		<li class="d-flex">
+                        			<div>
+				                        <c:choose>
+				                        <c:when test="${!empty view.stay_option1_photo}"><img src="<%=request.getContextPath()%>${view.stay_option1_photo}" width="100" height="70" alt="" /></c:when>
+				                        <c:otherwise>
+				                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				                            <title>${list.stay_name}</title>
+				                            <rect width="100%" height="100%" fill="#eee"></rect>
+				                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+				                        </svg>
+				                        </c:otherwise>
+				                        </c:choose>
+                        			</div>
+                        			<div class="pl-3">
+                        				<p><b>${view.stay_option1_name}</b></p>
+                        				<p>${view.stay_option1_desc}</p>
+                        				<p><fmt:formatNumber value="${view.stay_option1_price}" />원</p>
+                        			</div>
+                        		</li>
+                        		</c:if>
+
+                        		<c:if test="${!empty view.stay_option2_name}">
+                        		<li class="d-flex">
+                        			<div>
+				                        <c:choose>
+				                        <c:when test="${!empty view.stay_option2_photo}"><img src="<%=request.getContextPath()%>${view.stay_option2_photo}" width="100" height="70" alt="" /></c:when>
+				                        <c:otherwise>
+				                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				                            <title>${list.stay_name}</title>
+				                            <rect width="100%" height="100%" fill="#eee"></rect>
+				                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+				                        </svg>
+				                        </c:otherwise>
+				                        </c:choose>
+                        			</div>
+                        			<div class="pl-3">
+                        				<p><b>${view.stay_option2_name}</b></p>
+                        				<p>${view.stay_option2_desc}</p>
+                        				<p><fmt:formatNumber value="${view.stay_option2_price}" />원</p>
+                        			</div>
+                        		</li>
+                        		</c:if>
+
+                        		<c:if test="${!empty view.stay_option3_name}">
+                        		<li class="d-flex">
+                        			<div>
+				                        <c:choose>
+				                        <c:when test="${!empty view.stay_option3_photo}"><img src="<%=request.getContextPath()%>${view.stay_option3_photo}" width="100" height="70" alt="" /></c:when>
+				                        <c:otherwise>
+				                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				                            <title>${list.stay_name}</title>
+				                            <rect width="100%" height="100%" fill="#eee"></rect>
+				                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+				                        </svg>
+				                        </c:otherwise>
+				                        </c:choose>
+                        			</div>
+                        			<div class="pl-3">
+                        				<p><b>${view.stay_option3_name}</b></p>
+                        				<p>${view.stay_option3_desc}</p>
+                        				<p><fmt:formatNumber value="${view.stay_option3_price}" />원</p>
+                        			</div>
+                        		</li>
+                        		</c:if>
+                        	</ul>
+                        </div>
+                    </div>
+                    </c:if>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 내용 //END -->
+
+
+
+    <!-- 등록된 Room //START -->
+    <div class="row vf-body">
+        <div class="col-lg mb-4">
+            <div class="card">
+                <div class="card-body p-4">
+                	<h4>등록된 Room 목록<button type="button" onclick="popWindow('<%=request.getContextPath()%>/admin/stayRoomWrite.do', '700', '900');" class="btn btn-sm btn-success float-right"><i class="fa fa-plus"></i> Room 추가</button></h4>
+
+                	<ul class="stay-room-list">
+                        <c:choose>
+                        <c:when test="${!empty roomList }">
+                        <c:forEach items="${roomList}" var="room">
+                        <li class="d-flex">
+                            <div>
+                                <c:choose>
+                                <c:when test="${!empty room.room_photo1}"><img src="<%=request.getContextPath()%>${room.room_photo1}" width="100" height="70" alt="" /></c:when>
+                                <c:otherwise>
+                                <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                                    <title>${room.room_name}</title>
+                                    <rect width="100%" height="100%" fill="#eee"></rect>
+                                    <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+                                </svg>
+                                </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <div class="pl-3">
+                                <p><b>${room.room_name}</b></p>
+                                <p>${room.room_desc}</p>
+                                <p><fmt:formatNumber value="${room.room_price}" />원</p>
+                            </div>
+                        </li>
+                        </c:forEach>
+                        </c:when>
+
+                        <c:otherwise>
+                        <li class="nodata">이 숙소에 등록된 Room이 없습니다.</li>
+                        </c:otherwise>
+                        </c:choose>
+                	</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 등록된 Room //END -->
+
+
+
+
+    <!-- 버튼 //START -->
+    <div class="d-flex justify-content-center mb-4">
+        <a href="<%=request.getContextPath()%>/admin/stayDeleteOk.do?stay_no=${list.stay_no}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?\n※ 이 숙소에 등록된 Room들도 전부 삭제됩니다.');"><i class="fa fa-trash-o"></i> 삭제하기</a>
+        <a href="<%=request.getContextPath()%>/admin/stayModify.do?stay_no=${list.stay_no}" class="btn btn-primary mx-2"><i class="fa fa-pencil"></i> 수정하기</a>
+        <a href="<%=request.getContextPath()%>/admin/stayList.do" class="btn btn-secondary"><i class="fa fa-bars"></i> 목록보기</a>
+    </div>
+    <!-- 버튼 //END -->
+
+
+
+
+    <!-- 컨텐츠 //START -->
+    <c:if test="${!empty view.stay_content1 or !empty view.stay_content2 or !empty view.stay_content3}">
+    <div class="row vf-body">
+        <div class="col-lg mb-4">
+            <div class="card">
+                <div class="card-body px-4 pt-0">
+
+                	<c:if test="${!empty view.stay_content1}">
+                	<h4 class="mt-4">컨텐츠 1</h4>
+                	<div>${view.stay_content1}</div>
+                	</c:if>
+
+                	<c:if test="${!empty view.stay_content2}">
+                	<h4 class="mt-4">컨텐츠 2</h4>
+                	<div>${view.stay_content2}</div>
+                	</c:if>
+
+                	<c:if test="${!empty view.stay_content3}">
+                	<h4 class="mt-4">컨텐츠 3</h4>
+                	<div>${view.stay_content3}</div>
+                	</c:if>
+
+                </div>
+            </div>
+        </div>
+    </div>
+	</c:if>
+    <!-- 컨텐츠 //END -->
+
+
+
+    <!-- 안내사항 //START -->
+    <c:if test="${!empty view.stay_info1 or !empty view.stay_info2 or !empty view.stay_info3}">
+    <div class="row vf-body">
+        <div class="col-lg mb-4">
+            <div class="card">
+                <div class="card-body px-4 pt-0">
+
+                	<c:if test="${!empty view.stay_info1}">
+                	<h4 class="mt-4">안내사항 1</h4>
+                	<div>${view.stay_info1}</div>
+                	</c:if>
+
+                	<c:if test="${!empty view.stay_info2}">
+                	<h4 class="mt-4">안내사항 2</h4>
+                	<div>${view.stay_info2}</div>
+                	</c:if>
+
+                	<c:if test="${!empty view.stay_info3}">
+                	<h4 class="mt-4">안내사항 3</h4>
+                	<div>${view.stay_info3}</div>
+                	</c:if>
+
+                </div>
+            </div>
+        </div>
+    </div>
+	</c:if>
+    <!-- 안내사항 //END -->
+</div>
+
+
+
+<jsp:include page="../layout/layout_footer.jsp" />
