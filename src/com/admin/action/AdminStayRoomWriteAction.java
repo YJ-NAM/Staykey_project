@@ -55,16 +55,21 @@ public class AdminStayRoomWriteAction implements Action {
         for (int i = 0; i < stayRoom_features.length; i++) {
             features_sum += stayRoom_features[i] + "/";
         }
+        
+        // 맨 처음 슬래시 붙이는 용도 : 검색 설정 시 필요함
+        features_sum += "/" + features_sum; 
 
         String[] stayRoom_amenities = multi.getParameterValues("amenities");
         for (int i = 0; i < stayRoom_amenities.length; i++) {
             amenities_sum += stayRoom_amenities[i] + "/";
         }
+        amenities_sum += "/" + amenities_sum;
 
         String[] stayRoom_services = multi.getParameterValues("services");
         for (int i = 0; i < stayRoom_services.length; i++) {
             service_sum += stayRoom_services[i] + "/";
         }
+        service_sum += "/" + service_sum;
 
         dto.setRoom_stayno(stayRoom_roomStayNo);
         dto.setRoom_name(stayRoom_name);
@@ -74,9 +79,9 @@ public class AdminStayRoomWriteAction implements Action {
         dto.setRoom_people_min(stayRoom_standardNumber);
         dto.setRoom_people_max(stayRoom_maxNumber);
         dto.setRoom_size(stayRoom_roomSize);
-        dto.setRoom_features(features_sum.substring(0, features_sum.lastIndexOf("/"))); // 마지막 / 제외하고 저장
-        dto.setRoom_amenities(amenities_sum.substring(0, amenities_sum.lastIndexOf("/")));
-        dto.setRoom_service(service_sum.substring(0, service_sum.lastIndexOf("/")));
+        dto.setRoom_features(features_sum); 
+        dto.setRoom_amenities(amenities_sum);
+        dto.setRoom_service(service_sum);
 
         // 첨부파일 한 개만 등록해놓음 -- 추후 수정 예정
         // 첨부파일 이름 변경 처리
