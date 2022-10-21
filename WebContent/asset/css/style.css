@@ -261,8 +261,62 @@ h1, h2, h3, h4, h5 {
 /*************************/
 /* Header
 /*************************/
+.header {
+    position: relative;
+    width: 100%;
+    background: #fefefe;
+    box-sizing: border-box;
+    padding: 80px 100px;
+}
+.header .h-wrap{
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+}
 
+.header .h-wrap .h-gnb {
+    list-style: none;
+    font-family: 'NotoSerifKR';
+    width: 100%;
+}
 
+.header .h-wrap .h-gnb .h-logo {
+  
+}
+
+.header .h-wrap .h-gnb .h-location {
+
+}
+
+.header .h-wrap .h-gnb .h-location .location-where {
+
+}
+
+.header .h-wrap .h-gnb .h-location .location-where span {
+    font-size: 15px;
+
+}
+
+.header .h-wrap .h-gnb .h-location .location-when {
+
+    font-size: 15px;
+
+}
+.header .h-wrap .h-gnb .h-location .location-when span {
+ 
+
+}
+
+.header .h-wrap .h-gnb .h-nav {
+}
+
+.header .h-wrap .h-gnb .h-nav .menu-etc .etc-login {
+
+} 
+
+.header .h-wrap .h-gnb .h-nav .menu-etc .etc-lang {
+    
+} 
 
 
 /*************************/
@@ -286,9 +340,10 @@ h1, h2, h3, h4, h5 {
 .footer .f-wrap .fw-top {
     position: relative;
     width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
-.footer .f-wrap .fw-top .
 
 .footer .f-wrap .fw-top .fwt-info .fwt-menu {
     position: relative;
@@ -315,7 +370,6 @@ h1, h2, h3, h4, h5 {
 }
 .footer .f-wrap .fw-top .fwt-cs {
     position: relative;
-    width: 100%;
     left: 80px;
     border-left: 1px solid  #ffffff;
     color:#800000;
