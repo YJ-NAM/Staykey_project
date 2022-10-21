@@ -3,7 +3,7 @@ package com.model;
 public class StayDTO {
 	                                      
 		private int stay_no;				  // 숙소 고유번호
-		private String stay_type;			  // 숙소 타입
+		private String stay_type;             // 숙소 타입
 		private String stay_name;             // 숙소명
 		private String stay_desc;             // 숙소 간략 설명/description
 		private String stay_location;         // 위치
@@ -40,14 +40,14 @@ public class StayDTO {
 		public int getStay_no() {
 			return stay_no;
 		}
-		public void setStay_no(int stay_no) {
-			this.stay_no = stay_no;
-		}
 		public String getStay_type() {
-			return stay_type;
-		}
-		public void setStay_type(String stay_type) {
-			this.stay_type = stay_type;
+            return stay_type;
+        }
+        public void setStay_type(String stay_type) {
+            this.stay_type = stay_type;
+        }
+        public void setStay_no(int stay_no) {
+			this.stay_no = stay_no;
 		}
 		public String getStay_name() {
 			return stay_name;

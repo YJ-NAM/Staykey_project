@@ -160,9 +160,37 @@
 						수정/삭제 button 함께 생성
 					-->
                 	<ul class="stay-room-list">
-                		<li>
-                			asdasd
-                		</li>
+                        <c:choose>
+                        <c:when test="${!empty roomList }">
+                        <c:forEach items="${roomList}" var="room">
+                        <li>
+                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do', '700', '900');" class="d-flex">
+                                <div>
+                                    <c:choose>
+                                    <c:when test="${!empty room.room_photo1}"><img src="<%=request.getContextPath()%>${room.room_photo1}" width="100" height="70" alt="" /></c:when>
+                                    <c:otherwise>
+                                    <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                                        <title>${room.room_name}</title>
+                                        <rect width="100%" height="100%" fill="#eee"></rect>
+                                        <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+                                    </svg>
+                                    </c:otherwise>
+                                    </c:choose>
+                                </div>
+                                <div class="pl-3">
+                                    <p><b>${room.room_name}</b></p>
+                                    <p>${room.room_desc}</p>
+                                    <p><fmt:formatNumber value="${room.room_price}" />원</p>
+                                </div>
+                            </a>
+                        </li>
+                        </c:forEach>
+                        </c:when>
+
+                        <c:otherwise>
+                        <li class="nodata">이 숙소에 등록된 Room이 없습니다.</li>
+                        </c:otherwise>
+                        </c:choose>
                 	</ul>
 
                 </div>
