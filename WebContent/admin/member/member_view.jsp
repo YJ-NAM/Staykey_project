@@ -71,7 +71,7 @@
 
                         <tr>
                             <th>프로필 사진</th>
-                            <td colspan="3"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" style="max-height: 300px;" alt="" /></td>
+                            <td colspan="3"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" style="max-width: 400px;" alt="" /></td>
                         </tr>
                         </c:if>
                     </table>

@@ -56,13 +56,11 @@ public class FrontController extends HttpServlet {
                 e.printStackTrace();
             }
 
-
         // value 값이 "execute"가 아닌 경우
         }else{
             forward = new ActionForward();
             forward.setRedirect(false);
             forward.setPath(value);
-
         }
 
 

@@ -25,6 +25,12 @@ public class AdminMemberWriteOkAction implements Action {
         String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
         int fileSize = 10 * 1024 * 1024; // 10MB
 
+        // 업로드 폴더 체크 후 없으면 생성
+        File dirChk = new File(saveFolder);
+        if(!dirChk.exists()){
+            dirChk.mkdir();
+        }
+
         // 파일 업로드 객체 생성
         MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 
@@ -49,7 +55,6 @@ public class AdminMemberWriteOkAction implements Action {
             String fileDBName = thisFolder + member_photo_flie_rename;
             dto.setMember_photo(fileDBName);
         }
-
 
         dto.setMember_type(member_type);
         dto.setMember_id(member_id);

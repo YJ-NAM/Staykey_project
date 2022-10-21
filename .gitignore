@@ -3,7 +3,9 @@
 
 ### Eclipse ###
 .metadata
+readme_img/
 bin/
+build/
 tmp/
 *.tmp
 *.bak

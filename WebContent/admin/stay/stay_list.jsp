@@ -1,81 +1,193 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
-<c:set var="stayList" value="${ stayList }" />
-<script>
-	$(function() {
-		$(".btn").click(function() {
-			let button = $(".btn").index(this);
-			if(button == 0) { // 등록하기
-				location.href='stay/stay_write.jsp';
-			}else if(button == 1){ // 삭제하기
-				location.href='';
-			}
-		})
-	})
-</script>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="stayList" value="${stayList}" />
 
 
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
+<div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
+    <h2>숙소 목록</h2>
+    <small>등록된 숙소 목록을 확인하고 관리 할 수 있습니다.</small>
+</div>
+
 
 <div>
-	<hr />
-	<h4>숙소 전체 목록 조회</h4>
-	<hr />
-	<table>
-		<tr>
-			<th>숙소 번호</th> 
-			<th>숙소 이름</th> 
-			<th>간략 설명</th> 
-			<th>숙소 위치</th> 
-			<th>숙소 주소</th> 
-			<th>숙소 조회수</th> 
-			<th>숙소 예약수</th> 
-			<th>숙소 등록일자</th> 
-		</tr>
-		<c:choose>
-			<c:when test="${ !empty stayList }">
-				<c:forEach items="${ stayList }" var="list">
-	 			<tr>
-					<td>${ list.stay_no }</td> 
-					<td><a href="${ pageContext.request.contextPath }/admin/stayView.do?stay_no=${ list.stay_no }">${ list.stay_name }</a></td> 
-					<td>${ list.stay_desc }</td> 
-					<td>${ list.stay_location }</td> 
-					<td>${ list.stay_addr }</td> 
-					<td>${ list.stay_hit }</td> 
-					<td>${ list.stay_reserv }</td> 
-					<td>${ list.stay_date.substring(0,10) }</td> 
-				</tr> 
-				</c:forEach>
-			</c:when>
-			<c:otherwise>
-			<tr>
-				<td colspan="31">조회된 목록이 없습니다...</td>
-			</tr>
-			</c:otherwise>
-		</c:choose>
-		<tr>
-			<td colspan="31">
-				<button type="button" class="btn">등록하기</button>
-				<button type="button" class="btn">삭제하기</button>
-			</td>
-		</tr>
-	</table>
-	<br />
-	<form action="${ pageContext.request.contextPath }/staySearch.do">
-		<div>
-			<select name="search" id="">
-				<option value="all" <c:if test='${ search eq "all"}'> selected="selected"</c:if>>전체</option>
-				<option value="name" <c:if test='${ search eq "name"}'> selected="selected"</c:if>>숙소명</option>
-				<option value="location" <c:if test='${ search eq "location"}'> selected="selected"</c:if>>위치</option>
-				<option value="description" <c:if test='${ search eq "description"}'> selected="selected"</c:if>>설명</option>
-				<option value="name" <c:if test='${ search eq "name"}'> selected="selected"</c:if>>내용</option>
-			</select>
-			<input type="text" name="keyword"/>
-			<input type="submit" value="검색" />
-		</div>
-	</form>
+    <form name="search_form" method="post" action="<%=request.getContextPath()%>/admin/stayList.do">
+    <input type="hidden" name="ps_order" value="${map.ps_order}" />
+    <table class="table-form ml-0 mb-3 border rounded-lg">
+        <colgroup>
+            <col width="10%" />
+            <col width="22%" />
+            <col width="10%" />
+            <col width="22%" />
+            <col width="10%" />
+            <col />
+        </colgroup>
+        <tr>
+            <th>숙소 구분</th>
+            <td colspan="5">
+                <div class="form-check form-check-inline ml-1">
+                    <label class="form-check-label"><input type="radio" name="ps_type" value="all" class="form-check-input"<c:if test="${map.ps_type == 'all'}"> checked="checked"</c:if> /> 전체</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="radio" name="ps_type" value="user" class="form-check-input"<c:if test="${map.ps_type == 'user'}"> checked="checked"</c:if> /> 일반숙소</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="radio" name="ps_type" value="admin" class="form-check-input"<c:if test="${map.ps_type == 'admin'}"> checked="checked"</c:if> /> 관리자</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>숙소 이름</th>
+            <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="50" class="form-control w-90" /></td>
+            <th>숙소 아이디</th>
+            <td><input type="text" name="ps_id" value="${map.ps_id}" maxlength="30" class="form-control w-90" /></td>
+            <th>숙소 이메일</th>
+            <td><input type="text" name="ps_email" value="${map.ps_email}" maxlength="255" class="form-control w-90" /></td>
+        </tr>
+    </table>
+
+    <div class="text-center mb-5">
+        <a href="<%=request.getContextPath()%>/admin/stayList.do" class="btn btn-outline-secondary"><i class="fa fa-power-off"></i> 검색 초기화</a>
+        <button type="submit" class="btn btn-secondary mx-2"><i class="fa fa-search"></i> 숙소 검색</button>
+    </div>
+    </form>
+
+
+
+
+
+    <div class="table-top clear">
+        <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 숙소</div>
+        <div class="tt-right">
+            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/memberList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
+                <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>등록일 최신</option>
+                <option value="register_asc"<c:if test="${map.ps_order == 'register_asc'}"> selected="selected"</c:if>>등록일 예전</option>
+                <option value="" disabled="disabled">---------------</option>
+                <option value="id_desc"<c:if test="${map.ps_order == 'id_desc'}"> selected="selected"</c:if>>아이디 역순</option>
+                <option value="id_asc"<c:if test="${map.ps_order == 'id_asc'}"> selected="selected"</c:if>>아이디 순</option>
+                <option value="" disabled="disabled">---------------</option>
+                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>숙소이름 역순</option>
+                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>숙소이름 순</option>
+                <option value="" disabled="disabled">---------------</option>
+                <option value="point_desc"<c:if test="${map.ps_order == 'point_desc'}"> selected="selected"</c:if>>적립금 높은</option>
+                <option value="point_asc"<c:if test="${map.ps_order == 'point_asc'}"> selected="selected"</c:if>>적립금 낮은</option>
+                <option value="" disabled="disabled">---------------</option>
+                <option value="count_desc"<c:if test="${map.ps_order == 'count_desc'}"> selected="selected"</c:if>>예약횟수 높은</option>
+                <option value="count_asc"<c:if test="${map.ps_order == 'count_asc'}"> selected="selected"</c:if>>예약횟수 낮은</option>
+            </select>
+        </div>
+    </div>
+
+
+
+    <table class="table-list hover">
+        <colgroup>
+            <col width="80">
+            <col width="200">
+            <col />
+            <col width="150">
+            <col width="80">
+            <col width="80">
+            <col width="90">
+            <col width="120">
+        </colgroup>
+
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th colspan="2">숙소 정보</th>
+                <th>옵션</th>
+                <th>조회수</th>
+                <th>예약수</th>
+                <th>등록일</th>
+                <th>관리</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <c:choose>
+            <c:when test="${!empty stayList }">
+            <c:forEach items="${stayList}" var="list">
+            <tr>
+                <td>${list.stay_no}</td>
+                <td>
+                    <a href="<%=request.getContextPath()%>/admin/stayView.do?stay_no=${list.stay_no}">
+                        <c:choose>
+                        <c:when test="${!empty list.stay_file1}"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" width="200" height="140" alt="" /></c:when>
+                        <c:otherwise>
+                        <svg class="bd-placeholder-img" width="200" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                            <title>${list.stay_name}</title>
+                            <rect width="100%" height="100%" fill="#eee"></rect>
+                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+                        </svg>
+                        </c:otherwise>
+                        </c:choose>
+                    </a>
+                </td>
+                <td>
+                	<a href="<%=request.getContextPath()%>/admin/stayView.do?stay_no=${list.stay_no}" class="stay-list">
+                		<p class="sl-loc">${list.stay_location}</p>
+                		<p class="sl-name">${list.stay_name}</p>
+                		<p class="sl-desc">${list.stay_desc}</p>
+                		<p class="sl-addr">${list.stay_addr}</p>
+                	</a>
+                </td>
+                <td>
+                	<c:if test="${!empty list.stay_option1_name}"><p>${list.stay_option1_name}</p></c:if>
+                	<c:if test="${!empty list.stay_option2_name}"><p>${list.stay_option2_name}</p></c:if>
+                	<c:if test="${!empty list.stay_option3_name}"><p>${list.stay_option3_name}</p></c:if>
+                </td>
+                <td>${list.stay_hit}</td>
+                <td>${list.stay_reserv}</td>
+                <td>${list.stay_date.substring(0,10)}<br />${list.stay_date.substring(11)}</td>
+                <td>
+                    <a href="<%=request.getContextPath()%>/admin/stayModify.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
+                    <a href="<%=request.getContextPath()%>/admin/stayDeleteOk.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?\n※ 이 숙소에 등록된 Room들도 전부 삭제됩니다.');">삭제</a>
+                </td>
+            </tr>
+            </c:forEach>
+            </c:when>
+
+            <c:otherwise>
+            <tr>
+                <td colspan="8" class="nodata">등록된 숙소가 없습니다.</td>
+            </tr>
+            </c:otherwise>
+            </c:choose>
+        </tbody>
+
+
+        <tfoot>
+            <tr>
+                <td colspan="8">
+                    <table class="paging-table">
+                        <colgroup>
+                            <col width="120">
+                            <col>
+                            <col width="120">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td class="text-left"></td>
+
+                                <td class="text-center">
+                                    ${map.pagingWrite}
+                                </td>
+
+                                <td class="text-right"><a href="<%=request.getContextPath()%>/admin/stayWrite.do" class="btn btn-primary"><i class="fa fa-pencil"></i> 숙소 등록</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
 </div>
+
+
 
 <jsp:include page="../layout/layout_footer.jsp" />
