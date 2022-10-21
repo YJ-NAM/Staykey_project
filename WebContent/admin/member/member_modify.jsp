@@ -85,9 +85,9 @@ join_check = function(){
         </tr>
         <tr>
             <th>비밀번호 변경</th>
-            <td><input type="password" name="member_pw_chg" value="" maxlength="50" class="form-control w-80" /></td>
+            <td><input type="password" name="member_pw_chg" maxlength="50" class="form-control w-80" /></td>
             <th>비밀번호 변경 확인</th>
-            <td><input type="password" name="member_pw_chg_re" value="" maxlength="50" class="form-control w-80" /></td>
+            <td><input type="password" name="member_pw_chg_re" maxlength="50" class="form-control w-80" /></td>
         </tr>
 
         <tr>
