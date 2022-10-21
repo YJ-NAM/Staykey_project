@@ -41,7 +41,6 @@ public class AdminMemberDeleteOkAction implements Action {
 		    }
 		}
 		
-		
 		int res = dao.deleteMember(member_id);
 		
 		ActionForward forward = new ActionForward();

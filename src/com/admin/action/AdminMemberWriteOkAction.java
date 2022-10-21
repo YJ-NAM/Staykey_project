@@ -56,7 +56,6 @@ public class AdminMemberWriteOkAction implements Action {
             dto.setMember_photo(fileDBName);
         }
 
-
         dto.setMember_type(member_type);
         dto.setMember_id(member_id);
         dto.setMember_pw(member_pw);
