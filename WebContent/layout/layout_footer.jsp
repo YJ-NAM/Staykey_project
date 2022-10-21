@@ -11,10 +11,10 @@
 
 			<div class="fw-top d-flex">
 				<div class="fwt-info ">
-					<img src= "asset/images/staykey_logo.png" alt="">
-				<ul class="fwt-menu">
-					<li><a href="#">About us</a></li>
-				</ul>
+					<h3><img src= "asset/images/staykey_logo.png" alt="logo"></h3>
+					<ul class="fwt-menu">
+						<li><a href="#">About us</a></li>
+					</ul>
 			</div>
 				<div class="fwt-cs border-opacity-50">
 					<h4>고객센터</h4> 
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<div class="fw-bottom" >
-				<p style="word-break:break-all;text-align: justify;text-align: center;">(주) 스테이:키 | 대표자 : 노동진 | 노동진과 똘마니들 | TEL: 1670-0000 | EMAIL:help@staykey.com | 사업자등록번호: 000-00-12345 | 통신판매업신고 : 제2022-서울중구-0000호 |<br> 관광사업자등록 : 일반여행업 2022-12345호(중구청)</p>
+				<p>(주) 스테이:키 | 대표자 : 노동진 | 노동진과 똘마니들 | TEL: 1670-0000 | EMAIL:help@staykey.com | 사업자등록번호: 000-00-12345 | 통신판매업신고 : 제2022-서울중구-0000호 |<br> 관광사업자등록 : 일반여행업 2022-12345호(중구청)</p>
 			</div>
 		</div>
 			
