@@ -1355,7 +1355,14 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
     width: calc(25% - 20px);
     margin: 0 10px;
 }
-
+.view-form .stay-room-list li.nodata {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+    letter-spacing: 0;
+    color: #666;
+}
 
 
 
