@@ -195,7 +195,6 @@ public class StayDAO {
 		// 검색용 설정 : 조건에 추가됨
 		String search_sql = " where stay_no > 0";
 
-
 		if (map.get("ps_type") != "" && map.get("ps_type") != null) {
 			search_sql += " and (";
 			String get_type = ((String) map.get("ps_type")).substring(1);
@@ -213,8 +212,8 @@ public class StayDAO {
 			search_sql += " and stay_name like '%" + map.get("ps_name") + "%'";
 		}
 		
-		if (map.get("ps_id") != "" && map.get("ps_id") != null) {
-			search_sql += " and member_id like '%" + map.get("ps_id") + "%'";
+		if (map.get("ps_location") != "" && map.get("ps_location") != null) {
+			search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
 		}
 		if (map.get("ps_email") != "" && map.get("ps_email") != null) {
 			search_sql += " and member_email like '%" + map.get("ps_email") + "%'";

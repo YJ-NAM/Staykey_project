@@ -34,14 +34,12 @@ $(document).ready(function(){
 	});
 	
 	// ps_location 버튼 선택 시 input[text] 값으로 띄우기
-	$("input[name='ps_type'][value='all']").click(function(){
-		if($(this).prop("checked")){
-            $("input[name='ps_type']").prop("checked", false);
-            $(this).prop("checked", true);
-		}
+	$("button[name='ps_location']").on("click", function() {
+		$(".layer_location_popUp").css('visibility', 'hidden');
+		let location_value = $(this).attr('value');
+		$("input[name='ps_location']").val(location_value);
 	});
 });
-
 
 </script>
 
@@ -106,20 +104,20 @@ $(document).ready(function(){
             	<input type="text" name="ps_location" value="${map.ps_location}" maxlength="30" class="form-control w-90" />
             	<button type="button" class="btn btn-outline-secondary btn-sm" id="locationSelect">지역선택</button>
             	<div class="layer_location_popUp">
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전체" >전체</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="제주" >제주</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="서울" >서울</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="강원" >강원</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="부산" >부산</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경기" >경기</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="충청" >중청</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경상" >경상</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전라" >전라</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="인천" >인천</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="광주" >광주</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대전" >대전</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대구" >대구</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="울산" >울산</button></li>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전체" >전체</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="제주" >제주</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="서울" >서울</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="강원" >강원</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="부산" >부산</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경기" >경기</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="충청" >중청</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경상" >경상</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전라" >전라</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="인천" >인천</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="광주" >광주</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대전" >대전</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대구" >대구</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="울산" >울산</button>
             	</div>
             </td>
             <th>연락처</th>
