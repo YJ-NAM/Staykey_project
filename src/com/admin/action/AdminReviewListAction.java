@@ -1,15 +1,18 @@
 package com.admin.action;
 
 import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.controller.Action;
 import com.controller.ActionForward;
+
 import com.model.ReviewDAO;
 import com.model.ReviewDTO;
 import com.util.Paging;
@@ -86,13 +89,17 @@ public class AdminReviewListAction implements Action {
         List<ReviewDTO> list = dao.reviewList();
         request.setAttribute("List", list);
 
+
+
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("review/review_list.jsp");
+
         
         
-        
-        return forward;	
-        }
-	
+
+        return forward;
+    }
+
+
 }
