@@ -8,6 +8,43 @@
 
 
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
+<script>
+
+$(document).ready(function(){
+	// 체크박스 all 클릭 시 나머지 해체
+	$("input[name='ps_type'][value='all']").click(function(){
+		if($(this).prop("checked")){
+            $("input[name='ps_type']").prop("checked", false);
+            $(this).prop("checked", true);
+		}
+	});
+	$("input[name='ps_type'][value!='all']").click(function(){
+		$("input[name='ps_type'][value='all']").prop("checked", false);
+	});
+	
+	// 지역선택 팝업창 -- 수정 예정...
+	$(".layer_location_popUp").css('visibility', 'hidden');
+	
+	$("#locationSelect").on("click", function() {		
+		if($(".layer_location_popUp").css('visibility') == 'visible') {
+			$(".layer_location_popUp").css('visibility', 'hidden');
+		}else {
+			$(".layer_location_popUp").css('visibility', 'visible');
+		}
+	});
+	
+	// ps_location 버튼 선택 시 input[text] 값으로 띄우기
+	$("input[name='ps_type'][value='all']").click(function(){
+		if($(this).prop("checked")){
+            $("input[name='ps_type']").prop("checked", false);
+            $(this).prop("checked", true);
+		}
+	});
+});
+
+
+</script>
+
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>숙소 목록</h2>
     <small>등록된 숙소 목록을 확인하고 관리 할 수 있습니다.</small>
@@ -30,23 +67,63 @@
             <th>숙소 구분</th>
             <td colspan="5">
                 <div class="form-check form-check-inline ml-1">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="all" class="form-check-input"<c:if test="${map.ps_type == 'all'}"> checked="checked"</c:if> /> 전체</label>
+                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="all" class="form-check-input"<c:if test="${map.ps_type == 'all'}"> checked="checked"</c:if> checked="checked" /> 전체</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="user" class="form-check-input"<c:if test="${map.ps_type == 'user'}"> checked="checked"</c:if> /> 일반숙소</label>
+                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="호텔" class="form-check-input"<c:if test="${map.ps_type.contains('호텔')}"> checked="checked"</c:if> /> 호텔</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="admin" class="form-check-input"<c:if test="${map.ps_type == 'admin'}"> checked="checked"</c:if> /> 관리자</label>
+                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="호스텔" class="form-check-input"<c:if test="${map.ps_type.contains('호스텔')}"> checked="checked"</c:if> /> 호스텔</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="게스트하우스" class="form-check-input"<c:if test="${map.ps_type.contains('게스트하우스')}"> checked="checked"</c:if> /> 게스트하우스</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="민박" class="form-check-input"<c:if test="${map.ps_type.contains('민박')}"> checked="checked"</c:if> /> 민박</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="펜션" class="form-check-input"<c:if test="${map.ps_type.contains('펜션')}"> checked="checked"</c:if> /> 펜션</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="리조트" class="form-check-input"<c:if test="${map.ps_type.contains('리조트')}"> checked="checked"</c:if> /> 리조트</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="렌탈하우스" class="form-check-input"<c:if test="${map.ps_type.contains('렌탈하우스')}"> checked="checked"</c:if> /> 렌탈하우스</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="한옥" class="form-check-input"<c:if test="${map.ps_type.contains('한옥')}"> checked="checked"</c:if> /> 한옥</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="캠핑&아웃도어" class="form-check-input"<c:if test="${map.ps_type.contains('캠핑&아웃도어')}"> checked="checked"</c:if> /> 캠핑&아웃도어</label>
                 </div>
             </td>
         </tr>
         <tr>
-            <th>숙소 이름</th>
+            <th>숙소명</th>
             <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="50" class="form-control w-90" /></td>
-            <th>숙소 아이디</th>
-            <td><input type="text" name="ps_id" value="${map.ps_id}" maxlength="30" class="form-control w-90" /></td>
-            <th>숙소 이메일</th>
-            <td><input type="text" name="ps_email" value="${map.ps_email}" maxlength="255" class="form-control w-90" /></td>
+            <th>위치</th>
+            <td >
+            	<input type="text" name="ps_location" value="${map.ps_location}" maxlength="30" class="form-control w-90" />
+            	<button type="button" class="btn btn-outline-secondary btn-sm" id="locationSelect">지역선택</button>
+            	<div class="layer_location_popUp">
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전체" >전체</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="제주" >제주</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="서울" >서울</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="강원" >강원</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="부산" >부산</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경기" >경기</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="충청" >중청</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경상" >경상</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전라" >전라</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="인천" >인천</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="광주" >광주</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대전" >대전</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대구" >대구</button></li>
+            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="울산" >울산</button></li>
+            	</div>
+            </td>
+            <th>연락처</th>
+            <td><input type="text" name="ps_phone" value="${map.ps_phone}" maxlength="255" class="form-control w-90" /></td>
         </tr>
     </table>
 
@@ -146,6 +223,7 @@
                 <td>${list.stay_date.substring(0,10)}<br />${list.stay_date.substring(11)}</td>
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/stayModify.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
+                    <!-- 삭제 시 사진 함께 삭제해야 함 // 추후 comment 삭제 예정 -->
                     <a href="<%=request.getContextPath()%>/admin/stayDeleteOk.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?\n※ 이 숙소에 등록된 Room들도 전부 삭제됩니다.');">삭제</a>
                 </td>
             </tr>

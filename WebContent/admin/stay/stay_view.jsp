@@ -155,6 +155,10 @@
                 <div class="card-body p-4">
                 	<h4>등록된 Room 목록<button type="button" onclick="popWindow('<%=request.getContextPath()%>/admin/stayRoomWrite.do', '700', '900');" class="btn btn-sm btn-success float-right"><i class="fa fa-plus"></i> Room 추가</button></h4>
 
+					<!-- 
+						stay_room_list 여기 추가 예정... 
+						수정/삭제 button 함께 생성
+					-->
                 	<ul class="stay-room-list">
                 		<li>
                 			asdasd
