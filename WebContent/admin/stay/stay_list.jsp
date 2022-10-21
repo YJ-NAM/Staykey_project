@@ -34,14 +34,13 @@ $(document).ready(function(){
 	});
 	
 	// ps_location 버튼 선택 시 input[text] 값으로 띄우기
-	$("input[name='ps_type'][value='all']").click(function(){
-		if($(this).prop("checked")){
-            $("input[name='ps_type']").prop("checked", false);
-            $(this).prop("checked", true);
-		}
+	$("button[name='ps_location']").on("click", function() {
+		$(".layer_location_popUp").css('visibility', 'hidden');
+		let location_value = $(this).attr('value');
+		$("input[name='ps_location']").val(location_value);
 	});
+	
 });
-
 
 </script>
 
@@ -106,24 +105,24 @@ $(document).ready(function(){
             	<input type="text" name="ps_location" value="${map.ps_location}" maxlength="30" class="form-control w-90" />
             	<button type="button" class="btn btn-outline-secondary btn-sm" id="locationSelect">지역선택</button>
             	<div class="layer_location_popUp">
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전체" >전체</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="제주" >제주</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="서울" >서울</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="강원" >강원</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="부산" >부산</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경기" >경기</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="충청" >중청</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경상" >경상</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전라" >전라</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="인천" >인천</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="광주" >광주</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대전" >대전</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대구" >대구</button></li>
-            		<li><button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="울산" >울산</button></li>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전체" >전체</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="제주" >제주</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="서울" >서울</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="강원" >강원</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="부산" >부산</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경기" >경기</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="충청" >충청</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경상" >경상</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전라" >전라</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="인천" >인천</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="광주" >광주</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대전" >대전</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대구" >대구</button>
+            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="울산" >울산</button>
             	</div>
             </td>
             <th>연락처</th>
-            <td><input type="text" name="ps_phone" value="${map.ps_phone}" maxlength="255" class="form-control w-90" /></td>
+            <td><input type="tel" name="ps_phone" value="${map.ps_phone}" maxlength="255" class="form-control w-90" /></td>
         </tr>
     </table>
 
@@ -133,28 +132,25 @@ $(document).ready(function(){
     </div>
     </form>
 
-
-
-
-
+	
     <div class="table-top clear">
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 숙소</div>
         <div class="tt-right">
-            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/memberList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
-                <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>등록일 최신</option>
-                <option value="register_asc"<c:if test="${map.ps_order == 'register_asc'}"> selected="selected"</c:if>>등록일 예전</option>
+            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/stayList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_location=${map.ps_location}&ps_phone=${map.ps_phone}&ps_order='+this.value;">
+                <option value="no_desc"<c:if test="${map.ps_order == 'no_desc'}"> selected="selected"</c:if>>번호 높은</option>
+                <option value="no_asc"<c:if test="${map.ps_order == 'no_asc'}"> selected="selected"</c:if>>번호 낮은</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="id_desc"<c:if test="${map.ps_order == 'id_desc'}"> selected="selected"</c:if>>아이디 역순</option>
-                <option value="id_asc"<c:if test="${map.ps_order == 'id_asc'}"> selected="selected"</c:if>>아이디 순</option>
+                <option value="reserv_desc"<c:if test="${map.ps_order == 'reserv_desc'}"> selected="selected"</c:if>>예약수 높은</option>
+                <option value="reserv_asc"<c:if test="${map.ps_order == 'reserv_asc'}"> selected="selected"</c:if>>예약수 낮은</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>숙소이름 역순</option>
-                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>숙소이름 순</option>
+                <option value="hit_desc"<c:if test="${map.ps_order == 'hit_desc'}"> selected="selected"</c:if>>조회수 높은</option>
+                <option value="hit_asc"<c:if test="${map.ps_order == 'hit_asc'}"> selected="selected"</c:if>>조회수 낮은</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="point_desc"<c:if test="${map.ps_order == 'point_desc'}"> selected="selected"</c:if>>적립금 높은</option>
-                <option value="point_asc"<c:if test="${map.ps_order == 'point_asc'}"> selected="selected"</c:if>>적립금 낮은</option>
+                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>가나다 순</option>
+                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>가나다 역순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="count_desc"<c:if test="${map.ps_order == 'count_desc'}"> selected="selected"</c:if>>예약횟수 높은</option>
-                <option value="count_asc"<c:if test="${map.ps_order == 'count_asc'}"> selected="selected"</c:if>>예약횟수 낮은</option>
+                <option value="date_desc"<c:if test="${map.ps_order == 'date_desc'}"> selected="selected"</c:if>>등록일 최신</option>
+                <option value="date_asc"<c:if test="${map.ps_order == 'date_asc'}"> selected="selected"</c:if>>등록일 오래전</option>
             </select>
         </div>
     </div>
