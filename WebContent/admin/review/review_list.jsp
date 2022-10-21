@@ -100,15 +100,17 @@
 
         <thead>
             <tr>
-                <th>No.</th>
-                <th>유형</th>
-                <th>사진</th>
+                <th>NO.</th>
+                <th>리뷰 파일</th>
                 <th>아이디/이름</th>
-                <th>이메일</th>
-                <th>전화번호</th>
-                <th>보유적립금</th>
-                <th>예약횟수</th>
-                <th>등록일</th>
+                <th>숙소 번호</th>
+                <th>평점 접근성</th>
+                <th>평점 서비스</th>
+                <th>평점 객실시설</th>
+                <th>평점 부대시설</th>
+                <th>평점 식음료</th>
+                <th>평점 만족도</th>
+                <th>리뷰 작성일</th>
                 <th>기능</th>
             </tr>
         </thead>
@@ -119,7 +121,6 @@
             <c:forEach items="${list}" var="dto">
             <tr>
                 <td>${dto.review_no}</td>
-                <td></td>
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">
                         <c:choose>
@@ -134,18 +135,23 @@
                         </c:choose>
                     </a>
                 </td>
-                <td>
-                    <a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">${dto.review_no}</a>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+				<td>
+					<a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">${dto.review_id}/${dto.review_name} </a>
+				</td>
+                <td>${dto.review_stayno}</td>
+                <td>${dto.review_point1}</td>
+                <td>${dto.review_point2}</td>
+                <td>${dto.review_point3}</td>
+                <td>${dto.review_point4}</td>
+                <td>${dto.review_point5}</td>
+                <td>${dto.review_point6}</td>
+				<td>${dto.review_date.substring(0, 10)}</td>
+                
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
                     <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.review_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
+                
             </tr>
             </c:forEach>
             </c:when>
