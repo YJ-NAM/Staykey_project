@@ -41,7 +41,7 @@ public class AdminStayListAction implements Action {
 				ps_type = "";
 			}else {
 				for (int i = 0; i<get_type.length; i++){
-					ps_type += "/"+get_type[i];
+					ps_type += "/" + get_type[i];
 				}
 			}
 		}
@@ -55,8 +55,9 @@ public class AdminStayListAction implements Action {
     	}else{ 
     		ps_location = ""; 
     	}
+    	
     	if(request.getParameter("ps_phone") != null){ ps_phone = request.getParameter("ps_phone").trim(); }else{ ps_phone = ""; }
-    	if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "register_desc"; }
+    	if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "no_desc"; }
     	
     	// 뷰에 전달할 매개변수 추가
     	map.put("ps_type", ps_type);
