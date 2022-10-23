@@ -217,25 +217,21 @@ public class StayDAO {
 		if (map.get("ps_phone") != "" && map.get("ps_phone") != null) {
 			search_sql += " and stay_phone like '%" + map.get("ps_phone") + "%'";
 		}
-		System.out.println(search_sql);
-
+		
 		try {
 			openConn();
-			
 			sql = "select count(*) from staykey_stay" + search_sql;
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-
 			if (rs.next()) {
 				result = rs.getInt(1);
 			}
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return 0;
+		return result;
 	} // getStayTotalCount() 종료
 
 	/////////////////////////////////////////////////////////////
@@ -277,7 +273,7 @@ public class StayDAO {
 				dto.setStay_option1_price(rs.getInt("stay_option1_price"));
 				dto.setStay_option1_desc(rs.getString("stay_option1_desc"));
 				dto.setStay_option1_photo(rs.getString("stay_option1_photo"));
-				dto.setStay_option1_photo(rs.getString("stay_option2_photo"));
+				dto.setStay_option1_photo(rs.getString("stay_option2_name"));
 				dto.setStay_option2_price(rs.getInt("stay_option2_price"));
 				dto.setStay_option2_desc(rs.getString("stay_option2_desc"));
 				dto.setStay_option2_photo(rs.getString("stay_option2_photo"));
