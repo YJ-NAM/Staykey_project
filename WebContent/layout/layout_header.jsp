@@ -60,13 +60,13 @@
                 </div>
             <div class="h-gnb">
                 <div class= "h-location grow-flex-1">
-                    <button input="" class="location-where"><span>어디로 갈까요</span></button>
-                    <button input="" class="location-when"><span>언제 떠날까요</span></button>
+                    <button input="" class="location-where"><span><i class="icon-location-pin"></i>어디로 갈까요?</span></button>
+                    <button input="" class="location-when"><span><i class="icon-calendar"></i>언제 떠날까요?</span></button>
                 </div>
 
                 <div class= "h-nav">
                     <ul class="h-menu">
-                        <li><a href="#">떠나보기</a></li>
+                        <li><a href="#">살펴보기</a></li>
                         <li><a href="#">함께하기</a></li>
                         <li><a href="#">읽어보기</a></li>
                         <li><a href="#">앞서보기</a></li>
@@ -74,10 +74,7 @@
                 </div>
                     <div class="menu-etc">
                         <div class="etc-login">
-
-                        </div>
-                        <div class="etc-lang">
-
+                            <p><button input="#" class= "login">Log-in</button></p>
                         </div>
                 </div>
             </div>
