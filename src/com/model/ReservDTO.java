@@ -25,7 +25,7 @@ public class ReservDTO {
     private int reserv_people_baby;
     private String reserv_pickup;
     private String reserv_request;
-    private int reserv_date;
+    private String reserv_date;
 
 
     public int getReserv_no() {
@@ -172,10 +172,10 @@ public class ReservDTO {
     public void setReserv_request(String reserv_request) {
         this.reserv_request = reserv_request;
     }
-    public int getReserv_date() {
+    public String getReserv_date() {
         return reserv_date;
     }
-    public void setReserv_date(int reserv_date) {
+    public void setReserv_date(String reserv_date) {
         this.reserv_date = reserv_date;
     }
 }
