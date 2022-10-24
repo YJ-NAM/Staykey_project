@@ -263,52 +263,76 @@ h1, h2, h3, h4, h5 {
 /*************************/
 .header {
     position: relative;
-    width: 100%;
-    background: #fefefe;
+    background:#FFFAF0;
     box-sizing: border-box;
-    padding: 80px 100px;
+    height: 120px;
+    padding: auto;
+
 }
 .header .h-wrap{
+    display: flex;
+    justify-content: flex-start;
     position: relative;
     width: 1200px;
+    height: 100px;
     margin: 0 auto;
 }
 
+.header .h-wrap .h-logo {
+    border: 0;
+    margin: 20px;
+}
+
 .header .h-wrap .h-gnb {
-    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
     font-family: 'NotoSerifKR';
-    width: 100%;
 }
 
-.header .h-wrap .h-gnb .h-logo {
-  
+.header .h-wrap .h-gnb .h-location .location-where{
+    align-items: center;
+    margin: auto;
+    padding: 10px;
 }
 
-.header .h-wrap .h-gnb .h-location {
-
-}
-
-.header .h-wrap .h-gnb .h-location .location-where {
+.header .h-wrap .h-gnb .h-location .location-when {
+    align-items: center;
+    padding: 10px;
 
 }
 
 .header .h-wrap .h-gnb .h-location .location-where span {
     font-size: 15px;
-
+    
 }
 
 .header .h-wrap .h-gnb .h-location .location-when {
-
     font-size: 15px;
-
 }
 .header .h-wrap .h-gnb .h-location .location-when span {
  
 
 }
 
-.header .h-wrap .h-gnb .h-nav {
+.header .h-wrap .h-nav .h-menu {
+    padding: 20px;
+    display: flex;
+    align-items: center;
 }
+.header .h-wrap .h-nav ul{
+    display: block;
+}
+
+.header .h-wrap .h-nav ul li a{
+    align-items: center;
+    padding: 20px;
+    color:#CD5C5C;
+    font-family: 'NotoSerifKR';
+    font-size: 15px;
+
+}
+
 
 .header .h-wrap .h-gnb .h-nav .menu-etc .etc-login {
 
@@ -417,12 +441,15 @@ h1, h2, h3, h4, h5 {
     width: 100%;
     opacity: 50%;
     font-size: 13px;
-    margin-top: 100px;
+    margin-top: 50px;
     color:#CD5C5C;
     
 }
-
-
+.footer .f-wrap .fw-bottom p {
+    word-break:break-all;
+    text-align: justify;
+    text-align: center;
+}
 
 
 
