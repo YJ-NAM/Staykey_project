@@ -4,6 +4,10 @@ drop table staykey_review purge;
 create table staykey_review(
     review_no number(5) primary key,
     review_stayno number(5) not null,
+    review_stayname varchar2(50) not null,
+    review_roomno number(5) not null,
+    review_roomname varchar2(50) not null,
+    review_point_total number(2,1),
     review_point1 number(2) default 10 not null,
     review_point2 number(2) default 10 not null,
     review_point3 number(2) default 10 not null,
@@ -20,6 +24,10 @@ create table staykey_review(
 
 comment on column staykey_review.review_no is '리뷰 번호';
 comment on column staykey_review.review_stayno is '숙소 번호';
+comment on column staykey_review.review_stayname is '숙소 이름';
+comment on column staykey_review.review_roomno is '방 번호';
+comment on column staykey_review.review_roomname is '방 이름';
+comment on column staykey_review.review_point_total is '합계 평점';
 comment on column staykey_review.review_point1 is '평점 접근성';
 comment on column staykey_review.review_point2 is '평점 서비스';
 comment on column staykey_review.review_point3 is '평점 객실시설';
@@ -33,11 +41,11 @@ comment on column staykey_review.review_pw is '작성자 비번';
 comment on column staykey_review.review_name is '작성자 이름';
 comment on column staykey_review.review_date is '리뷰 작성일';
 
-insert into staykey_review values(1, 1, 10, 9, 8, 7, 6, 5, '리뷰내용1
+insert into staykey_review values(1, 1, '숙소 이름', 1, '방 이름', 7.5, 10, 9, 8, 7, 6, 5, '리뷰내용1
 줄바꿈', null, '테스트1', 'test', '1234', sysdate);
-insert into staykey_review values(2, 2, 10, 9, 8, 7, 6, 5, '리뷰내용2
-줄바꿈', null, '테스트2', 'test2', '1234', sysdate);
-insert into staykey_review values(3, 1, 10, 9, 8, 7, 6, 5, '리뷰내용3
+insert into staykey_review values(2, 2, '숙소 이름2', 1, '방 이름', 7.5, 10, 9, 8, 7, 6, 5, '리뷰내용2
+줄바꿈', null, '테스트2', 'test', '1234', sysdate);
+insert into staykey_review values(3, 1, '숙소 이름', 2, '방 이름2', 7.5, 10, 9, 8, 7, 6, 5, '리뷰내용3
 줄바꿈', null, '테스트1', 'test', '1234', sysdate);
 
 commit;

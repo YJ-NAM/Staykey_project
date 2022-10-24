@@ -5,6 +5,7 @@
 
 
 
+<script type="text/javascript">$("#nav-stay").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>숙소 등록</h2>
     <small>숙소를 추가 할 수 있습니다.</small>
