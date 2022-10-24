@@ -1,8 +1,6 @@
 package com.admin.action;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,17 +26,21 @@ public class AdminReviewListAction implements Action {
 
 
         // 검색용 변수들 정의
+        String ps_type = "";
         String ps_name = "";
         String ps_id = "";
         String ps_stayname = "";
         String ps_order = "";
+        if(request.getParameter("ps_type") != null){ ps_type = request.getParameter("ps_type").trim(); }else{ ps_type = "all"; }
         if(request.getParameter("ps_name") != null){ ps_name = request.getParameter("ps_name").trim(); }else{ ps_name = ""; }
         if(request.getParameter("ps_id") != null){ ps_id = request.getParameter("ps_id").trim(); }else{ ps_id = ""; }
         if(request.getParameter("ps_stayname") != null){ ps_stayname = request.getParameter("ps_stayname").trim(); }else{ ps_stayname = ""; }
         if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "register_desc"; }
         
+        System.out.println(request.getParameter("ps_order"));
         
         // 뷰에 전달할 매개변수 추가
+        map.put("ps_type", ps_type);
         map.put("ps_name", ps_name);
         map.put("ps_id", ps_id);
         map.put("ps_stayname", ps_stayname);

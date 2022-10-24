@@ -51,12 +51,12 @@
     <div class="table-top clear">
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 후기</div>
         <div class="tt-right">
-            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/reviewList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
+            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/reviewList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_point=${map.ps_point}&ps_order='+this.value;">
                 <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>숙소이름 역순</option>
                 <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>숙소이름 순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="date_desc"<c:if test="${map.ps_order == 'point_desc'}"> selected="selected"</c:if>>작성일 최신</option>
-                <option value="date_asc"<c:if test="${map.ps_order == 'point_asc'}"> selected="selected"</c:if>>작성일 예전</option>
+                <option value="date_desc"<c:if test="${map.ps_order == 'date_desc'}"> selected="selected"</c:if>>작성일 최신</option>
+                <option value="date_asc"<c:if test="${map.ps_order == 'date_asc'}"> selected="selected"</c:if>>작성일 예전</option>
                 <option value="" disabled="disabled">---------------</option>
                 <option value="point_desc"<c:if test="${map.ps_order == 'point_desc'}"> selected="selected"</c:if>>평점 높은</option>
                 <option value="point_asc"<c:if test="${map.ps_order == 'point_asc'}"> selected="selected"</c:if>>평점 낮은</option>

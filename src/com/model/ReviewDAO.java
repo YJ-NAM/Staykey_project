@@ -144,18 +144,14 @@ public class ReviewDAO {
 
         // 정렬용 설정
         String order_sql = "review_date";
-        if (map.get("ps_order").equals("register_desc")) {
+        if (map.get("ps_order").equals("date_desc")) {
             order_sql = "review_date desc";
-        } else if (map.get("ps_order").equals("register_asc")) {
+        } else if (map.get("ps_order").equals("date_asc")) {
             order_sql = "review_date asc";
-        } else if (map.get("ps_order").equals("id_desc")) {
-            order_sql = "review_id desc";
-        } else if (map.get("ps_order").equals("id_asc")) {
-            order_sql = "member_id asc";
-        } else if (map.get("ps_order").equals("name_desc")) {
-            order_sql = "review_name desc";
+        }else if (map.get("ps_order").equals("name_desc")) {
+            order_sql = "review_stayname desc";
         } else if (map.get("ps_order").equals("name_asc")) {
-            order_sql = "review_name asc";
+            order_sql = "review_stayname asc";
         } else if (map.get("ps_order").equals("point_desc")) {
             order_sql = "review_point_total desc";
         } else if (map.get("ps_order").equals("point_asc")) {
