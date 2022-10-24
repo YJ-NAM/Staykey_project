@@ -18,12 +18,9 @@ public class AdminStayViewAction implements Action {
 		
 		int stayNo = Integer.parseInt(request.getParameter("stay_no"));
 		
-		
 		StayDAO dao = StayDAO.getInstance();
 		StayDTO dto = dao.getStayView(stayNo);
-		
-		// StayDTO & StayRoomDTO 방 목록도 View page?
-		
+				
 		request.setAttribute("stayView", dto);
 		
 		ActionForward forward = new ActionForward();

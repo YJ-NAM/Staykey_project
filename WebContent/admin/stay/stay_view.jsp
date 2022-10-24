@@ -204,8 +204,8 @@
 
     <!-- 버튼 //START -->
     <div class="d-flex justify-content-center mb-4">
-        <a href="<%=request.getContextPath()%>/admin/stayDeleteOk.do?stay_no=${list.stay_no}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?\n※ 이 숙소에 등록된 Room들도 전부 삭제됩니다.');"><i class="fa fa-trash-o"></i> 삭제하기</a>
-        <a href="<%=request.getContextPath()%>/admin/stayModify.do?stay_no=${list.stay_no}" class="btn btn-primary mx-2"><i class="fa fa-pencil"></i> 수정하기</a>
+        <a href="<%=request.getContextPath()%>/admin/stayDeleteOk.do?stay_no=${view.stay_no}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?\n※ 이 숙소에 등록된 Room들도 전부 삭제됩니다.');"><i class="fa fa-trash-o"></i> 삭제하기</a>
+        <a href="<%=request.getContextPath()%>/admin/stayModify.do?stay_no=${view.stay_no}" class="btn btn-primary mx-2"><i class="fa fa-pencil"></i> 수정하기</a>
         <a href="<%=request.getContextPath()%>/admin/stayList.do" class="btn btn-secondary"><i class="fa fa-bars"></i> 목록보기</a>
     </div>
     <!-- 버튼 //END -->
