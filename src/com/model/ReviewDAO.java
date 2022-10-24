@@ -130,6 +130,7 @@ public class ReviewDAO {
 				
 				dto.setReview_no(rs.getInt("review_no"));
 				dto.setReview_stayno(rs.getInt("review_stayno"));
+				dto.setReview_point_total(rs.getDouble("review_point_total"));
 				dto.setReview_point1(rs.getInt("review_point1"));
 				dto.setReview_point2(rs.getInt("review_point2"));
 				dto.setReview_point3(rs.getInt("review_point3"));
