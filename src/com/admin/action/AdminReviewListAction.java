@@ -103,19 +103,14 @@ public class AdminReviewListAction implements Action {
         // 목록 조회 메서드
         List<ReviewDTO> list = dao.reviewList();
         
-        for(int i=0; i<list.size(); i++) {
-        		int total = 0;
-        		ReviewDTO dto = list.get(i);
-        		total += dto.getReview_point1();
-        		total += dto.getReview_point2();
-        		total += dto.getReview_point3();
-        		total += dto.getReview_point4();
-        		total += dto.getReview_point5();
-        		total += dto.getReview_point6();
-        		double avg = total/6;
-        		System.out.println(avg);
-        		request.setAttribute("avg", avg);
-        }
+		/*
+		 * for(int i=0; i<list.size(); i++) { int total = 0; ReviewDTO dto =
+		 * list.get(i); total += dto.getReview_point1(); total +=
+		 * dto.getReview_point2(); total += dto.getReview_point3(); total +=
+		 * dto.getReview_point4(); total += dto.getReview_point5(); total +=
+		 * dto.getReview_point6(); double avg = total/6; System.out.println(avg);
+		 * request.setAttribute("avg", avg); }
+		 */
         
         
         request.setAttribute("List", list);
