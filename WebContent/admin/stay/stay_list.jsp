@@ -22,21 +22,9 @@ $(document).ready(function(){
 		$("input[name='ps_type'][value='all']").prop("checked", false);
 	});
 	
-	// 지역선택 팝업창 -- 수정 예정...
-	$(".layer_location_popUp").css('visibility', 'hidden');
-	
-	$("#locationSelect").on("click", function() {		
-		if($(".layer_location_popUp").css('visibility') == 'visible') {
-			$(".layer_location_popUp").css('visibility', 'hidden');
-		}else {
-			$(".layer_location_popUp").css('visibility', 'visible');
-		}
-	});
-	
 	// ps_location 버튼 선택 시 input[text] 값으로 띄우기
-	$("button[name='ps_location']").on("click", function() {
-		$(".layer_location_popUp").css('visibility', 'hidden');
-		let location_value = $(this).attr('value');
+	$("#location_selected").on("change", function() {
+		let location_value = $("#location_selected option:selected").attr('value');
 		$("input[name='ps_location']").val(location_value);
 	});
 	
@@ -101,25 +89,25 @@ $(document).ready(function(){
             <th>숙소명</th>
             <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="50" class="form-control w-90" /></td>
             <th>위치</th>
-            <td >
-            	<input type="text" name="ps_location" value="${map.ps_location}" maxlength="30" class="form-control w-90" />
-            	<button type="button" class="btn btn-outline-secondary btn-sm" id="locationSelect">지역선택</button>
-            	<div class="layer_location_popUp">
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전체" >전체</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="제주" >제주</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="서울" >서울</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="강원" >강원</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="부산" >부산</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경기" >경기</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="충청" >충청</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="경상" >경상</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="전라" >전라</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="인천" >인천</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="광주" >광주</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대전" >대전</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="대구" >대구</button>
-            		<button name="ps_location" type="button" class="btn btn-outline-dark btn-sm" value="울산" >울산</button>
-            	</div>
+            <td>
+            	<select name="ps_location" id="location_selected" class="form-select" >
+            		<option value="전체" disabled selected> --- 위치를 선택하세요 --- </option>
+            		<option value="전체">전체</option>
+            		<option value="제주">제주</option>
+            		<option value="서울">서울</option>
+            		<option value="강원">강원</option>
+            		<option value="부산">부산</option>
+            		<option value="경기">경기</option>
+            		<option value="충청">충청</option>
+            		<option value="경상">경상</option>
+            		<option value="전라">전라</option>
+            		<option value="인천">인천</option>
+            		<option value="광주">광주</option>
+            		<option value="대전">대전</option>
+            		<option value="대구">대구</option>
+            		<option value="울산">울산</option>
+            	</select>
+            	<input type="text" name="ps_location" value="${map.ps_location}" maxlength="15" class="form-control w-90" />
             </td>
             <th>연락처</th>
             <td><input type="tel" name="ps_phone" value="${map.ps_phone}" maxlength="255" class="form-control w-90" /></td>

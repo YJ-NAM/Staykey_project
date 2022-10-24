@@ -9,7 +9,7 @@
 
 <script type="text/javascript">$("#nav-member").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
-    <h2>회원 목록</h2>
+    <h2>리뷰 목록</h2>
     <small>등록된 회원/관리자 목록을 확인하고 관리 할 수 있습니다.</small>
 </div>
 
