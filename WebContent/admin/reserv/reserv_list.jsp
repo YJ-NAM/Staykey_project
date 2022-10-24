@@ -163,7 +163,7 @@
                     <p>${dto.reserv_memphone}</p>
                 </td>
                 <td>${dto.reserv_date.substring(0, 10)}<br />${dto.reserv_date.substring(11)}</td>
-                <td><a href="<%=request.getContextPath()%>/admin/reservModify.do?id=${dto.reserv_sess}" class="btn btn-sm btn-outline-primary">수정</a></td>
+                <td><a href="<%=request.getContextPath()%>/admin/reservModify.do?sess=${dto.reserv_sess}" class="btn btn-sm btn-outline-primary">수정</a></td>
             </tr>
             </c:forEach>
             </c:when>
