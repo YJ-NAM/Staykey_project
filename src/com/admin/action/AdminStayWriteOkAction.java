@@ -3,6 +3,7 @@ package com.admin.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ public class AdminStayWriteOkAction implements Action {
         // 파일 업로드 설정
         String thisFolder = "/data/stay/";
         String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
+        System.out.println(saveFolder);
         int fileSize = 10 * 1024 * 1024; // 10MB
         
         // 업로드 폴더 체크 후 없으면 생성
@@ -52,7 +54,6 @@ public class AdminStayWriteOkAction implements Action {
         }
         String stay_option1_desc = multi.getParameter("stay_option1_desc").trim();
         String stay_option2_name = multi.getParameter("stay_option2_name").trim();
-        System.out.println("뭐냐" + multi.getParameter("stay_option2_price"));
         if(multi.getParameter("stay_option2_price").length() > 0) {
         	int stay_option2_price = Integer.parseInt(multi.getParameter("stay_option2_price").trim());
         	dto.setStay_option2_price(stay_option2_price);
@@ -71,6 +72,7 @@ public class AdminStayWriteOkAction implements Action {
         String stay_info2 = multi.getParameter("stay_info2").trim();
         String stay_info3 = multi.getParameter("stay_info3").trim();
         
+
         // stay_file ~ photo들 rename 필요
         File stay_file1 = multi.getFile("stay_file1");
         File stay_file2 = multi.getFile("stay_file2");
@@ -100,62 +102,62 @@ public class AdminStayWriteOkAction implements Action {
         dto.setStay_option2_desc(stay_option2_desc);
         dto.setStay_option3_name(stay_option3_name);
         dto.setStay_option3_desc(stay_option3_desc);
-        
+                
         // 아마도 코드 수정 예정...        
         // 객체지향적 코드가 필요한 상태...
         // "_(" + stay_file3 +")" => currentTimeMillis 중복되서 파일명 중복되는 경우 있어, 수정함
         if(stay_file1 != null) {
             String fileExt = stay_file1.getName().substring(stay_file1.getName().lastIndexOf(".") + 1);
-            String stay_file1_rename = stay_name + "_(" + stay_file1 +")" + System.currentTimeMillis() + "." + fileExt;
+            String stay_file1_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
             stay_file1.renameTo(new File(saveFolder + "/" + stay_file1_rename));
             dto.setStay_file1(thisFolder + stay_file1_rename);
         }
         
         if(stay_file2 != null) {
             String fileExt = stay_file2.getName().substring(stay_file2.getName().lastIndexOf(".") + 1);
-            String stay_file2_rename = stay_name + "_(" + stay_file2 +")"  + System.currentTimeMillis() + "." + fileExt;
+            String stay_file2_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
             stay_file2.renameTo(new File(saveFolder + "/" + stay_file2_rename));
             dto.setStay_file2(thisFolder + stay_file2_rename);
         }
         
         if(stay_file3 != null) {
             String fileExt = stay_file3.getName().substring(stay_file3.getName().lastIndexOf(".") + 1);
-            String stay_file3_rename = stay_name + "_(" + stay_file3 +")" + System.currentTimeMillis() + "." + fileExt;
+            String stay_file3_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
             stay_file3.renameTo(new File(saveFolder + "/" + stay_file3_rename));
             dto.setStay_file3(thisFolder + stay_file3_rename);
         }
         
         if(stay_file4 != null) {
             String fileExt = stay_file4.getName().substring(stay_file4.getName().lastIndexOf(".") + 1);
-            String stay_file4_rename = stay_name + "_(" + stay_file4 +")" + System.currentTimeMillis() + "." + fileExt;
+            String stay_file4_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
             stay_file4.renameTo(new File(saveFolder + "/" + stay_file4_rename));
             dto.setStay_file4(thisFolder + stay_file4_rename);
         }
         
         if(stay_file5 != null) {
             String fileExt = stay_file5.getName().substring(stay_file5.getName().lastIndexOf(".") + 1);
-            String stay_file5_rename = stay_name + "_(" + stay_file5 +")" + System.currentTimeMillis() + "." + fileExt;
+            String stay_file5_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
             stay_file5.renameTo(new File(saveFolder + "/" + stay_file5_rename));
             dto.setStay_file5(thisFolder + stay_file5_rename);
         }
-        
+
         if(stay_option1_photo != null) {
             String fileExt = stay_option1_photo.getName().substring(stay_option1_photo.getName().lastIndexOf(".") + 1);
-            String stay_option1_photo_rename = stay_name + "_(" + stay_option1_photo +")" + System.currentTimeMillis() + "." + fileExt;
+            String stay_option1_photo_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
             stay_option1_photo.renameTo(new File(saveFolder + "/" + stay_option1_photo_rename));
             dto.setStay_option1_photo(thisFolder + stay_option1_photo_rename);
         }
         
         if(stay_option2_photo != null) {
             String fileExt = stay_option2_photo.getName().substring(stay_option2_photo.getName().lastIndexOf(".") + 1);
-            String stay_option2_photo_rename = stay_name + "_(" + stay_option2_photo +")" + System.currentTimeMillis() + "." + fileExt;
+            String stay_option2_photo_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
             stay_option2_photo.renameTo(new File(saveFolder + "/" + stay_option2_photo_rename));
             dto.setStay_option2_photo(thisFolder + stay_option2_photo_rename);
         }
-        
+
         if(stay_option3_photo != null) {
             String fileExt = stay_option3_photo.getName().substring(stay_option3_photo.getName().lastIndexOf(".") + 1);
-            String stay_option3_photo_rename = stay_name + "_(" + stay_option3_photo +")" + System.currentTimeMillis() + "." + fileExt;
+            String stay_option3_photo_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
             stay_option3_photo.renameTo(new File(saveFolder + "/" + stay_option3_photo_rename));
             dto.setStay_option3_photo(thisFolder + stay_option3_photo_rename);
         }

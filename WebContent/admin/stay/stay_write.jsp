@@ -163,7 +163,7 @@
                 </div>
             </td>
         </tr>
-
+  
         <tr>
             <th>숙박 옵션 2</th>
             <td colspan="3">
@@ -317,8 +317,6 @@
     </div>
     </form>
 </div>
-
-
 
 
 

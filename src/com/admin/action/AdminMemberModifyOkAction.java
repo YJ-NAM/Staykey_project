@@ -54,11 +54,13 @@ public class AdminMemberModifyOkAction implements Action {
         // DB에서 회원 아이디에서 기존에 있던 프사 주소값 가져오기
         MemberDTO pdto = dao.getMemberInfo(member_id);
         String photo = pdto.getMember_photo();
-
+        
         // 첨부파일 이름 변경 처리
         File member_photo = multi.getFile("member_photo");
         if (member_photo != null) { // 변경 될 프사가 있으면 삭제 후 추가
             String delFolder = request.getSession().getServletContext().getRealPath("/");
+            System.out.println(photo);
+            System.out.println(delFolder + photo);
             File del_pimage = new File(delFolder + photo);
             // del_pimage.delete() 실제로 삭제시키는 메서드
             if (del_pimage.exists()) {
