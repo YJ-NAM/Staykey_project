@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.model.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
 
@@ -104,13 +106,9 @@
                 <th>리뷰 파일</th>
                 <th>아이디/이름</th>
                 <th>숙소 번호</th>
-                <th>평점 접근성</th>
-                <th>평점 서비스</th>
-                <th>평점 객실시설</th>
-                <th>평점 부대시설</th>
-                <th>평점 식음료</th>
-                <th>평점 만족도</th>
-                <th>리뷰 작성일</th>
+                <th>평점</th>
+                <th> 접근성 / 서비스 / 객실 시설 / 부대 시설 / 식음료 / 만족도 </th>
+                <th>작성일</th>
                 <th>기능</th>
             </tr>
         </thead>
@@ -122,7 +120,6 @@
             <tr>
                 <td>${dto.review_no}</td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">
                         <c:choose>
                         <c:when test="${!empty dto.review_file }"><img src="<%=request.getContextPath()%>${dto.review_file}" width="60" height="60" alt="" /></c:when>
                         <c:otherwise>
@@ -133,18 +130,13 @@
                         </svg>
                         </c:otherwise>
                         </c:choose>
-                    </a>
                 </td>
 				<td>
-					<a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">${dto.review_id}/${dto.review_name} </a>
+					${dto.review_id}/${dto.review_name}
 				</td>
                 <td>${dto.review_stayno}</td>
-                <td>${dto.review_point1}</td>
-                <td>${dto.review_point2}</td>
-                <td>${dto.review_point3}</td>
-                <td>${dto.review_point4}</td>
-                <td>${dto.review_point5}</td>
-                <td>${dto.review_point6}</td>
+                <td>${dto.review_point_total }</td>
+                <td>${dto.review_point1}점, ${dto.review_point2}점, ${dto.review_point3}점, ${dto.review_point4}점, ${dto.review_point5}점, ${dto.review_point6}점</td>
 				<td>${dto.review_date.substring(0, 10)}</td>
                 
                 <td>
