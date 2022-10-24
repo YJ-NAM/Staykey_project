@@ -10,7 +10,7 @@
     <small>숙소를 수정 할 수 있습니다.</small>
 </div>
 
-
+<!-- 사진 이미지는 모두 width=100px / height=100px로 임의 설정되어 있습니다~! -->
 
 
 <div class="pb100">
@@ -94,26 +94,51 @@
         <tr>
             <td colspan="4" class="space" nowrap="nowrap"></td>
         </tr>
-
+        
         <tr>
             <th>숙소 사진 1</th>
-            <td colspan="3"><input type="file" name="stay_file1" class="form-control w-50" /></td>
+            <td colspan="3">
+			<c:if test="${ !empty stayModify.stay_file1 }">
+				<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_file1 }" alt="" width="100px" height="100px"/></p>
+           	</c:if>
+           		<input type="file" name="stay_file1" class="form-control w-50" />
+            </td>
         </tr>
         <tr>
             <th>숙소 사진 2</th>
-            <td colspan="3"><input type="file" name="stay_file2" class="form-control w-50" /></td>
+            <td colspan="3">
+			<c:if test="${ !empty stayModify.stay_file2 }">
+				<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_file2 }" alt="" width="100px" height="100px"/></p>
+           	</c:if>
+           		<input type="file" name="stay_file2" class="form-control w-50" />
+            </td>
         </tr>
         <tr>
             <th>숙소 사진 3</th>
-            <td colspan="3"><input type="file" name="stay_file3" class="form-control w-50" /></td>
+            <td colspan="3">
+			<c:if test="${ !empty stayModify.stay_file3 }">
+				<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_file3 }" alt="" width="100px" height="100px"/></p>
+           	</c:if>
+           		<input type="file" name="stay_file3" class="form-control w-50" />
+            </td>
         </tr>
         <tr>
             <th>숙소 사진 4</th>
-            <td colspan="3"><input type="file" name="stay_file4" class="form-control w-50" /></td>
+            <td colspan="3">
+			<c:if test="${ !empty stayModify.stay_file4 }">
+				<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_file4 }" alt="" width="100px" height="100px"/></p>
+           	</c:if>
+           		<input type="file" name="stay_file4" class="form-control w-50" />
+            </td>
         </tr>
         <tr>
             <th>숙소 사진 5</th>
-            <td colspan="3"><input type="file" name="stay_file5" class="form-control w-50" /></td>
+            <td colspan="3">
+			<c:if test="${ !empty stayModify.stay_file5 }">
+				<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_file5 }" alt="" width="100px" height="100px"/></p>
+           	</c:if>
+           		<input type="file" name="stay_file5" class="form-control w-50" />
+            </td>
         </tr>
 
         <tr>
@@ -156,7 +181,10 @@
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션사진</span>
-                            </div>
+                            </div>                                     
+							<c:if test="${ !empty stayModify.stay_option1_photo }">
+								<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option1_photo }" alt="" width="100px" height="100px"/></p>
+				           	</c:if>
                             <input type="file" name="stay_option1_photo" class="form-control w-50" />
                         </div>
                     </div>
@@ -201,6 +229,9 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션사진</span>
                             </div>
+                            <c:if test="${ !empty stayModify.stay_option2_photo }">
+								<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option2_photo }" alt="" width="100px" height="100px"/></p>
+				           	</c:if>
                             <input type="file" name="stay_option2_photo" class="form-control w-50" />
                         </div>
                     </div>
@@ -245,7 +276,10 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션사진</span>
                             </div>
-                            <input type="file" name="stay_option3_photo" class="form-control w-50" />
+                            <c:if test="${ !empty stayModify.stay_option3_photo }">
+								<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option3_photo }" alt="" width="100px" height="100px"/></p>
+				           	</c:if>
+                            <input type="file" name="stay_option3_photo" class="form-control w-50" value="${ stayModify.stay_option3_photo }" />
                         </div>
                     </div>
                 </div>
@@ -317,7 +351,6 @@
     </div>
     </form>
 </div>
-
 
 
 
