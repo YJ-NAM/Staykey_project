@@ -271,11 +271,10 @@ h1, h2, h3, h4, h5 {
 }
 .header .h-wrap{
     display: flex;
-    justify-content: flex-start;
     position: relative;
     width: 1200px;
     height: 100px;
-    margin: 0 auto;
+    flex-grow: 1;
 }
 
 .header .h-wrap .h-logo {
@@ -285,38 +284,46 @@ h1, h2, h3, h4, h5 {
 
 .header .h-wrap .h-gnb {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
+    flex-direction: row;
     font-family: 'NotoSerifKR';
 }
 
+.header .h-wrap .h-gnb .h-location {
+    left: auto;
+    right: 545px;
+    margin-left: 1px;
+    word-spacing: 80px;
+}
+
 .header .h-wrap .h-gnb .h-location .location-where{
-    align-items: center;
-    margin: auto;
+    margin-left: 0;
     padding: 10px;
 }
 
-.header .h-wrap .h-gnb .h-location .location-when {
-    align-items: center;
+.header .h-wrap .h-gnb .h-location .location-where span::after {
+    font-size: 15px;
     padding: 10px;
-
 }
 
-.header .h-wrap .h-gnb .h-location .location-where span {
-    font-size: 15px;
-    
-}
 
 .header .h-wrap .h-gnb .h-location .location-when {
     font-size: 15px;
+    padding: 10px;
 }
+
 .header .h-wrap .h-gnb .h-location .location-when span {
- 
-
+    font-size: 15px;
+    padding: 10px;
 }
 
+
+.header .h-wrap .h-nav {
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
 .header .h-wrap .h-nav .h-menu {
-    padding: 20px;
     display: flex;
     align-items: center;
 }
@@ -326,6 +333,7 @@ h1, h2, h3, h4, h5 {
 
 .header .h-wrap .h-nav ul li a{
     align-items: center;
+    margin: 20px;
     padding: 20px;
     color:#CD5C5C;
     font-family: 'NotoSerifKR';
