@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -72,7 +73,7 @@ public class StayDAO {
 	} // closeConn() 메서드 end
 
 	/////////////////////////////////////////////////////////////
-	// 숙소 전체 목록 조회(날짜 역순)
+	// 숙소 전체 목록 조회(날짜 역순) + 검색 기능
 	/////////////////////////////////////////////////////////////
 	public List<StayDTO> getStayList(int page, int rowsize, Map<String, Object> map) {
 
@@ -84,9 +85,19 @@ public class StayDAO {
 		// 검색용 설정
 		String search_sql1 = " where stay_no > 0";
 		String search_sql2 = "";
-		
-		if (map.get("ps_type") != "" || map.get("ps_type") != null) {
-			search_sql2 += " and stay_type like '%" + map.get("ps_type") + "%'";
+				
+		if(!map.get("ps_type").equals("all")) {
+			search_sql2 += "and (";
+			
+			StringTokenizer tokenizer = new StringTokenizer(map.get("ps_type").toString(), "/");
+			while(tokenizer.hasMoreTokens()) {
+				search_sql2 += "stay_type like '%" + tokenizer.nextToken() + "%' or ";		
+			}
+			search_sql2 = search_sql2.substring(0, search_sql2.lastIndexOf("'") + 1);
+			search_sql2 += ")";
+			
+		}else {
+			search_sql2 += "";
 		}
 		if (map.get("ps_name") != "" || map.get("ps_name") != null) {
 			search_sql2 += " and stay_name like '%" + map.get("ps_name") + "%'";
@@ -196,18 +207,22 @@ public class StayDAO {
 		String search_sql = " where stay_no > 0";
 
 		if (map.get("ps_type") != "" && map.get("ps_type") != null) {
-			search_sql += " and (";
-			String get_type = ((String) map.get("ps_type")).substring(1);
-			String[] epd_type = get_type.split("/");
-			for(int i=0; i<epd_type.length; i++) {
-				if(i > 0) {
-					search_sql += " or ";
+			if(map.get("ps_type").equals("all")) {
+			// all 값일 때, search_sql 없음
+			}else {
+				search_sql += " and (";
+				String get_type = ((String) map.get("ps_type")).substring(1);
+				String[] epd_type = get_type.split("/");
+				for(int i=0; i<epd_type.length; i++) {
+					if(i > 0) {
+						search_sql += " or ";
+					}
+					search_sql += "stay_type = '"+epd_type[i]+"'";
 				}
-				search_sql += "stay_type = '"+epd_type[i]+"'";
+				search_sql += ") ";
 			}
-			search_sql += ") ";
 		}
-
+		
 		if (map.get("ps_name") != "" && map.get("ps_name") != null) {
 			search_sql += " and stay_name like '%" + map.get("ps_name") + "%'";
 		}
