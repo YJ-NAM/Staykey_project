@@ -140,7 +140,7 @@ $(document).ready(function(){
     <div class="table-top clear">
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 숙소</div>
         <div class="tt-right">
-            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/memberList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
+            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/stayList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
                 <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>등록일 최신</option>
                 <option value="register_asc"<c:if test="${map.ps_order == 'register_asc'}"> selected="selected"</c:if>>등록일 예전</option>
                 <option value="" disabled="disabled">---------------</option>
@@ -191,10 +191,10 @@ $(document).ready(function(){
             <c:forEach items="${stayList}" var="list">
             <tr>
                 <td>${list.stay_no}</td>
-                <td>
+                <td class="photo">
                     <a href="<%=request.getContextPath()%>/admin/stayView.do?stay_no=${list.stay_no}">
                         <c:choose>
-                        <c:when test="${!empty list.stay_file1}"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" width="200" height="140" alt="" /></c:when>
+                        <c:when test="${!empty list.stay_file1}"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" alt="" /></c:when>
                         <c:otherwise>
                         <svg class="bd-placeholder-img" width="200" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
                             <title>${list.stay_name}</title>

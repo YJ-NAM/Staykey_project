@@ -120,10 +120,10 @@
             <tr>
                 <td>${dto.getMember_no()}</td>
                 <td><c:choose><c:when test="${dto.getMember_type() == 'admin'}">관리자</c:when><c:otherwise>회원</c:otherwise></c:choose></td>
-                <td>
+                <td class="photo">
                     <a href="<%=request.getContextPath()%>/admin/memberView.do?id=${dto.getMember_id()}">
                         <c:choose>
-                        <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" width="60" height="60" alt="" /></c:when>
+                        <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" alt="" /></c:when>
                         <c:otherwise>
                         <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
                             <title>${dto.getMember_name()}</title>
