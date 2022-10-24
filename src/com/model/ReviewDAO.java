@@ -130,6 +130,7 @@ public class ReviewDAO {
 				
 				dto.setReview_no(rs.getInt("review_no"));
 				dto.setReview_stayno(rs.getInt("review_stayno"));
+				dto.setReview_point_total(rs.getDouble("review_point_total"));
 				dto.setReview_point1(rs.getInt("review_point1"));
 				dto.setReview_point2(rs.getInt("review_point2"));
 				dto.setReview_point3(rs.getInt("review_point3"));
@@ -152,6 +153,100 @@ public class ReviewDAO {
 		}
 		return list;
     }
+
+    
+    // ======================================================
+    // 리뷰 정보 가져오는 메서드
+    // ======================================================
+    public ReviewDTO getReviewInfo(int no) {
+    	ReviewDTO dto = null;
+    	
+    	try {
+    		openConn();
+    		
+            sql = "select * from staykey_review where review_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	        	dto = new ReviewDTO();
+	        	
+				dto.setReview_no(rs.getInt("review_no"));
+				dto.setReview_stayno(rs.getInt("review_stayno"));
+				dto.setReview_point_total(rs.getDouble("review_point_total"));
+				dto.setReview_point1(rs.getInt("review_point1"));
+				dto.setReview_point2(rs.getInt("review_point2"));
+				dto.setReview_point3(rs.getInt("review_point3"));
+				dto.setReview_point4(rs.getInt("review_point4"));
+				dto.setReview_point5(rs.getInt("review_point5"));
+				dto.setReview_point6(rs.getInt("review_point6"));
+				dto.setReview_content(rs.getString("review_content"));
+				dto.setReview_file(rs.getString("review_file"));
+				dto.setReview_id(rs.getString("review_id"));
+				dto.setReview_pw(rs.getString("review_pw"));
+				dto.setReview_name(rs.getString("review_name"));
+				dto.setReview_date(rs.getString("review_date"));
+	        }
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, con);
+		}
+    	return dto;
+    }
+    
+    
+    
+
+    
+    // ======================================================
+    // 리뷰 정보 가져오는 메서드
+    // ======================================================
+    public int deleteReview(int no) {
+        int result = 0;
+
+        try {
+            openConn();
+
+            sql = "delete from staykey_review where review_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return result;
+    }
+    
+    
+    
+    
+    
+    
+    // ======================================================
+    // 리뷰번호 재작업하는 메서드
+    // ======================================================
+    public void updateNo(int no) {
+        try {
+            openConn();
+
+            sql = "update staykey_review set review_no = review_no - 1 where review_no > ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    } // updateSequence() 메서드 end
 
 
 

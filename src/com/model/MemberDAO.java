@@ -326,7 +326,6 @@ public class MemberDAO {
             sql = "delete from staykey_member where member_id = ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, memberId);
-
             result = pstmt.executeUpdate();
 
         } catch (SQLException e) {

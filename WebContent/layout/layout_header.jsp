@@ -53,13 +53,13 @@
 
 
     <!-- header //START -->
-    <header class="header" style="background">
+    <header class="header">
         <div class="h-wrap">
             <div class= "h-logo">
-                    <img src="asset/images/staykey_logo.png" alt="logo">
+                    <h2><img src="asset/images/staykey_logo.png" alt="logo"></h2>
                 </div>
             <div class="h-gnb">
-                <div class= "h-location">
+                <div class= "h-location grow-flex-1">
                     <button input="" class="location-where"><span>어디로 갈까요</span></button>
                     <button input="" class="location-when"><span>언제 떠날까요</span></button>
                 </div>
