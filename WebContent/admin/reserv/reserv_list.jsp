@@ -151,7 +151,7 @@
                 <td><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/reservView.do?sess=${dto.reserv_sess}', '700', '900');"><i class="icon-magnifier"></i> ${dto.reserv_sess}</a></td>
                 <td>
                     <p>${dto.reserv_start.substring(0, 10)} ~ ${dto.reserv_end.substring(0, 10)}</p>
-                    <p>(${dto.reserv_daycount}박)</p>
+                    <p>(${dto.reserv_daycount}박 ${dto.reserv_daycount+1}일)</p>
                 </td>
                 <td>
                     <p><b>${dto.reserv_stayname}</b></p>
