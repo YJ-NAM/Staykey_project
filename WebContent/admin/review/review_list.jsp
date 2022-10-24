@@ -140,7 +140,6 @@
 				<td>${dto.review_date.substring(0, 10)}</td>
                 
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
                     <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.review_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
                 
@@ -174,7 +173,6 @@
                                     ${map.pagingWrite}
                                 </td>
 
-                                <td class="text-right"><a href="<%=request.getContextPath()%>/admin/reviewWrite.do" class="btn btn-primary"><i class="fa fa-pencil"></i> 후기 등록</a></td>
                             </tr>
                         </tbody>
                     </table>

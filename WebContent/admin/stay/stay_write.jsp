@@ -112,8 +112,8 @@
             <td colspan="3"><input type="file" name="stay_file4" class="form-control w-50" /></td>
         </tr>
         <tr>
-            <th>숙소 사진 </th>
-            <td colspan="3"><input type="file" name="stay_file" class="form-control w-50" /></td>
+            <th>숙소 사진 5</th>
+            <td colspan="3"><input type="file" name="stay_file5" class="form-control w-50" /></td>
         </tr>
 
         <tr>
