@@ -82,21 +82,29 @@ public class ReviewDAO {
 
         // 검색용 설정
         String search_sql = " where review_no > 0";
-        if(map.get("ps_content") != null){
-            search_sql += " and review_content like '%"+map.get("ps_content")+"%'";
+        if (map.get("ps_name") != null) {
+            search_sql += " and review_name like '%" + map.get("ps_name") + "%'";
         }
-
+        if (map.get("ps_id") != null) {
+            search_sql += " and review_id like '%" + map.get("ps_id") + "%'";
+        }
+        if (map.get("ps_stayname") != null) {
+            search_sql += " and review_stayname like '%" + map.get("ps_stayname") + "%'";
+        }
 
         try {
             openConn();
-
+            
+            System.out.println(map.get("ps_name"));
             sql = "select count(*) from staykey_review" + search_sql;
+            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
-            if(rs.next()) result = rs.getInt(1);
+            if (rs.next())
+                result = rs.getInt(1);
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
 
         } finally {
@@ -110,26 +118,66 @@ public class ReviewDAO {
 
 
 
-
     // ======================================================
     // 	후기 전체 리스트 메서드
     // ======================================================
-    public List<ReviewDTO> reviewList() {
+    public List<ReviewDTO> reviewList(int page, int rowsize, Map<String, Object> map) {
     	List<ReviewDTO> list = new ArrayList<ReviewDTO>();
     	
+        int startNo = (page * rowsize) - (rowsize - 1);
+        int endNo = (page * rowsize);
+
+        // 검색용 설정
+        String search_sql1 = " where review_no > 0";
+        String search_sql2 = "";
+
+        if (map.get("ps_name") != "" && map.get("ps_name") != null) {
+            search_sql2 += " and review_name like '%" + map.get("ps_name") + "%'";
+        }
+        if (map.get("ps_id") != "" && map.get("ps_id") != null) {
+            search_sql2 += " and review_id like '%" + map.get("ps_id") + "%'";
+        }
+        if (map.get("ps_stayname") != "" && map.get("ps_stayname") != null) {
+            search_sql2 += " and review_stayname like '%" + map.get("ps_stayname") + "%'";
+        }
+        search_sql1 += search_sql2;
+
+        // 정렬용 설정
+        String order_sql = "review_date";
+        if (map.get("ps_order").equals("date_desc")) {
+            order_sql = "review_date desc";
+        } else if (map.get("ps_order").equals("date_asc")) {
+            order_sql = "review_date asc";
+        }else if (map.get("ps_order").equals("name_desc")) {
+            order_sql = "review_stayname desc";
+        } else if (map.get("ps_order").equals("name_asc")) {
+            order_sql = "review_stayname asc";
+        } else if (map.get("ps_order").equals("point_desc")) {
+            order_sql = "review_point_total desc";
+        } else if (map.get("ps_order").equals("point_asc")) {
+            order_sql = "review_point_total asc";
+        }
+
 		try {
 			openConn();
 			
-			sql = "select * from staykey_review order by review_no desc";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-
+	           sql = "select * from " + "(select row_number() over(order by " + order_sql
+	                    + ") rnum, b.* from staykey_review b " + search_sql1 + ") " + "where rnum >= ? and rnum <= ?"
+	                    + search_sql2;
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, startNo);
+            pstmt.setInt(2, endNo);
+            rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
 				
 				ReviewDTO dto = new ReviewDTO();
 				
 				dto.setReview_no(rs.getInt("review_no"));
 				dto.setReview_stayno(rs.getInt("review_stayno"));
+				dto.setReview_stayname(rs.getString("review_stayname"));
+				dto.setReview_roomno(rs.getInt("review_roomno"));
+				dto.setReview_roomname(rs.getString("review_roomname"));
 				dto.setReview_point_total(rs.getDouble("review_point_total"));
 				dto.setReview_point1(rs.getInt("review_point1"));
 				dto.setReview_point2(rs.getInt("review_point2"));
@@ -174,6 +222,9 @@ public class ReviewDAO {
 	        	
 				dto.setReview_no(rs.getInt("review_no"));
 				dto.setReview_stayno(rs.getInt("review_stayno"));
+				dto.setReview_stayname(rs.getString("review_stayname"));
+				dto.setReview_roomno(rs.getInt("review_roomno"));
+				dto.setReview_roomname(rs.getString("review_roomname"));
 				dto.setReview_point_total(rs.getDouble("review_point_total"));
 				dto.setReview_point1(rs.getInt("review_point1"));
 				dto.setReview_point2(rs.getInt("review_point2"));

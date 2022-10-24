@@ -54,7 +54,7 @@ public class AdminMemberModifyOkAction implements Action {
         // DB에서 회원 아이디에서 기존에 있던 프사 주소값 가져오기
         MemberDTO pdto = dao.getMemberInfo(member_id);
         String photo = pdto.getMember_photo();
-
+        
         // 첨부파일 이름 변경 처리
         File member_photo = multi.getFile("member_photo");
         if (member_photo != null) { // 변경 될 프사가 있으면 삭제 후 추가
@@ -99,19 +99,7 @@ public class AdminMemberModifyOkAction implements Action {
             out.println("<script>alert('회원 정보 수정 중 에러가 발생하였습니다.'); history.back();</script>");
         }
 
-        if (member_photo != null) {
-            System.out.println(saveFolder + member_photo);
-            File del_pimage = new File(saveFolder + member_photo); // del_pimage.delete()
 
-            // 실제로 삭제시키는 메서드
-            if (del_pimage.exists()) {
-                if (del_pimage.delete()) {
-                    System.out.println("프로필 파일 삭제 완료");
-                } else {
-                    System.out.println("프로필 파일 삭제 실패");
-                }
-            }
-        }
 
         return forward;
 

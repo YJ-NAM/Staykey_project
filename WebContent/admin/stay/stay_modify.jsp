@@ -15,7 +15,7 @@
 
 <div class="pb100">
     <form name="modify_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin/stayModifyOk.do">
-    <input type="hidden" value="${ stayModify.stay_no }" />
+    <input type="hidden" name="stay_no" value="${ stayModify.stay_no }" />
     <table class="table-form mt-3">
         <colgroup>
             <col width="16%" />
