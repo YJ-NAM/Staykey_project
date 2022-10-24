@@ -34,17 +34,23 @@ public class AdminStayListAction implements Action {
     	String ps_location = "";
     	String ps_phone = "";
     	String ps_order = "";
-
+    	
     	if(request.getParameterValues("ps_type") != null) { 
+    		// ps_type의 value가 all이 넘어올 때, all 지정
 			get_type = request.getParameterValues("ps_type");
 			if(get_type[0].equals("all")) {
-				ps_type = "";
+				ps_type = "all";
 			}else {
-				for (int i = 0; i<get_type.length; i++){
+				for(int i = 0; i<get_type.length; i++) {
 					ps_type += "/" + get_type[i];
 				}
 			}
+		}else {
+			System.out.println("안녕");
+			ps_type = "all";
 		}
+    	
+    	System.out.println("hello"+ps_type);
 
     	if(request.getParameter("ps_name") != null){ ps_name = request.getParameter("ps_name").trim(); }else{ ps_name = ""; }
     	if(request.getParameter("ps_location") != null){ 
