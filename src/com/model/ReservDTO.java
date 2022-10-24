@@ -24,6 +24,7 @@ public class ReservDTO {
     private int reserv_option3_price;
     private int reserv_use_point;
     private int reserv_total_price;
+    private int reserv_people_max;
     private int reserv_people_adult;
     private int reserv_people_kid;
     private int reserv_people_baby;
@@ -169,6 +170,12 @@ public class ReservDTO {
     }
     public void setReserv_total_price(int reserv_total_price) {
         this.reserv_total_price = reserv_total_price;
+    }
+    public int getReserv_people_max() {
+        return reserv_people_max;
+    }
+    public void setReserv_people_max(int reserv_people_max) {
+        this.reserv_people_max = reserv_people_max;
     }
     public int getReserv_people_adult() {
         return reserv_people_adult;

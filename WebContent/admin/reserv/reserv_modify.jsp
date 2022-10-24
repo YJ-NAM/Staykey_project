@@ -15,18 +15,18 @@ $("#nav-reserv").addClass("now");
 form_check = function(){
     var form = document.write_form;
 
-    if(form.member_email.value == ""){
+    if(form.reserv_mememail.value == ""){
         alert("[이메일]을 입력해 주세요.");
-        form.member_email.focus();
+        form.reserv_mememail.focus();
         return false;
     }
 
     // 이메일 형식 체크
     var TEmailChk = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    if(form.member_email.value.match(TEmailChk) != null){
+    if(form.reserv_mememail.value.match(TEmailChk) != null){
     }else{
         alert("잘못된 이메일 형식입니다.\n[이메일]을 다시 입력해 주세요.");
-        form.member_email.focus();
+        form.reserv_mememail.focus();
         return false;
     }
 
