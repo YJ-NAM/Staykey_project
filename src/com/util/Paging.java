@@ -45,6 +45,10 @@ public class Paging {
 
         pagingStr += "</div>";
 
-        return pagingStr;
+        if(endBlock > 0){
+            return pagingStr;
+        }else{
+            return "";
+        }
     }
 }

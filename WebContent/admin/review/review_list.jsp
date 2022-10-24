@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.model.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
 
@@ -133,12 +135,11 @@
 					${dto.review_id}/${dto.review_name}
 				</td>
                 <td>${dto.review_stayno}</td>
-                <td></td>
+                <td>${dto.review_point_total }</td>
                 <td>${dto.review_point1}점, ${dto.review_point2}점, ${dto.review_point3}점, ${dto.review_point4}점, ${dto.review_point5}점, ${dto.review_point6}점</td>
 				<td>${dto.review_date.substring(0, 10)}</td>
                 
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
                     <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.review_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
                 
@@ -172,7 +173,6 @@
                                     ${map.pagingWrite}
                                 </td>
 
-                                <td class="text-right"><a href="<%=request.getContextPath()%>/admin/reviewWrite.do" class="btn btn-primary"><i class="fa fa-pencil"></i> 후기 등록</a></td>
                             </tr>
                         </tbody>
                     </table>
