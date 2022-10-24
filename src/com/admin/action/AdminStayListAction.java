@@ -46,12 +46,9 @@ public class AdminStayListAction implements Action {
 				}
 			}
 		}else {
-			System.out.println("안녕");
 			ps_type = "all";
 		}
     	
-    	System.out.println("hello"+ps_type);
-
     	if(request.getParameter("ps_name") != null){ ps_name = request.getParameter("ps_name").trim(); }else{ ps_name = ""; }
     	if(request.getParameter("ps_location") != null){ 
     		ps_location = request.getParameter("ps_location").trim(); 

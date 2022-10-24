@@ -50,10 +50,10 @@ $(document).ready(function(){
             <col />
         </colgroup>
         <tr>
-            <th>숙소 구분</th>
+            <th>구분</th>
             <td colspan="5">
                 <div class="form-check form-check-inline ml-1">
-                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="all" class="form-check-input"<c:if test="${map.ps_type == 'all'}"> checked="checked"</c:if> checked="checked" /> 전체</label>
+                    <label class="form-check-label"><input type="checkbox" name="ps_type" value="all" class="form-check-input"<c:if test="${map.ps_type == 'all'}"> checked="checked"</c:if> /> 전체</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <label class="form-check-label"><input type="checkbox" name="ps_type" value="호텔" class="form-check-input"<c:if test="${map.ps_type.contains('호텔')}"> checked="checked"</c:if> /> 호텔</label>

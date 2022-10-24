@@ -102,6 +102,7 @@ public class AdminStayWriteOkAction implements Action {
         dto.setStay_option3_desc(stay_option3_desc);
         
         // 아마도 코드 수정 예정...        
+        // 객체지향적 코드가 필요한 상태...
         // "_(" + stay_file3 +")" => currentTimeMillis 중복되서 파일명 중복되는 경우 있어, 수정함
         if(stay_file1 != null) {
             String fileExt = stay_file1.getName().substring(stay_file1.getName().lastIndexOf(".") + 1);

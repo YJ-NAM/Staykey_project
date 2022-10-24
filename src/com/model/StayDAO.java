@@ -257,7 +257,7 @@ public class StayDAO {
 		StayDTO dto = null;
 		openConn();
 
-		try {
+		try {			
 			sql = "select * from staykey_stay where stay_no = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
