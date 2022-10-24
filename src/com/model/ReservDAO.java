@@ -107,14 +107,67 @@ public class ReservDAO {
     // ======================================================
     // 예약목록 메서드
     // ======================================================
-    public List<ReservDTO> getReservList() {
+    public List<ReservDTO> getReservList(int page, int rowsize, Map<String, Object> map) {
         List<ReservDTO> list = new ArrayList<ReservDTO>();
+
+        int startNo = (page * rowsize) - (rowsize - 1);
+        int endNo = (page * rowsize);
+
+        // 검색용 설정
+        String search_sql1 = " where reserv_no > 0";
+        String search_sql2 = "";
+
+        if (map.get("ps_status").equals("cancel")) {
+            search_sql2 += " and reserv_status = 'cancel'";
+        }
+        if (map.get("ps_sess") != null) {
+            search_sql2 += " and reserv_sess like '%" + map.get("ps_sess") + "%'";
+        }
+        if (map.get("ps_name") != null) {
+            search_sql2 += " and reserv_memname like '%" + map.get("ps_name") + "%'";
+        }
+        if (map.get("ps_stay") != null) {
+            search_sql2 += " and reserv_stayname like '%" + map.get("ps_stay") + "%'";
+        }
+
+        search_sql1 += search_sql2;
+
+
+        // 정렬용 설정
+        String order_sql = "register_desc";
+        if (map.get("ps_order").equals("register_desc")) {
+            order_sql = "reserv_date desc";
+        } else if (map.get("ps_order").equals("register_asc")) {
+            order_sql = "reserv_date asc";
+        } else if (map.get("ps_order").equals("enddate_desc")) {
+            order_sql = "reserv_end desc";
+        } else if (map.get("ps_order").equals("enddate_asc")) {
+            order_sql = "reserv_end asc";
+        } else if (map.get("ps_order").equals("name_desc")) {
+            order_sql = "reserv_memname desc";
+        } else if (map.get("ps_order").equals("name_asc")) {
+            order_sql = "reserv_memname asc";
+        } else if (map.get("ps_order").equals("price_desc")) {
+            order_sql = "reserv_total_price desc";
+        } else if (map.get("ps_order").equals("price_asc")) {
+            order_sql = "reserv_total_price asc";
+        } else if (map.get("ps_order").equals("stay_desc")) {
+            order_sql = "reserv_stayname desc";
+        } else if (map.get("ps_order").equals("stay_asc")) {
+            order_sql = "reserv_stayname asc";
+        }
+
+        System.out.println(search_sql1);
 
         try {
             openConn();
 
-            sql = "select * from staykey_reserv";
+            sql = "select * from " + "(select row_number() over(order by " + order_sql
+                    + ") rnum, b.* from staykey_reserv b " + search_sql1 + ") " + "where rnum >= ? and rnum <= ?"
+                    + search_sql2;
             pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, startNo);
+            pstmt.setInt(2, endNo);
             rs = pstmt.executeQuery();
 
             while(rs.next()){
