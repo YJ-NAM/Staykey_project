@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.model.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
 
@@ -133,7 +135,7 @@
 					${dto.review_id}/${dto.review_name}
 				</td>
                 <td>${dto.review_stayno}</td>
-                <td></td>
+                <td>${dto. }</td>
                 <td>${dto.review_point1}점, ${dto.review_point2}점, ${dto.review_point3}점, ${dto.review_point4}점, ${dto.review_point5}점, ${dto.review_point6}점</td>
 				<td>${dto.review_date.substring(0, 10)}</td>
                 
