@@ -29,26 +29,12 @@
             <col />
         </colgroup>
         <tr>
-            <th>회원 구분</th>
-            <td colspan="5">
-                <div class="form-check form-check-inline ml-1">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="all" class="form-check-input"<c:if test="${map.ps_type == 'all'}"> checked="checked"</c:if> /> 전체</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="user" class="form-check-input"<c:if test="${map.ps_type == 'user'}"> checked="checked"</c:if> /> 일반회원</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="admin" class="form-check-input"<c:if test="${map.ps_type == 'admin'}"> checked="checked"</c:if> /> 관리자</label>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <th>회원 이름</th>
+            <th>작성자 이름</th>
             <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="50" class="form-control w-90" /></td>
-            <th>회원 아이디</th>
+            <th>작성자 아이디</th>
             <td><input type="text" name="ps_id" value="${map.ps_id}" maxlength="30" class="form-control w-90" /></td>
-            <th>회원 이메일</th>
-            <td><input type="text" name="ps_email" value="${map.ps_email}" maxlength="255" class="form-control w-90" /></td>
+            <th>숙소 이름</th>
+            <td><input type="text" name="ps_stayname" value="${map.ps_stayname}" maxlength="255" class="form-control w-90" /></td>
         </tr>
     </table>
 
@@ -66,20 +52,14 @@
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 후기</div>
         <div class="tt-right">
             <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/reviewList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
-                <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>등록일 최신</option>
-                <option value="register_asc"<c:if test="${map.ps_order == 'register_asc'}"> selected="selected"</c:if>>등록일 예전</option>
+                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>숙소이름 역순</option>
+                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>숙소이름 순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="id_desc"<c:if test="${map.ps_order == 'id_desc'}"> selected="selected"</c:if>>아이디 역순</option>
-                <option value="id_asc"<c:if test="${map.ps_order == 'id_asc'}"> selected="selected"</c:if>>아이디 순</option>
+                <option value="date_desc"<c:if test="${map.ps_order == 'point_desc'}"> selected="selected"</c:if>>작성일 최신</option>
+                <option value="date_asc"<c:if test="${map.ps_order == 'point_asc'}"> selected="selected"</c:if>>작성일 예전</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>회원이름 역순</option>
-                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>회원이름 순</option>
-                <option value="" disabled="disabled">---------------</option>
-                <option value="point_desc"<c:if test="${map.ps_order == 'point_desc'}"> selected="selected"</c:if>>적립금 높은</option>
-                <option value="point_asc"<c:if test="${map.ps_order == 'point_asc'}"> selected="selected"</c:if>>적립금 낮은</option>
-                <option value="" disabled="disabled">---------------</option>
-                <option value="count_desc"<c:if test="${map.ps_order == 'count_desc'}"> selected="selected"</c:if>>예약횟수 높은</option>
-                <option value="count_asc"<c:if test="${map.ps_order == 'count_asc'}"> selected="selected"</c:if>>예약횟수 낮은</option>
+                <option value="point_desc"<c:if test="${map.ps_order == 'point_desc'}"> selected="selected"</c:if>>평점 높은</option>
+                <option value="point_asc"<c:if test="${map.ps_order == 'point_asc'}"> selected="selected"</c:if>>평점 낮은</option>
             </select>
         </div>
     </div>
@@ -90,24 +70,22 @@
         <colgroup>
             <col width="4.5%">
             <col width="7.2%">
-            <col width="7.2%">
-            <col width="10%">
-            <col width="18%">
-            <col width="13.5%">
+            <col width="12%">
+            <col width="5%">
+            <col width="20%">
+            <col width="8%">
             <col width="9%">
             <col width="7.2%">
-            <col />
-            <col width="10%">
         </colgroup>
 
         <thead>
             <tr>
-                <th>NO.</th>
-                <th>리뷰 파일</th>
-                <th>아이디/이름</th>
-                <th>숙소 번호</th>
+                <th>리뷰 번호</th>
+                <th>리뷰 사진</th>
+                <th>숙소명</th>
                 <th>평점</th>
-                <th> 접근성 / 서비스 / 객실 시설 / 부대 시설 / 식음료 / 만족도 </th>
+                <th>세부 평점</th>
+                <th>작성자</th>
                 <th>작성일</th>
                 <th>기능</th>
             </tr>
@@ -131,13 +109,20 @@
                         </c:otherwise>
                         </c:choose>
                 </td>
-				<td>
-					${dto.review_id}/${dto.review_name}
+				<td>   
+					 <p><b>${dto.review_stayname}</b></p>
+					 <p>${dto.review_roomname}</p> 
 				</td>
-                <td>${dto.review_stayno}</td>
-                <td>${dto.review_point_total }</td>
-                <td>${dto.review_point1}점, ${dto.review_point2}점, ${dto.review_point3}점, ${dto.review_point4}점, ${dto.review_point5}점, ${dto.review_point6}점</td>
-				<td>${dto.review_date.substring(0, 10)}</td>
+                <td><p>${dto.review_point_total }</p></td>
+                <td>
+              		 <p><b>접근성</b> : ${dto.review_point1}점, <b>서비스</b> : ${dto.review_point2}점, <b>객실시설</b> : ${dto.review_point3}점</p>
+              		 <p><b>부대시설</b> : ${dto.review_point4}점, <b>식음료</b> : ${dto.review_point5}점, <b>만족도</b> : ${dto.review_point6}점</p>
+                </td>
+                <td>
+                	<p><b>${dto.review_name}</b></p>
+                	<p>${dto.review_id}</p>
+                </td>
+                <td>${dto.review_date.substring(0, 10)}<br />${dto.review_date.substring(11)}</td>
                 
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.review_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
@@ -149,7 +134,7 @@
 
             <c:otherwise>
             <tr>
-                <td colspan="10" class="nodata">등록된 후기가 없습니다.</td>
+                <td colspan="8" class="nodata">등록된 후기가 없습니다.</td>
             </tr>
             </c:otherwise>
             </c:choose>
@@ -158,7 +143,7 @@
 
         <tfoot>
             <tr>
-                <td colspan="10">
+                <td colspan="8">
                     <table class="paging-table">
                         <colgroup>
                             <col width="120">

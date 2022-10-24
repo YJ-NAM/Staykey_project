@@ -3,6 +3,9 @@ package com.model;
 public class ReviewDTO {
 	private int review_no;
 	private int review_stayno;
+	private String review_stayname;
+	private int review_roomno;
+	private String review_roomname;
 	private double review_point_total;
 	private int review_point1;
 	private int review_point2;
@@ -31,6 +34,30 @@ public class ReviewDTO {
 
 	public void setReview_stayno(int review_stayno) {
 		this.review_stayno = review_stayno;
+	}
+
+	public String getReview_stayname() {
+		return review_stayname;
+	}
+
+	public void setReview_stayname(String review_stayname) {
+		this.review_stayname = review_stayname;
+	}
+
+	public int getReview_roomno() {
+		return review_roomno;
+	}
+
+	public void setReview_roomno(int review_roomno) {
+		this.review_roomno = review_roomno;
+	}
+
+	public String getReview_roomname() {
+		return review_roomname;
+	}
+
+	public void setReview_roomname(String review_roomname) {
+		this.review_roomname = review_roomname;
 	}
 
 	public double getReview_point_total() {
