@@ -24,7 +24,7 @@ public class AdminReservListAction implements Action {
         // 현재 날짜
         LocalDate startNowDate = LocalDate.now();
         String startDate = startNowDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDate endNowDate = LocalDate.now().plusDays(7L); // 오늘로부터 7일후
+        LocalDate endNowDate = LocalDate.now().plusDays(14L); // 오늘로부터 14일후 까지
         String endDate = endNowDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 

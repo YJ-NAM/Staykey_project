@@ -19,16 +19,16 @@ public class ReservDAO {
 
     private static ReservDAO instance;
 
-    private ReservDAO() {}
+    private ReservDAO() {
+    }
 
     public static ReservDAO getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new ReservDAO();
         }
 
         return instance;
     }
-
 
     // ======================================================
     // DB 연동하는 작업을 진행하는 메서드
@@ -36,37 +36,39 @@ public class ReservDAO {
     public void openConn() {
         try {
             Context ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
+            DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle");
             con = ds.getConnection();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     // ======================================================
     // DB에 연결된 자원 종료하는 메서드
     // ======================================================
     public void closeConn(ResultSet rs, PreparedStatement pstmt, Connection con) {
         try {
-            if(rs != null) rs.close();
-            if(pstmt != null) pstmt.close();
-            if(con != null) con.close();
-        } catch(Exception e) {
+            if (rs != null)
+                rs.close();
+            if (pstmt != null)
+                pstmt.close();
+            if (con != null)
+                con.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public void closeConn(PreparedStatement pstmt, Connection con) {
         try {
-            if(pstmt != null) pstmt.close();
-            if(con != null) con.close();
-        } catch(Exception e) {
+            if (pstmt != null)
+                pstmt.close();
+            if (con != null)
+                con.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
-
 
     // ======================================================
     // DB 전체 데이터 갯수 메서드
@@ -76,10 +78,28 @@ public class ReservDAO {
 
         // 검색용 설정
         String search_sql = " where reserv_no > 0";
-        if(map.get("ps_stayname") != null){
-            search_sql += " and reserv_stayname like '%"+map.get("ps_stayname")+"%'";
+
+        if(map.get("ps_status") != "" && map.get("ps_status").equals("cancel")) {
+            search_sql += " and reserv_status = 'cancel'";
+        }
+        if(map.get("ps_sess") != "" && map.get("ps_sess") != null) {
+            search_sql += " and reserv_sess like '%" + map.get("ps_sess") + "%'";
+        }
+        if(map.get("ps_name") != "" && map.get("ps_name") != null) {
+            search_sql += " and reserv_memname like '%" + map.get("ps_name") + "%'";
+        }
+        if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
+            search_sql += " and reserv_stayname like '%" + map.get("ps_stay") + "%'";
         }
 
+        if(!map.get("ps_duse").equals("1")) {
+            String sql_start_date = (String)map.get("ps_start");
+                   sql_start_date = sql_start_date.replace("-", "");
+            String sql_end_date = (String)map.get("ps_end");
+                   sql_end_date = sql_end_date.replace("-", "");
+            search_sql += " and ( (to_char(reserv_start, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_start, 'YYYYMMDD') <= " + sql_end_date + ")";
+            search_sql += " or (to_char(reserv_end, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_end, 'YYYYMMDD') <= " + sql_end_date + ") )";
+        }
 
         try {
             openConn();
@@ -88,9 +108,10 @@ public class ReservDAO {
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
-            if(rs.next()) result = rs.getInt(1);
+            if (rs.next())
+                result = rs.getInt(1);
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
 
         } finally {
@@ -117,17 +138,26 @@ public class ReservDAO {
         String search_sql1 = " where reserv_no > 0";
         String search_sql2 = "";
 
-        if (map.get("ps_status").equals("cancel")) {
+        if(map.get("ps_status") != "" && map.get("ps_status").equals("cancel")) {
             search_sql2 += " and reserv_status = 'cancel'";
         }
-        if (map.get("ps_sess") != null) {
+        if(map.get("ps_sess") != "" && map.get("ps_sess") != null) {
             search_sql2 += " and reserv_sess like '%" + map.get("ps_sess") + "%'";
         }
-        if (map.get("ps_name") != null) {
+        if(map.get("ps_name") != "" && map.get("ps_name") != null) {
             search_sql2 += " and reserv_memname like '%" + map.get("ps_name") + "%'";
         }
-        if (map.get("ps_stay") != null) {
+        if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
             search_sql2 += " and reserv_stayname like '%" + map.get("ps_stay") + "%'";
+        }
+
+        if(!map.get("ps_duse").equals("1")) {
+            String sql_start_date = (String)map.get("ps_start");
+                   sql_start_date = sql_start_date.replace("-", "");
+            String sql_end_date = (String)map.get("ps_end");
+                   sql_end_date = sql_end_date.replace("-", "");
+            search_sql2 += " and ( (to_char(reserv_start, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_start, 'YYYYMMDD') <= " + sql_end_date + ")";
+            search_sql2 += " or (to_char(reserv_end, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_end, 'YYYYMMDD') <= " + sql_end_date + ") )";
         }
 
         search_sql1 += search_sql2;
@@ -157,7 +187,6 @@ public class ReservDAO {
             order_sql = "reserv_stayname asc";
         }
 
-        System.out.println(search_sql1);
 
         try {
             openConn();
@@ -211,6 +240,7 @@ public class ReservDAO {
 
         return list;
     }
+
 
 
 
