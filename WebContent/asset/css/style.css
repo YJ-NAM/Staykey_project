@@ -285,6 +285,7 @@ h1, h2, h3, h4, h5 {
     border: 0;
     margin: 10px;
     margin-left: 30px;
+
 }
 
 .header  .h-wrap .h-logo img {
@@ -301,14 +302,14 @@ h1, h2, h3, h4, h5 {
 .header .h-wrap .h-gnb .h-location {
     right: 540px;
     margin-left: 120px;
-    word-spacing: 20px
-    
+    word-spacing: 20px;
 }
 
 .header .h-wrap .h-gnb .h-location .location-where{
     margin-left: 0;
     padding: 10px;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .header .h-wrap .h-gnb .h-location .icon-location-pin {
@@ -332,7 +333,9 @@ h1, h2, h3, h4, h5 {
 .header .h-wrap .h-gnb .h-location .location-when {
     padding: 10px;
     background-color: transparent;
+    cursor: pointer;
 }
+
 
 .header .h-wrap .h-gnb .h-location .location-when span {
     font-size: 17px;
@@ -344,14 +347,16 @@ h1, h2, h3, h4, h5 {
 
 .header .h-wrap .h-nav {
     padding: 0;
-    margin-left: 70px;
+    margin-left: 60px;
     align-items: center;
-    border-right: 0.5px solid #CD5C5C;;
+    border-right: 0.5px solid #CD5C5C;
 }
 .header .h-wrap .h-nav .h-menu {
     display: flex;
     align-items: center;
 }
+
+
 .header .h-wrap .h-nav ul{
     display: block;
 }
@@ -366,8 +371,13 @@ h1, h2, h3, h4, h5 {
 
 }
 
+.header .h-wrap .h-nav ul li a:hover {
+    color: #FFE4E1;
+
+}
+
 .header .h-wrap .menu-etc {
-    margin:  30px;
+    margin: 30px;
     font-size: 16px;
     font-family: 'Abril Fatface', cursive;
     
@@ -379,6 +389,11 @@ h1, h2, h3, h4, h5 {
     opacity: 50%;
 }
 
+.header .h-wrap .menu-etc .etc-login .login:hover {
+    color: #800000;
+    transition: 0.5s;
+    opacity: 100;
+}
 
 
 /*************************/
@@ -610,6 +625,14 @@ h1, h2, h3, h4, h5 {
 
 
 
+
+
+
+
+/*************************/
+/* 메인 페이지
+/*************************/
+.main {}
 
 
 
