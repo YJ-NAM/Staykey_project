@@ -27,26 +27,54 @@
             <col />
         </colgroup>
         <tr>
-            <th>회원 구분</th>
-            <td colspan="5">
+            <th>예약 상태</th>
+            <td>
                 <div class="form-check form-check-inline ml-1">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="all" class="form-check-input"<c:if test="${map.ps_type == 'all'}"> checked="checked"</c:if> /> 전체</label>
+                    <label class="form-check-label"><input type="radio" name="ps_status" value="all" class="form-check-input"<c:if test="${map.ps_status == 'all'}"> checked="checked"</c:if> /> 전체</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="user" class="form-check-input"<c:if test="${map.ps_type == 'user'}"> checked="checked"</c:if> /> 일반회원</label>
+                    <label class="form-check-label"><input type="radio" name="ps_status" value="reserv" class="form-check-input"<c:if test="${map.ps_status == 'reserv'}"> checked="checked"</c:if> /> 진행</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="admin" class="form-check-input"<c:if test="${map.ps_type == 'admin'}"> checked="checked"</c:if> /> 관리자</label>
+                    <label class="form-check-label"><input type="radio" name="ps_status" value="cancel" class="form-check-input"<c:if test="${map.ps_status == 'cancel'}"> checked="checked"</c:if> /> 취소</label>
+                </div>
+            </td>
+            <th>숙박 일자</th>
+            <td colspan="3">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            </div>
+                            <input type="text" name="ps_start" value="${map.ps_start}" id="startDt" class="form-control text-center eng" />
+                        </div>
+                    </div>
+
+                    <div class="pt-2">~</div>
+
+                    <div class="col-4">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            </div>
+                            <input type="text" name="ps_end" value="${map.ps_end}" id="endDt" class="form-control text-center eng" />
+                        </div>
+                    </div>
+
+                    <div class="col-3 pt-2">
+                        <label><input type="checkbox" name="ps_duse" value="1"<c:if test="${map.ps_duse == '1'}"> checked="checked"</c:if> /> 모든 기간 검색</label>
+                    </div>
                 </div>
             </td>
         </tr>
         <tr>
-            <th>회원 이름</th>
-            <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="50" class="form-control w-90" /></td>
-            <th>회원 아이디</th>
-            <td><input type="text" name="ps_id" value="${map.ps_id}" maxlength="30" class="form-control w-90" /></td>
-            <th>회원 이메일</th>
-            <td><input type="text" name="ps_email" value="${map.ps_email}" maxlength="255" class="form-control w-90" /></td>
+            <th>예약 번호</th>
+            <td><input type="text" name="ps_sess" value="${map.ps_sess}" maxlength="50" class="form-control w-90" /></td>
+            <th>예약자 이름</th>
+            <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="30" class="form-control w-90" /></td>
+            <th>숙소 이름</th>
+            <td><input type="text" name="ps_stay" value="${map.ps_stay}" maxlength="50" class="form-control w-90" /></td>
         </tr>
     </table>
 
@@ -63,21 +91,21 @@
     <div class="table-top clear">
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 예약</div>
         <div class="tt-right">
-            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/reservList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
-                <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>등록일 최신</option>
-                <option value="register_asc"<c:if test="${map.ps_order == 'register_asc'}"> selected="selected"</c:if>>등록일 예전</option>
+            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/reservList.do?ps_status=${map.ps_status}&ps_start=${map.ps_start}&ps_end=${map.ps_end}&ps_sess=${map.ps_sess}&ps_name=${map.ps_name}&ps_stay=${map.ps_stay}&ps_duse=${map.ps_duse}&ps_order='+this.value;">
+                <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>예약일자 최신</option>
+                <option value="register_asc"<c:if test="${map.ps_order == 'register_asc'}"> selected="selected"</c:if>>예약일자 예전</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="id_desc"<c:if test="${map.ps_order == 'id_desc'}"> selected="selected"</c:if>>아이디 역순</option>
-                <option value="id_asc"<c:if test="${map.ps_order == 'id_asc'}"> selected="selected"</c:if>>아이디 순</option>
+                <option value="enddate_desc"<c:if test="${map.ps_order == 'enddate_desc'}"> selected="selected"</c:if>>숙박일자 최신</option>
+                <option value="enddate_asc"<c:if test="${map.ps_order == 'enddate_asc'}"> selected="selected"</c:if>>숙박일자 예전</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>회원이름 역순</option>
-                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>회원이름 순</option>
+                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>예약자 역순</option>
+                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>예약자 순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="point_desc"<c:if test="${map.ps_order == 'point_desc'}"> selected="selected"</c:if>>적립금 높은</option>
-                <option value="point_asc"<c:if test="${map.ps_order == 'point_asc'}"> selected="selected"</c:if>>적립금 낮은</option>
+                <option value="price_desc"<c:if test="${map.ps_order == 'price_desc'}"> selected="selected"</c:if>>결제금액 높은</option>
+                <option value="price_asc"<c:if test="${map.ps_order == 'price_asc'}"> selected="selected"</c:if>>결제금액 낮은</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="count_desc"<c:if test="${map.ps_order == 'count_desc'}"> selected="selected"</c:if>>예약횟수 높은</option>
-                <option value="count_asc"<c:if test="${map.ps_order == 'count_asc'}"> selected="selected"</c:if>>예약횟수 낮은</option>
+                <option value="stay_desc"<c:if test="${map.ps_order == 'stay_desc'}"> selected="selected"</c:if>>숙소명 역순</option>
+                <option value="stay_asc"<c:if test="${map.ps_order == 'stay_asc'}"> selected="selected"</c:if>>숙소명 순</option>
             </select>
         </div>
     </div>
@@ -86,24 +114,24 @@
 
     <table class="table-list hover">
         <colgroup>
-            <col width="150">
-            <col width="120">
+            <col width="6.5%">
+            <col width="13.5%">
+            <col width="16.2%">
             <col />
-            <col width="150">
-            <col width="150">
-            <col width="100">
-            <col width="100">
-            <col width="80">
+            <col width="13.5%">
+            <col width="11%">
+            <col width="11%">
+            <col width="6.2%">
         </colgroup>
 
         <thead>
             <tr>
+                <th>상태</th>
                 <th>예약번호</th>
-                <th>예약자</th>
-                <th>숙소명</th>
                 <th>숙박일자</th>
-                <th>숙박인원</th>
+                <th>숙소명</th>
                 <th>결제금액</th>
+                <th>예약자</th>
                 <th>예약일자</th>
                 <th>기능</th>
             </tr>
@@ -114,12 +142,26 @@
             <c:when test="${!empty list }">
             <c:forEach items="${list}" var="dto">
             <tr>
-                <td><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/reservView.do?sess=${dto.reserv_sess}', '700', '900');">${dto.reserv_sess}</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                    <c:choose>
+                    <c:when test="${dto.reserv_status == 'cancel'}"><span class="text-danger">취소</span></c:when>
+                    <c:otherwise><span class="text-primary">진행</span></c:otherwise>
+                    </c:choose>
+                </td>
+                <td><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/reservView.do?sess=${dto.reserv_sess}', '700', '900');"><i class="icon-magnifier"></i> ${dto.reserv_sess}</a></td>
+                <td>
+                    <p>${dto.reserv_start.substring(0, 10)} ~ ${dto.reserv_end.substring(0, 10)}</p>
+                    <p>(${dto.reserv_daycount}박)</p>
+                </td>
+                <td>
+                    <p><b>${dto.reserv_stayname}</b></p>
+                    <p>${dto.reserv_roomname}</p>
+                </td>
+                <td><b class="eng"><fmt:formatNumber value="${dto.reserv_total_price}" /></b>원</td>
+                <td>
+                    <p><b>${dto.reserv_memname}</b></p>
+                    <p>${dto.reserv_memphone}</p>
+                </td>
                 <td>${dto.reserv_date.substring(0, 10)}<br />${dto.reserv_date.substring(11)}</td>
                 <td><a href="<%=request.getContextPath()%>/admin/reservModify.do?id=${dto.reserv_sess}" class="btn btn-sm btn-outline-primary">수정</a></td>
             </tr>

@@ -128,6 +128,8 @@ $(document).ready(function(){
         buttonImageOnly: false, //이미지표시
         yearRange: '2021:2040' //2021년부터 2040년까지,
     };
+    $("#startDt").datepicker(clareCalendar);
+    $("#endDt").datepicker(clareCalendar);
     $("#datePick1").datepicker(clareCalendar);
     $("#datePick2").datepicker(clareCalendar);
     $("#datePick3").datepicker(clareCalendar);
