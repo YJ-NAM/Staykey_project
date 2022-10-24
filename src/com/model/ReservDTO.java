@@ -16,8 +16,12 @@ public class ReservDTO {
     private String reserv_end;
     private int reserv_daycount;
     private int reserv_basic_price;
-    private String reserv_option_name;
-    private int reserv_option_price;
+    private String reserv_option1_name;
+    private int reserv_option1_price;
+    private String reserv_option2_name;
+    private int reserv_option2_price;
+    private String reserv_option3_name;
+    private int reserv_option3_price;
     private int reserv_use_point;
     private int reserv_total_price;
     private int reserv_people_adult;
@@ -118,17 +122,41 @@ public class ReservDTO {
     public void setReserv_basic_price(int reserv_basic_price) {
         this.reserv_basic_price = reserv_basic_price;
     }
-    public String getReserv_option_name() {
-        return reserv_option_name;
+    public String getReserv_option1_name() {
+        return reserv_option1_name;
     }
-    public void setReserv_option_name(String reserv_option_name) {
-        this.reserv_option_name = reserv_option_name;
+    public void setReserv_option1_name(String reserv_option_name) {
+        this.reserv_option1_name = reserv_option_name;
     }
-    public int getReserv_option_price() {
-        return reserv_option_price;
+    public int getReserv_option1_price() {
+        return reserv_option1_price;
     }
-    public void setReserv_option_price(int reserv_option_price) {
-        this.reserv_option_price = reserv_option_price;
+    public void setReserv_option1_price(int reserv_option_price) {
+        this.reserv_option1_price = reserv_option_price;
+    }
+    public String getReserv_option2_name() {
+        return reserv_option2_name;
+    }
+    public void setReserv_option2_name(String reserv_option2_name) {
+        this.reserv_option2_name = reserv_option2_name;
+    }
+    public int getReserv_option2_price() {
+        return reserv_option2_price;
+    }
+    public void setReserv_option2_price(int reserv_option2_price) {
+        this.reserv_option2_price = reserv_option2_price;
+    }
+    public String getReserv_option3_name() {
+        return reserv_option3_name;
+    }
+    public void setReserv_option3_name(String reserv_option3_name) {
+        this.reserv_option3_name = reserv_option3_name;
+    }
+    public int getReserv_option3_price() {
+        return reserv_option3_price;
+    }
+    public void setReserv_option3_price(int reserv_option3_price) {
+        this.reserv_option3_price = reserv_option3_price;
     }
     public int getReserv_use_point() {
         return reserv_use_point;
