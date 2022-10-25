@@ -6,6 +6,7 @@
 <% pageContext.setAttribute("newLine", "\n"); %>
 
 <c:set var="view" value="${reservView}" />
+<c:set var="room" value="${roomCont}" />
 
 
 <script type="text/javascript">
@@ -163,6 +164,7 @@ form_check = function(){
                     <tr>
                         <th>숙박인원</th>
                         <td colspan="3">
+                            <span class="align-middle mr-4">기준인원 최대 <b>${room.room_people_max}</b>명</span>
                             <span class="align-middle">성인</span>
                             <select name="" class="form-select">
                                 <c:forEach begin="0" end="6" var="i">
@@ -196,7 +198,12 @@ form_check = function(){
                     <tr>
                         <th>픽업 여부</th>
                         <td colspan="3">
-                            ${view.reserv_pickup == 'N'}
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label"><input type="radio" name="reserv_pickup" value="reserv" class="form-check-input"<c:if test="${view.reserv_pickup == 'Y'}"> checked="checked"</c:if> /> 픽업 요청</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label"><input type="radio" name="reserv_pickup" value="cancel" class="form-check-input"<c:if test="${view.reserv_pickup == 'N'}"> checked="checked"</c:if> /> 요청 안함</label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
