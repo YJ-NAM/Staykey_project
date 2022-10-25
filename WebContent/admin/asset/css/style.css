@@ -1281,6 +1281,12 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 /*************************/
 /* 숙소 관리
 /*************************/
+.table-list .staylist-photo {
+    height: 160px;
+}
+.table-list .staylist-photo img {
+    height: 140px;
+}
 .table-list .stay-list {
     display: block;
     width: 100%;

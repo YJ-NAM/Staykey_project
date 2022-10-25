@@ -42,10 +42,10 @@ comment on column staykey_review.review_name is '작성자 이름';
 comment on column staykey_review.review_date is '리뷰 작성일';
 
 insert into staykey_review values(1, 1, '숙소 이름', 1, '방 이름', 7.5, 10, 9, 8, 7, 6, 5, '리뷰내용1
-줄바꿈', null, '테스트1', 'test', '1234', sysdate);
+줄바꿈 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용', null, 'test', '1234', '테스트1', sysdate);
 insert into staykey_review values(2, 2, '숙소 이름2', 1, '방 이름', 7.5, 10, 9, 8, 7, 6, 5, '리뷰내용2
-줄바꿈', null, '테스트2', 'test', '1234', sysdate);
+줄바꿈 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용', null, 'test', '1234', '테스트2', sysdate);
 insert into staykey_review values(3, 1, '숙소 이름', 2, '방 이름2', 7.5, 10, 9, 8, 7, 6, 5, '리뷰내용3
-줄바꿈', null, '테스트1', 'test', '1234', sysdate);
+줄바꿈 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용', null, 'test', '1234', '테스트1', sysdate);
 
 commit;

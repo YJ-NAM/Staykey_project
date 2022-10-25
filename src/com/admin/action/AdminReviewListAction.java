@@ -37,7 +37,6 @@ public class AdminReviewListAction implements Action {
         if(request.getParameter("ps_stayname") != null){ ps_stayname = request.getParameter("ps_stayname").trim(); }else{ ps_stayname = ""; }
         if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "register_desc"; }
         
-        System.out.println(request.getParameter("ps_order"));
         
         // 뷰에 전달할 매개변수 추가
         map.put("ps_type", ps_type);
