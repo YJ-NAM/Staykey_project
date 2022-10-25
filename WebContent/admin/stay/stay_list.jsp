@@ -6,7 +6,6 @@
 
 <c:set var="stayList" value="${stayList}" />
 
-
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
 <script>
 
