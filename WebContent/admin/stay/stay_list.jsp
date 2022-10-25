@@ -174,7 +174,7 @@ $(document).ready(function(){
             <c:forEach items="${stayList}" var="list">
             <tr>
                 <td>${list.stay_no}</td>
-                <td class="photo">
+                <td class="staylist-photo">
                     <a href="<%=request.getContextPath()%>/admin/stayView.do?stay_no=${list.stay_no}">
                         <c:choose>
                         <c:when test="${!empty list.stay_file1}"><img src="<%=request.getContextPath()%>${list.stay_file1}" alt="" /></c:when>
