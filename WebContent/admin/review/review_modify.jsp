@@ -17,7 +17,7 @@
 
 <div class="pb100">
     <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin/reviewModifyOk.do" onsubmit="return join_check();">
-    <input type="hidden" name="review_pw" value="${dto.review_pw}" />
+    <input type="hidden" name="review_no" value="${dto.review_no}" />
     <table class="table-form mt-3">
         <colgroup>
             <col width="16%" />
@@ -32,7 +32,6 @@
              	<input type="text" name="review_stayname" value="${dto.review_stayname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
            		<input type="text" name="review_roomname" value="(${dto.review_roomname})" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
            </td>
-
         </tr>
         
         <tr>
@@ -60,103 +59,51 @@
         </tr>
         
         <tr> 
-        	<th rowspan="3">세부 평점</th>
+        	<th>세부 평점</th>
         	
-        	<td colspan="2"><b>접근성 : </b>
-	        	<select name="review_point1">
-					<option value="1">1</option>						
-					<option value="2">2</option>						
-					<option value="3">3</option>						
-					<option value="4">4</option>						
-					<option value="5">5</option>						
-					<option value="6">6</option>						
-					<option value="7">7</option>						
-					<option value="8">8</option>						
-					<option value="9">9</option>						
-					<option value="10">10</option>						
-				</select>
-        	</td>
-        	
-        	<td colspan="2"><b>서비스 : </b>
-	        	<select name="review_point2">
-					<option value="1">1</option>						
-					<option value="2">2</option>						
-					<option value="3">3</option>						
-					<option value="4">4</option>						
-					<option value="5">5</option>						
-					<option value="6">6</option>						
-					<option value="7">7</option>						
-					<option value="8">8</option>						
-					<option value="9">9</option>						
-					<option value="10">10</option>						
-				</select>
-        	</td>
-        	
-        </tr>
-        
-        <tr> 
-        	<td colspan="2"><b>객실시설 : </b>
-	        	<select name="review_point3">
-					<option value="1">1</option>						
-					<option value="2">2</option>						
-					<option value="3">3</option>						
-					<option value="4">4</option>						
-					<option value="5">5</option>						
-					<option value="6">6</option>						
-					<option value="7">7</option>						
-					<option value="8">8</option>						
-					<option value="9">9</option>						
-					<option value="10">10</option>						
-				</select>
-        	</td>
-  
-        	<td colspan="2"><b>부대시설 : </b>
-	        	<select name="review_point4">
-					<option value="1">1</option>						
-					<option value="2">2</option>						
-					<option value="3">3</option>						
-					<option value="4">4</option>						
-					<option value="5">5</option>						
-					<option value="6">6</option>						
-					<option value="7">7</option>						
-					<option value="8">8</option>						
-					<option value="9">9</option>						
-					<option value="10">10</option>						
-				</select>
-        	</td>
-  
-        </tr>
-        
-        <tr> 
-        	<td colspan="2"><b>식음료 : </b>
-	        	<select name="review_point5">
-					<option value="1">1</option>						
-					<option value="2">2</option>						
-					<option value="3">3</option>						
-					<option value="4">4</option>						
-					<option value="5">5</option>						
-					<option value="6">6</option>						
-					<option value="7">7</option>						
-					<option value="8">8</option>						
-					<option value="9">9</option>						
-					<option value="10">10</option>						
-				</select>
-        	</td>
-        	
-        	<td colspan="2"><b>만족도 : </b>
-	        	<select name="review_point6">
-					<option value="1">1</option>						
-					<option value="2">2</option>						
-					<option value="3">3</option>						
-					<option value="4">4</option>						
-					<option value="5">5</option>						
-					<option value="6">6</option>						
-					<option value="7">7</option>						
-					<option value="8">8</option>						
-					<option value="9">9</option>						
-					<option value="10">10</option>						
-				</select>
-        	</td>
+        	<td colspan="3">
+	        	<b>접근성:</b>
+		        	<select name="review_point1" class="form-select">
+	                	<c:forEach begin="0" end="10" var="i">
+	                    	<option value="${i}"<c:if test="${dto.review_point1 == i}"> selected="selected"</c:if>>${i}</option>
+	                	</c:forEach>
+	                </select>
+					
+				<b>서비스:</b>
+					<select name="review_point2" class="form-select">
+	                     <c:forEach begin="0" end="10" var="i">
+	                     	<option value="${i}"<c:if test="${dto.review_point2 == i}"> selected="selected"</c:if>>${i}</option>
+	                     </c:forEach>
+	                </select>
+	
+		        <b>객실시설:</b>
+					<select name="review_point3" class="form-select">
+                    	<c:forEach begin="0" end="10" var="i">
+                        	<option value="${i}"<c:if test="${dto.review_point3 == i}"> selected="selected"</c:if>>${i}</option>
+                        </c:forEach>
+                	</select>
+						
+				<b>부대시설:</b>
+					<select name="review_point4" class="form-select">
+                    	<c:forEach begin="0" end="10" var="i">
+                        	<option value="${i}"<c:if test="${dto.review_point4 == i}"> selected="selected"</c:if>>${i}</option>
+                        </c:forEach>
+                	</select>	
+                	
+	        	<b>식음료:</b>
+					<select name="review_point5" class="form-select">
+                    	<c:forEach begin="0" end="10" var="i">
+                        	<option value="${i}"<c:if test="${dto.review_point5 == i}"> selected="selected"</c:if>>${i}</option>
+                        </c:forEach>
+                	</select>	
+                	
+				<b>만족도:</b>
+					<select name="review_point6" class="form-select">
+                    	<c:forEach begin="0" end="10" var="i">
+                        	<option value="${i}"<c:if test="${dto.review_point6 == i}"> selected="selected"</c:if>>${i}</option>
+                        </c:forEach>
+                	</select>	
+       		</td>
         </tr>
         
         <tr> 
