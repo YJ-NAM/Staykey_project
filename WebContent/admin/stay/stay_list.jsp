@@ -6,7 +6,6 @@
 
 <c:set var="stayList" value="${stayList}" />
 
-
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
 <script>
 
@@ -35,6 +34,9 @@ $(document).ready(function(){
     <h2>숙소 목록</h2>
     <small>등록된 숙소 목록을 확인하고 관리 할 수 있습니다.</small>
 </div>
+
+${ msg }
+<c:remove var="msg"/>
 
 
 <div>
