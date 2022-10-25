@@ -513,6 +513,24 @@ public class StayDAO {
 	} // getStayRoomList() 종료
 
 	/////////////////////////////////////////////////////////////
+	// 방 상세정보 보기
+	/////////////////////////////////////////////////////////////
+	public StayRoomDTO getStayRoomView(int roomNo) {
+		
+		StayRoomDTO dto = null;
+		openConn();
+		
+		sql = "select * from staykey_stay_room where room_no = ?";
+		
+		return dto;
+		
+		
+	} // getStayRoomView() 종료
+	
+	
+	
+	
+	/////////////////////////////////////////////////////////////
 	// 방 등록 메서드 + 방 번호 지정
 	/////////////////////////////////////////////////////////////
 	public int registerStayRoom(StayRoomDTO dto) {
