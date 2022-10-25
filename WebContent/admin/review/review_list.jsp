@@ -84,7 +84,7 @@
                 <th>리뷰 사진</th>
                 <th>숙소명</th>
                 <th>평점</th>
-                <th>세부 평점</th>
+                <th>리뷰 내용</th>
                 <th>작성자</th>
                 <th>작성일</th>
                 <th>기능</th>
@@ -115,10 +115,13 @@
 					 <p><b>${dto.review_stayname}</b></p>
 					 <p>${dto.review_roomname}</p> 
 				</td>
-                <td><p>${dto.review_point_total }</p></td>
+                <td><p>${dto.review_point_total}</p></td>
                 <td>
-              		 <p><b>접근성</b> : ${dto.review_point1}점, <b>서비스</b> : ${dto.review_point2}점, <b>객실시설</b> : ${dto.review_point3}점</p>
-              		 <p><b>부대시설</b> : ${dto.review_point4}점, <b>식음료</b> : ${dto.review_point5}점, <b>만족도</b> : ${dto.review_point6}점</p>
+                	<a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">
+	              		 <p>${dto.review_content.substring(0,10)} <br>
+	              		 	${dto.review_content.substring(10,20)}
+	              		 </p>
+              		 </a>
                 </td>
                 <td>
                 	<p><b>${dto.review_name}</b></p>
