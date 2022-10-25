@@ -126,8 +126,30 @@ h1, h2, h3, h4, h5 {
     font-weight: 600;
 }
 
+.e_date {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 80px;
+    display: flex;
+    font-size: 17px;
+    letter-spacing: 2px;
+    background-color: #FFE4E1;
 
+}
 
+.swiper-wrapper {
+
+}
+
+.swiper-slide{
+
+}
+
+.swiper-slide .img{
+
+}
 
 /*************************/
 /* float bugFix
@@ -262,7 +284,7 @@ h1, h2, h3, h4, h5 {
 /* Header
 /*************************/
 .header {
-    position:  sticky;
+    position: sticky;
     top: 0px;
     background:#fefefe;
     box-sizing: border-box;
@@ -621,62 +643,205 @@ h1, h2, h3, h4, h5 {
 }
 
 
-
-
-
-
-
-
-
 /*************************/
 /* 메인 페이지
 /*************************/
-#container {
+@media(min-width:1200px){
+    .container {
+    min-width: 1200px;
+    } 
+}
+
+.container .container-main{
+    width: 100%;
+}
+
+.container-main .container-main-swiper{
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
+    overflow: hidden;
+        overflow-y: 0;
+        overflow-x: 0;
+    list-style: none;
+    z-index: 1;
 }
 
-.container-main{
-    clear: both;
+.container-main-swiper .swiper-button-prev{
+    position: absolute;
+    top: inherit;
+    left: 80px;
+    width: 10px;
+    height: 20px;
+    bottom: 30px;
+    padding-right: 25px;
+    border-right: 1px solid transparent;
 }
 
-.container-main-swiper{
+.container-main-swiper .swiper-button-next{
+    position: absolute;
+    top: inherit;
+    left: 180px;
+    width: 10px;    
+    height: 20px;
+    bottom: 30px;
+    padding-right: 40px;
+    z-index: 2;
+}
+
+.container-main-swiper .swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.container-main-swiper .swiper-wrapper .swiper-slide {
+    list-style: none;
+    width:100%;
+}
+
+.bg_paper {
+    z-index: 1;
+}
+
+/*************************/
+/* 메인 페이지 - 신규업체 
+/*************************/
+
+.container-main-new {
+    position: relative;
+    width: 50%;
+    height: 50%;
+    margin-left: 30px;
+}
+
+.container-main-new .new-title {
+    font-family: 'NotoSerifKR';
+    font-size: 17px;
+}
+
+.container-main-new .new-stay-list {
+    box-sizing: border-box;
+}
+
+.new-stay-list .swiper-button-prev {
+    top: inherit;
+    left: 50%;
+    margin-left: 40px;
+    bottom: -1px;
+    width: 10px;
+    height: 20px;
+}
+
+.new-stay-list .swiper-button-next {
+    top: inherit;
+    left: 50%;
+    margin-left: 60px;
+    bottom: -1px;
+    width: 10px;
+    height: 20px;
+}
+
+.new-stay-list .swiper-wrapper {
+    box-sizing: content-box;
+}
+
+
+
+/*************************/
+/* 메인 페이지 - 배너 창  
+/*************************/
+
+.container-main-banner {
+}
+
+.banner-wrap {
 
 }
 
-.container .container-main .container-main-swiper .swiper-button-prev{
-}
+/*************************/
+/* 메인 페이지 - 프로모션 
+/*************************/
 
-.container .container-main .container-main-swiper .swiper-button-next{
-
-}
-
-.container .container-main .container-main-swiper .swiper-wrapper ul {
+.container-main-promo{
 
 }
 
-.container .container-main .container-main-swiper .swiper-wrapper ul li{
+.container-main-promo .promo-title{
 
 }
 
-.container .container-main .container-main-swiper .swiper-wrapper img{
-    width: 480px;
-    height: 350px;
+.container-main-promo .promo-stay-list{
 
 }
 
-.container .container-main .container-main-swiper .swiper-pagination {
+.container-main-promo .swiper-button-prev{
 
 }
 
-.container .container-main .container-main-swiper .bg_paper {
-
-}
-.container .container-main-new {
+.container-main-promo .swiper-button-next {
 
 }
 
-.container .container-main-new .new-title {
+.container-main-promo .swiper-pagination{
+
+}
+
+.promo-stay-list ul {
+
+}
+
+.promo-stay-list ul .img{
+
+}
+
+.promo-stay-list ul .tit{
+
+}
+
+.promo-stay-list ul .small {
+
+}
+
+.promo-stay-list ul .info{
 
 }
 
 
+
+
+/*************************/
+/* 메인 페이지 - 이벤트 
+/*************************/
+
+.container-main-event{
+
+}
+
+.event-title{
+
+}
+
+.container-main-event .swiper-container{
+
+}
+
+.container-main-event .swiper-button-prev{
+
+}
+
+.container-main-event .swiper-button-next{
+
+}
+
+.container-main-event .swiper-pagination{
+
+}
+/*************************/
+/* 메인 페이지 - 매거진
+/*************************/
+
+/*************************/
+/* 메인 페이지 - 추천 
+/*************************/
