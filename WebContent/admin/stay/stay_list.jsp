@@ -36,6 +36,9 @@ $(document).ready(function(){
     <small>등록된 숙소 목록을 확인하고 관리 할 수 있습니다.</small>
 </div>
 
+${ msg }
+<c:remove var="msg"/>
+
 
 <div>
     <form name="search_form" method="post" action="<%=request.getContextPath()%>/admin/stayList.do">
