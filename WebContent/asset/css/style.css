@@ -151,6 +151,13 @@ h1, h2, h3, h4, h5 {
 
 }
 
+.more{
+
+}
+
+.bg_paper {
+    z-index: 1;
+}
 /*************************/
 /* float bugFix
 /*************************/
@@ -701,9 +708,6 @@ h1, h2, h3, h4, h5 {
     width:100%;
 }
 
-.bg_paper {
-    z-index: 1;
-}
 
 /*************************/
 /* 메인 페이지 - 신규업체 
@@ -721,11 +725,11 @@ h1, h2, h3, h4, h5 {
     font-size: 17px;
 }
 
-.container-main-new .new-stay-list {
+.container-main-new .stay-list {
     box-sizing: border-box;
 }
 
-.new-stay-list .swiper-button-prev {
+.container-main-new .stay-list .swiper-button-prev {
     top: inherit;
     left: 50%;
     margin-left: 40px;
@@ -734,7 +738,7 @@ h1, h2, h3, h4, h5 {
     height: 20px;
 }
 
-.new-stay-list .swiper-button-next {
+.container-main-new .stay-list .swiper-button-next {
     top: inherit;
     left: 50%;
     margin-left: 60px;
@@ -743,7 +747,7 @@ h1, h2, h3, h4, h5 {
     height: 20px;
 }
 
-.new-stay-list .swiper-wrapper {
+.container-main-new .stay-list .swiper-wrapper {
     box-sizing: content-box;
 }
 
@@ -772,7 +776,7 @@ h1, h2, h3, h4, h5 {
 
 }
 
-.container-main-promo .promo-stay-list{
+.container-main-promo .stay-list{
 
 }
 
@@ -788,23 +792,23 @@ h1, h2, h3, h4, h5 {
 
 }
 
-.promo-stay-list ul {
+.container-main-promo .stay-list ul {
 
 }
 
-.promo-stay-list ul .img{
+.container-main-promo .stay-list ul .img{
 
 }
 
-.promo-stay-list ul .tit{
+.container-main-promo .stay-list ul .tit{
 
 }
 
-.promo-stay-list ul .small {
+.container-main-promo .stay-list ul .small {
 
 }
 
-.promo-stay-list ul .info{
+.container-main-promo .stay-list ul .info{
 
 }
 
@@ -838,10 +842,79 @@ h1, h2, h3, h4, h5 {
 .container-main-event .swiper-pagination{
 
 }
+
 /*************************/
 /* 메인 페이지 - 매거진
 /*************************/
 
+.container-main-magazine{
+
+}
+
+.container-main-magazine .main-magazine-banner{
+
+}
+
+.container-main-magazine .swiper-button-prev{
+
+}
+
+.container-main-magazine .swiper-button-next{
+
+}
+
+.container-main-magazine ul {
+
+}
+
+.container-main-magazine ul .slider-box{
+
+}
+
+.container-main-magazine ul .img{
+
+}
+
+.container-main-magazine .stay-info{
+
+}
+
+.container-main-magazine .stay-info .logo{
+
+}
+
+.container-main-magazine .stay-info .text{
+
+}
+
+.container-main-magazine .stay-info .magazine{
+
+}
+
+.container-main-magazine .stay-info .more{
+
+}
+
+.container-main-magazine .swiper-pagination {
+
+}
+
+.container-main-magazine .bg-paper{
+    
+}
 /*************************/
 /* 메인 페이지 - 추천 
 /*************************/
+
+.container-main-travel{
+
+}
+
+.container-main-travel .travel-title{
+
+}
+
+.container-main-travel .stay-list{
+
+}
+
