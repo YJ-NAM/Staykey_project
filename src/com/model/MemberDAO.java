@@ -127,18 +127,18 @@ public class MemberDAO {
         String search_sql1 = " where member_no > 0";
         String search_sql2 = "";
 
-        if (map.get("ps_type").equals("user")) {
+        if (map.get("ps_type") != "" && map.get("ps_type").equals("user")) {
             search_sql2 += " and member_type = 'user'";
-        } else if (map.get("ps_type").equals("admin")) {
+        } else if (map.get("ps_type") != "" && map.get("ps_type").equals("admin")) {
             search_sql2 += " and member_type = 'admin'";
         }
-        if (map.get("ps_name") != null) {
+        if (map.get("ps_name") != "" && map.get("ps_name") != null) {
             search_sql2 += " and member_name like '%" + map.get("ps_name") + "%'";
         }
-        if (map.get("ps_id") != null) {
+        if (map.get("ps_id") != "" && map.get("ps_id") != null) {
             search_sql2 += " and member_id like '%" + map.get("ps_id") + "%'";
         }
-        if (map.get("ps_email") != null) {
+        if (map.get("ps_email") != "" && map.get("ps_email") != null) {
             search_sql2 += " and member_email like '%" + map.get("ps_email") + "%'";
         }
 

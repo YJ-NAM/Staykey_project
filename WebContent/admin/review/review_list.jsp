@@ -84,7 +84,7 @@
                 <th>리뷰 사진</th>
                 <th>숙소명</th>
                 <th>평점</th>
-                <th>세부 평점</th>
+                <th>리뷰 내용</th>
                 <th>작성자</th>
                 <th>작성일</th>
                 <th>기능</th>
@@ -98,6 +98,7 @@
             <tr>
                 <td>${dto.review_no}</td>
                 <td>
+                	<a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">
                         <c:choose>
                         <c:when test="${!empty dto.review_file }"><img src="<%=request.getContextPath()%>${dto.review_file}" width="60" height="60" alt="" /></c:when>
                         <c:otherwise>
@@ -108,15 +109,19 @@
                         </svg>
                         </c:otherwise>
                         </c:choose>
+                    </a>    
                 </td>
 				<td>   
 					 <p><b>${dto.review_stayname}</b></p>
 					 <p>${dto.review_roomname}</p> 
 				</td>
-                <td><p>${dto.review_point_total }</p></td>
+                <td><p>${dto.review_point_total}</p></td>
                 <td>
-              		 <p><b>접근성</b> : ${dto.review_point1}점, <b>서비스</b> : ${dto.review_point2}점, <b>객실시설</b> : ${dto.review_point3}점</p>
-              		 <p><b>부대시설</b> : ${dto.review_point4}점, <b>식음료</b> : ${dto.review_point5}점, <b>만족도</b> : ${dto.review_point6}점</p>
+                	<a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">
+	              		 <p>${dto.review_content.substring(0,10)} <br>
+	              		 	${dto.review_content.substring(10,20)}
+	              		 </p>
+              		 </a>
                 </td>
                 <td>
                 	<p><b>${dto.review_name}</b></p>
@@ -125,6 +130,7 @@
                 <td>${dto.review_date.substring(0, 10)}<br />${dto.review_date.substring(11)}</td>
                 
                 <td>
+                	<a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
                     <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.review_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
                 

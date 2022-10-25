@@ -3,10 +3,14 @@ package com.admin.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
@@ -27,7 +31,7 @@ public class AdminStayWriteOkAction implements Action {
         String thisFolder = "/data/stay/";
         String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
         System.out.println(saveFolder);
-        int fileSize = 10 * 1024 * 1024; // 10MB
+        int fileSize = 25 * 1024 * 1024; // 10MB
         
         // 업로드 폴더 체크 후 없으면 생성
         File dirChk = new File(saveFolder);
@@ -64,6 +68,7 @@ public class AdminStayWriteOkAction implements Action {
         	int stay_option3_price = Integer.parseInt(multi.getParameter("stay_option3_price").trim());
         	dto.setStay_option3_price(stay_option3_price);
         }
+        
         String stay_option3_desc = multi.getParameter("stay_option3_desc").trim();
         String stay_content1 = multi.getParameter("stay_content1").trim();
         String stay_content2 = multi.getParameter("stay_content2").trim();
@@ -72,16 +77,7 @@ public class AdminStayWriteOkAction implements Action {
         String stay_info2 = multi.getParameter("stay_info2").trim();
         String stay_info3 = multi.getParameter("stay_info3").trim();
         
-
         // stay_file ~ photo들 rename 필요
-        File stay_file1 = multi.getFile("stay_file1");
-        File stay_file2 = multi.getFile("stay_file2");
-        File stay_file3 = multi.getFile("stay_file3");
-        File stay_file4 = multi.getFile("stay_file4");
-        File stay_file5 = multi.getFile("stay_file5");
-        File stay_option1_photo = multi.getFile("stay_option1_photo");
-        File stay_option2_photo = multi.getFile("stay_option2_photo");
-        File stay_option3_photo = multi.getFile("stay_option3_photo");
         
         dto.setStay_type(stay_type);
         dto.setStay_name(stay_name);
@@ -102,73 +98,118 @@ public class AdminStayWriteOkAction implements Action {
         dto.setStay_option2_desc(stay_option2_desc);
         dto.setStay_option3_name(stay_option3_name);
         dto.setStay_option3_desc(stay_option3_desc);
-                
+        
+	    File stay_file1 = multi.getFile("stay_file1");
+	    File stay_file2 = multi.getFile("stay_file2");
+	    File stay_file3 = multi.getFile("stay_file3");
+	    File stay_file4 = multi.getFile("stay_file4");
+	    File stay_file5 = multi.getFile("stay_file5");
+	    File stay_option1_photo = multi.getFile("stay_option1_photo");
+	    File stay_option2_photo = multi.getFile("stay_option2_photo");
+	    File stay_option3_photo = multi.getFile("stay_option3_photo");
+
+		
+//		List<String> stayFiles = new ArrayList<String>(); 
+//		Enumeration<String> fileNames = multi.getFileNames(); 
+//		int i = 0;
+//		
+//		while(fileNames.hasMoreElements()) { 
+//			String parameter = fileNames.nextElement(); 
+//			File stayFile = multi.getFile(parameter);
+//		
+//			if(stayFile != null) { // 파일이 있으면 
+//				System.out.println(i +" => "+ stayFile.getName()); 
+//				String fileExt = stayFile.getName().substring(stayFile.getName().lastIndexOf(".") + 1); // 확장자 분리 
+//				String fileRename = "stay_" + i + "_" + System.currentTimeMillis() + "." +fileExt; // 파일 rename 
+//				System.out.println(saveFolder + fileRename);
+//				stayFile.renameTo(new File(saveFolder + fileRename)); // 경로 지정
+//				stayFiles.add(i, thisFolder + fileRename); // list에 저장 
+//			}else { // list 값 처리위함(파일이 없을 때) 
+//				stayFiles.add(i, ""); // null 값이 연속해서 들어갈 수 없는지.... 파일 저장 위치 확인 필요 
+//			} 
+//		i++;
+//		}
+		
+//		 
+//		 dto.setStay_file1(stayFiles.get(0).toString());
+//		 dto.setStay_file2(stayFiles.get(1).toString());
+//		 dto.setStay_file3(stayFiles.get(2).toString());
+//		 dto.setStay_file4(stayFiles.get(3).toString());
+//		 dto.setStay_file5(stayFiles.get(4).toString());
+//		 dto.setStay_option1_photo(stayFiles.get(5).toString());
+//		 dto.setStay_option2_photo(stayFiles.get(6).toString());
+//		 dto.setStay_option3_photo(stayFiles.get(7).toString());
+//		
+        
         // 아마도 코드 수정 예정...        
         // 객체지향적 코드가 필요한 상태...
-        // "_(" + stay_file3 +")" => currentTimeMillis 중복되서 파일명 중복되는 경우 있어, 수정함
-        if(stay_file1 != null) {
-            String fileExt = stay_file1.getName().substring(stay_file1.getName().lastIndexOf(".") + 1);
-            String stay_file1_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
-            stay_file1.renameTo(new File(saveFolder + "/" + stay_file1_rename));
-            dto.setStay_file1(thisFolder + stay_file1_rename);
-        }
-        
-        if(stay_file2 != null) {
-            String fileExt = stay_file2.getName().substring(stay_file2.getName().lastIndexOf(".") + 1);
-            String stay_file2_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
-            stay_file2.renameTo(new File(saveFolder + "/" + stay_file2_rename));
-            dto.setStay_file2(thisFolder + stay_file2_rename);
-        }
-        
-        if(stay_file3 != null) {
-            String fileExt = stay_file3.getName().substring(stay_file3.getName().lastIndexOf(".") + 1);
-            String stay_file3_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
-            stay_file3.renameTo(new File(saveFolder + "/" + stay_file3_rename));
-            dto.setStay_file3(thisFolder + stay_file3_rename);
-        }
-        
-        if(stay_file4 != null) {
-            String fileExt = stay_file4.getName().substring(stay_file4.getName().lastIndexOf(".") + 1);
-            String stay_file4_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
-            stay_file4.renameTo(new File(saveFolder + "/" + stay_file4_rename));
-            dto.setStay_file4(thisFolder + stay_file4_rename);
-        }
-        
-        if(stay_file5 != null) {
-            String fileExt = stay_file5.getName().substring(stay_file5.getName().lastIndexOf(".") + 1);
-            String stay_file5_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
-            stay_file5.renameTo(new File(saveFolder + "/" + stay_file5_rename));
-            dto.setStay_file5(thisFolder + stay_file5_rename);
-        }
+	        // "_(" + stay_file3 +")" => currentTimeMillis 중복되서 파일명 중복되는 경우 있어, 수정함
+	    if(stay_file1 != null) {
+	        String fileExt = stay_file1.getName().substring(stay_file1.getName().lastIndexOf(".") + 1);
+	        String stay_file1_rename = "stay_original_1_" + System.currentTimeMillis() + "." + fileExt;
+	        stay_file1.renameTo(new File(saveFolder + "/" + stay_file1_rename));
+	        dto.setStay_file1(thisFolder + stay_file1_rename);
+	    }
+	    
+	    if(stay_file2 != null) {
+	        String fileExt = stay_file2.getName().substring(stay_file2.getName().lastIndexOf(".") + 1);
+	        String stay_file2_rename = "stay_original_2_" + System.currentTimeMillis() + "." + fileExt;
+	        stay_file2.renameTo(new File(saveFolder + "/" + stay_file2_rename));
+	        dto.setStay_file2(thisFolder + stay_file2_rename);
+	    }
+	    
+	    if(stay_file3 != null) {
+	        String fileExt = stay_file3.getName().substring(stay_file3.getName().lastIndexOf(".") + 1);
+	        String stay_file3_rename = "stay_original_3_" + System.currentTimeMillis() + "." + fileExt;
+	        stay_file3.renameTo(new File(saveFolder + "/" + stay_file3_rename));
+	        dto.setStay_file3(thisFolder + stay_file3_rename);
+	    }
+	    
+	    if(stay_file4 != null) {
+	        String fileExt = stay_file4.getName().substring(stay_file4.getName().lastIndexOf(".") + 1);
+	        String stay_file4_rename = "stay_original_4_" + System.currentTimeMillis() + "." + fileExt;
+	        stay_file4.renameTo(new File(saveFolder + "/" + stay_file4_rename));
+	        dto.setStay_file4(thisFolder + stay_file4_rename);
+	    }
+	    
+	    if(stay_file5 != null) {
+	        String fileExt = stay_file5.getName().substring(stay_file5.getName().lastIndexOf(".") + 1);
+	        String stay_file5_rename = "stay_original_5_" + System.currentTimeMillis() + "." + fileExt;
+	        stay_file5.renameTo(new File(saveFolder + "/" + stay_file5_rename));
+	        dto.setStay_file5(thisFolder + stay_file5_rename);
+	    }
+	   
+	    if(stay_option1_photo != null) {
+	        String fileExt = stay_option1_photo.getName().substring(stay_option1_photo.getName().lastIndexOf(".") + 1);
+	        String stay_option1_photo_rename = "stay_original_option1_" + System.currentTimeMillis() + "." + fileExt;
+	        stay_option1_photo.renameTo(new File(saveFolder + "/" + stay_option1_photo_rename));
+	        dto.setStay_option1_photo(thisFolder + stay_option1_photo_rename);
+	    }
+	    
+	    if(stay_option2_photo != null) {
+	        String fileExt = stay_option2_photo.getName().substring(stay_option2_photo.getName().lastIndexOf(".") + 1);
+	        String stay_option2_photo_rename = "stay_original_option2_" + System.currentTimeMillis() + "." + fileExt;
+	        stay_option2_photo.renameTo(new File(saveFolder + "/" + stay_option2_photo_rename));
+	        dto.setStay_option2_photo(thisFolder + stay_option2_photo_rename);
+	    }
+	   
+	    if(stay_option3_photo != null) {
+	        String fileExt = stay_option3_photo.getName().substring(stay_option3_photo.getName().lastIndexOf(".") + 1);
+	        String stay_option3_photo_rename = "stay_original_option3_" + System.currentTimeMillis() + "." + fileExt;
+	        stay_option3_photo.renameTo(new File(saveFolder + "/" + stay_option3_photo_rename));
+	        dto.setStay_option3_photo(thisFolder + stay_option3_photo_rename);
+	    }
 
-        if(stay_option1_photo != null) {
-            String fileExt = stay_option1_photo.getName().substring(stay_option1_photo.getName().lastIndexOf(".") + 1);
-            String stay_option1_photo_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
-            stay_option1_photo.renameTo(new File(saveFolder + "/" + stay_option1_photo_rename));
-            dto.setStay_option1_photo(thisFolder + stay_option1_photo_rename);
-        }
-        
-        if(stay_option2_photo != null) {
-            String fileExt = stay_option2_photo.getName().substring(stay_option2_photo.getName().lastIndexOf(".") + 1);
-            String stay_option2_photo_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
-            stay_option2_photo.renameTo(new File(saveFolder + "/" + stay_option2_photo_rename));
-            dto.setStay_option2_photo(thisFolder + stay_option2_photo_rename);
-        }
-
-        if(stay_option3_photo != null) {
-            String fileExt = stay_option3_photo.getName().substring(stay_option3_photo.getName().lastIndexOf(".") + 1);
-            String stay_option3_photo_rename = "random_" + System.currentTimeMillis() + "." + fileExt;
-            stay_option3_photo.renameTo(new File(saveFolder + "/" + stay_option3_photo_rename));
-            dto.setStay_option3_photo(thisFolder + stay_option3_photo_rename);
-        }
 
         StayDAO dao = StayDAO.getInstance();
         int res = dao.registerStay(dto);
 
         ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
 
         if (res > 0) {
+        	session.setAttribute("msg", "<script> alert('성공적으로 등록되었습니다.'); </script>)");
             forward.setRedirect(true);
             forward.setPath("stayList.do");
         } else {
@@ -177,6 +218,6 @@ public class AdminStayWriteOkAction implements Action {
 
         return forward;
 
-		}
+	}
 
 }
