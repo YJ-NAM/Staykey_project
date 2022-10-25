@@ -7,45 +7,9 @@
 <c:set var="dto" value="${member}" />
 
 
-<script type="text/javascript">
-$("#nav-member").addClass("now");
-
-
-join_check = function(){
-    var form = document.write_form;
-
-    if(form.member_pw_chg.value.length > 0 && form.member_pw_chg_re.value.length > 0){
-        if(form.member_pw_chg.value != form.member_pw_chg_re.value){
-            alert("[비밀번호]가 일치하지 않습니다.");
-            form.member_pw_chg.focus();
-            return false;
-        }
-    }
-
-    if(form.member_email.value == ""){
-        alert("[이메일]을 입력해 주세요.");
-        form.member_email.focus();
-        return false;
-    }
-
-    // 이메일 형식 체크
-    var TEmailChk = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    if(form.member_email.value.match(TEmailChk) != null){
-    }else{
-        alert("잘못된 이메일 형식입니다.\n[이메일]을 다시 입력해 주세요.");
-        form.member_email.focus();
-        return false;
-    }
-
-    form.submit();
-};
-</script>
-
-
-
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
-    <h2>회원 수정</h2>
-    <small>회원/관리자의 정보를 수정 할 수 있습니다.</small>
+    <h2>후기 수정</h2>
+    <small>후기의 정보를 수정 할 수 있습니다.</small>
 </div>
 
 
@@ -53,7 +17,7 @@ join_check = function(){
 
 <div class="pb100">
     <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin/memberModifyOk.do" onsubmit="return join_check();">
-    <input type="hidden" name="member_pw" value="${dto.getMember_pw()}" />
+    <input type="hidden" name="member_pw" value="${dto.review_pw}" />
     <table class="table-form mt-3">
         <colgroup>
             <col width="16%" />
@@ -61,59 +25,150 @@ join_check = function(){
             <col width="16%" />
             <col />
         </colgroup>
+
         <tr>
-            <th>회원 유형</th>
-            <td colspan="3">
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="member_type" value="user" class="form-check-input"<c:if test="${dto.getMember_type() == 'user'}"> checked="checked"</c:if> /> 일반회원</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="member_type" value="admin" class="form-check-input"<c:if test="${dto.getMember_type() == 'admin'}"> checked="checked"</c:if> /> 관리자</label>
-                </div>
+           <th>숙소명</th>
+           <td colspan="3">
+             	<input type="text" name="review_stayname" value="${dto.review_stayname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
+           		<input type="text" name="review_roomname" value="(${dto.review_roomname})" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
+           </td>
+
+        </tr>
+        
+        <tr>
+            <td colspan="4" class="space" nowrap="nowrap"></td>
+        </tr>
+        
+        <tr>
+            <th>작성자 아이디</th>
+            <td>
+                <input type="text" name="review_id" value="${dto.review_id}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
+            </td>
+            <th>작성자 이름</th>
+            <td>
+            	<input type="text" name="review_name" value=" ${dto.review_name}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
             </td>
         </tr>
-
+        
         <tr>
             <td colspan="4" class="space" nowrap="nowrap"></td>
         </tr>
-
+        
+        <tr> 
+        	<th>리뷰 평점</th>
+        	<td colspan="3"><b>${dto.review_point_total}점</b></td>
+        </tr>
+        
+        <tr> 
+        	<th rowspan="3">세부 평점</th>
+        	
+        	<td colspan="2"><b>접근성 : </b>
+	        	<select name="review_point1">
+					<option value="1">1</option>						
+					<option value="2">2</option>						
+					<option value="3">3</option>						
+					<option value="4">4</option>						
+					<option value="5">5</option>						
+					<option value="6">6</option>						
+					<option value="7">7</option>						
+					<option value="8">8</option>						
+					<option value="9">9</option>						
+					<option value="10">10</option>						
+				</select>
+        	</td>
+        	
+        	<td colspan="2"><b>서비스 : </b>
+	        	<select name="review_point2">
+					<option value="1">1</option>						
+					<option value="2">2</option>						
+					<option value="3">3</option>						
+					<option value="4">4</option>						
+					<option value="5">5</option>						
+					<option value="6">6</option>						
+					<option value="7">7</option>						
+					<option value="8">8</option>						
+					<option value="9">9</option>						
+					<option value="10">10</option>						
+				</select>
+        	</td>
+        	
+        </tr>
+        
+        <tr> 
+        	<td colspan="2"><b>객실시설 : </b>
+	        	<select name="review_point3">
+					<option value="1">1</option>						
+					<option value="2">2</option>						
+					<option value="3">3</option>						
+					<option value="4">4</option>						
+					<option value="5">5</option>						
+					<option value="6">6</option>						
+					<option value="7">7</option>						
+					<option value="8">8</option>						
+					<option value="9">9</option>						
+					<option value="10">10</option>						
+				</select>
+        	</td>
+  
+        	<td colspan="2"><b>부대시설 : </b>
+	        	<select name="review_point4">
+					<option value="1">1</option>						
+					<option value="2">2</option>						
+					<option value="3">3</option>						
+					<option value="4">4</option>						
+					<option value="5">5</option>						
+					<option value="6">6</option>						
+					<option value="7">7</option>						
+					<option value="8">8</option>						
+					<option value="9">9</option>						
+					<option value="10">10</option>						
+				</select>
+        	</td>
+  
+        </tr>
+        
+        <tr> 
+        	<td colspan="2"><b>식음료 : </b>
+	        	<select name="review_point5">
+					<option value="1">1</option>						
+					<option value="2">2</option>						
+					<option value="3">3</option>						
+					<option value="4">4</option>						
+					<option value="5">5</option>						
+					<option value="6">6</option>						
+					<option value="7">7</option>						
+					<option value="8">8</option>						
+					<option value="9">9</option>						
+					<option value="10">10</option>						
+				</select>
+        	</td>
+        	
+        	<td colspan="2"><b>만족도 : </b>
+	        	<select name="review_point6">
+					<option value="1">1</option>						
+					<option value="2">2</option>						
+					<option value="3">3</option>						
+					<option value="4">4</option>						
+					<option value="5">5</option>						
+					<option value="6">6</option>						
+					<option value="7">7</option>						
+					<option value="8">8</option>						
+					<option value="9">9</option>						
+					<option value="10">10</option>						
+				</select>
+        	</td>
+        </tr>
+        
+        <tr> 
+        	<th>리뷰 내용</th>										
+			<td colspan="3"><textarea name="review_content" cols="20" rows="4" class="form-control" >${dto.review_content}</textarea></td>
+        </tr>
+        
         <tr>
-            <th>아이디</th>
+            <th>후기 사진</th>
             <td colspan="3">
-                <input type="text" name="member_id" value="${dto.getMember_id()}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
-            </td>
-        </tr>
-        <tr>
-            <th>비밀번호 변경</th>
-            <td><input type="password" name="member_pw_chg" maxlength="50" class="form-control w-80" /></td>
-            <th>비밀번호 변경 확인</th>
-            <td><input type="password" name="member_pw_chg_re" maxlength="50" class="form-control w-80" /></td>
-        </tr>
-
-        <tr>
-            <td colspan="4" class="space" nowrap="nowrap"></td>
-        </tr>
-
-        <tr>
-            <th>이름</th>
-            <td colspan="3"><input type="text" name="member_name" value="${dto.getMember_name()}" maxlength="50" class="form-control w-30" required /></td>
-        </tr>
-        <tr>
-            <th>이메일</th>
-            <td><input type="text" name="member_email" value="${dto.getMember_email()}" maxlength="100" class="form-control" required /></td>
-            <th>연락처</th>
-            <td><input type="text" name="member_phone" value="${dto.getMember_phone()}" maxlength="15" class="form-control" required /></td>
-        </tr>
-
-        <tr>
-            <td colspan="4" class="space" nowrap="nowrap"></td>
-        </tr>
-
-        <tr>
-            <th>프로필 사진</th>
-            <td colspan="3">
-                <input type="file" name="member_photo" class="form-control w-50" />
-                <c:if test="${!empty dto.getMember_photo()}"><p class="mt-2"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" style="max-width: 400px;" alt="" /></p></c:if>
+                <input type="file" name="review_file" class="form-control w-50" />
+                <c:if test="${!empty dto.review_file}"><p class="mt-2"><img src="<%=request.getContextPath()%>${dto.review_file}" style="max-width: 400px;" alt="" /></p></c:if>
             </td>
         </tr>
     </table>

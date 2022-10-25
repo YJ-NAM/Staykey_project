@@ -98,6 +98,7 @@
             <tr>
                 <td>${dto.review_no}</td>
                 <td>
+                	<a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">
                         <c:choose>
                         <c:when test="${!empty dto.review_file }"><img src="<%=request.getContextPath()%>${dto.review_file}" width="60" height="60" alt="" /></c:when>
                         <c:otherwise>
@@ -108,6 +109,7 @@
                         </svg>
                         </c:otherwise>
                         </c:choose>
+                    </a>    
                 </td>
 				<td>   
 					 <p><b>${dto.review_stayname}</b></p>
@@ -125,6 +127,7 @@
                 <td>${dto.review_date.substring(0, 10)}<br />${dto.review_date.substring(11)}</td>
                 
                 <td>
+                	<a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
                     <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.review_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
                 
