@@ -468,6 +468,7 @@ public class StayDAO {
 				dto.setRoom_photo3(rs.getString("room_photo3"));
 				dto.setRoom_photo4(rs.getString("room_photo4"));
 				dto.setRoom_photo5(rs.getString("room_photo5"));
+				dto.setRoom_tag(rs.getString("room_tag"));
 				
 				list.add(dto);
 			}
@@ -479,7 +480,7 @@ public class StayDAO {
 		}
 		return list;
 	} // getStayRoomList() 종료
-	
+
 	/////////////////////////////////////////////////////////////
 	// 방 등록 메서드 + 방 번호 지정
 	/////////////////////////////////////////////////////////////
@@ -527,6 +528,59 @@ public class StayDAO {
 		}
 		return result;
 	} // registerStayRoom() 종료
-	
+
+
+
+
+
+    /////////////////////////////////////////////////////////////
+    // 방 정보 가져오기 메서드 @노동진
+    /////////////////////////////////////////////////////////////
+	public StayRoomDTO getRoomInfo(int stay_no, int room_no) {
+	    StayRoomDTO dto = null;
+
+	    try {
+	        openConn();
+
+	        sql = "select * from staykey_stay_room where room_stayno = ? and room_no = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, stay_no);
+	        pstmt.setInt(2, room_no);
+	        rs = pstmt.executeQuery();
+
+	        if(rs.next()) {
+	            dto = new StayRoomDTO();
+                dto.setRoom_no(rs.getInt("room_no"));
+                dto.setRoom_stayno(rs.getInt("room_stayno"));
+                dto.setRoom_name(rs.getString("room_name"));
+                dto.setRoom_desc(rs.getString("room_desc"));
+                dto.setRoom_checkin(rs.getString("room_checkin"));
+                dto.setRoom_checkout(rs.getString("room_checkout"));
+                dto.setRoom_people_min(rs.getInt("room_people_min"));
+                dto.setRoom_people_max(rs.getInt("room_people_max"));
+                dto.setRoom_size(rs.getInt("room_size"));
+                dto.setRoom_features(rs.getString("room_features"));
+                dto.setRoom_amenities(rs.getString("room_amenities"));
+                dto.setRoom_service(rs.getString("room_service"));
+                dto.setRoom_photo1(rs.getString("room_photo1"));
+                dto.setRoom_photo2(rs.getString("room_photo2"));
+                dto.setRoom_photo3(rs.getString("room_photo3"));
+                dto.setRoom_photo4(rs.getString("room_photo4"));
+                dto.setRoom_photo5(rs.getString("room_photo5"));
+                dto.setRoom_tag(rs.getString("room_tag"));
+	        }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+	    return dto;
+	}
+
+
+
 
 }
