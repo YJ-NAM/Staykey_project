@@ -391,41 +391,41 @@ public class StayDAO {
 					+ "stay_option1_photo = ?, stay_option2_name = ?, stay_option2_price = ?, stay_option2_desc = ?, "
 					+ "stay_option2_photo = ?, stay_option3_name = ?, stay_option3_price = ?, stay_option3_desc = ?, "
 					+ "stay_option3_photo = ? where stay_no = ?";
-
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, dto.getStay_type());
-		pstmt.setString(2, dto.getStay_name());
-		pstmt.setString(3, dto.getStay_desc());
-		pstmt.setString(4, dto.getStay_location());
-		pstmt.setString(5, dto.getStay_addr());
-		pstmt.setString(6, dto.getStay_phone());
-		pstmt.setString(7, dto.getStay_email());
-		pstmt.setString(8, dto.getStay_content1());
-		pstmt.setString(9, dto.getStay_content2());
-		pstmt.setString(10, dto.getStay_content3());
-		pstmt.setString(11, dto.getStay_info1());
-		pstmt.setString(12, dto.getStay_info2());
-		pstmt.setString(13, dto.getStay_info3());
-		pstmt.setString(14, dto.getStay_file1());
-		pstmt.setString(15, dto.getStay_file2());
-		pstmt.setString(16, dto.getStay_file3());
-		pstmt.setString(17, dto.getStay_file4());
-		pstmt.setString(18, dto.getStay_file5());
-		pstmt.setString(19, dto.getStay_option1_name());
-		pstmt.setInt(20, dto.getStay_option1_price());
-		pstmt.setString(21, dto.getStay_option1_desc());
-		pstmt.setString(22, dto.getStay_option1_photo());
-		pstmt.setString(23, dto.getStay_option2_name());
-		pstmt.setInt(24, dto.getStay_option2_price());
-		pstmt.setString(25, dto.getStay_option2_desc());
-		pstmt.setString(26, dto.getStay_option2_photo());
-		pstmt.setString(27, dto.getStay_option3_name());
-		pstmt.setInt(28, dto.getStay_option3_price());
-		pstmt.setString(29, dto.getStay_option3_desc());
-		pstmt.setString(30, dto.getStay_option3_photo());
-		pstmt.setInt(31, dto.getStay_no());
-		result = pstmt.executeUpdate();
-		
+	
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getStay_type());
+			pstmt.setString(2, dto.getStay_name());
+			pstmt.setString(3, dto.getStay_desc());
+			pstmt.setString(4, dto.getStay_location());
+			pstmt.setString(5, dto.getStay_addr());
+			pstmt.setString(6, dto.getStay_phone());
+			pstmt.setString(7, dto.getStay_email());
+			pstmt.setString(8, dto.getStay_content1());
+			pstmt.setString(9, dto.getStay_content2());
+			pstmt.setString(10, dto.getStay_content3());
+			pstmt.setString(11, dto.getStay_info1());
+			pstmt.setString(12, dto.getStay_info2());
+			pstmt.setString(13, dto.getStay_info3());
+			pstmt.setString(14, dto.getStay_file1());
+			pstmt.setString(15, dto.getStay_file2());
+			pstmt.setString(16, dto.getStay_file3());
+			pstmt.setString(17, dto.getStay_file4());
+			pstmt.setString(18, dto.getStay_file5());
+			pstmt.setString(19, dto.getStay_option1_name());
+			pstmt.setInt(20, dto.getStay_option1_price());
+			pstmt.setString(21, dto.getStay_option1_desc());
+			pstmt.setString(22, dto.getStay_option1_photo());
+			pstmt.setString(23, dto.getStay_option2_name());
+			pstmt.setInt(24, dto.getStay_option2_price());
+			pstmt.setString(25, dto.getStay_option2_desc());
+			pstmt.setString(26, dto.getStay_option2_photo());
+			pstmt.setString(27, dto.getStay_option3_name());
+			pstmt.setInt(28, dto.getStay_option3_price());
+			pstmt.setString(29, dto.getStay_option3_desc());
+			pstmt.setString(30, dto.getStay_option3_photo());
+			pstmt.setInt(31, dto.getStay_no());
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -433,7 +433,35 @@ public class StayDAO {
 			closeConn(null, pstmt, con);
 		}
 		return result;
+		
 	} //modifyStay() 종료
+	
+	/////////////////////////////////////////////////////////////
+	// 숙소 삭제 메서드 + 번호 재작업
+	/////////////////////////////////////////////////////////////
+	public int deleteStay(int no) {
+		int result = 0;
+		openConn();
+		
+		try {
+			sql = "delete from staykey_stay where stay_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+						
+			sql = "update staykey_stay set stay_no = stay_no - 1 where stay_no > ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}	
+		return result;
+	} // deleteStay() 종료
 	
 	/////////////////////////////////////////////////////////////
 	// 각 숙소당 방 전체 목록 조회
