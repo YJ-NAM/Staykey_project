@@ -9,6 +9,8 @@ import com.controller.Action;
 import com.controller.ActionForward;
 import com.model.ReservDAO;
 import com.model.ReservDTO;
+import com.model.StayDAO;
+import com.model.StayRoomDTO;
 
 public class AdminReservModifyAction implements Action {
 
@@ -19,8 +21,11 @@ public class AdminReservModifyAction implements Action {
 
         ReservDAO dao = ReservDAO.getInstance();
         ReservDTO dto = dao.getReservInfo(reservSess);
-
         request.setAttribute("reservView", dto);
+
+        StayDAO rdao = StayDAO.getInstance();
+        StayRoomDTO rdto = rdao.getRoomInfo(dto.getReserv_stayno(), dto.getReserv_roomno());
+        request.setAttribute("roomCont", rdto);
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);

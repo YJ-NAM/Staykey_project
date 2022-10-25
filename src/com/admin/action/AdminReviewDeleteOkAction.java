@@ -21,7 +21,7 @@ public class AdminReviewDeleteOkAction implements Action {
 
 		ReviewDAO dao = ReviewDAO.getInstance();
 
-		// 주소값
+		// 파일 저장 폴더
 		String saveFolder = request.getSession().getServletContext().getRealPath("/");
 
 		ReviewDTO dto = dao.getReviewInfo(reviewNo);
@@ -32,9 +32,9 @@ public class AdminReviewDeleteOkAction implements Action {
 			File del_pimage = new File(saveFolder + review_file);
 			if (del_pimage.exists()) {
 				if (del_pimage.delete()) {
-					System.out.println("프로필 파일 삭제 완료");
+					System.out.println("리뷰 사진 파일 삭제 완료");
 				} else {
-					System.out.println("프로필 파일 삭제 실패");
+					System.out.println("리뷰 사진 파일 삭제 실패");
 				}
 			}
 		}
@@ -45,7 +45,6 @@ public class AdminReviewDeleteOkAction implements Action {
 		PrintWriter out = response.getWriter();
 
 		if (res > 0) {
-			dao.updateNo(reviewNo);
 			forward.setRedirect(true);
 			forward.setPath("reviewList.do");
 		} else {
