@@ -14,7 +14,7 @@ import com.model.StayRoomDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class AdminStayRoomWriteAction implements Action {
+public class AdminStayRoomWriteOkAction implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
