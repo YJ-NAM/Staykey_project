@@ -11,7 +11,7 @@
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>숙소 상세 정보</h2>
-    <small>등록된 숙소의 정보를 확인 할 수 있습니다.</small>
+    <small>등록된 숙소 정보를 확인 할 수 있습니다.</small>
 </div>
 
 ${ msg }
@@ -166,7 +166,7 @@ ${ msg }
                         <c:when test="${ !empty list }">
                         <c:forEach items="${ list }" var="room">
                         <li>
-                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }', '700', '900');" class="d-flex">
+                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '700', '900');" class="d-flex">
                                 <div>
                                     <c:choose>
                                     <c:when test="${!empty room.room_photo1}"><img src="<%=request.getContextPath()%>${ room.room_photo1 }" width="100" height="70" alt="" /></c:when>
