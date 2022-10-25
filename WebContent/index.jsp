@@ -49,9 +49,9 @@
     <!-------- 메인 페이지 프로모션 창 --------->
    <div class="container-main-new">
     <!-------- 신규 창 타이틀 --------->
-        <div class="new-title"><strong>Stay:Key로 여는 새로운 경험</strong></div>
+        <div class="sec-title"><strong>Stay:Key로 여는 새로운 경험</strong></div>
      <!-------- 신규 창 목록 --------->
-     <div class="new-stay-list">
+     <div class="stay-list">
      <!-------- 신규 창 아이콘 --------->
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
@@ -98,7 +98,7 @@
     <!-------- 메인 페이지 프로모션 창 --------->
     <div class="container-main-promo">
     <!-------- 프로모션 창 타이틀 --------->
-        <div class="promo-title"><strong>PROMOTION</strong></div>
+        <div class="sec-title"><strong>PROMOTION</strong></div>
     <!-------- 프로모션 창 목록 --------->
         <div class= "swiper-container" id="promotion-container">
          <section class="promo-stay-list">
@@ -138,7 +138,7 @@
     </div>
     <!-------- 메인 페이지 이벤트 창 --------->
     <div class="container-main-event">
-        <div class="event-title">EVENT</div>
+        <div class="sec-title">EVENT</div>
         <div class="swiper-container" id="event-container">
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
@@ -188,84 +188,82 @@
     </div>
     <!-------- 메인 페이지 매거진 창 --------->
    <div class="container-main-magazine">
-    <div class="main-magazine-banner" id="main-magazine-banner">
-        <div class="magazine-button-prev"></div>
-        <div class="magazine-button-next"></div>
+    <div class="main-magazine-container" id="main-magazine-banner">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
             <ul class="swiper-wrapper">
-                <li><a href="">
+                <li class="swiper-slide slider-box"><a href="#">
                     <div class="bg-img"></div>
                     <div class="stay-info">
                         <p class="logo"></p>
                         <p class="text"></p>
-                        <p class="more"></p></div></a></li>
-                <li><a href="">
+                        <p class="magazine">MAGAZINE</p>
+                        <p class="more">Read more</p></div></a></li>
+                <li class="swiper-slide slider-box"><a href="#">
                     <div class="bg-img"></div>
                     <div class="stay-info">
                         <p class="logo"></p>
                         <p class="text"></p>
-                        <p class="more"></p></div></a></li>
-                <li><a href="">
+                        <p class="magazine">MAGAZINE</p>
+                        <p class="more">Read more</p></div></a></li>
+                <li class="swiper-slide slider-box"><a href="#">
                     <div class="bg-img"></div>
                     <div class="stay-info">
                         <p class="logo"></p>
                         <p class="text"></p>
-                        <p class="more"></p></div></a></li>
-                <li><a href="">
+                        <p class="magazine">MAGAZINE</p>
+                        <p class="more">Read more</p></div></a></li>
+                <li class="swiper-slide slider-box"><a href="#">
                     <div class="bg-img"></div>
                     <div class="stay-info">
                         <p class="logo"></p>
                         <p class="text"></p>
-                        <p class="more"></p></div></a></li>
-                <li><a href="">
+                        <p class="magazine">MAGAZINE</p>
+                        <p class="more">Read more</p></div></a></li>
+                <li class="swiper-slide slider-box"><a href="#">
                     <div class="bg-img"></div>
                     <div class="stay-info">
                         <p class="logo"></p>
                         <p class="text"></p>
-                        <p class="more"></p></div></a></li>
-            </ul>
-    <div class="main-magazine-pagination">
-        <span class="magazine-pagination-current"></span>
-        <span class="magazine-pagination-total"></span></div>
-
-    <div class="main-magazine-bg-paper"></div>
+                        <p class="magazine">MAGAZINE</p>
+                        <p class="more">Read more</p></div></a></li></ul>
+        <div class="swiper-pagination">
+            <span class="magazine-pagination-current"></span>
+            <span class="magazine-pagination-total"></span></div>
+        <div class="bg-paper"></div>
      </div>
-     </div> 
+    </div> 
     <!-------- 메인 페이지 종합 추천 창! --------->
    <div class="container-main-travel">
-    <!-------- 종합 추천 타이틀! --------->
-    <div class="travel-title">""</div>
-    <ul class="travel-list">
-        <li><a href="#"><img class="img" src="">
-            <div class="travel-text">" "</div>
-            <div class="travel-other"><span>""</span></div>
-            <div class="btn-more">Read more</div>
-        </a></li>
+    <!-------- 메인 페이지 종합 추천 타이틀! --------->
+     <div class="sec-title">TRAVEL</div>
+        <ul class="stay-list">
+            <li class="stay-box"><a href="#"><img class="img" src="">
+                <div class="text">" "</div>
+                <div class="other"><span>""</span></div>
+                <div class="btn-more">Read more</div></a></li>
 
-        <li><a href="#"><img class="img" src="">
-            <div class="travel-text">" "</div>
-            <div class="travel-other"><span>""</span></div>
-            <div class="btn-more">Read more</div>
-        </a></li>
+            <li class="stay-box"><a href="#"><img class="img" src="">
+                <div class="text">" "</div>
+                <div class="other"><span>""</span></div>
+                <div class="btn-more">Read more</div></a></li>
 
-        <li><a href="#"><img class="img" src="">
-            <div class="travel-text">" "</div>
-            <div class="travel-other"><span>""</span></div>
-            <div class="btn-more">Read more</div>
-        </a></li>
+            <li class="stay-box"><a href="#"><img class="img" src="">
+                <div class="text">" "</div>
+                <div class="other"><span>""</span></div>
+                <div class="btn-more">Read more</div></a></li>
 
-        <li><a href="#"><img class="img" src="">
-            <div class="travel-text">" "</div>
-            <div class="travel-other"><span>""</span></div>
-            <div class="btn-more">Read more</div>
-        </a></li>
+            <li class="stay-box"><a href="#"><img class="img" src="">
+                <div class="text">" "</div>
+                <div class="other"><span>""</span></div>
+                <div class="btn-more">Read more</div></a></li>
 
-        <li><a href="#"><img class="img" src="">
-            <div class="travel-text">" "</div>
-            <div class="travel-other"><span>""</span></div>
-            <div class="btn-more">Read more</div>
-        </a></li></ul>
+            <li class="stay-box"><a href="#"><img class="img" src="">
+                <div class="text">" "</div>
+                <div class="other"><span>""</span></div>
+                <div class="btn-more">Read more</div>
+            </a></li></ul>
      </div>
-
 </div>
 
 
