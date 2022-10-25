@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="view" value="${stayView}" />
-
+<c:set var="list" value="${roomList}" />
 
 
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
@@ -163,16 +163,16 @@ ${ msg }
 					-->
                 	<ul class="stay-room-list">
                         <c:choose>
-                        <c:when test="${ !empty roomList }">
-                        <c:forEach items="${roomList}" var="room">
+                        <c:when test="${ !empty list }">
+                        <c:forEach items="${ list }" var="room">
                         <li>
-                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do', '700', '900');" class="d-flex">
+                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }', '700', '900');" class="d-flex">
                                 <div>
                                     <c:choose>
-                                    <c:when test="${!empty room.room_photo1}"><img src="<%=request.getContextPath()%>${room.room_photo1}" width="100" height="70" alt="" /></c:when>
+                                    <c:when test="${!empty room.room_photo1}"><img src="<%=request.getContextPath()%>${ room.room_photo1 }" width="100" height="70" alt="" /></c:when>
                                     <c:otherwise>
                                     <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                                        <title>${room.room_name}</title>
+                                        <title>${ room.room_name }</title>
                                         <rect width="100%" height="100%" fill="#eee"></rect>
                                         <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
                                     </svg>
@@ -180,47 +180,14 @@ ${ msg }
                                     </c:choose>
                                 </div>
                                 <div class="pl-3">
-                                    <p><b>${room.room_name}</b></p>
-                                    <p>${room.room_desc}</p>
-                                    <p><fmt:formatNumber value="${room.room_price}" />원</p>
-                                    <!-- 시작 -->
-										<c:choose>
-											<c:when test="${ !empty stayRoomList }">
-												<c:forEach items="${ stayRoomList }" var="list">
-									 			<tr>
-													<td>${ list.room_no }</td> 
-													<td>${ list.room_stayno }</td> 
-													<td>${ list.room_name }</td> 
-													<td>${ list.room_desc }</td> 
-													<td>${ list.room_checkin }</td> 
-													<td>${ list.room_checkout }</td> 
-													<td>${ list.room_people_min }</td>
-													<td>${ list.room_people_max }</td> 
-													<td>${ list.room_size }</td> 
-													<td>${ list.room_features }</td> 
-													<td>${ list.room_amenities }</td> 
-													<td>${ list.room_service }</td> 
-													<td>${ list.room_photo1 }</td> 
-													<td>${ list.room_photo2 }</td> 
-													<td>${ list.room_photo3 }</td>
-													<td>${ list.room_photo4 }</td> 
-													<td>${ list.room_photo5 }</td> 
-												</tr> 
-												</c:forEach>
-											</c:when>
-											<c:otherwise>
-											<tr>
-												<td colspan="17">조회된 목록이 없습니다...</td>
-											</tr>
-											</c:otherwise>
-										</c:choose>
-                                    <!-- 종료 -->
+                                    <p><b>${ room.room_name }</b></p>
+                                    <p>${ room.room_desc }</p>
+                                    <p><fmt:formatNumber value="${ room.room_price }" />원</p>
                                 </div>
                             </a>
                         </li>
                         </c:forEach>
                         </c:when>
-
                         <c:otherwise>
                         <li class="nodata">이 숙소에 등록된 Room이 없습니다.</li>
                         </c:otherwise>
