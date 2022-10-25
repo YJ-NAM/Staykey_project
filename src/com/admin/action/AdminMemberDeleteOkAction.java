@@ -41,14 +41,13 @@ public class AdminMemberDeleteOkAction implements Action {
 		    }
 		}
 		
-		int res = dao.deleteMember(member_id);
+		int res = dao.deleteMember(member_id, memberNo);
 		
 		ActionForward forward = new ActionForward();
 		PrintWriter out = response.getWriter();
 
 		
         if (res > 0) {
-        	dao.updateNo(memberNo);
             forward.setRedirect(true);
             forward.setPath("memberList.do");
         } else {
