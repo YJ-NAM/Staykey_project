@@ -162,7 +162,6 @@ public class ReviewDAO {
 	           sql = "select * from " + "(select row_number() over(order by " + order_sql
 	                    + ") rnum, b.* from staykey_review b " + search_sql1 + ") " + "where rnum >= ? and rnum <= ?"
 	                    + search_sql2;
-	            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
             pstmt.setInt(2, endNo);
@@ -231,7 +230,7 @@ public class ReviewDAO {
 				dto.setReview_point4(rs.getInt("review_point4"));
 				dto.setReview_point5(rs.getInt("review_point5"));
 				dto.setReview_point6(rs.getInt("review_point6"));
-				dto.setReview_content(rs.getString("review_content"));
+				dto.setReview_content(rs.getString("review_content").replace("\n", "<br />"));
 				dto.setReview_file(rs.getString("review_file"));
 				dto.setReview_id(rs.getString("review_id"));
 				dto.setReview_pw(rs.getString("review_pw"));
