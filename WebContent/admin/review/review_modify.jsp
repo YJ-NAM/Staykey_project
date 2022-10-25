@@ -30,7 +30,7 @@
            <th>숙소명</th>
            <td colspan="3">
              	<input type="text" name="review_stayname" value="${dto.review_stayname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
-           		<input type="text" name="review_roomname" value="(${dto.review_roomname})" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
+           		<input type="text" name="review_roomname" value="${dto.review_roomname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
            </td>
         </tr>
         
@@ -64,42 +64,42 @@
         	<td colspan="3">
 	        	<b>접근성:</b>
 		        	<select name="review_point1" class="form-select">
-	                	<c:forEach begin="0" end="10" var="i">
+	                	<c:forEach begin="1" end="10" var="i">
 	                    	<option value="${i}"<c:if test="${dto.review_point1 == i}"> selected="selected"</c:if>>${i}</option>
 	                	</c:forEach>
 	                </select>
 					
 				<b>서비스:</b>
 					<select name="review_point2" class="form-select">
-	                     <c:forEach begin="0" end="10" var="i">
+	                     <c:forEach begin="1" end="10" var="i">
 	                     	<option value="${i}"<c:if test="${dto.review_point2 == i}"> selected="selected"</c:if>>${i}</option>
 	                     </c:forEach>
 	                </select>
 	
 		        <b>객실시설:</b>
 					<select name="review_point3" class="form-select">
-                    	<c:forEach begin="0" end="10" var="i">
+                    	<c:forEach begin="1" end="10" var="i">
                         	<option value="${i}"<c:if test="${dto.review_point3 == i}"> selected="selected"</c:if>>${i}</option>
                         </c:forEach>
                 	</select>
 						
 				<b>부대시설:</b>
 					<select name="review_point4" class="form-select">
-                    	<c:forEach begin="0" end="10" var="i">
+                    	<c:forEach begin="1" end="10" var="i">
                         	<option value="${i}"<c:if test="${dto.review_point4 == i}"> selected="selected"</c:if>>${i}</option>
                         </c:forEach>
                 	</select>	
                 	
 	        	<b>식음료:</b>
 					<select name="review_point5" class="form-select">
-                    	<c:forEach begin="0" end="10" var="i">
+                    	<c:forEach begin="1" end="10" var="i">
                         	<option value="${i}"<c:if test="${dto.review_point5 == i}"> selected="selected"</c:if>>${i}</option>
                         </c:forEach>
                 	</select>	
                 	
 				<b>만족도:</b>
 					<select name="review_point6" class="form-select">
-                    	<c:forEach begin="0" end="10" var="i">
+                    	<c:forEach begin="1" end="10" var="i">
                         	<option value="${i}"<c:if test="${dto.review_point6 == i}"> selected="selected"</c:if>>${i}</option>
                         </c:forEach>
                 	</select>	

@@ -69,9 +69,9 @@ public class AdminReviewModifyOkAction implements Action {
             // del_pimage.delete() 실제로 삭제시키는 메서드
             if (del_pimage.exists()) {
                 if (del_pimage.delete()) {
-                    System.out.println("프로필 파일 삭제 완료");
+                    System.out.println("후기 파일 삭제 완료");
                 } else {
-                    System.out.println("프로필 파일 삭제 실패");
+                    System.out.println("후기 파일 삭제 실패");
                 }
             }
 
@@ -102,18 +102,15 @@ public class AdminReviewModifyOkAction implements Action {
         dto.setReview_no(review_no);
         dto.setReview_point_total(review_point_total);
         
-        
         int check = dao.reviewModify(dto); 
         ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
 
         if (check > 0) {
-            forward.setRedirect(true); forward.setPath("memberList.do");
+            forward.setRedirect(true); forward.setPath("reviewList.do");
         } else {
             out.println("<script>alert('후기 정보 수정 중 에러가 발생하였습니다.'); history.back();</script>");
         }
-
-
 
         return forward;
 	}
