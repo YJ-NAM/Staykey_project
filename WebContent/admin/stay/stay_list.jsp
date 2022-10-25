@@ -125,20 +125,20 @@ ${ msg }
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 숙소</div>
         <div class="tt-right">
             <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/stayList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_location=${map.ps_location}&ps_phone=${map.ps_phone}&ps_order='+this.value;">
-                <option value="no_desc"<c:if test="${map.ps_order == 'no_desc'}"> selected="selected"</c:if>>번호 높은</option>
-                <option value="no_asc"<c:if test="${map.ps_order == 'no_asc'}"> selected="selected"</c:if>>번호 낮은</option>
+                <option value="no_desc"<c:if test="${map.ps_order == 'no_desc'}"> selected="selected"</c:if>>높은번호순</option>
+                <option value="no_asc"<c:if test="${map.ps_order == 'no_asc'}"> selected="selected"</c:if>>낮은번호순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="reserv_desc"<c:if test="${map.ps_order == 'reserv_desc'}"> selected="selected"</c:if>>예약수 높은</option>
-                <option value="reserv_asc"<c:if test="${map.ps_order == 'reserv_asc'}"> selected="selected"</c:if>>예약수 낮은</option>
+                <option value="reserv_desc"<c:if test="${map.ps_order == 'reserv_desc'}"> selected="selected"</c:if>>예약많은순</option>
+                <option value="reserv_asc"<c:if test="${map.ps_order == 'reserv_asc'}"> selected="selected"</c:if>>예약적은순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="hit_desc"<c:if test="${map.ps_order == 'hit_desc'}"> selected="selected"</c:if>>조회수 높은</option>
-                <option value="hit_asc"<c:if test="${map.ps_order == 'hit_asc'}"> selected="selected"</c:if>>조회수 낮은</option>
+                <option value="hit_desc"<c:if test="${map.ps_order == 'hit_desc'}"> selected="selected"</c:if>>조회수높은순</option>
+                <option value="hit_asc"<c:if test="${map.ps_order == 'hit_asc'}"> selected="selected"</c:if>>조회수낮은순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>가나다 순</option>
-                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>가나다 역순</option>
+                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>가나다역순</option>
+                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>가나다순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="date_desc"<c:if test="${map.ps_order == 'date_desc'}"> selected="selected"</c:if>>등록일 최신</option>
-                <option value="date_asc"<c:if test="${map.ps_order == 'date_asc'}"> selected="selected"</c:if>>등록일 오래전</option>
+                <option value="date_desc"<c:if test="${map.ps_order == 'date_desc'}"> selected="selected"</c:if>>최신등록순</option>
+                <option value="date_asc"<c:if test="${map.ps_order == 'date_asc'}"> selected="selected"</c:if>>오래된등록순</option>
             </select>
         </div>
     </div>
@@ -207,7 +207,6 @@ ${ msg }
                 <td>${list.stay_date.substring(0,10)}<br />${list.stay_date.substring(11)}</td>
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/stayModify.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
-                    <!-- 삭제 시 사진 함께 삭제해야 함 // 추후 comment 삭제 예정 -->
                     <a href="<%=request.getContextPath()%>/admin/stayDeleteOk.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?\n※ 이 숙소에 등록된 Room들도 전부 삭제됩니다.');">삭제</a>
                 </td>
             </tr>

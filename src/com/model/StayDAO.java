@@ -244,8 +244,9 @@ public class StayDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
 		}
-
 		return result;
 	} // getStayTotalCount() 종료
 
@@ -607,10 +608,7 @@ public class StayDAO {
 		return result;
 	} // registerStayRoom() 종료
 
-
-
-
-
+	
     /////////////////////////////////////////////////////////////
     // 방 정보 가져오기 메서드 @노동진
     /////////////////////////////////////////////////////////////
@@ -654,7 +652,6 @@ public class StayDAO {
         } finally {
             closeConn(rs, pstmt, con);
         }
-
 	    return dto;
 	}
 
