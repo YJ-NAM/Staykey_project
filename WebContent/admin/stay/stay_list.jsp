@@ -38,7 +38,6 @@ $(document).ready(function(){
 ${ msg }
 <c:remove var="msg"/>
 
-
 <div>
     <form name="search_form" method="post" action="<%=request.getContextPath()%>/admin/stayList.do">
     <input type="hidden" name="ps_order" value="${map.ps_order}" />
