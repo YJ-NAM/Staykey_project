@@ -1,7 +1,6 @@
 package com.admin.action;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,24 +10,22 @@ import com.controller.ActionForward;
 import com.model.StayDAO;
 import com.model.StayRoomDTO;
 
-public class AdminStayRoomListAction implements Action {
+public class AdminStayRoomViewAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// GET method로 특정 숙소의 room 정보 전체 목록 조회
+		// 방 상세정보 보기
 		
-		int stayNo = Integer.parseInt(request.getParameter("stay_no"));
+		int roomNo = Integer.parseInt(request.getParameter("room_no"));
+		
 		StayDAO dao = StayDAO.getInstance();
+		StayRoomDTO dto = dao.getStayRoomView(roomNo);
 		
-		// 전체 room 정보 목록 조회 메서드 : getStayLoomList()
-		List<StayRoomDTO> list = dao.getStayRoomList(stayNo);
-		request.setAttribute("stayNo", stayNo);
-		request.setAttribute("roomList", list);
-				
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("stay/stay_list.jsp");
-		
+		forward.setPath("");
+
 		return forward;
 	}
+
 }
