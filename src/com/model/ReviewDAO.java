@@ -95,9 +95,7 @@ public class ReviewDAO {
         try {
             openConn();
             
-            System.out.println(map.get("ps_name"));
             sql = "select count(*) from staykey_review" + search_sql;
-            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
