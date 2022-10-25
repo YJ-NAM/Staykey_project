@@ -16,8 +16,8 @@
 
 
 <div class="pb100">
-    <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin/memberModifyOk.do" onsubmit="return join_check();">
-    <input type="hidden" name="member_pw" value="${dto.review_pw}" />
+    <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin/reviewModifyOk.do" onsubmit="return join_check();">
+    <input type="hidden" name="review_pw" value="${dto.review_pw}" />
     <table class="table-form mt-3">
         <colgroup>
             <col width="16%" />
@@ -161,7 +161,7 @@
         
         <tr> 
         	<th>리뷰 내용</th>										
-			<td colspan="3"><textarea name="review_content" cols="20" rows="4" class="form-control" >${dto.review_content}</textarea></td>
+			<td colspan="3"><textarea name="review_content" cols="20" rows="4" class="form-control" >${dto.review_content.replace("<br />", "")}</textarea></td>
         </tr>
         
         <tr>
