@@ -384,14 +384,14 @@ public class StayDAO {
 		openConn();
 		
 		try {
-		sql = "update staykey_stay set stay_type = ?, stay_name = ?, stay_desc = ?, stay_location = ?, stay_addr = ?,"
-				+ " stay_phone = ?, stay_email = ?, stay_content1 = ?, stay_content2 = ?, stay_content3 = ?, stay_info1 = ?, "
-				+ "stay_info2 = ?, stay_info3 = ?, stay_file1 = ?, stay_file2 = ?, stay_file3 = ?, stay_file4 = ?, "
-				+ "stay_file5 = ?, stay_option1_name = ?, stay_option1_price = ?, stay_option1_desc = ?, "
-				+ "stay_option1_photo = ?, stay_option2_name = ?, stay_option2_price = ?, stay_option2_desc = ?, "
-				+ "stay_option2_photo = ?, stay_option3_name = ?, stay_option3_price = ?, stay_option3_desc = ?, "
-				+ "stay_option3_photo = ? where stay_no = ?";
-		
+			sql = "update staykey_stay set stay_type = ?, stay_name = ?, stay_desc = ?, stay_location = ?, stay_addr = ?,"
+					+ " stay_phone = ?, stay_email = ?, stay_content1 = ?, stay_content2 = ?, stay_content3 = ?, stay_info1 = ?, "
+					+ "stay_info2 = ?, stay_info3 = ?, stay_file1 = ?, stay_file2 = ?, stay_file3 = ?, stay_file4 = ?, "
+					+ "stay_file5 = ?, stay_option1_name = ?, stay_option1_price = ?, stay_option1_desc = ?, "
+					+ "stay_option1_photo = ?, stay_option2_name = ?, stay_option2_price = ?, stay_option2_desc = ?, "
+					+ "stay_option2_photo = ?, stay_option3_name = ?, stay_option3_price = ?, stay_option3_desc = ?, "
+					+ "stay_option3_photo = ? where stay_no = ?";
+
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, dto.getStay_type());
 		pstmt.setString(2, dto.getStay_name());

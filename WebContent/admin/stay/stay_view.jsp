@@ -7,13 +7,15 @@
 <c:set var="view" value="${stayView}" />
 
 
+
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>숙소 상세 정보</h2>
     <small>등록된 숙소의 정보를 확인 할 수 있습니다.</small>
 </div>
 
-
+${ msg }
+<c:remove var="msg"/>
 
 <div class="view-form">
     <!-- 내용 //START -->
