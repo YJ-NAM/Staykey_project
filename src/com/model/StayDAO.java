@@ -483,11 +483,14 @@ public class StayDAO {
 				dto.setRoom_stayno(rs.getInt("room_stayno"));
 				dto.setRoom_name(rs.getString("room_name"));
 				dto.setRoom_desc(rs.getString("room_desc"));
+				dto.setRoom_type(rs.getString("room_type"));
+				dto.setRoom_price(rs.getInt("room_price"));
 				dto.setRoom_checkin(rs.getString("room_checkin"));
 				dto.setRoom_checkout(rs.getString("room_checkout"));
 				dto.setRoom_people_min(rs.getInt("room_people_min"));
 				dto.setRoom_people_max(rs.getInt("room_people_max"));
 				dto.setRoom_size(rs.getInt("room_size"));
+				dto.setRoom_bed(rs.getString("room_bed"));			
 				dto.setRoom_features(rs.getString("room_features"));
 				dto.setRoom_amenities(rs.getString("room_amenities"));
 				dto.setRoom_service(rs.getString("room_service"));

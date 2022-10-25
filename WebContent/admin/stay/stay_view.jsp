@@ -79,7 +79,7 @@ ${ msg }
 				                        <c:when test="${!empty view.stay_option1_photo}"><img src="<%=request.getContextPath()%>${view.stay_option1_photo}" width="100" height="70" alt="" /></c:when>
 				                        <c:otherwise>
 				                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-				                            <title>${list.stay_name}</title>
+				                            <title>${view.stay_name}</title>
 				                            <rect width="100%" height="100%" fill="#eee"></rect>
 				                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
 				                        </svg>
@@ -101,7 +101,7 @@ ${ msg }
 				                        <c:when test="${!empty view.stay_option2_photo}"><img src="<%=request.getContextPath()%>${view.stay_option2_photo}" width="100" height="70" alt="" /></c:when>
 				                        <c:otherwise>
 				                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-				                            <title>${list.stay_name}</title>
+				                            <title>${view.stay_name}</title>
 				                            <rect width="100%" height="100%" fill="#eee"></rect>
 				                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
 				                        </svg>
@@ -155,7 +155,7 @@ ${ msg }
         <div class="col-lg mb-4">
             <div class="card">
                 <div class="card-body p-4">
-                	<h4>등록된 Room 목록<button type="button" onclick="popWindow('<%=request.getContextPath()%>/admin/stayRoomWrite.do', '700', '900');" class="btn btn-sm btn-success float-right"><i class="fa fa-plus"></i> Room 추가</button></h4>
+                	<h4>등록된 Room 목록<button type="button" onclick="popWindow('<%=request.getContextPath()%>/admin/stayRoomWrite.do?stay_no=${ view.stay_no }', '700', '900');" class="btn btn-sm btn-success float-right"><i class="fa fa-plus"></i> Room 추가</button></h4>
 
 					<!-- 
 						stay_room_list 여기 추가 예정... 
@@ -163,7 +163,7 @@ ${ msg }
 					-->
                 	<ul class="stay-room-list">
                         <c:choose>
-                        <c:when test="${!empty roomList }">
+                        <c:when test="${ !empty roomList }">
                         <c:forEach items="${roomList}" var="room">
                         <li>
                             <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do', '700', '900');" class="d-flex">
@@ -183,6 +183,38 @@ ${ msg }
                                     <p><b>${room.room_name}</b></p>
                                     <p>${room.room_desc}</p>
                                     <p><fmt:formatNumber value="${room.room_price}" />원</p>
+                                    <!-- 시작 -->
+										<c:choose>
+											<c:when test="${ !empty stayRoomList }">
+												<c:forEach items="${ stayRoomList }" var="list">
+									 			<tr>
+													<td>${ list.room_no }</td> 
+													<td>${ list.room_stayno }</td> 
+													<td>${ list.room_name }</td> 
+													<td>${ list.room_desc }</td> 
+													<td>${ list.room_checkin }</td> 
+													<td>${ list.room_checkout }</td> 
+													<td>${ list.room_people_min }</td>
+													<td>${ list.room_people_max }</td> 
+													<td>${ list.room_size }</td> 
+													<td>${ list.room_features }</td> 
+													<td>${ list.room_amenities }</td> 
+													<td>${ list.room_service }</td> 
+													<td>${ list.room_photo1 }</td> 
+													<td>${ list.room_photo2 }</td> 
+													<td>${ list.room_photo3 }</td>
+													<td>${ list.room_photo4 }</td> 
+													<td>${ list.room_photo5 }</td> 
+												</tr> 
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+											<tr>
+												<td colspan="17">조회된 목록이 없습니다...</td>
+											</tr>
+											</c:otherwise>
+										</c:choose>
+                                    <!-- 종료 -->
                                 </div>
                             </a>
                         </li>
