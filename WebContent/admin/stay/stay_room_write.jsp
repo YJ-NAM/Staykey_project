@@ -9,7 +9,11 @@
 
 		const tagContainer = document.querySelector('.tag-container');
 		const input = document.querySelector('.tag-container input');
+		const remainTag = document.querySelector('.details span');
+		let maxTags = 4;
 		let tags = []; // 태그 값 저장할 배열 선언
+
+		countTag();
 
 		// 태그 생성 메서드
 		function createTag(label) {
@@ -40,13 +44,16 @@
 				const input = createTag(tag);
 				tagContainer.prepend(input);
 			})
+			countTag();
 		};
 
 		// keyup 시 input 박스 생성 event
 		input.addEventListener('keyup', function(e) {
 			if(e.keyCode == 32) { // 스페이스 바
-				tags.push(input.value); // 배열에 input.value 값 저장
-				addTags(); // 
+				if(input.value.length < 6 && !tags.includes(input.value) && (tags.length < 4)){ // 글자수 조정 & 중복된 태그 없도록 설정
+					tags.push(input.value); // 배열에 input.value 값 저장
+					addTags(); 
+				}
 				input.value = '';
 			}
 		});
@@ -58,25 +65,15 @@
 				const index = tags.indexOf(value);
 				tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
 				addTags();
-			}	
+			}
+			countTag();
 		})
+
+		// 남은 태그 개수 확인
+		function countTag() {
+			remainTag.innerText = maxTags - tags.length; // 최대 개수 - 배열 길이
+		}
 	}
-	
-
-// function tagCheck() {
-
-// 	let hashtag = $("#hashtag").val();
-// 	if($.trim(hashtag).length%5==0){
-// 		$("#hashtag").text("#");
-// 	}
-
-// 	if($.trim(hashtag).length > 5){
-// 		let warning = "<font color='red'> 태그는 최대 4글자까지 입력 가능합니다. </font>";
-// 		$("#tagAlert").html(warning);
-// 		return false;
-// 	};
-
-// }
 
 </script>
 <style>
@@ -91,6 +88,7 @@
 		padding: 3px;
 		border-radius: 5px;
 		display: flex;
+		flex-wrap: wrap;
 	}
 
 	.tag-container .tag {
@@ -102,6 +100,11 @@
 		border-radius: 3px;
 		background: #f2f2f2;
 		cursor: pointer;
+	}
+	
+	.tag-container input[type=text]{
+		background: transparent;
+		width: 20px;
 	}
 	
 	.tag i {
@@ -242,14 +245,13 @@
 			    <div class="container">
 			    	태그를 입력한 후 스페이스 바를 누르세요.
 			    	<div class="tag-container">
-			    		<input type="text" />
+			    		<input type="text" name="room_tag" placeholder="한 태그 당 최대 4글자까지 입력 가능합니다." onfocus="this.placeholder=''" />
 			    	</div>	
-			    	<div>
-			    		<span>등록 가능한 태그 개수 : 4개</span>
+			    	<div class="details">
+			    		<p>등록 가능한 태그 : <span>4</span></p>
 			    	</div>		    
 			    </div>
 		    </td>
-		    
 		</tr>
 		<tr>			
 			<th>사진</th> 			
