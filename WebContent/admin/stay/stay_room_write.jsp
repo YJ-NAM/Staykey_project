@@ -12,7 +12,6 @@
 		const remainTag = document.querySelector('.details span');
 		let maxTags = 4;
 		let tags = []; // 태그 값 저장할 배열 선언
-		let tagsSum = ""; // 마지막 출력 값
 		
 		countTag();
 
@@ -31,7 +30,8 @@
 			// div return
 		};
 
-		// 생성된 tag div
+		// 이전 tag 제거되지 않아 태그 중복 생성되는 문제 해결 위함
+		// .tag container의 tag 삭제 -> 초기화
 		function reset() {
 			document.querySelectorAll('.tag').forEach(function(tag) {
 				tag.parentElement.removeChild(tag);
@@ -133,7 +133,7 @@
 	<hr />
 	<h4>방 등록하기</h4>
 	<hr />
-	<form action="${ pageContext.request.contextPath }/admin/stayRoomWriteOk.do" enctype="multipart/form-data" method="post" onsubmit="sendTag();" >
+	<form action="${ pageContext.request.contextPath }/admin/stayRoomWriteOk.do" enctype="multipart/form-data" method="post" >
 	<input type="hidden" name="stayNo" value="${ param.stay_no }" /> <!-- 숙소 번호 -->
 	<input type="hidden" name="room_tag" id="room_tag" value=""> <!-- tag 값 받아오기 위함 -->
 	<table>
