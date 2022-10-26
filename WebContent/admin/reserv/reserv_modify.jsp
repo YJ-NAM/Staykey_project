@@ -6,6 +6,7 @@
 <% pageContext.setAttribute("newLine", "\n"); %>
 
 <c:set var="view" value="${reservView}" />
+<c:set var="stay" value="${stayCont}" />
 <c:set var="room" value="${roomCont}" />
 
 
@@ -13,26 +14,27 @@
 $("#nav-reserv").addClass("now");
 
 
-form_check = function(){
-    var form = document.write_form;
+// 인원 선택 계산
+$(function(){
+    $("select[name='reserv_people_adult'], select[name='reserv_people_kid'], select[name='reserv_people_baby']").on("change", function(){
+        const maxPeople = Number($("#max-people").text().trim());
 
-    if(form.reserv_mememail.value == ""){
-        alert("[이메일]을 입력해 주세요.");
-        form.reserv_mememail.focus();
-        return false;
-    }
+        let p_adult = Number($("select[name='reserv_people_adult']").val());
+        let p_kid = Number($("select[name='reserv_people_kid']").val());
+        let p_baby = Number($("select[name='reserv_people_baby']").val());
 
-    // 이메일 형식 체크
-    var TEmailChk = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    if(form.reserv_mememail.value.match(TEmailChk) != null){
-    }else{
-        alert("잘못된 이메일 형식입니다.\n[이메일]을 다시 입력해 주세요.");
-        form.reserv_mememail.focus();
-        return false;
-    }
+        let p_sum = p_adult + p_kid + p_baby;
+        if(p_sum > maxPeople){
+            alert("최대 "+maxPeople+"명 까지 숙박이 가능합니다.");
+            $(this).val(0);
+        }
 
-    form.submit();
-};
+        if(p_sum <= 0){
+            alert("최소 1명 이상 숙박인원을 선택하세요.");
+            $(this).val(1);
+        }
+    });
+});
 </script>
 
 
@@ -46,7 +48,9 @@ form_check = function(){
 
 
 <div class="view-form pb100 w-70 m-auto">
-    <form name="write_form" method="post"action="<%=request.getContextPath() %>/admin/reservModifyOk.do" onsubmit="return form_check();">
+    <form name="write_form" method="post"action="<%=request.getContextPath() %>/admin/reservModifyOk.do">
+    <input type="hidden" name="reserv_no" value="${view.reserv_no}" />
+    <input type="hidden" name="reserv_sess" value="${view.reserv_sess}" />
     <!-- 내용 //START -->
     <div class="row vf-body">
         <div class="col-lg mb-4">
@@ -100,13 +104,13 @@ form_check = function(){
                 <tbody>
                     <tr>
                         <th>이름</th>
-                        <td colspan="3"><input type="text" name="reserv_memname" value="${view.reserv_memname}" maxlength="50" class="form-control w-30" required /></td>
+                        <td colspan="3">${view.reserv_memname}</td>
                     </tr>
                     <tr>
                         <th>전화번호</th>
-                        <td><input type="text" name="reserv_memphone" value="${view.reserv_memphone}" maxlength="15" class="form-control" required /></td>
+                        <td>${view.reserv_memphone}</td>
                         <th>이메일</th>
-                        <td><input type="text" name="reserv_mememail" value="${view.reserv_mememail}" maxlength="100" class="form-control" required /></td>
+                        <td>${view.reserv_mememail}</td>
                     </tr>
                 </tbody>
             </table>
@@ -164,34 +168,74 @@ form_check = function(){
                     <tr>
                         <th>숙박인원</th>
                         <td colspan="3">
-                            <span class="align-middle mr-4">기준인원 최대 <b>${room.room_people_max}</b>명</span>
+                            <span class="align-middle mr-4">기준인원 최대 <b id="max-people">${room.room_people_max}</b>명</span>
                             <span class="align-middle">성인</span>
-                            <select name="" class="form-select">
+                            <select name="reserv_people_adult" class="form-select">
                                 <c:forEach begin="0" end="6" var="i">
                                 <option value="${i}"<c:if test="${view.reserv_people_adult == i}"> selected="selected"</c:if>>${i}명</option>
                                 </c:forEach>
                             </select>
                             <span class="align-middle ml-3">아동</span>
-                            <select name="" class="form-select">
+                            <select name="reserv_people_kid" class="form-select">
                                 <c:forEach begin="0" end="5" var="j">
                                 <option value="${j}"<c:if test="${view.reserv_people_kid == j}"> selected="selected"</c:if>>${j}명</option>
                                 </c:forEach>
                             </select>
                             <span class="align-middle ml-3">영아</span>
-                            <select name="" class="form-select">
+                            <select name="reserv_people_baby" class="form-select">
                                 <c:forEach begin="0" end="5" var="k">
                                 <option value="${k}"<c:if test="${view.reserv_people_baby == k}"> selected="selected"</c:if>>${k}명</option>
                                 </c:forEach>
                             </select>
                         </td>
                     </tr>
-                    <c:if test="${!empty view.reserv_option1_name or !empty view.reserv_option2_name or !empty view.reserv_option3_name}">
+                    <c:if test="${!empty stay.stay_option1_name or !empty stay.stay_option2_name or !empty stay.stay_option3_name}">
                     <tr>
                         <th>옵션 신청</th>
                         <td>
-                            <c:if test="${!empty view.reserv_option1_name}"><p>${view.reserv_option1_name} (<fmt:formatNumber value="${view.reserv_option1_price}" />원)</p></c:if>
-                            <c:if test="${!empty view.reserv_option2_name}"><p>${view.reserv_option2_name} (<fmt:formatNumber value="${view.reserv_option2_price}" />원)</p></c:if>
-                            <c:if test="${!empty view.reserv_option3_name}"><p>${view.reserv_option3_name} (<fmt:formatNumber value="${view.reserv_option3_price}" />원)</p></c:if>
+                            <div class="row">
+                                <c:if test="${!empty stay.stay_option1_name}">
+                                <div class="col-auto">
+                                    <div>${stay.stay_option1_name} (<fmt:formatNumber value="${stay.stay_option1_price}" />원)</div>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label"><input type="radio" name="reserv_option1_name" value="${stay.stay_option1_name}/${stay.stay_option1_price}" class="form-check-input"<c:if test="${!empty view.reserv_option1_name}"> checked="checked"</c:if> /> 선택</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label"><input type="radio" name="reserv_option1_name" value="" class="form-check-input"<c:if test="${empty view.reserv_option1_name}"> checked="checked"</c:if> /> 안함</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                </c:if>
+
+                                <c:if test="${!empty stay.stay_option2_name}">
+                                <div class="col-auto">
+                                    <div>${stay.stay_option2_name} (<fmt:formatNumber value="${stay.stay_option2_price}" />원)</div>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label"><input type="radio" name="reserv_option2_name" value="${stay.stay_option2_name}/${stay.stay_option2_price}" class="form-check-input"<c:if test="${!empty view.reserv_option2_name}"> checked="checked"</c:if> /> 선택</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label"><input type="radio" name="reserv_option2_name" value="" class="form-check-input"<c:if test="${empty view.reserv_option2_name}"> checked="checked"</c:if> /> 안함</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                </c:if>
+
+                                <c:if test="${!empty stay.stay_option3_name}">
+                                <div class="col-auto">
+                                    <div>${stay.stay_option3_name} (<fmt:formatNumber value="${stay.stay_option3_price}" />원)</div>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label"><input type="radio" name="reserv_option3_name" value="${stay.stay_option3_name}/${stay.stay_option3_price}" class="form-check-input"<c:if test="${!empty view.reserv_option3_name}"> checked="checked"</c:if> /> 선택</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label"><input type="radio" name="reserv_option3_name" value="" class="form-check-input"<c:if test="${empty view.reserv_option3_name}"> checked="checked"</c:if> /> 안함</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                </c:if>
+                            </div>
                         </td>
                     </tr>
                     </c:if>
@@ -199,16 +243,16 @@ form_check = function(){
                         <th>픽업 여부</th>
                         <td colspan="3">
                             <div class="form-check form-check-inline">
-                                <label class="form-check-label"><input type="radio" name="reserv_pickup" value="reserv" class="form-check-input"<c:if test="${view.reserv_pickup == 'Y'}"> checked="checked"</c:if> /> 픽업 요청</label>
+                                <label class="form-check-label"><input type="radio" name="reserv_pickup" value="Y" class="form-check-input"<c:if test="${view.reserv_pickup == 'Y'}"> checked="checked"</c:if> /> 픽업 요청</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <label class="form-check-label"><input type="radio" name="reserv_pickup" value="cancel" class="form-check-input"<c:if test="${view.reserv_pickup == 'N'}"> checked="checked"</c:if> /> 요청 안함</label>
+                                <label class="form-check-label"><input type="radio" name="reserv_pickup" value="N" class="form-check-input"<c:if test="${view.reserv_pickup == 'N'}"> checked="checked"</c:if> /> 요청 안함</label>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <th>요청 사항</th>
-                        <td colspan="3"><textarea name="" cols="20" rows="4" class="form-control">${view.reserv_request.replace('<br />', newLine)}</textarea></td>
+                        <td colspan="3"><textarea name="reserv_request" cols="20" rows="4" class="form-control">${view.reserv_request.replace('<br />', newLine)}</textarea></td>
                     </tr>
                 </tbody>
             </table>

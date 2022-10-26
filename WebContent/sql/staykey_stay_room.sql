@@ -48,7 +48,7 @@ comment on column staykey_stay_room.room_photo5 is '방 사진5';
 comment on column staykey_stay_room.room_tag is '방 태그';
 
 insert into staykey_stay_room values(1, 1, '방 이름1', '간략 설명', '원룸형', 70000, '15:00', '11:00', 2, 6, 55, '싱글 침대 1', '/특징1/특징2/특징3/특징4/', '/어메니티1/어메니티2/어메니티3/어메니티4/', '/서비스1/서비스2/서비스3/', null, null, null, null, null, '/캡슐 베드/개인 락커/와이파이/');
-insert into staykey_stay_room values(2, 2, '방 이름2', '간략 설명', '복층형', 120000, '15:00', '11:00', 2, 6, 55, '더블 침대 1, 싱글 침대 1', '/특징1/특징2/특징3/특징4/', '/어메니티1/어메니티2/어메니티3/어메니티4/', '/서비스1/서비스2/서비스3/', null, null, null, null, null, '/온돌/금고/와이파이/');
+insert into staykey_stay_room values(2, 1, '방 이름2', '간략 설명', '복층형', 120000, '15:00', '11:00', 2, 6, 55, '더블 침대 1, 싱글 침대 1', '/특징1/특징2/특징3/특징4/', '/어메니티1/어메니티2/어메니티3/어메니티4/', '/서비스1/서비스2/서비스3/', null, null, null, null, null, '/온돌/금고/와이파이/');
 insert into staykey_stay_room values(3, 1, '방 이름3', '간략 설명', '거실형', 90000, '15:00', '11:00', 2, 6, 55, '더블 침대 1', '/특징1/특징2/특징3/특징4/', '/어메니티1/어메니티2/어메니티3/어메니티4/', '/서비스1/서비스2/서비스3/', null, null, null, null, null, '/와이파이/대욕탕/샴페인/');
 
 commit;
