@@ -112,7 +112,8 @@ public class MagazineDAO {
     // ======================================================
 
     	public List<MagazineDTO> magazineList(int page, int rowsize, Map<String, Object> map) {
-        List<MagazineDTO> list = new ArrayList<MagazineDTO>();
+        
+    		List<MagazineDTO> list = new ArrayList<MagazineDTO>();
 
         int startNo = (page * rowsize) - (rowsize - 1);
         int endNo = (page * rowsize);
