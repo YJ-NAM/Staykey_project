@@ -41,7 +41,7 @@ public class AdminMagazineWriteOkAction implements Action {
         // 파라미터 정리
         String mag_title = multi.getParameter("mag_title");
         String mag_content = multi.getParameter("mag_content").trim();
-        String mag_youtube = multi.getParameter("mv_the_origin_url").trim();
+        String mag_youtube = multi.getParameter("mag_youtube").trim();
         String mag_stayno = multi.getParameter("mag_stayno").trim();
         String mag_map = multi.getParameter("mag_map").trim();
         String mag_name = multi.getParameter("mag_name").trim();

@@ -110,16 +110,30 @@
 
       
                 <td>
-                        <a href="<%=request.getContextPath()%>/admin/magazineView.do?stayno=${dto.bbs_stayno }">
+                        <a href="<%=request.getContextPath()%>/admin/magazineView.do?bbs_no=${dto.bbs_no }">
                        <p><b>${dto.bbs_writer_id }</b></p>
                         <p>${dto.bbs_writer_name }</p>
                     </a>
                 </td>
                 
-                <td>${dto.bbs_title }</td>
-                <td>${dto.bbs_content }</td>
-
-
+                <td> 
+                	<a href="<%=request.getContextPath()%>/admin/magazineView.do?bbs_no=${dto.bbs_no }"> ${dto.bbs_title }</a> 
+               	</td>
+                
+                
+                <td>
+                	<a href="<%=request.getContextPath()%>/admin/magazineView.do?bbs_no=${dto.bbs_no }">
+	              		<c:if test="${dto.bbs_content.length() < 20}"> ${dto.bbs_content }</c:if>
+	              	
+	              		<c:if test="${dto.bbs_content.length() >= 20 }">
+	                <p>
+	                	${dto.bbs_content.substring(0,10) } <br>
+	                	${dto.bbs_content.substring(10,20) }
+                 	</p> 
+						</c:if>
+					</a>
+				</td>
+				
                 <td class="photo">
                     <a href="<%=request.getContextPath()%>/admin/magazineView.do?stayno=${dto.bbs_stayno }">
                         <c:choose>
@@ -145,9 +159,11 @@
                 <td>${dto.bbs_hit }</td>
      
                 <td>
-                <a href="<%=request.getContextPath()%>/admin/magazineModify.do?id=${dto.bbs_stayno}" class="btn btn-sm btn-outline-primary m-1">수정</a>
-                <a href="<%=request.getContextPath()%>/admin/magazineDeleteOk.do?id=${dto.bbs_stayno}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-                </td>                
+               		 <a href="<%=request.getContextPath()%>/admin/magazineModify.do?bbs_no=${dto.bbs_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
+               		 <a href="<%=request.getContextPath()%>/admin/magazineDeleteOk.do?bbs_no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                </td>
+                
+
                 
             </tr>
             </c:forEach>
