@@ -577,26 +577,32 @@ public class StayDAO {
 			if (rs.next()) {
 				count = rs.getInt(1) + 1;
 			}
+			
+			System.out.println(count);
 
-			sql = "insert into staykey_stay_room values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = "insert into staykey_stay_room values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, count);
 			pstmt.setInt(2, dto.getRoom_stayno());
 			pstmt.setString(3, dto.getRoom_name());
 			pstmt.setString(4, dto.getRoom_desc());
-			pstmt.setString(5, dto.getRoom_checkin());
-			pstmt.setString(6, dto.getRoom_checkout());
-			pstmt.setInt(7, dto.getRoom_people_min());
-			pstmt.setInt(8, dto.getRoom_people_max());
-			pstmt.setInt(9, dto.getRoom_size());
-			pstmt.setString(10, dto.getRoom_features());
-			pstmt.setString(11, dto.getRoom_amenities());
-			pstmt.setString(12, dto.getRoom_service());
-			pstmt.setString(13, dto.getRoom_photo1());
-			pstmt.setString(14, dto.getRoom_photo2());
-			pstmt.setString(15, dto.getRoom_photo3());
-			pstmt.setString(16, dto.getRoom_photo4());
-			pstmt.setString(17, dto.getRoom_photo5());
+			pstmt.setString(5, dto.getRoom_type());
+			pstmt.setInt(6, dto.getRoom_price());
+			pstmt.setString(7, dto.getRoom_checkin());
+			pstmt.setString(8, dto.getRoom_checkout());
+			pstmt.setInt(9, dto.getRoom_people_min());
+			pstmt.setInt(10, dto.getRoom_people_max());
+			pstmt.setInt(11, dto.getRoom_size());
+			pstmt.setString(12, dto.getRoom_bed());
+			pstmt.setString(13, dto.getRoom_features());
+			pstmt.setString(14, dto.getRoom_amenities());
+			pstmt.setString(15, dto.getRoom_service());
+			pstmt.setString(16, dto.getRoom_photo1());
+			pstmt.setString(17, dto.getRoom_photo2());
+			pstmt.setString(18, dto.getRoom_photo3());
+			pstmt.setString(19, dto.getRoom_photo4());
+			pstmt.setString(20, dto.getRoom_photo5());
+			pstmt.setString(21, dto.getRoom_tag());
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
