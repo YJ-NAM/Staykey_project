@@ -79,7 +79,7 @@ public class AdminStayRoomWriteOkAction implements Action {
         service_sum = "/" + service_sum;
         
         String room_tag = multi.getParameter("room_tag");
-        System.out.println(room_tag.toString());
+        System.out.println("tag 값" + room_tag);
 
         dto.setRoom_stayno(stay_stayNo);
         dto.setRoom_name(room_name);

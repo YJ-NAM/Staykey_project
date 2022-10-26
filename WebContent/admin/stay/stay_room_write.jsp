@@ -12,6 +12,7 @@
 		const remainTag = document.querySelector('.details span');
 		let maxTags = 4;
 		let tags = []; // 태그 값 저장할 배열 선언
+		let tagsSum = ""; // 마지막 출력 값
 
 		countTag();
 
@@ -45,6 +46,7 @@
 				tagContainer.prepend(input);
 			})
 			countTag();
+			
 		};
 
 		// keyup 시 input 박스 생성 event
@@ -72,18 +74,18 @@
 		// 남은 태그 개수 확인
 		function countTag() {
 			remainTag.innerText = maxTags - tags.length; // 최대 개수 - 배열 길이
+			
 		}
-
-		// tag 값 전달하기 위한 함수
-		function returnVal(tags) {
-			let tagsVal = "";
+	
+		// DB 넘기기 위한 value 값 저장
+		// 작동 안 됨 함수는 됨... 조건이 이상한 듯 
+		function sendTag() {
 			for(let i=0; i<tags.length; i++){
-				tagsVal += tags[i] + "/";
+				tagsSum += tags[i].slice(0, -1); + "/";
 			}
-			return tagsVal;
+			alert(tagsSum);
+			document.querySelector('#room_tag').value = tagsSum;
 		}
-
-		document.getElementById('room_tag').value = returnVal(tags);
 	}
 
 </script>
@@ -137,7 +139,7 @@
 	<hr />
 	<h4>방 등록하기</h4>
 	<hr />
-	<form action="${ pageContext.request.contextPath }/admin/stayRoomWriteOk.do" enctype="multipart/form-data" method="post">
+	<form action="${ pageContext.request.contextPath }/admin/stayRoomWriteOk.do" enctype="multipart/form-data" method="post" >
 	<input type="hidden" name="stayNo" value="${ param.stay_no }" /> <!-- 숙소 번호 -->
 	<input type="hidden" name="room_tag" id="room_tag" value=""> <!-- tag 값 받아오기 위함 -->
 	<table>
@@ -259,9 +261,9 @@
 		    <td>
 			    <div class="container">
 			    	태그를 입력한 후 스페이스 바를 누르세요.
-			    	<div class="tag-container">
+			    	<div class="tag-container" >
 			    		<!-- 글자 입력 시 placeholder 사라짐 -->
-			    		<input type="text" placeholder="한 태그 당 최대 4글자까지 입력 가능합니다." onfocus="this.placeholder=''" />
+			    		<input type="text" placeholder="한 태그 당 최대 4글자까지 입력 가능합니다." onfocus="this.placeholder=''" onchange="sendTag();" />
 			    	</div>	
 			    	<div class="details">
 			    		<p>등록 가능한 태그 : <span>4</span></p>
