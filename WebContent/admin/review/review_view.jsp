@@ -21,12 +21,14 @@
         <div class="col-lg mb-4">
             <div class="card">
                 <div class="card-body p-4">
-
-                    <h2>
-                    	<p><i class="fa fa-home" aria-hidden="true"></i>${dto.review_stayname}</p>
-                    	<span>${dto.review_roomname}</span>
-                   	</h2>
-
+					
+					<div>
+	                    <h2 class="text-muted"> 
+	                    	<i class="fa fa-home " aria-hidden="true"></i>${dto.review_stayname}
+	                    	<span> (${dto.review_roomname})</span>
+	                   	</h2>
+					</div>
+					
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
                         	<i class="fa fa-user text-primary" aria-hidden="true"></i> <b class="text-primary">작성자 </b><b>: ${dto.review_name} &nbsp; &nbsp;</b>  
@@ -40,7 +42,7 @@
 
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
-                        	<b > 세부 평점 : 접근성</b> : ${dto.review_point1} / <b>서비스</b> : ${dto.review_point2} / <b>객실시설</b> : ${dto.review_point3} / <b>부대시설</b> : ${dto.review_point4} / <b>식음료</b> : ${dto.review_point5} / <b>만족도</b> : ${dto.review_point6}
+                        	<b> 세부 평점 : 접근성</b> : ${dto.review_point1} / <b>서비스</b> : ${dto.review_point2} / <b>객실시설</b> : ${dto.review_point3} / <b>부대시설</b> : ${dto.review_point4} / <b>식음료</b> : ${dto.review_point5} / <b>만족도</b> : ${dto.review_point6}
                         </div>
 
                         <div class="col text-right">
@@ -50,9 +52,10 @@
                     
 
                     
-                    <div class="d-flex py-2 border-bottom vfb-info">   
-                     	리뷰 내용 <br>        
-		                ${dto.review_content}
+                    <div class="d-flex py-2 border-bottom vfb-info ">   
+		              	<div> <span class="h4 text-primary">리뷰 내용</span> <br>
+		              		${dto.review_content}
+		                </div>
                     </div>
 
 					<c:if test="${!empty dto.review_file}">
