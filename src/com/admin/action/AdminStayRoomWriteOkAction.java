@@ -114,7 +114,7 @@ public class AdminStayRoomWriteOkAction implements Action {
 			if(file != null) { // value 값이 null이 아니면
 				String fileExt = file.toString().substring(file.toString().lastIndexOf(".") + 1); // 확장자 분리 
 				String fileRename = e.getKey() + "_original_" + System.currentTimeMillis() + "." +fileExt; // 파일 rename 
-				file.renameTo(new File(saveFolder + fileRename)); // 파일의 경로를 인자로 전달된 경로로 변경
+				file.renameTo(new File(saveFolder + fileRename)); // 파일 경로를 인자로 전달된 경로로 변경
 				map.replace(e.getKey(), thisFolder + fileRename); // 현재 key 값에 새로운 value 값을 map에 저장
 			}else {
 				map.replace(e.getKey(), ""); // null 값 처리 위함

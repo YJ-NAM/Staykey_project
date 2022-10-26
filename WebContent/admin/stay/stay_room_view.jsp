@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="col text-right">
-                     	   <c:forTokens items="${ room.room_tag }" delims="/" var="tag">
+                     	   <c:forTokens items="${ room.room_tag }" delims="," var="tag">
                       		<button style="border: 0.8px solid lightgray; padding: 1px; cursor: auto;" >#${tag}</button>			
 	                       </c:forTokens>
                         </div>
