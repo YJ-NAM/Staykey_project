@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="../layout/layout_header.jsp" />
+<jsp:include page="../layout/layout_header_popup.jsp" />
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -15,7 +15,7 @@
 
 		countTag();
 
-		// 태그 생성 메서드
+		// 태그 생성 함수
 		function createTag(label) {
 			const div = document.createElement('div'); // div 생성
 			div.setAttribute('class', 'tag'); // setAttribute : 속성이름, 속성값
@@ -139,7 +139,7 @@
 	<hr />
 	<form action="${ pageContext.request.contextPath }/admin/stayRoomWriteOk.do" enctype="multipart/form-data" method="post">
 	<input type="hidden" name="stayNo" value="${ param.stay_no }" /> <!-- 숙소 번호 -->
-	<input type="hidden" name="room_tag" id="room_tag" value="">
+	<input type="hidden" name="room_tag" id="room_tag" value=""> <!-- tag 값 받아오기 위함 -->
 	<table>
 		<tr>
 			<th>Room 이름</th><td><input type="text" name="room_name" /></td>
@@ -179,33 +179,7 @@
 			<th>객실면적</th><td><input type="number" name="room_size" />m<sup>2</sup></td>
 		</tr>
 		<tr>
-			<th>침대 타입</th>
-			<td>
-				싱글
-				<select name="room_bed" id="" >
-				<c:forEach begin="0" end="5" var="i">
-					<option value="싱글 ${ i }개">${ i }</option>
-				</c:forEach>
-				</select>
-				더블
-				<select name="room_bed" id="" >
-				<c:forEach begin="0" end="5" var="i">
-					<option value="더블 ${ i }개">${ i }</option>
-				</c:forEach>
-				</select>
-				퀸
-				<select name="room_bed" id="" >
-				<c:forEach begin="0" end="5" var="i">
-					<option value="퀸 ${ i }개">${ i }</option>
-				</c:forEach>
-				</select>
-				킹
-				<select name="room_bed" id="" >
-				<c:forEach begin="0" end="5" var="i">
-					<option value="킹 ${ i }개">${ i }</option>
-				</c:forEach>
-				</select>
-			</td>
+			<th>침대 타입</th><td><input type="text" name="room_bed" /></td>
 		</tr>
 		<tr>			
 			<th>FEATURES</th>
@@ -222,7 +196,7 @@
 				<label><input type="checkbox" name="room_features" value="픽업" /> 픽업</label>
 				<label><input type="checkbox" name="room_features" value="테라스" /> 테라스</label>
 				<label><input type="checkbox" name="room_features" value="독립 키친" /> 독립 키친</label>
-				<label><input type="checkbox" name="room_features" value="독립 화장실" /> 독립 화장</label>
+				<label><input type="checkbox" name="room_features" value="독립 화장실" /> 독립 화장실</label>
 				<label><input type="checkbox" name="room_features" value="빅테이블" /> 빅테이블</label>
 				<label><input type="checkbox" name="room_features" value="산책로" /> 산책로</label>
 				<label><input type="checkbox" name="room_features" value="웰컴티" /> 웰컴티</label>

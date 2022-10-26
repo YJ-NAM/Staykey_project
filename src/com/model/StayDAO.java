@@ -569,9 +569,8 @@ public class StayDAO {
 		openConn();
 
 		try {
-			sql = "select max(room_no) from staykey_stay_room where room_stayno = ?";
+			sql = "select max(room_no) from staykey_stay_room";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, dto.getRoom_stayno());
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
