@@ -65,15 +65,16 @@
 
 <table class="table-list hover">
         <colgroup>
-            <col width="4.5%">
-            <col width="7.2%">
-            <col width="7.2%">
+            <col width="5%">
             <col width="10%">
-            <col width="18%">
-            <col width="13.5%">
-            <col width="9%">
-            <col width="7.2%">
-            <col width="7.2%">
+            <col width="15%">
+            <col width="20%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="5%">
+            <col width="15%">
+            
             <col />
             <col width="10%">
         </colgroup>
@@ -100,39 +101,61 @@
   <tbody>  
             <c:choose>
             <c:when test="${!empty list }">
-            console.log('didi');
             <c:forEach items="${list}" var="dto">
-            console.log('안녕');
-            	console.log('${dto.bbs_writer_id }');
-            <tr>
-                <td>${dto.bbs_writer_id }
+            <tr> 
+                <td>${dto.bbs_no }
                     <a href="<%=request.getContextPath()%>/admin/magazineView.do?id=${dto.bbs_writer_id }">
                     </a>
                  </td>
 
       
                 <td>
-                        <a href="<%=request.getContextPath()%>/admin/magazineView.do?id=${dto.bbs_writer_id }">
+                        <a href="<%=request.getContextPath()%>/admin/magazineView.do?stayno=${dto.bbs_stayno }">
                        <p><b>${dto.bbs_writer_id }</b></p>
                         <p>${dto.bbs_writer_name }</p>
                     </a>
                 </td>
                 
-                
-               <%--  <td>${dto.getMember_email()}</td>
-                <td>${dto.getMember_phone()}</td>
-                <td><fmt:formatNumber value="${dto.getMember_point()}" />점</td>
-                <td><fmt:formatNumber value="${dto.getMember_reserv()}" />번</td>
-                <td>${dto.getMember_joindate().substring(0, 10)}<br />${dto.getMember_joindate().substring(11)}</td>
+                <td>${dto.bbs_title }</td>
+                <td>${dto.bbs_content }</td>
+
+
+                <td class="photo">
+                    <a href="<%=request.getContextPath()%>/admin/magazineView.do?stayno=${dto.bbs_stayno }">
+                        <c:choose>
+                        <c:when test="${!empty dto.bbs_file1 }"><img src="<%=request.getContextPath()%>${dto.bbs_file1 }" alt="" /></c:when>
+                        <c:otherwise>
+                      
+                  
+                        <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                            <title>${dto.bbs_stayno}</title>
+                            <rect width="100%" height="100%" fill="#eee"></rect>
+                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+                        </svg>
+                        
+                        
+                        </c:otherwise>
+                        </c:choose>
+                    </a>
+                </td>
+
+
+                <td>${dto.bbs_stayno }</td>
+                <td>${dto.bbs_date.substring(0,10) }</td>
+                <td>${dto.bbs_hit }</td>
+     
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/memberModify.do?id=${dto.getMember_id()}" class="btn btn-sm btn-outline-primary m-1">수정</a>
-                    <a href="<%=request.getContextPath()%>/admin/memberDeleteOk.do?id=${dto.getMember_id()}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-                </td> --%>
+                <a href="<%=request.getContextPath()%>/admin/magazineModify.do?id=${dto.bbs_stayno}" class="btn btn-sm btn-outline-primary m-1">수정</a>
+                <a href="<%=request.getContextPath()%>/admin/magazineDeleteOk.do?id=${dto.bbs_stayno}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                </td>
                 
                 
             </tr>
             </c:forEach>
             </c:when>
+
+
+
 
             <c:otherwise>
             <tr>
@@ -141,10 +164,6 @@
             </c:otherwise>
             </c:choose>
         </tbody>
-
-
-
-
 
 
 
