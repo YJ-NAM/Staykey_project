@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+@import url('http://https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css-bundle.css');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 @font-face {
@@ -36,7 +37,7 @@ body,
 code,
 pre {
     font-size: 14px;
-    font-family: 'Noto Sans KR', '맑은 고딕', 'Malgun Gothic', 'verdana', '굴림', 'Gulim', 'AppleGothic', 'sans-serif';
+    font-family: 'NotoSerifKR'; 
     color: #333;
     margin: 0;
     padding: 0;
@@ -46,14 +47,25 @@ ul,
 ol,
 dl,
 p,
-span,
-button {
+span
+     {
     margin: 0;
     padding: 0;
     border: 0 none;
 }
+
+div {
+    display: block;
+}
+button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
 li {
-    font-family: 'Noto Sans KR', '맑은 고딕', 'Malgun Gothic', 'verdana', '굴림', 'Gulim', 'AppleGothic', 'sans-serif';
+    font-family: 'NotoSerifKR';    
     list-style: none;
     color: #333;
 }
@@ -120,10 +132,122 @@ table td img {
 }
 
 
-
-
 h1, h2, h3, h4, h5 {
     font-weight: 600;
+}
+
+.container
+{
+    max-width: 1330px;
+    padding: 0 0px;
+}
+
+.container-wide{
+    max-width: 1800px;
+}
+
+.container .container-wide {
+    position: relative;
+    margin: 0 auto;
+}
+@media(max-width:1840px){
+    .container-wide {
+    width: 100%;
+    } 
+}
+
+#main-contents {
+    min-width: 1000px;
+    min-height: 800px;
+    display: block;
+    position: relative;
+    clear: both;
+}
+
+  .parallax-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130%;
+    height: fit-content;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .swiper-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #fefefe;
+  }
+
+  .swiper-slide {
+    font-size: 18px;
+    color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 0;
+  }
+
+  .swiper-slide .title {
+    font-family: 'NotoSerifKR';
+    text-align: center;
+    font-size: 20px;
+    font-weight: 300;
+    color: #000;
+  }
+
+  .swiper-slide .subtitle {
+    word-break: keep-all;
+    font-size: 12px;
+    color: #800000;
+  }
+
+  .swiper-slide .more {
+    font-size: 14px;
+    max-width: 400px;
+    line-height: 1.3;
+  }
+
+.swiper-slide .img{
+    background-size:auto;
+    background-position: 50%;
+}
+
+.swiper-slide-duplicate{
+    display: none;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.stay-list .stay-box {
+    position: relative;
+    padding: 0 0 60px 30px;
+    text-align: center;
+}
+
+.stay-list .stay-box .other{
+
+}
+
+.stay-list .stay-box .btn-more{
+    position: absolute;
+    top: 200px;
+    right: 15px;
+    z-index: 1;
+}
+
+
+.sec-title{
+
 }
 
 .e_date {
@@ -138,20 +262,14 @@ h1, h2, h3, h4, h5 {
     background-color: #FFE4E1;
 
 }
-
-.swiper-wrapper {
-
-}
-
-.swiper-slide{
-
-}
-
-.swiper-slide .img{
-
-}
-
 .more{
+    font-size: 12px;
+    color: #800000;
+    line-height: 30px;
+    letter-spacing: 1.5px;
+    display: inline-block;
+    font-family: 'NotoSerifKR';
+    border-bottom: 1px solid #800000;
 
 }
 
@@ -301,7 +419,7 @@ h1, h2, h3, h4, h5 {
 
 
 }
-.header .h-wrap{
+.header .h-wrap {
     display: flex;
     align-items: center;
     position: relative;
@@ -386,11 +504,11 @@ h1, h2, h3, h4, h5 {
 }
 
 
-.header .h-wrap .h-nav ul{
+.header .h-wrap .h-nav ul {
     display: block;
 }
 
-.header .h-wrap .h-nav ul li a{
+.header .h-wrap .h-nav ul li a {
     align-items: center;
     margin: 20px;
     padding: 20px;
@@ -652,103 +770,178 @@ h1, h2, h3, h4, h5 {
 
 /*************************/
 /* 메인 페이지
-/*************************/
+/************************/
+
+.main-contents{
+    min-height: 800px;
+}
 @media(min-width:1200px){
     .container {
     min-width: 1200px;
     } 
 }
 
-.container .container-main{
-    width: 100%;
+.main-visual {
+     margin: 0 auto;
 }
 
-.container-main .container-main-swiper{
-    margin-left: auto;
-    margin-right: auto;
+
+.main-visual .swiper-button-prev {
     position: relative;
-    overflow: hidden;
-        overflow-y: 0;
-        overflow-x: 0;
-    list-style: none;
-    z-index: 1;
-}
-
-.container-main-swiper .swiper-button-prev{
-    position: absolute;
-    top: inherit;
+    top: auto;
     left: 80px;
     width: 10px;
     height: 20px;
     bottom: 30px;
-    padding-right: 25px;
-    border-right: 1px solid transparent;
+    padding-right: 80%;
 }
 
-.container-main-swiper .swiper-button-next{
-    position: absolute;
-    top: inherit;
+.main-visual .swiper-button-next {
+    position: relative;
+    top: auto;
     left: 180px;
     width: 10px;    
     height: 20px;
     bottom: 30px;
-    padding-right: 40px;
+    padding-right: 80%;
     z-index: 2;
 }
 
-.container-main-swiper .swiper-wrapper {
+.main-visual .swiper-pagination {
+    text-align: center;
+    font-size: 18px;
+    color: #D3D3D3;
+    position: absolute;
+    font-family: 'NotoSerifKR';
+    line-height: 100px;
+    bottom: 0;
+    left: 0;
+
+}
+
+.main-visual .swiper-button-next,
+.main-visual .swiper-button-prev,
+.main-visual .swiper-pagination {
+    display: block;
+}
+
+.main-visual ul .slider-box{
     position: relative;
     width: 100%;
-    height: 100%;
-    flex-shrink: 0;
 }
 
-.container-main-swiper .swiper-wrapper .swiper-slide {
-    list-style: none;
-    width:100%;
+.main-visual ul .swiper-slide {
+    position: relative;
+    width: 100%;
 }
 
+.main-visual ul img {
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.main-visual .stay-info{
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    text-align: center;
+    background-color: #fefefe;
+    opacity: 40%;
+    top: 15%;
+    margin-left: 40%;
+    padding: 60px 0;
+    
+
+}
+
+.main-visual .logo{
+    text-align: center;
+} 
+
+
+.main-visual .stay-info .text{
+    margin-top: 30px;
+    font-size: 17px;
+    color: #800000;
+    line-height: 1.5;
+}
+
+.main-visual .stay-info .event{
+    font-size: 13px;
+    color: #800000;
+    font-weight: 500;
+    font-family: 'NotoSerifKR';
+    letter-spacing: 5px;
+    margin: 30px 0 20px;
+}
+
+
+.main-visual .bg-paper{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+}
 
 /*************************/
 /* 메인 페이지 - 신규업체 
 /*************************/
 
-.container-main-new {
-    position: relative;
-    width: 50%;
-    height: 50%;
+.main-new {
+    margin: 110px auto 0;
+}
+
+.main-new  #new-container{
+    display: block;
     margin-left: 30px;
 }
 
-.container-main-new .new-title {
+.main-new .sec-title {
+    letter-spacing: 10px;
+    margin-bottom: 50px;
+    text-align: center;
     font-family: 'NotoSerifKR';
     font-size: 17px;
 }
 
-.container-main-new .stay-list {
+.main-new .stay-list {
     box-sizing: border-box;
 }
 
-.container-main-new .stay-list .swiper-button-prev {
+.main-new .stay-list .swiper-button-prev {
     top: inherit;
     left: 50%;
     margin-left: 40px;
+    background-position: 0 -15px;
     bottom: -1px;
     width: 10px;
     height: 20px;
+    z-index: 11;
 }
 
-.container-main-new .stay-list .swiper-button-next {
+.main-new .stay-list .swiper-button-next {
     top: inherit;
-    left: 50%;
+    right: inherit;
+    left: 180px;
     margin-left: 60px;
     bottom: -1px;
     width: 10px;
     height: 20px;
+    z-index: 11;
+    background-position: 0 0;
 }
 
-.container-main-new .stay-list .swiper-wrapper {
+.main-new .stay-list .swiper-wrapper {
+
     box-sizing: content-box;
+}
+
+.main-new .stay-list .swiper-pagination {
+    font-size: 17px;
+    line-height: 100px;
+    text-align: center;
 }
 
 
@@ -758,35 +951,46 @@ h1, h2, h3, h4, h5 {
 /*************************/
 
 .container-main-banner {
+    position: relative;
+    margin-top: 150px;
+    margin: 0 auto;
+
 }
 
 .banner-wrap {
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    height: 350px;
+    width: 100%;
+    text-align: center;
 }
 
 /*************************/
 /* 메인 페이지 - 프로모션 
 /*************************/
 
-.container-main-promo{
+.container-main-promo {
 
 }
 
-.container-main-promo .promo-title{
+.container-main-promo .sec-title {
 
 }
 
-.container-main-promo .stay-list{
+.container-main-promo .promo-stay-section {
 
 }
 
-.container-main-promo .swiper-button-prev{
+.container-main-promo .swiper-button-prev {
 
 }
 
 .container-main-promo .swiper-button-next {
 
 }
+
 
 .container-main-promo .swiper-pagination{
 
@@ -796,11 +1000,11 @@ h1, h2, h3, h4, h5 {
 
 }
 
-.container-main-promo .stay-list ul .img{
+.container-main-promo .stay-list ul .img {
 
 }
 
-.container-main-promo .stay-list ul .tit{
+.container-main-promo .stay-list ul .tit {
 
 }
 
@@ -808,10 +1012,9 @@ h1, h2, h3, h4, h5 {
 
 }
 
-.container-main-promo .stay-list ul .info{
+.container-main-promo .stay-list ul .info {
 
 }
-
 
 
 
@@ -819,27 +1022,27 @@ h1, h2, h3, h4, h5 {
 /* 메인 페이지 - 이벤트 
 /*************************/
 
-.container-main-event{
+.container-main-event {
 
 }
 
-.event-title{
+.container-main-event .sec-title {
 
 }
 
-.container-main-event .swiper-container{
+.container-main-event .swiper-container {
 
 }
 
-.container-main-event .swiper-button-prev{
+.container-main-event .swiper-button-prev {
 
 }
 
-.container-main-event .swiper-button-next{
+.container-main-event .swiper-button-next {
 
 }
 
-.container-main-event .swiper-pagination{
+.container-main-event .swiper-pagination {
 
 }
 
@@ -847,19 +1050,19 @@ h1, h2, h3, h4, h5 {
 /* 메인 페이지 - 매거진
 /*************************/
 
-.container-main-magazine{
+.container-main-magazine {
 
 }
 
-.container-main-magazine .main-magazine-banner{
+.container-main-magazine .main-magazine-banner {
 
 }
 
-.container-main-magazine .swiper-button-prev{
+.container-main-magazine .swiper-button-prev {
 
 }
 
-.container-main-magazine .swiper-button-next{
+.container-main-magazine .swiper-button-next {
 
 }
 
@@ -867,31 +1070,31 @@ h1, h2, h3, h4, h5 {
 
 }
 
-.container-main-magazine ul .slider-box{
+.container-main-magazine ul .slider-box {
 
 }
 
-.container-main-magazine ul .img{
+.container-main-magazine ul .img {
 
 }
 
-.container-main-magazine .stay-info{
+.container-main-magazine .stay-info {
 
 }
 
-.container-main-magazine .stay-info .logo{
+.container-main-magazine .stay-info .logo {
 
 }
 
-.container-main-magazine .stay-info .text{
+.container-main-magazine .stay-info .text {
 
 }
 
-.container-main-magazine .stay-info .magazine{
+.container-main-magazine .stay-info .magazine {
 
 }
 
-.container-main-magazine .stay-info .more{
+.container-main-magazine .stay-info .more {
 
 }
 
@@ -899,22 +1102,33 @@ h1, h2, h3, h4, h5 {
 
 }
 
-.container-main-magazine .bg-paper{
+.container-main-magazine .bg-paper {
     
 }
 /*************************/
 /* 메인 페이지 - 추천 
 /*************************/
 
-.container-main-travel{
+.container-main-travel {
 
 }
 
-.container-main-travel .travel-title{
+.container-main-travel .sec-title {
 
 }
 
-.container-main-travel .stay-list{
+.container-main-travel .stay-list {
 
 }
 
+.container-main-travel .stay-list .stay-box {
+
+}
+
+.container-main-travel .stay-list .stay-box .img {
+
+}
+
+.container-main-travel .stay-list .stay-box .text {
+
+}
