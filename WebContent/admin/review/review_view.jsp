@@ -29,8 +29,8 @@
 
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
-                        	<i class="fa fa-user" aria-hidden="true"></i> ${dto.review_name}
-                        	Id : ${dto.review_id}
+                        	<i class="fa fa-user text-primary" aria-hidden="true"></i> <b class="text-primary">작성자 </b><b>: ${dto.review_name} &nbsp; &nbsp;</b>  
+                        	<b class="text-primary"> ID </b><b>: ${dto.review_id}</b>
                         </div>
 
                         <div class="col text-right">
@@ -40,19 +40,20 @@
 
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
-                        	<i class="icon-magnifier"></i><b>평점 : ${dto.review_point_total}점</b>
+                        	<b > 세부 평점 : 접근성</b> : ${dto.review_point1} / <b>서비스</b> : ${dto.review_point2} / <b>객실시설</b> : ${dto.review_point3} / <b>부대시설</b> : ${dto.review_point4} / <b>식음료</b> : ${dto.review_point5} / <b>만족도</b> : ${dto.review_point6}
                         </div>
 
                         <div class="col text-right">
-                        	<i class="fa fa-bar-chart" aria-hidden="true"></i> 세부 평점 : <b>접근성</b> : ${dto.review_point1}점, <b>서비스</b> : ${dto.review_point2}점, <b>객실시설</b> : ${dto.review_point3}점 <b>부대시설</b> : ${dto.review_point4}점, <b>식음료</b> : ${dto.review_point5}점, <b>만족도</b> : ${dto.review_point6}점
+                        	<div class="pl-3 text-danger"><b>합계 평점 : ${dto.review_point_total}점</b></div>
                         </div>
                     </div>
                     
-                                       
-                    <h2 class="col text-right">          	
-    	                <p>리뷰 내용</p>
-	                    <span>${dto.review_content}</span>
-                    </h2>
+
+                    
+                    <div class="d-flex py-2 border-bottom vfb-info">   
+                     	리뷰 내용 <br>        
+		                ${dto.review_content}
+                    </div>
 
 					<c:if test="${!empty dto.review_file}">
                     <div class="d-flex py-3 border-bottom">
