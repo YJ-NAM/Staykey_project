@@ -39,7 +39,7 @@
     </table>
 
     <div class="text-center mb-5">
-        <a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}" class="btn btn-outline-secondary"><i class="fa fa-power-off"></i> 검색 초기화</a>
+        <a href="<%=request.getContextPath()%>/admin/reviewList.do" class="btn btn-outline-secondary"><i class="fa fa-power-off"></i> 검색 초기화</a>
         <button type="submit" class="btn btn-secondary mx-2"><i class="fa fa-search"></i> 후기 검색</button>
     </div>
     </form>
