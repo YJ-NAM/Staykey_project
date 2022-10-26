@@ -118,10 +118,13 @@
                 <td><p>${dto.review_point_total}</p></td>
                 <td>
                 	<a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">
-              		 <p>${dto.review_content.substring(0,10)} <br>
-              		 	${dto.review_content.substring(10,20)}
-              		 </p>
-              		 a
+	              		 <c:if test="${dto.review_content.length() < 20}">${dto.review_content}</c:if>
+	              		 <c:if test="${dto.review_content.length() >= 20}">
+		              		 <p>${dto.review_content.substring(0,10)} <br>
+		              		 	${dto.review_content.substring(10,20)}
+		              		 </p>
+	              		 </c:if>
+              		 </a>
                 </td>
                 <td>
                 	<p><b>${dto.review_name}</b></p>
