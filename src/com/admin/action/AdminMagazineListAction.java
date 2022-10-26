@@ -20,21 +20,22 @@ public class AdminMagazineListAction implements Action {
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 매거진 목록 처리 클래스
 
-    	  MagazineDAO dao = MagazineDAO.getInstance();
+          MagazineDAO dao = MagazineDAO.getInstance();
 
           // 뷰에 전달할 매개변수 저장용 맵 생성
           Map<String, Object> map = new HashMap<String, Object>();
-
 
           // 검색용 변수들 정의
           String mg_stayno = "";
           String mg_date = "";
           String mg_title = "";
           String ps_order = "";
+
           if(request.getParameter("mg_stayno") != null){ mg_stayno = request.getParameter("mg_stayno").trim(); }else{ mg_stayno = ""; }
           if(request.getParameter("mg_date") != null){ mg_date = request.getParameter("mg_date").trim(); }else{ mg_date = ""; }
           if(request.getParameter("mg_title") != null){ mg_title = request.getParameter("mg_title").trim(); }else{ mg_title = ""; }
           if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "bbs_date_desc"; }
+
 
           // 뷰에 전달할 매개변수 추가
           map.put("mg_stayno", mg_stayno);

@@ -48,6 +48,7 @@
                         </div>
                     </div>
                     
+                                       
                     <h2 class="col text-right">          	
     	                <p>리뷰 내용</p>
 	                    <span>${dto.review_content}</span>
