@@ -246,7 +246,92 @@ public class MagazineDAO {
 
             return result;
         }
-
     	
+        /////////////////////////////////////////////////////////////
+    	// 매거진 상세 목록 조회
+    	/////////////////////////////////////////////////////////////
+        
+        public MagazineDTO getMagView(int no) {
+        	
+        	MagazineDTO dto = null;
+        	
+        	openConn();
+        	
+        	try {
+        		sql = "select * from staykey_magazine where bbs_no = ?";
+        		
+        		pstmt = con.prepareStatement(sql);
+        		
+        		pstmt.setInt(1, no);
+        		
+        		rs = pstmt.executeQuery();
+        		
+        		while(rs.next()) {
+        			dto = new MagazineDTO();
+        			
+        			dto.setBbs_no(rs.getInt("bbs_no"));
+        			dto.setBbs_title(rs.getString("bbs_title"));
+        			dto.setBbs_content(rs.getString("bbs_content"));
+        			dto.setBbs_youtube(rs.getString("bbs_youtube"));
+        			dto.setBbs_file1(rs.getString("bbs_file1"));
+        			dto.setBbs_file2(rs.getString("bbs_file2"));
+        			dto.setBbs_file3(rs.getString("bbs_file3"));
+        			dto.setBbs_file4(rs.getString("bbs_file4"));
+        			dto.setBbs_file5(rs.getString("bbs_file5"));
+        			dto.setBbs_stayno(rs.getString("bbs_stayno"));
+        			dto.setBbs_map(rs.getString("bbs_map"));
+        			dto.setBbs_hit(rs.getInt("bbs_hit"));
+        			dto.setBbs_writer_name(rs.getString("bbs_writer_name"));
+        			dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
+        			dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
+        			dto.setBbs_date(rs.getString("bbs_date"));
+        			
+        		}
+        			
+        			
+        			
+        		} catch (SQLException e) {
+        			// TODO Auto-generated catch block
+        			e.printStackTrace();
+        		} finally {
+        			closeConn(rs, pstmt, con);
+        		}
+        	
+        		return dto;
+        		
+        	} // 메서드 종료
+        		
+        	
+        
+        /////////////////////////////////////////////////////////////
+    	// 매거진 삭제 메서드 + No 재작업
+    	/////////////////////////////////////////////////////////////
+        
+        
+        public int deleteMag(int no) {
+    		int result = 0;
+    		openConn();
+    		
+    		try {
+    			sql = "delete from staykey_magazine where bbs_no = ?";
+    			pstmt = con.prepareStatement(sql);
+    			pstmt.setInt(1, no);
+    			result = pstmt.executeUpdate();
+    						
+    			sql = "update staykey_magazine set bbs_no = bbs_no - 1 where bbs_no > ?";
+    			pstmt = con.prepareStatement(sql);
+    			pstmt.setInt(1, no);
+    			pstmt.executeUpdate();
+    			
+    		} catch (SQLException e) {
+    			e.printStackTrace();
+    		} finally {
+    			closeConn(rs, pstmt, con);
+    		}	
+    		
+    		return result;
+    		
+    	} // deleteMag() 종료
+        	
 
 }

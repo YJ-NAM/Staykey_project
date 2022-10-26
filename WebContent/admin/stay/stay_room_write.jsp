@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="../layout/layout_header.jsp" />
+<jsp:include page="../layout/layout_header_popup.jsp" />
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -15,7 +15,7 @@
 
 		countTag();
 
-		// 태그 생성 메서드
+		// 태그 생성 함수
 		function createTag(label) {
 			const div = document.createElement('div'); // div 생성
 			div.setAttribute('class', 'tag'); // setAttribute : 속성이름, 속성값
@@ -30,7 +30,7 @@
 			// div return
 		};
 
-		// div 내 class='tag'로 생성된 
+		
 		function reset() {
 			document.querySelectorAll('.tag').forEach(function(tag) {
 				tag.parentElement.removeChild(tag);
@@ -50,7 +50,7 @@
 		// keyup 시 input 박스 생성 event
 		input.addEventListener('keyup', function(e) {
 			if(e.keyCode == 32) { // 스페이스 바
-				if(input.value.length < 6 && !tags.includes(input.value) && (tags.length < 4)){ // 글자수 조정 & 중복된 태그 없도록 설정
+				if(input.value.length < 6 && !tags.includes(input.value) && (tags.length < 4)){ // 글자수 조정 & 중복된 태그 없도록 & 최대 등록 개수 설정
 					tags.push(input.value); // 배열에 input.value 값 저장
 					addTags(); 
 				}
@@ -73,6 +73,17 @@
 		function countTag() {
 			remainTag.innerText = maxTags - tags.length; // 최대 개수 - 배열 길이
 		}
+
+		// tag 값 전달하기 위한 함수
+		function returnVal(tags) {
+			let tagsVal = "";
+			for(let i=0; i<tags.length; i++){
+				tagsVal += tags[i] + "/";
+			}
+			return tagsVal;
+		}
+
+		document.getElementById('room_tag').value = returnVal(tags);
 	}
 
 </script>
@@ -128,6 +139,7 @@
 	<hr />
 	<form action="${ pageContext.request.contextPath }/admin/stayRoomWriteOk.do" enctype="multipart/form-data" method="post">
 	<input type="hidden" name="stayNo" value="${ param.stay_no }" /> <!-- 숙소 번호 -->
+	<input type="hidden" name="room_tag" id="room_tag" value=""> <!-- tag 값 받아오기 위함 -->
 	<table>
 		<tr>
 			<th>Room 이름</th><td><input type="text" name="room_name" /></td>
@@ -138,7 +150,7 @@
 		<tr>
 			<th>방 타입</th>
 			<td>
-				<label><input type="radio" name="room_type" value="기본형" /> 기본형</label>
+				<label><input type="radio" name="room_type" value="기본형" checked="checked" /> 기본형</label>
 				<label><input type="radio" name="room_type" value="거실형" /> 거실형</label>
 				<label><input type="radio" name="room_type" value="독채형" /> 독채형</label>
 				<label><input type="radio" name="room_type" value="원룸형" /> 원룸형</label>
@@ -149,7 +161,7 @@
 		</tr>
 		<tr>
 			<th>가격</th>
-			<td><input type="text" name="room_price" /></td>
+			<td><input type="text" name="room_price" />원</td>
 		</tr>
 		<tr>
 			<th>체크인 시간</th><td><input type="time" name="room_checkin" /></td>
@@ -166,6 +178,9 @@
 		<tr>			
 			<th>객실면적</th><td><input type="number" name="room_size" />m<sup>2</sup></td>
 		</tr>
+		<tr>
+			<th>침대 타입</th><td><input type="text" name="room_bed" /></td>
+		</tr>
 		<tr>			
 			<th>FEATURES</th>
 			<td>
@@ -181,7 +196,7 @@
 				<label><input type="checkbox" name="room_features" value="픽업" /> 픽업</label>
 				<label><input type="checkbox" name="room_features" value="테라스" /> 테라스</label>
 				<label><input type="checkbox" name="room_features" value="독립 키친" /> 독립 키친</label>
-				<label><input type="checkbox" name="room_features" value="독립 화장실" /> 독립 화장</label>
+				<label><input type="checkbox" name="room_features" value="독립 화장실" /> 독립 화장실</label>
 				<label><input type="checkbox" name="room_features" value="빅테이블" /> 빅테이블</label>
 				<label><input type="checkbox" name="room_features" value="산책로" /> 산책로</label>
 				<label><input type="checkbox" name="room_features" value="웰컴티" /> 웰컴티</label>
@@ -245,7 +260,8 @@
 			    <div class="container">
 			    	태그를 입력한 후 스페이스 바를 누르세요.
 			    	<div class="tag-container">
-			    		<input type="text" name="room_tag" placeholder="한 태그 당 최대 4글자까지 입력 가능합니다." onfocus="this.placeholder=''" />
+			    		<!-- 글자 입력 시 placeholder 사라짐 -->
+			    		<input type="text" placeholder="한 태그 당 최대 4글자까지 입력 가능합니다." onfocus="this.placeholder=''" />
 			    	</div>	
 			    	<div class="details">
 			    		<p>등록 가능한 태그 : <span>4</span></p>

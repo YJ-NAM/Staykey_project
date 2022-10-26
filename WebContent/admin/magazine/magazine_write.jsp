@@ -42,18 +42,12 @@
         </tr>
 
 
-		<tr>
-		      <th scope="row">유튜브 주소 ID</th>
-		      <td>  
-		          <div>
-		              <span class="line_h35">https://youtu.be/  </span>
-		              <input type="text" name="mv_the_origin_url" id="mv_the_origin_url" style="width:150px"/>
-		          </div>  
-		          <p class="mt_10">*ID를 정확히 입력해야 Player 및 썸네일 이미지가 정상적으로 출력이 됩니다.</p>
-		          <p>유튜브 주소 ID를 입력하지 않으면 기존에 등록한 썸네일 이미지로 출력이 됩니다.</p>
-		              
-		      </td>
-		  </tr>
+
+        <tr>
+            <th>유튜브 주소</th>
+                 <td colspan="3"><textarea name="mag_youtube" cols="80" rows="5"></textarea></td>
+        </tr>
+        
     
     
     	<tr>
@@ -105,8 +99,8 @@
         <tr>
             <th>지도</th>
                  <td colspan="3"><textarea name="mag_map" cols="80" rows="5"></textarea></td>
-            </td>
         </tr>
+        
         
         <tr>
             <td colspan="4" class="space" nowrap="nowrap"></td>
