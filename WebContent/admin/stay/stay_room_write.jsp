@@ -9,29 +9,32 @@
 
 		const tagContainer = document.querySelector('.tag-container');
 		const input = document.querySelector('.tag-container input');
-		let tags = [];
+		let tags = []; // 태그 값 저장할 배열 선언
 
-
+		// 태그 생성 메서드
 		function createTag(label) {
-			const div = document.createElement('div');
-			div.setAttribute('class', 'tag');
-			const span = document.createElement('span');
+			const div = document.createElement('div'); // div 생성
+			div.setAttribute('class', 'tag'); // setAttribute : 속성이름, 속성값
+			const span = document.createElement('span'); // span 생성
 			span.innerHTML = label;
-			const closeBtn = document.createElement('i');
+			const closeBtn = document.createElement('i'); // icon 생성
 			closeBtn.setAttribute('class', 'icon-close');
 			closeBtn.setAttribute('data-item', label);
 			div.appendChild(span);
 			div.appendChild(closeBtn);
-			return div;
+			return div; 
+			// div return
 		};
 
+		// div 내 class='tag'로 생성된 
 		function reset() {
 			document.querySelectorAll('.tag').forEach(function(tag) {
 				tag.parentElement.removeChild(tag);
 			})
 		};
 
-		function addTags() {
+		// 태그 추가 function
+		function addTags() { 
 			reset();
 			tags.slice().reverse().forEach(function(tag) {
 				const input = createTag(tag);
@@ -39,14 +42,16 @@
 			})
 		};
 
+		// keyup 시 input 박스 생성 event
 		input.addEventListener('keyup', function(e) {
-			if(e.keyCode == 32) {
-				tags.push(input.value);
-				addTags();
+			if(e.keyCode == 32) { // 스페이스 바
+				tags.push(input.value); // 배열에 input.value 값 저장
+				addTags(); // 
 				input.value = '';
 			}
 		});
 
+		// 클릭 시 삭제 
 		document.addEventListener('click', function(e) {
 			if(e.target.tagName == 'I'){
 				const value = e.target.getAttribute('data-item');
@@ -76,26 +81,27 @@
 </script>
 <style>
 	.container {
-		width: 60%;
-		margin: 40px;
+		width: 100%;
+		margin: 5px;
+		padding: 0;
 	}
 
 	.tag-container {
-		border: 2px solid #ccc;
-		padding: 10px;
+		border: 1px solid #ccc;
+		padding: 3px;
 		border-radius: 5px;
 		display: flex;
 	}
 
 	.tag-container .tag {
 		padding: 5px;
-		border: 1px solid #ccc;
+		border: 1px solid #e3d1e1;
 		margin: 5px;
 		display: flex;
 		align-items: center;
 		border-radius: 3px;
 		background: #f2f2f2;
-		cursor: default;
+		cursor: pointer;
 	}
 	
 	.tag i {
@@ -236,8 +242,11 @@
 			    <div class="container">
 			    	태그를 입력한 후 스페이스 바를 누르세요.
 			    	<div class="tag-container">
-			    		<input type="text" class="form-control" />
-			    	</div>			    
+			    		<input type="text" />
+			    	</div>	
+			    	<div>
+			    		<span>등록 가능한 태그 개수 : 4개</span>
+			    	</div>		    
 			    </div>
 		    </td>
 		    
