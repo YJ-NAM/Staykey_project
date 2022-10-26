@@ -22,71 +22,54 @@
             <div class="card">
                 <div class="card-body p-4">
 
-                    <table class="table-form">
-                        <colgroup>
-                            <col width="16%" />
-                            <col width="34%" />
-                            <col width="16%" />
-                            <col width=""/>
-                        </colgroup>
+                    <h2>
+                    	<p><i class="fa fa-home" aria-hidden="true"></i>${dto.review_stayname}</p>
+                    	<span>${dto.review_roomname}</span>
+                   	</h2>
 
-                       
+                    <div class="d-flex py-2 border-bottom vfb-info">
+                        <div class="col text-left">
+                        	<i class="fa fa-user text-primary" aria-hidden="true"></i> <b class="text-primary">작성자 </b><b>: ${dto.review_name} &nbsp; &nbsp;</b>  
+                        	<b class="text-primary"> ID </b><b>: ${dto.review_id}</b>
+                        </div>
 
+                        <div class="col text-right">
+                        	<i class="icon-calendar"></i> 등록일 : ${dto.review_date}
+                        </div>
+                    </div>
 
-                        <tr>
-                            <th>숙소명</th>
-                            <td colspan="1"> <h5>${dto.review_stayname}</h5></td>
-                            <td colspan="3">(${dto.review_roomname})</td>
-                        </tr>
-                        
-                        <tr>
-                            <td colspan="4" class="space" nowrap="nowrap"></td>
-                        </tr>
-                        						
-                        <tr>
-                            <th>작성자 이름</th>
-                            <td>${dto.review_name}</td>
-                            <th>작성자 아이디</th>
-                            <td>${dto.review_id}</td>
-                        </tr>
-                        
-                        <tr>
-                            <td colspan="4" class="space" nowrap="nowrap"></td>
-                        </tr>
-                        
-                        <tr>
-                            <th>평점</th>
-                            <td colspan="1"><b>${dto.review_point_total}점</b></td>
+                    <div class="d-flex py-2 border-bottom vfb-info">
+                        <div class="col text-left">
+                        	<b > 세부 평점 : 접근성</b> : ${dto.review_point1} / <b>서비스</b> : ${dto.review_point2} / <b>객실시설</b> : ${dto.review_point3} / <b>부대시설</b> : ${dto.review_point4} / <b>식음료</b> : ${dto.review_point5} / <b>만족도</b> : ${dto.review_point6}
+                        </div>
 
-							<th>세부 평점</th>
-			                <td colspan="3">
-			              		 <p><b>접근성</b> : ${dto.review_point1}점, <b>서비스</b> : ${dto.review_point2}점, <b>객실시설</b> : ${dto.review_point3}점</p>
-			              		 <p><b>부대시설</b> : ${dto.review_point4}점, <b>식음료</b> : ${dto.review_point5}점, <b>만족도</b> : ${dto.review_point6}점</p>
-			                </td>
-                        </tr>
-                        
-                        <tr> 
-							<th>리뷰 내용</th>
-                        	<td colspan="4">${dto.review_content }</td>
-                        </tr>
+                        <div class="col text-right">
+                        	<div class="pl-3 text-danger"><b>합계 평점 : ${dto.review_point_total}점</b></div>
+                        </div>
+                    </div>
+                    
+
+                    
+                    <div class="d-flex py-2 border-bottom vfb-info">   
+                     	리뷰 내용 <br>        
+		                ${dto.review_content}
+                    </div>
+
+					<c:if test="${!empty dto.review_file}">
+                    <div class="d-flex py-3 border-bottom">
+                        <div class="col">
+                        	<ul class="stay-view-photo">
+                        		<li><img src="<%=request.getContextPath()%>${dto.review_file}" style="max-width: 400px;" alt="" /></li>
+                        	</ul>
+                        </div>
+                    </div>
+                    </c:if>
 						
-						<c:if test="${!empty dto.review_file}">
-                        <tr>
-                            <th>리뷰 사진</th>
-                            <td colspan="4"><img src="<%=request.getContextPath()%>${dto.review_file}" style="max-width: 400px;" alt="" /></td>
-                        </tr>
-                       	</c:if>
-                       	
-                      
-                        
-                    </table>
-
                 </div>
             </div>
         </div>
     </div>
     <!-- 내용 //END -->
-
 
 
     <!-- 버튼 //START -->

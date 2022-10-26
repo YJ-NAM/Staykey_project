@@ -3,15 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../layout/layout_header.jsp" />
 
-
-
 <script type="text/javascript">$("#nav-magazine").addClass("now");</script>
+
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>매거진 등록</h2>
     <small>매거진을 추가 할 수 있습니다.</small>
 </div>
-
-
 
 
 <div class="pb100">
@@ -23,9 +20,6 @@
             <col width="16%" />
             <col />
         </colgroup>
-
-
-
 
         <tr>
             <th>제목</th>
@@ -145,7 +139,6 @@
     </script>
 
 
-
     <div class="gw-button">
         <div class="gwb-wrap">
             <div class="gwb-left"></div>
@@ -160,7 +153,5 @@
     </div>
     </form>
 </div>
-
-
 
 <jsp:include page="../layout/layout_footer.jsp" />

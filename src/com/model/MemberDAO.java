@@ -248,9 +248,9 @@ public class MemberDAO {
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
-            if (rs.next())
+            if (rs.next()) {
                 count = rs.getInt(1) + 1;
-
+            }
             sql = "insert into staykey_member values(?, ?, ?, ?, ?, ?, ?, default, default, ?, sysdate)";
             pstmt = con.prepareStatement(sql);
 

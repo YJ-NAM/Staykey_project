@@ -74,7 +74,6 @@
             <col width="10%">
             <col width="5%">
             <col width="15%">
-            
             <col />
             <col width="10%">
         </colgroup>
@@ -101,6 +100,7 @@
   <tbody>  
             <c:choose>
             <c:when test="${!empty list }">
+            console.log('didi');
             <c:forEach items="${list}" var="dto">
             <tr> 
                 <td>${dto.bbs_no }
@@ -163,6 +163,7 @@
                		 <a href="<%=request.getContextPath()%>/admin/magazineDeleteOk.do?bbs_no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
                 
+
                 
             </tr>
             </c:forEach>
@@ -178,7 +179,6 @@
             </c:otherwise>
             </c:choose>
         </tbody>
-
 
 
 

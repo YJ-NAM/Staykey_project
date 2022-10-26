@@ -112,8 +112,7 @@ public class MagazineDAO {
     // ======================================================
 
     	public List<MagazineDTO> magazineList(int page, int rowsize, Map<String, Object> map) {
-        
-    		List<MagazineDTO> list = new ArrayList<MagazineDTO>();
+        List<MagazineDTO> list = new ArrayList<MagazineDTO>();
 
         int startNo = (page * rowsize) - (rowsize - 1);
         int endNo = (page * rowsize);
@@ -124,7 +123,7 @@ public class MagazineDAO {
 
         
         if (map.get("mg_stayno") != "" && map.get("mg_stayno") != null) {
-            search_sql2 += " and bbs_stayno like '%" + map.get("mg_stayno") + "%'";
+            search_sql2 += " and bbs_no like '%" + map.get("mg_stayno") + "%'";
         }
         if (map.get("mg_date") != "" && map.get("mg_date") != null) {
             search_sql2 += " and bbs_date like '%" + map.get("mg_date") + "%'";
@@ -163,19 +162,18 @@ public class MagazineDAO {
             rs = pstmt.executeQuery();
             
             while(rs.next()) {
+            	System.out.println("여기?");
                 MagazineDTO dto = new MagazineDTO();
 
                 dto.setBbs_no(rs.getInt("bbs_no"));
                 dto.setBbs_title(rs.getString("bbs_title"));
                 dto.setBbs_content(rs.getString("bbs_content"));
-                dto.setBbs_youtube(rs.getString("bbs_youtube"));
                 dto.setBbs_file1(rs.getString("bbs_file1"));
                 dto.setBbs_file2(rs.getString("bbs_file2"));
                 dto.setBbs_file3(rs.getString("bbs_file3"));
                 dto.setBbs_file4(rs.getString("bbs_file4"));
                 dto.setBbs_file5(rs.getString("bbs_file5"));
                 dto.setBbs_stayno(rs.getString("bbs_stayno"));
-                dto.setBbs_map(rs.getString("bbs_map"));
                 dto.setBbs_hit(rs.getInt("bbs_hit"));
                 dto.setBbs_writer_name(rs.getString("bbs_writer_name"));
                 dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
@@ -195,8 +193,8 @@ public class MagazineDAO {
 
         return list;
     }
+        
 
-    	
     	
     	 // ======================================================
         // 매거진 등록 메서드

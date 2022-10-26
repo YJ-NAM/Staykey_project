@@ -36,7 +36,7 @@ public class AdminStayWriteOkAction implements Action {
         String thisFolder = "/data/stay/";
         String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
         System.out.println(saveFolder);
-        int fileSize = 25 * 1024 * 1024; // 10MB
+        int fileSize = 25 * 1024 * 1024; // 25MB
         
         // 업로드 폴더 체크 후 없으면 생성
         File dirChk = new File(saveFolder);
