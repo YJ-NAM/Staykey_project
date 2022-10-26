@@ -76,6 +76,7 @@ public class MemberDAO {
     // ======================================================
     public int getTotalCount(Map<String, Object> map) {
         int result = 0;
+        
 
         // 검색용 설정
         String search_sql = " where member_no > 0";
@@ -100,7 +101,6 @@ public class MemberDAO {
             sql = "select count(*) from staykey_member" + search_sql;
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
-
             if (rs.next())
                 result = rs.getInt(1);
 
@@ -117,6 +117,7 @@ public class MemberDAO {
     // ======================================================
     // 회원 목록 메서드
     // ======================================================
+
     public List<MemberDTO> memberList(int page, int rowsize, Map<String, Object> map) {
         List<MemberDTO> list = new ArrayList<MemberDTO>();
 
@@ -247,9 +248,9 @@ public class MemberDAO {
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
-            if (rs.next())
+            if (rs.next()) {
                 count = rs.getInt(1) + 1;
-
+            }
             sql = "insert into staykey_member values(?, ?, ?, ?, ?, ?, ?, default, default, ?, sysdate)";
             pstmt = con.prepareStatement(sql);
 
@@ -315,9 +316,9 @@ public class MemberDAO {
     }
 
     // ======================================================
-    // 회원정보 삭제하는 메서드
+    // 회원정보 삭제하는 메서드 + 회원번호 재작업
     // ======================================================
-    public int deleteMember(String memberId) {
+    public int deleteMember(String memberId, int no) {
         int result = 0;
 
         try {
@@ -328,37 +329,20 @@ public class MemberDAO {
             pstmt.setString(1, memberId);
             result = pstmt.executeUpdate();
 
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            closeConn(rs, pstmt, con);
-        }
-
-        return result;
-    }
-
-
-
-    // ======================================================
-    // 회원번호 재작업하는 메서드
-    // ======================================================
-    public void updateNo(int no) {
-        try {
-            openConn();
-
+            
             sql = "update staykey_member set member_no = member_no - 1 where member_no > ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, no);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
         }
-
-    } // updateSequence() 메서드 end
-
-
+        return result;
+    } // deleteMember() 종료
 
     // ======================================================
     // 회원정보를 업데이트 하는 메서드

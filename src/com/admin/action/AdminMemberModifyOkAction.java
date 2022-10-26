@@ -35,8 +35,7 @@ public class AdminMemberModifyOkAction implements Action {
         }
 
         // 파일 업로드 객체 생성 여기서 파일 생성
-        MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8",
-                new DefaultFileRenamePolicy());
+        MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 
         // 파라미터 정리
         String member_type = multi.getParameter("member_type").trim();
@@ -90,8 +89,9 @@ public class AdminMemberModifyOkAction implements Action {
         dto.setMember_phone(member_phone);
 
 
-        int check = dao.memberModify(dto); ActionForward forward = new
-        ActionForward(); PrintWriter out = response.getWriter();
+        int check = dao.memberModify(dto); 
+        ActionForward forward = new ActionForward();
+        PrintWriter out = response.getWriter();
 
         if (check > 0) {
             forward.setRedirect(true); forward.setPath("memberList.do");

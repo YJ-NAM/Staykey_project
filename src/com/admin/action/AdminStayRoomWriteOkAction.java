@@ -85,25 +85,6 @@ public class AdminStayRoomWriteOkAction implements Action {
 
         // 첨부파일 한 개만 등록해놓음 -- 추후 수정 예정
         // 첨부파일 이름 변경 처리
-
-        /*
-         * Enumeration stayRoom_photo = multi.getFileNames();
-         * 
-         * while(stayRoom_photo.hasMoreElements()){ String stayRoom_files =
-         * (String)stayRoom_photo.nextElement(); // 객체 반환 / String으로 형변환 File
-         * stayRoomFile = multi.getFile(stayRoom_files); // 업로드된 파일의 파일 객체 반환
-         * 
-         * if (stayRoomFile != null){ // fileExt : 추출된 파일명 String fileExt =
-         * stayRoomFile.getName().substring(stayRoomFile.getName().lastIndexOf(".") +
-         * 1); // 확장자 자르기 System.out.println(stayRoomFile.getName().lastIndexOf("."));
-         * System.out.println(fileExt); String stayRoom_photo_rename =
-         * stayRoom_roomStayNo + "_" + System.currentTimeMillis() + "." + fileExt;
-         * stayRoomFile.renameTo(new File(saveFolder + "/" + stayRoom_photo_rename));
-         * 
-         * // DB에 저장되는 파일 이름 // 저장이름 : /data/저장폴더/회원아이디_현재날짜(유닉스타임) String fileDBName =
-         * thisFolder + stayRoom_photo_rename; dto.setRoom_photo1(fileDBName); } }
-         */
-
         File stayRoom_photo = multi.getFile("member_photo");
         if (stayRoom_photo != null) {
             String fileExt = stayRoom_photo.getName().substring(stayRoom_photo.getName().lastIndexOf(".") + 1);
