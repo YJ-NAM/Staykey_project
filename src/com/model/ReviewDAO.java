@@ -162,7 +162,6 @@ public class ReviewDAO {
 	           sql = "select * from " + "(select row_number() over(order by " + order_sql
 	                    + ") rnum, b.* from staykey_review b " + search_sql1 + ") " + "where rnum >= ? and rnum <= ?"
 	                    + search_sql2;
-	            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
             pstmt.setInt(2, endNo);
@@ -231,7 +230,7 @@ public class ReviewDAO {
 				dto.setReview_point4(rs.getInt("review_point4"));
 				dto.setReview_point5(rs.getInt("review_point5"));
 				dto.setReview_point6(rs.getInt("review_point6"));
-				dto.setReview_content(rs.getString("review_content"));
+				dto.setReview_content(rs.getString("review_content").replace("\n", "<br />"));
 				dto.setReview_file(rs.getString("review_file"));
 				dto.setReview_id(rs.getString("review_id"));
 				dto.setReview_pw(rs.getString("review_pw"));
@@ -252,7 +251,7 @@ public class ReviewDAO {
 
     
     // ======================================================
-    // 리뷰 삭제하는 메서드
+    // 리뷰 삭제하는 메서드 + 글번호 재정리
     // ======================================================
     public int deleteReview(int no) {
         int result = 0;
@@ -278,4 +277,43 @@ public class ReviewDAO {
         return result;
     }
 
+    
+    // ======================================================
+    // 후기를 수정 하는 메서드
+    // ======================================================
+    public int reviewModify(ReviewDTO dto) {
+        int result = 0;
+
+        try {
+            openConn();
+            sql = "update staykey_review set review_stayname = ?, review_roomname = ?, review_point_total = ?, review_point1 = ?, review_point2 = ?, review_point3 = ?, review_point4 = ?, review_point5 = ?, review_point6 = ?, review_content = ?, review_file = ?, review_id = ?, review_name = ? where review_no = ?";
+            pstmt = con.prepareStatement(sql);
+            
+            pstmt.setString(1, dto.getReview_stayname());
+            pstmt.setString(2, dto.getReview_roomname());
+            pstmt.setDouble(3, dto.getReview_point_total());
+            pstmt.setInt(4, dto.getReview_point1());
+            pstmt.setInt(5, dto.getReview_point2());
+            pstmt.setInt(6, dto.getReview_point3());
+            pstmt.setInt(7, dto.getReview_point4());
+            pstmt.setInt(8, dto.getReview_point5());
+            pstmt.setInt(9, dto.getReview_point6());
+            pstmt.setString(10, dto.getReview_content());
+            pstmt.setString(11, dto.getReview_file());
+            pstmt.setString(12, dto.getReview_id());
+            pstmt.setString(13, dto.getReview_name());
+            pstmt.setInt(14, dto.getReview_no());
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(pstmt, con);
+        }
+        return result;
+    }
+    
+    
+    
+    
 }

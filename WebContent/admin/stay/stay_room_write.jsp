@@ -1,116 +1,308 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script>
+
+	onload = function() {
+
+		const tagContainer = document.querySelector('.tag-container');
+		const input = document.querySelector('.tag-container input');
+		const remainTag = document.querySelector('.details span');
+		let maxTags = 4;
+		let tags = []; // 태그 값 저장할 배열 선언
+
+		countTag();
+
+		// 태그 생성 메서드
+		function createTag(label) {
+			const div = document.createElement('div'); // div 생성
+			div.setAttribute('class', 'tag'); // setAttribute : 속성이름, 속성값
+			const span = document.createElement('span'); // span 생성
+			span.innerHTML = label;
+			const closeBtn = document.createElement('i'); // icon 생성
+			closeBtn.setAttribute('class', 'icon-close');
+			closeBtn.setAttribute('data-item', label);
+			div.appendChild(span);
+			div.appendChild(closeBtn);
+			return div; 
+			// div return
+		};
+
+		
+		function reset() {
+			document.querySelectorAll('.tag').forEach(function(tag) {
+				tag.parentElement.removeChild(tag);
+			})
+		};
+
+		// 태그 추가 function
+		function addTags() { 
+			reset();
+			tags.slice().reverse().forEach(function(tag) {
+				const input = createTag(tag);
+				tagContainer.prepend(input);
+			})
+			countTag();
+		};
+
+		// keyup 시 input 박스 생성 event
+		input.addEventListener('keyup', function(e) {
+			if(e.keyCode == 32) { // 스페이스 바
+				if(input.value.length < 6 && !tags.includes(input.value) && (tags.length < 4)){ // 글자수 조정 & 중복된 태그 없도록 & 최대 등록 개수 설정
+					tags.push(input.value); // 배열에 input.value 값 저장
+					addTags(); 
+				}
+				input.value = '';
+			}
+		});
+
+		// 클릭 시 삭제 
+		document.addEventListener('click', function(e) {
+			if(e.target.tagName == 'I'){
+				const value = e.target.getAttribute('data-item');
+				const index = tags.indexOf(value);
+				tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+				addTags();
+			}
+			countTag();
+		})
+
+		// 남은 태그 개수 확인
+		function countTag() {
+			remainTag.innerText = maxTags - tags.length; // 최대 개수 - 배열 길이
+		}
+
+		// tag 값 전달하기 위한 함수
+		function returnVal(tags) {
+			let tagsVal = "";
+			for(let i=0; i<tags.length; i++){
+				tagsVal += tags[i] + "/";
+			}
+			return tagsVal;
+		}
+
+		document.getElementById('room_tag').value = returnVal(tags);
+	}
+
+</script>
+<style>
+	.container {
+		width: 100%;
+		margin: 5px;
+		padding: 0;
+	}
+
+	.tag-container {
+		border: 1px solid #ccc;
+		padding: 3px;
+		border-radius: 5px;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.tag-container .tag {
+		padding: 5px;
+		border: 1px solid #e3d1e1;
+		margin: 5px;
+		display: flex;
+		align-items: center;
+		border-radius: 3px;
+		background: #f2f2f2;
+		cursor: pointer;
+	}
+	
+	.tag-container input[type=text]{
+		background: transparent;
+		width: 20px;
+	}
+	
+	.tag i {
+		font-size: 16px;
+		margin-left: 5px;
+	}
+
+	.tag-container input {
+		flex :1;
+		font-size: 16px;
+		padding: 5px;
+		outline: none;
+		border: 0;
+	}
+
+</style>
+
 <div>
 	<hr />
 	<h4>방 등록하기</h4>
 	<hr />
-	<form action="${ pageContext.request.contextPath }/admin/stayRoomWrite.do" enctype="multipart/form-data" method="post">
-	<input type="hidden" name="stayNo" value="${ param.room_stayno }" />
+	<form action="${ pageContext.request.contextPath }/admin/stayRoomWriteOk.do" enctype="multipart/form-data" method="post">
+	<input type="hidden" name="stayNo" value="${ param.stay_no }" /> <!-- 숙소 번호 -->
+	<input type="hidden" name="room_tag" id="room_tag" value="">
 	<table>
 		<tr>
-			<th>숙소명</th><td><input type="text" name="name" /></td>
+			<th>Room 이름</th><td><input type="text" name="room_name" /></td>
 		</tr>
 		<tr>
-			<th>간략 설명</th><td><textarea name="description" cols="30" rows="10" ></textarea></td>
+			<th>간략 설명</th><td><textarea name="room_desc" cols="30" rows="10" ></textarea></td>
 		</tr>
 		<tr>
-			<th>체크인 시간</th><td><input type="time" name="checkIn" /></td>
+			<th>방 타입</th>
+			<td>
+				<label><input type="radio" name="room_type" value="기본형" checked="checked" /> 기본형</label>
+				<label><input type="radio" name="room_type" value="거실형" /> 거실형</label>
+				<label><input type="radio" name="room_type" value="독채형" /> 독채형</label>
+				<label><input type="radio" name="room_type" value="원룸형" /> 원룸형</label>
+				<label><input type="radio" name="room_type" value="투룸형" /> 투룸형</label>
+				<label><input type="radio" name="room_type" value="복층형" /> 복층형</label>
+				<label><input type="radio" name="room_type" value="오픈형" /> 오픈형</label>
+			</td>
+		</tr>
+		<tr>
+			<th>가격</th>
+			<td><input type="text" name="room_price" />원</td>
+		</tr>
+		<tr>
+			<th>체크인 시간</th><td><input type="time" name="room_checkin" /></td>
 		</tr>
 		<tr>	
-			<th>체크아웃 시간</th><td><input type="time" name="checkOut" /></td>
+			<th>체크아웃 시간</th><td><input type="time" name="room_checkout" /></td>
 		</tr>
 		<tr>	
-			<th>기준인원</th><td><input type="number" min="1" max="15" name="standardNumber" /></td>
+			<th>기준인원</th><td><input type="number" name="room_people_min" min="1" max="15" /></td>
 		</tr>
 		<tr>	
-			<th>최대인원</th><td><input type="number" min="1" max="15" name="maxNumber" /></td>
+			<th>최대인원</th><td><input type="number" name="room_people_max" min="1" max="15" /></td>
 		</tr>
 		<tr>			
-			<th>객실면적</th><td><input type="number" name="roomSize" />m<sup>2</sup></td>
+			<th>객실면적</th><td><input type="number" name="room_size" />m<sup>2</sup></td>
+		</tr>
+		<tr>
+			<th>침대 타입</th>
+			<td>
+				싱글
+				<select name="room_bed" id="" >
+				<c:forEach begin="0" end="5" var="i">
+					<option value="싱글 ${ i }개">${ i }</option>
+				</c:forEach>
+				</select>
+				더블
+				<select name="room_bed" id="" >
+				<c:forEach begin="0" end="5" var="i">
+					<option value="더블 ${ i }개">${ i }</option>
+				</c:forEach>
+				</select>
+				퀸
+				<select name="room_bed" id="" >
+				<c:forEach begin="0" end="5" var="i">
+					<option value="퀸 ${ i }개">${ i }</option>
+				</c:forEach>
+				</select>
+				킹
+				<select name="room_bed" id="" >
+				<c:forEach begin="0" end="5" var="i">
+					<option value="킹 ${ i }개">${ i }</option>
+				</c:forEach>
+				</select>
+			</td>
 		</tr>
 		<tr>			
 			<th>FEATURES</th>
 			<td>
-				<input type="checkbox" name="features" value="outdoorFurniture" id="outdoorFurniture"><label for="outdoorFurniture">야외가구</label>
-				<input type="checkbox" name="features" value="skyLight" id="skyLight"><label for="skyLight">천창</label>
-				<input type="checkbox" name="features" value="swimmingPool" id="swimmingPool"><label for="swimmingPool">수영장</label>
-				<input type="checkbox" name="features" value="indoorSpa" id="indoorSpa"><label for="indoorSpa">실내 스파</label>
-				<input type="checkbox" name="features" value="whirlpoolSpa" id="whirlpoolSpa"><label for="whirlpoolSpa">월풀 스파</label>
-				<input type="checkbox" name="features" value="openBath" id="openBath"><label for="openBath">오픈 배스</label>
-				<input type="checkbox" name="features" value="sunBed" id="sunBed"><label for="sunBed">썬베드</label>
-				<input type="checkbox" name="features" value="garden" id="garden"><label for="garden">정원</label>
-				<input type="checkbox" name="features" value="privateBBQDeck" id="privateBBQDeck"><label for="privateBBQDeck">개별 BBQ 데크</label>
-				<input type="checkbox" name="features" value="terrace" id="terrace"><label for="terrace">테라스</label>
-				<input type="checkbox" name="features" value="kitchen" id="kitchen"><label for="kitchen">독립 키친</label>
-				<input type="checkbox" name="features" value="privateBathroom" id="privateBathroom"><label for="privateBathroom">독립 화장실</label>
-				<input type="checkbox" name="features" value="bigTable" id="bigTable"><label for="bigTable">빅테이블</label>
-				<input type="checkbox" name="features" value="walkway" id="walkway"><label for="walkway">산책로</label>
-				<input type="checkbox" name="features" value="welcomeTea" id="welcomeTea"><label for="welcomeTea">웰컴티</label>
-				<input type="checkbox" name="features" value="breakfast" id="breakfast"><label for="breakfast">조식</label>
-				<input type="checkbox" name="features" value="parkingLot" id="parkingLot"><label for="parkingLot">주차</label>
-				<input type="checkbox" name="features" value="beamProject" id="beamProject"><label for="beamProject">빔프로젝트</label>
-				<input type="checkbox" name="features" value="pickUp" id="pickUp"><label for="pickUp">픽업</label>
+				<label><input type="checkbox" name="room_features" value="야외가구" /> 야외가구</label>
+				<label><input type="checkbox" name="room_features" value="천창" /> 천창</label>
+				<label><input type="checkbox" name="room_features" value="수영장" /> 수영장</label>
+				<label><input type="checkbox" name="room_features" value="실내 스파" /> 실내 스파</label>
+				<label><input type="checkbox" name="room_features" value="월풀 스파" /> 월풀 스파</label>
+				<label><input type="checkbox" name="room_features" value="오픈 배스" /> 오픈 배스</label>
+				<label><input type="checkbox" name="room_features" value="썬베드" /> 썬베드</label>
+				<label><input type="checkbox" name="room_features" value="정원" /> 정원</label>
+				<label><input type="checkbox" name="room_features" value="개별 BBQ 데크" /> 개별 BBQ 데크</label>
+				<label><input type="checkbox" name="room_features" value="픽업" /> 픽업</label>
+				<label><input type="checkbox" name="room_features" value="테라스" /> 테라스</label>
+				<label><input type="checkbox" name="room_features" value="독립 키친" /> 독립 키친</label>
+				<label><input type="checkbox" name="room_features" value="독립 화장실" /> 독립 화장</label>
+				<label><input type="checkbox" name="room_features" value="빅테이블" /> 빅테이블</label>
+				<label><input type="checkbox" name="room_features" value="산책로" /> 산책로</label>
+				<label><input type="checkbox" name="room_features" value="웰컴티" /> 웰컴티</label>
+				<label><input type="checkbox" name="room_features" value="조식" /> 조식</label>
+				<label><input type="checkbox" name="room_features" value="주차" /> 주차</label>
+				<label><input type="checkbox" name="room_features" value="빔프로젝트" /> 빔프로젝트</label>
 			</td>
 		</tr>
 		<tr>			
 			<th>AMENITIES</th>
 			<td>
-				<input type="checkbox" name="amenities" value="internet" id="internet"><label for="internet">무선 인터넷</label>
-				<input type="checkbox" name="amenities" value="beam" id="beam"><label for="beam">빔 프로젝트</label>
-				<input type="checkbox" name="amenities" value="TV" id="TV"><label for="TV">TV</label>
-				<input type="checkbox" name="amenities" value="fridge" id="fridge"><label for="fridge">냉장고</label>
-				<input type="checkbox" name="amenities" value="washingMachine" id="washingMachine"><label for="washingMachine">세탁기</label>
-				<input type="checkbox" name="amenities" value="dehumidifier" id="dehumidifier"><label for="dehumidifier">제습기</label>
-				<input type="checkbox" name="amenities" value="dryer" id="dryer"><label for="dryer">건조기</label>
-				<input type="checkbox" name="amenities" value="bluetoothSpeaker" id="bluetoothSpeaker"><label for="bluetoothSpeaker">블루투스 스피커</label>
-				<input type="checkbox" name="amenities" value="hairDryer" id="hairDryer"><label for="hairDryer">헤어드라이어</label>
-				<input type="checkbox" name="amenities" value="electricPot" id="electricPot"><label for="electricPot">전기포트</label>
-				<input type="checkbox" name="amenities" value="microwave" id="microwave"><label for="microwave">전자레인지</label>
-				<input type="checkbox" name="amenities" value="dishwasher" id="dishwasher"><label for="dishwasher">식기세척기</label>
-				<input type="checkbox" name="amenities" value="airConditioner" id="airConditioner"><label for="airConditioner">에어컨</label>
-				<input type="checkbox" name="amenities" value="induction" id="induction"><label for="induction">인덕션</label>
-				<input type="checkbox" name="amenities" value="vacuum" id="vacuum"><label for="vacuum">청소기</label>
-				<input type="checkbox" name="amenities" value="toothpaste" id="toothpaste"><label for="toothpaste">치약</label>
-				<input type="checkbox" name="amenities" value="shampoo" id="shampoo"><label for="shampoo">샴푸</label>
-				<input type="checkbox" name="amenities" value="conditioner" id="conditioner"><label for="conditioner">컨디셔너</label>
-				<input type="checkbox" name="amenities" value="lotion" id="lotion"><label for="lotion">바디로션</label>
-				<input type="checkbox" name="amenities" value="bodywash" id="bodywash"><label for="bodywash">바디워시</label>
-				<input type="checkbox" name="amenities" value="gown" id="gown"><label for="gown">샤워가운</label>
-				<input type="checkbox" name="amenities" value="comb" id="comb"><label for="comb">빗</label>
-				<input type="checkbox" name="amenities" value="towel" id="towel"><label for="towel">타월</label>
-				<input type="checkbox" name="amenities" value="detergent" id="detergent"><label for="detergent">세탁세제</label>
-				<input type="checkbox" name="amenities" value="repellents" id="repellents"><label for="repellents">모기약</label>
-				<input type="checkbox" name="amenities" value="oint" id="oint"><label for="oint">연고</label>
-				<input type="checkbox" name="amenities" value="wineOpener" id="wineOpener"><label for="wineOpener">와인오프너</label>
-				<input type="checkbox" name="amenities" value="wineglass" id="wineglass"><label for="wineglass">와인잔</label>
-				<input type="checkbox" name="amenities" value="towel" id="towel"><label for="toster">토스터기</label>
-				<input type="checkbox" name="amenities" value="coffeeCapsule" id="coffeeCapsule"><label for="coffeeCapsule">캡슐커피머신</label>
-				<input type="checkbox" name="amenities" value="boardGame" id="boardGame"><label for="boardGame">보드게임</label>
-				<input type="checkbox" name="amenities" value="plates" id="plates"><label for="plates">다기</label>
-				<input type="checkbox" name="amenities" value="utensils" id="utensils"><label for="utensils">조리도구</label>
-				<input type="checkbox" name="amenities" value="flavouring" id="flavouring"><label for="flavouring">조미료</label>
-				<input type="checkbox" name="amenities" value="purifier" id="purifier"><label for="purifier">정수기</label>
-				<input type="checkbox" name="amenities" value="sleepers" id="sleepers"><label for="sleepers">룸 슬리퍼</label>
+				<label><input type="checkbox" name="room_amenities" value="무선 인터넷" /> 무선 인터넷</label>
+				<label><input type="checkbox" name="room_amenities" value="빔 프로젝트" /> 빔 프로젝트</label>
+				<label><input type="checkbox" name="room_amenities" value="TV" /> TV</label>
+				<label><input type="checkbox" name="room_amenities" value="냉장고" /> 냉장고</label>
+				<label><input type="checkbox" name="room_amenities" value="세탁기" /> 세탁기</label>
+				<label><input type="checkbox" name="room_amenities" value="제습기" /> 제습기</label>
+				<label><input type="checkbox" name="room_amenities" value="건조기" /> 건조기</label>
+				<label><input type="checkbox" name="room_amenities" value="블루투스 스피커" /> 블루투스 스피커</label>
+				<label><input type="checkbox" name="room_amenities" value="헤어드라이어" /> 헤어드라이어</label>
+				<label><input type="checkbox" name="room_amenities" value="전기포트" /> 전기포트</label>
+				<label><input type="checkbox" name="room_amenities" value="전자레인지" /> 전자레인지</label>
+				<label><input type="checkbox" name="room_amenities" value="식기세척기" /> 식기세척기</label>
+				<label><input type="checkbox" name="room_amenities" value="에어컨" /> 에어컨</label>
+				<label><input type="checkbox" name="room_amenities" value="인덕션" /> 인덕션</label>
+				<label><input type="checkbox" name="room_amenities" value="청소기" /> 청소기</label>
+				<label><input type="checkbox" name="room_amenities" value="치약" /> 치약</label>
+				<label><input type="checkbox" name="room_amenities" value="샴푸" /> 샴푸</label>
+				<label><input type="checkbox" name="room_amenities" value="컨디셔너" /> 컨디셔너</label>
+				<label><input type="checkbox" name="room_amenities" value="바디로션" /> 바디로션</label>
+				<label><input type="checkbox" name="room_amenities" value="바디워시" /> 바디워시</label>
+				<label><input type="checkbox" name="room_amenities" value="샤워가운" /> 샤워가운</label>
+				<label><input type="checkbox" name="room_amenities" value="빗" /> 빗</label>
+				<label><input type="checkbox" name="room_amenities" value="타월" /> 타월</label>
+				<label><input type="checkbox" name="room_amenities" value="세탁세제" /> 세탁세제</label>
+				<label><input type="checkbox" name="room_amenities" value="모기약" /> 모기약</label>
+				<label><input type="checkbox" name="room_amenities" value="연고" /> 연고</label>
+				<label><input type="checkbox" name="room_amenities" value="룸 슬리퍼" /> 룸 슬리퍼</label>
+				<label><input type="checkbox" name="room_amenities" value="와인오프너" /> 와인오프너</label>
+				<label><input type="checkbox" name="room_amenities" value="와인잔" /> 와인잔</label>
+				<label><input type="checkbox" name="room_amenities" value="토스터기" /> 토스터기</label>
+				<label><input type="checkbox" name="room_amenities" value="캡슐커피머신" /> 캡슐커피머신</label>
+				<label><input type="checkbox" name="room_amenities" value="보드게임" /> 보드게임</label>
+				<label><input type="checkbox" name="room_amenities" value="다기" /> 다기</label>
+				<label><input type="checkbox" name="room_amenities" value="조리도구" /> 조리도구</label>
+				<label><input type="checkbox" name="room_amenities" value="조미료" /> 조미료</label>
+				<label><input type="checkbox" name="room_amenities" value="정수기" /> 정수기</label>
 			</td>
 		</tr>
 		<tr>			
 			<th>ADD-ON SERVICES</th>
 			<td>
-				<input type="checkbox" name="services" value="cashReceipt" id="cashReceipt"><label for="cashReceipt">현금영수증</label>
-				<input type="checkbox" name="services" value="BBQ" id="BBQ"><label for="BBQ">BBQ</label>
-				<input type="checkbox" name="services" value="breakfast" id="breakfast"><label for="breakfast">조식</label>
+				<label><input type="checkbox" name="room_service" value="현금영수증" /> 현금영수증</label>
+				<label><input type="checkbox" name="room_service" value="BBQ" /> BBQ</label>
+				<label><input type="checkbox" name="room_service" value="조식" /> 조식</label>
 			</td>
+		</tr>
+		<tr>
+			<th>TAGS</th>
+		    <td>
+			    <div class="container">
+			    	태그를 입력한 후 스페이스 바를 누르세요.
+			    	<div class="tag-container">
+			    		<!-- 글자 입력 시 placeholder 사라짐 -->
+			    		<input type="text" placeholder="한 태그 당 최대 4글자까지 입력 가능합니다." onfocus="this.placeholder=''" />
+			    	</div>	
+			    	<div class="details">
+			    		<p>등록 가능한 태그 : <span>4</span></p>
+			    	</div>		    
+			    </div>
+		    </td>
 		</tr>
 		<tr>			
 			<th>사진</th> 			
 			<td>
-				<input type="file" name="stayRoomPhoto1" />	
-				<input type="file" name="stayRoomPhoto2" />		
-				<input type="file" name="stayRoomPhoto3" />		
-				<input type="file" name="stayRoomPhoto4" />		
-				<input type="file" name="stayRoomPhoto5" />		
+				<input type="file" name="room_photo1" />	
+				<input type="file" name="room_photo2" />		
+				<input type="file" name="room_photo3" />		
+				<input type="file" name="room_photo4" />		
+				<input type="file" name="room_photo5" />		
 			</td> 		
 		</tr>
 		<tr>
@@ -119,9 +311,9 @@
 				<input type="reset" value="초기화" />
 			</td>
 		</tr>
+
 	</table>
 	</form>
 </div>
-
 
 <jsp:include page="../layout/layout_footer.jsp" />

@@ -5,15 +5,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="view" value="${stayView}" />
+<c:set var="list" value="${roomList}" />
 
 
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>숙소 상세 정보</h2>
-    <small>등록된 숙소의 정보를 확인 할 수 있습니다.</small>
+    <small>등록된 숙소 정보를 확인 할 수 있습니다.</small>
 </div>
 
-
+${ msg }
+<c:remove var="msg"/>
 
 <div class="view-form">
     <!-- 내용 //START -->
@@ -77,7 +79,7 @@
 				                        <c:when test="${!empty view.stay_option1_photo}"><img src="<%=request.getContextPath()%>${view.stay_option1_photo}" width="100" height="70" alt="" /></c:when>
 				                        <c:otherwise>
 				                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-				                            <title>${list.stay_name}</title>
+				                            <title>${view.stay_name}</title>
 				                            <rect width="100%" height="100%" fill="#eee"></rect>
 				                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
 				                        </svg>
@@ -99,7 +101,7 @@
 				                        <c:when test="${!empty view.stay_option2_photo}"><img src="<%=request.getContextPath()%>${view.stay_option2_photo}" width="100" height="70" alt="" /></c:when>
 				                        <c:otherwise>
 				                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-				                            <title>${list.stay_name}</title>
+				                            <title>${view.stay_name}</title>
 				                            <rect width="100%" height="100%" fill="#eee"></rect>
 				                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
 				                        </svg>
@@ -153,24 +155,19 @@
         <div class="col-lg mb-4">
             <div class="card">
                 <div class="card-body p-4">
-                	<h4>등록된 Room 목록<button type="button" onclick="popWindow('<%=request.getContextPath()%>/admin/stayRoomWrite.do', '700', '900');" class="btn btn-sm btn-success float-right"><i class="fa fa-plus"></i> Room 추가</button></h4>
-
-					<!-- 
-						stay_room_list 여기 추가 예정... 
-						수정/삭제 button 함께 생성
-					-->
+                	<h4>등록된 Room 목록<button type="button" onclick="popWindow('<%=request.getContextPath()%>/admin/stayRoomWrite.do?stay_no=${ view.stay_no }', '700', '900');" class="btn btn-sm btn-success float-right"><i class="fa fa-plus"></i> Room 추가</button></h4>
                 	<ul class="stay-room-list">
                         <c:choose>
-                        <c:when test="${!empty roomList }">
-                        <c:forEach items="${roomList}" var="room">
+                        <c:when test="${ !empty list }">
+                        <c:forEach items="${ list }" var="room">
                         <li>
-                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do', '700', '900');" class="d-flex">
+                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '700', '900');" class="d-flex">
                                 <div>
                                     <c:choose>
-                                    <c:when test="${!empty room.room_photo1}"><img src="<%=request.getContextPath()%>${room.room_photo1}" width="100" height="70" alt="" /></c:when>
+                                    <c:when test="${!empty room.room_photo1}"><img src="<%=request.getContextPath()%>${ room.room_photo1 }" width="100" height="70" alt="" /></c:when>
                                     <c:otherwise>
                                     <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                                        <title>${room.room_name}</title>
+                                        <title>${ room.room_name }</title>
                                         <rect width="100%" height="100%" fill="#eee"></rect>
                                         <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
                                     </svg>
@@ -178,21 +175,19 @@
                                     </c:choose>
                                 </div>
                                 <div class="pl-3">
-                                    <p><b>${room.room_name}</b></p>
-                                    <p>${room.room_desc}</p>
-                                    <p><fmt:formatNumber value="${room.room_price}" />원</p>
+                                    <p><b>${ room.room_name }</b></p>
+                                    <p>${ room.room_desc }</p>
+                                    <p><fmt:formatNumber value="${ room.room_price }" />원</p>
                                 </div>
                             </a>
                         </li>
                         </c:forEach>
                         </c:when>
-
                         <c:otherwise>
                         <li class="nodata">이 숙소에 등록된 Room이 없습니다.</li>
                         </c:otherwise>
                         </c:choose>
                 	</ul>
-
                 </div>
             </div>
         </div>

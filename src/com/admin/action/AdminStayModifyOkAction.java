@@ -3,9 +3,14 @@ package com.admin.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
@@ -13,6 +18,9 @@ import com.model.StayDAO;
 import com.model.StayDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import oracle.net.aso.e;
+import oracle.net.aso.n;
 
 public class AdminStayModifyOkAction implements Action {
 
@@ -26,7 +34,7 @@ public class AdminStayModifyOkAction implements Action {
         // 파일 업로드 설정
         String thisFolder = "/data/stay/";
         String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
-        int fileSize = 10 * 1024 * 1024; // 10MB
+        int fileSize = 25 * 1024 * 1024; // 10MB
         
         // 업로드 폴더 체크 후 없으면 생성
         File dirChk = new File(saveFolder);
@@ -72,16 +80,7 @@ public class AdminStayModifyOkAction implements Action {
         String stay_info2 = multi.getParameter("stay_info2").trim();
         String stay_info3 = multi.getParameter("stay_info3").trim();
         
-        // stay_file ~ photo들 rename 필요
-        File stay_file1 = multi.getFile("stay_file1");
-        File stay_file2 = multi.getFile("stay_file2");
-        File stay_file3 = multi.getFile("stay_file3");
-        File stay_file4 = multi.getFile("stay_file4");
-        File stay_file5 = multi.getFile("stay_file5");
-        File stay_option1_photo = multi.getFile("stay_option1_photo");
-        File stay_option2_photo = multi.getFile("stay_option2_photo");
-        File stay_option3_photo = multi.getFile("stay_option3_photo");
-        
+        dto.setStay_no(stay_no);
         dto.setStay_type(stay_type);
         dto.setStay_name(stay_name);
         dto.setStay_desc(stay_desc);
@@ -102,148 +101,87 @@ public class AdminStayModifyOkAction implements Action {
         dto.setStay_option3_name(stay_option3_name);
         dto.setStay_option3_desc(stay_option3_desc);
         
-        
-        // 기존 이미지 정보 가져오기 위함
-        StayDTO viewDTO = dao.getStayView(stay_no);
-        String original_stay_file1 = viewDTO.getStay_file1();
-        String original_stay_file2 = viewDTO.getStay_file2();
-        String original_stay_file3 = viewDTO.getStay_file3();
-        String original_stay_file4 = viewDTO.getStay_file4();
-        String original_stay_file5 = viewDTO.getStay_file5();
-        String original_stay_option1_photo = viewDTO.getStay_option1_photo();
-        String original_stay_option2_photo = viewDTO.getStay_option2_photo();
-        String original_stay_option3_photo = viewDTO.getStay_option3_photo();
-        
-        // 삭제될 파일 경로
-        String delFolder = request.getSession().getServletContext().getRealPath("/");
-        
-        // 아마도 코드 수정 예정...        
-        // 객체지향적 코드가 필요한 상태...
-        // "_(" + stay_file3 +")" => currentTimeMillis 중복되서 파일명 중복되는 경우 있어, 수정함
-        System.out.println("2");
-        System.out.println(stay_file1);
-        // file.delete() 실제 삭제 메서드
-        if(!stay_file1.equals(null)) { 
-            File del_image = new File(delFolder + original_stay_file1);
-            if(del_image.exists()) {
-                if(del_image.delete()) {
-                	System.out.println("이미지 삭제 성공");
-                }else {
-                	System.out.println("실패임");
-                }
-            }            
-        	String fileExt = stay_file1.getName().substring(stay_file1.getName().lastIndexOf(".") + 1);
-            String stay_file1_rename = stay_name + "_" + stay_file1 +"_" + System.currentTimeMillis() + "." + fileExt;
-            stay_file1.renameTo(new File(saveFolder + "/" + stay_file1_rename));
-        	System.out.println("이미지 삭제 성공");
-            dto.setStay_file1(thisFolder + stay_file1_rename);            
-        }else {
-        	System.out.println("안녀ㅛㄴㅇㄹㄴㅇㄹㅇㄹ"+original_stay_file1);
-        	dto.setStay_file1(original_stay_file1);
-        }
-        
-        if(stay_file2 != null) {
-            File del_image = new File(delFolder + original_stay_file2);
-            if(del_image.exists()) { del_image.delete(); }
-            String fileExt = stay_file2.getName().substring(stay_file2.getName().lastIndexOf(".") + 1);
-            String stay_file2_rename = stay_name + "_" + stay_file2 + "_" + System.currentTimeMillis() + "." + fileExt;
-            stay_file2.renameTo(new File(saveFolder + "/" + stay_file2_rename));
-            dto.setStay_file2(thisFolder + stay_file2_rename);
-        }else {
-        	
-        	dto.setStay_file2(original_stay_file2);
-        }
-        
-        if(stay_file3 != null) {
+        // 순서 지정 문제 해결 위함
+        // 새로 업로드된 파일
+ 	    Map<String, Object> map = new HashMap<String, Object>();	    
+ 	    map.put("stay_file1", multi.getFile("stay_file1"));
+ 	    map.put("stay_file2", multi.getFile("stay_file2"));
+ 	    map.put("stay_file3", multi.getFile("stay_file3"));
+ 	    map.put("stay_file4", multi.getFile("stay_file4"));
+ 	    map.put("stay_file5", multi.getFile("stay_file5"));
+ 	    map.put("stay_option1_photo", multi.getFile("stay_option1_photo"));
+ 	    map.put("stay_option2_photo", multi.getFile("stay_option2_photo"));
+ 	    map.put("stay_option3_photo", multi.getFile("stay_option3_photo"));
+ 	    
+ 	    // 기존 파일 정보 가져오기 위함
+ 	    StayDTO viewDTO = dao.getStayView(stay_no);
+ 	    String original_stay_file1 = viewDTO.getStay_file1();
+ 	    String original_stay_file2 = viewDTO.getStay_file2();
+ 	    String original_stay_file3 = viewDTO.getStay_file3();
+ 	    String original_stay_file4 = viewDTO.getStay_file4();
+ 	    String original_stay_file5 = viewDTO.getStay_file5();
+ 	    String original_stay_option1_photo = viewDTO.getStay_option1_photo();
+ 	    String original_stay_option2_photo = viewDTO.getStay_option2_photo();
+ 	    String original_stay_option3_photo = viewDTO.getStay_option3_photo();
+ 	    
+ 	    // delete folder 현재 경로 받아옴
+ 	    String delFolder = request.getSession().getServletContext().getRealPath("/");
 
-            File del_image = new File(delFolder + original_stay_file3);
-            if(del_image.exists()) { del_image.delete(); }
-            String fileExt = stay_file3.getName().substring(stay_file3.getName().lastIndexOf(".") + 1);
-            String stay_file3_rename = stay_name + "_" + stay_file3 +"_" + System.currentTimeMillis() + "." + fileExt;
-            stay_file3.renameTo(new File(saveFolder + "/" + stay_file3_rename));
-            dto.setStay_file3(thisFolder + stay_file3_rename);
-        }else {
-        	System.out.println("안녀ㅛㄴㅇㄹㄴㅇㄹㅇㄹ"+original_stay_file3);
-        	
-        	dto.setStay_file3(original_stay_file3);
-        }
-        
-        if(stay_file4 != null) {
+ 	    Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator(); // iterator로 다음 값 가져옴
+ 	    String original_file = ""; // 예전 파일 변수로 지정
+ 		
+ 		while(iterator.hasNext()) { 
+ 			Entry<String, Object> e = iterator.next();
+ 			File file = (File) e.getValue(); // map에 저장된 파일 객체의 value 값만 얻어와서 File형으로 casting
+ 			
+ 			switch (e.getKey()) { // original file 값 할당
+ 			case "stay_file1": original_file = original_stay_file1; break;
+ 			case "stay_file2": original_file = original_stay_file2;	break;
+ 			case "stay_file3": original_file = original_stay_file3; break;
+ 			case "stay_file4": original_file = original_stay_file4; break;
+ 			case "stay_file5": original_file = original_stay_file5; break;
+ 			case "stay_option1_photo": original_file = original_stay_option1_photo; break;
+ 			case "stay_option2_photo": original_file = original_stay_option2_photo; break;
+ 			case "stay_option3_photo": original_file = original_stay_option3_photo; break; }
+ 			
+ 			if(file != null) { // value 값이 null이 아니면(new file 있음)
+ 	 	    	File del_image = new File(delFolder + original_file);        	
+ 	 	    	if(del_image.exists()) { del_image.delete(); }
+ 				String fileExt = file.toString().substring(file.toString().lastIndexOf(".") + 1); // 확장자 분리 
+ 				String fileRename = e.getKey() + "_modify_" + System.currentTimeMillis() + "." +fileExt; // 파일 rename 
+ 				file.renameTo(new File(saveFolder + fileRename)); // file을 인자로 전달된 파일의 경로로 변경
+ 				map.replace(e.getKey(), thisFolder + fileRename); // 현재 key 값에 새로운 value 값을 map에 저장
+ 			}else { // new file 없으면
+ 				if(original_file != null) {// 예전 파일이 null이 아니면
+ 					map.replace(e.getKey(), original_file); // 예전 값 할당
+ 				}else {
+ 					map.replace(e.getKey(), ""); // null 값 처리 위함
+ 				}
+ 			}
+ 		}
+ 		
+ 		dto.setStay_file1(map.get("stay_file1").toString());
+ 		dto.setStay_file2(map.get("stay_file2").toString());
+ 		dto.setStay_file3(map.get("stay_file3").toString());
+ 		dto.setStay_file4(map.get("stay_file4").toString());
+ 		dto.setStay_file5(map.get("stay_file5").toString());
+ 		dto.setStay_option1_photo(map.get("stay_option1_photo").toString());
+ 		dto.setStay_option2_photo(map.get("stay_option2_photo").toString());
+ 		dto.setStay_option3_photo(map.get("stay_option3_photo").toString());
 
-        	File del_image = new File(delFolder + original_stay_file4);
-            if(del_image.exists()) { del_image.delete(); }
-            String fileExt = stay_file4.getName().substring(stay_file4.getName().lastIndexOf(".") + 1);
-            String stay_file4_rename = stay_name + "_(" + stay_file4 +")" + System.currentTimeMillis() + "." + fileExt;
-            stay_file4.renameTo(new File(saveFolder + "/" + stay_file4_rename));
-            dto.setStay_file4(thisFolder + stay_file4_rename);
-        }else {
-        	dto.setStay_file4(original_stay_file4);
-        }
-        
-        if(stay_file5 != null) {
+        int res = dao.modifyStay(dto);        
 
-            File del_image = new File(delFolder + original_stay_file5);
-            if(del_image.exists()) { del_image.delete(); }
-            String fileExt = stay_file5.getName().substring(stay_file5.getName().lastIndexOf(".") + 1);
-            String stay_file5_rename = stay_name + "_(" + stay_file5 +")" + System.currentTimeMillis() + "." + fileExt;
-            stay_file5.renameTo(new File(saveFolder + "/" + stay_file5_rename));
-            dto.setStay_file5(thisFolder + stay_file5_rename);
-        }else {
-        	dto.setStay_file5(original_stay_file5);
-        }
-        
-        if(stay_option1_photo != null) {
-
-            File del_image = new File(delFolder + original_stay_option1_photo);
-            if(del_image.exists()) { del_image.delete(); }
-            String fileExt = stay_option1_photo.getName().substring(stay_option1_photo.getName().lastIndexOf(".") + 1);
-            String stay_option1_photo_rename = stay_name + "_(" + stay_option1_photo +")" + System.currentTimeMillis() + "." + fileExt;
-            stay_option1_photo.renameTo(new File(saveFolder + "/" + stay_option1_photo_rename));
-            dto.setStay_option1_photo(thisFolder + stay_option1_photo_rename);
-        }else {
-        	dto.setStay_option1_photo(original_stay_option1_photo);
-        }
-        
-        if(stay_option2_photo != null) {
-
-            File del_image = new File(delFolder + original_stay_option2_photo);
-            if(del_image.exists()) { del_image.delete(); }
-            String fileExt = stay_option2_photo.getName().substring(stay_option2_photo.getName().lastIndexOf(".") + 1);
-            String stay_option2_photo_rename = stay_name + "_(" + stay_option2_photo +")" + System.currentTimeMillis() + "." + fileExt;
-            stay_option2_photo.renameTo(new File(saveFolder + "/" + stay_option2_photo_rename));
-            dto.setStay_option2_photo(thisFolder + stay_option2_photo_rename);
-        }else {
-        	dto.setStay_option2_photo(original_stay_option2_photo);
-        }
-        
-        if(stay_option3_photo != null) {
-
-            File del_image = new File(delFolder + original_stay_option3_photo);
-            if(del_image.exists()) { del_image.delete(); }
-            String fileExt = stay_option3_photo.getName().substring(stay_option3_photo.getName().lastIndexOf(".") + 1);
-            String stay_option3_photo_rename = stay_name + "_(" + stay_option3_photo +")" + System.currentTimeMillis() + "." + fileExt;
-            stay_option3_photo.renameTo(new File(saveFolder + "/" + stay_option3_photo_rename));
-            dto.setStay_option3_photo(thisFolder + stay_option3_photo_rename);
-        }else {
-        	dto.setStay_option3_photo(original_stay_option3_photo);
-        }
-
-        int res = dao.modifyStay(dto);
-
-        ActionForward forward = new ActionForward();
+        ActionForward forward = new ActionForward();        
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
 
         if (res > 0) {
+        	session.setAttribute("msg", "<script> alert('성공적으로 수정되었습니다.'); </script>");
             forward.setRedirect(true);
             forward.setPath("stayView.do?stay_no="+stay_no);
         }else {
             out.println("<script> alert('숙소 수정 중 에러가 발생했습니다.'); history.back(); </script>");
         }
-
         return forward;
-
-		}
-
-	
-
+	}
 }
