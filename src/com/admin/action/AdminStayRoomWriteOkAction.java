@@ -3,9 +3,15 @@ package com.admin.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.startup.Tomcat.ExistingStandardWrapper;
 
 import com.controller.Action;
 import com.controller.ActionForward;
@@ -18,14 +24,14 @@ public class AdminStayRoomWriteOkAction implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // StayRoom!! 방 등록하기
+        // StayRoom! 방 등록하기
 
         StayRoomDTO dto = new StayRoomDTO();
 
         // 파일 업로드 설정
         String thisFolder = "/data/stayRoom/";
         String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
-        int fileSize = 10 * 1024 * 1024; // 10MB
+        int fileSize = 25 * 1024 * 1024; // 25MB
 
         // 업로드 폴더 체크 후 없으면 생성
         File dirChk = new File(saveFolder);
@@ -40,62 +46,93 @@ public class AdminStayRoomWriteOkAction implements Action {
         String features_sum = "";
         String amenities_sum = "";
         String service_sum = "";
+        String bed_sum = "";
 
         // 파라미터 정리
-        int stayRoom_roomStayNo = Integer.parseInt(multi.getParameter("stayNo").trim());
-        String stayRoom_name = multi.getParameter("name").trim();
-        String stayRoom_desc = multi.getParameter("description").trim();
-        String stayRoom_checkIn = multi.getParameter("checkIn").trim();
-        String stayRoom_checkOut = multi.getParameter("checkOut").trim();
-        int stayRoom_standardNumber = Integer.parseInt(multi.getParameter("standardNumber").trim());
-        int stayRoom_maxNumber = Integer.parseInt(multi.getParameter("maxNumber").trim());
-        int stayRoom_roomSize = Integer.parseInt(multi.getParameter("roomSize").trim());
+        int stay_stayNo = Integer.parseInt(multi.getParameter("stayNo"));
+        String room_name = multi.getParameter("room_name").trim();
+        String room_desc = multi.getParameter("room_desc").trim();
+        String room_type = multi.getParameter("room_type").trim();
+        int room_price = Integer.parseInt(multi.getParameter("room_price").trim());
+        String room_checkin = multi.getParameter("room_checkin").trim();
+        String room_checkout = multi.getParameter("room_checkout").trim();
+        int room_people_min = Integer.parseInt(multi.getParameter("room_people_min"));
+        int room_people_max = Integer.parseInt(multi.getParameter("room_people_max"));
+        int room_size = Integer.parseInt(multi.getParameter("room_size").trim());
+      
+        String[] room_bed = multi.getParameterValues("room_bed");
+        for(int i = 1; i<room_bed.length; i++) {
+        	bed_sum += room_bed[i] + "/";
+        }
+        bed_sum += "/" + bed_sum; 
 
-        String[] stayRoom_features = multi.getParameterValues("features");
-        for (int i = 0; i < stayRoom_features.length; i++) {
-            features_sum += stayRoom_features[i] + "/";
+        String[] room_features = multi.getParameterValues("room_features");
+        for (int i = 0; i < room_features.length; i++) {
+            features_sum += room_features[i] + "/";
         }
         
         // 맨 처음 슬래시 붙이는 용도 : 검색 설정 시 필요함
         features_sum += "/" + features_sum; 
 
-        String[] stayRoom_amenities = multi.getParameterValues("amenities");
-        for (int i = 0; i < stayRoom_amenities.length; i++) {
-            amenities_sum += stayRoom_amenities[i] + "/";
+        String[] room_amenities = multi.getParameterValues("room_amenities");
+        for (int i = 0; i < room_amenities.length; i++) {
+            amenities_sum += room_amenities[i] + "/";
         }
         amenities_sum += "/" + amenities_sum;
 
-        String[] stayRoom_services = multi.getParameterValues("services");
-        for (int i = 0; i < stayRoom_services.length; i++) {
-            service_sum += stayRoom_services[i] + "/";
+        String[] room_service = multi.getParameterValues("room_service");
+        for (int i = 0; i < room_service.length; i++) {
+            service_sum += room_service[i] + "/";
         }
         service_sum += "/" + service_sum;
+        
+        String room_tag = multi.getParameter("room_tag");
+        System.out.println(room_tag.toString());
 
-        dto.setRoom_stayno(stayRoom_roomStayNo);
-        dto.setRoom_name(stayRoom_name);
-        dto.setRoom_desc(stayRoom_desc);
-        dto.setRoom_checkin(stayRoom_checkIn);
-        dto.setRoom_checkout(stayRoom_checkOut);
-        dto.setRoom_people_min(stayRoom_standardNumber);
-        dto.setRoom_people_max(stayRoom_maxNumber);
-        dto.setRoom_size(stayRoom_roomSize);
+        dto.setRoom_stayno(stay_stayNo);
+        dto.setRoom_name(room_name);
+        dto.setRoom_desc(room_desc);
+        dto.setRoom_type(room_type);
+        dto.setRoom_price(room_price);
+        dto.setRoom_checkin(room_checkin);
+        dto.setRoom_checkout(room_checkout);
+        dto.setRoom_people_min(room_people_min);
+        dto.setRoom_people_max(room_people_max);
+        dto.setRoom_size(room_size);
         dto.setRoom_features(features_sum); 
         dto.setRoom_amenities(amenities_sum);
         dto.setRoom_service(service_sum);
-
-        // 첨부파일 한 개만 등록해놓음 -- 추후 수정 예정
-        // 첨부파일 이름 변경 처리
-        File stayRoom_photo = multi.getFile("member_photo");
-        if (stayRoom_photo != null) {
-            String fileExt = stayRoom_photo.getName().substring(stayRoom_photo.getName().lastIndexOf(".") + 1);
-            String stayRoom_photo_rename = stayRoom_roomStayNo + "_" + System.currentTimeMillis() + "." + fileExt;
-            stayRoom_photo.renameTo(new File(saveFolder + "/" + stayRoom_photo_rename));
-
-            // DB에 저장되는 파일 이름
-            // 저장이름 : /data/저장폴더/회원아이디_현재날짜(유닉스타임)
-            String fileDBName = thisFolder + stayRoom_photo_rename;
-            dto.setRoom_photo1(fileDBName);
-        }
+        dto.setRoom_tag(room_tag);
+        
+        // 순서 지정 문제 해결 위함
+	    Map<String, Object> map = new HashMap<String, Object>();	    
+	    map.put("room1", multi.getFile("room_photo1"));
+	    map.put("room2", multi.getFile("room_photo2"));
+	    map.put("room3", multi.getFile("room_photo3"));
+	    map.put("room4", multi.getFile("room_photo4"));
+	    map.put("room5", multi.getFile("room_photo5"));
+	    
+	    Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator(); // iterator로 다음 값 가져옴
+		
+		while(iterator.hasNext()) { 
+			Entry<String, Object> e = iterator.next();
+			File file = (File) e.getValue(); // map에 저장된 파일 객체의 value 값만 얻어와서 File형으로 casting
+			
+			if(file != null) { // value 값이 null이 아니면
+				String fileExt = file.toString().substring(file.toString().lastIndexOf(".") + 1); // 확장자 분리 
+				String fileRename = e.getKey() + "_original_" + System.currentTimeMillis() + "." +fileExt; // 파일 rename 
+				file.renameTo(new File(saveFolder + fileRename)); // 파일의 경로를 인자로 전달된 경로로 변경
+				map.replace(e.getKey(), thisFolder + fileRename); // 현재 key 값에 새로운 value 값을 map에 저장
+			}else {
+				map.replace(e.getKey(), ""); // null 값 처리 위함
+			}
+		}
+		
+		dto.setRoom_photo1(map.get("room1").toString());
+		dto.setRoom_photo2(map.get("room2").toString());
+		dto.setRoom_photo3(map.get("room3").toString());
+		dto.setRoom_photo4(map.get("room4").toString());
+		dto.setRoom_photo5(map.get("room5").toString());
 
         StayDAO dao = StayDAO.getInstance();
         int res = dao.registerStayRoom(dto);
@@ -105,7 +142,7 @@ public class AdminStayRoomWriteOkAction implements Action {
 
         if (res > 0) {
             forward.setRedirect(true);
-            forward.setPath("stayRoomList.do?stay_no=" + stayRoom_roomStayNo);
+            forward.setPath("admin/stayView.do?stay_no="+stay_stayNo);
         } else {
             out.println("<script> alert('Room 등록 중 에러가 발생했습니다.'); history.back(); </script>");
         }
