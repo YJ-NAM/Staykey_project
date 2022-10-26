@@ -39,7 +39,7 @@
     </table>
 
     <div class="text-center mb-5">
-        <a href="<%=request.getContextPath()%>/admin/reviewList.do" class="btn btn-outline-secondary"><i class="fa fa-power-off"></i> 검색 초기화</a>
+        <a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}" class="btn btn-outline-secondary"><i class="fa fa-power-off"></i> 검색 초기화</a>
         <button type="submit" class="btn btn-secondary mx-2"><i class="fa fa-search"></i> 후기 검색</button>
     </div>
     </form>
@@ -118,10 +118,10 @@
                 <td><p>${dto.review_point_total}</p></td>
                 <td>
                 	<a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">
-              		 <p>${dto.review_content.substring(0,10)} <br>
-              		 	${dto.review_content.substring(10,20)}
-              		 </p>
-              		 a
+	              		 <p>${dto.review_content.substring(0,10)} <br>
+	              		 	${dto.review_content.substring(10,20)}
+	              		 </p>
+              		 </a>
                 </td>
                 <td>
                 	<p><b>${dto.review_name}</b></p>
