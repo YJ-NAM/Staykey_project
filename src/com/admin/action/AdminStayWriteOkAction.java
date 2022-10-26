@@ -102,7 +102,7 @@ public class AdminStayWriteOkAction implements Action {
         dto.setStay_option3_name(stay_option3_name);
         dto.setStay_option3_desc(stay_option3_desc);
         	    
-        
+
         // 순서 지정 문제 해결 위함
 	    Map<String, Object> map = new HashMap<String, Object>();	    
 	    map.put("stay_file1", multi.getFile("stay_file1"));
@@ -114,22 +114,20 @@ public class AdminStayWriteOkAction implements Action {
 	    map.put("stay_option2_photo", multi.getFile("stay_option2_photo"));
 	    map.put("stay_option3_photo", multi.getFile("stay_option3_photo"));
 	    
-	    int i = 0;
 	    Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator(); // iterator로 다음 값 가져옴
 		
 		while(iterator.hasNext()) { 
 			Entry<String, Object> e = iterator.next();
-			File file = (File) e.getValue(); // map에 저장된 파일 객체의 value 값 얻어옴(set
+			File file = (File) e.getValue(); // map에 저장된 파일 객체의 value 값만 얻어와서 File형으로 casting
 			
 			if(file != null) { // value 값이 null이 아니면
 				String fileExt = file.toString().substring(file.toString().lastIndexOf(".") + 1); // 확장자 분리 
-				String fileRename = "stay_original_" + i + "_" + System.currentTimeMillis() + "." +fileExt; // 파일 rename 
+				String fileRename = e.getKey() + "_original_" + System.currentTimeMillis() + "." +fileExt; // 파일 rename 
 				file.renameTo(new File(saveFolder + fileRename)); // file을 인자로 전달된 파일의 경로로 변경
 				map.replace(e.getKey(), thisFolder + fileRename); // 현재 key 값에 새로운 value 값을 map에 저장
 			}else {
 				map.replace(e.getKey(), ""); // null 값 처리 위함
 			}
-			i++;
 		}
 		
 		dto.setStay_file1(map.get("stay_file1").toString());
