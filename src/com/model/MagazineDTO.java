@@ -4,12 +4,14 @@ public class MagazineDTO {
     private int bbs_no;
     private String bbs_title;
     private String bbs_content;
+    private String bbs_youtube;
     private String bbs_file1;
     private String bbs_file2;
     private String bbs_file3;
     private String bbs_file4;
     private String bbs_file5;
     private String bbs_stayno;
+    private String bbs_map;
     private int bbs_hit;
     private String bbs_writer_name;
     private String bbs_writer_id;
@@ -17,7 +19,22 @@ public class MagazineDTO {
     private String bbs_date;
 
 
-    public int getBbs_no() {
+    
+    
+    
+    public String getBbs_youtube() {
+		return bbs_youtube;
+	}
+	public void setBbs_youtube(String bbs_youtube) {
+		this.bbs_youtube = bbs_youtube;
+	}
+	public String getBbs_map() {
+		return bbs_map;
+	}
+	public void setBbs_map(String bbs_map) {
+		this.bbs_map = bbs_map;
+	}
+	public int getBbs_no() {
         return bbs_no;
     }
     public void setBbs_no(int bbs_no) {
