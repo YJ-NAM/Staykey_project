@@ -46,7 +46,6 @@ public class AdminStayRoomWriteOkAction implements Action {
         String features_sum = "";
         String amenities_sum = "";
         String service_sum = "";
-        String bed_sum = "";
 
         // 파라미터 정리
         int stay_stayNo = Integer.parseInt(multi.getParameter("stayNo"));
@@ -58,33 +57,26 @@ public class AdminStayRoomWriteOkAction implements Action {
         String room_checkout = multi.getParameter("room_checkout").trim();
         int room_people_min = Integer.parseInt(multi.getParameter("room_people_min"));
         int room_people_max = Integer.parseInt(multi.getParameter("room_people_max"));
-        int room_size = Integer.parseInt(multi.getParameter("room_size").trim());
-      
-        String[] room_bed = multi.getParameterValues("room_bed");
-        for(int i = 1; i<room_bed.length; i++) {
-        	bed_sum += room_bed[i] + "/";
-        }
-        bed_sum += "/" + bed_sum; 
+        int room_size = Integer.parseInt(multi.getParameter("room_size").trim());      
+        String room_bed = multi.getParameter("room_bed").trim();
 
         String[] room_features = multi.getParameterValues("room_features");
         for (int i = 0; i < room_features.length; i++) {
             features_sum += room_features[i] + "/";
         }
-        
-        // 맨 처음 슬래시 붙이는 용도 : 검색 설정 시 필요함
-        features_sum += "/" + features_sum; 
+        features_sum = "/" + features_sum; 
 
         String[] room_amenities = multi.getParameterValues("room_amenities");
         for (int i = 0; i < room_amenities.length; i++) {
             amenities_sum += room_amenities[i] + "/";
         }
-        amenities_sum += "/" + amenities_sum;
+        amenities_sum = "/" + amenities_sum;
 
         String[] room_service = multi.getParameterValues("room_service");
         for (int i = 0; i < room_service.length; i++) {
             service_sum += room_service[i] + "/";
         }
-        service_sum += "/" + service_sum;
+        service_sum = "/" + service_sum;
         
         String room_tag = multi.getParameter("room_tag");
         System.out.println(room_tag.toString());
@@ -99,6 +91,7 @@ public class AdminStayRoomWriteOkAction implements Action {
         dto.setRoom_people_min(room_people_min);
         dto.setRoom_people_max(room_people_max);
         dto.setRoom_size(room_size);
+        dto.setRoom_bed(room_bed);
         dto.setRoom_features(features_sum); 
         dto.setRoom_amenities(amenities_sum);
         dto.setRoom_service(service_sum);
@@ -142,7 +135,7 @@ public class AdminStayRoomWriteOkAction implements Action {
 
         if (res > 0) {
             forward.setRedirect(true);
-            forward.setPath("admin/stayView.do?stay_no="+stay_stayNo);
+            forward.setPath("stayView.do?stay_no="+stay_stayNo);
         } else {
             out.println("<script> alert('Room 등록 중 에러가 발생했습니다.'); history.back(); </script>");
         }
