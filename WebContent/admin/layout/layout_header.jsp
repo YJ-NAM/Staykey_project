@@ -61,28 +61,30 @@
 
 
     <!-- #header // START -->
-    <header class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-xl">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsCont" aria-controls="navbarsCont" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <header class="fixed-top">
+        <div class="container-xl top-info">
+            <h1 class="mr-auto"><a href="<%=request.getContextPath()%>/admin/reservList.do"><img src="<%=request.getContextPath()%>/admin/asset/images/logo.png" alt="StayKey" /></a></h1>
+            <a class="nav-link" href="<%=request.getContextPath()%>/" target="_blank"><i class="icon-globe"></i> 사이트보기</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/memberLogout.do" onClick="return confirm('로그아웃 하시겠습니까?');"><i class="icon-power"></i> 로그아웃</a>
+        </div>
 
-            <div class="collapse navbar-collapse" id="navbarsCont">
-                <ul class="navbar-nav mr-auto justify-content-between">
-                    <li id="nav-stay" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/stayList.do"><i class="icon-home"></i> 숙소관리</a></li>
-                    <li id="nav-reserv" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/reservList.do"><i class="icon-plane"></i> 예약관리</a></li>
-                    <li id="nav-member" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/memberList.do"><i class="icon-people"></i> 회원관리</a></li>
-                    <li id="nav-review" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/reviewList.do"><i class="icon-note"></i> 후기관리</a></li>
-                    <li id="nav-qna" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/qnaList.do"><i class="icon-speech"></i> 문의관리</a></li>
-                    <li id="nav-magazine" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/magazineList.do"><i class="icon-book-open"></i> 매거진관리</a></li>
-                    <li id="nav-event" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/eventList.do"><i class="icon-event"></i> 이벤트관리</a></li>
-                </ul>
+        <div class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-xl">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsCont" aria-controls="navbarsCont" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <ul class="navbar-nav">
-                    <li class="nav-item text-nowrap pl-2">
-                        <a class="nav-link" href="<%=request.getContextPath()%>/memberLogout.do" onClick="return confirm('로그아웃 하시겠습니까?');"><i class="icon-power"></i> 로그아웃</a>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse" id="navbarsCont">
+                    <ul class="navbar-nav justify-content-between w-100">
+                        <li id="nav-stay" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/stayList.do"><i class="icon-home"></i> 숙소관리</a><span class="tri"></span></li>
+                        <li id="nav-reserv" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/reservList.do"><i class="icon-plane"></i> 예약관리</a><span class="tri"></span></li>
+                        <li id="nav-member" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/memberList.do"><i class="icon-people"></i> 회원관리</a><span class="tri"></span></li>
+                        <li id="nav-review" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/reviewList.do"><i class="icon-note"></i> 후기관리</a><span class="tri"></span></li>
+                        <li id="nav-qna" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/qnaList.do"><i class="icon-speech"></i> 문의관리</a><span class="tri"></span></li>
+                        <li id="nav-magazine" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/magazineList.do"><i class="icon-book-open"></i> 매거진관리</a><span class="tri"></span></li>
+                        <li id="nav-event" class="nav-item px-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/eventList.do"><i class="icon-event"></i> 이벤트관리</a><span class="tri"></span></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>

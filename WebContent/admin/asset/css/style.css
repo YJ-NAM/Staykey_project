@@ -21,7 +21,7 @@ html {
 body {
     font-size: 14px;
     min-height: 500px;
-    padding-top: 4rem !important;
+    padding-top: 7rem !important;
 }
 body, code, button {
     font-family: 'Noto Sans KR', 'NanumGothic', 'verdana', '굴림', 'Gulim', 'AppleGothic', 'sans-serif';
@@ -231,6 +231,19 @@ input[type='password'] {
 /*************************/
 /* Layout
 /*************************/
+header.fixed-top .top-info {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.25rem;
+    background: #fff;
+}
+header.fixed-top .top-info h1 img {
+    height: 40px;
+}
+header.fixed-top .top-info a.nav-link {
+    padding-top: 0.8rem;
+}
+
 .bd-placeholder-img {
     text-anchor: middle;
     -webkit-user-select: none;
@@ -256,7 +269,12 @@ input[type='password'] {
 /*************************/
 /* .navbar
 /*************************/
-.navbar {}
+.navbar {
+    padding: 0 1rem;
+}
+.navbar .navbar-nav {
+    padding-top: 0.5rem;
+}
 .navbar .navbar-nav .nav-link {
     font-size: 1rem;
     font-weight: 400;
@@ -266,10 +284,26 @@ input[type='password'] {
     text-overflow: ellipsis;
 }
 .navbar .navbar-nav .nav-item {
-    border-radius: 15px;
+    padding-bottom: 0.4rem;
 }
-.navbar .navbar-nav .nav-item.now {
-    background: rgba(255,255,255,0.15);
+.navbar .navbar-nav .nav-item.now {}
+.navbar .navbar-nav .nav-item .tri {
+    display: none;
+    position: absolute;
+    margin: -2px 0 0 45px;
+    width: 0px;
+    height: 0px;
+    border-top: 10px solid none;
+    border-bottom: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-left: 10px solid  transparent;
+}
+.navbar .navbar-nav .nav-item.now .nav-link {
+    color: #c9f0fc;
+    font-weight: 500;
+}
+.navbar .navbar-nav .nav-item.now .tri {
+    display: block;
 }
 .navbar .navbar-nav .nav-link:hover {
     color: #fff;
