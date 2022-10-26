@@ -1,78 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../layout/layout_header.jsp" />
 
-
-
-<script type="text/javascript">
-$("#nav-magazine").addClass("now");
-
-
-$(function(){
-	$("input[name='member_id']").keyup(function(){
-        let userId = $(this).val();
-
-        if($.trim(userId).length < 4){
-            $("#idchk-txt").html("<span class=\"text-danger\">* 아이디는 4글자 이상이어야 합니다.</span>");
-            return false;
-        }
-
-        // 아이디 중복여부 확인
-        $.ajax({
-            type : "post",
-            url : "<%=request.getContextPath()%>/memberIdCheck.do",
-            data : { paramId : userId },
-            datatype : "html",
-
-            success : function(data){
-            	console.log(data);
-                let ajaxTxt = "";
-                if(data.trim() > 0){
-                    ajaxTxt = "<span class=\"text-danger\">* 이미 사용중인 아이디입니다.</span>";
-                }else{
-                    ajaxTxt = "<span class=\"text-primary\">* 사용 할 수 있는 아이디입니다.</span>";
-                }
-                $("#idchk-txt").html(ajaxTxt);
-            },
-
-            error : function(e){
-                alert("Error : " + e.status);
-            }
-        });
-	});
-});
-
-
-join_check = function(){
-    var form = document.write_form;
-
-    if(form.member_pw.value.length > 0 && form.member_pw_re.value.length > 0){
-        if(form.member_pw.value != form.member_pw_re.value){
-            alert("[비밀번호]가 일치하지 않습니다.");
-            form.member_pw.focus();
-            return false;
-        }
-    }
-
-    if(form.member_email.value == ""){
-        alert("[이메일]을 입력해 주세요.");
-        form.member_email.focus();
-        return false;
-    }
-
-    // 이메일 형식 체크
-    var TEmailChk = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    if(form.member_email.value.match(TEmailChk) != null){
-    }else{
-        alert("잘못된 이메일 형식입니다.\n[이메일]을 다시 입력해 주세요.");
-        form.member_email.focus();
-        return false;
-    }
-
-    form.submit();
-};
-</script>
-
-
+<script type="text/javascript">$("#nav-magazine").addClass("now");</script>
 
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>매거진 등록</h2>
@@ -80,10 +11,8 @@ join_check = function(){
 </div>
 
 
-  
-
 <div class="pb100">
-    <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin/magazineWriteOk.do" onsubmit="return join_check();">
+    <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin/magazineWriteOk.do">
     <table class="table-form mt-3">
         <colgroup>
             <col width="16%" />
@@ -92,101 +21,128 @@ join_check = function(){
             <col />
         </colgroup>
 
-
-         <tr>
-            <th>메인 이미지</th>
-            <td colspan="3"> <input type="file" name="mag_mainimg" class="form-control w-50" required /></td>
-     	 </tr>
+        <tr>
+            <th>제목</th>
+            <td colspan="3">
+                <input type="text" name="mag_title" value="" maxlength="50" class="form-control w-40" required />
+            </td>
+        </tr>
         
-         <tr>
+        <tr>
             <td colspan="4" class="space" nowrap="nowrap"></td>
-       	 </tr> 
+        </tr>
         
          <tr>
-            <th>메인 문구</th>
-            <td colspan="3"> <input type="text" name="mag_mainwords" class="form-control w-50" required /></td>
-     	 </tr>
-        
-         <tr>
-            <td colspan="4" class="space" nowrap="nowrap"></td>
-       	 </tr>
+            <th>내용</th>
+            <td colspan="3"><textarea name="mag_content" cols="80" rows="5"></textarea></td>
+        </tr>
 
-     	<tr>
-        <th>소개 동영상</th>
-        <td>  
-            <div>
-                <span class="line_h35">https://youtu.be/  </span>
-                <input type="text" name="mv_the_origin_url" id="mv_the_origin_url" style="width:150px"/>
-            </div>  
-            <p class="mt_10">*ID를 정확히 입력해야 Player 및 썸네일 이미지가 정상적으로 출력이 됩니다.</p>
-            <p>유튜브 주소 ID를 입력하지 않으면 기존에 등록한 썸네일 이미지로 출력이 됩니다.</p>   
-        </td>
-    </tr>
-    <tr>
+        <tr>
+            <td colspan="4" class="space" nowrap="nowrap"></td>
+        </tr>
+
+
+		<tr>
+		      <th scope="row">유튜브 주소 ID</th>
+		      <td>  
+		          <div>
+		              <span class="line_h35">https://youtu.be/  </span>
+		              <input type="text" name="mv_the_origin_url" id="mv_the_origin_url" style="width:150px"/>
+		          </div>  
+		          <p class="mt_10">*ID를 정확히 입력해야 Player 및 썸네일 이미지가 정상적으로 출력이 됩니다.</p>
+		          <p>유튜브 주소 ID를 입력하지 않으면 기존에 등록한 썸네일 이미지로 출력이 됩니다.</p>
+		              
+		      </td>
+		  </tr>
     
-          <tr>
-            <th>첫 번째 이미지</th>
-            <td colspan="3"> <input type="file" name="mag_firstimg" required /></td>
-     	 </tr>
     
     	<tr>
-        <th> 첫 번째 글 내용 </th>
-        <td>  
-            <textarea name="mag_firstcont" cols="100" rows="5"> </textarea>
-        </td>
- 	   </tr>
-     	 
-     	 <tr>
             <td colspan="4" class="space" nowrap="nowrap"></td>
-       	 </tr>
+        </tr>
     
-          <tr>
-            <th>두 번째 이미지</th>
-            <td colspan="3"> <input type="file" name="mag_secondimg" required /></td>
-     	 </tr>
     
     	<tr>
-        <th> 두 번째 글 내용 </th>
-        <td>  
-            <textarea name="mag_secondcont" cols="100" rows="5"> </textarea>
-        </td>
- 	   </tr>
-     	 
-     	 <tr>
+            <th>파일 1</th>
+            <td colspan="3"><input type="file" name="mag_file1" class="form-control w-50" /></td>
+        </tr>
+    
+    	<tr>
+            <th>파일 2</th>
+            <td colspan="3"><input type="file" name="mag_file2" class="form-control w-50" /></td>
+        </tr>
+    
+    	<tr>
+            <th>파일 3</th>
+            <td colspan="3"><input type="file" name="mag_file3" class="form-control w-50" /></td>
+        </tr>
+    
+    	<tr>
+            <th>파일 4</th>
+            <td colspan="3"><input type="file" name="mag_file4" class="form-control w-50" /></td>
+        </tr>
+    
+    	<tr>
+            <th>파일 5</th>
+            <td colspan="3"><input type="file" name="mag_file5" class="form-control w-50" /></td>
+        </tr>
+    
+        <tr>
             <td colspan="4" class="space" nowrap="nowrap"></td>
-       	 </tr>
-       	 
-       	 <tr>
+        </tr>
+       
+        
+        <tr>
+            <th>숙소 번호</th>
+            <td colspan="3">
+                <input type="text" name="mag_stayno" value="" maxlength="50" required />
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="4" class="space" nowrap="nowrap"></td>
+        </tr>
+        
+        <tr>
             <th>지도</th>
-            <td colspan="3"> <input type="file" name="mag_secondimg" required /></td>
-     	 </tr>
-     	 
-     	 
-     	 
+                 <td colspan="3"><textarea name="mag_map" cols="80" rows="5"></textarea></td>
+            </td>
+        </tr>
         
-         <tr>
+        <tr>
             <td colspan="4" class="space" nowrap="nowrap"></td>
-       	 </tr> 
+        </tr>
         
-         <tr>
-            <th>메인 문구</th>
-            <td colspan="3"> <input type="text" name="mag_mainwords" class="form-control w-50" required /></td>
-     	 </tr>
+        <tr>
+            <th>작성자</th>
+            <td colspan="3">
+                <input type="text" name="mag_name" value="" maxlength="50" required />
+            </td>
+        </tr>
         
-         <tr>
+        <tr>
             <td colspan="4" class="space" nowrap="nowrap"></td>
-       	 </tr>
+        </tr>
 
+        <tr>
+            <th>아이디</th>
+            <td colspan="3">
+                <input type="text" name="mag_id" value="" maxlength="50" required />
+            </td>
+        </tr>
 
-        
-        
-        
-     	   
+        <tr>
+            <th>비밀번호</th>
+            <td colspan="3">
+                <input type="password" name="mag_pw" value="" maxlength="50" required />
+            </td>
+        </tr>
    
-        
-
+   
     </table>
-
+    <script type="text/javascript">
+    CKEDITOR.disableAutoInline = true;
+    CKEDITOR.replace('mag_content'', { height: "250px" });
+    </script>
 
 
     <div class="gw-button">
@@ -203,9 +159,5 @@ join_check = function(){
     </div>
     </form>
 </div>
-
-
-
-
 
 <jsp:include page="../layout/layout_footer.jsp" />

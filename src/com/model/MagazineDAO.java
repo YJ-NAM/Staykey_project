@@ -193,9 +193,60 @@ public class MagazineDAO {
 
         return list;
     }
+        
 
+    	
+    	 // ======================================================
+        // 매거진 등록 메서드
+        // ======================================================
+        public int registerMagazine(MagazineDTO dto) {
+           
+        	int result = 0, count = 0;
 
+            try {
+                openConn();
 
+                sql = "select max(bbs_no) from staykey_magazine";
+                
+                pstmt = con.prepareStatement(sql);
+                
+                rs = pstmt.executeQuery();
 
+                if (rs.next()) {
+                    count = rs.getInt(1) + 1;
+                }
+                
+                sql = "insert into staykey_magazine values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+                pstmt = con.prepareStatement(sql);
+
+                pstmt.setInt(1, count);
+                pstmt.setString(2, dto.getBbs_title());
+                pstmt.setString(3, dto.getBbs_content());
+                pstmt.setString(4, dto.getBbs_youtube());
+                pstmt.setString(5, dto.getBbs_file1());
+                pstmt.setString(6, dto.getBbs_file2());
+                pstmt.setString(7, dto.getBbs_file3());
+                pstmt.setString(8, dto.getBbs_file4());
+                pstmt.setString(9, dto.getBbs_file5());
+                pstmt.setString(10, dto.getBbs_stayno());
+                pstmt.setString(11, dto.getBbs_map());
+                pstmt.setInt(12, dto.getBbs_hit());
+                pstmt.setString(13, dto.getBbs_writer_name());
+                pstmt.setString(14, dto.getBbs_writer_id());
+                pstmt.setString(15, dto.getBbs_writer_pw());
+                result = pstmt.executeUpdate();
+
+                
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            } finally {
+                closeConn(rs, pstmt, con);
+            }
+
+            return result;
+        }
+
+    	
 
 }
