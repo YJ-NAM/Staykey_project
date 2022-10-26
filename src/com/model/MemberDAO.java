@@ -117,6 +117,7 @@ public class MemberDAO {
     // ======================================================
     // 회원 목록 메서드
     // ======================================================
+
     public List<MemberDTO> memberList(int page, int rowsize, Map<String, Object> map) {
         List<MemberDTO> list = new ArrayList<MemberDTO>();
 
