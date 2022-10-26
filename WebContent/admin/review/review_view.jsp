@@ -48,9 +48,7 @@
                         </div>
                     </div>
                     
-                    
-                    console.log('안녕');
-                    
+                                       
                     <h2 class="col text-right">          	
     	                <p>리뷰 내용</p>
 	                    <span>${dto.review_content}</span>
