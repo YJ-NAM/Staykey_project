@@ -31,10 +31,10 @@ public class AdminMagazineListAction implements Action {
           String mg_date = "";
           String mg_title = "";
           String ps_order = "";
-          if(request.getParameter("mg_stayno") != null){ mg_stayno = request.getParameter("mg_stayno").trim(); }else{ mg_stayno = "all"; }
+          if(request.getParameter("mg_stayno") != null){ mg_stayno = request.getParameter("mg_stayno").trim(); }else{ mg_stayno = ""; }
           if(request.getParameter("mg_date") != null){ mg_date = request.getParameter("mg_date").trim(); }else{ mg_date = ""; }
           if(request.getParameter("mg_title") != null){ mg_title = request.getParameter("mg_title").trim(); }else{ mg_title = ""; }
-          if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "register_desc"; }
+          if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "bbs_date_desc"; }
 
           // 뷰에 전달할 매개변수 추가
           map.put("mg_stayno", mg_stayno);
