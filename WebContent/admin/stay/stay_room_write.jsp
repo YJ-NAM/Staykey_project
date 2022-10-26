@@ -3,6 +3,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../layout/layout_header.jsp" />
 
+<script>
+
+
+
+function tagCheck() {
+
+	let hashtag = $("#hashtag").val();
+	if($.trim(hashtag).length%5==0){
+		$("#hashtag").text("#");
+	}
+
+	if($.trim(hashtag).length > 5){
+		let warning = "<font color='red'> 태그는 최대 4글자까지 입력 가능합니다. </font>";
+		$("#tagAlert").html(warning);
+		return false;
+	};
+
+
+}
+
+</script>
+
 <div>
 	<hr />
 	<h4>방 등록하기</h4>
@@ -122,8 +144,11 @@
 		</tr>
 		<tr>
 			<th>TAGS</th>
-		    <td><input type="text" id="tag" size="20" placeholder="태그" /></td>
+		    <td><input type="text" name="room_tag" id="hashtag" size="20" placeholder="태그" onkeyup="tagCheck()"/>
 		    <!-- ajax 기능 구현 예정 -->
+		    <span id="tagAlert">태그는 최대 4개까지 입력 가능합니다.</span>
+		    </td>
+		    
 		</tr>
 		<tr>			
 			<th>사진</th> 			
