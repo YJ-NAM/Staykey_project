@@ -161,6 +161,7 @@ public class ReservDAO {
         }
 
         search_sql1 += search_sql2;
+        System.out.println(search_sql1);
 
 
         // 정렬용 설정
