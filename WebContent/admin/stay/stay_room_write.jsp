@@ -1,29 +1,117 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script>
 
+	onload = function() {
+
+		const tagContainer = document.querySelector('.tag-container');
+		const input = document.querySelector('.tag-container input');
+		let tags = [];
 
 
-function tagCheck() {
+		function createTag(label) {
+			const div = document.createElement('div');
+			div.setAttribute('class', 'tag');
+			const span = document.createElement('span');
+			span.innerHTML = label;
+			const closeBtn = document.createElement('i');
+			closeBtn.setAttribute('class', 'icon-close');
+			closeBtn.setAttribute('data-item', label);
+			div.appendChild(span);
+			div.appendChild(closeBtn);
+			return div;
+		};
 
-	let hashtag = $("#hashtag").val();
-	if($.trim(hashtag).length%5==0){
-		$("#hashtag").text("#");
+		function reset() {
+			document.querySelectorAll('.tag').forEach(function(tag) {
+				tag.parentElement.removeChild(tag);
+			})
+		};
+
+		function addTags() {
+			reset();
+			tags.slice().reverse().forEach(function(tag) {
+				const input = createTag(tag);
+				tagContainer.prepend(input);
+			})
+		};
+
+		input.addEventListener('keyup', function(e) {
+			if(e.keyCode == 32) {
+				tags.push(input.value);
+				addTags();
+				input.value = '';
+			}
+		});
+
+		document.addEventListener('click', function(e) {
+			if(e.target.tagName == 'I'){
+				const value = e.target.getAttribute('data-item');
+				const index = tags.indexOf(value);
+				tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+				addTags();
+			}	
+		})
 	}
+	
 
-	if($.trim(hashtag).length > 5){
-		let warning = "<font color='red'> 태그는 최대 4글자까지 입력 가능합니다. </font>";
-		$("#tagAlert").html(warning);
-		return false;
-	};
+// function tagCheck() {
 
+// 	let hashtag = $("#hashtag").val();
+// 	if($.trim(hashtag).length%5==0){
+// 		$("#hashtag").text("#");
+// 	}
 
-}
+// 	if($.trim(hashtag).length > 5){
+// 		let warning = "<font color='red'> 태그는 최대 4글자까지 입력 가능합니다. </font>";
+// 		$("#tagAlert").html(warning);
+// 		return false;
+// 	};
+
+// }
 
 </script>
+<style>
+	.container {
+		width: 60%;
+		margin: 40px;
+	}
+
+	.tag-container {
+		border: 2px solid #ccc;
+		padding: 10px;
+		border-radius: 5px;
+		display: flex;
+	}
+
+	.tag-container .tag {
+		padding: 5px;
+		border: 1px solid #ccc;
+		margin: 5px;
+		display: flex;
+		align-items: center;
+		border-radius: 3px;
+		background: #f2f2f2;
+		cursor: default;
+	}
+	
+	.tag i {
+		font-size: 16px;
+		margin-left: 5px;
+	}
+
+	.tag-container input {
+		flex :1;
+		font-size: 16px;
+		padding: 5px;
+		outline: none;
+		border: 0;
+	}
+
+</style>
 
 <div>
 	<hr />
@@ -144,9 +232,13 @@ function tagCheck() {
 		</tr>
 		<tr>
 			<th>TAGS</th>
-		    <td><input type="text" name="room_tag" id="hashtag" size="20" placeholder="태그" onkeyup="tagCheck()"/>
-		    <!-- ajax 기능 구현 예정 -->
-		    <span id="tagAlert">태그는 최대 4개까지 입력 가능합니다.</span>
+		    <td>
+			    <div class="container">
+			    	태그를 입력한 후 스페이스 바를 누르세요.
+			    	<div class="tag-container">
+			    		<input type="text" class="form-control" />
+			    	</div>			    
+			    </div>
 		    </td>
 		    
 		</tr>
