@@ -76,6 +76,7 @@ public class MemberDAO {
     // ======================================================
     public int getTotalCount(Map<String, Object> map) {
         int result = 0;
+        
 
         // 검색용 설정
         String search_sql = " where member_no > 0";
@@ -100,7 +101,6 @@ public class MemberDAO {
             sql = "select count(*) from staykey_member" + search_sql;
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
-
             if (rs.next())
                 result = rs.getInt(1);
 
@@ -117,6 +117,7 @@ public class MemberDAO {
     // ======================================================
     // 회원 목록 메서드
     // ======================================================
+
     public List<MemberDTO> memberList(int page, int rowsize, Map<String, Object> map) {
         List<MemberDTO> list = new ArrayList<MemberDTO>();
 
