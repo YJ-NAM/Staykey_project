@@ -29,30 +29,29 @@ ${ msg }
 
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
-                        	<i class="icon-location-pin"></i> ${room.room_type}
-                        	<i class="icon-map ml-3"></i> <fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${room.room_price}" type="currency" />~
+                        	<i class="icon-location-pin"></i> ${room.room_type} &nbsp;
+                        	<i class="fa fa-credit-card"></i> <fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${room.room_price}" type="currency" />~
                         </div>
 
                         <div class="col text-right">
-                        	<i class="icon-phone"></i> 체크인 : ${room.room_checkin}
-                        	<i class="icon-paper-plane ml-3"></i> 체크아웃 : ${room.room_checkout}
+                        	 <i class="fa fa-calendar"></i> 체크인 : ${room.room_checkin} / 체크아웃 : ${room.room_checkout}
                         </div>
                     </div>
 
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
-                        	<i class="icon-magnifier"></i> 기준 <b><fmt:formatNumber value="${room.room_people_min}" /></b>명
+                        	<i class="fa fa-user" ></i> 기준 <b><fmt:formatNumber value="${room.room_people_min}" /></b>명
                         	(최대 <b><fmt:formatNumber value="${room.room_people_max}" /></b>명)                       	
                         </div>
 
                         <div class="col text-right">
-                        	<i class="icon-calendar"></i>사이즈 : ${ room.room_size }m<sup>2</sup>
+                        	<i class="icon-calendar"></i> 사이즈 : ${ room.room_size }m<sup>2</sup>
                         </div>
                     </div>
                     
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
-                        	<i class="icon-magnifier"></i> ${ room.room_bed } 
+                        	<i class="fa fa-bed" ></i> ${ room.room_bed } 
                         </div>
 
                         <div class="col text-right">
