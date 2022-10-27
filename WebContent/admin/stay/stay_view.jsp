@@ -54,7 +54,7 @@ ${ msg }
 
 
                     <c:if test="${!empty view.stay_file1 or !empty view.stay_file2 or !empty view.stay_file3 or !empty view.stay_file4 or !empty view.stay_file5}">
-                    <div class="d-flex py-3 border-bottom">
+                    <div class="d-flex pt-4 pb-5 border-bottom">
                         <div class="col">
                         	<ul class="stay-view-photo">
                         		<c:if test="${!empty view.stay_file1}"><li><img src="<%=request.getContextPath()%>${view.stay_file1}" alt="" /></li></c:if>
@@ -69,11 +69,11 @@ ${ msg }
 
 
                     <c:if test="${!empty view.stay_option1_name or !empty view.stay_option2_name or !empty view.stay_option3_name}">
-                    <div class="d-flex py-3">
+                    <div class="d-flex pt-5 pb-4">
                         <div class="col">
                         	<ul class="stay-view-option">
                         		<c:if test="${!empty view.stay_option1_name}">
-                        		<li class="d-flex">
+                        		<li>
                         			<div>
 				                        <c:choose>
 				                        <c:when test="${!empty view.stay_option1_photo}"><img src="<%=request.getContextPath()%>${view.stay_option1_photo}" width="100" height="70" alt="" /></c:when>
@@ -86,7 +86,7 @@ ${ msg }
 				                        </c:otherwise>
 				                        </c:choose>
                         			</div>
-                        			<div class="pl-3">
+                        			<div class="pl-2">
                         				<p><b>${view.stay_option1_name}</b></p>
                         				<p>${view.stay_option1_desc}</p>
                         				<p><fmt:formatNumber value="${view.stay_option1_price}" />원</p>
@@ -95,7 +95,7 @@ ${ msg }
                         		</c:if>
 
                         		<c:if test="${!empty view.stay_option2_name}">
-                        		<li class="d-flex">
+                        		<li>
                         			<div>
 				                        <c:choose>
 				                        <c:when test="${!empty view.stay_option2_photo}"><img src="<%=request.getContextPath()%>${view.stay_option2_photo}" width="100" height="70" alt="" /></c:when>
@@ -108,7 +108,7 @@ ${ msg }
 				                        </c:otherwise>
 				                        </c:choose>
                         			</div>
-                        			<div class="pl-3">
+                        			<div class="pl-2">
                         				<p><b>${view.stay_option2_name}</b></p>
                         				<p>${view.stay_option2_desc}</p>
                         				<p><fmt:formatNumber value="${view.stay_option2_price}" />원</p>
@@ -117,7 +117,7 @@ ${ msg }
                         		</c:if>
 
                         		<c:if test="${!empty view.stay_option3_name}">
-                        		<li class="d-flex">
+                        		<li>
                         			<div>
 				                        <c:choose>
 				                        <c:when test="${!empty view.stay_option3_photo}"><img src="<%=request.getContextPath()%>${view.stay_option3_photo}" width="100" height="70" alt="" /></c:when>
@@ -130,7 +130,7 @@ ${ msg }
                                         </c:otherwise>
 				                        </c:choose>
                         			</div>
-                        			<div class="pl-3">
+                        			<div class="pl-2">
                         				<p><b>${view.stay_option3_name}</b></p>
                         				<p>${view.stay_option3_desc}</p>
                         				<p><fmt:formatNumber value="${view.stay_option3_price}" />원</p>
@@ -164,9 +164,9 @@ ${ msg }
                             <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '700', '900');" class="d-flex">
                                 <div>
                                     <c:choose>
-                                    <c:when test="${!empty room.room_photo1}"><img src="<%=request.getContextPath()%>${ room.room_photo1 }" width="100" height="70" alt="" /></c:when>
+                                    <c:when test="${!empty room.room_photo1}"><img src="<%=request.getContextPath()%>${ room.room_photo1 }" width="150" height="100" alt="" /></c:when>
                                     <c:otherwise>
-                                    <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                                    <svg class="bd-placeholder-img" width="150" height="100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
                                         <title>${ room.room_name }</title>
                                         <rect width="100%" height="100%" fill="#eee"></rect>
                                         <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
