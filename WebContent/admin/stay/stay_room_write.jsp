@@ -63,7 +63,7 @@
 
 		// 클릭 시 삭제 
 		document.addEventListener('click', function(e) {
-			if(e.target.tagName == 'I'){
+			if(e.target.tagName == 'I') {
 				const value = e.target.getAttribute('data-item');
 				const index = tags.indexOf(value);
 				tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
@@ -75,7 +75,7 @@
 		// 남은 태그 개수 확인
 		function countTag() {
 			remainTag.innerText = maxTags - tags.length; // 최대 개수 - 배열 길이
-			// tags 배열 값 input hidden으로 넘기기
+			// 여기서 tags 배열 값 input hidden으로 넘기기
 			if(tags.length > 0){
 				document.querySelector('#room_tag').value = tags;
 			}
