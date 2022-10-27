@@ -2,6 +2,7 @@ package com.model;
 
 public class QnaDTO {
     private int bbs_no;
+    private String bbs_status;
     private String bbs_title;
     private String bbs_content;
     private String bbs_file1;
@@ -20,7 +21,13 @@ public class QnaDTO {
     public void setBbs_no(int bbs_no) {
         this.bbs_no = bbs_no;
     }
-    public String getBbs_title() {
+    public String getBbs_status() {
+		return bbs_status;
+	}
+	public void setBbs_status(String bbs_status) {
+		this.bbs_status = bbs_status;
+	}
+	public String getBbs_title() {
         return bbs_title;
     }
     public void setBbs_title(String bbs_title) {
