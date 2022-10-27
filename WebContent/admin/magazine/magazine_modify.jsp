@@ -31,6 +31,9 @@
 			action="<%=request.getContextPath()%>/admin/magazineModifyOk.do">
 
 			<input type="hidden" name="mag_no" value="${dto.bbs_no}" />
+			<input type="hidden" name="mag_writer_name" value="${dto.bbs_writer_name}" />
+			<input type="hidden" name="mag_writer_id" value="${dto.bbs_writer_id}" />
+			<input type="hidden" name="mag_writer_pw" value="${dto.bbs_writer_pw}" />
 
 			<table class="table-form mt-3">
 
@@ -161,36 +164,7 @@
 					<td colspan="3"><input type="text" name="mag_stayno"
 						value="${dto.bbs_stayno}" required /></td>
 				</tr>
-	
-				<tr>
-					<td colspan="4" class="space" nowrap="nowrap"></td>
-				</tr>
-
-				<tr>
-					<th>작성자</th>
-					<td colspan="3"><input type="text" name="mag_writer_name"
-						value="${dto.bbs_writer_name}" required /></td>
-				</tr>
-	
-				<tr>
-					<td colspan="4" class="space" nowrap="nowrap"></td>
-				</tr>
-
-				<tr>
-					<th>아이디</th>
-					<td colspan="3"><input type="text" name="mag_writer_id"
-						value="${dto.bbs_writer_id}" required /></td>
-				</tr>
-	
-				<tr>
-					<td colspan="4" class="space" nowrap="nowrap"></td>
-				</tr>
-
-				<tr>
-					<th>비밀번호</th>
-					<td colspan="3"><input type="text" name="mag_writer_pw"
-						value="${dto.bbs_writer_pw}" required /></td>
-				</tr>
+			
 
 
 			</table>

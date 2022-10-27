@@ -10,14 +10,11 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
 import com.model.MagazineDAO;
 import com.model.MagazineDTO;
-import com.model.StayDAO;
-import com.model.StayDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 

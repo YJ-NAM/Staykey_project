@@ -17,6 +17,11 @@
 	<div class="pb100">
 		<form name="write_form" method="post" enctype="multipart/form-data"
 			action="<%=request.getContextPath()%>/admin/magazineWriteOk.do">
+			
+			<input type="hidden" name="mag_writer_name" />
+			<input type="hidden" name="mag_writer_id" />
+			<input type="hidden" name="mag_writer_pw" />
+			
 			<table class="table-form mt-3">
 				<colgroup>
 					<col width="16%" />
@@ -25,6 +30,7 @@
 					<col />
 				</colgroup>
 	
+				
 				<tr>
 					<th>제목</th>
 					<td colspan="3"><input type="text" name="mag_title" value=""
@@ -115,36 +121,6 @@
 						maxlength="50" required /></td>
 				</tr>
 	
-				<tr>
-					<td colspan="4" class="space" nowrap="nowrap"></td>
-				</tr>
-	
-	
-				<tr>
-					<th>작성자</th>
-					<td colspan="3"><input type="text" name="mag_writer_name" value=""
-						maxlength="50" required /></td>
-				</tr>
-	
-				<tr>
-					<td colspan="4" class="space" nowrap="nowrap"></td>
-				</tr>
-	
-				<tr>
-					<th>아이디</th>
-					<td colspan="3"><input type="text" name="mag_writer_id" value=""
-						maxlength="50" required /></td>
-				</tr>
-	
-				<tr>
-					<td colspan="4" class="space" nowrap="nowrap"></td>
-				</tr>
-				
-				<tr>
-					<th>비밀번호</th>
-					<td colspan="3"><input type="password" name="mag_writer_pw" value=""
-						maxlength="50" required /></td>
-				</tr>
 	
 			</table>
 			

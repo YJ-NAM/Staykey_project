@@ -9,8 +9,6 @@ import com.controller.Action;
 import com.controller.ActionForward;
 import com.model.MagazineDAO;
 import com.model.MagazineDTO;
-import com.model.StayDAO;
-import com.model.StayDTO;
 
 public class AdminMagazineModifyAction implements Action {
 

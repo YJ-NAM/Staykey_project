@@ -53,7 +53,7 @@ public class AdminMagazineWriteOkAction implements Action {
 		File mag_list_img = multi.getFile("mag_list_img");
 		if (mag_list_img != null) {
 			String fileExt = mag_list_img.getName().substring(mag_list_img.getName().lastIndexOf(".") + 1);
-			String mag_flie_rename = mag_title + "_" + System.currentTimeMillis() + "." + fileExt;
+			String mag_flie_rename = "mag_list_img_" + System.currentTimeMillis() + "." + fileExt;
 			mag_list_img.renameTo(new File(saveFolder + "/" + mag_flie_rename));
 
 			// DB에 저장되는 파일 이름
@@ -66,7 +66,7 @@ public class AdminMagazineWriteOkAction implements Action {
 		File mag_top_img = multi.getFile("mag_top_img");
 		if (mag_top_img != null) {
 			String fileExt = mag_top_img.getName().substring(mag_top_img.getName().lastIndexOf(".") + 1);
-			String mag_flie_rename = mag_title + "_" + System.currentTimeMillis() + "." + fileExt;
+			String mag_flie_rename = "mag_top_img_" + System.currentTimeMillis() + "." + fileExt;
 			mag_top_img.renameTo(new File(saveFolder + "/" + mag_flie_rename));
 
 			// DB에 저장되는 파일 이름
@@ -79,7 +79,7 @@ public class AdminMagazineWriteOkAction implements Action {
 		File mag_detail_img1 = multi.getFile("mag_detail_img1");
 		if (mag_detail_img1 != null) {
 			String fileExt = mag_detail_img1.getName().substring(mag_detail_img1.getName().lastIndexOf(".") + 1);
-			String mag_flie_rename = mag_title + "_" + System.currentTimeMillis() + "." + fileExt;
+			String mag_flie_rename = "mag_detail_img1_" + System.currentTimeMillis() + "." + fileExt;
 			mag_detail_img1.renameTo(new File(saveFolder + "/" + mag_flie_rename));
 
 			// DB에 저장되는 파일 이름
@@ -92,7 +92,7 @@ public class AdminMagazineWriteOkAction implements Action {
 		File mag_detail_img2 = multi.getFile("mag_detail_img2");
 		if (mag_detail_img2 != null) {
 			String fileExt = mag_detail_img2.getName().substring(mag_detail_img2.getName().lastIndexOf(".") + 1);
-			String mag_flie_rename = mag_title + "_" + System.currentTimeMillis() + "." + fileExt;
+			String mag_flie_rename = "mag_detail_img2_" + System.currentTimeMillis() + "." + fileExt;
 			mag_detail_img2.renameTo(new File(saveFolder + "/" + mag_flie_rename));
 
 			// DB에 저장되는 파일 이름
