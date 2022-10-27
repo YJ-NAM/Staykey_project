@@ -28,34 +28,30 @@ public class AdminMagazineDeleteOkAction implements Action {
 				int mag_no = Integer.parseInt(request.getParameter("bbs_no"));
 				MagazineDTO dto = dao.getMagView(mag_no);
 				
-				String bbs_file1 = dto.getBbs_file1();
-				String bbs_file2 = dto.getBbs_file2();
-				String bbs_file3 = dto.getBbs_file3();
-				String bbs_file4 = dto.getBbs_file4();
-				String bbs_file5 = dto.getBbs_file5();
+				String bbs_list_img = dto.getBbs_list_img();
+				String bbs_top_img = dto.getBbs_top_img();
+				String bbs_detail_img1 = dto.getBbs_detail_img1();
+				String bbs_detail_img2 = dto.getBbs_detail_img2();
 				
-		        if(bbs_file1 != null) { 
-		        	File del_image = new File(saveFolder + bbs_file1);     
+				
+		        if(bbs_list_img != null) { 
+		        	File del_image = new File(saveFolder + bbs_list_img);     
 		        	System.out.println(del_image);
 		        	if(del_image.exists()) { del_image.delete(); }
 		        }
-		        if(bbs_file2 != null) { 
-		        	File del_image = new File(saveFolder + bbs_file2);        	
+		        if(bbs_top_img != null) { 
+		        	File del_image = new File(saveFolder + bbs_top_img);        	
 		        	if(del_image.exists()) { del_image.delete(); }
 		        }
-		        if(bbs_file3 != null) { 
-		        	File del_image = new File(saveFolder + bbs_file3);        	
+		        if(bbs_detail_img1 != null) { 
+		        	File del_image = new File(saveFolder + bbs_detail_img1);        	
 		        	if(del_image.exists()) { del_image.delete(); }
 		        }
-		        if(bbs_file4 != null) { 
-		        	File del_image = new File(saveFolder + bbs_file4);        	
+		        if(bbs_detail_img2 != null) { 
+		        	File del_image = new File(saveFolder + bbs_detail_img2);        	
 		        	if(del_image.exists()) { del_image.delete(); }
 		        }
-		        if(bbs_file5 != null) { 
-		        	File del_image = new File(saveFolder + bbs_file5);        	
-		        	if(del_image.exists()) { del_image.delete(); }
-		        }
-		       
+
 		                
 				int res = dao.deleteMag(mag_no);
 				
