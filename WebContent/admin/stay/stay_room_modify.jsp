@@ -17,7 +17,7 @@
 		let split_tags = old_tags.split(',');
 		
 		// 기존 태그 값이 있으면 tags 배열에 기존 값 저장
-		if(split_tags.length > 0) {			
+		if(split_tags.length > 0) {	
 			tags = [...split_tags];
 			addTags();
 		}
@@ -143,7 +143,7 @@
 	<h4>방 수정하기</h4>
 	<hr />
 	<form action="${ pageContext.request.contextPath }/admin/stayRoomModifyOk.do" enctype="multipart/form-data" method="post" >
-	<input type="hidden" name="stayNo" value="${ param.stay_no }" /> <!-- 숙소 번호 -->
+	<input type="hidden" name="room_no" value="${ room.room_no }" /> <!-- 방 번호 -->
 	<input type="hidden" name="room_tag" id="room_tag" value="${ room.room_tag }"> <!-- tag 값 받아오기 위함 -->
 	<table>
 		<tr>
