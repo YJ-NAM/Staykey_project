@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
@@ -126,20 +127,23 @@ public class AdminStayRoomWriteOkAction implements Action {
 		dto.setRoom_photo5(map.get("room5").toString());
 
         StayDAO dao = StayDAO.getInstance();
-        int res = dao.registerStayRoom(dto);
-
+        
+        // res[0] = result, res[1] = count
+        int[] res = dao.registerStayRoom(dto);
+        
         ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
 
-        if (res > 0) {
+        if (res[0] > 0) {
+        	// alert + 새로고침
+        	session.setAttribute("msg", "<script> alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.reload(); </script>");
             forward.setRedirect(true);
-            forward.setPath("stayView.do?stay_no="+stay_stayNo);
+            forward.setPath("stayRoomView.do?room_no="+res[1]+"&stay_no="+stay_stayNo);
         } else {
             out.println("<script> alert('Room 등록 중 에러가 발생했습니다.'); history.back(); </script>");
         }
-
         return forward;
-
     }
 
 }
