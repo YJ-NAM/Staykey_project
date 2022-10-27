@@ -87,7 +87,7 @@ public class AdminStayListAction implements Action {
     	// 페이징
     	/////////////////////////////////////////////////////////////
     	// 페이징 변수들 정의
-    	int rowsize = 3; // 한 페이지당 보여질 게시물의 갯수
+    	int rowsize = 10; // 한 페이지당 보여질 게시물의 갯수
     	int block = 5; // 아래에 보여질 페이지의 최대 블럭 수
     	
     	// 전체 데이터 개수 count 메서드
