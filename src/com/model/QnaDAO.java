@@ -81,8 +81,14 @@ public class QnaDAO {
 
         // 검색용 설정
         String search_sql = " where bbs_no > 0";
-        if(map.get("ps_title") != null){
-            search_sql += " and bbs_title like '%"+map.get("ps_title")+"%'";
+        if (map.get("ps_name") != "" && map.get("ps_name") != null) {
+            search_sql += " and bbs_writer_name like '%" + map.get("ps_name") + "%'";
+        }
+        if (map.get("ps_id") != "" && map.get("ps_id") != null) {
+            search_sql += " and bbs_writer_id like '%" + map.get("ps_id") + "%'";
+        }
+        if (map.get("ps_title") != "" && map.get("ps_title") != null) {
+            search_sql += " and bbs_title like '%" + map.get("ps_title") + "%'";
         }
 
 
@@ -156,6 +162,7 @@ public class QnaDAO {
         }
 
         try {
+        	
             openConn();
 
             sql = "select * from " + "(select row_number() over(order by " + order_sql
@@ -182,8 +189,49 @@ public class QnaDAO {
                 dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
                 dto.setBbs_date(rs.getString("bbs_date"));
                 
-                
                 list.add(dto);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return list;
+    }
+
+
+
+    // ======================================================
+    // 문의글 정보 가져오는 메서드
+    // ======================================================
+    public QnaDTO getQnaInfo(int no) {
+    	QnaDTO dto = null;
+
+        try {
+            openConn();
+
+            sql = "select * from staykey_qna where bbs_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                dto = new QnaDTO();
+
+                dto.setBbs_no(rs.getInt("bbs_no"));
+                dto.setBbs_status(rs.getString("bbs_status"));
+                dto.setBbs_title(rs.getString("bbs_title"));
+                dto.setBbs_content(rs.getString("bbs_content"));
+                dto.setBbs_file1(rs.getString("bbs_file1"));
+                dto.setBbs_file2(rs.getString("bbs_file2"));
+                dto.setBbs_hit(rs.getInt("bbs_hit"));
+                dto.setBbs_comment(rs.getInt("bbs_comment"));
+                dto.setBbs_writer_name(rs.getString("bbs_writer_name"));
+                dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
+                dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
+                dto.setBbs_date(rs.getString("bbs_date"));
+                
             }
 
         } catch (SQLException e) {
@@ -193,10 +241,36 @@ public class QnaDAO {
             closeConn(rs, pstmt, con);
         }
 
-        return list;
+        return dto;
     }
 
+    // ======================================================
+    // 문의글 삭제하는 메서드 + 글번호 재작업
+    // ======================================================
+    public int deleteQna(int no) {
+        int result = 0;
 
+        try {
+            openConn();
+
+            sql = "delete from staykey_qna where bbs_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            result = pstmt.executeUpdate();
+
+            
+            sql = "update staykey_qna set bbs_no = bbs_no - 1 where bbs_no > ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return result;
+    } 
 
 
 
