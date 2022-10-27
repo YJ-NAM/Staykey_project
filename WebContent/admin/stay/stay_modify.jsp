@@ -11,8 +11,6 @@
     <small>숙소를 수정 할 수 있습니다.</small>
 </div>
 
-<!-- 사진 이미지는 모두 width=100px / height=100px로 임의 설정되어 있습니다~! -->
-
 
 <div class="pb100">
     <form name="modify_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin/stayModifyOk.do">
@@ -77,46 +75,36 @@
         <tr>
             <th>숙소 사진 1</th>
             <td colspan="3">
-			<c:if test="${ !empty stayModify.stay_file1 }">
-				<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_file1 }" alt="" width="100px" height="100px"/></p>
-           	</c:if>
-           		<input type="file" name="stay_file1" class="form-control w-50" />
+                <input type="file" name="stay_file1" class="form-control w-50" />
+                <c:if test="${!empty stayModify.stay_file1}"><p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file1}" style="max-height: 200px;" alt="" /></p></c:if>
             </td>
         </tr>
         <tr>
             <th>숙소 사진 2</th>
             <td colspan="3">
-			<c:if test="${ !empty stayModify.stay_file2 }">
-				<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_file2 }" alt="" width="100px" height="100px"/></p>
-           	</c:if>
-           		<input type="file" name="stay_file2" class="form-control w-50" />
+                <input type="file" name="stay_file2" class="form-control w-50" />
+                <c:if test="${!empty stayModify.stay_file2}"><p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file2}" style="max-height: 200px;" alt="" /></p></c:if>
             </td>
         </tr>
         <tr>
             <th>숙소 사진 3</th>
             <td colspan="3">
-			<c:if test="${ !empty stayModify.stay_file3 }">
-				<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_file3 }" alt="" width="100px" height="100px"/></p>
-           	</c:if>
-           		<input type="file" name="stay_file3" class="form-control w-50" />
+                <input type="file" name="stay_file3" class="form-control w-50" />
+                <c:if test="${!empty stayModify.stay_file3}"><p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file3}" style="max-height: 200px;" alt="" /></p></c:if>
             </td>
         </tr>
         <tr>
             <th>숙소 사진 4</th>
             <td colspan="3">
-			<c:if test="${ !empty stayModify.stay_file4 }">
-				<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_file4 }" alt="" width="100px" height="100px"/></p>
-           	</c:if>
-           		<input type="file" name="stay_file4" class="form-control w-50" />
+                <input type="file" name="stay_file4" class="form-control w-50" />
+                <c:if test="${!empty stayModify.stay_file4}"><p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file4}" style="max-height: 200px;" alt="" /></p></c:if>
             </td>
         </tr>
         <tr>
             <th>숙소 사진 5</th>
             <td colspan="3">
-			<c:if test="${ !empty stayModify.stay_file5 }">
-				<p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_file5 }" alt="" width="100px" height="100px"/></p>
-           	</c:if>
-           		<input type="file" name="stay_file5" class="form-control w-50" />
+                <input type="file" name="stay_file5" class="form-control w-50" />
+                <c:if test="${!empty stayModify.stay_file5}"><p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file5}" style="max-height: 200px;" alt="" /></p></c:if>
             </td>
         </tr>
 
@@ -151,7 +139,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션설명</span>
                             </div>
-                            <input type="text" name="stay_option1_desc" value="${ stayModify.stay_option1_desc }" maxlength="200" class="form-control" />
+                            <textarea name="stay_option1_desc" cols="30" rows="3" class="form-control">${ stayModify.stay_option1_desc }</textarea>
                         </div>
                     </div>
                 </div>
@@ -198,7 +186,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션설명</span>
                             </div>
-                            <input type="text" name="stay_option2_desc" value="${ stayModify.stay_option2_desc }" maxlength="200" class="form-control" />
+                            <textarea name="stay_option2_desc" cols="30" rows="3" class="form-control">${ stayModify.stay_option2_desc }</textarea>
                         </div>
                     </div>
                 </div>
@@ -245,7 +233,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션설명</span>
                             </div>
-                            <input type="text" name="stay_option3_desc" value="${ stayModify.stay_option3_desc }" maxlength="200" class="form-control" />
+                            <textarea name="stay_option3_desc" cols="30" rows="3" class="form-control">${ stayModify.stay_option3_desc }</textarea>
                         </div>
                     </div>
                 </div>
@@ -270,18 +258,18 @@
         </tr>
 
         <tr>
-            <th>내용 컨텐츠 1</th>
-            <td colspan="3"><textarea id="stay_content1" name="stay_content1" cols="80" rows="5">${ stayModify.stay_content1 }</textarea></td>
+            <th>내용 컨텐츠 1<br />(소개)</th>
+            <td colspan="3"><textarea name="stay_content1" class="form-control" cols="80" rows="10">${ stayModify.stay_content1 }</textarea></td>
         </tr>
 
         <tr>
-            <th>내용 컨텐츠 2</th>
-            <td colspan="3"><textarea id="stay_content2" name="stay_content2" cols="80" rows="5">${ stayModify.stay_content2 }</textarea></td>
+            <th>내용 컨텐츠 2<br />(스페셜)</th>
+            <td colspan="3"><textarea name="stay_content2" class="form-control" cols="80" rows="10">${ stayModify.stay_content2 }</textarea></td>
         </tr>
 
         <tr>
-            <th>내용 컨텐츠 3<br />(구글 지도 삽입)</th>
-            <td colspan="3"><textarea id="stay_content3" name="stay_content3" class="form-control" cols="80" rows="5">${ stayModify.stay_content3 }</textarea></td>
+            <th>내용 컨텐츠 3<br /><a href="https://www.google.com/maps" target="_blank">(구글 맵)</th>
+            <td colspan="3"><textarea name="stay_content3" class="form-control" cols="80" rows="6">${ stayModify.stay_content3 }</textarea></td>
         </tr>
 
         <tr>
@@ -290,28 +278,20 @@
 
         <tr>
             <th>안내사항 1<br />(예약안내)</th>
-            <td colspan="3"><textarea id="stay_info1" name="stay_info1" cols="80" rows="5">${ stayModify.stay_info1 }</textarea></td>
+            <td colspan="3"><textarea name="stay_info1" class="form-control" cols="80" rows="10">${ stayModify.stay_info1 }</textarea></td>
         </tr>
 
         <tr>
             <th>안내사항 2<br />(이용안내)</th>
-            <td colspan="3"><textarea id="stay_info2" name="stay_info2" cols="80" rows="5">${ stayModify.stay_info2 }</textarea></td>
+            <td colspan="3"><textarea name="stay_info2" class="form-control" cols="80" rows="10">${ stayModify.stay_info2 }</textarea></td>
         </tr>
 
         <tr>
             <th>안내사항 3<br />(환불규정)</th>
-            <td colspan="3"><textarea id="stay_info3" name="stay_info3" cols="80" rows="5">${ stayModify.stay_info3 }</textarea></td>
+            <td colspan="3"><textarea name="stay_info3" class="form-control" cols="80" rows="10">${ stayModify.stay_info3 }</textarea></td>
         </tr>
 
     </table>
-    <script type="text/javascript">
-    CKEDITOR.disableAutoInline = true;
-    CKEDITOR.replace('stay_content1', { height: "250px" });
-    CKEDITOR.replace('stay_content2', { height: "250px" });
-    CKEDITOR.replace('stay_info1', { height: "250px" });
-    CKEDITOR.replace('stay_info2', { height: "250px" });
-    CKEDITOR.replace('stay_info3', { height: "250px" });
-    </script>
 
 
 
