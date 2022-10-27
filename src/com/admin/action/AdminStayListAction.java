@@ -78,7 +78,9 @@ public class AdminStayListAction implements Action {
     	// 뷰에 전달할 매개변수 추가
     	map.put("ps_type", ps_type);
     	map.put("ps_name", ps_name);
+    	System.out.println("여기" + ps_location);
     	map.put("ps_location", ps_location);
+    	System.out.println("여기" + ps_location_sub);
     	map.put("ps_location_sub", ps_location_sub);
     	map.put("ps_phone", ps_phone);
     	map.put("ps_order", ps_order);
