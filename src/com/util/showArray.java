@@ -91,6 +91,7 @@ public class showArray {
             listArr.add("BBQ");
             listArr.add("조식");
             listArr.add("침구추가");
+            listArr.add("강아지간식");
 
         }
     }

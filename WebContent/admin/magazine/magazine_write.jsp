@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript" src="<c:url value="/ckeditor/ckeditor.js" />"></script>
+	
 	
 	<jsp:include page="../layout/layout_header.jsp" />
 	
@@ -18,9 +18,9 @@
 		<form name="write_form" method="post" enctype="multipart/form-data"
 			action="<%=request.getContextPath()%>/admin/magazineWriteOk.do">
 			
-			<input type="hidden" name="mag_writer_name" />
-			<input type="hidden" name="mag_writer_id" />
-			<input type="hidden" name="mag_writer_pw" />
+			<input type="hidden" name="mag_writer_name" value="hyunjin" />
+			<input type="hidden" name="mag_writer_id" value="user1234" />
+			<input type="hidden" name="mag_writer_pw" value="1234" />
 			
 			<table class="table-form mt-3">
 				<colgroup>
@@ -78,10 +78,10 @@
 				
 				<tr>
 					<th>글 내용1</th>
-					<td colspan="3"><textarea name="mag_content1" cols="80" rows="5"></textarea></td>
+					<td colspan="3"><textarea id="mag_content1" name="mag_content1" cols="80" rows="5"></textarea></td>
 				</tr>
 	
-				<tr>
+			<tr>
 					<td colspan="4" class="space" nowrap="nowrap"></td>
 				</tr>
 				
@@ -93,7 +93,7 @@
 				
 				<tr>
 					<th>글 내용2</th>
-					<td colspan="3"><textarea name="mag_content2" cols="80" rows="5"></textarea></td>
+					<td colspan="3"><textarea id="mag_content2" name="mag_content2" cols="80" rows="5"></textarea></td>
 				</tr>
 	
 				<tr>
@@ -107,7 +107,7 @@
 				
 				<tr>
 					<th>글 내용3</th>
-					<td colspan="3"><textarea name="mag_content3" cols="80" rows="5"></textarea></td>
+					<td colspan="3"><textarea id="mag_content3" name="mag_content3" cols="80" rows="5"></textarea></td>
 				</tr>
 				
 				<tr>
@@ -117,16 +117,29 @@
 	
 				<tr>
 					<th>숙소 번호</th>
-					<td colspan="3"><input type="text" name="mag_stayno" value=""
-						maxlength="50" required /></td>
+					<td colspan="3">
+						<input type="text" name="mag_stayno" value="" maxlength="50" required />
+						<button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalCategory"><i class="fa fa-exclamation"></i> 등록할 분류 선택</button>
+					</td>
 				</tr>
 	
-	
+			<script type="text/javascript">
+				CKEDITOR.disableAutoInline = true;
+				CKEDITOR.replace('mag_content1', {
+					height : "250px"
+				});
+				CKEDITOR.replace('mag_content2', {
+					height : "250px"
+				});
+				CKEDITOR.replace('mag_content3', {
+					height : "250px"
+				});
+				
+			</script>
+			
 			</table>
 			
-			
-	
-	
+
 			<div class="gw-button">
 				<div class="gwb-wrap">
 					<div class="gwb-left"></div>
@@ -146,5 +159,26 @@
 			</div>
 		</form>
 	</div>
+	
+	
+	
+<div class="modal fade" id="modalCategory" tabindex="-1" type="default" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title"><i class="fa fa-exclamation"></i> 상품 분류 선택</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+			</div>
+			<div class="modal-body">
+			HFDFGDGFDFGD
+			</div>
+			<div class="modal-footer text-center" style="display: block;">
+				<button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">닫기</button>
+				<!-- $("#modalCategory .btn-close").trigger("click") -->;
+			</div>
+		</div>
+	</div>
+</div>
+	
 	
 	<jsp:include page="../layout/layout_footer.jsp" />

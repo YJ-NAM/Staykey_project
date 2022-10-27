@@ -259,8 +259,8 @@
         </tr>
 
         <tr>
-            <th>내용 컨텐츠 3</th>
-            <td colspan="3"><textarea id="stay_content3" name="stay_content3" cols="80" rows="5"></textarea></td>
+            <th>내용 컨텐츠 3<br />(구글 지도 삽입)</th>
+            <td colspan="3"><textarea id="stay_content3" name="stay_content3" class="form-control" cols="80" rows="5"></textarea></td>
         </tr>
 
         <tr>
@@ -287,7 +287,6 @@
     CKEDITOR.disableAutoInline = true;
     CKEDITOR.replace('stay_content1', { height: "250px" });
     CKEDITOR.replace('stay_content2', { height: "250px" });
-    CKEDITOR.replace('stay_content3', { height: "250px" });
     CKEDITOR.replace('stay_info1', { height: "250px" });
     CKEDITOR.replace('stay_info2', { height: "250px" });
     CKEDITOR.replace('stay_info3', { height: "250px" });

@@ -11,6 +11,7 @@ import com.controller.Action;
 import com.controller.ActionForward;
 import com.model.MagazineDAO;
 import com.model.MagazineDTO;
+import com.model.StayDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -101,7 +102,6 @@ public class AdminMagazineWriteOkAction implements Action {
 			dto.setBbs_detail_img2(fileDBName);
 		}
 		
-
 		dto.setBbs_title(mag_title);
 		dto.setBbs_youtube(mag_youtube);
 		dto.setBbs_content1(mag_content1);
@@ -112,14 +112,14 @@ public class AdminMagazineWriteOkAction implements Action {
 		dto.setBbs_writer_name(mag_writer_name);
 		dto.setBbs_writer_id(mag_writer_id);
 		dto.setBbs_writer_pw(mag_writer_pw);
-		
 
 		MagazineDAO dao = MagazineDAO.getInstance();
 		int res = dao.registerMagazine(dto);
+		
 
 		ActionForward forward = new ActionForward();
 		PrintWriter out = response.getWriter();
-
+        
 		if (res > 0) {
 			forward.setRedirect(true);
 			forward.setPath("magazineList.do");

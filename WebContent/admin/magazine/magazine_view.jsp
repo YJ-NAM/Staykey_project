@@ -47,12 +47,12 @@ body {
                         </div> --%>
 
 					<div class="col text-right">
-						<i class="fa fa-user" aria-hidden="true"></i> 작성자 : <b>${dto.bbs_writer_name}</b>
+						<br> <i class="fa fa-user" aria-hidden="true"></i>  작성자 : <b>${dto.bbs_writer_name}</b>
 						(아이디 : <b> ${dto.bbs_writer_id}</b>) <br> <i
 							class="icon-calendar"></i> 등록일 : ${dto.bbs_date} <br> <i
 							class="fa fa-info" aria-hidden="true"></i> 숙소 번호 : <b>${dto.bbs_stayno}</b>
-						<br> <i class="icon-magnifier"></i> 조회 <b><fmt:formatNumber
-								value="${dto.bbs_hit}" /></b>&nbsp;
+						<br> <i class="icon-magnifier"></i> 조회 <b>   <fmt:formatNumber
+								value="${dto.bbs_hit}" /></b> <br> &nbsp;
 
 					</div>
 
@@ -68,35 +68,35 @@ body {
 					</tr>
 					
 					<tr>
-						<td align="center">${dto.bbs_youtube}</td>
+						 <td align="center">  <br>  ${dto.bbs_youtube}  <br> </td> 
 					</tr>
 					
 					<tr>
 						<c:if test="${!empty dto.bbs_detail_img1}">
-						<td align="center"> <img src="<%=request.getContextPath()%>${dto.bbs_detail_img1}" alt="" /></td>
+						<td align="center"> <br> <img src="<%=request.getContextPath()%>${dto.bbs_detail_img1}" alt="" /> <br> </td>
 						</c:if>
 					</tr>
 					
 					<tr class="m-auto">
-						<td align="center">${dto.bbs_content1}</td>
+						<td align="center"><br> ${dto.bbs_content1} <br></td>
 					</tr>
 
 					<tr>
 						<c:if test="${!empty dto.bbs_detail_img2}">
-						<td align="center"> <img src="<%=request.getContextPath()%>${dto.bbs_detail_img2}" alt="" /></td>
+						<td align="center"> <br> <img src="<%=request.getContextPath()%>${dto.bbs_detail_img2}" alt="" /> <br> </td>
 						</c:if>
 					</tr>
 					
 					<tr class="m-auto">
-						<td align="center">${dto.bbs_content2}</td>
+						<td align="center"> <br> ${dto.bbs_content2} <br> </td>
 					</tr>
 
 					<tr>
-						<td align="center">${dto.bbs_map}</td>
+						<td align="center"> <br> ${dto.bbs_map} <br> </td>
 					</tr>
 
 					<tr class="m-auto">
-						<td align="center">${dto.bbs_content3}</td>
+						<td align="center"> <br> ${dto.bbs_content3} <br> </td>
 					</tr>
 
 
