@@ -19,12 +19,6 @@ $(document).ready(function(){
 	$("input[name='ps_type'][value!='all']").click(function(){
 		$("input[name='ps_type'][value='all']").prop("checked", false);
 	});
-	
-	// ps_location 버튼 선택 시 input[text] 값으로 띄우기
-	$("#location_selected").on("change", function() {
-		let location_value = $("#location_selected option:selected").attr('value');
-		$("input[name='ps_location']").val(location_value);
-	});
 });
 </script>
 
@@ -49,7 +43,7 @@ ${ msg }
             <col />
         </colgroup>
         <tr>
-            <th>구분</th>
+            <th>숙소 구분</th>
             <td colspan="5">
                 <div class="form-check form-check-inline ml-1">
                     <label class="form-check-label"><input type="checkbox" name="ps_type" value="all" class="form-check-input"<c:if test="${map.ps_type == 'all'}"> checked="checked"</c:if> /> 전체</label>
@@ -84,29 +78,29 @@ ${ msg }
             </td>
         </tr>
         <tr>
-            <th>숙소명</th>
+            <th>숙소 이름</th>
             <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="50" class="form-control w-90" /></td>
-            <th>위치</th>
+            <th>숙소 위치</th>
             <td>
-            	<select name="ps_location" id="location_selected" class="form-select">
-            		<option value="전체" selected="selected">전체</option>
-            		<option value="제주">제주</option>
-            		<option value="서울">서울</option>
-            		<option value="강원">강원</option>
-            		<option value="부산">부산</option>
-            		<option value="경기">경기</option>
-            		<option value="충청">충청</option>
-            		<option value="경상">경상</option>
-            		<option value="전라">전라</option>
-            		<option value="인천">인천</option>
-            		<option value="광주">광주</option>
-            		<option value="대전">대전</option>
-            		<option value="대구">대구</option>
-            		<option value="울산">울산</option>
+            	<select name="ps_location" class="form-select" style="height:34.63px; float: left;">
+            		<option value="전체" selected="selected" <c:if test="${map.ps_location.contains('전체')}"> checked="checked"</c:if>> 전체</option>
+            		<option value="제주"<c:if test="${map.ps_location.contains('제주')}"> checked="checked"</c:if>> 제주</option>
+            		<option value="서울"<c:if test="${map.ps_location.contains('서울')}"> checked="checked"</c:if>> 서울</option>
+            		<option value="강원"<c:if test="${map.ps_location.contains('강원')}"> checked="checked"</c:if>> 강원</option>
+            		<option value="부산"<c:if test="${map.ps_location.contains('부산')}"> checked="checked"</c:if>> 부산</option>
+            		<option value="경기"<c:if test="${map.ps_location.contains('경기')}"> checked="checked"</c:if>> 경기</option>
+            		<option value="충청"<c:if test="${map.ps_location.contains('충청')}"> checked="checked"</c:if>> 충청</option>
+            		<option value="경상"<c:if test="${map.ps_location.contains('경상')}"> checked="checked"</c:if>> 경상</option>
+            		<option value="전라"<c:if test="${map.ps_location.contains('전라')}"> checked="checked"</c:if>> 전라</option>
+            		<option value="인천"<c:if test="${map.ps_location.contains('인천')}"> checked="checked"</c:if>> 인천</option>
+            		<option value="광주"<c:if test="${map.ps_location.contains('광주')}"> checked="checked"</c:if>> 광주</option>
+            		<option value="대전"<c:if test="${map.ps_location.contains('대전')}"> checked="checked"</c:if>> 대전</option>
+            		<option value="대구"<c:if test="${map.ps_location.contains('대구')}"> checked="checked"</c:if>> 대구</option>
+            		<option value="울산"<c:if test="${map.ps_location.contains('울산')}"> checked="checked"</c:if>> 울산</option>
             	</select>
-            	<input type="text" name="ps_location" value="${map.ps_location}" maxlength="15" class="form-control w-90" />
+            	<input type="text" name="ps_location" value="${map.ps_location_sub}" maxlength="15" class="form-control w-70" style="float: right;" />
             </td>
-            <th>연락처</th>
+            <th>숙소 연락처</th>
             <td><input type="tel" name="ps_phone" value="${map.ps_phone}" maxlength="255" class="form-control w-90" /></td>
         </tr>
     </table>

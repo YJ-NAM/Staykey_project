@@ -105,6 +105,9 @@ public class StayDAO {
 		if (map.get("ps_location") != "" || map.get("ps_location") != null) {
 			search_sql2 += " and stay_location like '%" + map.get("ps_location") + "%'";
 		}
+		if (map.get("ps_location_sub") != "" || map.get("ps_location_sub") != null) {
+			search_sql2 += " and stay_location like '%" + map.get("ps_location_sub") + "%'";
+		}
 		if (map.get("ps_phone") != "" || map.get("ps_phone") != null) {
 			search_sql2 += " and stay_phone like '%" + map.get("ps_phone") + "%'";
 		}
@@ -229,12 +232,16 @@ public class StayDAO {
 		if (map.get("ps_location") != "" && map.get("ps_location") != null) {
 			search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
 		}
+		if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+			search_sql += " and stay_location like '%" + map.get("ps_location_sub") + "%'";
+		}
 		if (map.get("ps_phone") != "" && map.get("ps_phone") != null) {
 			search_sql += " and stay_phone like '%" + map.get("ps_phone") + "%'";
 		}
 		
 		try {
 			openConn();
+			System.out.println(search_sql);
 			sql = "select count(*) from staykey_stay" + search_sql;
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -449,11 +456,6 @@ public class StayDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			result = pstmt.executeUpdate();
-						
-			sql = "update staykey_stay set stay_no = stay_no - 1 where stay_no > ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, no);
-			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -720,10 +722,6 @@ public class StayDAO {
 			pstmt.setInt(1, room_no);
 			result = pstmt.executeUpdate();
 			
-			sql = "update staykey_stay_room set room_no = room_no - 1 where room_no > ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, room_no);
-			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
