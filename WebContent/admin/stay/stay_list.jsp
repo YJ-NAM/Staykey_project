@@ -8,7 +8,6 @@
 
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
 <script>
-
 $(document).ready(function(){
 	// 체크박스 all 클릭 시 나머지 해체
 	$("input[name='ps_type'][value='all']").click(function(){
@@ -27,7 +26,6 @@ $(document).ready(function(){
 		$("input[name='ps_location']").val(location_value);
 	});
 });
-
 </script>
 
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
@@ -90,9 +88,8 @@ ${ msg }
             <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="50" class="form-control w-90" /></td>
             <th>위치</th>
             <td>
-            	<select name="ps_location" id="location_selected" class="form-select" >
-            		<option value="전체" disabled selected> --- 위치를 선택하세요 --- </option>
-            		<option value="전체">전체</option>
+            	<select name="ps_location" id="location_selected" class="form-select">
+            		<option value="전체" selected="selected">전체</option>
             		<option value="제주">제주</option>
             		<option value="서울">서울</option>
             		<option value="강원">강원</option>
@@ -173,38 +170,35 @@ ${ msg }
             <c:choose>
             <c:when test="${!empty stayList }">
             <c:forEach items="${stayList}" var="list">
+            <c:set var="showLink" value="onclick=\"location.href='../admin/stayView.do?stay_no=${list.stay_no}';\"" />
             <tr>
-                <td>${list.stay_no}</td>
-                <td class="staylist-photo">
-                    <a href="<%=request.getContextPath()%>/admin/stayView.do?stay_no=${list.stay_no}">
-                        <c:choose>
-                        <c:when test="${!empty list.stay_file1}"><img src="<%=request.getContextPath()%>${list.stay_file1}" alt="" /></c:when>
-                        <c:otherwise>
-                        <svg class="bd-placeholder-img" width="200" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                            <title>${list.stay_name}</title>
-                            <rect width="100%" height="100%" fill="#eee"></rect>
-                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
-                        </svg>
-                        </c:otherwise>
-                        </c:choose>
-                    </a>
+                <td ${showLink} class="eng">${list.stay_no}</td>
+                <td ${showLink} class="staylist-photo">
+                    <c:choose>
+                    <c:when test="${!empty list.stay_file1}"><img src="<%=request.getContextPath()%>${list.stay_file1}" alt="" /></c:when>
+                    <c:otherwise>
+                    <svg class="bd-placeholder-img" width="200" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                        <title>${list.stay_name}</title>
+                        <rect width="100%" height="100%" fill="#eee"></rect>
+                        <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+                    </svg>
+                    </c:otherwise>
+                    </c:choose>
                 </td>
-                <td>
-                	<a href="<%=request.getContextPath()%>/admin/stayView.do?stay_no=${list.stay_no}" class="stay-list">
-                		<p class="sl-loc">${list.stay_location}</p>
-                		<p class="sl-name">${list.stay_name}</p>
-                		<p class="sl-desc">${list.stay_desc}</p>
-                		<p class="sl-addr">${list.stay_addr}</p>
-                	</a>
+                <td ${showLink} class="stay-list">
+            		<p class="sl-loc">${list.stay_location}</p>
+            		<p class="sl-name">${list.stay_name}</p>
+            		<p class="sl-desc">${list.stay_desc}</p>
+            		<p class="sl-addr">${list.stay_addr}</p>
                 </td>
-                <td>
+                <td ${showLink}>
                 	<c:if test="${!empty list.stay_option1_name}"><p>${list.stay_option1_name}</p></c:if>
                 	<c:if test="${!empty list.stay_option2_name}"><p>${list.stay_option2_name}</p></c:if>
                 	<c:if test="${!empty list.stay_option3_name}"><p>${list.stay_option3_name}</p></c:if>
                 </td>
-                <td>${list.stay_hit}</td>
-                <td>${list.stay_reserv}</td>
-                <td>${list.stay_date.substring(0,10)}<br />${list.stay_date.substring(11)}</td>
+                <td ${showLink} class="eng">${list.stay_hit}</td>
+                <td ${showLink} class="eng">${list.stay_reserv}</td>
+                <td ${showLink} class="eng">${list.stay_date.substring(0,10)}<br />${list.stay_date.substring(11)}</td>
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/stayModify.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
                     <a href="<%=request.getContextPath()%>/admin/stayDeleteOk.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?\n※ 이 숙소에 등록된 Room들도 전부 삭제됩니다.');">삭제</a>

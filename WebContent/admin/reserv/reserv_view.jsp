@@ -7,7 +7,6 @@
 <c:set var="view" value="${reservView}" />
 
 <c:if test="${empty view}"><script>alert('잘못된 주문번호입니다.'); window.close();</script></c:if>
-<script type="text/javascript">$("#nav-reserv").addClass("now");</script>
 <style type="text/css">body { padding: 0 30px !important; }</style>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>예약 상세 정보</h2>
