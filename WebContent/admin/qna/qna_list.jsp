@@ -26,27 +26,14 @@
             <col width="10%" />
             <col />
         </colgroup>
+
         <tr>
-            <th>회원 구분</th>
-            <td colspan="5">
-                <div class="form-check form-check-inline ml-1">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="all" class="form-check-input"<c:if test="${map.ps_type == 'all'}"> checked="checked"</c:if> /> 전체</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="user" class="form-check-input"<c:if test="${map.ps_type == 'user'}"> checked="checked"</c:if> /> 일반회원</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="ps_type" value="admin" class="form-check-input"<c:if test="${map.ps_type == 'admin'}"> checked="checked"</c:if> /> 관리자</label>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <th>회원 이름</th>
+            <th>작성자 이름</th>
             <td><input type="text" name="ps_name" value="${map.ps_name}" maxlength="50" class="form-control w-90" /></td>
-            <th>회원 아이디</th>
+            <th>작성자 아이디</th>
             <td><input type="text" name="ps_id" value="${map.ps_id}" maxlength="30" class="form-control w-90" /></td>
-            <th>회원 이메일</th>
-            <td><input type="text" name="ps_email" value="${map.ps_email}" maxlength="255" class="form-control w-90" /></td>
+            <th>글 제목</th>
+            <td><input type="text" name="ps_title" value="${map.ps_title}" maxlength="255" class="form-control w-90" /></td>
         </tr>
     </table>
 
@@ -63,21 +50,18 @@
     <div class="table-top clear">
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 일대일 문의</div>
         <div class="tt-right">
-            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/qnaList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
+            <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/qnaList.do?ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_hit=${map.ps_title}&ps_order='+this.value;">
                 <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>등록일 최신</option>
                 <option value="register_asc"<c:if test="${map.ps_order == 'register_asc'}"> selected="selected"</c:if>>등록일 예전</option>
                 <option value="" disabled="disabled">---------------</option>
                 <option value="id_desc"<c:if test="${map.ps_order == 'id_desc'}"> selected="selected"</c:if>>아이디 역순</option>
                 <option value="id_asc"<c:if test="${map.ps_order == 'id_asc'}"> selected="selected"</c:if>>아이디 순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>회원이름 역순</option>
-                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>회원이름 순</option>
+                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>작성자이름 역순</option>
+                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>작성자이름 순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="point_desc"<c:if test="${map.ps_order == 'point_desc'}"> selected="selected"</c:if>>적립금 높은</option>
-                <option value="point_asc"<c:if test="${map.ps_order == 'point_asc'}"> selected="selected"</c:if>>적립금 낮은</option>
-                <option value="" disabled="disabled">---------------</option>
-                <option value="count_desc"<c:if test="${map.ps_order == 'count_desc'}"> selected="selected"</c:if>>예약횟수 높은</option>
-                <option value="count_asc"<c:if test="${map.ps_order == 'count_asc'}"> selected="selected"</c:if>>예약횟수 낮은</option>
+                <option value="hit_desc"<c:if test="${map.ps_order == 'hit_desc'}"> selected="selected"</c:if>>조회수 높은</option>
+                <option value="hit_asc"<c:if test="${map.ps_order == 'hit_asc'}"> selected="selected"</c:if>>조회수 낮은</option>
             </select>
         </div>
     </div>
@@ -86,18 +70,15 @@
 
     <table class="table-list hover">
         <colgroup>
-            <col width="4.5%">
-            <col width="7.2%">
-            <col width="7.2%">
-            <col width="10%">
-            <col width="18%">
-            <col width="13.5%">
-            <col width="9%">
-            <col width="7.2%">
+            <col width="15%">
+            <col width="15%">
+            <col width="15%">
             <col />
-            <col width="10%">
+            <col width="15%">
+            <col width="15%">
+            <col width="15%">
         </colgroup>
-<i class="fa fa-floppy-o"></i>
+
 
         <thead>
             <tr>
@@ -105,10 +86,7 @@
                 <th>상태</th>
                 <th>제목</th>
                 <th>작성자/아이디</th>
-                <th>이메일</th>
-                <th>전화번호</th>
-                <th>보유적립금</th>
-                <th>예약횟수</th>
+                <th>조회수</th>
                 <th>등록일</th>
                 <th>기능</th>
             </tr>
@@ -119,36 +97,20 @@
             <c:when test="${!empty list }">
             <c:forEach items="${list}" var="dto">
             <tr>
-                <td>${dto.getMember_no()}</td>
-                <td><c:choose><c:when test="${dto.getMember_type() == 'admin'}">관리자</c:when><c:otherwise>회원</c:otherwise></c:choose></td>
+                <td>${dto.bbs_no}</td>
+                <td>${dto.bbs_status}</td>
+                
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/qnaView.do?id=${dto.getMember_id()}">
-                        <c:choose>
-                        <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" width="60" height="60" alt="" /></c:when>
-                        <c:otherwise>
-                        <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                            <title>${dto.getMember_name()}</title>
-                            <rect width="100%" height="100%" fill="#eee"></rect>
-                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
-                        </svg>
-                        </c:otherwise>
-                        </c:choose>
+                    <a href="<%=request.getContextPath()%>/admin/qnaView.do?id=${dto.bbs_no}">
+                        ${dto.bbs_title }<c:if test="${!empty dto.bbs_file1 && dto.bbs_file2}"><i class="fa fa-floppy-o"></i></c:if> (${dto.bbs_comment})
                     </a>
                 </td>
+                <td>${dto.bbs_writer_name} / ${dto.bbs_writer_id}</td>
+                <td>${dto.bbs_hit}</td>
+                <td>${dto.bbs_date.substring(0, 10)}<br />${dto.bbs_date.substring(11)}</td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/qnaView.do?id=${dto.getMember_id()}">
-                        <p class="mb-1"><b>${dto.getMember_id()}</b></p>
-                        <p>${dto.getMember_name()}</p>
-                    </a>
-                </td>
-                <td>${dto.getMember_email()}</td>
-                <td>${dto.getMember_phone()}</td>
-                <td><fmt:formatNumber value="${dto.getMember_point()}" />점</td>
-                <td><fmt:formatNumber value="${dto.getMember_reserv()}" />번</td>
-                <td>${dto.getMember_joindate().substring(0, 10)}<br />${dto.getMember_joindate().substring(11)}</td>
-                <td>
-                    <a href="<%=request.getContextPath()%>/admin/qnaModify.do?id=${dto.getMember_id()}" class="btn btn-sm btn-outline-primary m-1">수정</a>
-                    <a href="<%=request.getContextPath()%>/admin/qnaDeleteOk.do?id=${dto.getMember_id()}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                    <a href="<%=request.getContextPath()%>/admin/qnaModify.do?id=${dto.dto.bbs_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
+                    <a href="<%=request.getContextPath()%>/admin/qnaDeleteOk.do?id=${dto.dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
             </tr>
             </c:forEach>
