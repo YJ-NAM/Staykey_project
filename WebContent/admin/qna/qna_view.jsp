@@ -181,12 +181,9 @@
 
     <!-- 버튼 //START -->
     <div class="d-flex justify-content-center mb-3">
-        <a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-outline-primary">답변추가</a>
-        <a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-outline-primary">답변수정</a>
-        <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.review_no}" class="btn btn-outline-danger ml-2" onclick="return confirm('정말 삭제하시겠습니까?');">답변삭제</a>
-    
-        <button type="button" class="btn btn-outline-secondary" onclick="window.print();"><i class="fa fa-print"></i>답변완료</button>
-        <button type="button" class="btn btn-outline-secondary ml-2" onclick="window.print();"><i class="fa fa-print"></i> 답변수정</button>
+        <a href="<%=request.getContextPath()%>/admin/qna_commentModify.do?id=${dto.bbs_no}" class="btn btn-outline-primary">답변추가</a>
+        <a href="<%=request.getContextPath()%>/admin/qna_commentModify.do?id=${dto.review_no}" class="btn btn-outline-primary">답변수정</a>
+        <a href="<%=request.getContextPath()%>/admin/qna_commentDeleteOk.do?id=${dto.review_no}" class="btn btn-outline-danger ml-2" onclick="return confirm('정말 삭제하시겠습니까?');">답변삭제</a>
         <button type="button" class="btn btn-secondary ml-2" onclick="window.close();"><i class="fa fa-times"></i> 창닫기</button>
     </div>
     <!-- 버튼 //END -->
