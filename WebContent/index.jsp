@@ -138,7 +138,7 @@
                     <li class="swiper-slide parallax-bg-1">
                         <a><div class="img"></div>
                         <div class="e_date"></div>
-                        <div class="animate"><div class="tit"><p class="text">" "</p><p class="small">" "</p></div>
+                        <div class="animate"><div class="tit"><p class="text">내게 사랑은 너무 써</p><p class="small">아직 전 어리거든요</p></div>
                         <div class="info"></div>
                         </div></a></li>
                     <li class="swiper-slide parallax-bg-2">
@@ -167,12 +167,12 @@
     <!-------- 메인 페이지 이벤트 창 --------->
     <div class="container main-event">
         <div class="sec-title">Event</div>
-        <div class="swiper-container" id="event-container">
+        <div class="swiper-container stay-list" id="event-container">
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
             <div class="swiper-pagination"></div>
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><a href="#">
+                <div class="swiper-slide stay-box"><a href="#">
                     <div class="image"></div>
                     <div class="e_date"></div>
                     <div class="name"></div>
@@ -180,7 +180,7 @@
                     <div class="text"></div>
                     <div class="btn_more">자세히</div></a></div>
 
-                <div class="swiper-slide"><a href="#">
+                <div class="swiper-slide stay-box"><a href="#">
                     <div class="image"></div>
                     <div class="e_date"></div>
                     <div class="name"></div>
@@ -188,29 +188,29 @@
                     <div class="text"></div>
                     <div class="btn_more">자세히</div></a></div>
 
-                <div class="swiper-slide"><a href="#">
+                <div class="swiper-slide stay-box"><a href="#">
                     <div class="image"></div>
                     <div class="e_date"></div>
                     <div class="name"></div>
                     <div class="other"><span></span></div>
                     <div class="text"></div>
-                    <div class="btn_more">자세히</div></a></div>
+                    <div class="more">자세히</div></a></div>
 
-                <div class="swiper-slide"><a href="#">
+                <div class="swiper-slide stay-box"><a href="#">
                     <div class="image"></div>
                     <div class="e_date"></div>
                     <div class="name"></div>
                     <div class="other"><span></span></div>
                     <div class="text"></div>
-                    <div class="btn_more">자세히</div></a></div>
+                    <div class="more">자세히</div></a></div>
 
-                <div class="swiper-slide"><a href="#">
+                <div class="swiper-slide stay-box"><a href="#">
                     <div class="image"></div>
                     <div class="e_date"></div>
                     <div class="name"></div>
                     <div class="other"><span></span></div>
                     <div class="text"></div>
-                    <div class="btn_more">자세히</div></a></div>
+                    <div class="more">자세히</div></a></div>
             </div>
         </div>
     </div>
@@ -262,7 +262,7 @@
      </div>
     </div> 
     <!-------- 메인 페이지 종합 추천 창! --------->
-   <div class="container-main-travel">
+   <div class="container main-travel">
     <!-------- 메인 페이지 종합 추천 타이틀! --------->
      <div class="sec-title">TRAVEL</div>
         <ul class="stay-list">
@@ -411,8 +411,7 @@
 
 
     <a href="https://swiperjs.com/swiper-api" target="_blank">https://swiperjs.com/swiper-api</a>
--->
 
-
-
+    
+    
 <jsp:include page="layout/layout_footer.jsp" />
