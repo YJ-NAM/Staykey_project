@@ -10,12 +10,10 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
 import com.model.StayDAO;
-import com.model.StayDTO;
 import com.model.StayRoomDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -149,7 +147,7 @@ public class AdminStayRoomModifyOkAction implements Action {
  				}
  			}
  		}
-		
+
 		dto.setRoom_photo1(map.get("room1").toString());
 		dto.setRoom_photo2(map.get("room2").toString());
 		dto.setRoom_photo3(map.get("room3").toString());
@@ -162,7 +160,6 @@ public class AdminStayRoomModifyOkAction implements Action {
         PrintWriter out = response.getWriter();
 
         if (res > 0) {
-        	
             forward.setRedirect(true);
             forward.setPath("stayRoomView.do?room_no="+room_no+"&stay_no="+dto.getRoom_stayno());
         } else {

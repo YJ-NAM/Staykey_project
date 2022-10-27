@@ -19,8 +19,6 @@ import com.model.StayDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import oracle.net.aso.e;
-import oracle.net.aso.n;
 
 public class AdminStayModifyOkAction implements Action {
 
