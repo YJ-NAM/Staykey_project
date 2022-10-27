@@ -720,7 +720,6 @@ public class StayDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, room_no);
 			pstmt.executeUpdate();
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
