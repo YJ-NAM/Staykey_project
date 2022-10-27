@@ -562,9 +562,10 @@ public class StayDAO {
 	
 	/////////////////////////////////////////////////////////////
 	// 방 등록 메서드 + 방 번호 지정
-	/////////////////////////////////////////////////////////////
-	public int registerStayRoom(StayRoomDTO dto) {
-
+	///////////////////////////////t//////////////////////////////
+	public int[] registerStayRoom(StayRoomDTO dto) {
+		// result 값 및 room_no 받기 위한 int[] 변수 선언
+		int[] resultArr = null;
 		int result = 0, count = 0;
 		openConn();
 
@@ -602,13 +603,14 @@ public class StayDAO {
 			pstmt.setString(21, dto.getRoom_tag());
 
 			result = pstmt.executeUpdate();
+			resultArr = new int[]{ result, count };
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			closeConn(rs, pstmt, con);
 		}
-		return result;
+		return resultArr;
 	} // registerStayRoom() 종료
 
 	
@@ -720,7 +722,6 @@ public class StayDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, room_no);
 			pstmt.executeUpdate();
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

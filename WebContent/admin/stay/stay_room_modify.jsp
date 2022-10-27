@@ -156,6 +156,7 @@
 
 <div>
 	<form action="${ pageContext.request.contextPath }/admin/stayRoomModifyOk.do" enctype="multipart/form-data" method="post" >
+	<input type="hidden" name="stay_no" value="${ param.stay_no }" /> <!-- 숙소 번호 -->
 	<input type="hidden" name="room_no" value="${ room.room_no }" /> <!-- 방 번호 -->
 	<input type="hidden" name="room_tag" id="room_tag" value="${ room.room_tag }"> <!-- tag 값 받아오기 위함 -->
 	<table>
