@@ -76,7 +76,7 @@ public class AdminReviewListAction implements Action {
 
 
         // 페이지 이동 URL
-        String pageUrl = request.getContextPath()+"/admin/reviewList.do?ps_name="+ps_name+"&ps_id="+ps_id+"&ps_email="+ps_stayname+"&ps_order="+ps_order;
+        String pageUrl = request.getContextPath()+"/admin/reviewList.do?ps_type="+ps_type+"&ps_name="+ps_name+"&ps_id="+ps_id+"&ps_email="+ps_stayname+"&ps_order="+ps_order;
 
 
         // 뷰에 전달할 매개변수 추가
