@@ -95,42 +95,37 @@
             <c:choose>
             <c:when test="${!empty list }">
             <c:forEach items="${list}" var="dto">
+            <c:set var="showLink" value="onclick=\"popWindow('../admin/reviewView.do?id=${dto.review_no}', '700', '900');\"" />
             <tr>
-                <td>${dto.review_no}</td>
-                <td>
-                	<a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">
-                        <c:choose>
-                        <c:when test="${!empty dto.review_file }"><img src="<%=request.getContextPath()%>${dto.review_file}" width="60" height="60" alt="" /></c:when>
-                        <c:otherwise>
-                        <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                            <title>${dto.review_name}</title>
-                            <rect width="100%" height="100%" fill="#eee"></rect>
-                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
-                        </svg>
-                        </c:otherwise>
-                        </c:choose>
-                    </a>    
+                <td ${showLink} class="eng">${dto.review_no}</td>
+                <td ${showLink}>
+                    <c:choose>
+                    <c:when test="${!empty dto.review_file }"><img src="<%=request.getContextPath()%>${dto.review_file}" width="60" height="60" alt="" /></c:when>
+                    <c:otherwise>
+                    <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                        <title>${dto.review_name}</title>
+                        <rect width="100%" height="100%" fill="#eee"></rect>
+                        <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+                    </svg>
+                    </c:otherwise>
+                    </c:choose>
                 </td>
-				<td>   
+				<td ${showLink}>   
 					 <p><b>${dto.review_stayname}</b></p>
 					 <p>${dto.review_roomname}</p> 
 				</td>
-                <td><p>${dto.review_point_total}</p></td>
-                <td>
-                	<a href="<%=request.getContextPath()%>/admin/reviewView.do?id=${dto.review_no}">
-	              		 <c:if test="${dto.review_content.length() < 20}">${dto.review_content}</c:if>
-	              		 <c:if test="${dto.review_content.length() >= 20}">
-		              		 <p>${dto.review_content.substring(0,10)} <br>
-		              		 	${dto.review_content.substring(10,20)}
-		              		 </p>
-	              		 </c:if>
-              		 </a>
+                <td ${showLink} class="eng"><p>${dto.review_point_total}</p></td>
+                <td ${showLink} class="px-4">
+                    <c:choose>
+                    <c:when test="${dto.review_content.length() < 20}">${dto.review_content}</c:when>
+                    <c:otherwise>${dto.review_content.substring(0,45)} ...</c:otherwise>
+                    </c:choose>
                 </td>
-                <td>
+                <td ${showLink}>
                 	<p><b>${dto.review_name}</b></p>
-                	<p>${dto.review_id}</p>
+                	<p class="eng">${dto.review_id}</p>
                 </td>
-                <td>${dto.review_date.substring(0, 10)}<br />${dto.review_date.substring(11)}</td>
+                <td ${showLink} class="eng">${dto.review_date.substring(0, 10)}<br />${dto.review_date.substring(11)}</td>
                 
                 <td>
                 	<a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>

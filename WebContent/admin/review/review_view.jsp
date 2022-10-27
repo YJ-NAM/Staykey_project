@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="../layout/layout_header.jsp" />
+<jsp:include page="../layout/layout_header_popup.jsp" />
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -7,7 +7,8 @@
 <c:set var="dto" value="${member}" />
 
 
-<script type="text/javascript">$("#nav-review").addClass("now");</script>
+<c:if test="${empty dto}"><script>alert('존재하지 리뷰입니다.'); window.close();</script></c:if>
+<style type="text/css">body { padding: 0 30px !important; }</style>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>후기 상세 정보</h2>
     <small>등록된 후기의 정보를 확인 할 수 있습니다.</small>
@@ -77,9 +78,8 @@
 
     <!-- 버튼 //START -->
     <div class="d-flex justify-content-center mb-4">
-        <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.review_no}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?\n되돌릴 수 없습니다.');"><i class="fa fa-trash-o"></i> 삭제하기</a>
-        <a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-primary mx-2"><i class="fa fa-pencil"></i> 수정하기</a>
-        <a href="javascript:history.back();" class="btn btn-secondary"><i class="fa fa-bars"></i> 목록보기</a>
+        <button type="button" class="btn btn-outline-secondary" onclick="window.print();"><i class="fa fa-print"></i> 인쇄하기</button>
+        <button type="button" class="btn btn-secondary ml-2" onclick="window.close();"><i class="fa fa-times"></i> 창닫기</button>
     </div>
     <!-- 버튼 //END -->
 </div>

@@ -555,23 +555,13 @@ ul.table-ui > li > .cell.del {}
     box-sizing: border-box;
     border-top: 1px solid #ddd;
 }
-@media (min-width: 768px) {
-    .table-form {
-        width: 85%;
-    }
-}
-@media (min-width: 576px) {
-    .table-form {
-        width: 70%;
-    }
-}
 .table-form.ml-0 {
     width: 100%;
     margin: 0;
 }
 .table-form th,
 .table-form td {
-    height: 54px;
+    height: 48px;
     margin: 0;
     padding: 10px 7px !important;
     font-size: 14px;
@@ -911,6 +901,11 @@ ul.table-ui > li > .cell.del {}
 .table-list tbody tr:nth-of-type(even) {
     background: #fcfcfc;
 }
+.table-list.hover > tbody > tr:hover > td {
+    background: #eff7ff;
+    cursor: pointer;
+    color: #000;
+}
 
 .table-list tfoot td {
     padding: 15px 0;
@@ -959,6 +954,11 @@ table.paging-table td.text-right {
 table td.nodata {
     height: 200px !important;
     text-align: center;
+}
+.table-list.hover > tbody > tr:hover > td.nodata {
+    background: #fff;
+    cursor: default;
+    color: #444;
 }
 
 
@@ -1322,8 +1322,6 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
     height: 140px;
 }
 .table-list .stay-list {
-    display: block;
-    width: 100%;
     text-align: left;
     box-sizing: border-box;
     padding-left: 30px;
