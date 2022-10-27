@@ -141,28 +141,29 @@
             <c:choose>
             <c:when test="${!empty list }">
             <c:forEach items="${list}" var="dto">
+            <c:set var="showLink" value="onclick=\"popWindow('../admin/reservView.do?sess=${dto.reserv_sess}', '700', '900');\"" />
             <tr>
-                <td>
+                <td ${showLink}>
                     <c:choose>
                     <c:when test="${dto.reserv_status == 'cancel'}"><span class="text-danger">취소</span></c:when>
                     <c:otherwise><span class="text-primary">진행</span></c:otherwise>
                     </c:choose>
                 </td>
-                <td><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/reservView.do?sess=${dto.reserv_sess}', '700', '900');"><i class="icon-magnifier"></i> ${dto.reserv_sess}</a></td>
-                <td>
-                    <p>${dto.reserv_start.substring(0, 10)} ~ ${dto.reserv_end.substring(0, 10)}</p>
+                <td ${showLink} class="eng">${dto.reserv_sess}</td>
+                <td ${showLink}>
+                    <p class="eng">${dto.reserv_start.substring(0, 10)} ~ ${dto.reserv_end.substring(0, 10)}</p>
                     <p>(${dto.reserv_daycount}박 ${dto.reserv_daycount+1}일)</p>
                 </td>
-                <td>
+                <td ${showLink}>
                     <p><b>${dto.reserv_stayname}</b></p>
                     <p>${dto.reserv_roomname}</p>
                 </td>
-                <td><b class="eng"><fmt:formatNumber value="${dto.reserv_total_price}" /></b>원</td>
-                <td>
+                <td ${showLink}><b class="eng"><fmt:formatNumber value="${dto.reserv_total_price}" /></b>원</td>
+                <td ${showLink}>
                     <p><b>${dto.reserv_memname}</b></p>
-                    <p>${dto.reserv_memphone}</p>
+                    <p class="eng">${dto.reserv_memphone}</p>
                 </td>
-                <td>${dto.reserv_date.substring(0, 10)}<br />${dto.reserv_date.substring(11)}</td>
+                <td ${showLink} class="eng">${dto.reserv_date.substring(0, 10)}<br />${dto.reserv_date.substring(11)}</td>
                 <td><a href="<%=request.getContextPath()%>/admin/reservModify.do?sess=${dto.reserv_sess}" class="btn btn-sm btn-outline-primary">수정</a></td>
             </tr>
             </c:forEach>

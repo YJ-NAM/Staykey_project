@@ -11,7 +11,7 @@
 
 			<div class="fw-top d-flex">
 				<div class="fwt-info ">
-					<h3><img src= "asset/images/staykey_logo.png" alt="logo"></h3>
+					<h3><img src= "<%=request.getContextPath()%>/asset/images/staykey_logo.png" alt="logo"></h3>
 					<ul class="fwt-menu">
 						<li><a href="#">About us</a></li>
 					</ul>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="../layout/layout_header.jsp" />
+<jsp:include page="../layout/layout_header_popup.jsp" />
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -7,7 +7,8 @@
 <c:set var="dto" value="${member}" />
 
 
-<script type="text/javascript">$("#nav-review").addClass("now");</script>
+<c:if test="${empty dto}"><script>alert('존재하지 리뷰입니다.'); window.close();</script></c:if>
+<style type="text/css">body { padding: 0 30px !important; }</style>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>후기 상세 정보</h2>
     <small>등록된 후기의 정보를 확인 할 수 있습니다.</small>
@@ -21,12 +22,14 @@
         <div class="col-lg mb-4">
             <div class="card">
                 <div class="card-body p-4">
-
-                    <h2>
-                    	<p><i class="fa fa-home" aria-hidden="true"></i>${dto.review_stayname}</p>
-                    	<span>${dto.review_roomname}</span>
-                   	</h2>
-
+					
+					<div>
+	                    <h2 class="text-muted"> 
+	                    	<i class="fa fa-home " aria-hidden="true"></i>${dto.review_stayname}
+	                    	<span> (${dto.review_roomname})</span>
+	                   	</h2>
+					</div>
+					
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
                         	<i class="fa fa-user text-primary" aria-hidden="true"></i> <b class="text-primary">작성자 </b><b>: ${dto.review_name} &nbsp; &nbsp;</b>  
@@ -40,7 +43,7 @@
 
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
-                        	<b > 세부 평점 : 접근성</b> : ${dto.review_point1} / <b>서비스</b> : ${dto.review_point2} / <b>객실시설</b> : ${dto.review_point3} / <b>부대시설</b> : ${dto.review_point4} / <b>식음료</b> : ${dto.review_point5} / <b>만족도</b> : ${dto.review_point6}
+                        	<b> 세부 평점 : 접근성</b> : ${dto.review_point1} / <b>서비스</b> : ${dto.review_point2} / <b>객실시설</b> : ${dto.review_point3} / <b>부대시설</b> : ${dto.review_point4} / <b>식음료</b> : ${dto.review_point5} / <b>만족도</b> : ${dto.review_point6}
                         </div>
 
                         <div class="col text-right">
@@ -50,9 +53,10 @@
                     
 
                     
-                    <div class="d-flex py-2 border-bottom vfb-info">   
-                     	리뷰 내용 <br>        
-		                ${dto.review_content}
+                    <div class="d-flex py-2 border-bottom vfb-info ">   
+		              	<div> <span class="h4 text-primary">리뷰 내용</span> <br>
+		              		${dto.review_content}
+		                </div>
                     </div>
 
 					<c:if test="${!empty dto.review_file}">
@@ -74,9 +78,8 @@
 
     <!-- 버튼 //START -->
     <div class="d-flex justify-content-center mb-4">
-        <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.review_no}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?\n되돌릴 수 없습니다.');"><i class="fa fa-trash-o"></i> 삭제하기</a>
-        <a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-primary mx-2"><i class="fa fa-pencil"></i> 수정하기</a>
-        <a href="javascript:history.back();" class="btn btn-secondary"><i class="fa fa-bars"></i> 목록보기</a>
+        <button type="button" class="btn btn-outline-secondary" onclick="window.print();"><i class="fa fa-print"></i> 인쇄하기</button>
+        <button type="button" class="btn btn-secondary ml-2" onclick="window.close();"><i class="fa fa-times"></i> 창닫기</button>
     </div>
     <!-- 버튼 //END -->
 </div>

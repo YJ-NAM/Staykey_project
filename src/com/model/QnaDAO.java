@@ -3,6 +3,9 @@ package com.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.naming.Context;
@@ -105,11 +108,93 @@ public class QnaDAO {
 
 
 
-
     // ======================================================
-    // 
+    // 문의 목록 메서드
     // ======================================================
 
+    public List<QnaDTO> qnaList(int page, int rowsize, Map<String, Object> map) {
+        List<QnaDTO> list = new ArrayList<QnaDTO>();
+
+        int startNo = (page * rowsize) - (rowsize - 1);
+        int endNo = (page * rowsize);
+
+        // 검색용 설정
+        String search_sql1 = " where bbs_no > 0";
+        String search_sql2 = "";
+
+
+        if (map.get("ps_name") != "" && map.get("ps_name") != null) {
+            search_sql2 += " and bbs_writer_name like '%" + map.get("ps_name") + "%'";
+        }
+        if (map.get("ps_id") != "" && map.get("ps_id") != null) {
+            search_sql2 += " and bbs_writer_id like '%" + map.get("ps_id") + "%'";
+        }
+        if (map.get("ps_title") != "" && map.get("ps_title") != null) {
+            search_sql2 += " and bbs_title like '%" + map.get("ps_title") + "%'";
+        }
+
+        search_sql1 += search_sql2;
+
+        // 정렬용 설정
+        String order_sql = "bbs_date";
+        if (map.get("ps_order").equals("register_desc")) {
+            order_sql = "bbs_date desc";
+        } else if (map.get("ps_order").equals("register_asc")) {
+            order_sql = "bbs_date asc";
+        } else if (map.get("ps_order").equals("id_desc")) {
+            order_sql = "bbs_writer_id desc";
+        } else if (map.get("ps_order").equals("id_asc")) {
+            order_sql = "bbs_writer_id asc";
+        } else if (map.get("ps_order").equals("name_desc")) {
+            order_sql = "bbs_writer_name desc";
+        } else if (map.get("ps_order").equals("name_asc")) {
+            order_sql = "bbs_writer_name asc";
+        } else if (map.get("ps_order").equals("hit_desc")) {
+            order_sql = "bbs_hit desc";
+        } else if (map.get("ps_order").equals("hit_asc")) {
+            order_sql = "bbs_hit asc";
+        }
+
+        try {
+            openConn();
+
+            sql = "select * from " + "(select row_number() over(order by " + order_sql
+                    + ") rnum, b.* from staykey_qna b " + search_sql1 + ") " + "where rnum >= ? and rnum <= ?"
+                    + search_sql2;
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, startNo);
+            pstmt.setInt(2, endNo);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                QnaDTO dto = new QnaDTO();
+
+                dto.setBbs_no(rs.getInt("bbs_no"));
+                dto.setBbs_status(rs.getString("bbs_status"));
+                dto.setBbs_title(rs.getString("bbs_title"));
+                dto.setBbs_content(rs.getString("bbs_content"));
+                dto.setBbs_file1(rs.getString("bbs_file1"));
+                dto.setBbs_file2(rs.getString("bbs_file2"));
+                dto.setBbs_hit(rs.getInt("bbs_hit"));
+                dto.setBbs_comment(rs.getInt("bbs_comment"));
+                dto.setBbs_writer_name(rs.getString("bbs_writer_name"));
+                dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
+                dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
+                dto.setBbs_date(rs.getString("bbs_date"));
+                
+                
+                list.add(dto);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return list;
+    }
 
 
 

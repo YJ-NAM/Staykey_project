@@ -12,11 +12,11 @@
 		const remainTag = document.querySelector('.details span');
 		let maxTags = 4;
 		let tags = []; // 태그 값 저장할 배열 선언
-
+		
 		countTag();
 
 		// 태그 생성 함수
-		function createTag(label) {
+		function createTag(label) { // label = typing 한 내용
 			const div = document.createElement('div'); // div 생성
 			div.setAttribute('class', 'tag'); // setAttribute : 속성이름, 속성값
 			const span = document.createElement('span'); // span 생성
@@ -30,7 +30,8 @@
 			// div return
 		};
 
-		
+		// 이전 tag 제거되지 않아 태그 중복 생성되는 문제 해결 위함
+		// .tag container의 tag 삭제 -> 초기화
 		function reset() {
 			document.querySelectorAll('.tag').forEach(function(tag) {
 				tag.parentElement.removeChild(tag);
@@ -42,25 +43,27 @@
 			reset();
 			tags.slice().reverse().forEach(function(tag) {
 				const input = createTag(tag);
-				tagContainer.prepend(input);
+				tagContainer.prepend(input); // prepend 앞으로 보내는 메서드
 			})
 			countTag();
+			
 		};
 
-		// keyup 시 input 박스 생성 event
+		// keyup 시 input 값에서 div(class='tag') 생성 event
 		input.addEventListener('keyup', function(e) {
 			if(e.keyCode == 32) { // 스페이스 바
-				if(input.value.length < 6 && !tags.includes(input.value) && (tags.length < 4)){ // 글자수 조정 & 중복된 태그 없도록 & 최대 등록 개수 설정
-					tags.push(input.value); // 배열에 input.value 값 저장
+				let tagVal = input.value.trim();
+				if(tagVal.length < 5 && !tags.includes(tagVal) && (tags.length < 4)){ // 글자수 조정 & 중복된 태그 없도록 & 최대 등록 개수 설정
+					tags.push(tagVal); // 배열에 input.value = tagVal 값 저장
 					addTags(); 
 				}
-				input.value = '';
+				input.value = '';			
 			}
 		});
 
 		// 클릭 시 삭제 
 		document.addEventListener('click', function(e) {
-			if(e.target.tagName == 'I'){
+			if(e.target.tagName == 'I') {
 				const value = e.target.getAttribute('data-item');
 				const index = tags.indexOf(value);
 				tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
@@ -72,18 +75,11 @@
 		// 남은 태그 개수 확인
 		function countTag() {
 			remainTag.innerText = maxTags - tags.length; // 최대 개수 - 배열 길이
-		}
-
-		// tag 값 전달하기 위한 함수
-		function returnVal(tags) {
-			let tagsVal = "";
-			for(let i=0; i<tags.length; i++){
-				tagsVal += tags[i] + "/";
+			// 여기서 tags 배열 값 input hidden으로 넘기기
+			if(tags.length > 0){
+				document.querySelector('#room_tag').value = tags;
 			}
-			return tagsVal;
 		}
-
-		document.getElementById('room_tag').value = returnVal(tags);
 	}
 
 </script>
@@ -137,7 +133,7 @@
 	<hr />
 	<h4>방 등록하기</h4>
 	<hr />
-	<form action="${ pageContext.request.contextPath }/admin/stayRoomWriteOk.do" enctype="multipart/form-data" method="post">
+	<form action="${ pageContext.request.contextPath }/admin/stayRoomWriteOk.do" enctype="multipart/form-data" method="post" >
 	<input type="hidden" name="stayNo" value="${ param.stay_no }" /> <!-- 숙소 번호 -->
 	<input type="hidden" name="room_tag" id="room_tag" value=""> <!-- tag 값 받아오기 위함 -->
 	<table>
@@ -259,7 +255,7 @@
 		    <td>
 			    <div class="container">
 			    	태그를 입력한 후 스페이스 바를 누르세요.
-			    	<div class="tag-container">
+			    	<div class="tag-container" >
 			    		<!-- 글자 입력 시 placeholder 사라짐 -->
 			    		<input type="text" placeholder="한 태그 당 최대 4글자까지 입력 가능합니다." onfocus="this.placeholder=''" />
 			    	</div>	
