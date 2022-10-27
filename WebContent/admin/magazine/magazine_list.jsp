@@ -100,7 +100,7 @@
   <tbody>  
             <c:choose>
             <c:when test="${!empty list }">
-            console.log('didi');
+            
             <c:forEach items="${list}" var="dto">
             <tr> 
                 <td>${dto.bbs_no }

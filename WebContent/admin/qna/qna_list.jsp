@@ -97,6 +97,7 @@
             <col />
             <col width="10%">
         </colgroup>
+<i class="fa fa-floppy-o"></i>
 
         <thead>
             <tr>
