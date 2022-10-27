@@ -154,6 +154,8 @@ public class ReviewDAO {
             order_sql = "review_point_total desc";
         } else if (map.get("ps_order").equals("point_asc")) {
             order_sql = "review_point_total asc";
+        }else {
+            order_sql = "review_date desc";
         }
 
 		try {
