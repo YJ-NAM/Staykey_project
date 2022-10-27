@@ -144,7 +144,7 @@ public class AdminStayRoomWriteOkAction implements Action {
 
         if (res[0] > 0) {
         	// alert + 새로고침
-        	session.setAttribute("msg", "<script> alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.reload(); </script>");
+        	session.setAttribute("msg", "<script> alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.href='stayView.do?stay_no="+stay_stayNo+"'; </script>");
             forward.setRedirect(true);
             forward.setPath("stayRoomView.do?room_no="+res[1]+"&stay_no="+stay_stayNo);
         } else {

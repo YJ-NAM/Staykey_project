@@ -60,26 +60,32 @@ public class AdminStayRoomModifyOkAction implements Action {
         int room_size = Integer.parseInt(multi.getParameter("room_size").trim());      
         String room_bed = multi.getParameter("room_bed").trim();
 
-        String[] room_features = multi.getParameterValues("room_features");
-        for (int i = 0; i < room_features.length; i++) {
-            features_sum += room_features[i] + "/";
+        // 체크박스 선택 안 한 경우, null 값 처리
+        if(multi.getParameterValues("room_features") != null) {
+        	String[] room_features = multi.getParameterValues("room_features");
+        	for(int i = 0; i < room_features.length; i++) {
+        		features_sum += room_features[i] + "/";
+        	}
+        	features_sum = "/" + features_sum;         	
+        } 
+        
+        if(multi.getParameterValues("room_amenities") != null) {
+	        String[] room_amenities = multi.getParameterValues("room_amenities");
+        	for(int i = 0; i < room_amenities.length; i++) {
+        		amenities_sum += room_amenities[i] + "/";
+        	}
+	        amenities_sum = "/" + amenities_sum;
         }
-        features_sum = "/" + features_sum; 
 
-        String[] room_amenities = multi.getParameterValues("room_amenities");
-        for (int i = 0; i < room_amenities.length; i++) {
-            amenities_sum += room_amenities[i] + "/";
-        }
-        amenities_sum = "/" + amenities_sum;
-
-        String[] room_service = multi.getParameterValues("room_service");
-        for (int i = 0; i < room_service.length; i++) {
-            service_sum += room_service[i] + "/";
-        }
-        service_sum = "/" + service_sum;
+        if(multi.getParameterValues("room_service") != null) {
+        	String[] room_service = multi.getParameterValues("room_service");
+    		for(int i = 0; i < room_service.length; i++) {
+    			service_sum += room_service[i] + "/";
+    		}
+    		service_sum = "/" + service_sum;
+    	}
         
         String room_tag = multi.getParameter("room_tag");
-        System.out.println("tag 값" + room_tag);
 
         dto.setRoom_no(room_no);
         dto.setRoom_name(room_name);
@@ -106,7 +112,7 @@ public class AdminStayRoomModifyOkAction implements Action {
 	    map.put("room5", multi.getFile("room_photo5"));
 	    
 	    // 기존 파일 정보 가져오기 위함
- 	    StayRoomDTO viewDTO = dao.getStayRoomView(room_no);
+ 	    StayRoomDTO viewDTO = dao.getStayRoomView(room_no, room_stayno);
  	    String original_room1 = viewDTO.getRoom_photo1();
  	    String original_room2 = viewDTO.getRoom_photo2();
  	    String original_room3 = viewDTO.getRoom_photo3();
@@ -158,7 +164,7 @@ public class AdminStayRoomModifyOkAction implements Action {
 
         if (res > 0) {
             out.println("<script> alert('등록된 Room이 성공적으로 수정되었습니다.'); </script>");
-            out.println("<script> location.href='stayRoomView.do?room_no="+room_no+"&stay_no="+room_stayno+"'; opener.parent.location.reload(); </script>");
+            out.println("<script> location.href='stayRoomView.do?room_no="+room_no+"&stay_no="+room_stayno+"'; opener.parent.location.href='stayView.do?stay_no="+room_stayno+"'; </script>");
         } else {
             out.println("<script> alert('Room 등록 중 에러가 발생했습니다.'); history.back(); </script>");
         }	

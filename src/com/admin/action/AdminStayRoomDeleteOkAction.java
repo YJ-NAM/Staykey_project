@@ -24,7 +24,7 @@ public class AdminStayRoomDeleteOkAction implements Action {
 		int room_no = Integer.parseInt(request.getParameter("room_no"));
 		int stay_no = Integer.parseInt(request.getParameter("stay_no"));
         int res = dao.deleteRoom(room_no);
-        StayRoomDTO dto = dao.getStayRoomView(room_no);
+        StayRoomDTO dto = dao.getStayRoomView(room_no, stay_no);
         
 		String room_photo1 = dto.getRoom_photo1();
 		String room_photo2 = dto.getRoom_photo2();
