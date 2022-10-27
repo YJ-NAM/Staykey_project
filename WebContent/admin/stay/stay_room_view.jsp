@@ -9,7 +9,7 @@
 
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>Room 상세 정보</h2>
-    <small><strong>${ stay.stay_name }</strong>의 <strong>${ room.room_name }</strong> room 정보를 확인 할 수 있습니다.</small>
+    <small><strong>${stay.stay_name}</strong>의 <strong>${room.room_name}</strong> room 정보를 확인 할 수 있습니다.</small>
 </div>
 
 ${ msg }
@@ -23,8 +23,8 @@ ${ msg }
                 <div class="card-body p-4">
 
                     <h2>
-                    	<p>${ room.room_name }</p>
-                    	<span>${ room.room_desc}</span>
+                    	<p>${room.room_name}</p>
+                    	<span>${room.room_desc}</span>
                    	</h2>
 
                     <div class="d-flex py-2 border-bottom vfb-info">
@@ -45,23 +45,21 @@ ${ msg }
                         </div>
 
                         <div class="col text-right">
-                        	<i class="icon-calendar"></i> 사이즈 : ${ room.room_size }m<sup>2</sup>
+                        	<i class="icon-calendar"></i> 사이즈 : ${room.room_size}m<sup>2</sup>
                         </div>
                     </div>
                     
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
-                        	<i class="fa fa-bed" ></i> ${ room.room_bed } 
+                        	<i class="fa fa-bed" ></i> ${room.room_bed}
                         </div>
 
                         <div class="col text-right">
-                     	   <c:forTokens items="${ room.room_tag }" delims="," var="tag">
+                     	   <c:forTokens items="${room.room_tag}" delims="," var="tag">
                       		<button style="border: 0.8px solid lightgray; padding: 1px; cursor: auto;" >#${tag}</button>			
 	                       </c:forTokens>
                         </div>
-                    </div>
-                    
-
+                    </div>                  
 
                     <c:if test="${!empty room.room_photo1 or !empty room.room_photo2 or !empty room.room_photo3 or !empty room.room_photo4 or !empty room.room_photo5}">
                     <div class="d-flex py-3 border-bottom">
@@ -77,7 +75,6 @@ ${ msg }
                     </div>
                     </c:if>
 
-
                     <div class="d-flex py-3">
                         <div class="col">
                         	<ul class="stay-view-option">
@@ -85,7 +82,7 @@ ${ msg }
                         		<li class="d-flex">
                         			<div>		
                         			   FEATURES		    
-				                       <c:forTokens items="${ room.room_features }" delims="/" var="features">
+				                       <c:forTokens items="${room.room_features}" delims="/" var="features">
 	                        			<div class="pl-3">
 	                        				<p><b>${features}</b></p>	                        				
 	                        			</div>				                      
@@ -100,7 +97,7 @@ ${ msg }
                         		<li class="d-flex">
                         			<div>		
                         			   AMENITIES		    
-				                       <c:forTokens items="${ room.room_amenities }" delims="/" var="amenities">
+				                       <c:forTokens items="${room.room_amenities}" delims="/" var="amenities">
 	                        			<div class="pl-3">
 	                        				<p><b>${amenities}</b></p>	                        				
 	                        			</div>				                      
@@ -115,7 +112,7 @@ ${ msg }
                         		<li class="d-flex">
                         			<div>		
                         			   ADD ON SERVICE		    
-				                       <c:forTokens items="${ room.room_service }" delims="/" var="service">
+				                       <c:forTokens items="${room.room_service}" delims="/" var="service">
 	                        			<div class="pl-3">
 	                        				<p><b>${service}</b></p>	                        				
 	                        			</div>				                      

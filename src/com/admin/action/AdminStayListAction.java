@@ -32,6 +32,7 @@ public class AdminStayListAction implements Action {
     	String[] get_type = null;
     	String ps_name = "";
     	String ps_location = "";
+    	String ps_location_sub = "";
     	String ps_phone = "";
     	String ps_order = "";
     	
@@ -50,15 +51,10 @@ public class AdminStayListAction implements Action {
 		}
     	
     	if(request.getParameter("ps_name") != null){ ps_name = request.getParameter("ps_name").trim(); }else{ ps_name = ""; }
-    	if(request.getParameter("ps_location") != null){ 
-    		ps_location = request.getParameter("ps_location").trim(); 
-    		if(ps_location.equals("전체")) {
-        		ps_location = ""; 
-    		}
-    	}else{ 
-    		ps_location = ""; 
-    	}
     	
+    	// 주소값 지역 + 구체적 주소 두 가지 값이 올 수 있음
+    	if(request.getParameter("ps_location") != null){ ps_location = request.getParameter("ps_location"); }else{ ps_location = ""; }
+    	if(request.getParameter("ps_location_sub") != null) { ps_location_sub = request.getParameter("ps_location_sub").trim(); }else{ ps_location_sub = ""; }
     	if(request.getParameter("ps_phone") != null){ ps_phone = request.getParameter("ps_phone").trim(); }else{ ps_phone = ""; }
     	if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "no_desc"; }
     	
@@ -66,6 +62,7 @@ public class AdminStayListAction implements Action {
     	map.put("ps_type", ps_type);
     	map.put("ps_name", ps_name);
     	map.put("ps_location", ps_location);
+    	map.put("ps_location_sub", ps_location_sub);
     	map.put("ps_phone", ps_phone);
     	map.put("ps_order", ps_order);
     	
