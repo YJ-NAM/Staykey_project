@@ -136,150 +136,7 @@ h1, h2, h3, h4, h5 {
     font-weight: 600;
 }
 
-.container
-{
-    max-width: 1330px;
-    padding: 0 0px;
-}
 
-.container-full {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-}
-.container-wide{
-    max-width: 1800px;
-}
-
-.container .container-wide {
-    position: relative;
-    margin: 0 auto;
-}
-@media(max-width:1840px){
-    .container-wide {
-    width: 100%;
-    } 
-}
-
-.parallax-bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 130%;
-    height: fit-content;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center;
-}
-
-.swiper-wrapper {
-    width: 100%;
-    height: 100%;
-    background: #fefefe;
-}
-
-.swiper-slide {
-    font-size: 18px;
-    color: #fff;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 0 0;
-}
-
-.swiper-slide .title {
-    font-family: 'NotoSerifKR';
-    text-align: center;
-    font-size: 20px;
-    font-weight: 300;
-    color: #000;
-}
-
-.swiper-slide .subtitle {
-    word-break: keep-all;
-    font-size: 12px;
-    color: #800000;
-}
-
-.swiper-slide .more {
-    font-size: 14px;
-    max-width: 400px;
-    line-height: 1.3;
-}
-
-.swiper-slide .img{
-    background-size:auto;
-    background-position: 50%;
-}
-
-.swiper-slide-duplicate{
-    display: none;
-}
-
-.swiper-button-next, .swiper-button-prev {
-    position: absolute;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.stay-list .stay-box {
-    position: relative;
-    padding: 0 0 60px 30px;
-    text-align: center;
-}
-
-.stay-list .stay-box .other{
-
-}
-
-.stay-list .stay-box .btn-more{
-    position: absolute;
-    top: 200px;
-    right: 15px;
-    z-index: 1;
-}
-
-
-.sec-title{
-    font-size: 12px;
-    color: #000;
-    letter-spacing: 10px;
-    font-weight: 500;
-    font-family: 'NotoSerifKR';
-
-}
-
-.e_date {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100px;
-    height: 80px;
-    display: flex;
-    font-size: 17px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-align: center;
-    background-color: #800000;
-
-}
-.more{
-    font-size: 12px;
-    color: #800000;
-    line-height: 30px;
-    letter-spacing: 1.5px;
-    display: inline-block;
-    font-family: 'NotoSerifKR';
-    border-bottom: 1px solid #800000;
-
-}
-
-.bg_paper {
-    z-index: 1;
-}
 /*************************/
 /* float bugFix
 /*************************/
@@ -662,6 +519,174 @@ h1, h2, h3, h4, h5 {
 /*************************/
 
 
+.container
+{
+    max-width: 1330px;
+    padding: 0 0px;
+}
+
+.container-full {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+.container-wide{
+    max-width: 1800px;
+}
+
+.container .container-wide {
+    position: relative;
+    margin: 0 auto;
+}
+@media(max-width:1840px){
+    .container-wide {
+    width: 100%;
+    } 
+}
+
+.container .stay-list{
+    display: block;
+    box-sizing: border-box;
+}
+.parallax-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130%;
+    height: fit-content;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+}
+
+.swiper-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #fefefe;
+}
+
+.swiper-slide {
+    font-size: 18px;
+    color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 0;
+}
+
+.swiper-slide .title {
+    font-family: 'NotoSerifKR';
+    text-align: center;
+    font-size: 24px;
+    font-weight: 300;
+    color: #000;
+}
+
+.swiper-slide .subtitle {
+    word-break: keep-all;
+    font-size: 14px;
+    color: #181818;
+}
+
+.swiper-slide .more {
+    font-size: 14px;
+    max-width: 400px;
+    line-height: 1.3;
+}
+
+.swiper-slide .img{
+    background-size:auto;
+    background-position: 50%;
+}
+
+.swiper-slide-duplicate{
+    display: none;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stay-list {
+    position: relative;
+    margin: 0 0 -60px 30px;
+}
+
+.stay-list .stay-box {
+    position: relative;
+    padding: 0 0 60px 30px;
+    text-align: center;
+}
+
+
+.stay-list .btn_like {
+    position: absolute;
+    top: 210px;
+    right: 15px;
+    z-index: 1;
+}
+
+.stay-list .stay-box .btn-more {
+    margin-top: 20px;
+    font-size: 13px;
+    line-height: 30px;
+    letter-spacing: 1.2px;
+    display: inline-block;
+    font-family: 'NotoSerifKR';
+}
+
+.stay-list .stay-box .text{
+    font-size: 15px;
+    line-height: 20px;
+    height: 40px;
+    white-space: normal;
+    margin-top: 15px;
+    color: #181818;
+    overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    text-overflow: ellipsis;
+}
+.sec-title{
+    font-size: 12px;
+    color: #000;
+    letter-spacing: 10px;
+    font-weight: 500;
+    font-family: 'NotoSerifKR';
+
+}
+
+.e_date {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 80px;
+    display: flex;
+    font-size: 17px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: #800000;
+
+}
+.more{
+    font-size: 12px;
+    color: #800000;
+    line-height: 30px;
+    letter-spacing: 1.5px;
+    display: inline-block;
+    font-family: 'NotoSerifKR';
+    border-bottom: 1px solid #800000;
+}
+
+.bg_paper {
+    z-index: 1;
+}
 
 
 
@@ -837,21 +862,16 @@ h1, h2, h3, h4, h5 {
     display: block;
 }
 
-.main-visual ul .slider-box{
-    position: relative;
-    width: 100%;
-}
-
 .main-visual ul .swiper-slide {
     position: relative;
     width: 100%;
 }
 
-.main-visual ul img {
+.main-visual .swiper-wrapper img{
     width: 100%;
+    height: 70%;
     background-position: center;
     background-repeat: no-repeat;
-
 }
 
 .main-visual .stay-info{
@@ -860,7 +880,7 @@ h1, h2, h3, h4, h5 {
     position: absolute;
     text-align: center;
     background-color: #fefefe;
-    opacity: 40%;
+    opacity: 70%;
     top: 15%;
     margin-left: 40%;
     padding: 60px 0;
@@ -949,6 +969,12 @@ h1, h2, h3, h4, h5 {
     box-sizing: content-box;
 }
 
+.main-new .stay-list .stay-box img{
+    width: auto;
+    height: 250px;
+}
+
+
 .main-new .stay-list .swiper-pagination {
     font-size: 17px;
     line-height: 100px;
@@ -1011,6 +1037,21 @@ h1, h2, h3, h4, h5 {
     display: block;
 }
 
+.main-promo .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+.main-promo .swiper-slide {
+    background-position: center;
+    background-size: cover;
+  }
+
+.main-promo .swiper-slide img {
+    display: block;
+    width: 100%;
+  }
+
 .main-promo .swiper-button-prev {
     display: block;
     top: inherit;
@@ -1046,11 +1087,19 @@ h1, h2, h3, h4, h5 {
 }
 
 .main-promo .stay-list ul .tit {
-
+    position: absolute;
+    top: 15%;
+    left: 0;
+    color: #181818;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.5;
 }
 
 .main-promo .stay-list ul .small {
-
+    font-size: 14px;
+    color: #181818;
+    margin-top: 20px;
 }
 
 .main-promo .stay-list ul .info {
@@ -1100,7 +1149,7 @@ h1, h2, h3, h4, h5 {
     align-items: center;
 }
   
-.swiper-slide .image {
+.main-event .swiper-slide .img {
     display: block;
     width: 100%;
     height: 100%;
@@ -1112,6 +1161,13 @@ h1, h2, h3, h4, h5 {
 
 }
 
+.main-event .stay-info .more{
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 30px;
+    letter-spacing: 1.2px;
+
+}
 /*************************/
 /* 메인 페이지 - 매거진
 /*************************/
@@ -1153,19 +1209,36 @@ h1, h2, h3, h4, h5 {
 }
 
 .main-magazine .stay-info .logo {
-
+    position: absolute;
+    bottom: 0;
+    left: 150px;
 }
 
 .main-magazine .stay-info .text {
-
+    position: absolute;
+    top: 25px;
+    left: 150px;
+    font-size: 17px;
+    color: #181818;
+    line-height: 1.5;
 }
 
 .main-magazine .stay-info .magazine {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    font-size: 12px;
+    color: #181818;
+    letter-spacing: 5px;
+    font-weight: 500;
+    font-family: 'NotoSerifKR';
 
 }
 
 .main-magazine .stay-info .more {
-
+    position: absolute;
+    bottom: 0;
+    left: 40px;
 }
 
 .main-magazine .swiper-pagination {
@@ -1177,31 +1250,54 @@ h1, h2, h3, h4, h5 {
     bottom: 0;
     left: 0;
     width: 200px;
+    height: 100px;
 }
 /*************************/
 /* 메인 페이지 - 추천 
 /*************************/
 
-.container-main-travel {
+.main-travel{
+    margin-top: 110px;
+}
+
+.main-travel .sec-title{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.main-travel .stay-list{
 
 }
 
-.container-main-travel .sec-title {
+.main-travel .stay-list .stay-box{
 
 }
 
-.container-main-travel .stay-list {
-
+.main-travel .stay-list .stay-box .img{
+    width: 100%;
+    height: 0;
+    position: relative;
+    overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    padding-bottom: 100%;
 }
 
-.container-main-travel .stay-list .stay-box {
-
+.main-travel .stay-list .stay-box .text{
+    margin-top: 40px;
+    font-size: 20px;
+    line-height: 30px;
+    height: 60px;
 }
 
-.container-main-travel .stay-list .stay-box .img {
-
+.main-travel .stay-list .stay-box .other{
+    font-size: 14px;
+    color: #181818;
+    margin-top: 15px;
+    line-height: 1.5;
 }
 
-.container-main-travel .stay-list .stay-box .text {
-
-}
+.main-travel .stay-list .stay-box .btn_more{
+    color: #800000;
+    border-bottom: 1px solid #800000;
+}   
