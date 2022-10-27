@@ -56,12 +56,12 @@
     <header class="header">
         <div class="h-wrap">
             <div class= "h-logo">
-                    <h2><img src="asset/images/staykey_logo.png" alt="logo"></h2>
+                    <h2><img src="<%=request.getContextPath()%>/asset/images/staykey_logo.png" alt="logo"></h2>
                 </div>
             <div class="h-gnb">
                 <div class= "h-location grow-flex-1">
-                    <button input="" class="location-where"><span><i class="icon-location-pin"></i>어디로 갈까요?</span></button>
-                    <button input="" class="location-when"><span><i class="icon-calendar"></i>언제 떠날까요?</span></button>
+                    <button type="button" class="location-where"><span><i class="icon-location-pin"></i>어디로 갈까요?</span></button>
+                    <button type="button" class="location-when"><span><i class="icon-calendar"></i>언제 떠날까요?</span></button>
                 </div>
 
                 <div class= "h-nav">
@@ -74,7 +74,7 @@
                 </div>
                     <div class="menu-etc">
                         <div class="etc-login">
-                            <p><button input="#" class= "login">Log-in</button></p>
+                            <p><button type="button" class= "login">Log-in</button></p>
                         </div>
                 </div>
             </div>
