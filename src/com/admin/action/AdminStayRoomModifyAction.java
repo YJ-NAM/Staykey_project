@@ -20,7 +20,7 @@ public class AdminStayRoomModifyAction implements Action {
 		int roomNo = Integer.parseInt(request.getParameter("room_no"));
 		
 		StayDAO dao = StayDAO.getInstance();
-		StayRoomDTO dto = dao.getStayRoomView(roomNo);
+		StayRoomDTO dto = dao.getStayRoomView(roomNo, stayNo);
 		
 		request.setAttribute("stay_no", stayNo);
 		request.setAttribute("roomModify", dto);
