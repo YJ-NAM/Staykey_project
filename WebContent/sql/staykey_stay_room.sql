@@ -4,8 +4,8 @@ drop table staykey_stay_room purge;
 create table staykey_stay_room(
     room_no number(5) primary key,
     room_stayno number(5) not null,
-    room_name varchar2(30) not null,
-    room_desc varchar2(100),
+    room_name varchar2(50) not null,
+    room_desc varchar2(2000),
     room_type varchar2(100),
     room_price number(10) not null,
     room_checkin varchar2(30) not null,

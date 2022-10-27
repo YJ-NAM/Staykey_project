@@ -121,13 +121,13 @@ ${ msg }
                         			<div>
 				                        <c:choose>
 				                        <c:when test="${!empty view.stay_option3_photo}"><img src="<%=request.getContextPath()%>${view.stay_option3_photo}" width="100" height="70" alt="" /></c:when>
-				                        <c:otherwise>
-				                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-				                            <title>${list.stay_name}</title>
-				                            <rect width="100%" height="100%" fill="#eee"></rect>
-				                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
-				                        </svg>
-				                        </c:otherwise>
+                                        <c:otherwise>
+                                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                                            <title>${view.stay_name}</title>
+                                            <rect width="100%" height="100%" fill="#eee"></rect>
+                                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+                                        </svg>
+                                        </c:otherwise>
 				                        </c:choose>
                         			</div>
                         			<div class="pl-3">
