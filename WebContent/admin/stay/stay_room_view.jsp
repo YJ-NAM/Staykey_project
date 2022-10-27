@@ -122,9 +122,12 @@
                         		</li>
                         		</c:if>
                         	</ul>
-                        </div>
+                        </div>                 
                     </div>
-
+                    <div class="d-flex justify-content-center mb-4">
+				        <a href="<%=request.getContextPath()%>/admin/stayRoomDeleteOk.do?room_no=${room.room_no}" class="btn btn-danger btn-sm" onclick="return confirm('정말 삭제하시겠습니까?\n※ 삭제된 정보는 복구할 수 없습니다.');"><i class="fa fa-trash-o"></i> 삭제하기</a>
+				        <a href="<%=request.getContextPath()%>/admin/stayRoomModify.do?room_no=${room.room_no}&stay_no=${stay.stay_no}" class="btn btn-warning btn-sm mx-2"><i class="fa fa-pencil"></i> 수정하기</a>
+				    </div>
                 </div>
             </div>
         </div>
