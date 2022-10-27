@@ -561,7 +561,7 @@ ul.table-ui > li > .cell.del {}
 }
 .table-form th,
 .table-form td {
-    height: 48px;
+    height: 56px;
     margin: 0;
     padding: 10px 7px !important;
     font-size: 14px;

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../layout/layout_header.jsp" />
 <c:set var="stayModify" value="${ stayModify }" />
+<c:set var="stayType" value="${ stayType }" />
 
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
@@ -26,33 +27,11 @@
         <tr>
             <th>숙소 유형</th>
             <td colspan="3">
+                <c:forEach var="stype" items="${stayType}">
                 <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="호텔" class="form-check-input" <c:if test="${ stayModify.stay_type.contains('호텔') }"> checked="checked"</c:if> /> 호텔</label>
+                    <label class="form-check-label"><input type="radio" name="stay_type" value="${stype}" class="form-check-input" <c:if test="${ stayModify.stay_type.contains(stype) }"> checked="checked"</c:if> /> ${stype}</label>
                 </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="호스텔" class="form-check-input" <c:if test="${ stayModify.stay_type.contains('호스텔') }"> checked="checked"</c:if> /> 호스텔</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="게스트하우스" class="form-check-input" <c:if test="${ stayModify.stay_type.contains('게스트하우스') }"> checked="checked"</c:if> /> 게스트하우스</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="민박" class="form-check-input" <c:if test="${ stayModify.stay_type.contains('민박') }"> checked="checked"</c:if> /> 민박</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="펜션" class="form-check-input" <c:if test="${ stayModify.stay_type.contains('펜션') }"> checked="checked"</c:if> /> 펜션</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="리조트" class="form-check-input" <c:if test="${ stayModify.stay_type.contains('리조트') }"> checked="checked"</c:if> /> 리조트</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="렌탈하우스" class="form-check-input" <c:if test="${ stayModify.stay_type.contains('렌탈하우스') }"> checked="checked"</c:if> /> 렌탈하우스</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="한옥" class="form-check-input" <c:if test="${ stayModify.stay_type.contains('한옥') }"> checked="checked"</c:if> /> 한옥</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="캠핑&아웃도어" class="form-check-input" <c:if test="${ stayModify.stay_type.contains('캠핑&아웃도어') }"> checked="checked"</c:if> /> 캠핑&아웃도어</label>
-                </div>
+                </c:forEach>
             </td>
         </tr>
 
