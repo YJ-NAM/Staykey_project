@@ -102,9 +102,9 @@
         <thead>
             <tr>
                 <th>No.</th>
-                <th>유형</th>
-                <th>사진</th>
-                <th>아이디/이름</th>
+                <th>상태</th>
+                <th>제목</th>
+                <th>작성자/아이디</th>
                 <th>이메일</th>
                 <th>전화번호</th>
                 <th>보유적립금</th>
