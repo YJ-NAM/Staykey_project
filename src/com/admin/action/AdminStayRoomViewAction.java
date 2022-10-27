@@ -21,7 +21,7 @@ public class AdminStayRoomViewAction implements Action {
 		int stayNo = Integer.parseInt(request.getParameter("stay_no"));
 		
 		StayDAO dao = StayDAO.getInstance();
-		StayRoomDTO dto = dao.getStayRoomView(roomNo);
+		StayRoomDTO dto = dao.getStayRoomView(roomNo, stayNo);
 		StayDTO stayDTO = dao.getStayView(stayNo);
 		
 		ActionForward forward = new ActionForward();
