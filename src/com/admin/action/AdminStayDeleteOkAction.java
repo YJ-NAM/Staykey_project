@@ -36,7 +36,6 @@ public class AdminStayDeleteOkAction implements Action {
 		
         if(stay_file1 != null) { 
         	File del_image = new File(saveFolder + stay_file1);     
-        	System.out.println(del_image);
         	if(del_image.exists()) { del_image.delete(); }
         }
         if(stay_file2 != null) { 

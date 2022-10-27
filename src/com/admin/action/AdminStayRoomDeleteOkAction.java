@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.controller.Action;
 import com.controller.ActionForward;
 import com.model.StayDAO;
-import com.model.StayRoomDTO;
 
 public class AdminStayRoomDeleteOkAction implements Action {
 
