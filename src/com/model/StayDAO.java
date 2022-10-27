@@ -106,7 +106,7 @@ public class StayDAO {
 			search_sql2 += " and stay_location like '%" + map.get("ps_location") + "%'";
 		}
 		if (map.get("ps_location_sub") != "" || map.get("ps_location_sub") != null) {
-			search_sql2 += " and stay_location like '%" + map.get("ps_location_sub") + "%'";
+			search_sql2 += " and stay_location like '%" + map.get("ps_location_sub") + "%' and stay_addr like '%" + map.get("ps_location_sub") + "%'";
 		}
 		if (map.get("ps_phone") != "" || map.get("ps_phone") != null) {
 			search_sql2 += " and stay_phone like '%" + map.get("ps_phone") + "%'";
@@ -233,7 +233,7 @@ public class StayDAO {
 			search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
 		}
 		if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
-			search_sql += " and stay_location like '%" + map.get("ps_location_sub") + "%'";
+			search_sql += " and stay_location like '%" + map.get("ps_location_sub") + "%' and stay_addr like '%" + map.get("ps_location_sub") + "%'";
 		}
 		if (map.get("ps_phone") != "" && map.get("ps_phone") != null) {
 			search_sql += " and stay_phone like '%" + map.get("ps_phone") + "%'";
