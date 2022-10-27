@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.controller.Action;
 import com.controller.ActionForward;
-import com.model.MemberDTO;
 import com.model.ReviewDAO;
 import com.model.ReviewDTO;
 import com.oreilly.servlet.MultipartRequest;

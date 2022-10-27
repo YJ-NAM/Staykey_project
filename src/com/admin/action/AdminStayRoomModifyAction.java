@@ -17,7 +17,6 @@ public class AdminStayRoomModifyAction implements Action {
 		// room 수정하기 방 정보 받아오기
 		
 		int roomNo = Integer.parseInt(request.getParameter("room_no"));
-		int stayNo = Integer.parseInt(request.getParameter("stay_no")); // 필요할 시 사용 예정...
 		
 		StayDAO dao = StayDAO.getInstance();
 		StayRoomDTO dto = dao.getStayRoomView(roomNo);
