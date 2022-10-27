@@ -34,39 +34,16 @@ public class AdminStayDeleteOkAction implements Action {
 		String stay_option2_photo = dto.getStay_option2_photo();
 		String stay_option3_photo = dto.getStay_option3_photo();
 		
-        if(stay_file1 != null) { 
-        	File del_image = new File(saveFolder + stay_file1);     
-        	System.out.println(del_image);
-        	if(del_image.exists()) { del_image.delete(); }
-        }
-        if(stay_file2 != null) { 
-        	File del_image = new File(saveFolder + stay_file2);        	
-        	if(del_image.exists()) { del_image.delete(); }
-        }
-        if(stay_file3 != null) { 
-        	File del_image = new File(saveFolder + stay_file3);        	
-        	if(del_image.exists()) { del_image.delete(); }
-        }
-        if(stay_file4 != null) { 
-        	File del_image = new File(saveFolder + stay_file4);        	
-        	if(del_image.exists()) { del_image.delete(); }
-        }
-        if(stay_file5 != null) { 
-        	File del_image = new File(saveFolder + stay_file5);        	
-        	if(del_image.exists()) { del_image.delete(); }
-        }
-        if(stay_option1_photo != null) { 
-        	File del_image = new File(saveFolder + stay_option1_photo);        	
-        	if(del_image.exists()) { del_image.delete(); }
-        }
-        if(stay_option2_photo != null) { 
-        	File del_image = new File(saveFolder + stay_option2_photo);        	
-        	if(del_image.exists()) { del_image.delete(); }
-        }
-        if(stay_option3_photo != null) { 
-        	File del_image = new File(saveFolder + stay_option3_photo);        	
-        	if(del_image.exists()) { del_image.delete(); }
-        }
+		// 파일 삭제 refactoring...
+		String[] stay_file = 
+			{ stay_file1, stay_file2, stay_file3, stay_file4, stay_file5, stay_option1_photo, stay_option2_photo, stay_option3_photo };
+		
+		for(int i=0; i<stay_file.length; i++) {
+			if(stay_file[i] != null) {
+				File del_image = new File(saveFolder + stay_file[i]);     
+	        	if(del_image.exists()) { del_image.delete(); }
+			}
+		}
                 
 		int res = dao.deleteStay(stayNo);
 		

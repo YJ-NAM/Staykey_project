@@ -10,8 +10,7 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.catalina.startup.Tomcat.ExistingStandardWrapper;
+import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
@@ -59,24 +58,31 @@ public class AdminStayRoomWriteOkAction implements Action {
         int room_people_max = Integer.parseInt(multi.getParameter("room_people_max"));
         int room_size = Integer.parseInt(multi.getParameter("room_size").trim());      
         String room_bed = multi.getParameter("room_bed").trim();
-
-        String[] room_features = multi.getParameterValues("room_features");
-        for (int i = 0; i < room_features.length; i++) {
-            features_sum += room_features[i] + "/";
+        
+        // 체크박스 선택 안 한 경우, null 값 처리
+        if(multi.getParameterValues("room_features") != null) {
+        	String[] room_features = multi.getParameterValues("room_features");
+        	for(int i = 0; i < room_features.length; i++) {
+        		features_sum += room_features[i] + "/";
+        	}
+        	features_sum = "/" + features_sum;         	
+        } 
+        
+        if(multi.getParameterValues("room_amenities") != null) {
+	        String[] room_amenities = multi.getParameterValues("room_amenities");
+        	for(int i = 0; i < room_amenities.length; i++) {
+        		amenities_sum += room_amenities[i] + "/";
+        	}
+	        amenities_sum = "/" + amenities_sum;
         }
-        features_sum = "/" + features_sum; 
 
-        String[] room_amenities = multi.getParameterValues("room_amenities");
-        for (int i = 0; i < room_amenities.length; i++) {
-            amenities_sum += room_amenities[i] + "/";
-        }
-        amenities_sum = "/" + amenities_sum;
-
-        String[] room_service = multi.getParameterValues("room_service");
-        for (int i = 0; i < room_service.length; i++) {
-            service_sum += room_service[i] + "/";
-        }
-        service_sum = "/" + service_sum;
+        if(multi.getParameterValues("room_service") != null) {
+        	String[] room_service = multi.getParameterValues("room_service");
+    		for(int i = 0; i < room_service.length; i++) {
+    			service_sum += room_service[i] + "/";
+    		}
+    		service_sum = "/" + service_sum;
+    	}
         
         String room_tag = multi.getParameter("room_tag");
         System.out.println("tag 값" + room_tag);
@@ -128,20 +134,23 @@ public class AdminStayRoomWriteOkAction implements Action {
 		dto.setRoom_photo5(map.get("room5").toString());
 
         StayDAO dao = StayDAO.getInstance();
-        int res = dao.registerStayRoom(dto);
-
+        
+        // res[0] = result, res[1] = count
+        int[] res = dao.registerStayRoom(dto);
+        
         ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
 
-        if (res > 0) {
+        if (res[0] > 0) {
+        	// alert + 새로고침
+        	session.setAttribute("msg", "<script> alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.reload(); </script>");
             forward.setRedirect(true);
-            forward.setPath("stayView.do?stay_no="+stay_stayNo);
+            forward.setPath("stayRoomView.do?room_no="+res[1]+"&stay_no="+stay_stayNo);
         } else {
             out.println("<script> alert('Room 등록 중 에러가 발생했습니다.'); history.back(); </script>");
         }
-
         return forward;
-
     }
 
 }
