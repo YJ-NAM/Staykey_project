@@ -13,6 +13,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+
 public class StayDAO {
 
 	Connection con = null;
@@ -730,4 +731,93 @@ public class StayDAO {
 		}		
 		return result;
 	} // deleteRoom() 메서드 종료
+
+
+	
+
+
+
+    /////////////////////////////////////////////////////////////
+    // 게시물에 등록된 숙소 목록 조회
+    /////////////////////////////////////////////////////////////
+    public List<StayDTO> getBbsStayList(String bbs_stay) {
+        List<StayDTO> list = new ArrayList<StayDTO>();
+
+        String search_sql = "where stay_no > 0";
+
+        if(bbs_stay != null){
+            String tmp_bbs_stay = bbs_stay.substring(1, bbs_stay.length()-1);
+            String[] epd_bbs_stay = tmp_bbs_stay.split("/");
+
+            if(epd_bbs_stay.length > 1){
+                for(int i=0; i<epd_bbs_stay.length; i++){
+                    if(i == 0){
+                        search_sql += " and (stay_no = '"+epd_bbs_stay[i]+"'";
+                    }else if(i == (epd_bbs_stay.length-1)){
+                        search_sql += " or stay_no = '"+epd_bbs_stay[i]+"')";
+                    }else{
+                        search_sql += " or stay_no = '"+epd_bbs_stay[i]+"'";
+                    }
+                }
+            }else{
+                search_sql += "stay_no = '"+epd_bbs_stay[0]+"'";
+            }
+        }
+
+        try {
+            openConn();
+
+            sql = "select * from staykey_stay " + search_sql + " order by stay_no asc";
+            System.out.println(sql);
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                StayDTO dto = new StayDTO();
+                dto.setStay_no(rs.getInt("stay_no"));
+                dto.setStay_type(rs.getString("stay_type"));
+                dto.setStay_name(rs.getString("stay_name"));
+                dto.setStay_desc(rs.getString("stay_desc"));
+                dto.setStay_location(rs.getString("stay_location"));
+                dto.setStay_addr(rs.getString("stay_addr"));
+                dto.setStay_phone(rs.getString("stay_phone"));
+                dto.setStay_email(rs.getString("stay_email"));
+                dto.setStay_content1(rs.getString("stay_content1"));
+                dto.setStay_content2(rs.getString("stay_content2"));
+                dto.setStay_content3(rs.getString("stay_content3"));
+                dto.setStay_info1(rs.getString("stay_info1"));
+                dto.setStay_info2(rs.getString("stay_info2"));
+                dto.setStay_info3(rs.getString("stay_info3"));
+                dto.setStay_file1(rs.getString("stay_file1"));
+                dto.setStay_file2(rs.getString("stay_file2"));
+                dto.setStay_file3(rs.getString("stay_file3"));
+                dto.setStay_file4(rs.getString("stay_file4"));
+                dto.setStay_file5(rs.getString("stay_file5"));
+                dto.setStay_option1_name(rs.getString("stay_option1_name"));
+                dto.setStay_option1_price(rs.getInt("stay_option1_price"));
+                dto.setStay_option1_desc(rs.getString("stay_option1_desc"));
+                dto.setStay_option1_photo(rs.getString("stay_option1_photo"));
+                dto.setStay_option2_name(rs.getString("stay_option2_name"));
+                dto.setStay_option2_price(rs.getInt("stay_option2_price"));
+                dto.setStay_option2_desc(rs.getString("stay_option2_desc"));
+                dto.setStay_option2_photo(rs.getString("stay_option2_photo"));
+                dto.setStay_option3_name(rs.getString("stay_option3_name"));
+                dto.setStay_option3_price(rs.getInt("stay_option3_price"));
+                dto.setStay_option3_desc(rs.getString("stay_option3_desc"));
+                dto.setStay_option3_photo(rs.getString("stay_option3_photo"));
+                dto.setStay_hit(rs.getInt("stay_hit"));
+                dto.setStay_reserv(rs.getInt("stay_reserv"));
+                dto.setStay_date(rs.getString("stay_date"));
+
+                list.add(dto);
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return list;
+    } // getBbsStayList() 종료
 }
