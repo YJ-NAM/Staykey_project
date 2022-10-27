@@ -112,6 +112,8 @@ public class StayDAO {
 			}else { // 지역 검색 유 / ps_location_sub 있을 때
 				if(map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
 					search_sql2 += " and stay_location like '%" + map.get("ps_location") + "%' and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%" + map.get("ps_location_sub") + "%')";
+				}else {
+					search_sql2 += " and stay_location like '%" + map.get("ps_location") + "%'";
 				}
 			}
 		}else { // ps_location 없을 때, 
@@ -251,6 +253,8 @@ public class StayDAO {
 			}else { // 지역 검색 유 / ps_location_sub 있을 때
 				if(map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
 					search_sql += " and stay_location like '%" + map.get("ps_location") + "%' and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%" + map.get("ps_location_sub") + "%')";
+				}else { 
+					search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
 				}
 			}
 		}else { // ps_location 없을 때, 
@@ -258,6 +262,7 @@ public class StayDAO {
 				search_sql += " and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%" + map.get("ps_location_sub") + "%')";
 			}
 		}
+		
 		if (map.get("ps_phone") != "" && map.get("ps_phone") != null) {
 			search_sql += " and stay_phone like '%" + map.get("ps_phone") + "%'";
 		}
