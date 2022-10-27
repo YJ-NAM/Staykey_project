@@ -6,6 +6,7 @@
 
 <c:set var="dto" value="${qna}" />
 
+
 <style type="text/css">body { padding: 0 30px !important; }</style>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>문의글 상세 정보</h2>
@@ -18,6 +19,7 @@
     <!-- 내용 //START -->
     <div class="row vf-body">
         <div class="col-lg mb-4">
+        <form method="post" action="<%=request.getContextPath() %>/admin/memberModifyOk.do" onsubmit="return join_check();">
             <table class="table-form w-100">
                 <colgroup>
                     <col width="17%" />
@@ -30,10 +32,13 @@
                     <tr>
                         <th>상태</th>
                         <td colspan="3">
-	                        <c:if test="${dto.bbs_status == 'done'}"><span class="text-danger">답변 완료</span></c:if>
-		                	<c:if test="${dto.bbs_status == 'ing'}"><span class="text-success">답변 처리중</span></c:if>
-		                	<c:if test="${dto.bbs_status == 'send'}"><span class="text-primary">답변 대기</span></c:if>
-                        </td>
+                        	<select>
+                        		<option value="ing">답변 처리중</option>
+                        		<option value="done">답변완료</option>
+                        		<option value="send">답변 대기</option>
+                        	</select>
+ 							<button type="submit" class="btn btn-success mx-1"><i class="fa fa-save"></i> 수정하기</button>
+                    	</td>
                     </tr>
                     <tr>
                         <th>댓글갯수</th>
@@ -47,6 +52,8 @@
                     </tr>
                 </tbody>
             </table>
+           </form>
+            
         </div>
     </div>
     <!-- 내용 //END -->
@@ -101,9 +108,11 @@
                 <tbody>
                     <tr>
                         <th>문의제목</th>
-                        <td class="eng">${dto.bbs_title}</td>
+                        <td colspan="3">${dto.bbs_title}</td>
+                    </tr>
+                    <tr> 
                         <th>문의내용</th>
-                        <td class="eng">${dto.bbs_content}</td>
+                        <td colspan="3">${dto.bbs_content}</td>
                     </tr>
                     <tr>
                         <th>첨부파일</th>
@@ -181,18 +190,7 @@
 
     <!-- 버튼 //START -->
     <div class="d-flex justify-content-center mb-3">
-<<<<<<< Updated upstream
-        <a href="<%=request.getContextPath()%>/admin/qna_commentModify.do?id=${dto.bbs_no}" class="btn btn-outline-primary">답변추가</a>
-        <a href="<%=request.getContextPath()%>/admin/qna_commentModify.do?id=${dto.review_no}" class="btn btn-outline-primary">답변수정</a>
-        <a href="<%=request.getContextPath()%>/admin/qna_commentDeleteOk.do?id=${dto.review_no}" class="btn btn-outline-danger ml-2" onclick="return confirm('정말 삭제하시겠습니까?');">답변삭제</a>
-=======
-        <a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-outline-primary">답변추가</a>
-        <a href="<%=request.getContextPath()%>/admin/reviewModify.do?id=${dto.review_no}" class="btn btn-outline-primary">답변수정</a>
-        <a href="<%=request.getContextPath()%>/admin/reviewDeleteOk.do?id=${dto.review_no}" class="btn btn-outline-danger ml-2" onclick="return confirm('정말 삭제하시겠습니까?');">답변삭제</a>
-    
-        <button type="button" class="btn btn-outline-secondary" onclick="window.print();"><i class="fa fa-print"></i>답변완료</button>
-        <button type="button" class="btn btn-outline-secondary ml-2" onclick="window.print();"><i class="fa fa-print"></i> 답변수정</button>
->>>>>>> Stashed changes
+        <button type="button" class="btn btn-outline-secondary" onclick="window.print();"><i class="fa fa-print"></i> 인쇄하기</button>
         <button type="button" class="btn btn-secondary ml-2" onclick="window.close();"><i class="fa fa-times"></i> 창닫기</button>
     </div>
     <!-- 버튼 //END -->
