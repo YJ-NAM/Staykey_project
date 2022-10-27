@@ -16,11 +16,13 @@ public class AdminStayRoomModifyAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// room 수정하기 방 정보 받아오기
 		
+		int stayNo = Integer.parseInt(request.getParameter("stay_no"));
 		int roomNo = Integer.parseInt(request.getParameter("room_no"));
 		
 		StayDAO dao = StayDAO.getInstance();
 		StayRoomDTO dto = dao.getStayRoomView(roomNo);
 		
+		request.setAttribute("stay_no", stayNo);
 		request.setAttribute("roomModify", dto);
 		
 		ActionForward forward = new ActionForward();

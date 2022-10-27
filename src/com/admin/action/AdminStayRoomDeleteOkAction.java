@@ -43,16 +43,15 @@ public class AdminStayRoomDeleteOkAction implements Action {
 			}
 		}
 
-        ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
 
         if (res > 0) {
-        	// 부모 위치 이동 & 지금 보는 창 꺼짐...!
-            out.println("<script>parent.location.href='stayView.do?stay_no=" + stay_no + "'; window.close();</script>");
+        	// 부모 위치 이동 & 지금 보는 창 꺼짐 기능 / opener 붙여야 작동 됨(parent 빼면 작동 안 됨)
+        	out.println("<script> alert('등록된 Room이 성공적으로 삭제되었습니다.'); </script>");
+            out.println("<script> opener.parent.location.href='stayView.do?stay_no="+stay_no+"'; window.close(); </script>");
         } else {
-            out.println("<script> alert('Room 등록 중 에러가 발생했습니다.'); history.back(); </script>");
+            out.println("<script> alert('Room 삭제 중 에러가 발생했습니다.'); history.back(); </script>");
         }
-        return forward;
+		return null;
     }
-
 }

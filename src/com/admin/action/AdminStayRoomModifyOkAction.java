@@ -48,9 +48,7 @@ public class AdminStayRoomModifyOkAction implements Action {
 
         // 파라미터 정리
         int room_no = Integer.parseInt(multi.getParameter("room_no"));
-        
-        System.out.println(room_no);
-        
+        int room_stayno = Integer.parseInt(multi.getParameter("stay_no"));
         String room_name = multi.getParameter("room_name").trim();
         String room_desc = multi.getParameter("room_desc").trim();
         String room_type = multi.getParameter("room_type").trim();
@@ -156,16 +154,15 @@ public class AdminStayRoomModifyOkAction implements Action {
 
         int res = dao.modifyStayRoom(dto);
 
-        ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
 
         if (res > 0) {
-            forward.setRedirect(true);
-            forward.setPath("stayRoomView.do?room_no="+room_no+"&stay_no="+dto.getRoom_stayno());
+            out.println("<script> alert('등록된 Room이 성공적으로 수정되었습니다.'); </script>");
+            out.println("<script> opener.parent.location.href='stayView.do?stay_no="+room_stayno+"'; location.href='stayRoomView.do?room_no="+room_no+"&stay_no="+room_stayno+"'; </script>");
         } else {
             out.println("<script> alert('Room 등록 중 에러가 발생했습니다.'); history.back(); </script>");
         }	
-		return forward;
+		return null;
 	}
 
 }
