@@ -702,5 +702,31 @@ public class StayDAO {
 		}
 		return result;
 	} // modifyStayRoom() 종료
-
+	
+	/////////////////////////////////////////////////////////////
+	// 방 삭제 메서드 + room_no 재정립
+	/////////////////////////////////////////////////////////////
+	public int deleteRoom(int room_no) {
+		int result = 0;
+		openConn();
+		
+		try {
+			sql = "delete from staykey_stay_room where room_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, room_no);
+			result = pstmt.executeUpdate();
+			
+			sql = "update staykey_stay_room set room_no = room_no - 1 where room_no > ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, room_no);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}		
+		return result;
+	} // deleteRoom() 메서드 종료
 }

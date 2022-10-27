@@ -162,6 +162,7 @@ public class AdminStayRoomModifyOkAction implements Action {
         PrintWriter out = response.getWriter();
 
         if (res > 0) {
+        	
             forward.setRedirect(true);
             forward.setPath("stayRoomView.do?room_no="+room_no+"&stay_no="+dto.getRoom_stayno());
         } else {
