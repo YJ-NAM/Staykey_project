@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import="com.util.showArray" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../layout/layout_header.jsp" />
 
@@ -26,33 +28,23 @@
         <tr>
             <th>숙소 유형</th>
             <td colspan="3">
+                <%
+                    showArray getArray = new showArray();
+                    getArray.getList("stayType");
+                    List<String> stayType = getArray.listArr;
+        
+                    String checked = "";
+                    for(int i=0; i<stayType.size(); i++){
+                        if(i == 0){
+                            checked = " checked=\"checked\"";
+                        }else{
+                            checked = "";
+                        }
+                %>
                 <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="호텔" class="form-check-input" checked="checked" /> 호텔</label>
+                    <label class="form-check-label"><input type="radio" name="stay_type" value="<%=stayType.get(i)%>" class="form-check-input"<%=checked%> /> <%=stayType.get(i)%></label>
                 </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="호스텔" class="form-check-input" /> 호스텔</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="게스트하우스" class="form-check-input" /> 게스트하우스</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="민박" class="form-check-input" /> 민박</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="펜션" class="form-check-input" /> 펜션</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="리조트" class="form-check-input" /> 리조트</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="렌탈하우스" class="form-check-input" /> 렌탈하우스</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="한옥" class="form-check-input" /> 한옥</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label"><input type="radio" name="stay_type" value="캠핑&아웃도어" class="form-check-input" /> 캠핑&아웃도어</label>
-                </div>
+                <%} %>
             </td>
         </tr>
 

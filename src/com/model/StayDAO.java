@@ -516,15 +516,16 @@ public class StayDAO {
 	/////////////////////////////////////////////////////////////
 	// 방 상세정보 보기
 	/////////////////////////////////////////////////////////////
-	public StayRoomDTO getStayRoomView(int roomNo) {
+	public StayRoomDTO getStayRoomView(int roomNo, int stayNo) {
 		
 		StayRoomDTO dto = null;
 		openConn();
 		
 		try {
-			sql = "select * from staykey_stay_room where room_no = ?";
+			sql = "select * from staykey_stay_room where room_no = ? and room_stayno = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, roomNo);
+			pstmt.setInt(2, stayNo);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -562,9 +563,11 @@ public class StayDAO {
 	
 	/////////////////////////////////////////////////////////////
 	// 방 등록 메서드 + 방 번호 지정
-	/////////////////////////////////////////////////////////////
-	public int registerStayRoom(StayRoomDTO dto) {
-
+	///////////////////////////////t//////////////////////////////
+	public int[] registerStayRoom(StayRoomDTO dto) {
+		
+		// result 값 및 room_no 받기 위한 int[] 변수 선언
+		int[] resultArr = null;
 		int result = 0, count = 0;
 		openConn();
 
@@ -577,8 +580,6 @@ public class StayDAO {
 				count = rs.getInt(1) + 1;
 			}
 			
-			System.out.println(count);
-
 			sql = "insert into staykey_stay_room values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, count);
@@ -604,13 +605,14 @@ public class StayDAO {
 			pstmt.setString(21, dto.getRoom_tag());
 
 			result = pstmt.executeUpdate();
+			resultArr = new int[]{ result, count };
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			closeConn(rs, pstmt, con);
 		}
-		return result;
+		return resultArr;
 	} // registerStayRoom() 종료
 
 	
@@ -660,7 +662,74 @@ public class StayDAO {
 	    return dto;
 	}
 
+	/////////////////////////////////////////////////////////////
+	// 방 수정 메서드
+	/////////////////////////////////////////////////////////////
+	public int modifyStayRoom(StayRoomDTO dto) {
+		int result = 0;
+		openConn();
+		
+		try {
+			sql = "update staykey_stay_room set room_name = ?, room_desc = ?, room_type = ?, room_price = ?, "
+					+ "room_checkin = ?, room_checkout = ?, room_people_min = ?, room_people_max = ?, room_size = ?, "
+					+ "room_bed = ?, room_features = ?, room_amenities = ?, room_service = ?, room_photo1 = ?, "
+					+ "room_photo2 = ?, room_photo3 = ?, room_photo4 = ?, room_photo5 = ?, room_tag = ? where room_no = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getRoom_name());
+			pstmt.setString(2, dto.getRoom_desc());
+			pstmt.setString(3, dto.getRoom_type());
+			pstmt.setInt(4, dto.getRoom_price());
+			pstmt.setString(5, dto.getRoom_checkin());
+			pstmt.setString(6, dto.getRoom_checkout());
+			pstmt.setInt(7, dto.getRoom_people_min());
+			pstmt.setInt(8, dto.getRoom_people_max());
+			pstmt.setInt(9, dto.getRoom_size());
+			pstmt.setString(10, dto.getRoom_bed());
+			pstmt.setString(11, dto.getRoom_features());
+			pstmt.setString(12, dto.getRoom_amenities());
+			pstmt.setString(13, dto.getRoom_service());
+			pstmt.setString(14, dto.getRoom_photo1());
+			pstmt.setString(15, dto.getRoom_photo2());
+			pstmt.setString(16, dto.getRoom_photo3());
+			pstmt.setString(17, dto.getRoom_photo4());
+			pstmt.setString(18, dto.getRoom_photo5());
+			pstmt.setString(19, dto.getRoom_tag());
+			pstmt.setInt(20, dto.getRoom_no());
 
-
-
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+		return result;
+	} // modifyStayRoom() 종료
+	
+	/////////////////////////////////////////////////////////////
+	// 방 삭제 메서드 + room_no 재정립
+	/////////////////////////////////////////////////////////////
+	public int deleteRoom(int room_no) {
+		int result = 0;
+		openConn();
+		
+		try {
+			sql = "delete from staykey_stay_room where room_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, room_no);
+			result = pstmt.executeUpdate();
+			
+			sql = "update staykey_stay_room set room_no = room_no - 1 where room_no > ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, room_no);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}		
+		return result;
+	} // deleteRoom() 메서드 종료
 }
