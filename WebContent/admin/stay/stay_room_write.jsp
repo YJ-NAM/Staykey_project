@@ -1,10 +1,12 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header_popup.jsp" />
+
+<%@ page import="com.util.showArray" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script>
-
 	onload = function() {
 
 		const tagContainer = document.querySelector('.tag-container');
@@ -63,7 +65,7 @@
 
 		// 클릭 시 삭제 
 		document.addEventListener('click', function(e) {
-			if(e.target.tagName == 'I'){
+			if(e.target.tagName == 'I') {
 				const value = e.target.getAttribute('data-item');
 				const index = tags.indexOf(value);
 				tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
@@ -75,7 +77,7 @@
 		// 남은 태그 개수 확인
 		function countTag() {
 			remainTag.innerText = maxTags - tags.length; // 최대 개수 - 배열 길이
-			// tags 배열 값 input hidden으로 넘기기
+			// 여기서 tags 배열 값 input hidden으로 넘기기
 			if(tags.length > 0){
 				document.querySelector('#room_tag').value = tags;
 			}
@@ -146,13 +148,23 @@
 		<tr>
 			<th>방 타입</th>
 			<td>
-				<label><input type="radio" name="room_type" value="기본형" checked="checked" /> 기본형</label>
-				<label><input type="radio" name="room_type" value="거실형" /> 거실형</label>
-				<label><input type="radio" name="room_type" value="독채형" /> 독채형</label>
-				<label><input type="radio" name="room_type" value="원룸형" /> 원룸형</label>
-				<label><input type="radio" name="room_type" value="투룸형" /> 투룸형</label>
-				<label><input type="radio" name="room_type" value="복층형" /> 복층형</label>
-				<label><input type="radio" name="room_type" value="오픈형" /> 오픈형</label>
+                <%
+                    showArray getRoomtype = new showArray();
+                    getRoomtype.getList("roomType");
+                    List<String> roomType = getRoomtype.listArr;
+        
+                    String RTchecked = "";
+                    for(int i=0; i<roomType.size(); i++){
+                        if(i == 0){
+                            RTchecked = " checked=\"checked\"";
+                        }else{
+                            RTchecked = "";
+                        }
+                %>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="radio" name="room_type" value="<%=roomType.get(i)%>" class="form-check-input"<%=RTchecked%> /> <%=roomType.get(i)%></label>
+                </div>
+                <%} %>
 			</td>
 		</tr>
 		<tr>
@@ -180,74 +192,43 @@
 		<tr>			
 			<th>FEATURES</th>
 			<td>
-				<label><input type="checkbox" name="room_features" value="야외가구" /> 야외가구</label>
-				<label><input type="checkbox" name="room_features" value="천창" /> 천창</label>
-				<label><input type="checkbox" name="room_features" value="수영장" /> 수영장</label>
-				<label><input type="checkbox" name="room_features" value="실내 스파" /> 실내 스파</label>
-				<label><input type="checkbox" name="room_features" value="월풀 스파" /> 월풀 스파</label>
-				<label><input type="checkbox" name="room_features" value="오픈 배스" /> 오픈 배스</label>
-				<label><input type="checkbox" name="room_features" value="썬베드" /> 썬베드</label>
-				<label><input type="checkbox" name="room_features" value="정원" /> 정원</label>
-				<label><input type="checkbox" name="room_features" value="개별 BBQ 데크" /> 개별 BBQ 데크</label>
-				<label><input type="checkbox" name="room_features" value="픽업" /> 픽업</label>
-				<label><input type="checkbox" name="room_features" value="테라스" /> 테라스</label>
-				<label><input type="checkbox" name="room_features" value="독립 키친" /> 독립 키친</label>
-				<label><input type="checkbox" name="room_features" value="독립 화장실" /> 독립 화장실</label>
-				<label><input type="checkbox" name="room_features" value="빅테이블" /> 빅테이블</label>
-				<label><input type="checkbox" name="room_features" value="산책로" /> 산책로</label>
-				<label><input type="checkbox" name="room_features" value="웰컴티" /> 웰컴티</label>
-				<label><input type="checkbox" name="room_features" value="조식" /> 조식</label>
-				<label><input type="checkbox" name="room_features" value="주차" /> 주차</label>
-				<label><input type="checkbox" name="room_features" value="빔프로젝트" /> 빔프로젝트</label>
+                <%
+                    showArray getRoomFeat = new showArray();
+                    getRoomFeat.getList("roomFeat");
+                    List<String> roomFeat = getRoomFeat.listArr;
+
+                    for(int i=0; i<roomFeat.size(); i++){
+                %>
+                <label><input type="checkbox" name="room_features" value="<%=roomFeat.get(i)%>" /> <%=roomFeat.get(i)%></label>
+                <%} %>
 			</td>
 		</tr>
 		<tr>			
 			<th>AMENITIES</th>
 			<td>
-				<label><input type="checkbox" name="room_amenities" value="무선 인터넷" /> 무선 인터넷</label>
-				<label><input type="checkbox" name="room_amenities" value="빔 프로젝트" /> 빔 프로젝트</label>
-				<label><input type="checkbox" name="room_amenities" value="TV" /> TV</label>
-				<label><input type="checkbox" name="room_amenities" value="냉장고" /> 냉장고</label>
-				<label><input type="checkbox" name="room_amenities" value="세탁기" /> 세탁기</label>
-				<label><input type="checkbox" name="room_amenities" value="제습기" /> 제습기</label>
-				<label><input type="checkbox" name="room_amenities" value="건조기" /> 건조기</label>
-				<label><input type="checkbox" name="room_amenities" value="블루투스 스피커" /> 블루투스 스피커</label>
-				<label><input type="checkbox" name="room_amenities" value="헤어드라이어" /> 헤어드라이어</label>
-				<label><input type="checkbox" name="room_amenities" value="전기포트" /> 전기포트</label>
-				<label><input type="checkbox" name="room_amenities" value="전자레인지" /> 전자레인지</label>
-				<label><input type="checkbox" name="room_amenities" value="식기세척기" /> 식기세척기</label>
-				<label><input type="checkbox" name="room_amenities" value="에어컨" /> 에어컨</label>
-				<label><input type="checkbox" name="room_amenities" value="인덕션" /> 인덕션</label>
-				<label><input type="checkbox" name="room_amenities" value="청소기" /> 청소기</label>
-				<label><input type="checkbox" name="room_amenities" value="치약" /> 치약</label>
-				<label><input type="checkbox" name="room_amenities" value="샴푸" /> 샴푸</label>
-				<label><input type="checkbox" name="room_amenities" value="컨디셔너" /> 컨디셔너</label>
-				<label><input type="checkbox" name="room_amenities" value="바디로션" /> 바디로션</label>
-				<label><input type="checkbox" name="room_amenities" value="바디워시" /> 바디워시</label>
-				<label><input type="checkbox" name="room_amenities" value="샤워가운" /> 샤워가운</label>
-				<label><input type="checkbox" name="room_amenities" value="빗" /> 빗</label>
-				<label><input type="checkbox" name="room_amenities" value="타월" /> 타월</label>
-				<label><input type="checkbox" name="room_amenities" value="세탁세제" /> 세탁세제</label>
-				<label><input type="checkbox" name="room_amenities" value="모기약" /> 모기약</label>
-				<label><input type="checkbox" name="room_amenities" value="연고" /> 연고</label>
-				<label><input type="checkbox" name="room_amenities" value="룸 슬리퍼" /> 룸 슬리퍼</label>
-				<label><input type="checkbox" name="room_amenities" value="와인오프너" /> 와인오프너</label>
-				<label><input type="checkbox" name="room_amenities" value="와인잔" /> 와인잔</label>
-				<label><input type="checkbox" name="room_amenities" value="토스터기" /> 토스터기</label>
-				<label><input type="checkbox" name="room_amenities" value="캡슐커피머신" /> 캡슐커피머신</label>
-				<label><input type="checkbox" name="room_amenities" value="보드게임" /> 보드게임</label>
-				<label><input type="checkbox" name="room_amenities" value="다기" /> 다기</label>
-				<label><input type="checkbox" name="room_amenities" value="조리도구" /> 조리도구</label>
-				<label><input type="checkbox" name="room_amenities" value="조미료" /> 조미료</label>
-				<label><input type="checkbox" name="room_amenities" value="정수기" /> 정수기</label>
+                <%
+                    showArray getRoomAmeni = new showArray();
+                    getRoomAmeni.getList("roomAmeni");
+                    List<String> roomAmeni = getRoomAmeni.listArr;
+
+                    for(int i=0; i<roomAmeni.size(); i++){
+                %>
+                <label><input type="checkbox" name="room_amenities" value="<%=roomAmeni.get(i)%>" /> <%=roomAmeni.get(i)%></label>
+                <%} %>
 			</td>
 		</tr>
 		<tr>			
 			<th>ADD-ON SERVICES</th>
 			<td>
-				<label><input type="checkbox" name="room_service" value="현금영수증" /> 현금영수증</label>
-				<label><input type="checkbox" name="room_service" value="BBQ" /> BBQ</label>
-				<label><input type="checkbox" name="room_service" value="조식" /> 조식</label>
+                <%
+                    showArray getRoomService = new showArray();
+                    getRoomService.getList("roomService");
+                    List<String> roomService = getRoomService.listArr;
+
+                    for(int i=0; i<roomService.size(); i++){
+                %>
+                <label><input type="checkbox" name="room_service" value="<%=roomService.get(i)%>" /> <%=roomService.get(i)%></label>
+                <%} %>
 			</td>
 		</tr>
 		<tr>
