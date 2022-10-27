@@ -516,15 +516,16 @@ public class StayDAO {
 	/////////////////////////////////////////////////////////////
 	// 방 상세정보 보기
 	/////////////////////////////////////////////////////////////
-	public StayRoomDTO getStayRoomView(int roomNo) {
+	public StayRoomDTO getStayRoomView(int roomNo, int stayNo) {
 		
 		StayRoomDTO dto = null;
 		openConn();
 		
 		try {
-			sql = "select * from staykey_stay_room where room_no = ?";
+			sql = "select * from staykey_stay_room where room_no = ? and room_stayno = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, roomNo);
+			pstmt.setInt(2, stayNo);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -564,6 +565,7 @@ public class StayDAO {
 	// 방 등록 메서드 + 방 번호 지정
 	///////////////////////////////t//////////////////////////////
 	public int[] registerStayRoom(StayRoomDTO dto) {
+		
 		// result 값 및 room_no 받기 위한 int[] 변수 선언
 		int[] resultArr = null;
 		int result = 0, count = 0;
