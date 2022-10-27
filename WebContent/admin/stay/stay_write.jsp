@@ -139,7 +139,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션설명</span>
                             </div>
-                            <input type="text" name="stay_option1_desc" value="" maxlength="200" class="form-control" />
+                            <textarea name="stay_option1_desc" cols="30" rows="3" class="form-control"></textarea>
                         </div>
                     </div>
                 </div>
@@ -183,7 +183,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션설명</span>
                             </div>
-                            <input type="text" name="stay_option2_desc" value="" maxlength="200" class="form-control" />
+                            <textarea name="stay_option2_desc" cols="30" rows="3" class="form-control"></textarea>
                         </div>
                     </div>
                 </div>
@@ -227,7 +227,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션설명</span>
                             </div>
-                            <input type="text" name="stay_option3_desc" value="" maxlength="200" class="form-control" />
+                            <textarea name="stay_option3_desc" cols="30" rows="3" class="form-control"></textarea>
                         </div>
                     </div>
                 </div>
@@ -249,18 +249,18 @@
         </tr>
 
         <tr>
-            <th>내용 컨텐츠 1</th>
-            <td colspan="3"><textarea id="stay_content1" name="stay_content1" cols="80" rows="5"></textarea></td>
+            <th>내용 컨텐츠 1<br />(소개)</th>
+            <td colspan="3"><textarea name="stay_content1" class="form-control" cols="80" rows="10"></textarea></td>
         </tr>
 
         <tr>
-            <th>내용 컨텐츠 2</th>
-            <td colspan="3"><textarea id="stay_content2" name="stay_content2" cols="80" rows="5"></textarea></td>
+            <th>내용 컨텐츠 2<br />(스페셜)</th>
+            <td colspan="3"><textarea name="stay_content2" class="form-control" cols="80" rows="10"></textarea></td>
         </tr>
 
         <tr>
-            <th>내용 컨텐츠 3<br />(구글 지도 삽입)</th>
-            <td colspan="3"><textarea id="stay_content3" name="stay_content3" class="form-control" cols="80" rows="5"></textarea></td>
+            <th>내용 컨텐츠 3<br /><a href="https://www.google.com/maps" target="_blank">(구글 맵)</th>
+            <td colspan="3"><textarea name="stay_content3" class="form-control" cols="80" rows="6"></textarea></td>
         </tr>
 
         <tr>
@@ -269,28 +269,19 @@
 
         <tr>
             <th>안내사항 1<br />(예약안내)</th>
-            <td colspan="3"><textarea id="stay_info1" name="stay_info1" cols="80" rows="5"></textarea></td>
+            <td colspan="3"><textarea name="stay_info1" class="form-control" cols="80" rows="10"></textarea></td>
         </tr>
 
         <tr>
             <th>안내사항 2<br />(이용안내)</th>
-            <td colspan="3"><textarea id="stay_info2" name="stay_info2" cols="80" rows="5"></textarea></td>
+            <td colspan="3"><textarea name="stay_info2" class="form-control" cols="80" rows="10"></textarea></td>
         </tr>
 
         <tr>
             <th>안내사항 3<br />(환불규정)</th>
-            <td colspan="3"><textarea id="stay_info3" name="stay_info3" cols="80" rows="5"></textarea></td>
+            <td colspan="3"><textarea name="stay_info3" class="form-control" cols="80" rows="10"></textarea></td>
         </tr>
-
     </table>
-    <script type="text/javascript">
-    CKEDITOR.disableAutoInline = true;
-    CKEDITOR.replace('stay_content1', { height: "250px" });
-    CKEDITOR.replace('stay_content2', { height: "250px" });
-    CKEDITOR.replace('stay_info1', { height: "250px" });
-    CKEDITOR.replace('stay_info2', { height: "250px" });
-    CKEDITOR.replace('stay_info3', { height: "250px" });
-    </script>
 
 
 

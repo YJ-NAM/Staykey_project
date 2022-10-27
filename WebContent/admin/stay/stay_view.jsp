@@ -215,20 +215,19 @@ ${ msg }
             <div class="card">
                 <div class="card-body px-4 pt-0">
 
-                	<c:if test="${!empty view.stay_content1}">
-                	<h4 class="mt-4">컨텐츠 1</h4>
-                	<div>${view.stay_content1}</div>
-                	</c:if>
+                    <div class="stay-view-cont">
+                    	<c:if test="${!empty view.stay_content1}">
+                    	<div>${view.stay_content1}</div>
+                    	</c:if>
 
-                	<c:if test="${!empty view.stay_content2}">
-                	<h4 class="mt-4">컨텐츠 2</h4>
-                	<div>${view.stay_content2}</div>
-                	</c:if>
+                    	<c:if test="${!empty view.stay_content2}">
+                    	<div>${view.stay_content2}</div>
+                    	</c:if>
 
-                	<c:if test="${!empty view.stay_content3}">
-                	<h4 class="mt-4">컨텐츠 3</h4>
-                	<div>${view.stay_content3}</div>
-                	</c:if>
+                    	<c:if test="${!empty view.stay_content3}">
+                    	<div class="container_full fdetail_map">${view.stay_content3}</div>
+                    	</c:if>
+                    </div>
 
                 </div>
             </div>
@@ -242,24 +241,23 @@ ${ msg }
     <!-- 안내사항 //START -->
     <c:if test="${!empty view.stay_info1 or !empty view.stay_info2 or !empty view.stay_info3}">
     <div class="row vf-body">
-        <div class="col-lg mb-4">
+        <div class="col-lg my-4">
             <div class="card">
-                <div class="card-body px-4 pt-0">
+                <div class="card-body px-4 py-0 bg-dark">
 
-                	<c:if test="${!empty view.stay_info1}">
-                	<h4 class="mt-4">안내사항 1</h4>
-                	<div>${view.stay_info1}</div>
-                	</c:if>
+                    <div class="stay-view-faq">
+                    	<c:if test="${!empty view.stay_info1}">
+                    	<div>${view.stay_info1}</div>
+                    	</c:if>
 
-                	<c:if test="${!empty view.stay_info2}">
-                	<h4 class="mt-4">안내사항 2</h4>
-                	<div>${view.stay_info2}</div>
-                	</c:if>
+                    	<c:if test="${!empty view.stay_info2}">
+                    	<div>${view.stay_info2}</div>
+                    	</c:if>
 
-                	<c:if test="${!empty view.stay_info3}">
-                	<h4 class="mt-4">안내사항 3</h4>
-                	<div>${view.stay_info3}</div>
-                	</c:if>
+                    	<c:if test="${!empty view.stay_info3}">
+                    	<div>${view.stay_info3}</div>
+                    	</c:if>
+                    </div>
 
                 </div>
             </div>
