@@ -47,7 +47,6 @@
 
 
 
-
     <div class="table-top clear">
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 후기</div>
         <div class="tt-right">
