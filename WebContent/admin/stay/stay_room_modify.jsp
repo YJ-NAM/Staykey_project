@@ -153,35 +153,45 @@
             <th>사진 1</th>
             <td colspan="3">
 				<input type="file" name="room_photo1" class="form-control w-50" />
-				<c:if test="${!empty room.room_photo1}"><p class="mt-2"><img src="<%=request.getContextPath()%>${room.room_photo1}" style="max-height: 150px;" alt="" /></p></c:if>
+				<c:if test="${!empty room.room_photo1}"><p class="mt-2"><img src="<%=request.getContextPath()%>${room.room_photo1}" style="max-height: 150px;" alt="" /></p>
+				<label><input type="checkbox" name="room_file_delete" value="Y1" /> 등록된 사진 삭제</label> 
+				</c:if>
             </td>
         </tr>
         <tr>
             <th>사진 2</th>
             <td colspan="3">
 				<input type="file" name="room_photo2" class="form-control w-50" />
-				<c:if test="${!empty room.room_photo2}"><p class="mt-2"><img src="<%=request.getContextPath()%>${room.room_photo2}" style="max-height: 150px;" alt="" /></p></c:if>
+				<c:if test="${!empty room.room_photo2}"><p class="mt-2"><img src="<%=request.getContextPath()%>${room.room_photo2}" style="max-height: 150px;" alt="" /></p>
+				<label><input type="checkbox" name="room_file_delete" value="Y2" /> 등록된 사진 삭제</label> 
+				</c:if>
             </td>
         </tr>
         <tr>
             <th>사진 3</th>
             <td colspan="3">
 				<input type="file" name="room_photo3" class="form-control w-50" />
-				<c:if test="${!empty room.room_photo3}"><p class="mt-2"><img src="<%=request.getContextPath()%>${room.room_photo3}" style="max-height: 150px;" alt="" /></p></c:if>
+				<c:if test="${!empty room.room_photo3}"><p class="mt-2"><img src="<%=request.getContextPath()%>${room.room_photo3}" style="max-height: 150px;" alt="" /></p>
+				<label><input type="checkbox" name="room_file_delete" value="Y3" /> 등록된 사진 삭제</label> 
+				</c:if>
             </td>
         </tr>
         <tr>
             <th>사진 4</th>
             <td colspan="3">
 				<input type="file" name="room_photo4" class="form-control w-50" />
-				<c:if test="${!empty room.room_photo4}"><p class="mt-2"><img src="<%=request.getContextPath()%>${room.room_photo4}" style="max-height: 150px;" alt="" /></p></c:if>
+				<c:if test="${!empty room.room_photo4}"><p class="mt-2"><img src="<%=request.getContextPath()%>${room.room_photo4}" style="max-height: 150px;" alt="" /></p>
+				<label><input type="checkbox" name="room_file_delete" value="Y4" /> 등록된 사진 삭제</label> 
+				</c:if>
             </td>
         </tr>
         <tr>
             <th>사진 5</th>
             <td colspan="3">
 				<input type="file" name="room_photo5" class="form-control w-50" />
-				<c:if test="${!empty room.room_photo5}"><p class="mt-2"><img src="<%=request.getContextPath()%>${room.room_photo5}" style="max-height: 150px;" alt="" /></p></c:if>
+				<c:if test="${!empty room.room_photo5}"><p class="mt-2"><img src="<%=request.getContextPath()%>${room.room_photo5}" style="max-height: 150px;" alt="" /></p>
+				<label><input type="checkbox" name="room_file_delete" value="Y5" /> 등록된 사진 삭제</label> 
+				</c:if>
             </td>
         </tr>
     </table>
