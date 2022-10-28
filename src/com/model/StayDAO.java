@@ -242,13 +242,10 @@ public class StayDAO {
 		if (map.get("ps_name") != "" && map.get("ps_name") != null) {
 			search_sql += " and stay_name like '%" + map.get("ps_name") + "%'";
 		}
-		System.out.println(map.get("ps_location"));
-		System.out.println(map.get("ps_location_sub"));
 		if (map.get("ps_location") != "" && map.get("ps_location") != null) { // ps_location 값이 있을 때
 			if(map.get("ps_location").equals("전체")) { // 그 중 전체일 때, ps_location_sub 값이 있으면 stay_location + stay_addr 합집합
 				if(map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
 					search_sql += " and stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%" + map.get("ps_location_sub") + "%'";
-					System.out.println(search_sql);
 				}
 			}else { // 지역 검색 유 / ps_location_sub 있을 때
 				if(map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
@@ -270,7 +267,6 @@ public class StayDAO {
 		try {
 			openConn();
 			sql = "select count(*) from staykey_stay" + search_sql;
-			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -789,6 +785,9 @@ public class StayDAO {
             }else{
                 search_sql += "stay_no = '"+epd_bbs_stay[0]+"'";
             }
+
+        }else{
+            search_sql += " and stay_no < 0";
         }
 
         try {
