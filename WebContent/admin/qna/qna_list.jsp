@@ -71,8 +71,8 @@
         <colgroup>
             <col width="10%">
             <col width="10%">
-            <col width="10%">
             <col />
+            <col width="10%">
             <col width="10%">
             <col width="10%">
             <col width="10%">
@@ -83,8 +83,8 @@
             <tr>
                 <th>No.</th>
                 <th>상태</th>
-                <th>작성자/아이디</th>
                 <th>제목</th>
+                <th>작성자/아이디</th>
                 <th>조회수</th>
                 <th>등록일</th>
                 <th>기능</th>
@@ -103,12 +103,10 @@
                 	<c:if test="${dto.bbs_status == 'ing'}"><span class="text-success">처리중</span></c:if>
                 	<c:if test="${dto.bbs_status == 'send'}"><span class="text-primary">대기</span></c:if>
                 </td>
+                <td ${showLink} class="text-left">${dto.bbs_title}</td>
                 <td ${showLink} class="py-3">
                 	<p><b>${dto.bbs_writer_name}</b></p>
                 	<p class="eng">${dto.bbs_writer_id}</p>
-                </td>
-                <td ${showLink}>
-                    ${dto.bbs_title }<c:if test="${!empty dto.bbs_file1 || !empty dto.bbs_file2}"> <i class="fa fa-floppy-o text-primary"></i></c:if> <b class="text-primary">(${dto.bbs_comment})</b>
                 </td>
                 <td ${showLink}>${dto.bbs_hit}</td>
                 <td ${showLink}>${dto.bbs_date.substring(0, 10)}<br />${dto.bbs_date.substring(11)}</td>

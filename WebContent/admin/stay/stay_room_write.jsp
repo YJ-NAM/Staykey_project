@@ -169,6 +169,7 @@ form_check = function(){
                 	<label class="form-check-label"><input type="checkbox" name="room_amenities" value="<%=roomAmeni.get(i)%>" /> <%=roomAmeni.get(i)%></label>
                 </div>
                 <%} %>
+
             </td>
         </tr>
         <tr>

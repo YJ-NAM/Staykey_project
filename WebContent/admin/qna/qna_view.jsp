@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="dto" value="${qna}" />
+<c:set var="qList" value="${List}" />
 
 
 <style type="text/css">body { padding: 0 30px !important; }</style>
@@ -32,12 +33,12 @@
                     <tr>
                         <th>상태</th>
                         <td colspan="3">
-                        	<select>
-                        		<option value="ing">답변 처리중</option>
-                        		<option value="done">답변완료</option>
-                        		<option value="send">답변 대기</option>
+                        	<select name="bbs_status" class="form-select">
+                        		<option value="ing" class="text-danger">처리중</option>
+                        		<option value="done" class="text-success">완료</option>
+                        		<option value="send" class="text-primary">대기</option>
                         	</select>
- 							<button type="submit" class="btn btn-success mx-1"><i class="fa fa-save"></i> 수정하기</button>
+ 							<a href="<%=request.getContextPath()%>/admin/qnaModifyOk.do?no=${dto.bbs_no}" class="btn btn-sm btn-outline-success m-1">수정</a>
                     	</td>
                     </tr>
                     <tr>
@@ -86,10 +87,7 @@
             </table>
         </div>
     </div>
-    <!-- 예약자 정보 //END -->
-
-
-
+    <!-- 문의자 정보 //END -->
 
 
     <!-- 문의글 정보 //START -->
@@ -125,65 +123,92 @@
             </table>
         </div>
     </div>
-    <!-- 예약자 정보 //END -->
+    <!-- 문의글 정보 //END -->
+	
+	
+	
+	
+	
+	
 	
 	
     <!-- 답글 내역 //START -->
-<%--     <div class="row vf-article">
+    <div class="row vf-article">
         <div class="col-lg mb-4">
             <div class="card input-form">
                 <div class="card-body p-4">
-                    <h4>답글 내역</h4>
+                    <h4>댓글 목록</h4>
                     <table class="table-form mt-2">
                         <colgroup>
-                            <col width="8%" />
-                            <col width="20%" />
+                            <col width="18%" />
                             <col />
-                            <col width="20%" />
-                        </colgroup>
+                            <col width="15%" />
+                            <col width="13%" />
+                        </colgroup>	
 
                         <thead>
                             <tr>
-                                <th>No.</th>
-                                <th>금액</th>
+                                <th>작성자</th>
                                 <th>내용</th>
-                                <th>일자</th>
+                                <th>작성일</th>
+                                <th>기능</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <c:choose>
-                            <c:when test="${!empty pList }">
-                            <c:forEach items="${pList}" var="pdto">
+                            <c:when test="${!empty qList }">
+                            <c:forEach items="${qList}" var="qdto">
+                            <c:set var="comment_qnano" value="${qdto.comment_qnano}"/>
                             <tr>
-                                <td class="text-center">${pdto.getPoint_no()}</td>
-                                <td class="text-center">
-                                    <c:choose>
-                                    <c:when test="${pdto.getPoint_type() == 'plus'}"><span class="text-primary">+ ${pdto.getPoint_value()}</span></c:when>
-                                    <c:otherwise><span class="text-danger">- ${pdto.getPoint_value()}</span></c:otherwise>
-                                    </c:choose>
-                                </td>
-                                <td class="text-center">${pdto.getPoint_content()}</td>
-                                <td class="text-center">${pdto.getPoint_date()}</td>
+                                <td class="text-center"><b>${qdto.comment_writer_name}</b></td>
+                                <td class="text-left">${qdto.comment_content}</td>
+                                <td class="text-center">${qdto.comment_date}</td>
+                                <td class="text-center"><a href="<%=request.getContextPath()%>/admin/qnaCommentDeleteOk.do?no=${dqdto.comment_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
                             </tr>
                             </c:forEach>
                             </c:when>
                 
                             <c:otherwise>
                             <tr>
-                                <td colspan="4" class="nodata border-bottom-0">적립금 내역이 없습니다.</td>
+                                <td colspan="4" class="nodata border-bottom-0">댓글이 없습니다.</td>
                             </tr>
                             </c:otherwise>
                             </c:choose>
-                        </tbody>
+        					
+                         </tbody>
                     </table>
+                    
+                    
+                     <form name="write_form" method="post" action="<%=request.getContextPath() %>/admin/qnaCommentOk.do?no=${comment_qnano}">
+                   		<%-- 이름, 아이디, 비밀번호 임시로 받음. --%>
+                   		<input type="hidden" name="comment_writer_name" value="rock" />
+						<input type="hidden" name="comment_writer_id" value="admin1234" />
+						<input type="hidden" name="comment_writer_pw" value="1234" />
+                     <table class="table-form mt-2">
+                     	<colgroup>
+                            <col width="18%" />
+                            <col />
+                            <col width="25%" />
+                     	</colgroup>
+					    <tr> 
+					        <th>댓글 내용</th>										
+							<td> 
+								<textarea name="comment_content" cols="20" rows="3" class="form-control" ></textarea></td>
+                            <td class="text-center">
+                                <button type="submit" class="btn btn-lg btn-primary w-100 h-100"><i class="fa fa-pencil"></i> 쓰기</button>
+                            </td>
+					    </tr> 
+			   		</table>
+			   		</form>	
+			   		
+			   		
                 </div>
             </div>
         </div>
     </div>
- --%>    <!-- 답글목록 //END -->
-	
-	
+
+  
 	
 
 
