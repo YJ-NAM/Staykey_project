@@ -1,6 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% long time = System.currentTimeMillis(); %>
 <jsp:include page="layout/layout_header.jsp" />
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/main.css?<%=time%>" />
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    var visualSwiper = new Swiper(".main-visual", {
+        effect: "fade",
+        slidesPerView: 1,
+        spaceBetween: 0,
+        speed: 500,
+        loop: true,
+        touchEnabled: false,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.main-visual i.fa-chevron-right',
+            prevEl: '.main-visual i.fa-chevron-left',
+        }
+    });
+
+    var swiper = new Swiper("#new-container", {
+        slidesPerView: 3,
+        spaceBetween: 0,
+        speed: 500,
+        loop: true,
+        touchEnabled: false,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        }
+      });
+    
+    var swiper = new Swiper("#promo-container", {
+        effect: "fade",
+        slidesPerView: 1,
+        spaceBetween: 0,
+        speed: 500,
+        loop: true,
+        touchEnabled: false,
+        navigation: {
+        pagination: {
+          el: ".swiper-pagination",
+          type: "fraction",
+        },
+          nextEl: "#promo-container .fa-chevron-right",
+          prevEl: "#promo-container .fa-chevron-left",
+        },
+    });
+});
+
+</script>
 
 
 <!-------- 메인 페이지 시작 --------->
@@ -9,27 +63,25 @@
 
 
         <!-------- 메인 페이지 비주얼 //START --------->
-        <div id="main-visual parallax-bg" data-swiper-parallax="-23%" class="main-visual">
+        <div id="main-visual" class="main-visual">
             <ul class="swiper-wrapper">
                 <li class="swiper-slide slider-box">
                     <a href="#">
-                        <img class="img" src="asset/images/leegunhee.jpeg" />
+                    <img class="img" src="https://images.stayfolio.com/system/pictures/images/000/147/185/original/f7795e07092868f683dc1efd5c38e9707a4958f1.jpg?1665466753;"/>
                         <div class="stay-info">
-                            <p class="logo"></p>
-                            <p class="title" data-swiper-parallax="-300">어느 수집가의 초대</p>
-                            <p class="event subtitle" data-swiper-parallax="-200"> MMCA 이건희컬렉션 특별전: 한국미술명작 </p>
-                            <p class="more" data-swiper-parallax="-100">Read more</p>
+                            <p class="title">의귀소담</p>
+                            <p class="event subtitle">의귀리에서 찾은 진짜 제주</p>
+                            <p class="more">Read more</p>
                         </div>
                     </a>
                 </li>
 
                 <li class="swiper-slide slider-box">
                     <a href="#">
-                        <img class="img" src="asset/images/whanki.jpeg" />
-                        <div id="stay-info">
-                            <p class="logo"></p>
-                            <p class="title">우리끼리의 얘기</p>
-                            <p class="event subtitle">환기미술관 개관 30주년 기념전</p>
+                        <img class="img" src="https:////images.stayfolio.com/system/pictures/images/000/149/625/original/2785159fd7d9d314fd5f5c511278464805166703.jpg?1666753232"/>
+                        <div class="stay-info">
+                            <p class="title">월정느루</p>
+                            <p class="event subtitle">천천히, 오랫동안</p>
                             <p class="more">Read more</p>
                         </div>
                     </a>
@@ -38,8 +90,7 @@
                 <li class="swiper-slide slider-box">
                     <a href="#">
                         <img class="" src="https://images.prismic.io/stayfolio-production/c65fe543-b3c7-4695-904c-859609637aa5_Main+banner_pc+1.jpg" />
-                        <div id="stay-info">
-                            <p class="logo"></p>
+                        <div class="stay-info">
                             <p class="title"></p>
                             <p class="event subtitle">전어회</p>
                             <p class="more">Read more</p>
@@ -50,8 +101,7 @@
                 <li class="swiper-slide slider-box">
                     <a href="#">
                         <img class="" src="https://images.prismic.io/stayfolio-production/b5310af4-cfb3-4211-859f-37629cf5c0ab_1.jpg" />
-                        <div id="stay-info">
-                            <p class="logo"></p>
+                        <div class="stay-info">
                             <p class="title"></p>
                             <p class="event subtitle">연어회</p>
                             <p class="more">Read more</p>
@@ -59,359 +109,233 @@
                     </a>
                 </li>
             </ul>
-
-            <div class="swiper-button-prev"><i class="icon-arrow-left"></i></div>
-            <div class="swiper-button-next"><i class="icon-arrow-right"></i></div>
-            <div class="swiper-pagination">
-                <span>0</span>/
-                <span>10</span>
-            </div>
-            <div class="bg-paper"></div>
-        </div>
-        <!-------- 메인 페이지 비주얼 //END --------->
-
-
-
-        <!-------- 메인 페이지 프로모션 창 //START --------->
-        <div class="container main-new">
-            <div class="sec-title">
-                <strong>Stay:Key로 여는 새로운 경험</strong>
-            </div>
-
-            <div class="stay-list" id="new-container">
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide stay-box">
-                        <button type="button" id="btn-like"></button>
-                        <a href="#"><img src="asset/images/gilsangsa.png" />
-                        <div class="name title">길상사</div>
-                        <div class="others subtitle"><span>서울 / 성북구</span><span>당일체험&#8361;10,000원</span></div>
-                        <div class="btn_more">Read more</div></a></div>
-                    <div class="swiper-slide stay-box">
-                        <button type="button" id="btn-like"></button>
-                        <a href="#"><img src="asset/images/bongeunsa.png"></img>
-                        <div class="name title">봉은사</div>
-                        <div class="others subtitle"><span>서울 / 강남구</span><span>1일 휴식형&#8361;70,000원</span></div>
-                        <div class="btn_more">Read more</div></a></div>
-                    <div class="swiper-slide stay-box">
-                        <button type="button" id="btn-like"></button>
-                        <a href="#"><img src=""></img>
-                        <div class="name title"></div>
-                        <div class="others subtitle"><span></span><span>&#8361;</span></div>
-                        <div class="btn_more">Read more</div></a></div>
-                    <div class="swiper-slide stay-box">
-                        <button type="button" id="btn-like"></button>
-                        <a href="#"><img src=""></img>
-                        <div class="name title"></div>
-                        <div class="others subtitle"><span></span><span>&#8361;</span></div>
-                        <div class="btn_more">Read more</div></a></div>
-                    <div class="swiper-slide parallax-bg-5 stay-box">
-                        <button type="button" id="btn-like"></button>
-                        <a href="#"><img src=""></img>
-                        <div class="name title"></div>
-                        <div class="others subtitle"><span></span><span>&#8361;</span></div>
-                        <div class="btn_more">Read more</div></a></div>
-                </div>
+            <i class="fa fa-chevron-left"></i>
+            <i class="fa fa-chevron-right"></i>
         </div>
     </div>
+    <!-------- 메인 페이지 비주얼 //END --------->
+
+
+
+
+    
+
+    <!-------- 메인 페이지 신규 창 //START --------->
+    <div class="container main-new">
+        <div class="sec-title">
+            <strong>Stay:Key로 여는 새로운 경험</strong>
+        </div>
+
+        <div class="new-container stay-list" id="new-container">
+
+            <div class="swiper-wrapper">
+                <div class="swiper-slide stay-box">
+                        <a href="#">
+                            <img class="img" src="https://images.stayfolio.com/system/pictures/images/000/088/425/original/4c745f673dc5c91bff78dfef019da95786b22e9e.jpg?1628906575" />
+                            <div class="title">비 온 후 풍경</div>
+                            <div class="subtitle">
+                                <span>강원/양양</span>
+                            </div>
+                            <div class="other">
+                                <span>자연과 하나된 프라이빗 휴식</span>
+                            </div>
+                        </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                        <a href="#">
+                            <img src="https://images.stayfolio.com/system/pictures/images/000/105/686/original/0c046e3258a34c039a041b8a679586eac6d86b08.jpg?1640251254" />
+                            <div class="title">굿올데이즈 호텔</div>
+                            <div class="subtitle">
+                                <span>부산/중구</span>
+                            </div>
+                            <div class="other">
+                                <span>좋았던 옛 시절을 회상하는</span>
+                            </div>
+                        </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                        <a href="#">
+                            <img src="https://images.stayfolio.com/system/pictures/images/000/072/793/original/a85c030e3ae1ed36bda4a7d4444debe8d4edd344.jpg?1621839513" />
+                            <div class="title">의림여관</div>
+                            <div class="subtitle">
+                                <span>강원/춘천</span>
+                            </div>
+                            <div class="other">
+                                <span>숲속 나그네의 집</span>
+                            </div>
+                        </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                        <a href="#">
+                            <img src="https://images.stayfolio.com/system/pictures/images/000/078/487/original/fed4b2a88ae247cba7e87a74ff8e8f0efaec753c.jpg?1624414143" />
+                            <div class="title">이호소락</div>
+                            <div class="subtitle">
+                                <span>서울/종로</span>
+                            </div>
+                            <div class="other">
+                                <span>작고 소박한 즐거움, 이호소락</span>
+                            </div>
+                        </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/126/065/original/80ad8add0dc98fafcc76b18332ad6a4b2d903f30.jpg?1655169615" />
+                        <div class="title">시기공추</div>
+                        <div class="subtitle">
+                            <span>충북/진천</span>
+                        </div>
+                        <div class="other">
+                            <span>시간은 기억으로, 공간은 추억으로</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/071/961/original/42470820f1906ded8cb4a0b93de5950d06a187c5.jpg?1621244347" />
+                        <div class="title">몬도마노</div>
+                        <div class="subtitle">
+                            <span>전남/목포</span>
+                        </div>
+                        <div class="other">
+                            <span>당신이 만드는 영원한 세계</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/075/909/original/0a4b4164fb4d670eadad5a5b435cd9ac73e4be4b.jpg?1623127639" />
+                        <div class="title">온화가</div>
+                        <div class="subtitle">
+                            <span>강원/강릉</span>
+                        </div>
+                        <div class="other">
+                            <span>따뜻하고 고즈넉한 휴식</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https:////images.stayfolio.com/system/pictures/images/000/078/487/original/fed4b2a88ae247cba7e87a74ff8e8f0efaec753c.jpg?1624414143" />
+                        <div class="title">이호소락</div>
+                        <div class="subtitle">
+                            <span>서울/종로</span>
+                        </div>
+                        <div class="other">
+                            <span>작고 소박한 즐거움, 이호소락</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https:////images.stayfolio.com/system/pictures/images/000/078/487/original/fed4b2a88ae247cba7e87a74ff8e8f0efaec753c.jpg?1624414143" />
+                        <div class="title">이호소락</div>
+                        <div class="subtitle">
+                            <span>서울/종로</span>
+                        </div>
+                        <div class="other">
+                            <span>작고 소박한 즐거움, 이호소락</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https:////images.stayfolio.com/system/pictures/images/000/078/487/original/fed4b2a88ae247cba7e87a74ff8e8f0efaec753c.jpg?1624414143" />
+                        <div class="title">이호소락</div>
+                        <div class="subtitle">
+                            <span>서울/종로</span>
+                        </div>
+                        <div class="other">
+                            <span>작고 소박한 즐거움, 이호소락</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------- 메인 페이지 신규 창 // END --------->
+
     <!-------- 메인 페이지 배너 창 --------->
-   <div class="container-main-banner">
-        <a href="#"><div class="banner-wrap"><span>마음의 평안을 여는</span><span style="font-size: 17px;">Stay</span></div></a>
-     </div>
-   
-        <!-------- 메인 페이지 프로모션 창 --------->
-    <div class="container-full main-promo">
+    <div class="main-banner">
+        <a href="#">
+            <div class="banner-wrap">
+                <span>Stay:Key</span><br>
+            </div>
+        </a>
+    </div>
+
+
+    <!-------- 메인 페이지 프로모션 창 // START  -------------->
+     <div class="main-promo">
         <div class="container">
         <!-------- 프로모션 창 타이틀 --------->
             <div class="sec-title"><strong>PROMOTION</strong></div>
         <!-------- 프로모션 창 목록 --------->
-            <div class= "swiper-container" id="promo-swiper">
-            <section class="promo-section">
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-pagination">
-                <span></span>
-                <span></span></div>
+            <div class= "promo-container swiper-container" id="promo-container">
+                    <div class="fa fa-chevron-left"></div>
+                    <div class="fa fa-chevron-right"></div>
+                    <div class="swiper-pagination"></div>
+
                 <ul class="swiper-wrapper">
-                    <li class="swiper-slide parallax-bg-1">
-                        <a><div class="img"></div>
-                        <div class="e_date"></div>
-                        <div class="animate"><div class="tit"><p class="text">내게 사랑은 너무 써</p><p class="small">아직 전 어리거든요</p></div>
-                        <div class="info"></div>
-                        </div></a></li>
-                    <li class="swiper-slide parallax-bg-2">
-                        <a><div class="img"></div>
-                        <div class="e_date"></div>
-                        <div class="animate"><div class="tit"><p class="text">" "</p><p class="small">" "</p></div>
-                        <div class="info"></div>
-                        </div></a></li>
-                    <li class="swiper-slide parallax-bg-3">
-                        <a><div class="img"></div>
-                        <div class="e_date"></div>
-                        <div class="animate"><div class="tit"><p class="text">" "</p><p class="small">" "</p></div>
-                        <div class="info"></div>
-                        </div></a></li>
-                    <li class="swiper-slide parallax-bg-4">
-                        <a><div class="img"></div>
-                        <div class="e_date"></div>
-                        <div class="animate"><div class="tit"><p class="text">" "</p><p class="small">" "</p></div>
-                        <div class="info"></div></div></a></li></ul>
-                <br>
-                <br>
-                <br>
-            </section></div>
-        </div>
-    </div>
-    <!-------- 메인 페이지 이벤트 창 --------->
-    <div class="container main-event">
-        <div class="sec-title">Event</div>
-        <div class="swiper-container stay-list" id="event-container">
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-wrapper">
-                <div class="swiper-slide stay-box"><a href="#">
-                    <div class="image"></div>
-                    <div class="e_date"></div>
-                    <div class="name"></div>
-                    <div class="other"><span></span></div>
-                    <div class="text"></div>
-                    <div class="btn_more">자세히</div></a></div>
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <img src="http://images.stayfolio.com/system/pictures/images/000/148/148/original/e8525a7fc7d249af9de4b7d775c31ed19f68cbff.jpg?1665989518"/>
 
-                <div class="swiper-slide stay-box"><a href="#">
-                    <div class="image"></div>
-                    <div class="e_date"></div>
-                    <div class="name"></div>
-                    <div class="other"><span></span></div>
-                    <div class="text"></div>
-                    <div class="btn_more">자세히</div></a></div>
+                            <div class="e_date">
+                            1 DAY LEFT
+                            </div>
+                            <div class="promo-title">
+                                <p class="text">나와 피부에게 주는 오늘의 회복</p>
+                                <p class="small">프룩스 플럭스 호텔</p>
+                            </div>
+                        </a>
+                    </li>
 
-                <div class="swiper-slide stay-box"><a href="#">
-                    <div class="image"></div>
-                    <div class="e_date"></div>
-                    <div class="name"></div>
-                    <div class="other"><span></span></div>
-                    <div class="text"></div>
-                    <div class="more">자세히</div></a></div>
 
-                <div class="swiper-slide stay-box"><a href="#">
-                    <div class="image"></div>
-                    <div class="e_date"></div>
-                    <div class="name"></div>
-                    <div class="other"><span></span></div>
-                    <div class="text"></div>
-                    <div class="more">자세히</div></a></div>
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <img src="http://images.stayfolio.com/system/pictures/images/000/088/674/original/15012b390d92d2fca9cb2bff7b47de7e4b649050.jpg?1629211014"/>
 
-                <div class="swiper-slide stay-box"><a href="#">
-                    <div class="image"></div>
-                    <div class="e_date"></div>
-                    <div class="name"></div>
-                    <div class="other"><span></span></div>
-                    <div class="text"></div>
-                    <div class="more">자세히</div></a></div>
+                            <div class="e_date">
+
+                            </div>
+                            <div class="promo-title">
+                                <p class="text">낮고 고요한 사색의 시간</p>
+                                <p class="small">흐르는 결</p>
+                            </div>
+                        </a>
+                    </li>
+
+
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <img src="//images.stayfolio.com/system/pictures/images/000/075/992/original/5141b3042378cbc8846f93bd524820fb48167128.jpg?1623129791"/>
+
+                            <div class="e_date">
+                            
+                            </div>
+                            <div class="promo-title">
+                                <p class="text">제주 서편으로의 자발적 유배</p>
+                                <p class="small">고산별곡</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-    <!-------- 메인 페이지 매거진 창 --------->
-   <div class="container-wide main-magazine">
-    <div class="swiper-container" id="magazine-container">
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-            <ul class="swiper-wrapper">
-                <li class="swiper-slide slider-box"><a href="#">
-                    <div class="img"></div>
-                    <div class="stay-info">
-                        <p class="logo"></p>
-                        <p class="text"></p>
-                        <p class="magazine">Magazine</p>
-                        <p class="more">Read more</p></div></a></li>
-                <li class="swiper-slide slider-box"><a href="#">
-                    <div class="img"></div>
-                    <div class="stay-info">
-                        <p class="logo"></p>
-                        <p class="text"></p>
-                        <p class="magazine">Magazine</p>
-                        <p class="more">Read more</p></div></a></li>
-                <li class="swiper-slide slider-box"><a href="#">
-                    <div class="img"></div>
-                    <div class="stay-info">
-                        <p class="logo"></p>
-                        <p class="text"></p>
-                        <p class="magazine">Magazine</p>
-                        <p class="more">Read more</p></div></a></li>
-                <li class="swiper-slide slider-box"><a href="#">
-                    <div class="img"></div>
-                    <div class="stay-info">
-                        <p class="logo"></p>
-                        <p class="text"></p>
-                        <p class="magazine">Magazine</p>
-                        <p class="more">Read more</p></div></a></li>
-                <li class="swiper-slide slider-box"><a href="#">
-                    <div class="img"></div>
-                    <div class="stay-info">
-                        <p class="logo"></p>
-                        <p class="text"></p>
-                        <p class="magazine">Magazine</p>
-                        <p class="more">Read more</p></div></a></li></ul>
-        <div class="swiper-pagination">
-            <span class="magazine-pagination-current"></span>
-            <span class="magazine-pagination-total"></span></div>
-        <div class="bg-paper"></div>
-     </div>
-    </div> 
-    <!-------- 메인 페이지 종합 추천 창! --------->
-   <div class="container main-travel">
-    <!-------- 메인 페이지 종합 추천 타이틀! --------->
-     <div class="sec-title">TRAVEL</div>
-        <ul class="stay-list">
-            <li class="stay-box"><a href="#"><img class="img" src="">
-                <div class="text">" "</div>
-                <div class="other"><span>""</span></div>
-                <div class="btn-more">Read more</div></a></li>
-
-            <li class="stay-box"><a href="#"><img class="img" src="">
-                <div class="text">" "</div>
-                <div class="other"><span>""</span></div>
-                <div class="btn-more">Read more</div></a></li>
-
-            <li class="stay-box"><a href="#"><img class="img" src="">
-                <div class="text">" "</div>
-                <div class="other"><span>""</span></div>
-                <div class="btn-more">Read more</div></a></li>
-
-            <li class="stay-box"><a href="#"><img class="img" src="">
-                <div class="text">" "</div>
-                <div class="other"><span>""</span></div>
-                <div class="btn-more">Read more</div></a></li>
-
-            <li class="stay-box"><a href="#"><img class="img" src="">
-                <div class="text">" "</div>
-                <div class="other"><span>""</span></div>
-                <div class="btn-more">Read more</div>
-            </a></li>
-        </ul>
-     </div>
+    <!-------- 메인 페이지 프로모션 창 // End  -------------->
 
 </div>
 
 
 
-
-
-<!--
-    <script type="text/javascript">
-    $(document).ready(function(){
-        var visualSwiper = new Swiper(".main-visual-sample", {
-            effect: "fade",
-            slidesPerView: 1,
-            spaceBetween: 0,
-            speed: 500,
-            loop: true,
-            touchEnabled: false,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: '.main-visual-sample .swiper-next',
-                prevEl: '.main-visual-sample .swiper-prev',
-            }
-        });
-    });
-    </script>
-
-
-    <style type="text/css">
-    .main-visual-sample {
-        position: relative;
-        width: 100%;
-        height: 530px;
-        margin-bottom: 80px;
-        overflow: hidden;
-    }
-    .main-visual-sample .swiper-wrapper {
-        height: 530px;
-        overflow: hidden;
-    }
-    .main-visual-sample .swiper-slide {
-        height: 530px;
-    }
-    .main-visual-sample .swiper-slide .mv-box {
-        position: relative;
-        width: 880px;
-        margin: 0 auto;
-    }
-    .main-visual-sample .swiper-slide .mv-box a {
-        display: block;
-        width: 880px;
-        height: 530px;
-    }
-    .main-visual-sample .swiper-slide .mv-box img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .main-visual-sample .swiper-prev,
-    .main-visual-sample .swiper-next {
-        position: absolute;
-        width: 40px;
-        height: 530px;
-        font-size: 40px;
-        line-height: 40px;
-        color: rgba(255,255,255,0.5);
-        text-align: center;
-        background: transparent;
-        cursor: pointer;
-        z-index: 22;
-        -webkit-transition: all 0.2s ease;
-        -moz-transition: all 0.2s ease;
-        -o-transition: all 0.2s ease;
-        transition: all 0.2s ease;
-    }
-    .main-visual-sample .swiper-prev {
-        left: 50%;
-        margin-left: -530px;
-    }
-    .main-visual-sample .swiper-next {
-        right: 50%;
-        margin-right: -530px;
-    }
-    .main-visual-sample .swiper-prev:hover,
-    .main-visual-sample .swiper-next:hover {
-        color: rgba(255,255,255,1);
-    }
-    </style>
-
-
-    <div class="main-visual-sample">
-        <button class="swiper-prev"><i class="fa fa-angle-left"></i></button>
-        <button class="swiper-next"><i class="fa fa-angle-right"></i></button>
-        <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background: rgb(114, 34, 45);">
-                <div class="mv-box">
-                    <a href="#"><img src="https://nutridday.com/design/thebagel/banner/220922_main_visual_PC_1320_795.jpg" alt="가을 환절기 기획전" /></a>
-                </div>
-            </div>
-
-            <div class="swiper-slide" style="background: rgb(231, 180, 161);">
-                <div class="mv-box">
-                    <a href="#"><img src="https://nutridday.com/design/thebagel/banner/220914_main_visual_PC.jpg" alt="명절 후 다이어트 기획전" /></a>
-                </div>
-            </div>
-
-            <div class="swiper-slide" style="background: rgb(88, 212, 201);">
-                <div class="mv-box">
-                    <a href="#"><img src="https://nutridday.com/design/thebagel/banner/210728_main_visual_megalex.jpg" alt="시그니처 메가렉스" /></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <a href="https://swiperjs.com/swiper-api" target="_blank">https://swiperjs.com/swiper-api</a>
-
-    
-    
 <jsp:include page="layout/layout_footer.jsp" />
