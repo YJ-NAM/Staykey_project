@@ -784,9 +784,9 @@ public class StayDAO {
                 search_sql += "stay_no = '"+epd_bbs_stay[0]+"'";
             }
 
-        }else{
-            search_sql += " and stay_no < 0";
-        }
+		}   /*
+			 * else{ search_sql += " and stay_no < 0"; }
+			 */
 
         try {
             openConn();
@@ -795,9 +795,10 @@ public class StayDAO {
             System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
-
+            
             while (rs.next()) {
                 StayDTO dto = new StayDTO();
+                
                 dto.setStay_no(rs.getInt("stay_no"));
                 dto.setStay_type(rs.getString("stay_type"));
                 dto.setStay_name(rs.getString("stay_name"));
