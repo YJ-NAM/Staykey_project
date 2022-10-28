@@ -3,7 +3,7 @@ drop table staykey_qna_comment purge;
 
 create table staykey_qna_comment(
     comment_no number(5) primary key,
-    comment_qnano varchar2(100) not null,
+    comment_qnano number(5) not null,
     comment_content varchar2(2000) not null,
     comment_writer_name varchar2(50) not null,
     comment_writer_id varchar2(30) not null,

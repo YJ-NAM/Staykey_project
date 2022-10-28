@@ -67,16 +67,15 @@
     </div>
 
 
-
     <table class="table-list hover">
         <colgroup>
-            <col width="15%">
-            <col width="15%">
-            <col width="15%">
+            <col width="10%">
+            <col width="10%">
             <col />
-            <col width="15%">
-            <col width="15%">
-            <col width="15%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
         </colgroup>
 
 
@@ -96,21 +95,23 @@
             <c:choose>
             <c:when test="${!empty list }">
             <c:forEach items="${list}" var="dto">
+            <c:set var="showLink" value="onclick=\"popWindow('../admin/qnaView.do?no=${dto.bbs_no}', '700', '900');\"" />
             <tr>
-                <td>${dto.bbs_no}</td>
-                <td>${dto.bbs_status}</td>
-                
+                <td ${showLink}>${dto.bbs_no}</td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/qnaView.do?id=${dto.bbs_no}">
-                        ${dto.bbs_title }<c:if test="${!empty dto.bbs_file1 && dto.bbs_file2}"><i class="fa fa-floppy-o"></i></c:if> (${dto.bbs_comment})
-                    </a>
+                	<c:if test="${dto.bbs_status == 'done'}"><span class="text-danger">완료</span></c:if>
+                	<c:if test="${dto.bbs_status == 'ing'}"><span class="text-success">처리중</span></c:if>
+                	<c:if test="${dto.bbs_status == 'send'}"><span class="text-primary">대기</span></c:if>
                 </td>
-                <td>${dto.bbs_writer_name} / ${dto.bbs_writer_id}</td>
-                <td>${dto.bbs_hit}</td>
-                <td>${dto.bbs_date.substring(0, 10)}<br />${dto.bbs_date.substring(11)}</td>
+                <td ${showLink} class="text-left">${dto.bbs_title}</td>
+                <td ${showLink} class="py-3">
+                	<p><b>${dto.bbs_writer_name}</b></p>
+                	<p class="eng">${dto.bbs_writer_id}</p>
+                </td>
+                <td ${showLink}>${dto.bbs_hit}</td>
+                <td ${showLink}>${dto.bbs_date.substring(0, 10)}<br />${dto.bbs_date.substring(11)}</td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/qnaModify.do?id=${dto.dto.bbs_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
-                    <a href="<%=request.getContextPath()%>/admin/qnaDeleteOk.do?id=${dto.dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                    <a href="<%=request.getContextPath()%>/admin/qnaDeleteOk.do?no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
             </tr>
             </c:forEach>

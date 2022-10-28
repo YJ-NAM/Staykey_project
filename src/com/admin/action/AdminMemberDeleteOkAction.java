@@ -21,7 +21,7 @@ public class AdminMemberDeleteOkAction implements Action {
 		
 		MemberDAO dao = MemberDAO.getInstance();
 
-		// 주소값
+		// 파일 저장 폴더
         String saveFolder = request.getSession().getServletContext().getRealPath("/");
 
         MemberDTO dto = dao.getMemberInfo(member_id);
@@ -30,7 +30,6 @@ public class AdminMemberDeleteOkAction implements Action {
 		
 		
 		if(member_photo != null){
-			System.out.println(saveFolder+member_photo);
 		    File del_pimage = new File(saveFolder+member_photo);
 		    if(del_pimage.exists()){
 		        if(del_pimage.delete()) {

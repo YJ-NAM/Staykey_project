@@ -27,21 +27,18 @@ public class AdminMagazineListAction implements Action {
 
 
         // 검색용 변수들 정의
-        String mg_stayno = "";
-        String mg_date = "";
         String mg_title = "";
+        String mg_writer_name = "";
         String ps_order = "";
 
-        if(request.getParameter("mg_stayno") != null){ mg_stayno = request.getParameter("mg_stayno").trim(); }else{ mg_stayno = ""; }
-        if(request.getParameter("mg_date") != null){ mg_date = request.getParameter("mg_date").trim(); }else{ mg_date = ""; }
         if(request.getParameter("mg_title") != null){ mg_title = request.getParameter("mg_title").trim(); }else{ mg_title = ""; }
+        if(request.getParameter("mg_writer_name") != null){ mg_writer_name = request.getParameter("mg_writer_name").trim(); }else{ mg_writer_name = ""; }
         if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "bbs_date_desc"; }
 
 
-        // 뷰에 전달할 매개변수 추가
-        map.put("mg_stayno", mg_stayno);
-        map.put("mg_date", mg_date);
+        // 뷰에 전달할 매개변수 추가 (검색용)
         map.put("mg_title", mg_title);
+        map.put("mg_writer_name", mg_writer_name);
         map.put("ps_order", ps_order);
 
 
@@ -71,9 +68,9 @@ public class AdminMagazineListAction implements Action {
             endBlock = allPage;
         }
 
-        // 페이지 이동 URL
-        String pageUrl = request.getContextPath() + "/admin/magazineList.do?mg_stayno=" + mg_stayno + "&mg_date="
-                + mg_date + "&mg_title=" + mg_title;
+        // 페이지 이동 URL (검색용)
+        String pageUrl = request.getContextPath() + "/admin/magazineList.do?mg_title=" + mg_title + "&mg_writer_name="
+                + mg_writer_name + "&mg_title=" + mg_title + "&ps_order="+ps_order;
 
 
         // 뷰에 전달할 매개변수 추가

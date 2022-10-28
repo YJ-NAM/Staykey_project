@@ -154,7 +154,7 @@
                     <p class="eng">${dto.reserv_start.substring(0, 10)} ~ ${dto.reserv_end.substring(0, 10)}</p>
                     <p>(${dto.reserv_daycount}박 ${dto.reserv_daycount+1}일)</p>
                 </td>
-                <td ${showLink}>
+                <td ${showLink} class="py-4">
                     <p><b>${dto.reserv_stayname}</b></p>
                     <p>${dto.reserv_roomname}</p>
                 </td>

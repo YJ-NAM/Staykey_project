@@ -76,7 +76,7 @@ public class AdminQnaListAction implements Action {
 
 
         // 페이지 이동 URL
-        String pageUrl = request.getContextPath()+"/admin/qnaList.do?ps_name="+ps_name+"&ps_id="+ps_id+"&ps_title="+ps_title+"&ps_order="+ps_order;
+        String pageUrl = request.getContextPath()+"/admin/qnaList.do?ps_type="+ps_type+"&ps_name="+ps_name+"&ps_id="+ps_id+"&ps_title="+ps_title+"&ps_order="+ps_order;
 
 
         // 뷰에 전달할 매개변수 추가
@@ -87,8 +87,7 @@ public class AdminQnaListAction implements Action {
         // 목록 조회 메서드
         List<QnaDTO> list = dao.qnaList(page, rowsize, map);
         request.setAttribute("List", list);
-
-
+        
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
