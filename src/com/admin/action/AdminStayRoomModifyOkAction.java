@@ -163,10 +163,9 @@ public class AdminStayRoomModifyOkAction implements Action {
         PrintWriter out = response.getWriter();
 
         if (res > 0) {
-            out.println("<script> alert('등록된 Room이 성공적으로 수정되었습니다.'); </script>");
-            out.println("<script> location.href='stayRoomView.do?room_no="+room_no+"&stay_no="+room_stayno+"'; opener.parent.location.href='stayView.do?stay_no="+room_stayno+"'; </script>");
+            out.println("<script>alert('수정되었습니다.'); window.resizeTo(1400,900); location.href='stayRoomView.do?room_no="+room_no+"&stay_no="+room_stayno+"';</script>");
         } else {
-            out.println("<script> alert('Room 등록 중 에러가 발생했습니다.'); history.back(); </script>");
+            out.println("<script>alert('Room 등록 중 에러가 발생했습니다.'); history.back();</script>");
         }	
 		return null;
 	}
