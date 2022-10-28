@@ -1405,6 +1405,7 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
     width: 100%;
     margin: -20px 0 20px 0;
     display: flex;
+    flex-wrap: wrap;
     box-sizing: content-box;
 }
 .view-form .stay-room-list li {
@@ -1718,6 +1719,74 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 
 
 
+/*************************/
+/* .stay-bbs-list
+/*************************/
+.view-form .stay-bbs-list {
+    position: relative;
+    width: 100%;
+    margin: -10px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: content-box;
+}
+.view-form .stay-bbs-list li {
+    position: relative;
+    width: 300px;
+    margin: 20px;
+}
+.view-form .stay-bbs-list li a {
+    display: block;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.view-form .stay-bbs-list li a .img {
+    position: relative;
+    width: 100%;
+}
+.view-form .stay-bbs-list li a .img img {
+    width: 100%;
+    height: 170px;
+}
+.view-form .stay-bbs-list li a .img.none {
+    box-sizing: border-box;
+    padding-top: 80px;
+    background: #eee;
+    color: #666;
+    text-align: center;
+}
+.view-form .stay-bbs-list li a .name {
+    margin-top: 12px;
+    font-size: 20px;
+    color: #181818;
+    font-weight: 500;
+}
+.view-form .stay-bbs-list li a .other {
+    font-size: 14px;
+    color: #333;
+    margin-top: 2px;
+    line-height: 1.5;
+}
+.view-form .stay-bbs-list li a .loc {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 20px;
+    color: #333;
+}
+.view-form .stay-bbs-list li.nodata {
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+    margin: 0;
+    letter-spacing: 0;
+    color: #666;
+}
+
+
+
+
 
 /*************************/
 /* magazine-view
@@ -1806,6 +1875,9 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 .view-form .magazine-view .mv-cont .gmap {
     margin-top: 80px;
 }
+
+
+
 
 
 
