@@ -126,7 +126,7 @@
 					<c:when test="${!empty list }">
 						<c:forEach items="${list}" var="dto">
 							<c:set var="showLink" value="onclick=\"
-								popWindow('../admin/magazineView.do?bbs_no=${dto.bbs_no }', '700', '900');\"" />
+								popWindow('../admin/magazineView.do?bbs_no=${dto.bbs_no }', '1400', '900');\"" />
 							<tr>
 								<td ${showLink} class="eng">${dto.bbs_no }</td>
 	
@@ -150,10 +150,8 @@
 	
 								<td ${showLink} class="eng">${dto.bbs_title}</td>
 	
-								<td ${showLink}>
-									<p>
-										<b class="eng">${dto.bbs_writer_id}</b>
-									</p>
+								<td ${showLink} class="py-4">
+									<p><b class="eng">${dto.bbs_writer_id}</b></p>
 									<p>(${dto.bbs_writer_name })</p>
 								</td>
 	
