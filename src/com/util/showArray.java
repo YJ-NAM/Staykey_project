@@ -31,13 +31,14 @@ public class showArray {
             listArr.add("야외가구");
             listArr.add("천창");
             listArr.add("수영장");
+            listArr.add("갤러리");
             listArr.add("실내 스파");
             listArr.add("월풀 스파");
             listArr.add("오픈 배스");
             listArr.add("썬베드");
             listArr.add("정원");
             listArr.add("개별 BBQ 데크");
-            listArr.add("픽업");
+            listArr.add("그네");
             listArr.add("테라스");
             listArr.add("독립 키친");
             listArr.add("독립 화장실");
@@ -46,7 +47,14 @@ public class showArray {
             listArr.add("웰컴티");
             listArr.add("조식");
             listArr.add("주차");
-            listArr.add("빔프로젝트");
+            listArr.add("빔 프로젝터");
+            listArr.add("샤워실");
+            listArr.add("공용 키친");
+            listArr.add("공용 화장실");
+            listArr.add("자전거 렌탈");
+            listArr.add("락커");
+            listArr.add("빅테이블");
+            listArr.add("캠핑테이블체어");
 
         }else if(type.equals("roomAmeni")){
             listArr.add("무선 인터넷");

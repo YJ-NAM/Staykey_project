@@ -23,9 +23,8 @@ public class AdminStayRoomDeleteOkAction implements Action {
         
 		int room_no = Integer.parseInt(request.getParameter("room_no"));
 		int stay_no = Integer.parseInt(request.getParameter("stay_no"));
-        int res = dao.deleteRoom(room_no);
-        StayRoomDTO dto = dao.getStayRoomView(room_no, stay_no);
-        
+
+        StayRoomDTO dto = dao.getStayRoomView(room_no, stay_no);        
 		String room_photo1 = dto.getRoom_photo1();
 		String room_photo2 = dto.getRoom_photo2();
 		String room_photo3 = dto.getRoom_photo3();
@@ -43,14 +42,16 @@ public class AdminStayRoomDeleteOkAction implements Action {
 			}
 		}
 
+
+        int res = dao.deleteRoom(room_no);
+
         PrintWriter out = response.getWriter();
 
         if (res > 0) {
         	// 부모 위치 이동 & 지금 보는 창 꺼짐 기능 / opener 붙여야 작동 됨(parent 빼면 작동 안 됨)
-        	out.println("<script> alert('등록된 Room이 성공적으로 삭제되었습니다.'); </script>");
-            out.println("<script> opener.parent.location.href='stayView.do?stay_no="+stay_no+"'; window.close(); </script>");
+            out.println("<script>alert('등록된 Room이 성공적으로 삭제되었습니다.'); opener.parent.location.href='stayView.do?stay_no="+stay_no+"'; window.close();</script>");
         } else {
-            out.println("<script> alert('Room 삭제 중 에러가 발생했습니다.'); history.back(); </script>");
+            out.println("<script>alert('Room 삭제 중 에러가 발생했습니다.'); history.back();</script>");
         }
 		return null;
     }

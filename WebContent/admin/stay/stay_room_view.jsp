@@ -3,9 +3,11 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:set var="room" value="${ roomView }" />
 <c:set var="stay" value="${ stayView }" />
+<c:set var="list" value="${ roomList }" />
 
 <c:if test="${empty roomView}"><script>alert('잘못된 Room 번호입니다.'); window.close();</script></c:if>
 <style type="text/css">body { padding: 0 30px !important; }</style>
@@ -90,7 +92,7 @@ ${ msg }
                             <div class="row">
                                 <div class="rvs-tit">FEATURES</div>
                                 <ul class="rvs-list">
-                                    <c:forTokens items="${room.room_features}" delims="/" var="features"><li>${features}</li></c:forTokens>
+                                    <c:forTokens items="${room.room_features}" delims="/" var="features"><li><i title="${features}"></i>${features}</li></c:forTokens>
                                 </ul>
                             </div>
                             </c:if>
@@ -115,14 +117,47 @@ ${ msg }
                         </div>
 
 
+                        <c:if test="${!empty list && fn:length(list) > 1}">
                         <div class="rv-other">
                             <div class="rvo-title">OTHER ROOMS</div>
+                            <ul class="stay-bbs-list justify-content-center">
+                                <c:forEach items="${list}" var="list">
+                                <c:if test="${room.room_no != list.room_no}">
+                                <li>
+                                    <a href="<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${list.room_no}&stay_no=${stay.stay_no}">
+                                        <c:choose>
+                                        <c:when test="${!empty list.room_photo1}"><div class="img"><img src="<%=request.getContextPath()%>${ list.room_photo1 }" alt="" /></div></c:when>
+                                        <c:otherwise><div class="img none">no img</div></c:otherwise>
+                                        </c:choose>
+                                        <div class="name">${list.room_name}</div>
+                                        <div class="other">${list.room_desc}</div>
+                                        <div class="loc eng">₩<fmt:formatNumber value="${ room.room_price }" /> ~</div>
+                                    </a>
+                                </li>
+                                </c:if>
+                                </c:forEach>
+                            </ul>
                         </div>
+                        </c:if>
                     </div>
 
                 </div>
             </div>
         </div>
     </div>
+
+
+
+    <!-- 버튼 //START -->
+    <div class="d-flex justify-content-center mb-4">
+        <a href="<%=request.getContextPath()%>/admin/stayRoomDeleteOk.do?room_no=${room.room_no}&stay_no=${stay.stay_no}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?\n※ 삭제된 정보는 복구할 수 없습니다.');"><i class="fa fa-trash-o"></i> 삭제하기</a>
+        <button type="button" class="btn btn-secondary mx-3" onclick="window.close();"><i class="fa fa-times"></i> 창닫기</button>
+        <button type="button" class="btn btn-warning" onclick="popWindow('<%=request.getContextPath()%>/admin/stayRoomModify.do?room_no=${room.room_no}&stay_no=${stay.stay_no}', '700', '900'); window.close();"><i class="fa fa-pencil"></i> 수정하기</button>
+    </div>
+    <!-- 버튼 //END -->
+
 </div>
+
+
+
 <jsp:include page="../layout/layout_footer.jsp" />

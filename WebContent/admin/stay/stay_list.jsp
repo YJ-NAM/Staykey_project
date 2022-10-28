@@ -169,14 +169,8 @@ ${ msg }
                 <td ${showLink} class="eng">${list.stay_no}</td>
                 <td ${showLink} class="staylist-photo">
                     <c:choose>
-                    <c:when test="${!empty list.stay_file1}"><img src="<%=request.getContextPath()%>${list.stay_file1}" alt="" /></c:when>
-                    <c:otherwise>
-                    <svg class="bd-placeholder-img" width="200" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                        <title>${list.stay_name}</title>
-                        <rect width="100%" height="100%" fill="#eee"></rect>
-                        <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
-                    </svg>
-                    </c:otherwise>
+                    <c:when test="${!empty list.stay_file1}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file1}');"></div></c:when>
+                    <c:otherwise><div class="sp-img none">no img</div></c:otherwise>
                     </c:choose>
                 </td>
                 <td ${showLink} class="stay-list">
