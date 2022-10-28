@@ -2,7 +2,7 @@ package com.model;
 
 public class QnaCommentDTO {
     private int comment_no;
-    private String comment_qnano;
+    private int comment_qnano;
     private String comment_content;
     private String comment_writer_name;
     private String comment_writer_id;
@@ -16,13 +16,13 @@ public class QnaCommentDTO {
     public void setComment_no(int comment_no) {
         this.comment_no = comment_no;
     }
-    public String getComment_qnano() {
-        return comment_qnano;
-    }
-    public void setComment_qnano(String comment_qnano) {
-        this.comment_qnano = comment_qnano;
-    }
-    public String getComment_content() {
+    public int getComment_qnano() {
+		return comment_qnano;
+	}
+	public void setComment_qnano(int comment_qnano) {
+		this.comment_qnano = comment_qnano;
+	}
+	public String getComment_content() {
         return comment_content;
     }
     public void setComment_content(String comment_content) {
