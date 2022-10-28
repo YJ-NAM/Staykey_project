@@ -103,12 +103,25 @@ public class StayDAO {
 		if (map.get("ps_name") != "" || map.get("ps_name") != null) {
 			search_sql2 += " and stay_name like '%" + map.get("ps_name") + "%'";
 		}
-		if (map.get("ps_location") != "" || map.get("ps_location") != null) {
-			search_sql2 += " and stay_location like '%" + map.get("ps_location") + "%'";
+		
+		if (map.get("ps_location") != "" && map.get("ps_location") != null) { // ps_location 값이 있을 때
+			if(map.get("ps_location").equals("전체")) { // 그 중 전체일 때, ps_location_sub 값이 있으면 stay_location + stay_addr 합집합
+				if(map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+					search_sql2 += " and stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%" + map.get("ps_location_sub") + "%'";
+				}
+			}else { // 지역 검색 유 / ps_location_sub 있을 때
+				if(map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+					search_sql2 += " and stay_location like '%" + map.get("ps_location") + "%' and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%" + map.get("ps_location_sub") + "%')";
+				}else {
+					search_sql2 += " and stay_location like '%" + map.get("ps_location") + "%'";
+				}
+			}
+		}else { // ps_location 없을 때, 
+			if(map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+				search_sql2 += " and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%" + map.get("ps_location_sub") + "%')";
+			}
 		}
-		if (map.get("ps_location_sub") != "" || map.get("ps_location_sub") != null) {
-			search_sql2 += " and stay_location like '%" + map.get("ps_location_sub") + "%' and stay_addr like '%" + map.get("ps_location_sub") + "%'";
-		}
+		
 		if (map.get("ps_phone") != "" || map.get("ps_phone") != null) {
 			search_sql2 += " and stay_phone like '%" + map.get("ps_phone") + "%'";
 		}
@@ -226,24 +239,38 @@ public class StayDAO {
 				search_sql += ") ";
 			}
 		}
-		
 		if (map.get("ps_name") != "" && map.get("ps_name") != null) {
 			search_sql += " and stay_name like '%" + map.get("ps_name") + "%'";
 		}
-		if (map.get("ps_location") != "" && map.get("ps_location") != null) {
-			search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
+		System.out.println(map.get("ps_location"));
+		System.out.println(map.get("ps_location_sub"));
+		if (map.get("ps_location") != "" && map.get("ps_location") != null) { // ps_location 값이 있을 때
+			if(map.get("ps_location").equals("전체")) { // 그 중 전체일 때, ps_location_sub 값이 있으면 stay_location + stay_addr 합집합
+				if(map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+					search_sql += " and stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%" + map.get("ps_location_sub") + "%'";
+					System.out.println(search_sql);
+				}
+			}else { // 지역 검색 유 / ps_location_sub 있을 때
+				if(map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+					search_sql += " and stay_location like '%" + map.get("ps_location") + "%' and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%" + map.get("ps_location_sub") + "%')";
+				}else { 
+					search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
+				}
+			}
+		}else { // ps_location 없을 때, 
+			if(map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+				search_sql += " and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%" + map.get("ps_location_sub") + "%')";
+			}
 		}
-		if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
-			search_sql += " and stay_location like '%" + map.get("ps_location_sub") + "%' and stay_addr like '%" + map.get("ps_location_sub") + "%'";
-		}
+		
 		if (map.get("ps_phone") != "" && map.get("ps_phone") != null) {
 			search_sql += " and stay_phone like '%" + map.get("ps_phone") + "%'";
 		}
 		
 		try {
 			openConn();
-			System.out.println(search_sql);
 			sql = "select count(*) from staykey_stay" + search_sql;
+			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
