@@ -1815,15 +1815,20 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
     margin-top: 30px;
 }
 .view-form .room-view .rv-info .rvi-left .tag {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 }
 .view-form .room-view .rv-info .rvi-left .tag span {
     display: inline-block;
     background: #eee;
-    font-size: 12px;
-    color: #555;
+    font-size: 13px;
+    color: #444;
     border-radius: 5px;
     margin: 0 2px;
+    padding: 2px 7px;
+    border: 1px solid #ddd;
+}
+.view-form .room-view .rv-info .rvi-left .tag span:first-child {
+    margin-left: 0;
 }
 .view-form .room-view .rv-info .rvi-left .option {
     font-size: 14px;
@@ -1850,6 +1855,7 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
     width: 100%;
     height: auto;
     flex-shrink: 0;
+    background: #f3f3f3;
 }
 .view-form .room-view .rv-info #room-view-photo li.swiper-slide .img {
     width: 100%;
@@ -1931,6 +1937,89 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
     width: 50px;
     height: 33px;
     margin: 0 auto 13px;
+    background-image: url('../images/sprite.png');
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="야외가구"] {
+    background-position: -150px -227px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="천창"] {
+    background-position: 0 -62px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="수영장"] {
+    background-position: -150px -194px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="갤러리"] {
+    background-position: -100px -95px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="실내 스파"] {
+    background-position: -50px -194px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="월풀 스파"] {
+    background-position: -100px -227px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="오픈 배스"] {
+    background-position: -212px -33px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="썬베드"] {
+    background-position: -100px -194px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="정원"] {
+    background-position: -50px -161px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="개별 BBQ 데크"] {
+    background-position: 0 -95px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="그네"] {
+    background-position: 0 -128px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="테라스"] {
+    background-position: 0 -227px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="독립 키친"] {
+    background-position: -112px 0;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="독립 화장실"] {
+    background-position: -50px -62px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="빅테이블"] {
+    background-position: 0 -29px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="산책로"] {
+    background-position: -212px -132px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="웰컴티"] {
+    background-position: -50px -227px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="조식"] {
+    background-position: -100px -161px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="주차"] {
+    background-position: -150px -161px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="빔프로젝트"],
+.view-form .room-view .rv-service .rvs-list li i[title*="빔 프로젝터"] {
+    background-position: -62px 0;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="샤워실"] {
+    background-position: -200px -194px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="공용 키친"] {
+    background-position: -100px -128px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="공용 화장실"] {
+    background-position: -50px -128px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="자전거 렌탈"] {
+    background-position: -162px -99px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="락커"] {
+    background-position: -212px -99px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="빅테이블"] {
+    background-position: 0 -29px;
+}
+.view-form .room-view .rv-service .rvs-list li i[title*="캠핑테이블체어"] {
+    background-position: -212px 0;
 }
 
 
@@ -1941,7 +2030,7 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
     overflow: hidden;
 }
 .view-form .room-view .rv-other .rvo-title {
-    padding: 0 0 45px;
+    padding: 0 0 25px;
     text-align: center;
     text-transform: uppercase;
     font-size: 12px;
