@@ -42,8 +42,8 @@ public class AdminQnaCommentOkAction implements Action {
 
 
         if (res > 0) {
-            forward.setRedirect(false);
-            forward.setPath("qnaView.do");
+            forward.setRedirect(true);
+            forward.setPath("qnaView.do?no="+no);
         }else {
         	out.println("<script>alert('답변 등록 중 에러가 발생하였습니다.'); history.back();</script>");
         }
