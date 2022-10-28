@@ -756,8 +756,6 @@ public class StayDAO {
 	} // deleteRoom() 메서드 종료
 
 
-	
-
 
 
     /////////////////////////////////////////////////////////////
@@ -846,4 +844,7 @@ public class StayDAO {
         }
         return list;
     } // getBbsStayList() 종료
-}
+    
+    
+		    
+		}
