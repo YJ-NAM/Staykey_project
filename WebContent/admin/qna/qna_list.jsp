@@ -103,6 +103,7 @@
                 	<c:if test="${dto.bbs_status == 'ing'}"><span class="text-success">처리중</span></c:if>
                 	<c:if test="${dto.bbs_status == 'send'}"><span class="text-primary">대기</span></c:if>
                 </td>
+                <td ${showLink} class="text-left">${dto.bbs_title}</td>
                 <td ${showLink} class="py-3">
                 	<p><b>${dto.bbs_writer_name}</b></p>
                 	<p class="eng">${dto.bbs_writer_id}</p>
