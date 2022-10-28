@@ -789,6 +789,9 @@ public class StayDAO {
             }else{
                 search_sql += "stay_no = '"+epd_bbs_stay[0]+"'";
             }
+
+        }else{
+            search_sql += " and stay_no < 0";
         }
 
         try {

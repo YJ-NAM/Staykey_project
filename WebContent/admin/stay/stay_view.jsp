@@ -163,7 +163,7 @@ ${ msg }
                         <li>
                             <c:choose>
                             <c:when test="${!empty room.room_photo1}"><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '700', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo1 }');"></c:when>
-                            <c:otherwise><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '700', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo1 }');"></c:otherwise>
+                            <c:otherwise><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '700', '900');"></c:otherwise>
                             </c:choose>
                                 <div class="room-info">
                                     <p class="name">${ room.room_name }<small>${ room.room_type }</small></p>
