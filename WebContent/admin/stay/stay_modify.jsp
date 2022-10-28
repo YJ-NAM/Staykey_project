@@ -334,7 +334,7 @@
 
             <div class="gwb-center">
                 <button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i> 목록보기</button>
-                <button type="submit" class="btn btn-lg btn-primary mx-1"><i class="fa fa-pencil"></i> 등록하기</button>
+                <button type="submit" class="btn btn-lg btn-primary mx-1"><i class="fa fa-pencil"></i> 수정하기</button>
             </div>
 
             <div class="gwb-right"></div>
