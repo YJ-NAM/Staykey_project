@@ -59,7 +59,7 @@ public class AdminStayRoomModifyOkAction implements Action {
         int room_people_max = Integer.parseInt(multi.getParameter("room_people_max"));
         int room_size = Integer.parseInt(multi.getParameter("room_size").trim());      
         String room_bed = multi.getParameter("room_bed").trim();
-
+        
         // 체크박스 선택 안 한 경우, null 값 처리
         if(multi.getParameterValues("room_features") != null) {
         	String[] room_features = multi.getParameterValues("room_features");
