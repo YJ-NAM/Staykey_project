@@ -27,6 +27,7 @@ public class AdminMagazineWriteAction implements Action {
         List<StayDTO> slist = sdao.getBbsStayList(dto.getBbs_stayno());
         request.setAttribute("stayList", slist);
 
+        
     	ActionForward forward = new ActionForward();
     	forward.setRedirect(false);
     	forward.setPath("magazine/magazine_write.jsp");
