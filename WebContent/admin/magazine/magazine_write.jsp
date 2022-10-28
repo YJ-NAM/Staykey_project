@@ -200,6 +200,7 @@
  					    	<button class="staynobtn" onclick="test('${list.stay_no}')">
 							숙소 번호 : ${list.stay_no} /  숙소 이름 : ${list.stay_name}</button> <br>
 						
+<<<<<<< Updated upstream
 							<script>
 							
 							function test(stayno) {
@@ -218,6 +219,9 @@
 							}
 							
 							</script>
+=======
+
+>>>>>>> Stashed changes
 	
 				
 					</c:forEach>
@@ -236,7 +240,28 @@
 	</div>
 </div>
 
+							<script>
+							
+							function test(stayno) {
+								let this_val = $("#test").val();
+								let add_val = this_val;
+
+								if(this_val.length > 0){
+									if(this_val.indexOf("/"+stayno+"/") == -1){
+										add_val = this_val + stayno+"/";
+									}
+								}else{
+									add_val = this_val + "/"+stayno+"/";
+								}
+
+								$("#test").val(add_val);
+							}
+							
+							</script>
 
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 <jsp:include page="../layout/layout_footer.jsp" />

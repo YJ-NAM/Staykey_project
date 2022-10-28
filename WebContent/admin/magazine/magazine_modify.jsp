@@ -164,10 +164,11 @@
 			</div>
 			<div class="modal-body">
 			HFDFGDGFDFGD
+
 			</div>
 			<div class="modal-footer text-center">
 				<button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">닫기</button>
-				<!-- $("#modalCategory .btn-close").trigger("click") -->;
+				<!-- $("#modalCategory .btn-close").trigger("click") -->
 			</div>
 		</div>
 	</div>
