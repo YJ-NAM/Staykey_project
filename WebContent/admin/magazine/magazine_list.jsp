@@ -150,10 +150,8 @@
 	
 								<td ${showLink} class="eng">${dto.bbs_title}</td>
 	
-								<td ${showLink}>
-									<p>
-										<b class="eng">${dto.bbs_writer_id}</b>
-									</p>
+								<td ${showLink} class="py-4">
+									<p><b class="eng">${dto.bbs_writer_id}</b></p>
 									<p>(${dto.bbs_writer_name })</p>
 								</td>
 	

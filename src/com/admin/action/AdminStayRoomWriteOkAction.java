@@ -10,7 +10,6 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
@@ -140,7 +139,6 @@ public class AdminStayRoomWriteOkAction implements Action {
         
         ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
 
         if (res[0] > 0) {
         	out.println("<script>alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.href='stayView.do?stay_no="+stay_stayNo+"'; window.close();</script>");
