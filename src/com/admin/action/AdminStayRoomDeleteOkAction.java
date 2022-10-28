@@ -44,7 +44,6 @@ public class AdminStayRoomDeleteOkAction implements Action {
 
 
         int res = dao.deleteRoom(room_no);
-
         PrintWriter out = response.getWriter();
 
         if (res > 0) {
