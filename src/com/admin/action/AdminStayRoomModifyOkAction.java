@@ -3,8 +3,10 @@ package com.admin.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -59,6 +61,9 @@ public class AdminStayRoomModifyOkAction implements Action {
         int room_people_max = Integer.parseInt(multi.getParameter("room_people_max"));
         int room_size = Integer.parseInt(multi.getParameter("room_size").trim());      
         String room_bed = multi.getParameter("room_bed").trim();
+        String[] room_file_delete = multi.getParameterValues("room_file_delete");
+        List<String> roomList = Arrays.asList(room_file_delete);
+        
         
         // 체크박스 선택 안 한 경우, null 값 처리
         if(multi.getParameterValues("room_features") != null) {
@@ -124,17 +129,35 @@ public class AdminStayRoomModifyOkAction implements Action {
 
  	    Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator(); // iterator로 다음 값 가져옴
  	    String original_file = ""; // 예전 파일 변수로 지정
+ 	    File roomFile = null; // stayFile 변수 선언 / delete 용
+
  		
  		while(iterator.hasNext()) { 
  			Entry<String, Object> e = iterator.next();
  			File file = (File) e.getValue(); // map에 저장된 파일 객체의 value 값만 얻어와서 File형으로 casting
  			
  			switch (e.getKey()) { // original file 값 할당
- 			case "room1": original_file = original_room1; break;
- 			case "room2": original_file = original_room2; break;
- 			case "room3": original_file = original_room3; break;
- 			case "room4": original_file = original_room4; break;
- 			case "room5": original_file = original_room5; break; }
+ 			case "room1": 
+ 				original_file = original_room1; 
+				if(roomList.contains("Y1")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }
+ 				break;
+ 			case "room2": 
+ 				original_file = original_room2; 
+				if(roomList.contains("Y2")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }
+ 				break;
+ 			case "room3": 
+ 				original_file = original_room3; 
+				if(roomList.contains("Y3")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }
+ 				break;
+ 			case "room4": 
+ 				original_file = original_room4; 
+				if(roomList.contains("Y4")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }
+ 				break;
+ 			case "room5": 
+ 				original_file = original_room5; 
+				if(roomList.contains("Y5")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }
+ 				break;
+ 			}
  			
  			if(file != null) { // value 값이 null이 아니면(new file 있음)
  	 	    	File del_image = new File(delFolder + original_file);        	
@@ -144,8 +167,15 @@ public class AdminStayRoomModifyOkAction implements Action {
  				file.renameTo(new File(saveFolder + fileRename)); // file을 인자로 전달된 파일의 경로로 변경
  				map.replace(e.getKey(), thisFolder + fileRename); // 현재 key 값에 새로운 value 값을 map에 저장
  			}else { // new file 없으면
- 				if(original_file != null) {// 예전 파일이 null이 아니면
+ 				if(original_file != null) {// 예전 파일이 null이 아니면 					
  					map.replace(e.getKey(), original_file); // 예전 값 할당
+ 					// 파일 삭제 체크표시
+ 					if(roomFile != null) {
+						if(roomFile.exists()) { 
+							roomFile.delete(); 
+		 					map.replace(e.getKey(), ""); // null 값 처리
+						}
+					}
  				}else {
  					map.replace(e.getKey(), ""); // null 값 처리 위함
  				}
@@ -159,7 +189,6 @@ public class AdminStayRoomModifyOkAction implements Action {
 		dto.setRoom_photo5(map.get("room5").toString());
 
         int res = dao.modifyStayRoom(dto);
-
         PrintWriter out = response.getWriter();
 
         if (res > 0) {
