@@ -476,7 +476,7 @@ public class StayDAO {
 		openConn();
 		
 		try {
-			sql = "select * from staykey_stay_room where room_stayno = ? order by room_no desc";
+			sql = "select * from staykey_stay_room where room_stayno = ? order by room_no asc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();

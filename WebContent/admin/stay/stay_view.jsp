@@ -76,9 +76,9 @@ ${ msg }
                         		<li>
                         			<div>
 				                        <c:choose>
-				                        <c:when test="${!empty view.stay_option1_photo}"><img src="<%=request.getContextPath()%>${view.stay_option1_photo}" width="100" height="70" alt="" /></c:when>
+				                        <c:when test="${!empty view.stay_option1_photo}"><img src="<%=request.getContextPath()%>${view.stay_option1_photo}" width="200" height="140" alt="" /></c:when>
 				                        <c:otherwise>
-				                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				                        <svg class="bd-placeholder-img" width="200" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
 				                            <title>${view.stay_name}</title>
 				                            <rect width="100%" height="100%" fill="#eee"></rect>
 				                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
@@ -98,9 +98,9 @@ ${ msg }
                         		<li>
                         			<div>
 				                        <c:choose>
-				                        <c:when test="${!empty view.stay_option2_photo}"><img src="<%=request.getContextPath()%>${view.stay_option2_photo}" width="100" height="70" alt="" /></c:when>
+				                        <c:when test="${!empty view.stay_option2_photo}"><img src="<%=request.getContextPath()%>${view.stay_option2_photo}" width="200" height="140" alt="" /></c:when>
 				                        <c:otherwise>
-				                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+				                        <svg class="bd-placeholder-img" width="200" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
 				                            <title>${view.stay_name}</title>
 				                            <rect width="100%" height="100%" fill="#eee"></rect>
 				                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
@@ -120,9 +120,9 @@ ${ msg }
                         		<li>
                         			<div>
 				                        <c:choose>
-				                        <c:when test="${!empty view.stay_option3_photo}"><img src="<%=request.getContextPath()%>${view.stay_option3_photo}" width="100" height="70" alt="" /></c:when>
+				                        <c:when test="${!empty view.stay_option3_photo}"><img src="<%=request.getContextPath()%>${view.stay_option3_photo}" width="200" height="140" alt="" /></c:when>
                                         <c:otherwise>
-                                        <svg class="bd-placeholder-img" width="100" height="70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                                        <svg class="bd-placeholder-img" width="200" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
                                             <title>${view.stay_name}</title>
                                             <rect width="100%" height="100%" fill="#eee"></rect>
                                             <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
@@ -161,28 +161,23 @@ ${ msg }
                         <c:when test="${ !empty list }">
                         <c:forEach items="${ list }" var="room">
                         <li>
-                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '700', '900');" class="d-flex">
-                                <div>
-                                    <c:choose>
-                                    <c:when test="${!empty room.room_photo1}"><img src="<%=request.getContextPath()%>${ room.room_photo1 }" width="150" height="100" alt="" /></c:when>
-                                    <c:otherwise>
-                                    <svg class="bd-placeholder-img" width="150" height="100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                                        <title>${ room.room_name }</title>
-                                        <rect width="100%" height="100%" fill="#eee"></rect>
-                                        <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
-                                    </svg>
-                                    </c:otherwise>
-                                    </c:choose>
-                                </div>
-                                <div class="pl-3">
-                                    <p><b>${ room.room_name }</b></p>
-                                    <p>${ room.room_desc }</p>
-                                    <p><fmt:formatNumber value="${ room.room_price }" />원</p>
+                            <c:choose>
+                            <c:when test="${!empty room.room_photo1}"><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '700', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo1 }');"></c:when>
+                            <c:otherwise><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '700', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo1 }');"></c:otherwise>
+                            </c:choose>
+                                <div class="room-info">
+                                    <p class="name">${ room.room_name }<small>${ room.room_type }</small></p>
+                                    <p class="price">₩<fmt:formatNumber value="${ room.room_price }" /> ~</p>
+                                    <p class="etc">
+                                        <span>기준 ${ room.room_people_min }명 (최대 ${ room.room_people_max }명)</span>
+                                        <span>${ room.room_bed }</span>
+                                    </p>
                                 </div>
                             </a>
                         </li>
                         </c:forEach>
                         </c:when>
+
                         <c:otherwise>
                         <li class="nodata">이 숙소에 등록된 Room이 없습니다.</li>
                         </c:otherwise>
@@ -243,7 +238,7 @@ ${ msg }
     <div class="row vf-body">
         <div class="col-lg my-4">
             <div class="card">
-                <div class="card-body px-4 py-0 bg-dark">
+                <div class="card-body px-4 py-0" style="background: #000;">
 
                     <div class="stay-view-faq">
                     	<c:if test="${!empty view.stay_info1}">
