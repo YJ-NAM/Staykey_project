@@ -32,6 +32,7 @@
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/bootstrap-colorpicker.css?<?=$gw_now_time?>" />
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/font_awesome.css" />
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/simple-line-icons.css" />
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/swiper.min.css" />
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/style.css?<%=time%>" />
 
 
@@ -42,6 +43,7 @@
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/bs-custom-file-input.min.js"></script>
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/bootstrap-colorpicker.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.16.0/standard-all/ckeditor.js"></script>
+    <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/swiper.min.js"></script>
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/script.js?<%=time%>"></script>
 </head>
 <body>

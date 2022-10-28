@@ -1362,23 +1362,67 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 }
 
 
-.view-form .stay-view-photo,
+.view-form #stay-view-photo {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.view-form #stay-view-photo .swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 1;
+    box-sizing: content-box;
+}
+.view-form #stay-view-photo li.swiper-slide {
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+}
+.view-form #stay-view-photo li.swiper-slide .img {
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.view-form #stay-view-photo .swiper-button-prev,
+.view-form #stay-view-photo .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    opacity: 0.5;
+    background: #000;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.view-form #stay-view-photo .swiper-button-prev:hover,
+.view-form #stay-view-photo .swiper-button-next:hover {
+    opacity: 1;
+}
+.view-form #stay-view-photo .swiper-button-prev {
+    left: 0;
+}
+.view-form #stay-view-photo .swiper-button-next {
+    right: 0;
+}
+
+
 .view-form .stay-view-option {
     position: relative;
     width: 100%;
 }
-.view-form .stay-view-photo li {
-    display: inline-block;
-    width: calc(33.3333333333% - 33px);
-    margin: 0 15px;
-    font-size: 0;
-    line-height: 0;
-}
-.view-form .stay-view-photo li img {
-    width: 100%;
-}
-
-
 .view-form .stay-view-option li {
     display: inline-block;
     width: calc(33.3333333333% - 25px);
@@ -1405,6 +1449,7 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
     width: 100%;
     margin: -20px 0 20px 0;
     display: flex;
+    flex-wrap: wrap;
     box-sizing: content-box;
 }
 .view-form .stay-room-list li {
@@ -1490,11 +1535,14 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 }
 .view-form .stay-room-list li.nodata {
     width: 100%;
+    height: auto;
+    background: transparent;
+    margin: 0;
     text-align: center;
     padding: 30px 0;
-    margin: 0;
     letter-spacing: 0;
     color: #666;
+    box-shadow: none;
 }
 
 
@@ -1718,6 +1766,263 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 
 
 
+/*************************/
+/* .room-view
+/*************************/
+.view-form .room-view {
+    position: relative;
+    width: 100%;
+}
+.view-form .room-view .rv-info {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 500px;
+}
+.view-form .room-view .rv-info .rvi-left {
+    width: 23%;
+    box-sizing: border-box;
+    padding: 15px 0 15px 15px;
+}
+.view-form .room-view .rv-info .rvi-left .tit {
+    font-family: 'Abel', 'SpoqaHanSans';
+    font-size: 12px;
+    letter-spacing: 3.5px;
+}
+.view-form .room-view .rv-info .rvi-left .name {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 15px;
+}
+.view-form .room-view .rv-info .rvi-left .price {
+    font-size: 18px;
+    margin-top: 20px;
+}
+.view-form .room-view .rv-info .rvi-left .txt {
+    margin-top: 30px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #333;
+}
+.view-form .room-view .rv-info .rvi-left .etc {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    margin-top: 30px;
+}
+.view-form .room-view .rv-info .rvi-left .tag {
+    margin-bottom: 5px;
+}
+.view-form .room-view .rv-info .rvi-left .tag span {
+    display: inline-block;
+    background: #eee;
+    font-size: 12px;
+    color: #555;
+    border-radius: 5px;
+    margin: 0 2px;
+}
+.view-form .room-view .rv-info .rvi-left .option {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #333;
+}
+
+.view-form .room-view .rv-info .rvi-right {
+    position: relative;
+    width: 74.4%;
+    height: 500px;
+    overflow: hidden;
+}
+.view-form .room-view .rv-info #room-view-photo .swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 1;
+    box-sizing: content-box;
+}
+.view-form .room-view .rv-info #room-view-photo li.swiper-slide {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+}
+.view-form .room-view .rv-info #room-view-photo li.swiper-slide .img {
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.view-form .room-view .rv-info #room-view-photo .swiper-button-prev,
+.view-form .room-view .rv-info #room-view-photo .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    opacity: 0.5;
+    background: #000;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.view-form .room-view .rv-info #room-view-photo .swiper-button-prev:hover,
+.view-form .room-view .rv-info #room-view-photo .swiper-button-next:hover {
+    opacity: 1;
+}
+.view-form .room-view .rv-info #room-view-photo .swiper-button-prev {
+    left: 0;
+}
+.view-form .room-view .rv-info #room-view-photo .swiper-button-next {
+    right: 0;
+}
+
+
+.view-form .room-view .rv-service {
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+    border-top: 1px solid #ddd;
+}
+.view-form .room-view .rv-service .row {
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+}
+.view-form .room-view .rv-service .rvs-tit {
+    width: 25%;
+    padding-left: 15px;
+    font-size: 12px;
+    letter-spacing: 3.6px;
+    font-family: 'Abel', 'NanumSquare';
+    box-sizing: border-box;
+}
+.view-form .room-view .rv-service .rvs-list {
+    width: 75%;
+    font-size: 0;
+    padding: 20px 0 40px;
+}
+.view-form .room-view .rv-service .rvs-list li {
+    display: inline-block;
+    width: 96px;
+    word-break: keep-all;
+    text-align: center;
+    max-height: 85px;
+    padding-bottom: 3px;
+    font-size: 13px;
+    color: #777;
+    margin: 20px 10px 0 0;
+    vertical-align: top;
+    line-height: 13px;
+    overflow: hidden;
+}
+.view-form .room-view .rv-service .rvs-list li i {
+    display: block;
+    width: 50px;
+    height: 33px;
+    margin: 0 auto 13px;
+}
+
+
+.view-form .room-view .rv-other {
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+    overflow: hidden;
+}
+.view-form .room-view .rv-other .rvo-title {
+    padding: 0 0 45px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #181818;
+    letter-spacing: 11px;
+    font-family: 'Abel';
+    font-weight: 700;
+}
+
+
+
+
+
+/*************************/
+/* .stay-bbs-list
+/*************************/
+.view-form .stay-bbs-list {
+    position: relative;
+    width: 100%;
+    margin: -10px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: content-box;
+}
+.view-form .stay-bbs-list li {
+    position: relative;
+    width: 300px;
+    margin: 20px;
+}
+.view-form .stay-bbs-list li a {
+    display: block;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.view-form .stay-bbs-list li a .img {
+    position: relative;
+    width: 100%;
+}
+.view-form .stay-bbs-list li a .img img {
+    width: 100%;
+    height: 170px;
+}
+.view-form .stay-bbs-list li a .img.none {
+    box-sizing: border-box;
+    padding-top: 80px;
+    background: #eee;
+    color: #666;
+    text-align: center;
+}
+.view-form .stay-bbs-list li a .name {
+    margin-top: 12px;
+    font-size: 20px;
+    color: #181818;
+    font-weight: 500;
+}
+.view-form .stay-bbs-list li a .other {
+    font-size: 14px;
+    color: #333;
+    margin-top: 2px;
+    line-height: 1.5;
+}
+.view-form .stay-bbs-list li a .loc {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 20px;
+    color: #333;
+}
+.view-form .stay-bbs-list li.nodata {
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+    margin: 0;
+    letter-spacing: 0;
+    color: #666;
+}
+
+
+
+
 
 /*************************/
 /* magazine-view
@@ -1806,6 +2111,9 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 .view-form .magazine-view .mv-cont .gmap {
     margin-top: 80px;
 }
+
+
+
 
 
 

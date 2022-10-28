@@ -129,28 +129,20 @@
             <div class="card">
                 <div class="card-body p-4">
                 	<h4>등록된 숙소 목록</h4>
-                	<ul class="stay-room-list">
+                	<ul class="stay-bbs-list">
                         <c:choose>
                         <c:when test="${ !empty stay }">
                         <c:forEach items="${ stay }" var="list">
                         <li>
-                            <div>
+                            <a href="javascript:window.opener.location.href='<%=request.getContextPath()%>/admin/stayView.do?stay_no=${list.stay_no}'; window.close();">
                                 <c:choose>
-                                <c:when test="${!empty list.stay_file1}"><img src="<%=request.getContextPath()%>${ list.stay_file1 }" width="150" height="100" alt="" /></c:when>
-                                <c:otherwise>
-                                <svg class="bd-placeholder-img" width="150" height="100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                                    <title>${ list.stay_name }</title>
-                                    <rect width="100%" height="100%" fill="#eee"></rect>
-                                    <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
-                                </svg>
-                                </c:otherwise>
+                                <c:when test="${!empty list.stay_file1}"><div class="img"><img src="<%=request.getContextPath()%>${ list.stay_file1 }" alt="" /></div></c:when>
+                                <c:otherwise><div class="img none">no img</div></c:otherwise>
                                 </c:choose>
-                            </div>
-                            <div class="pl-2">
-                                <p><b>${list.stay_name}</b></p>
-                                <p>${list.stay_desc}</p>
-                                <p>${list.stay_location}</p>
-                            </div>
+                                <div class="name">${list.stay_name}</div>
+                                <div class="other">${list.stay_desc}</div>
+                                <div class="loc"><i class="icon-location-pin"></i> ${list.stay_location}</div>
+                            </a>
                         </li>
                         </c:forEach>
                         </c:when>
