@@ -143,12 +143,9 @@ public class AdminStayRoomWriteOkAction implements Action {
         HttpSession session = request.getSession();
 
         if (res[0] > 0) {
-        	// alert + 새로고침
-        	session.setAttribute("msg", "<script> alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.href='stayView.do?stay_no="+stay_stayNo+"'; </script>");
-            forward.setRedirect(true);
-            forward.setPath("stayRoomView.do?room_no="+res[1]+"&stay_no="+stay_stayNo);
+        	out.println("<script>alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.href='stayView.do?stay_no="+stay_stayNo+"'; window.close();</script>");
         } else {
-            out.println("<script> alert('Room 등록 중 에러가 발생했습니다.'); history.back(); </script>");
+            out.println("<script>alert('Room 등록 중 에러가 발생했습니다.'); history.back();</script>");
         }
         return forward;
     }
