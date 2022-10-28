@@ -218,7 +218,7 @@
 			</td>
 		</tr>
 		<tr>			
-			<th>ADD-ON SERVICES</th>
+			<th>ADD ON SERVICES</th>
 			<td>
                 <%
                     showArray getRoomService = new showArray();

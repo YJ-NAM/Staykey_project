@@ -29,7 +29,7 @@ ${ msg }
 
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
-                        	<i class="icon-location-pin"></i> ${room.room_type} &nbsp;
+                        	<i class="fa fa-home" ></i> ${room.room_type} &nbsp;
                         	<i class="fa fa-credit-card"></i> <fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${room.room_price}" type="currency" />~
                         </div>
 
@@ -111,7 +111,7 @@ ${ msg }
                         		<c:if test="${!empty room.room_service}">
                         		<li class="d-flex">
                         			<div>		
-                        			   ADD ON SERVICE		    
+                        			   ADD ON SERVICES		    
 				                       <c:forTokens items="${room.room_service}" delims="/" var="service">
 	                        			<div class="pl-3">
 	                        				<p><b>${service}</b></p>	                        				

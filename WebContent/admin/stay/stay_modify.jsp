@@ -75,8 +75,10 @@
         <tr>
             <th>숙소 사진 1</th>
             <td colspan="3">
-                <input type="file" name="stay_file1" class="form-control w-50" />
-                <c:if test="${!empty stayModify.stay_file1}"><p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file1}" style="max-height: 200px;" alt="" /></p></c:if>
+                <input type="file" name="stay_file1" class="form-control w-50" onchange="javascript:document.getElementById('fileName').value = this.value.split('\\')[this.value.split('\\').length-1]") />
+                <c:if test="${!empty stayModify.stay_file1}">
+                <p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file1}" style="max-height: 200px;" alt="" /></p>
+                </c:if>
             </td>
         </tr>
         <tr>
