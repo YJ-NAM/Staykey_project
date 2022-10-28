@@ -398,7 +398,7 @@
     position: relative;
     width: 100%;
     background-color: #fefefe;
-    padding: 100px 0;
+    padding: 120px 0;
 }
 
 .main-promo .container {
@@ -406,7 +406,16 @@
     overflow: hidden;
     padding: 0 20px;
 }
- 
+
+.main-promo .container .sec-title {
+    font-size: 12px;
+    position: absolute;
+    letter-spacing: 10px;
+    top: 35%;
+    margin: auto 0;
+    right: 210px;
+    z-index: 2;
+}
 .main-promo .swiper-container {
     display: block;
     width: 100%;
@@ -436,19 +445,10 @@
     
 }
 
-.main-promo .sec-title {
-    font-size: 12px;
-    position: absolute;
-    letter-spacing: 10px;
-    top: 0;
-    margin: auto 0;
-    right: 210px;
-    z-index: 2;
-}
 
 .main-promo .promo-container .swiper-wrapper img {
     float: left;
-    width: 90%;
+    width: 940px;
     height: 540px;
     display: block;
     object-fit: cover;
@@ -470,22 +470,27 @@
     bottom: 0;
     width: 10px;
     height: 20px;
+    
 }
-
+.main-promo li {
+    background-color: #fff;
+}
 .main-promo .promo-container .promo-title {
     position: absolute;
     top: 40%;
-    right: 80px;
     color: #000;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 1.5;
 }
- 
+
+.main-promo .promo-container .text{
+    text-align: left;
+}
 .main-promo .promo-container .small {
-    font-size: 18px;
+    font-size: 16px;
     color: #000;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 
