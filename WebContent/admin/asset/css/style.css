@@ -902,7 +902,7 @@ ul.table-ui > li > .cell.del {}
     background: #fcfcfc;
 }
 .table-list.hover > tbody > tr:hover > td {
-    background: #eff7ff;
+    background: #f5f9fd;
     cursor: pointer;
     color: #000;
 }
@@ -1316,7 +1316,7 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 /* 숙소 관리
 /*************************/
 .table-list .staylist-photo {
-    padding: 15px 0;
+    padding: 25px 0;
 }
 .table-list .staylist-photo .sp-img {
     width: 100%;
