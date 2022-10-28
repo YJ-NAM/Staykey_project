@@ -109,7 +109,7 @@
                     </c:otherwise>
                     </c:choose>
                 </td>
-				<td ${showLink}>   
+				<td ${showLink} class="py-4">   
 					 <p><b>${dto.review_stayname}</b></p>
 					 <p>${dto.review_roomname}</p> 
 				</td>

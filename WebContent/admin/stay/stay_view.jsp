@@ -56,15 +56,40 @@ ${ msg }
                     <c:if test="${!empty view.stay_file1 or !empty view.stay_file2 or !empty view.stay_file3 or !empty view.stay_file4 or !empty view.stay_file5}">
                     <div class="d-flex pt-4 pb-5 border-bottom">
                         <div class="col">
-                        	<ul class="stay-view-photo">
-                        		<c:if test="${!empty view.stay_file1}"><li><img src="<%=request.getContextPath()%>${view.stay_file1}" alt="" /></li></c:if>
-                        		<c:if test="${!empty view.stay_file2}"><li><img src="<%=request.getContextPath()%>${view.stay_file2}" alt="" /></li></c:if>
-                        		<c:if test="${!empty view.stay_file3}"><li><img src="<%=request.getContextPath()%>${view.stay_file3}" alt="" /></li></c:if>
-                        		<c:if test="${!empty view.stay_file4}"><li><img src="<%=request.getContextPath()%>${view.stay_file4}" alt="" /></li></c:if>
-                        		<c:if test="${!empty view.stay_file5}"><li><img src="<%=request.getContextPath()%>${view.stay_file5}" alt="" /></li></c:if>
-                        	</ul>
+                            <div id="stay-view-photo">
+                                <div class="swiper-button-prev"><i class="fa fa-chevron-left"></i></div>
+                                <div class="swiper-button-next"><i class="fa fa-chevron-right"></i></div>
+                                <ul class="swiper-wrapper">
+                                    <c:if test="${!empty view.stay_file1}"><li class="swiper-slide"><div class="img" style="background-image: url('<%=request.getContextPath()%>${view.stay_file1}');"></div></li></c:if>
+                                    <c:if test="${!empty view.stay_file2}"><li class="swiper-slide"><div class="img" style="background-image: url('<%=request.getContextPath()%>${view.stay_file2}');"></div></li></c:if>
+                                    <c:if test="${!empty view.stay_file3}"><li class="swiper-slide"><div class="img" style="background-image: url('<%=request.getContextPath()%>${view.stay_file3}');"></div></li></c:if>
+                                    <c:if test="${!empty view.stay_file4}"><li class="swiper-slide"><div class="img" style="background-image: url('<%=request.getContextPath()%>${view.stay_file4}');"></div></li></c:if>
+                                    <c:if test="${!empty view.stay_file5}"><li class="swiper-slide"><div class="img" style="background-image: url('<%=request.getContextPath()%>${view.stay_file5}');"></div></li></c:if>
+                                </ul>
+                            </div>
                         </div>
                     </div>
+
+                    <script type="text/javascript">
+                    $(document).ready(function(){
+                        var visualSwiper = new Swiper("#stay-view-photo", {
+                            effect: "slide",
+                            slidesPerView: 1,
+                            spaceBetween: 0,
+                            speed: 500,
+                            loop: true,
+                            touchEnabled: false,
+                            autoplay: {
+                                delay: 3000,
+                                disableOnInteraction: false,
+                            },
+                            navigation: {
+                                nextEl: '#stay-view-photo .swiper-button-next',
+                                prevEl: '#stay-view-photo .swiper-button-prev',
+                            }
+                        });
+                    });
+                    </script>
                     </c:if>
 
 
@@ -156,14 +181,14 @@ ${ msg }
             <div class="card">
                 <div class="card-body p-4">
                 	<h4>등록된 Room 목록<button type="button" onclick="popWindow('<%=request.getContextPath()%>/admin/stayRoomWrite.do?stay_no=${ view.stay_no }', '700', '900');" class="btn btn-sm btn-success float-right"><i class="fa fa-plus"></i> Room 추가</button></h4>
-                	<ul class="stay-room-list">
+                	<ul class="stay-room-list justify-content-center">
                         <c:choose>
                         <c:when test="${ !empty list }">
                         <c:forEach items="${ list }" var="room">
                         <li>
                             <c:choose>
-                            <c:when test="${!empty room.room_photo1}"><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '700', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo1 }');"></c:when>
-                            <c:otherwise><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '700', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo1 }');"></c:otherwise>
+                            <c:when test="${!empty room.room_photo1}"><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo1 }');"></c:when>
+                            <c:otherwise><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');"></c:otherwise>
                             </c:choose>
                                 <div class="room-info">
                                     <p class="name">${ room.room_name }<small>${ room.room_type }</small></p>
@@ -193,7 +218,7 @@ ${ msg }
 
 
     <!-- 버튼 //START -->
-    <div class="d-flex justify-content-center mb-4">
+    <div class="d-flex justify-content-center mt-4 mb-5">
         <a href="<%=request.getContextPath()%>/admin/stayDeleteOk.do?stay_no=${view.stay_no}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?\n※ 이 숙소에 등록된 Room들도 전부 삭제됩니다.');"><i class="fa fa-trash-o"></i> 삭제하기</a>
         <a href="<%=request.getContextPath()%>/admin/stayModify.do?stay_no=${view.stay_no}" class="btn btn-primary mx-2"><i class="fa fa-pencil"></i> 수정하기</a>
         <a href="<%=request.getContextPath()%>/admin/stayList.do" class="btn btn-secondary"><i class="fa fa-bars"></i> 목록보기</a>

@@ -59,7 +59,7 @@ public class AdminStayRoomModifyOkAction implements Action {
         int room_people_max = Integer.parseInt(multi.getParameter("room_people_max"));
         int room_size = Integer.parseInt(multi.getParameter("room_size").trim());      
         String room_bed = multi.getParameter("room_bed").trim();
-
+        
         // 체크박스 선택 안 한 경우, null 값 처리
         if(multi.getParameterValues("room_features") != null) {
         	String[] room_features = multi.getParameterValues("room_features");
@@ -163,10 +163,9 @@ public class AdminStayRoomModifyOkAction implements Action {
         PrintWriter out = response.getWriter();
 
         if (res > 0) {
-            out.println("<script> alert('등록된 Room이 성공적으로 수정되었습니다.'); </script>");
-            out.println("<script> location.href='stayRoomView.do?room_no="+room_no+"&stay_no="+room_stayno+"'; opener.parent.location.href='stayView.do?stay_no="+room_stayno+"'; </script>");
+            out.println("<script>alert('수정되었습니다.'); window.resizeTo(1400,900); location.href='stayRoomView.do?room_no="+room_no+"&stay_no="+room_stayno+"';</script>");
         } else {
-            out.println("<script> alert('Room 등록 중 에러가 발생했습니다.'); history.back(); </script>");
+            out.println("<script>alert('Room 등록 중 에러가 발생했습니다.'); history.back();</script>");
         }	
 		return null;
 	}
