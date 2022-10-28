@@ -1369,8 +1369,8 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 }
 .view-form .stay-view-photo li {
     display: inline-block;
-    width: calc(33.3333333333% - 22px);
-    margin: 0 10px;
+    width: calc(33.3333333333% - 33px);
+    margin: 0 15px;
     font-size: 0;
     line-height: 0;
 }
@@ -1403,30 +1403,95 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 .view-form .stay-room-list {
     position: relative;
     width: 100%;
-    margin: 20px 0;
+    margin: -20px 0 20px 0;
+    display: flex;
+    box-sizing: content-box;
 }
 .view-form .stay-room-list li {
-    display: inline-block;
-    width: calc(33.3333333333% - 25px);
-    margin: 0 10px;
-    vertical-align: middle;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background: #ddd;
+    margin: 20px;
+    box-shadow: 13px 15px 30px 0 rgb(0 0 0 / 20%);
+    flex-shrink: 0;
 }
-.view-form .stay-room-list li > div {
-    display: inline-block;
-    width: 150px;
-    vertical-align: middle;
+.view-form .stay-room-list li a {
+    display: block;
+    outline: none;
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    box-sizing: border-box;
 }
-.view-form .stay-room-list li > div.pl-2 {
-    width: calc(100% - 150px - 0.5rem);
+.view-form .stay-room-list li .room-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 115px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
 }
-.view-form .stay-room-list li > div.pl-2 b {
-    font-size: 16px;
+.view-form .stay-room-list li:hover .room-info {
+    background: rgba(0,0,0,1);
+
+    -webkit-transition: all 0.2s ease-out 0s;
+    -o-transition: all 0.2s ease-out 0s;
+    transition: all 0.2s ease-out 0s;
+}
+.view-form .stay-room-list li .room-info .name {
+    position: absolute;
+    bottom: 50px;
+    left: 20px;
+    font-size: 20px;
     font-weight: 500;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.view-form .stay-room-list li .room-info .name small {
+    display: block;
+    font-size: 14px;
+    color: hsla(0,0%,100%,.5);
+    letter-spacing: 1.5px;
+    font-family: 'Abel', 'SpoqaHanSans';
+}
+.view-form .stay-room-list li .room-info .price {
+    position: absolute;
+    bottom: 75px;
+    right: 20px;
+    font-size: 18px;
+    font-family: 'Abel', 'SpoqaHanSans';
+}
+.view-form .stay-room-list li .room-info .etc {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+}
+.view-form .stay-room-list li .room-info .etc span:before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    margin: 0 8px;
+    vertical-align: middle;
 }
 .view-form .stay-room-list li.nodata {
     width: 100%;
     text-align: center;
-    padding: 20px 0;
+    padding: 30px 0;
     margin: 0;
     letter-spacing: 0;
     color: #666;
@@ -1628,7 +1693,7 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
     text-align: center;
 }
 .view-form .stay-view-faq .tab_view dl dd table td {
-    background-repeat: 1px solid #444;
+    border-right: 1px solid #444;
 }
 .view-form .stay-view-faq .tab_view dd ul,
 .view-form .stay-view-faq .tab_view dl dd,
