@@ -181,8 +181,37 @@ public class QnaCommentDAO {
     }
 
 
+    // ======================================================
+    // 답변 삭제 + 글번호 재작업 메서드
+    // ======================================================
 
+    public int deleteComment( int no) {
+        int result = 0;
 
+        try {
+            openConn();
 
+            sql = "delete from staykey_qna_comment where comment_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            result = pstmt.executeUpdate();
+
+            
+            sql = "update staykey_qna_comment set comment_no = comment_no - 1 where comment_no > ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return result;
+    }
+
+    
+    
+    
 
 }
