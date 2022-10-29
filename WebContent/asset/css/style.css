@@ -136,6 +136,23 @@ h1, h2, h3, h4, h5 {
 }
 
 
+
+@media screen and (-webkit-min-device-pixel-ratio:0){ 
+    div, a, img, li {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+@media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) and (display:flow-root) {
+        div, a, img, li {
+            image-rendering: auto !important;
+        }
+    }
+}
+
+
+
+
 /*************************/
 /* float bugFix
 /*************************/
