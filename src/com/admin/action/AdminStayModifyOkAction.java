@@ -3,7 +3,6 @@ package com.admin.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -189,10 +188,12 @@ public class AdminStayModifyOkAction implements Action {
  				if(original_file != null) {// 기존 값이 있으면 			
  					map.replace(e.getKey(), original_file); // 예전 값 할당
  					// 파일 삭제 체크표시
- 					if(stayFile != null) {
+ 					if(stayFile != null) { // 단독 exists() 사용 시 nullpointer 에러 발생...
 						if(stayFile.exists()) { 
 							stayFile.delete(); 
 		 					map.replace(e.getKey(), ""); // null 값 처리
+						}else {
+							map.replace(e.getKey(), ""); // null 값 처리
 						}
 					}
  				}else {

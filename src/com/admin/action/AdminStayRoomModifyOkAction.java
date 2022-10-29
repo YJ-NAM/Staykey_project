@@ -174,6 +174,8 @@ public class AdminStayRoomModifyOkAction implements Action {
 						if(roomFile.exists()) { 
 							roomFile.delete(); 
 		 					map.replace(e.getKey(), ""); // null 값 처리
+						}else {
+		 					map.replace(e.getKey(), ""); // null 값 처리
 						}
 					}
  				}else {
