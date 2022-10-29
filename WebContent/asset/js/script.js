@@ -26,7 +26,7 @@ popWindow = function(ps_url, ps_width, ps_height){
 // 위로이동
 //////////////////////////////////////////////////////////////////////////
 function gotoTop(){
-    $("html, body").stop().animate({ scrollTop : 0 }, 150, "swing", function(){});
+    $("html, body").stop().animate({ scrollTop : 0 }, 50, "swing", function(){});
 }
 
 
@@ -34,7 +34,7 @@ function gotoTop(){
 // 아래로이동
 //////////////////////////////////////////////////////////////////////////
 function gotoDown(){
-    $("html, body").stop().animate({ scrollTop : $(document).height() }, 150, "swing", function(){});
+    $("html, body").stop().animate({ scrollTop : $(document).height() }, 50, "swing", function(){});
 }
 
 
@@ -44,7 +44,7 @@ function gotoDown(){
 //////////////////////////////////////////////////////////////////////////
 function gotoPos(kind){
     var gopos = $("#"+kind).offset().top - 65;
-    $("html, body").stop().animate({ scrollTop : gopos }, 150, "swing", function(){});
+    $("html, body").stop().animate({ scrollTop : gopos }, 50, "swing", function(){});
 }
 
 
