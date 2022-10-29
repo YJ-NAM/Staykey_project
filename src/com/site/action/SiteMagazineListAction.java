@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.controller.Action;
 import com.controller.ActionForward;
 
-public class SiteStayListAction implements Action {
+public class SiteMagazineListAction implements Action {
+
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -16,7 +17,7 @@ public class SiteStayListAction implements Action {
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
-        forward.setPath("stay/stay_list.jsp");
+        forward.setPath("magazine/magazine_list.jsp");
 
         return forward;
     }

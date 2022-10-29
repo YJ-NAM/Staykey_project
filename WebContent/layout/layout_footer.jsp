@@ -13,7 +13,7 @@
 				<h4>고객센터</h4>
 				<p>운영시간: 10:00 ~ 18:00<small>(점심시간: 12:30 ~ 13:30)</small></p>
 				<ul>
-					<li><a href="#">1:1문의</a></li>
+					<li><a href="<%=request.getContextPath()%>/mypageQnaWrite.do">1:1문의</a></li>
 					<li><a href="#">입점 문의</a></li>
 					<li><a href="#">제휴 문의</a></li>
 				</ul>
