@@ -97,11 +97,11 @@
             <c:set var="showLink" value="onclick=\"popWindow('../admin/reviewView.do?id=${dto.review_no}', '700', '900');\"" />
             <tr>
                 <td ${showLink} class="eng">${dto.review_no}</td>
-                <td ${showLink}>
+                <td ${showLink} class="photo">
                     <c:choose>
-                    <c:when test="${!empty dto.review_file }"><img src="<%=request.getContextPath()%>${dto.review_file}" width="60" height="60" alt="" /></c:when>
+                    <c:when test="${!empty dto.review_file }"><img src="<%=request.getContextPath()%>${dto.review_file}" alt="" /></c:when>
                     <c:otherwise>
-                    <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                    <svg class="bd-placeholder-img" width="98" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
                         <title>${dto.review_name}</title>
                         <rect width="100%" height="100%" fill="#eee"></rect>
                         <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
