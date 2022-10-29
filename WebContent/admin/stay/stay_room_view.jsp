@@ -126,8 +126,12 @@ ${ msg }
                                 <li>
                                     <a href="<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${list.room_no}&stay_no=${stay.stay_no}">
                                         <c:choose>
-                                        <c:when test="${!empty list.room_photo1}"><div class="img"><img src="<%=request.getContextPath()%>${ list.room_photo1 }" alt="" /></div></c:when>
-                                        <c:otherwise><div class="img none">no img</div></c:otherwise>
+                                            <c:when test="${!empty list.room_photo1}"><div class="img"><img src="<%=request.getContextPath()%>${ list.room_photo1 }" alt="" /></div></c:when>
+                                            <c:when test="${!empty list.room_photo2}"><div class="img"><img src="<%=request.getContextPath()%>${ list.room_photo2 }" alt="" /></div></c:when>
+                                            <c:when test="${!empty list.room_photo3}"><div class="img"><img src="<%=request.getContextPath()%>${ list.room_photo3 }" alt="" /></div></c:when>
+                                            <c:when test="${!empty list.room_photo4}"><div class="img"><img src="<%=request.getContextPath()%>${ list.room_photo4 }" alt="" /></div></c:when>
+                                            <c:when test="${!empty list.room_photo5}"><div class="img"><img src="<%=request.getContextPath()%>${ list.room_photo5 }" alt="" /></div></c:when>
+                                            <c:otherwise><div class="img none">no img</div></c:otherwise>
                                         </c:choose>
                                         <div class="name">${list.room_name}</div>
                                         <div class="other">${list.room_desc}</div>

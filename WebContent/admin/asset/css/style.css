@@ -2087,6 +2087,7 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 .view-form .stay-bbs-list li a .img img {
     width: 100%;
     height: 170px;
+    object-fit: cover;
 }
 .view-form .stay-bbs-list li a .img.none {
     box-sizing: border-box;

@@ -186,40 +186,13 @@ ${ msg }
                         <c:when test="${ !empty list }">
                         <c:forEach items="${ list }" var="room">
                         <li>
-                        	<!-- list -> empty 아님 / room_photo2번부터 등록되어 있는 경우 대표이미지 안뜨는 현상 해결 필요 -->
                             <c:choose>
-                            <c:when test="${!empty room.room_photo1 or !empty room.room_photo2 or !empty room.room_photo3 or !empty room.room_photo4 or !empty room.room_photo5}">
-	                            <c:choose>
-	                            <c:when test="${ !empty room.room_photo1 }">
-	                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo1 }');"></c:when>
-	                            <c:otherwise>
-	                           		<c:choose>
-		                            <c:when test="${ !empty room.room_photo2 }">
-		                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo2 }');"></c:when>
-		                            <c:otherwise>
-		                                <c:choose>
-			                            <c:when test="${ !empty room.room_photo3 }">
-			                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo3 }');"></c:when>
-			                            <c:otherwise>
-			                            	<c:choose>
-				                            <c:when test="${ !empty room.room_photo4 }">
-				                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo4 }');"></c:when>
-				                            <c:otherwise>
-					                            <c:choose>
-					                            <c:when test="${ !empty room.room_photo5 }">
-					                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');" style="background-image: url('<%=request.getContextPath()%>${ room.room_photo5 }');"></c:when>		                                	
-			                                	</c:choose>
-		                                	</c:otherwise>
-		                                	</c:choose>
-		                                </c:otherwise>
-		                                </c:choose>
-		                            </c:otherwise>
-			                        </c:choose>
-	                            </c:otherwise>
-	                            </c:choose>
-	                            </c:when>
-                            <c:otherwise>
-                            <a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');"></c:otherwise>
+                                <c:when test="${!empty room.room_photo1}"><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');" style="background-image: url('<%=request.getContextPath()%>${room.room_photo1}');"></c:when>
+                                <c:when test="${!empty room.room_photo2}"><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');" style="background-image: url('<%=request.getContextPath()%>${room.room_photo2}');"></c:when>
+                                <c:when test="${!empty room.room_photo3}"><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');" style="background-image: url('<%=request.getContextPath()%>${room.room_photo3}');"></c:when>
+                                <c:when test="${!empty room.room_photo4}"><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');" style="background-image: url('<%=request.getContextPath()%>${room.room_photo4}');"></c:when>
+                                <c:when test="${!empty room.room_photo5}"><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');" style="background-image: url('<%=request.getContextPath()%>${room.room_photo5}');"></c:when>
+                                <c:otherwise><a href="javascript:popWindow('<%=request.getContextPath()%>/admin/stayRoomView.do?room_no=${ room.room_no }&stay_no=${ view.stay_no }', '1400', '900');"></c:otherwise>
                             </c:choose>
                                 <div class="room-info">
                                     <p class="name">${ room.room_name }<small>${ room.room_type }</small></p>
