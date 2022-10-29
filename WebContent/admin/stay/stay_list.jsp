@@ -168,39 +168,14 @@ ${ msg }
 	            <tr>
 	                <td ${showLink} class="eng">${list.stay_no}</td>
 	                <td ${showLink} class="staylist-photo">
-	                   <c:choose>
-	                      <c:when test="${!empty list.stay_file1 or !empty list.stay_file2 or !empty list.stay_file3 or !empty list.stay_file4 or !empty list.stay_file5}">
-	                       <c:choose>
-	                       <c:when test="${ !empty list.stay_file1 }">
-	                       <div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file1}');"></div></c:when>
-	                       <c:otherwise>
-	                      	   <c:choose>
-		                       <c:when test="${ !empty list.stay_file2 }">
-		                       <div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file2}');"></div></c:when>
-		                       <c:otherwise>
-		                           <c:choose>
-			                       <c:when test="${ !empty list.stay_file3 }">
-			                       <div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file3}');"></div></c:when>
-			                       <c:otherwise>
-				                       	<c:choose>
-					                       <c:when test="${ !empty list.stay_file4 }">
-					                       <div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file4}');"></div></c:when>
-					                       <c:otherwise>
-						                       <c:choose>
-						                       <c:when test="${ !empty list.stay_file5 }">
-						                       <div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file5}');"></div></c:when>		                                	
-				                               </c:choose>
-			                           	   </c:otherwise>
-			                           	</c:choose>
-		                           </c:otherwise>
-		                           </c:choose>
-		                       </c:otherwise>
-			                   </c:choose>
-	                       </c:otherwise>
-	                       </c:choose>
-	                       </c:when>
-	                      <c:otherwise><div class="sp-img none">no img</div></c:otherwise>
-	                   </c:choose>
+                        <c:choose>
+                            <c:when test="${!empty list.stay_file1}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file1}');"></div></c:when>
+                            <c:when test="${!empty list.stay_file2}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file2}');"></div></c:when>
+                            <c:when test="${!empty list.stay_file3}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file3}');"></div></c:when>
+                            <c:when test="${!empty list.stay_file4}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file4}');"></div></c:when>
+                            <c:when test="${!empty list.stay_file5}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file5}');"></div></c:when>
+                            <c:otherwise><div class="sp-img none">no img</div></c:otherwise>
+                        </c:choose>
 	                </td>
 	                <td ${showLink} class="stay-list">
 	            		<p class="sl-loc">${list.stay_location}</p>
