@@ -169,7 +169,8 @@ ${ msg }
                 <td ${showLink} class="eng">${list.stay_no}</td>
                 <td ${showLink} class="staylist-photo">
                     <c:choose>
-                    <c:when test="${!empty list.stay_file1}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file1}');"></div></c:when>
+                    <!-- 이 부분 수정 예정 // 1번 이미지 안 뜨는 경우, 다른 이미지 뜨도록 수정 예정 -->
+                    <c:when test="${!empty list.stay_file1}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file1}');"></div></c:when>            
                     <c:otherwise><div class="sp-img none">no img</div></c:otherwise>
                     </c:choose>
                 </td>
