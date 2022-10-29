@@ -452,6 +452,7 @@ h1, h2, h3, h4, h5 {
     background: #fff;
     box-sizing: border-box;
     padding: 40px 0;
+    margin-top: 50px;
     border-top: 1px solid #cd5c5c;
 }
 .footer .f-wrap {
@@ -604,12 +605,10 @@ h1, h2, h3, h4, h5 {
 #container {
     padding-top: 80px;
 }
-
 .container {
     max-width: 1330px;
-    padding: 0 0px;
+    padding: 0;
 }
-
 .container-full {
     position: relative;
     width: 100%;
