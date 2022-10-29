@@ -277,22 +277,22 @@ $(document).ready(function(){
      <div class="main-promo">
         <div class="container">
         <!-------- 프로모션 창 타이틀 --------->
-            <div class="sec-title"><strong>PROMOTION</strong></div>
+            <div class="sec-title" id="pro-title"><strong>PROMOTION</strong></div>
         <!-------- 프로모션 창 목록 --------->
             <div class= "promo-container swiper-container" id="promo-container">
                     <div class="fa fa-chevron-left"></div>
                     <div class="fa fa-chevron-right"></div>
-                    <div class="swiper-pagination"></div>
+                    <div class="swiper-pagination">
+                    </div>
 
                 <ul class="swiper-wrapper">
                     <li class="swiper-slide">
                         <a href="#">
                             <img src="http://images.stayfolio.com/system/pictures/images/000/148/148/original/e8525a7fc7d249af9de4b7d775c31ed19f68cbff.jpg?1665989518"/>
-
                             <div class="e_date">
                             1 DAY LEFT
                             </div>
-                            <div class="promo-title">
+                            <div class="promo-title" style="float: right;">
                                 <p class="text">나와 피부에게 주는 오늘의 회복</p>
                                 <p class="small">프룩스 플럭스 호텔</p>
                             </div>
@@ -308,7 +308,7 @@ $(document).ready(function(){
 
                             </div>
                             <div class="promo-title">
-                                <p class="text">낮고 고요한 사색의 시간</p>
+                                <p class="text" >낮고 고요한 사색의 시간</p>
                                 <p class="small">흐르는 결</p>
                             </div>
                         </a>

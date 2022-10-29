@@ -143,7 +143,7 @@
                             <col width="18%" />
                             <col />
                             <col width="15%" />
-                            <col width="13%" />
+                            <col width="30%" />
                         </colgroup>	
 
                         <thead>
@@ -164,7 +164,9 @@
                                 <td class="text-center"><b>${qdto.comment_writer_name}</b></td>
                                 <td class="text-left">${qdto.comment_content}</td>
                                 <td class="text-center">${qdto.comment_date}</td>
-                                <td class="text-center"><a href="<%=request.getContextPath()%>/admin/qnaCommentDeleteOk.do?no=${dqdto.comment_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
+	                           	<td>
+	                    			<a href="<%=request.getContextPath()%>/admin/qnaCommentDeleteOk.do?no=${qdto.comment_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+	                			</td>
                             </tr>
                             </c:forEach>
                             </c:when>
@@ -178,7 +180,6 @@
         					
                          </tbody>
                     </table>
-                    
                     
                      <form name="write_form" method="post" action="<%=request.getContextPath() %>/admin/qnaCommentOk.do?no=${comment_qnano}">
                    		<%-- 이름, 아이디, 비밀번호 임시로 받음. --%>
