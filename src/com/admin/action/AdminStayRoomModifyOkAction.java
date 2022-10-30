@@ -3,6 +3,7 @@ package com.admin.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,6 +48,8 @@ public class AdminStayRoomModifyOkAction implements Action {
         String features_sum = "";
         String amenities_sum = "";
         String service_sum = "";
+        String[] room_file_delete = null;
+        List<String> roomList = null;
 
         // 파라미터 정리
         int room_no = Integer.parseInt(multi.getParameter("room_no"));
@@ -61,9 +64,11 @@ public class AdminStayRoomModifyOkAction implements Action {
         int room_people_max = Integer.parseInt(multi.getParameter("room_people_max"));
         int room_size = Integer.parseInt(multi.getParameter("room_size").trim());      
         String room_bed = multi.getParameter("room_bed").trim();
-        String[] room_file_delete = multi.getParameterValues("room_file_delete");
-        List<String> roomList = Arrays.asList(room_file_delete);
         
+        if(multi.getParameterValues("room_file_delete") != null) {
+        	room_file_delete = multi.getParameterValues("room_file_delete");
+        	roomList = Arrays.asList(room_file_delete);
+        }
         
         // 체크박스 선택 안 한 경우, null 값 처리
         if(multi.getParameterValues("room_features") != null) {
@@ -136,27 +141,28 @@ public class AdminStayRoomModifyOkAction implements Action {
  			Entry<String, Object> e = iterator.next();
  			File file = (File) e.getValue(); // map에 저장된 파일 객체의 value 값만 얻어와서 File형으로 casting
  			
+ 			// 수정되는 항목 없이 수정 누르는 경우, NullPointerException 방지 위해 수정...
  			switch (e.getKey()) { // original file 값 할당
- 			case "room1": 
- 				original_file = original_room1; 
-				if(roomList.contains("Y1")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }
- 				break;
- 			case "room2": 
- 				original_file = original_room2; 
-				if(roomList.contains("Y2")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }
- 				break;
- 			case "room3": 
- 				original_file = original_room3; 
-				if(roomList.contains("Y3")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }
- 				break;
- 			case "room4": 
- 				original_file = original_room4; 
-				if(roomList.contains("Y4")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }
- 				break;
- 			case "room5": 
- 				original_file = original_room5; 
-				if(roomList.contains("Y5")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }
- 				break;
+	 			case "room1": 
+	 				original_file = original_room1; 
+	 				if(roomList != null) { if(roomList.contains("Y1")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }}
+	 				break;
+	 			case "room2": 
+	 				original_file = original_room2; 
+	 				if(roomList != null) { if(roomList.contains("Y2")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }}
+	 				break;
+	 			case "room3": 
+	 				original_file = original_room3; 
+	 				if(roomList != null) { if(roomList.contains("Y3")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }}
+	 				break;
+	 			case "room4": 
+	 				original_file = original_room4; 
+	 				if(roomList != null) { if(roomList.contains("Y4")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }}
+	 				break;
+	 			case "room5": 
+	 				original_file = original_room5; 
+	 				if(roomList != null) { if(roomList.contains("Y5")) { roomFile = new File(delFolder + original_file); }else { roomFile = null; }}
+	 				break;
  			}
  			
  			if(file != null) { // value 값이 null이 아니면(new file 있음)
