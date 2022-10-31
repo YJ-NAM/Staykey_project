@@ -69,9 +69,9 @@
             <div class="h-gnb">
                 <div class="h-nav">
                     <ul class="h-menu">
-                        <li><a href="<%=request.getContextPath()%>/stayList.do">살펴보기</a></li>
-                        <li><a href="<%=request.getContextPath()%>/eventList.do">함께하기</a></li>
-                        <li><a href="<%=request.getContextPath()%>/magazineList.do">읽어보기</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do" id="nav-stay">살펴보기</a></li>
+                        <li><a href="<%=request.getContextPath()%>/eventList.do" id="nav-event">함께하기</a></li>
+                        <li><a href="<%=request.getContextPath()%>/magazineList.do" id="nav-magazine">읽어보기</a></li>
                     </ul>
                 </div>
 

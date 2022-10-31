@@ -3,7 +3,6 @@ package com.admin.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -39,13 +38,16 @@ public class AdminStayModifyOkAction implements Action {
         
         // 업로드 폴더 체크 후 없으면 생성
         File dirChk = new File(saveFolder);
-        if(!dirChk.exists()){
+        if(!dirChk.exists()){ 
             dirChk.mkdir();
         }
 
         // 파일 업로드 객체 생성
         MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 
+        String[] stay_file_delete = null;
+        List<String> stayList = null;
+        
         // 파라미터 정리
         // stay_option1~3_price if문... => NumberFormatException 처리 위함
         int stay_no = Integer.parseInt(multi.getParameter("stay_no"));
@@ -56,9 +58,14 @@ public class AdminStayModifyOkAction implements Action {
         String stay_addr = multi.getParameter("stay_addr").trim();
         String stay_phone = multi.getParameter("stay_phone").trim();
         String stay_email = multi.getParameter("stay_email").trim();
-        String stay_option1_name = multi.getParameter("stay_option1_name").trim();  
-        String[] stay_file_delete = multi.getParameterValues("stay_file_delete");
-        List<String> stayList = Arrays.asList(stay_file_delete);
+        
+        // name 값 [] 로 받을 시 작동 안 됨...       
+        if(multi.getParameterValues("stay_file_delete") != null) {
+        	stay_file_delete = multi.getParameterValues("stay_file_delete");
+        	stayList = Arrays.asList(stay_file_delete);
+        }
+        
+        String stay_option1_name = multi.getParameter("stay_option1_name").trim();
 
         if(multi.getParameter("stay_option1_price").length() > 0) {
         	int stay_option1_price = Integer.parseInt(multi.getParameter("stay_option1_price").trim());
@@ -133,81 +140,45 @@ public class AdminStayModifyOkAction implements Action {
 
  	    Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator(); // iterator로 다음 값 가져옴
  	    String original_file = ""; // 예전 파일 변수로 지정
- 	    File stayFile = null;
+ 	    File stayFile = null; // stayFile 변수 선언 / delete 용
  		
  		while(iterator.hasNext()) { 
  			Entry<String, Object> e = iterator.next();
  			File file = (File) e.getValue(); // map에 저장된 파일 객체의 value 값만 얻어와서 File형으로 casting 		
  			
- 			System.out.println(e.getKey());
-
- 			switch (e.getKey()) { // original file 값 할당
+ 			switch (e.getKey()) { 
+ 			    // original file 값 할당 & stayFile(delete용 파일 객체 생성)(stayList에 해당 사항 있을 시)
 	 			case "stay_file1": 
 	 				original_file = original_stay_file1; 
-					if(stayList.contains("Y1")) {
-						stayFile = new File(delFolder + original_file);
-					}else {
-						stayFile = null;
-					}
+	 				if(stayList != null) { if(stayList.contains("Y1")) { stayFile = new File(delFolder + original_file); }else { stayList = null; }}
 	 				break;
 	 			case "stay_file2": 
 	 				original_file = original_stay_file2; 
-	 				System.out.println(original_file);
-					if(stayList.contains("Y2")) {
-						System.out.println(stayList.toString());
-						stayFile = new File(delFolder + original_file);
-						System.out.println(stayFile.toString());
-					}else {
-						stayFile = null;
-					}
+	 				if(stayList != null) { if(stayList.contains("Y2")) { stayFile = new File(delFolder + original_file); }else { stayList = null; }}
 	 				break;
 	 			case "stay_file3": 
 	 				original_file = original_stay_file3; 
-					if(stayList.contains("Y3")) {
-						stayFile = new File(delFolder + original_file);
-					}else {
-						stayFile = null;
-					}
+	 				if(stayList != null) { if(stayList.contains("Y3")) { stayFile = new File(delFolder + original_file); }else { stayList = null; }}
 	 				break;
 	 			case "stay_file4": 
 	 				original_file = original_stay_file4; 
-					if(stayList.contains("Y4")) {
-						stayFile = new File(delFolder + original_file);
-					}else {
-						stayFile = null;
-					}
+	 				if(stayList != null) { if(stayList.contains("Y4")) { stayFile = new File(delFolder + original_file); }else { stayList = null; }}
 	 				break;
 	 			case "stay_file5": 
 	 				original_file = original_stay_file5; 
-					if(stayList.contains("Y5")) {
-						stayFile = new File(delFolder + original_file);
-					}else {
-						stayFile = null;
-					}
+	 				if(stayList != null) { if(stayList.contains("Y5")) { stayFile = new File(delFolder + original_file); }else { stayList = null; }}
 	 				break;
 	 			case "stay_option1_photo": 
 	 				original_file = original_stay_option1_photo; 
-					if(stayList.contains("Y6")) {
-						stayFile = new File(delFolder + original_file);
-					}else {
-						stayFile = null;
-					}
+	 				if(stayList != null) { if(stayList.contains("Y6")) { stayFile = new File(delFolder + original_file); }else { stayList = null; }}
 	 				break;
 	 			case "stay_option2_photo": 
 	 				original_file = original_stay_option2_photo; 
-					if(stayList.contains("Y7")) {
-						stayFile = new File(delFolder + original_file);
-					}else {
-						stayFile = null;
-					}
+	 				if(stayList != null) { if(stayList.contains("Y7")) { stayFile = new File(delFolder + original_file); }else { stayList = null; }}
 	 				break;
 	 			case "stay_option3_photo": 
 	 				original_file = original_stay_option3_photo; 
-					if(stayList.contains("Y8")) {
-						stayFile = new File(delFolder + original_file);
-					}else {
-						stayFile = null;
-					}
+	 				if(stayList != null) { if(stayList.contains("Y8")) { stayFile = new File(delFolder + original_file); }else { stayList = null; }}
 	 				break;
  			}
  			
@@ -221,13 +192,13 @@ public class AdminStayModifyOkAction implements Action {
  			}else { // new file 없으면
  				if(original_file != null) {// 기존 값이 있으면 			
  					map.replace(e.getKey(), original_file); // 예전 값 할당
- 					// 파일 삭제 체크표시 유무 대조
- 					if(stayFile != null) {
+ 					// 파일 삭제 체크표시
+ 					if(stayFile != null) { // 단독 exists() 사용 시 nullpointer 에러 발생...
 						if(stayFile.exists()) { 
 							stayFile.delete(); 
-		 					map.replace(e.getKey(), ""); // 예전 값 할당
+		 					map.replace(e.getKey(), ""); // null 값 처리
 						}else {
-		 					map.replace(e.getKey(), ""); // 예전 값 할당
+							map.replace(e.getKey(), ""); // null 값 처리
 						}
 					}
  				}else {

@@ -7,7 +7,10 @@
 <c:set var="dto" value="${qna}" />
 <c:set var="qList" value="${List}" />
 
-
+<script type="text/javascript">
+	opener.parent.location.reload();
+</script>
+	
 <style type="text/css">body { padding: 0 30px !important; }</style>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>문의글 상세 정보</h2>
@@ -20,7 +23,7 @@
     <!-- 내용 //START -->
     <div class="row vf-body">
         <div class="col-lg mb-4">
-        <form method="post" action="<%=request.getContextPath() %>/admin/memberModifyOk.do" onsubmit="return join_check();">
+        <form action="<%=request.getContextPath()%>/admin/qnaModifyOk.do?no=${dto.bbs_no}" method="post">
             <table class="table-form w-100">
                 <colgroup>
                     <col width="17%" />
@@ -32,13 +35,18 @@
                 <tbody>
                     <tr>
                         <th>상태</th>
-                        <td colspan="3">
+                        <td> 
+		                    <c:if test="${dto.bbs_status == 'done'}"><span class="text-danger">완료</span></c:if>
+		                	<c:if test="${dto.bbs_status == 'ing'}"><span class="text-success">처리중</span></c:if>
+		                	<c:if test="${dto.bbs_status == 'send'}"><span class="text-primary">대기</span></c:if>
+                        </td>
+                        <td colspan="2">
                         	<select name="bbs_status" class="form-select">
-                        		<option value="ing" class="text-danger">처리중</option>
-                        		<option value="done" class="text-success">완료</option>
-                        		<option value="send" class="text-primary">대기</option>
+                        		<option value="ing">처리중</option>
+                        		<option value="done">완료</option>
+                        		<option value="send">대기</option>
                         	</select>
- 							<a href="<%=request.getContextPath()%>/admin/qnaModifyOk.do?no=${dto.bbs_no}" class="btn btn-sm btn-outline-success m-1">수정</a>
+                    		<button type="submit" class="btn btn-sm btn-outline-success m-1">수정</button>
                     	</td>
                     </tr>
                     <tr>
@@ -53,8 +61,7 @@
                     </tr>
                 </tbody>
             </table>
-           </form>
-            
+            </form>
         </div>
     </div>
     <!-- 내용 //END -->
@@ -110,14 +117,17 @@
                     </tr>
                     <tr> 
                         <th>문의내용</th>
-                        <td colspan="3">${dto.bbs_content}</td>
+                        <td colspan="3" >${dto.bbs_content}</td>
                     </tr>
                     <tr>
                         <th>첨부파일</th>
-                        <td colspan="3">
-							<img src="<%=request.getContextPath()%>${dto.bbs_file1}" style="max-width: 400px;" alt="" />
-							<img src="<%=request.getContextPath()%>${dto.bbs_file2}" style="max-width: 400px;" alt="" />
+                        <c:if test="${empty dto.bbs_file1 && empty dto.bbs_file2}"><td colspan="3" class="text-primary">파일 없음</td></c:if>
+                        <c:if test="${!empty dto.bbs_file1 || !empty dto.bbs_file2}">
+                        <td colspan="2">
+							<img src="<%=request.getContextPath()%>${dto.bbs_file1}" style="max-width: 250px;" alt="" />
+							<img src="<%=request.getContextPath()%>${dto.bbs_file2}" style="max-width: 250px;" alt="" />
                         </td>
+                        </c:if>
                     </tr>
                 </tbody>
             </table>
@@ -143,7 +153,7 @@
                             <col width="18%" />
                             <col />
                             <col width="15%" />
-                            <col width="13%" />
+                            <col width="30%" />
                         </colgroup>	
 
                         <thead>
@@ -164,7 +174,9 @@
                                 <td class="text-center"><b>${qdto.comment_writer_name}</b></td>
                                 <td class="text-left">${qdto.comment_content}</td>
                                 <td class="text-center">${qdto.comment_date}</td>
-                                <td class="text-center"><a href="<%=request.getContextPath()%>/admin/qnaCommentDeleteOk.do?no=${dqdto.comment_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
+	                           	<td class="text-center">
+	                    			<a href="<%=request.getContextPath()%>/admin/qnaCommentDeleteOk.do?no=${qdto.comment_no}&qna_no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+	                			</td>
                             </tr>
                             </c:forEach>
                             </c:when>
@@ -179,12 +191,12 @@
                          </tbody>
                     </table>
                     
-                    
                      <form name="write_form" method="post" action="<%=request.getContextPath() %>/admin/qnaCommentOk.do?no=${comment_qnano}">
                    		<%-- 이름, 아이디, 비밀번호 임시로 받음. --%>
                    		<input type="hidden" name="comment_writer_name" value="rock" />
 						<input type="hidden" name="comment_writer_id" value="admin1234" />
 						<input type="hidden" name="comment_writer_pw" value="1234" />
+                     <c:if test="${!empty qList }">
                      <table class="table-form mt-2">
                      	<colgroup>
                             <col width="18%" />
@@ -200,6 +212,7 @@
                             </td>
 					    </tr> 
 			   		</table>
+			   		</c:if>
 			   		</form>	
 			   		
 			   		

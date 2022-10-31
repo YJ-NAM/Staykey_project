@@ -12,7 +12,11 @@ public class SiteStayListAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+        ActionForward forward = new ActionForward();
+        forward.setRedirect(false);
+        forward.setPath("stay/stay_list.jsp");
 
-        return null;
+        return forward;
     }
+
 }
