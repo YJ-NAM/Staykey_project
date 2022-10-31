@@ -1,3 +1,4 @@
+
 /*************************/
 /* 메인 페이지 기본
 /************************/
@@ -107,7 +108,7 @@
     margin-top: 20px;
     font-size: 13px;
     line-height: 30px;
-    letter-spacing: 1.2px;
+    letter-spacing: 2px;
     display: inline-block;
     font-family: 'NotoSerifKR';
 }
@@ -163,7 +164,7 @@
     font-size: 12px;
     color: #800000;
     line-height: 30px;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     display: inline-block;
     font-family: 'NotoSerifKR';
     border-bottom: 1px solid #800000;
@@ -198,7 +199,6 @@
 }
 
 
-
 .main-visual .fa-chevron-right {
    position: absolute;
    font-family: 'FontAwesome';
@@ -225,6 +225,7 @@
    position: relative;
    width: 100%;
 }
+
 .main-visual ul .swiper-slide a .img{
     display: block;
     width: 100%;
@@ -554,7 +555,7 @@
     margin-top: 20px;
     font-size: 12px;
     line-height: 30px;
-    letter-spacing: 1.2px;
+    letter-spacing: 2px;
     border-bottom: 1px solid #800000;
  
 }
@@ -572,15 +573,6 @@
     margin-top: 110px;
 }
  
- 
-.main-magazine .swiper-button-prev {
- 
-}
- 
-.main-magazine .swiper-button-next {
- 
-}
- 
 .main-magazine ul {
     font-size: 0;
 }
@@ -591,45 +583,82 @@
 }
  
 .main-magazine .stay-info {
+    width: 480px;
+    height: 210px;
     position: absolute;
-    right: 0;
-    bottom: 0;
+    display: flex;
+    text-align: center;
     background-color: #fefefe;
-    max-width: 400px;
-    width: 50%;
-    height: 150px;
+    font-family: 'NotoSerifKR';
+    top: 40%;
+    margin-left: 35%;
+    padding: 60px 0;
 }
  
 .main-magazine .stay-info .logo {
     position: absolute;
-    bottom: 0;
+    top: 45px;
     left: 150px;
+    width: 145px;
+    object-fit: contain;
 }
  
 .main-magazine .stay-info .text {
     position: absolute;
-    top: 25px;
-    left: 150px;
-    font-size: 17px;
-    color: #181818;
-    line-height: 1.5;
+    bottom: 25px;
+    right : 60px;
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
 }
  
-.main-magazine .stay-info .magazine {
+.main-magazine .stay-info .magazine { 
     position: absolute;
-    left: 30px;
-    top: 30px;
-    font-size: 12px;
+    top: 35px;
+    left: 35px;
+    font-size: 13px;
     color: #181818;
     letter-spacing: 5px;
-    font-weight: 500;
-    font-family: 'NotoSerifKR';
  
 }
  
 .main-magazine .stay-info .more {
     position: absolute;
-    bottom: 0;
-    left: 40px;
+    left: 35px;
+    bottom: 30px;
+    font-size: 14px;
+    color: #000;
+    border-bottom: 1px solid #000;
 }
  
+.main-magazine .fa-chevron-left {
+    position: absolute;
+    font-family: 'FontAwesome';
+    font-size: 50px;
+    font-weight: 900;
+    color: #fefefe;
+    top: 50%;
+    left: 72px;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 0.4;
+ 
+ }
+ 
+ 
+ .main-magazine .fa-chevron-right {
+    position: absolute;
+    font-family: 'FontAwesome';
+    font-size: 50px;
+    font-weight: 900;
+    color: #fefefe;
+    top: 50%;
+    margin-top: -25px;
+    right: 72px;
+    width: 20px;
+    height: 100px;
+    bottom: 0;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 0.4;
+ }
