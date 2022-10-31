@@ -203,31 +203,20 @@
 				
 				
 				<!-- 검색 기능 처리 -->
-<<<<<<< Updated upstream
+
 				<form  method="post" onsubmit="return search(this);">
 				<select name="search_field">
 					<option value="no" selected="selected">숙소 번호</option>
 					<option value="name">숙소 이름</option>
-=======
-				<form method="post" action="<%=request.getContextPath() %>/magazineSearch.do">
 			
-				<select name="search_field">
-					<option value="${map.mg_stayno}">숙소 번호</option>
-					<option value="${map.mg_name}">숙소 이름</option>
->>>>>>> Stashed changes
 				</select>
 		
 				<input type="text" name="search_keyword">
 				<input type="submit" value="검색">
-<<<<<<< Updated upstream
+				<br><br>
 				</form>
-				<br><br>
-=======
-				<br><br>
-			</form>
->>>>>>> Stashed changes
-				
-				
+
+
 
 
 				<c:choose>
@@ -303,7 +292,7 @@
 	
 }	
 	
-<<<<<<< Updated upstream
+
 	function search(el) {
 			$.ajax({
 				type : "post",
@@ -323,9 +312,8 @@
 			});
 			return false;
 		}
-=======
+
 	
->>>>>>> Stashed changes
 	
 		</script>
 
