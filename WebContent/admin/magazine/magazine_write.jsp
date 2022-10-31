@@ -5,6 +5,7 @@
 <jsp:include page="../layout/layout_header.jsp" />
 
 <c:set var="stay" value="${stayList}" />
+<c:set var="staylist" value="${List}" />
 
 <script type="text/javascript">
 	$("#nav-magazine").addClass("now");
@@ -169,15 +170,6 @@
 	</form>
 </div>
 
-<!-- 모달 크기 조정 --> 
-<style>
-#modalCategory {
-	display: flex;
-	width: 80%;
-	height: 80%;
-	justify-content: space-between;
-}
-</style>
 
 <div class="modal fade" id="modalCategory" tabindex="-1" type="default"
 	aria-hidden="true">
@@ -204,34 +196,32 @@
 
 				<!-- 검색 설정 : 글 제목, 작성자로 검색 가능 -->
 
+
 				<div>
 					<h2>숙소 검색</h2>
 					<small>등록할 숙소를 검색해 보세요.</small> <br> <br>
-
-					<tr>
-						<th>숙소 번호</th>
-						<td><input type="text" name="mg_stayno"
-							value="${map.mg_stayno}" class="form-control w-90" /></td>
-						<th>숙소 이름</th>
-						<td><input type="text" name="mg_name" value="${map.mg_name}"
-							 class="form-control w-90" /></td>
-					</tr>
-					<br>
-				</div>
-
-				<!-- 검색 버튼 -->
-				<div class="text-center mb-5">
-
-					<button type="submit" class="btn btn-secondary mx-2">
-						<i class="fa fa-search"></i> 숙소 검색
-					</button>
-				</div>
+				
+				
+				<!-- 검색 기능 처리 -->
+				<form  method="post" onsubmit="return search(this);">
+				<select name="search_field">
+					<option value="no" selected="selected">숙소 번호</option>
+					<option value="name">숙소 이름</option>
+				</select>
+		
+				<input type="text" name="search_keyword">
+				<input type="submit" value="검색">
+				</form>
+				<br><br>
+				
+				
 
 
 				<c:choose>
 					<c:when test="${!empty stay }">
+					<ul class="mb-4" id="search-result">
 						<c:forEach items="${stay}" var="list">
-
+						<li class="my-2">
 
 							<c:choose>
 
@@ -255,29 +245,33 @@
 								</c:otherwise>
 								
 							</c:choose>
-
-							<button class="staynobtn" onclick="test('${list.stay_no}')">
+			
+						
+							<button class="staynobtn" id="staynobtn" onclick="test('${list.stay_no}'); close();" data-dismiss="modal">
 								숙소 번호 : <b> ${list.stay_no} </b> / 숙소 이름 : <b>
 									${list.stay_name}</b>
 							</button>
-							<br> <br> 
+							</li>
 
 
 						</c:forEach>
+					</ul>
 					</c:when>
 				</c:choose>
 
 
 			</div>
-
-
 			<div class="modal-footer text-center">
-				<button type="button" class="btn btn-secondary btn-close"
+				<button type="button" id="btn btn-secondary btn-close"
 					data-dismiss="modal">닫기</button>
+					
 			</div>
 		</div>
 	</div>
 </div>
+
+
+
 
 <script>
 	function test(stayno) {
@@ -293,7 +287,30 @@
 		}
 
 		$("#test").val(add_val);
-	}
-</script>
+	
+}	
+	
+	function search(el) {
+			$.ajax({
+				type : "post",
+				url : "magazineStaySearch.do",
+				datatype : "jsp",
+				data: {
+					type : $(el).find("select[name='search_field']").val(),
+					search  : $(el).find("input[name='search_keyword']").val()
+				},
+				success : function(data) {
+					$("#search-result").html(data);
+				},
+				
+				error : function(data) {
+					alert("데이터 통신 오류입니다~~~");
+				}
+			});
+			return false;
+		}
+	
+		</script>
+
 
 <jsp:include page="../layout/layout_footer.jsp" />
