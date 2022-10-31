@@ -273,6 +273,7 @@ public class EventDAO {
 		return result;
 	}
 
+<<<<<<< Updated upstream
 
     // ======================================================
     // 예약정보 가져오기 메서드
@@ -305,6 +306,9 @@ public class EventDAO {
         return dto;
     }
 
+=======
+	
+>>>>>>> Stashed changes
 	
 	
 	
