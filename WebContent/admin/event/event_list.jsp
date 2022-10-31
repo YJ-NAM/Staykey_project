@@ -101,19 +101,19 @@
     <table class="table-list hover">
         <colgroup>
             <col width="4.5%">
-            <col width="18%">
-            <col width="13.5%">
-            <col />
-            <col width="9%">
-            <col width="7.2%">
-            <col width="7.2%">
+            <col width="8%">
             <col width="10%">
+            <col />
+            <col width="12%">
+            <col width="8%">
+            <col width="8%">
+            <col width="12%">
         </colgroup>
 
         <thead>
             <tr>
                 <th>No.</th>
-                <th>이벤트이미지</th>
+                <th>이미지</th>
                 <th>이벤트기간</th>
                 <th>제목</th>
                 <th>아이디/작성자</th>
