@@ -142,8 +142,13 @@
                     </c:otherwise>
                     </c:choose>
                 </td>
-                <td ${showLink}> 
-                	<p class="eng">${dto.bbs_showstart.substring(0, 10)} ~ ${dto.bbs_showend.substring(0, 10)}</p>
+                <td ${showLink} class="eng"> 
+                    <c:choose>
+                    <c:when test="${!empty dto.bbs_showstart || !empty dto.bbs_showend }">${dto.bbs_showstart.substring(0, 10)} ~ ${dto.bbs_showend.substring(0, 10)}</c:when>
+                    <c:otherwise>
+    					<b class="text-danger">제한없음</b>
+               		</c:otherwise>
+                    </c:choose>
                 </td>
                 <td ${showLink} class="eng">${dto.bbs_title }</td>
                 <td ${showLink} class="py-4">

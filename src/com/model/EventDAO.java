@@ -81,10 +81,26 @@ public class EventDAO {
 
         // 검색용 설정
         String search_sql = " where bbs_no > 0";
-        if(map.get("ps_title") != null){
-            search_sql += " and bbs_title like '%"+map.get("ps_title")+"%'";
+
+        
+        if(map.get("ps_title") != "" && map.get("ps_title") != null) {
+            search_sql += " and bbs_title like '%" + map.get("ps_sess") + "%'";
+        }
+        if(map.get("ps_name") != "" && map.get("ps_name") != null) {
+            search_sql += " and bbs_writer_name like '%" + map.get("ps_name") + "%'";
+        }
+        if(map.get("ps_id") != "" && map.get("ps_id") != null) {
+            search_sql += " and bbs_writer_id like '%" + map.get("ps_id") + "%'";
         }
 
+        if(!map.get("ps_duse").equals("1")) {
+            String sql_start_date = (String)map.get("ps_start");
+                   sql_start_date = sql_start_date.replace("-", "");
+            String sql_end_date = (String)map.get("ps_end");
+                   sql_end_date = sql_end_date.replace("-", "");
+            search_sql += " and ( (to_char(bbs_showstart, 'YYYYMMDD') >= " + sql_start_date + " and to_char(bbs_showstart, 'YYYYMMDD') <= " + sql_end_date + ")";
+            search_sql += " or (to_char(bbs_showend, 'YYYYMMDD') >= " + sql_start_date + " and to_char(bbs_showend, 'YYYYMMDD') <= " + sql_end_date + ") )";
+        }
 
         try {
             openConn();
@@ -93,9 +109,10 @@ public class EventDAO {
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
-            if(rs.next()) result = rs.getInt(1);
+            if (rs.next())
+                result = rs.getInt(1);
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
 
         } finally {
@@ -104,7 +121,6 @@ public class EventDAO {
 
         return result;
     }
-
 
 
 
@@ -125,13 +141,22 @@ public class EventDAO {
 
         
         if (map.get("ps_name") != "" && map.get("ps_name") != null) {
-            search_sql2 += " and member_name like '%" + map.get("ps_name") + "%'";
+            search_sql2 += " and bbs_writer_name like '%" + map.get("ps_name") + "%'";
         }
         if (map.get("ps_id") != "" && map.get("ps_id") != null) {
-            search_sql2 += " and member_id like '%" + map.get("ps_id") + "%'";
+            search_sql2 += " and bbs_writer_id like '%" + map.get("ps_id") + "%'";
         }
         if (map.get("ps_title") != "" && map.get("ps_title") != null) {
-            search_sql2 += " and bbs_title like '%" + map.get("ps_email") + "%'";
+            search_sql2 += " and bbs_title like '%" + map.get("ps_title") + "%'";
+        }
+
+        if(!map.get("ps_duse").equals("1")) {
+            String sql_start_date = (String)map.get("ps_start");
+                   sql_start_date = sql_start_date.replace("-", "");
+            String sql_end_date = (String)map.get("ps_end");
+                   sql_end_date = sql_end_date.replace("-", "");
+            search_sql2 += " and ( (to_char(bbs_showstart, 'YYYYMMDD') >= " + sql_start_date + " and to_char(bbs_showstart, 'YYYYMMDD') <= " + sql_end_date + ")";
+            search_sql2 += " or (to_char(bbs_showend, 'YYYYMMDD') >= " + sql_start_date + " and to_char(bbs_showend, 'YYYYMMDD') <= " + sql_end_date + ") )";
         }
 
         search_sql1 += search_sql2;
@@ -202,6 +227,36 @@ public class EventDAO {
 
 
 
+    // ======================================================
+    // 예약정보 가져오기 메서드
+    // ======================================================
+    public EventDTO getEventInfo(int no) {
+        EventDTO dto = null;
+
+        try {
+            openConn();
+
+            sql = "select * from staykey_event where reserv_sess = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) {
+                dto = new EventDTO();
+
+                dto.setBbs_no(rs.getInt("bbs_no"));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return dto;
+    }
 
 
 
