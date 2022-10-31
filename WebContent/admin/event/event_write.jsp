@@ -24,9 +24,9 @@
 		action="<%=request.getContextPath()%>/admin/eventWriteOk.do">
 		
 		<!-- 작성자, 아이디, 비밀번호 hidden으로 넘기기. -->
-		<input type="hidden" name="mag_writer_name" value="hyunjin" /> <input
-			type="hidden" name="mag_writer_id" value="user1234" /> <input
-			type="hidden" name="mag_writer_pw" value="1234" />
+			<input type="hidden" name="ev_writer_name" value="hyunjin" /> <input
+			type="hidden" name="ev_writer_id" value="user1234" /> <input
+			type="hidden" name="ev_writer_pw" value="1234" />
 
 		<table class="table-form mt-3">
 			<colgroup>

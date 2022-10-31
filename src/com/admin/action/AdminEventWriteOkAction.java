@@ -3,12 +3,17 @@ package com.admin.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.controller.Action;
 import com.controller.ActionForward;
+import com.model.EventDAO;
 import com.model.EventDTO;
 import com.model.MagazineDAO;
 import com.model.MagazineDTO;
@@ -46,6 +51,10 @@ public class AdminEventWriteOkAction implements Action {
 		String ev_stayno = multi.getParameter("ev_stayno");
 		String ev_start = multi.getParameter("ev_start");
 		String ev_end = multi.getParameter("ev_end");
+		String ev_writer_name = multi.getParameter("ev_writer_name");
+		String ev_writer_id = multi.getParameter("ev_writer_id");
+		String ev_writer_pw = multi.getParameter("ev_writer_pw");
+		System.out.println("123123");
 
 		
 		// 첨부파일 이름 변경 처리
@@ -121,16 +130,21 @@ public class AdminEventWriteOkAction implements Action {
 			String fileDBName = thisFolder + mag_flie_rename;
 			dto.setBbs_file5(fileDBName);
 		}
-		
+		System.out.println("여긴가");
+
 		
 		dto.setBbs_title(ev_title);
 		dto.setBbs_content(ev_content);
 		dto.setBbs_stayno(ev_stayno);
 		dto.setBbs_showstart(ev_start);
 		dto.setBbs_showend(ev_end);
+		dto.setBbs_writer_name(ev_writer_name);
+		dto.setBbs_writer_id(ev_writer_id);
+		dto.setBbs_writer_pw(ev_writer_pw);
 
-		MagazineDAO dao = MagazineDAO.getInstance();
-		int res = dao.registerMagazine(dto);
+		
+		EventDAO dao = EventDAO.getInstance();
+		int res = dao.registerEvent(dto);
 		
 
 		ActionForward forward = new ActionForward();
@@ -140,7 +154,7 @@ public class AdminEventWriteOkAction implements Action {
 			forward.setRedirect(true);
 			forward.setPath("eventList.do");
 		} else {
-			out.println("<script>alert('매거진 등록 중 에러가 발생했습니다.'); history.back();</script>");
+			out.println("<script>alert('이벤트 등록 중 에러가 발생했습니다.'); history.back();</script>");
 		}
 		return forward;
 	}
