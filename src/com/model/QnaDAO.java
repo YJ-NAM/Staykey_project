@@ -273,6 +273,36 @@ public class QnaDAO {
     } 
 
 
+    
+    // ======================================================
+    // 문의글 상태 수정 메서드
+    // ======================================================
+    public int statusModify(QnaDTO dto) {
+        int result = 0;
+
+        try {
+            openConn();
+            sql = "update staykey_qna set bbs_status = ? where bbs_no = ?";
+            pstmt = con.prepareStatement(sql);
+
+            pstmt.setString(1, dto.getBbs_status());
+            pstmt.setInt(2, dto.getBbs_no());
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(pstmt, con);
+        }
+        return result;
+    }
+   
+    
+    
+    
+    
+    
 
 
 }
