@@ -13,7 +13,11 @@
 		String search_keyword = request.getParameter("search").trim();
 
 		List<StayDTO> stay = dao.getStaySearchList(search_type, search_keyword);
+
 %>
+
+
+
 				<c:choose>
 					<c:when test="${!empty stay }">
 						<c:forEach items="${stay}" var="list">
@@ -53,6 +57,7 @@
 						</c:forEach>
 					</c:when>
 
-            <c:otherwise>등록된 회원이 없습니다.
+            <c:otherwise>
+            등록된 회원이 없습니다.
             </c:otherwise>
             </c:choose>
