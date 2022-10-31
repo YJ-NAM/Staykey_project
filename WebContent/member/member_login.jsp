@@ -14,6 +14,8 @@
 
 
 
+
+
 <div class="container member-form">
     <form name="login_form" method="post" action="<%=request.getContextPath()%>/memberLoginOk.do" onsubmit="return validateForm(this);">
     <fieldset class="mf-wrap">
@@ -24,7 +26,7 @@
             <p><input type="password" name="login_pw" placeholder="비밀번호" required /></p>
         </div>
 
-        <div class="mf-msg">존재하지 않는 아이디입니다.</div>
+        ${ errMsg }
 
         <div class="mf-btn">
             <p><button type="submit">LOGIN</button></p>

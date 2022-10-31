@@ -66,10 +66,27 @@ $(document).ready(function(){
             delay: 3000,
             disableOnInteraction: false,
         },
-        nextEl: ".main-event .fa-chevron-right",
-        prevEl: ".main-event .fa-chevron-left",
       });
-    
+
+
+      var visualSwiper = new Swiper("#magazine-container", {
+        effect: "fade",
+        slidesPerView: 1,
+        spaceBetween: 0,
+        speed: 500,
+        loop: true,
+        touchEnabled: false,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '#magazine-container .fa-chevron-right',
+            prevEl: '#magazine-container .fa-chevron-left',
+        }
+    });
+
+      
 });
 
 </script>
@@ -417,12 +434,8 @@ ${ login_msg }
 
 
     <!-------- 메인 페이지 매거진 창 // start --------->
-    <div class="container-wide main-magazine">
+    <div class="main-magazine">
         <div class="swiper-container" id="magazine-container">
-            
-            <!-- <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div> -->
-                
             <ul class="swiper-wrapper">
                     
                     <li class="swiper-slide">
@@ -430,8 +443,23 @@ ${ login_msg }
                             <img src="https://images.stayfolio.com/system/pictures/images/000/149/523/original/135581dedb1c12eb129bef11419240c8d531501c.jpg?1666732643" />
                             <div class="stay-info">
                                 <p class="logo"></p>
-                                <p class="text"></p>
-                                <p class="magazine">Magazine</p>
+                                <p class="text">육지의 섬에서<br>완전한 자유를 얻다</p>
+                                <p class="magazine">MAGAZINE</p>
+                                <p class="more">Read more</p>
+                            </div>
+                        </a>
+                    
+                    </li>
+                    
+                
+                    
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <img src="https://images.stayfolio.com/system/pictures/images/000/145/825/original/723b3074a426daf8b64c5558c5628a9aee3e51fc.jpg?1664501407" />
+                            <div class="stay-info">
+                                <p class="logo"></p>
+                                <p class="text">가능한 한 Chill하게<br>그러나 즐겁게</p>
+                                <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
                             </div>
                         </a>
@@ -443,11 +471,11 @@ ${ login_msg }
                     
                     <li class="swiper-slide">
                         <a href="#">
-                            <img src="" />
+                            <img src="https://images.stayfolio.com/system/pictures/images/000/141/787/original/871d151510e15a774bcd84f5637d657c03a94df8.jpg?1663121653" />
                             <div class="stay-info">
-                                <p class="logo"></p>
-                                <p class="text"></p>
-                                <p class="magazine">Magazine</p>
+                                <img src="https://images.stayfolio.com/system/pictures/images/000/141/790/original/0c6ebcdfee1a734d55a624abaad3c49a1d1af3da.jpg?1663121694" class="logo"></img>
+                                <p class="text">한 척의 우주선 혹은<br>비일상의 궤도에 올라</p>
+                                <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
                             </div>
                         </a>
@@ -456,51 +484,20 @@ ${ login_msg }
                     
                 
                     
-                    
                     <li class="swiper-slide">
                         <a href="#">
-                            <img src="" />
+                            <img src="https://images.stayfolio.com/system/pictures/images/000/140/370/original/a79d65f3efd11ef8f463e31009661c5e5d96e4c4.jpg?1662352893" />
                             <div class="stay-info">
                                 <p class="logo"></p>
-                                <p class="text"></p>
-                                <p class="magazine">Magazine</p>
-                                <p class="more">Read more</p>
-                            </div>
-                        </a>
-                    
-                    </li>
-                    
-                
-                    
-                    
-                    <li class="swiper-slide">
-                        <a href="#">
-                            <img src="" />
-                            <div class="stay-info">
-                                <p class="logo"></p>
-                                <p class="text"></p>
-                                <p class="magazine">Magazine</p>
+                                <p class="text">마음에 서리는 시간의 기억들</p>
+                                <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
                             </div>
                         </a>
                     </li>
-
-
-                    <li class="swiper-slide">
-                        <a href="#">
-                            <img src=""/>
-                             <div class="stay-info">
-                                <p class="logo"></p>
-                                <p class="text"></p>
-                                <p class="magazine">Magazine</p>
-                                <p class="more">Read more</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            <div class="swiper-pagination">
-                <span class="magazine-pagination-current"></span>
-                <span class="magazine-pagination-total"></span></div>
+                </ul> 
+            <div class="fa fa-chevron-left"></div>
+            <div class="fa fa-chevron-right"></div>
          </div>
     </div>
 </div>
