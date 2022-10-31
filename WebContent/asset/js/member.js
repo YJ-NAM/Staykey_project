@@ -12,7 +12,6 @@ $(function(){
 });
 
 
-
 /////////////////////////////////////////////////////
 // 회원가입
 /////////////////////////////////////////////////////
@@ -61,6 +60,7 @@ $(function() {
     // 비밀번호 확인
     $("#join_pw").on("keyup", function() {
         let joinPwd = $(this).val().trim();
+        let join_rePwd = $("input[name='join_pw_re']").val().trim();
 
         let pwd_pattern1 = /[a-zA-Z]/;
         let pwd_pattern2 = /[0-9]/;
@@ -93,23 +93,68 @@ $(function() {
         if(pwd_pattern4.test(joinPwd)) {
             $(".checked").children('li').addClass("on"); 
         }
+
+        // 비밀번호 일치 쌍방 체크 필요
+        if(joinPwd.length > 0 && join_rePwd.length > 0) {
+            if(joinPwd == join_rePwd) {
+                $("input[name='join_pw_re']").parent().find("p.error").hide();
+            }else if(joinPwd != join_rePwd) {
+                $("input[name='join_pw_re']").parent().find("p.error").show();
+            }
+        }
     });
 
     // 비밀번호 일치 여부 확인
     $("input[name='join_pw_re']").on("keyup", function() {
         let join_rePwd = $(this).val().trim();
-        let join_pwd = $("#join_pw").val().trim();
-        $(this).parent().find("p.error").show();
+        let joinPwd = $("#join_pw").val().trim();
+        $(this).parent().find("p.error").hide();
 
-        if(join_pwd.length > 0 && join_rePwd.length > 0){
-            if(join_pwd == join_rePwd) {
+        if(joinPwd.length > 0 && join_rePwd.length > 0){
+            if(joinPwd == join_rePwd) {
                 $("input[name='join_pw_re']").parent().find("p.error").hide();
+            }else if(joinPwd != join_rePwd) {
+                $("input[name='join_pw_re']").parent().find("p.error").show();
             }
         }
-    })
+    });
 
     // 이름 확인
+    $("#join_name").on("keyup", function() {
+        let join_name = $(this).val().trim();
+        $(this).parent().find("p.error").hide();
+
+        if(join_name.length < 2 || join_name.length >= 10) {
+            $("#join_name").parent().find("p.error").show();
+        }else {
+            $("#join_name").parent().find("p.error").hide();
+        }
+    });
 
     // 이메일 확인
+    $("#join_email").on("keyup", function() {
+        let join_email = $(this).val().trim();
+        let email_pattern = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+        $(this).parent().find("p.error").hide();
+
+        if(!email_pattern.test(join_email)) {
+            $("#join_email").parent().find("p.error").show();
+        }else {
+            $("#join_email").parent().find("p.error").hide();
+        }
+    });
+
+    // 전화번호 확인
+    $("#join_phone").on("keyup", function() {
+        let join_phone = $(this).val().trim();
+        let phone_pattern = /^[0-9]{0,4}-[0-9]{3,4}-[0-9]{4}$/g;
+        $(this).parent().find("p.error").hide();
+
+        if(!phone_pattern.test(join_phone)) {
+            $("#join_phone").parent().find("p.error").show();
+        }else {
+            $("#join_phone").parent().find("p.error").hide();
+        }
+    });
 
 })
