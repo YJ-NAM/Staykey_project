@@ -661,103 +661,88 @@ legend {
 /* .page-paging
 /*************************/
 .page-paging {
-    display: inline-block;
+    position: relative;
+    max-width: 1330px;
     padding: 0;
+    margin: 70px auto;
     text-align: center;
     font-size: 0;
     line-height: 0;
     vertical-align: top;
+    font-family: 'Lato';
+}
+.page-paging:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -40px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ddd;
 }
 .page-paging ol {
     display: inline-block;
     vertical-align: top;
-    margin: 0;
+    margin: 0 5px;
     padding: 0;
 }
 .page-paging span,
 .page-paging ol li {
     display: inline-block;
     margin-left: -1px;
-    background: #fefefe;
     line-height: 36px;
     letter-spacing: -1px;
-    color: #6c757d;
+    color: #000;
     vertical-align: top;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    border-left: 1px solid #ccc;
 }
 
 .page-paging span {
     width: 38px;
-    font-size: 16px;
+    font-size: 20px;
     overflow: hidden;
 }
 .page-paging span.nolink {
-    width: 38px;
-    height: 38px;
-    text-align: center;
-    box-sizing: border-box;
+    display: none;
 }
 .page-paging span:first-child {
     margin-left: 0;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
 }
 .page-paging span:last-child {
     margin-left: 0;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    -webkit-border-top-right-radius: 5px;
-    -webkit-border-bottom-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
 }
 
 .page-paging a {
     display: block;
     width: 38px;
     text-align: center;
-    font-family: verdana;
     font-size: 14px;
-    color: #007bff !important;
     text-decoration: none;
     letter-spacing: -1px;
+    color: #000;
+    opacity: 0.6;
 }
 .page-paging span a {
     width: 38px;
     height: 36px;
-    font-size: 16px;
+    margin-top: -1px;
+    font-size: 20px;
     text-decoration: none;
     letter-spacing: -1px;
 }
 .page-paging a:hover {
-    color: #000;
-    background: #f3f3f3 !important;
+    opacity: 1;
     text-decoration: none;
 }
 
 .page-paging li.now {
     width: 38px;
     height: 38px;
-    color: #fff;
-    background: #007bff !important;
-    border-top: 1px solid #007bff;
-    border-bottom: 1px solid #007bff;
-    font-family: verdana;
-    font-size: 13px;
+    font-size: 15px;
     text-align: center;
     box-sizing: border-box;
+    opacity: 1;
+    font-weight: 600;
 }
 
 
