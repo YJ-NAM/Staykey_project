@@ -26,22 +26,19 @@ public class AdminEventListAction implements Action {
 
 
         // 검색용 변수들 정의
-        String ps_type = "";
         String ps_name = "";
         String ps_id = "";
-        String ps_email = "";
+        String ps_title = "";
         String ps_order = "";
-        if(request.getParameter("ps_type") != null){ ps_type = request.getParameter("ps_type").trim(); }else{ ps_type = "all"; }
         if(request.getParameter("ps_name") != null){ ps_name = request.getParameter("ps_name").trim(); }else{ ps_name = ""; }
         if(request.getParameter("ps_id") != null){ ps_id = request.getParameter("ps_id").trim(); }else{ ps_id = ""; }
-        if(request.getParameter("ps_email") != null){ ps_email = request.getParameter("ps_email").trim(); }else{ ps_email = ""; }
+        if(request.getParameter("ps_title") != null){ ps_title = request.getParameter("ps_title").trim(); }else{ ps_title = ""; }
         if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "register_desc"; }
 
         // 뷰에 전달할 매개변수 추가
-        map.put("ps_type", ps_type);
         map.put("ps_name", ps_name);
         map.put("ps_id", ps_id);
-        map.put("ps_email", ps_email);
+        map.put("ps_title", ps_title);
         map.put("ps_order", ps_order);
 
 
@@ -75,7 +72,7 @@ public class AdminEventListAction implements Action {
 
 
         // 페이지 이동 URL
-        String pageUrl = request.getContextPath()+"/admin/eventList.do?ps_type="+ps_type+"&ps_name="+ps_name+"&ps_id="+ps_id+"&ps_email="+ps_email+"&ps_order="+ps_order;
+        String pageUrl = request.getContextPath()+"/admin/eventList.do?ps_name="+ps_name+"&ps_id="+ps_id+"&ps_title="+ps_title+"&ps_order="+ps_order;
 
 
         // 뷰에 전달할 매개변수 추가
