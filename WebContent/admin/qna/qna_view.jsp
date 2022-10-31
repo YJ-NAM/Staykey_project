@@ -140,19 +140,17 @@
                     <h4>댓글 목록</h4>
                     <table class="table-form mt-2">
                         <colgroup>
-                            <col width="8%" />
+                            <col width="18%" />
                             <col />
                             <col width="15%" />
-                            <col width="10%" />
-                            <col width="25%" />
-                        </colgroup>
+                            <col width="30%" />
+                        </colgroup>	
 
                         <thead>
                             <tr>
-                                <th>No.</th>
-                                <th>내용</th>
                                 <th>작성자</th>
-                                <th>작성일자</th>
+                                <th>내용</th>
+                                <th>작성일</th>
                                 <th>기능</th>
                             </tr>
                         </thead>
@@ -163,24 +161,19 @@
                             <c:forEach items="${qList}" var="qdto">
                             <c:set var="comment_qnano" value="${qdto.comment_qnano}"/>
                             <tr>
-                                <td class="text-center">${qdto.comment_no}</td>
+                                <td class="text-center"><b>${qdto.comment_writer_name}</b></td>
                                 <td class="text-left">${qdto.comment_content}</td>
-                                <td class="text-center">
-	                                <p><b>${qdto.comment_writer_name}</b></p>
-	                				<p class="eng">(${qdto.comment_writer_id})</p>
-                                </td>
-                                <td class="text-center">${qdto.comment_date.substring(0, 10)}<br />${qdto.comment_date.substring(11)}</td>
-                                <td class="text-center">
-                                	<a href="<%=request.getContextPath()%>/admin/qnaCommentModify.do?no=${qdto.comment_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
-                    				<a href="<%=request.getContextPath()%>/admin/qnaCommentDeleteOk.do?no=${dqdto.comment_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-                                </td>
+                                <td class="text-center">${qdto.comment_date}</td>
+	                           	<td>
+	                    			<a href="<%=request.getContextPath()%>/admin/qnaCommentDeleteOk.do?no=${qdto.comment_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+	                			</td>
                             </tr>
                             </c:forEach>
                             </c:when>
                 
                             <c:otherwise>
                             <tr>
-                                <td colspan="5" class="nodata border-bottom-0">댓글이 없습니다.</td>
+                                <td colspan="4" class="nodata border-bottom-0">댓글이 없습니다.</td>
                             </tr>
                             </c:otherwise>
                             </c:choose>
@@ -188,23 +181,25 @@
                          </tbody>
                     </table>
                     
-                    
                      <form name="write_form" method="post" action="<%=request.getContextPath() %>/admin/qnaCommentOk.do?no=${comment_qnano}">
                    		<%-- 이름, 아이디, 비밀번호 임시로 받음. --%>
                    		<input type="hidden" name="comment_writer_name" value="rock" />
 						<input type="hidden" name="comment_writer_id" value="admin1234" />
 						<input type="hidden" name="comment_writer_pw" value="1234" />
                      <table class="table-form mt-2">
-                     <tbody>
+                     	<colgroup>
+                            <col width="18%" />
+                            <col />
+                            <col width="25%" />
+                     	</colgroup>
 					    <tr> 
-					        <th>답변 내용</th>										
-							<td colspan="3"> 
-								<textarea name="comment_content" cols="20" rows="4" class="form-control" ></textarea></td>
+					        <th>댓글 내용</th>										
+							<td> 
+								<textarea name="comment_content" cols="20" rows="3" class="form-control" ></textarea></td>
                             <td class="text-center">
-                                <button type="submit" class="btn btn-default btn-primary mx-1"><i class="fa fa-pencil"></i>추가</button>
+                                <button type="submit" class="btn btn-lg btn-primary w-100 h-100"><i class="fa fa-pencil"></i> 쓰기</button>
                             </td>
-					    </tr>
-					</tbody>    
+					    </tr> 
 			   		</table>
 			   		</form>	
 			   		

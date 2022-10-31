@@ -13,6 +13,12 @@ public class SiteStayListAction implements Action {
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 
-        return null;
+
+        ActionForward forward = new ActionForward();
+        forward.setRedirect(false);
+        forward.setPath("stay/stay_list.jsp");
+
+        return forward;
     }
+
 }

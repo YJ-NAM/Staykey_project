@@ -5,19 +5,6 @@
 <c:set var="stayModify" value="${ stayModify }" />
 <c:set var="stayType" value="${ stayType }" />
 
-<script>
-
-// $(function() {
-	
-// 	$("input[name='stay_file_delete'][value='Y']").click(function(){	
-// 		if($(this).prop("checked")) {	
-// 			$("[value='hi']").prop("checked", true);
-// 		}
-// 	}) 
-
-// });
-
-// </script>
 
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
@@ -91,7 +78,9 @@
             <td colspan="3">
                 <input type="file" name="stay_file1" class="form-control w-50" />
                 <c:if test="${!empty stayModify.stay_file1}"><p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file1}" style="max-height: 200px;" alt="" /></p>
-                <label><input type="checkbox" name="stay_file_delete" value="Y1" /> 등록된 사진 삭제</label> 
+                <div class="form-check form-check-inline">
+                	<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y1" /> 등록된 사진 삭제</label>
+                </div>
                 </c:if>
             </td>
         </tr>
@@ -100,7 +89,9 @@
             <td colspan="3">
                 <input type="file" name="stay_file2" class="form-control w-50" />
                 <c:if test="${!empty stayModify.stay_file2}"><p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file2}" style="max-height: 200px;" alt="" /></p>
-                <label><input type="checkbox" name="stay_file_delete" value="Y2" /> 등록된 사진 삭제</label> 
+                <div class="form-check form-check-inline">
+                	<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y2" /> 등록된 사진 삭제</label>
+                </div> 
           	    </c:if>
             </td>
         </tr>
@@ -109,7 +100,9 @@
             <td colspan="3">
                 <input type="file" name="stay_file3" class="form-control w-50" />
                 <c:if test="${!empty stayModify.stay_file3}"><p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file3}" style="max-height: 200px;" alt="" /></p>
-                <label><input type="checkbox" name="stay_file_delete" value="Y3" /> 등록된 사진 삭제</label> 
+                <div class="form-check form-check-inline">
+                	<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y3" /> 등록된 사진 삭제</label>
+                </div> 
                 </c:if>                  
            </td>
         </tr>
@@ -118,7 +111,9 @@
             <td colspan="3">
                 <input type="file" name="stay_file4" class="form-control w-50" />
                 <c:if test="${!empty stayModify.stay_file4}"><p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file4}" style="max-height: 200px;" alt="" /></p>
-                <label><input type="checkbox" name="stay_file_delete" value="Y4" /> 등록된 사진 삭제</label> 
+                <div class="form-check form-check-inline">
+                	<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y4" /> 등록된 사진 삭제</label>
+                </div> 
                 </c:if>            
             </td>
         </tr>
@@ -127,7 +122,9 @@
             <td colspan="3">
                 <input type="file" name="stay_file5" class="form-control w-50" />
                 <c:if test="${!empty stayModify.stay_file5}"><p class="mt-2"><img src="<%=request.getContextPath()%>${stayModify.stay_file5}" style="max-height: 200px;" alt="" /></p>
-                <label><input type="checkbox" name="stay_file_delete" value="Y5" /> 등록된 사진 삭제</label> 
+                <div class="form-check form-check-inline">
+                	<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y5" /> 등록된 사진 삭제</label>
+                </div> 
                 </c:if>
             </td>
         </tr>
@@ -176,7 +173,10 @@
                             <c:if test="${ !empty stayModify.stay_option1_photo }">
                                 <p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option1_photo }" alt="" width="100px" height="100px"/></p>
                                 <div class="input-group-prepend w-80 justify-content">
-                                &nbsp;<label><input type="checkbox" name="stay_file_delete" value="Y6" class="checkbox" /> 등록된 사진 삭제</label>
+                                &nbsp;                
+                                <div class="form-check form-check-inline">
+				                	<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y6" /> 등록된 사진 삭제</label>
+				                </div> 
                                 </div>
 			                </c:if>
                             <input type="file" name="stay_option1_photo" class="form-control w-50" value="${ stayModify.stay_option3_photo }" />
@@ -226,8 +226,11 @@
                             <c:if test="${ !empty stayModify.stay_option2_photo }">
                                 <p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option2_photo }" alt="" width="100px" height="100px"/></p>
                                 <div class="input-group-prepend w-80 justify-content">
-                                &nbsp;<label><input type="checkbox" name="stay_file_delete" value="Y7" class="checkbox" /> 등록된 사진 삭제</label>
-                                </div>
+                                &nbsp;
+                                <div class="form-check form-check-inline">
+				                	<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y7" /> 등록된 사진 삭제</label>
+				                </div> 
+				                </div>
 			                </c:if>
                             <input type="file" name="stay_option2_photo" class="form-control w-100" />
                         </div>
@@ -276,7 +279,10 @@
                             <c:if test="${ !empty stayModify.stay_option3_photo }">
                                 <p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option3_photo }" alt="" width="100px" height="100px"/></p>
                                 <div class="input-group-prepend w-80 justify-content">
-                                &nbsp;<label><input type="checkbox" name="stay_file_delete" value="Y8" class="checkbox" /> 등록된 사진 삭제</label>
+                                &nbsp;                                
+                                <div class="form-check form-check-inline">
+				                	<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y7" /> 등록된 사진 삭제</label>
+				                </div> 
                                 </div>
 			                </c:if>
                             <input type="file" name="stay_option3_photo" class="form-control w-50" value="${ stayModify.stay_option3_photo }" />
@@ -334,7 +340,7 @@
 
             <div class="gwb-center">
                 <button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i> 목록보기</button>
-                <button type="submit" class="btn btn-lg btn-primary mx-1"><i class="fa fa-pencil"></i> 등록하기</button>
+                <button type="submit" class="btn btn-lg btn-primary mx-1"><i class="fa fa-pencil"></i> 수정하기</button>
             </div>
 
             <div class="gwb-right"></div>

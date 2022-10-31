@@ -125,7 +125,7 @@
                     <c:choose>
                     <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" alt="" /></c:when>
                     <c:otherwise>
-                    <svg class="bd-placeholder-img" width="60" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                    <svg class="bd-placeholder-img" width="70" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
                         <title>${dto.getMember_name()}</title>
                         <rect width="100%" height="100%" fill="#eee"></rect>
                         <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>

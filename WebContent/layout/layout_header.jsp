@@ -55,33 +55,32 @@
     <!-- header //START -->
     <header class="header">
         <div class="h-wrap">
-            <div class= "h-logo">
-                    <h2><img src="<%=request.getContextPath()%>/asset/images/staykey_logo.png" alt="logo"></h2>
-                </div>
-            <div class="h-gnb">
-                <div class= "h-location grow-flex-1">
-                    <button type="button" class="location-where"><span><i class="icon-location-pin"></i>어디로 갈까요?</span></button>
-                    <button type="button" class="location-when"><span><i class="icon-calendar"></i>언제 떠날까요?</span></button>
-                </div>
+            <div class="h-logo flex-grow-1">
+                <h2><a href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/asset/images/staykey_logo.png" alt="StayKey" /></a></h2>
+            </div>
 
-                <div class= "h-nav">
+
+            <div class="h-location flex-grow-1">
+                <button type="button"><i class="icon-location-pin"></i>어디로 갈까요?</button>
+                <button type="button"><i class="icon-calendar"></i>언제 떠날까요?</button>
+            </div>
+
+
+            <div class="h-gnb">
+                <div class="h-nav">
                     <ul class="h-menu">
-                        <li><a href="#">살펴보기</a></li>
-                        <li><a href="#">함께하기</a></li>
-                        <li><a href="#">읽어보기</a></li>
-                        <li><a href="#">앞서보기</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do" id="nav-stay">살펴보기</a></li>
+                        <li><a href="<%=request.getContextPath()%>/eventList.do" id="nav-event">함께하기</a></li>
+                        <li><a href="<%=request.getContextPath()%>/magazineList.do" id="nav-magazine">읽어보기</a></li>
                     </ul>
                 </div>
-                    <div class="menu-etc">
-                        <div class="etc-login">
-                            <p><button type="button" class= "login">Log-in</button></p>
-                        </div>
+
+                <div class="menu-etc">
+                    <a href="<%=request.getContextPath()%>/memberLogin.do">Log-in</a>
+                    <a href="<%=request.getContextPath()%>/memberJoin.do">Join</a>
                 </div>
             </div>
         </div>
-        
-        
-        
     </header>
     <!-- header //END -->
 

@@ -112,7 +112,7 @@ public class QnaCommentDAO {
         try {
             openConn();
 
-            sql = "select * from staykey_qna_comment where comment_qnano = ?";
+            sql = "select * from staykey_qna_comment where comment_qnano = ? order by comment_date asc";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, no);
             rs = pstmt.executeQuery();
@@ -123,7 +123,7 @@ public class QnaCommentDAO {
             	
             	commemtDto.setComment_no(rs.getInt("comment_no"));
             	commemtDto.setComment_qnano(rs.getInt("comment_qnano"));
-            	commemtDto.setComment_content(rs.getString("comment_content"));
+            	commemtDto.setComment_content(rs.getString("comment_content").replace("\n", "<br />"));
             	commemtDto.setComment_writer_name(rs.getString("comment_writer_name"));
             	commemtDto.setComment_writer_id(rs.getString("comment_writer_id"));
             	commemtDto.setComment_writer_pw(rs.getString("comment_writer_pw"));
@@ -181,8 +181,37 @@ public class QnaCommentDAO {
     }
 
 
+    // ======================================================
+    // 답변 삭제 + 글번호 재작업 메서드
+    // ======================================================
 
+    public int deleteComment( int no) {
+        int result = 0;
 
+        try {
+            openConn();
 
+            sql = "delete from staykey_qna_comment where comment_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            result = pstmt.executeUpdate();
+
+            
+            sql = "update staykey_qna_comment set comment_no = comment_no - 1 where comment_no > ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return result;
+    }
+
+    
+    
+    
 
 }
