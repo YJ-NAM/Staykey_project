@@ -1,27 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/layout_header.jsp" />
 
 <c:set var="stay" value="${stayList}" />
-<c:set var="staylist" value="${List}" />
 
-<script type="text/javascript">$("#nav-magazine").addClass("now");</script>
+<script type="text/javascript">
+	$("#nav-event").addClass("now");
+</script>
 
 
 
-<div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
-	<h2>매거진 등록</h2>
-	<small>매거진을 추가 할 수 있습니다.</small>
+<div
+	class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
+	<h2>이벤트 등록</h2>
+	<small>이벤트를 추가할 수 있습니다.</small>
 </div>
 
 
 <div class="pb100">
 	<form name="write_form" method="post" enctype="multipart/form-data"
-		action="<%=request.getContextPath()%>/admin/magazineWriteOk.do">
-		<input type="hidden" name="mag_writer_name" value="hyunjin" />
-		<input type="hidden" name="mag_writer_id" value="user1234" />
-		<input type="hidden" name="mag_writer_pw" value="1234" />
+		action="<%=request.getContextPath()%>/admin/eventWriteOk.do">
+		
+		<!-- 작성자, 아이디, 비밀번호 hidden으로 넘기기. -->
+		<input type="hidden" name="mag_writer_name" value="hyunjin" /> <input
+			type="hidden" name="mag_writer_id" value="user1234" /> <input
+			type="hidden" name="mag_writer_pw" value="1234" />
 
 		<table class="table-form mt-3">
 			<colgroup>
@@ -33,7 +38,7 @@
 
 			<tr>
 				<th>제목</th>
-				<td colspan="3"><input type="text" name="mag_title"
+				<td colspan="3"><input type="text" name="ev_title"
 					maxlength="255" class="form-control" required /></td>
 			</tr>
 
@@ -42,54 +47,8 @@
 			</tr>
 
 			<tr>
-				<th>목록 이미지</th>
-				<td colspan="3"><input type="file" name="mag_list_img"
-					class="form-control w-50" /></td>
-			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>상단 이미지</th>
-				<td colspan="3"><input type="file" name="mag_top_img"
-					class="form-control w-50" /></td>
-			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>유튜브</th>
-				<td colspan="3">
-					<div class="row m-0">
-						<input type="text" name="mag_youtube" value=""
-							class="form-control w-20" />
-						<div class="ml-3">
-							<p class="text-primary">* 유튜브 동영상 주소의 뒷부분을 적어주세요.</p>
-							<p class="text-primary">
-								&nbsp; 예) https://www.youtube.com/watch?v=<b class="text-danger">dLGVvC0MMDw</b>
-							</p>
-						</div>
-					</div>
-				</td>
-			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>상세 이미지1</th>
-				<td colspan="3"><input type="file" name="mag_detail_img1"
-					class="form-control w-50" /></td>
-			</tr>
-
-			<tr>
-				<th>글 내용1</th>
-				<td colspan="3"><textarea name="mag_content1"
+				<th>글 내용</th>
+				<td colspan="3"><textarea name="ev_content"
 						class="form-control" cols="80" rows="10"></textarea></td>
 			</tr>
 
@@ -98,15 +57,19 @@
 			</tr>
 
 			<tr>
-				<th>상세 이미지2</th>
-				<td colspan="3"><input type="file" name="mag_detail_img2"
+				<th>이미지 파일1</th>
+				<td colspan="3"><input type="file" name="ev_file1"
 					class="form-control w-50" /></td>
 			</tr>
 
 			<tr>
-				<th>글 내용2</th>
-				<td colspan="3"><textarea name="mag_content2"
-						class="form-control" cols="80" rows="10"></textarea></td>
+				<td colspan="4" class="space" nowrap="nowrap"></td>
+			</tr>
+
+			<tr>
+				<th>이미지 파일2</th>
+				<td colspan="3"><input type="file" name="ev_file2"
+					class="form-control w-50" /></td>
 			</tr>
 
 			<tr>
@@ -114,16 +77,9 @@
 			</tr>
 
 			<tr>
-				<th>지도<br /> <a href="https://www.google.com/maps"
-					target="_blank">(구글 맵)</a></th>
-				<td colspan="3"><textarea name="mag_map" class="form-control"
-						cols="80" rows="6"></textarea></td>
-			</tr>
-
-			<tr>
-				<th>글 내용3</th>
-				<td colspan="3"><textarea name="mag_content3"
-						class="form-control" cols="80" rows="10"></textarea></td>
+				<th>이미지 파일3</th>
+				<td colspan="3"><input type="file" name="ev_file3"
+					class="form-control w-50" /></td>
 			</tr>
 
 			<tr>
@@ -131,10 +87,30 @@
 			</tr>
 
 			<tr>
+				<th>이미지 파일4</th>
+				<td colspan="3"><input type="file" name="ev_file4"
+					class="form-control w-50" /></td>
+			</tr>
+
+			<tr>
+				<td colspan="4" class="space" nowrap="nowrap"></td>
+			</tr>
+
+			<tr>
+				<th>이미지 파일5</th>
+				<td colspan="3"><input type="file" name="ev_file5"
+					class="form-control w-50" /></td>
+			</tr>
+
+			<tr>
+				<td colspan="4" class="space" nowrap="nowrap"></td>
+			</tr>
+
+			 <tr>
 				<th>숙소 번호</th>
 				<td colspan="3">
 					<div class="row m-0">
-						<input type="text" name="mag_stayno" value="" id="test"
+						<input type="text" name="ev_stayno" value="" id="test"
 							class="form-control w-30" maxlength="255" />
 						<button type="button" class="btn btn-sm btn-warning ml-2"
 							data-toggle="modal" data-target="#modalCategory">
@@ -143,7 +119,40 @@
 					</div>
 				</td>
 			</tr>
-		</table>
+		
+			<tr>
+				<td colspan="4" class="space" nowrap="nowrap"></td>
+			</tr> 
+
+			 	<tr>
+                        <th>이벤트 기간</th>
+                        <td colspan="3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" name="ev_start" id="startDt" class="form-control text-center eng" />
+                                    </div>
+                                </div>
+
+                                <div class="pt-2">~</div>
+
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" name="ev_end" id="endDt" class="form-control text-center eng" />
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+			</table>
+	
 
 
 		<div class="gw-button">
@@ -167,6 +176,9 @@
 </div>
 
 
+
+
+<!-- 모달 창 -->
 <div class="modal fade" id="modalCategory" tabindex="-1" type="default"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable">
@@ -179,9 +191,9 @@
 					aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
-
 			</div>
-
+		</div>
+				
 			<div class="modal-body">
 			
 
@@ -191,11 +203,16 @@
 
 
 				<!-- 검색 설정 : 글 제목, 작성자로 검색 가능 -->
+
+
 				<div>
 					<h2>숙소 검색</h2>
 					<small>등록할 숙소를 검색해 보세요.</small> <br> <br>
+				
+				
 				<!-- 검색 기능 처리 -->
-				<form  method="post" onsubmit="return searchStay(this);">
+
+				<form  method="post" onsubmit="return search(this);">
 				<select name="search_field">
 					<option value="no" selected="selected">숙소 번호</option>
 					<option value="name">숙소 이름</option>
@@ -214,12 +231,15 @@
 					<c:when test="${!empty stay }">
 					<ul class="mb-4" id="search-result">
 						<c:forEach items="${stay}" var="list">
-						<li class="d-flex my-2 align-items-center" onclick="test('${list.stay_no}'); close();" data-dismiss="modal">
+						<li class="my-2">
+
 							<c:choose>
+
 								<c:when test="${!empty list.stay_file1}">
 									<img src="<%=request.getContextPath()%>${list.stay_file1}"
 										alt="" width="60" height="60" />
 								</c:when>
+
 								<c:otherwise>
 									<!-- 이미지가 없는 경우 기본 이미지 -->
 									<svg class="bd-placeholder-img" width="60" height="60"
@@ -233,12 +253,17 @@
 											dy=".1em">no img</text>
 					                        </svg>
 								</c:otherwise>
+								
 							</c:choose>
-							<div class="ml-2">
-								<p><strong>[${list.stay_no}]</strong> ${list.stay_name}</p>
-								<p>${list.stay_desc}</p>
-							</div>
-						</li>
+			
+						
+							<button class="staynobtn" id="staynobtn" onclick="test('${list.stay_no}'); close();" data-dismiss="modal">
+								숙소 번호 : <b> ${list.stay_no} </b> / 숙소 이름 : <b>
+									${list.stay_name}</b>
+							</button>
+							</li>
+
+
 						</c:forEach>
 					</ul>
 					</c:when>
@@ -258,7 +283,7 @@
 
 
 
-<script type="text/javascript">
+<script>
 	function test(stayno) {
 		let this_val = $("#test").val();
 		let add_val = this_val;
@@ -272,51 +297,33 @@
 		}
 
 		$("#test").val(add_val);
-	}	
+	
+}	
 	
 
-	function searchStay(el) {
-        $.ajax({
-            type : "post",
-            url : "staySearchOk.do",
-			data: {
-				type : $(el).find("select[name='search_field']").val(),
-				search  : $(el).find("input[name='search_keyword']").val()
-			},
-            dataType : "html",
+	function search(el) {
+			$.ajax({
+				type : "post",
+				url : "magazineStaySearch.do",
+				datatype : "jsp",
+				data: {
+					type : $(el).find("select[name='search_field']").val(),
+					search  : $(el).find("input[name='search_keyword']").val()
+				},
+				success : function(data) {
+					$("#search-result").html(data);
+				},
+				
+				error : function(data) {
+					alert("데이터 통신 오류입니다~~~");
+				}
+			});
+			return false;
+		}
 
-            success : function(data) {
-            	let get_data = data.split("◇");
-
-            	if(get_data[0] > 0){
-	        		$("#search-result").html("");
-
-	        		let epd_data = get_data[1].split("♠");
-	            	for(var i=1; i<epd_data.length; i++) {
-	            		let sub_data = epd_data[i].split("♣");
-
-	            		let setList = "<li class=\"d-flex my-2 align-items-center\" onclick=\"test('"+sub_data[0]+"'); close();\" data-dismiss=\"modal\">";
-	            			setList += "<img src=\"<%=request.getContextPath()%>"+sub_data[4]+"\" alt=\"\" width=\"60\" height=\"60\" />";
-							setList += "<div class=\"ml-2\">";
-							setList += "<p><strong>["+sub_data[0]+"]</strong> "+sub_data[2]+"</p>";
-							setList += "<p>"+sub_data[3]+"</p>";
-							setList += "</div>";
-	            			setList += "</li>";
-	        			$("#search-result").append(setList);
-	            	}
-	            }else{
-	            	$("#search-result").html("<li class=\"py-3 text-center\">검색된 숙소가 없습니다.</li>");
-	            }
-            },
-
-            error : function(e){
-                alert("Error : " + e.status);
-            }
-        });
-
-        return false;
-	}
-</script>
+	
+	
+		</script>
 
 
 <jsp:include page="../layout/layout_footer.jsp" />

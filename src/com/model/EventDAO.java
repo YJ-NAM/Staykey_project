@@ -123,19 +123,15 @@ public class EventDAO {
         String search_sql1 = " where bbs_no > 0";
         String search_sql2 = "";
 
-        if (map.get("ps_type") != "" && map.get("ps_type").equals("user")) {
-            search_sql2 += " and member_type = 'user'";
-        } else if (map.get("ps_type") != "" && map.get("ps_type").equals("admin")) {
-            search_sql2 += " and member_type = 'admin'";
-        }
+        
         if (map.get("ps_name") != "" && map.get("ps_name") != null) {
             search_sql2 += " and member_name like '%" + map.get("ps_name") + "%'";
         }
         if (map.get("ps_id") != "" && map.get("ps_id") != null) {
             search_sql2 += " and member_id like '%" + map.get("ps_id") + "%'";
         }
-        if (map.get("ps_email") != "" && map.get("ps_email") != null) {
-            search_sql2 += " and member_email like '%" + map.get("ps_email") + "%'";
+        if (map.get("ps_title") != "" && map.get("ps_title") != null) {
+            search_sql2 += " and bbs_title like '%" + map.get("ps_email") + "%'";
         }
 
         search_sql1 += search_sql2;
@@ -143,25 +139,21 @@ public class EventDAO {
         // 정렬용 설정
         String order_sql = "bbs_date";
         if (map.get("ps_order").equals("register_desc")) {
-            order_sql = "member_joindate desc";
+            order_sql = "bbs_date desc";
         } else if (map.get("ps_order").equals("register_asc")) {
-            order_sql = "member_joindate asc";
-        } else if (map.get("ps_order").equals("id_desc")) {
-            order_sql = "member_id desc";
-        } else if (map.get("ps_order").equals("id_asc")) {
-            order_sql = "member_id asc";
-        } else if (map.get("ps_order").equals("name_desc")) {
-            order_sql = "member_name desc";
-        } else if (map.get("ps_order").equals("name_asc")) {
-            order_sql = "member_name asc";
-        } else if (map.get("ps_order").equals("point_desc")) {
-            order_sql = "member_point desc";
-        } else if (map.get("ps_order").equals("point_asc")) {
-            order_sql = "member_point asc";
-        } else if (map.get("ps_order").equals("count_desc")) {
-            order_sql = "member_reserv desc";
-        } else if (map.get("ps_order").equals("count_asc")) {
-            order_sql = "member_reserv asc";
+            order_sql = "bbs_date asc";
+        } else if (map.get("ps_order").equals("title_desc")) {
+            order_sql = "bbs_title desc";
+        } else if (map.get("ps_order").equals("title_asc")) {
+            order_sql = "bbs_title asc";
+        } else if (map.get("ps_order").equals("hit_desc")) {
+            order_sql = "bbs_hit desc";
+        } else if (map.get("ps_order").equals("hit_asc")) {
+            order_sql = "bbs_hit asc";
+        } else if (map.get("ps_order").equals("show_desc")) {
+            order_sql = "bbs_showend desc";
+        } else if (map.get("ps_order").equals("show_asc")) {
+            order_sql = "bbs_showend asc";
         }
 
         try {
@@ -208,10 +200,8 @@ public class EventDAO {
         return list;
     }
 
-
-
-
-
-
-
+   
+    
+    
+    
 }
