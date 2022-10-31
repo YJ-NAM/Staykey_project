@@ -872,5 +872,100 @@ public class StayDAO {
 		return list;
     } // getSelectedRoom() 종료
     
-		    
+	// customer 테이블의 전체 고객을 조회하는 메서드
+	public String getStayList() {
+		
+		String result = "";
+		
+		
+		try {
+			
+			openConn();
+			
+			sql = "select * from staykey_stay";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			result += "<staykey_stay>";
+			
+			while(rs.next()) {
+				
+			result += "<staykey_stay>";
+			result += "<stay_no>" + rs.getInt("stay_no") + "</stay_no>";
+			result += "<stay_name>" + rs.getString("stay_name") + "</stay_name>";
+			result += "</staykey_stay>";
+				
+			}
+			
+			result += "</staykey_stay>";
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+		
+		return result;
+		
+	}	// getCustomerList() 메서드 end
+	
+
+    
+	
+	
+	/////////////////////////////////////////////////////////////
+	// 숙소 전체 목록 조회(날짜 역순) + 검색 기능
+	/////////////////////////////////////////////////////////////
+	public List<StayDTO> getStaySearchList(String search_type, String search_name) {
+
+		List<StayDTO> list = new ArrayList<StayDTO>();
+
+		
+		// 검색용 설정
+		String search_sql = " where stay_no > 0";
+		if (search_type != "" || search_type != null) {
+			if(search_type == "no") {
+				search_sql += " and stay_no like '%" + search_name + "%'";
+			}else {
+				search_sql += " and stay_name like '%" + search_name + "%'";
+			}
+		}
+
+
+		openConn();
+
+		try {
+			
+			 sql = "select * from staykey_stay "+search_sql;
+			 
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				StayDTO dto = new StayDTO();
+				dto.setStay_no(rs.getInt("stay_no"));
+				dto.setStay_type(rs.getString("stay_type"));
+				dto.setStay_name(rs.getString("stay_name"));
+				dto.setStay_desc(rs.getString("stay_desc"));
+				dto.setStay_file1(rs.getString("stay_file1"));
+				dto.setStay_file2(rs.getString("stay_file2"));
+				dto.setStay_file3(rs.getString("stay_file3"));
+				dto.setStay_file4(rs.getString("stay_file4"));
+				dto.setStay_file5(rs.getString("stay_file5"));
+
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+		return list;
+	} // getStayList() 종료
+    
+    
 		}
