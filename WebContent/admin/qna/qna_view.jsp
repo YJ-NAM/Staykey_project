@@ -20,7 +20,6 @@
     <!-- 내용 //START -->
     <div class="row vf-body">
         <div class="col-lg mb-4">
-        <form method="post" action="<%=request.getContextPath() %>/admin/memberModifyOk.do" onsubmit="return join_check();">
             <table class="table-form w-100">
                 <colgroup>
                     <col width="17%" />
@@ -38,7 +37,8 @@
                         		<option value="done" class="text-success">완료</option>
                         		<option value="send" class="text-primary">대기</option>
                         	</select>
- 							<a href="<%=request.getContextPath()%>/admin/qnaModifyOk.do?no=${dto.bbs_no}" class="btn btn-sm btn-outline-success m-1">수정</a>
+ 							<a href="<%=request.getContextPath()%>/admin/qnaModifyOk.do?no=${dto.bbs_no}&status=${dto.}" class="btn btn-sm btn-outline-success m-1">수정</a>
+                    		<button type="submit" class="btn btn-lg btn-primary w-100 h-100"><i class="fa fa-pencil"></i> 쓰기</button>
                     	</td>
                     </tr>
                     <tr>
@@ -53,8 +53,6 @@
                     </tr>
                 </tbody>
             </table>
-           </form>
-            
         </div>
     </div>
     <!-- 내용 //END -->
@@ -164,8 +162,8 @@
                                 <td class="text-center"><b>${qdto.comment_writer_name}</b></td>
                                 <td class="text-left">${qdto.comment_content}</td>
                                 <td class="text-center">${qdto.comment_date}</td>
-	                           	<td>
-	                    			<a href="<%=request.getContextPath()%>/admin/qnaCommentDeleteOk.do?no=${qdto.comment_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+	                           	<td class="text-center">
+	                    			<a href="<%=request.getContextPath()%>/admin/qnaCommentDeleteOk.do?no=${qdto.comment_no}&qna_no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
 	                			</td>
                             </tr>
                             </c:forEach>
