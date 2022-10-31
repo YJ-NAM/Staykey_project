@@ -15,14 +15,14 @@ public class SiteMemberLoginOkAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// 로그인 시 아이디, 비밀번호 대조
+		// 로그인 시 아이디, 비밀번호, 회원/관리자 구분 대조
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		
 		String login_id = request.getParameter("login_id");
 		String login_pw = request.getParameter("login_pw");
 		
-		int result  = dao.idPwCheck(login_id, login_pw);
+		int result  = dao.idPwTypeCheck(login_id, login_pw);
 		MemberDTO dto = dao.getMemberInfo(login_id);
 		ActionForward forward = new ActionForward();
 		HttpSession session = request.getSession();
@@ -55,5 +55,4 @@ public class SiteMemberLoginOkAction implements Action {
 		}
 		return forward;
 	}
-
 }
