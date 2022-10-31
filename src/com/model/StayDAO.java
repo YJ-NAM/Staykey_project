@@ -919,28 +919,24 @@ public class StayDAO {
 	/////////////////////////////////////////////////////////////
 	// 숙소 전체 목록 조회(날짜 역순) + 검색 기능
 	/////////////////////////////////////////////////////////////
-	public List<StayDTO> getStaySearchList(String search_type, String search_name) {
-
+	public List<StayDTO> getStaySearchList(String search_type, String search_text) {
 		List<StayDTO> list = new ArrayList<StayDTO>();
 
-		
 		// 검색용 설정
 		String search_sql = " where stay_no > 0";
 		if (search_type != "" || search_type != null) {
-			if(search_type == "no") {
-				search_sql += " and stay_no like '%" + search_name + "%'";
+			if(search_type.equals("no")) {
+			    search_sql += " and stay_no like '%" + search_text + "%'";
 			}else {
-				search_sql += " and stay_name like '%" + search_name + "%'";
+			    search_sql += " and stay_name like '%" + search_text + "%'";
 			}
+			System.out.println(search_sql);
 		}
 
-
-		openConn();
-
 		try {
-			
-			 sql = "select * from staykey_stay "+search_sql;
-			 
+	        openConn();
+
+	        sql = "select * from staykey_stay "+search_sql;
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -959,13 +955,13 @@ public class StayDAO {
 				list.add(dto);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 		} finally {
 			closeConn(rs, pstmt, con);
 		}
 		return list;
-	} // getStayList() 종료
+	}
     
     
-		}
+}
