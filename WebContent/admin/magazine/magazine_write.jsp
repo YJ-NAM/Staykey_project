@@ -258,7 +258,7 @@
 								숙소 번호 : <b> ${list.stay_no} </b> / 숙소 이름 : <b>
 									${list.stay_name}</b>
 							</button>
-							<br> <br>
+							<br> <br> 
 
 
 						</c:forEach>
