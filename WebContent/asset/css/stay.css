@@ -134,10 +134,10 @@
 .stay-list {
     position: relative;
     min-width: 1150px;
-    margin: 100px auto 0 auto;
+    margin: 0 auto;
 }
 .stay-list .sl-wrap {
-    color: both;
+    clear: both;
     position: relative;
     min-width: 1150px;
     padding-top: 75px;
@@ -152,5 +152,104 @@
     font-size: 14px;
     padding: 70px 0 50px 90px;
 }
+.stay-list .sl-wrap li a {
+    display: block;
+    width: 100%;
+}
+
+.stay-list .sl-wrap li .slw-name {
+    position: absolute;
+    font-size: 32px;
+    line-height: 30px;
+    font-weight: 400;
+    color: #181818;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 10;
+}
+.stay-list .sl-wrap li .slw-name span {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 3.6px;
+    font-size: 12px;
+    text-indent: 2px;
+}
+.stay-list .sl-wrap li .clear {
+    height: 115px;
+}
+
+.stay-list .sl-wrap li .slw-info {
+    float: left;
+    position: relative;
+    width: 30%;
+    margin-top: 30px;
+    line-height: 2;
+    font-size: 14px;
+    color: #333;
+}
+.stay-list .sl-wrap li a:hover .slw-info {
+    color: #000;
+}
+.stay-list .sl-wrap li .slw-info p.address {}
+.stay-list .sl-wrap li .slw-info p.people {}
+.stay-list .sl-wrap li .slw-info p.price {
+    font-family: 'Lato';
+    letter-spacing: 0;
+}
+.stay-list .sl-wrap li .slw-info p.reserv {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0a0a0a;
+    line-height: 30px;
+    letter-spacing: 0;
+    border-bottom: 1px solid #000;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    transition:all .2s ease-in-out
+}
+.stay-list .sl-wrap li a:hover .slw-info p.reserv {
+    color: var(--color);
+    border-bottom-color: var(--color);
+}
+
+.stay-list .sl-wrap li .slw-photo {
+    clear: both;
+    position: absolute;
+    width: 59%;
+    height: 238px;
+    bottom: 48px;
+    right: 0;
+    padding: 70px 0 0;
+    overflow: hidden;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    transition:all .2s ease-in-out
+}
+.stay-list .sl-wrap li a:hover .slw-photo {
+    border-radius: 10px;
+}
+
+
+
+
+
+
+/************************/
+/* 숙소 보기 */
+.stay-view {}
+
+
+
+
 
 
