@@ -17,6 +17,8 @@ public class SiteMemberIdCheckAction implements Action {
         response.setContentType("text/html; charset=UTF-8");
 
         String member_id = request.getParameter("paramId");
+        
+        System.out.println("여기는오냐");
 
         MemberDAO dao = MemberDAO.getInstance();
         int result = dao.idCheck(member_id);
