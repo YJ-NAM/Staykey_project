@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/layout_header.jsp" />
@@ -7,14 +6,11 @@
 <c:set var="stay" value="${stayList}" />
 <c:set var="staylist" value="${List}" />
 
-<script type="text/javascript">
-	$("#nav-magazine").addClass("now");
-</script>
+<script type="text/javascript">$("#nav-magazine").addClass("now");</script>
 
 
 
-<div
-	class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
+<div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
 	<h2>매거진 등록</h2>
 	<small>매거진을 추가 할 수 있습니다.</small>
 </div>
@@ -23,9 +19,9 @@
 <div class="pb100">
 	<form name="write_form" method="post" enctype="multipart/form-data"
 		action="<%=request.getContextPath()%>/admin/magazineWriteOk.do">
-		<input type="hidden" name="mag_writer_name" value="hyunjin" /> <input
-			type="hidden" name="mag_writer_id" value="user1234" /> <input
-			type="hidden" name="mag_writer_pw" value="1234" />
+		<input type="hidden" name="mag_writer_name" value="hyunjin" />
+		<input type="hidden" name="mag_writer_id" value="user1234" />
+		<input type="hidden" name="mag_writer_pw" value="1234" />
 
 		<table class="table-form mt-3">
 			<colgroup>
@@ -195,16 +191,11 @@
 
 
 				<!-- 검색 설정 : 글 제목, 작성자로 검색 가능 -->
-
-
 				<div>
 					<h2>숙소 검색</h2>
 					<small>등록할 숙소를 검색해 보세요.</small> <br> <br>
-				
-				
 				<!-- 검색 기능 처리 -->
-
-				<form  method="post" onsubmit="return search(this);">
+				<form  method="post" onsubmit="return searchStay(this);">
 				<select name="search_field">
 					<option value="no" selected="selected">숙소 번호</option>
 					<option value="name">숙소 이름</option>
@@ -223,15 +214,12 @@
 					<c:when test="${!empty stay }">
 					<ul class="mb-4" id="search-result">
 						<c:forEach items="${stay}" var="list">
-						<li class="my-2">
-
+						<li class="d-flex my-2 align-items-center" onclick="test('${list.stay_no}'); close();" data-dismiss="modal">
 							<c:choose>
-
 								<c:when test="${!empty list.stay_file1}">
 									<img src="<%=request.getContextPath()%>${list.stay_file1}"
 										alt="" width="60" height="60" />
 								</c:when>
-
 								<c:otherwise>
 									<!-- 이미지가 없는 경우 기본 이미지 -->
 									<svg class="bd-placeholder-img" width="60" height="60"
@@ -245,17 +233,12 @@
 											dy=".1em">no img</text>
 					                        </svg>
 								</c:otherwise>
-								
 							</c:choose>
-			
-						
-							<button class="staynobtn" id="staynobtn" onclick="test('${list.stay_no}'); close();" data-dismiss="modal">
-								숙소 번호 : <b> ${list.stay_no} </b> / 숙소 이름 : <b>
-									${list.stay_name}</b>
-							</button>
-							</li>
-
-
+							<div class="ml-2">
+								<p><strong>[${list.stay_no}]</strong> ${list.stay_name}</p>
+								<p>${list.stay_desc}</p>
+							</div>
+						</li>
 						</c:forEach>
 					</ul>
 					</c:when>
@@ -275,7 +258,7 @@
 
 
 
-<script>
+<script type="text/javascript">
 	function test(stayno) {
 		let this_val = $("#test").val();
 		let add_val = this_val;
@@ -289,33 +272,51 @@
 		}
 
 		$("#test").val(add_val);
-	
-}	
+	}	
 	
 
-	function search(el) {
-			$.ajax({
-				type : "post",
-				url : "magazineStaySearch.do",
-				datatype : "jsp",
-				data: {
-					type : $(el).find("select[name='search_field']").val(),
-					search  : $(el).find("input[name='search_keyword']").val()
-				},
-				success : function(data) {
-					$("#search-result").html(data);
-				},
-				
-				error : function(data) {
-					alert("데이터 통신 오류입니다~~~");
-				}
-			});
-			return false;
-		}
+	function searchStay(el) {
+        $.ajax({
+            type : "post",
+            url : "staySearchOk.do",
+			data: {
+				type : $(el).find("select[name='search_field']").val(),
+				search  : $(el).find("input[name='search_keyword']").val()
+			},
+            dataType : "html",
 
-	
-	
-		</script>
+            success : function(data) {
+            	let get_data = data.split("◇");
+
+            	if(get_data[0] > 0){
+	        		$("#search-result").html("");
+
+	        		let epd_data = get_data[1].split("♠");
+	            	for(var i=1; i<epd_data.length; i++) {
+	            		let sub_data = epd_data[i].split("♣");
+
+	            		let setList = "<li class=\"d-flex my-2 align-items-center\" onclick=\"test('"+sub_data[0]+"'); close();\" data-dismiss=\"modal\">";
+	            			setList += "<img src=\"<%=request.getContextPath()%>"+sub_data[4]+"\" alt=\"\" width=\"60\" height=\"60\" />";
+							setList += "<div class=\"ml-2\">";
+							setList += "<p><strong>["+sub_data[0]+"]</strong> "+sub_data[2]+"</p>";
+							setList += "<p>"+sub_data[3]+"</p>";
+							setList += "</div>";
+	            			setList += "</li>";
+	        			$("#search-result").append(setList);
+	            	}
+	            }else{
+	            	$("#search-result").html("<li class=\"py-3 text-center\">검색된 숙소가 없습니다.</li>");
+	            }
+            },
+
+            error : function(e){
+                alert("Error : " + e.status);
+            }
+        });
+
+        return false;
+	}
+</script>
 
 
 <jsp:include page="../layout/layout_footer.jsp" />
