@@ -115,10 +115,10 @@
 				</td>
                 <td ${showLink} class="eng"><p>${dto.review_point_total}</p></td>
                 <td ${showLink} class="px-4">
-                    <c:choose>
-                    <c:when test="${dto.review_content.length() < 20}">${dto.review_content}</c:when>
-                    <c:otherwise>${dto.review_content.substring(0,45)} ...</c:otherwise>
-                    </c:choose>
+                    <c:if test="${dto.review_content.length() < 20}">${dto.review_content}</c:if>
+                    <c:if test="${dto.review_content.length() >= 20 && dto.review_content.length() < 45}">${dto.review_content}</c:if>
+                    <c:if test="${dto.review_content.length() >= 45}">${dto.review_content.substring(0,45)}</c:if>
+               
                 </td>
                 <td ${showLink}>
                 	<p><b>${dto.review_name}</b></p>
