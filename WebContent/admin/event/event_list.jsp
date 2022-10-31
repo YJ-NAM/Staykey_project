@@ -61,7 +61,7 @@
 
 
     <div class="table-top clear">
-        <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 명의 회원</div>
+        <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 이벤트</div>
         <div class="tt-right">
             <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/memberList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_id=${map.ps_id}&ps_email=${map.ps_email}&ps_order='+this.value;">
                 <option value="register_desc"<c:if test="${map.ps_order == 'register_desc'}"> selected="selected"</c:if>>등록일 최신</option>
