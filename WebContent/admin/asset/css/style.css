@@ -794,7 +794,7 @@ ul.table-ui > li > .cell.del {}
     text-align: center;
     border-top: 1px solid #ddd;
     background: rgba(255,255,255,0.9);
-    z-index: 9999999;
+    z-index: 999;
 }
 .gw-button .gwb-wrap {
     width: 1110px;
