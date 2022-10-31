@@ -33,13 +33,15 @@ public class SiteMemberLoginOkAction implements Action {
 		
 		if(result == 0) { // 일치하는 아이디 없음
 			out.println("<script> alert('일치하는 아이디가 존재하지 않습니다.'); history.back(); </script>");
+			
 		}else if(result == -1) { // 비번 오류
 			out.println("<script> alert('비밀번호를 다시 확인해주세요.'); history.back(); </script>");
+			
 		}else if(result == -2) { // admin = -2
 			session.setAttribute("login_id", login_id);
 			session.setAttribute("login_pw", login_pw);
 			session.setAttribute("login_name", dto.getMember_name());
-			session.setAttribute("login_msg", "<script> alert('관리자 로그인 성공!'); </script>");
+			request.setAttribute("login_msg", "<script> alert('관리자 로그인 성공!'); </script>");
 			forward.setRedirect(false);
 			forward.setPath("admin/index.jsp");
 			
