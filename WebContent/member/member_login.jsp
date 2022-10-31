@@ -15,7 +15,7 @@
 
 
 <div class="container member-form">
-    <form name="login_form" method="post" action="<%=request.getContextPath()%>/memberLoginOk.do">
+    <form name="login_form" method="post" action="<%=request.getContextPath()%>/memberLoginOk.do" onsubmit="return validateForm(this);">
     <fieldset class="mf-wrap">
         <legend>회원 로그인</legend>
 
