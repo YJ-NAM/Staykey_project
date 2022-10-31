@@ -24,6 +24,11 @@ public class AdminQnaCommentOkAction implements Action {
         
 		int no = Integer.parseInt(request.getParameter("no").trim());
 		String comment_content = request.getParameter("comment_content").trim();
+		
+		if(comment_content.length() <= 0) {
+        	out.println("<script>alert('답변 내용을 입력해주세요.'); history.back();</script>");
+		}
+		
 		// 히든값으로 넘어옴.
 		String comment_writer_name = request.getParameter("comment_writer_name").trim();
 		String comment_writer_id = request.getParameter("comment_writer_id").trim();
