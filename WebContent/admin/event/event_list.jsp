@@ -157,7 +157,7 @@
                                     ${map.pagingWrite}
                                 </td>
 
-                                <td class="text-right"><a href="<%=request.getContextPath()%>/admin/memberWrite.do" class="btn btn-primary"><i class="fa fa-pencil"></i> 회원 등록</a></td>
+                                <td class="text-right"><a href="<%=request.getContextPath()%>/admin/eventWrite.do" class="btn btn-primary"><i class="fa fa-pencil"></i>이벤트 등록</a></td>
                             </tr>
                         </tbody>
                     </table>
