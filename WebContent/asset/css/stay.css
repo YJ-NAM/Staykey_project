@@ -2,13 +2,155 @@
 /* 숙소 관련
 /************************/
 
+/* 숙소 검색 */
+.stay-search {
+    position: relative;
+    border-top: 3px solid #000;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 1;
+}
+.stay-search .row {
+    position: relative;
+    height: 60px;
+    margin-left: 0;
+    margin-right: 0;
+    align-items: center;
+    border-bottom: 1px solid #e6e6e6;
+    justify-content: center;
+}
+.stay-search .row label {
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 36px;
+}
+.stay-search .row .ss-input {
+    border: 1px solid #e4e4e4;
+    width: 200px;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+.stay-search .row .ss-input:focus {
+    border-color: var(--color);
+}
+.stay-search .row .ss-button {
+    display: inline-block;
+    border: 1px solid #e4e4e4;
+    background: #fff url('../images/select_arrow.png') no-repeat 95% 50%;
+    background-size: 20px 20px;
+    width: 200px;
+    height: 36px;
+    padding: 0 23px 0 12px;
+    margin-right: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 400;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.stay-search .row .ss-reset {
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    padding-top: 7px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #555;
+}
+.stay-search .row .ss-reset:hover {
+    color: var(--color);
+    border-color: var(--color);
+}
+
+
+.stay-search button[type='submit'] {
+    background: #000;
+    font-size: 14px;
+    color: #fff;
+    line-height: 36px;
+    border-radius: 100px;
+    font-family: 'Lato';
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-align: center;
+    padding: 0 25px;
+    margin-top: 36px;
+}
+.stay-search button[type='submit']:hover {
+    background: var(--color);
+}
+.stay-search button[type='submit'] i {
+    font-size: 10px;
+}
+
+
+
+/* 숙소 정렬 */
+.stay-order {
+    position: relative;
+    margin-top: 100px;
+    border-bottom: 2px solid #000;
+    font-size: 14px;
+    line-height: 2px;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+}
+.stay-order li {
+    margin-left: 5px;
+}
+.stay-order li a {
+    display: block;
+    padding: 10px;
+    color: #888;
+}
+.stay-order li a:before {
+    content: "•";
+    padding-right: 4px;
+}
+.stay-order li a:hover {
+    color: var(--color);
+}
+.stay-order li a.now {
+    color: #000;
+}
+
+
+
+
 /* 숙소 목록 */
-.stay-list {}
-
-
-
-
-
-
+.stay-list {
+    position: relative;
+    min-width: 1150px;
+    margin: 100px auto 0 auto;
+}
+.stay-list .sl-wrap {
+    color: both;
+    position: relative;
+    min-width: 1150px;
+    padding-top: 75px;
+    margin: -70px 0 0 -90px;
+    font-size: 0;
+}
+.stay-list .sl-wrap li {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 50%;
+    font-size: 14px;
+    padding: 70px 0 50px 90px;
+}
 
 

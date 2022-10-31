@@ -58,8 +58,8 @@ public class AdminStayModifyOkAction implements Action {
         String stay_addr = multi.getParameter("stay_addr").trim();
         String stay_phone = multi.getParameter("stay_phone").trim();
         String stay_email = multi.getParameter("stay_email").trim();
-        // name 값 [] 로 받을 시 작동 안 됨...
         
+        // name 값 [] 로 받을 시 작동 안 됨...       
         if(multi.getParameterValues("stay_file_delete") != null) {
         	stay_file_delete = multi.getParameterValues("stay_file_delete");
         	stayList = Arrays.asList(stay_file_delete);
