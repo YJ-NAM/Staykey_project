@@ -21,7 +21,6 @@ public class AdminQnaViewAction implements Action {
 		// 문의글 상세내역 비지니스 로직.
 		
         int no = Integer.parseInt(request.getParameter("no").trim());
-
         QnaDAO dao = QnaDAO.getInstance();
         QnaDTO dto = dao.getQnaInfo(no);
         
