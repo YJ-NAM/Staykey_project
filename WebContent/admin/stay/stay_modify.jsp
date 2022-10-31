@@ -307,7 +307,7 @@
         </tr>
 
         <tr>
-            <th>내용 컨텐츠 3<br /><a href="https://www.google.com/maps" target="_blank">(구글 맵)</th>
+            <th>내용 컨텐츠 3<br /><a href="https://www.google.com/maps" target="_blank">(구글 맵)</a></th>
             <td colspan="3"><textarea name="stay_content3" class="form-control" cols="80" rows="6">${ stayModify.stay_content3 }</textarea></td>
         </tr>
 

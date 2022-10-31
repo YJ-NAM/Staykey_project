@@ -734,7 +734,7 @@ public class StayDAO {
 	} // modifyStayRoom() 종료
 	
 	/////////////////////////////////////////////////////////////
-	// 방 삭제 메서드 + room_no 재정립
+	// 방 삭제 메서드
 	/////////////////////////////////////////////////////////////
 	public int deleteRoom(int room_no) {
 		int result = 0;
@@ -754,8 +754,6 @@ public class StayDAO {
 		}		
 		return result;
 	} // deleteRoom() 메서드 종료
-
-
 
 
     /////////////////////////////////////////////////////////////
@@ -846,6 +844,33 @@ public class StayDAO {
         return list;
     } // getBbsStayList() 종료
     
+	/////////////////////////////////////////////////////////////
+	// 숙소에 따른 모든 방 번호 조회
+	///////////////////////////////t//////////////////////////////
+    public List<Integer> getSelectedRoom(int stay_no) {
+    	
+		List<Integer> list = new ArrayList<Integer>();
+		int count = 0;
+    	openConn();
+    	
+        try {
+	    	sql = "select room_no from staykey_stay_room where room_stayno = ?";
+	        pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, stay_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				count = rs.getInt("room_no");
+				list.add(count);
+			}				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+		return list;
+    } // getSelectedRoom() 종료
     
 		    
 		}

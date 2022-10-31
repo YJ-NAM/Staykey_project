@@ -42,9 +42,10 @@ public class AdminStayRoomDeleteOkAction implements Action {
 			}
 		}
 
-
         int res = dao.deleteRoom(room_no);
         PrintWriter out = response.getWriter();
+        
+        // 방 삭제...
 
         if (res > 0) {
         	// 부모 위치 이동 & 지금 보는 창 꺼짐 기능 / opener 붙여야 작동 됨(parent 빼면 작동 안 됨)
