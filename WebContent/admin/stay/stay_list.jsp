@@ -162,44 +162,48 @@ ${ msg }
 
         <tbody>
             <c:choose>
-            <c:when test="${!empty stayList }">
-            <c:forEach items="${stayList}" var="list">
-            <c:set var="showLink" value="onclick=\"location.href='../admin/stayView.do?stay_no=${list.stay_no}';\"" />
-            <tr>
-                <td ${showLink} class="eng">${list.stay_no}</td>
-                <td ${showLink} class="staylist-photo">
-                    <c:choose>
-                    <c:when test="${!empty list.stay_file1}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file1}');"></div></c:when>
-                    <c:otherwise><div class="sp-img none">no img</div></c:otherwise>
-                    </c:choose>
-                </td>
-                <td ${showLink} class="stay-list">
-            		<p class="sl-loc">${list.stay_location}</p>
-            		<p class="sl-name">${list.stay_name}</p>
-            		<p class="sl-desc">${list.stay_desc}</p>
-            		<p class="sl-addr">${list.stay_addr}</p>
-                </td>
-                <td ${showLink}>
-                	<c:if test="${!empty list.stay_option1_name}"><p>${list.stay_option1_name}</p></c:if>
-                	<c:if test="${!empty list.stay_option2_name}"><p>${list.stay_option2_name}</p></c:if>
-                	<c:if test="${!empty list.stay_option3_name}"><p>${list.stay_option3_name}</p></c:if>
-                </td>
-                <td ${showLink} class="eng">${list.stay_hit}</td>
-                <td ${showLink} class="eng">${list.stay_reserv}</td>
-                <td ${showLink} class="eng">${list.stay_date.substring(0,10)}<br />${list.stay_date.substring(11)}</td>
-                <td>
-                    <a href="<%=request.getContextPath()%>/admin/stayModify.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
-                    <a href="<%=request.getContextPath()%>/admin/stayDeleteOk.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?\n※ 이 숙소에 등록된 Room들도 전부 삭제됩니다.');">삭제</a>
-                </td>
-            </tr>
-            </c:forEach>
-            </c:when>
-
-            <c:otherwise>
-            <tr>
-                <td colspan="8" class="nodata">등록된 숙소가 없습니다.</td>
-            </tr>
-            </c:otherwise>
+	            <c:when test="${!empty stayList }">
+	            <c:forEach items="${stayList}" var="list">
+	            <c:set var="showLink" value="onclick=\"location.href='../admin/stayView.do?stay_no=${list.stay_no}';\"" />
+	            <tr>
+	                <td ${showLink} class="eng">${list.stay_no}</td>
+	                <td ${showLink} class="staylist-photo">
+                        <c:choose>
+                            <c:when test="${!empty list.stay_file1}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file1}');"></div></c:when>
+                            <c:when test="${!empty list.stay_file2}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file2}');"></div></c:when>
+                            <c:when test="${!empty list.stay_file3}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file3}');"></div></c:when>
+                            <c:when test="${!empty list.stay_file4}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file4}');"></div></c:when>
+                            <c:when test="${!empty list.stay_file5}"><div class="sp-img" style="background-image: url('<%=request.getContextPath()%>${list.stay_file5}');"></div></c:when>
+                            <c:otherwise><div class="sp-img none">no img</div></c:otherwise>
+                        </c:choose>
+	                </td>
+	                <td ${showLink} class="stay-list">
+	            		<p class="sl-loc">${list.stay_location}</p>
+	            		<p class="sl-name">${list.stay_name}</p>
+	            		<p class="sl-desc">${list.stay_desc}</p>
+	            		<p class="sl-addr">${list.stay_addr}</p>
+	                </td>
+	                <td ${showLink}>
+	                	<c:if test="${!empty list.stay_option1_name}"><p>${list.stay_option1_name}</p></c:if>
+	                	<c:if test="${!empty list.stay_option2_name}"><p>${list.stay_option2_name}</p></c:if>
+	                	<c:if test="${!empty list.stay_option3_name}"><p>${list.stay_option3_name}</p></c:if>
+	                </td>
+	                <td ${showLink} class="eng">${list.stay_hit}</td>
+	                <td ${showLink} class="eng">${list.stay_reserv}</td>
+	                <td ${showLink} class="eng">${list.stay_date.substring(0,10)}<br />${list.stay_date.substring(11)}</td>
+	                <td>
+	                    <a href="<%=request.getContextPath()%>/admin/stayModify.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
+	                    <a href="<%=request.getContextPath()%>/admin/stayDeleteOk.do?stay_no=${list.stay_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?\n※ 이 숙소에 등록된 Room들도 전부 삭제됩니다.');">삭제</a>
+	                </td>
+	            </tr>
+	            </c:forEach>
+	            </c:when>
+	
+	            <c:otherwise>
+	            <tr>
+	                <td colspan="8" class="nodata">등록된 숙소가 없습니다.</td>
+	            </tr>
+	            </c:otherwise>
             </c:choose>
         </tbody>
 
