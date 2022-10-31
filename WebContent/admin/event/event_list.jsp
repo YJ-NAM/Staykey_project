@@ -115,7 +115,9 @@
                 <td ${showLink}> 
                 	<p class="eng">${dto.bbs_showstart.substring(0, 10)} ~ ${dto.bbs_showend.substring(0, 10)}</p>
                 </td>
-                <td ${showLink} class="eng">${dto.bbs_content}</td>
+                <td ${showLink} class="eng">
+                	${dto.bbs_content}
+                </td>
                 <td ${showLink} class="py-4">
                     <p class="mb-1"><b>${dto.bbs_writer_id}</b></p>
                     <p>${dto.bbs_writer_name}</p>
