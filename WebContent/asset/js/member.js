@@ -146,15 +146,42 @@ $(function() {
 
     // 전화번호 확인
     $("#join_phone").on("keyup", function() {
-        let join_phone = $(this).val().trim();
-        let phone_pattern = /^[0-9]{0,4}-[0-9]{3,4}-[0-9]{4}$/g;
-        $(this).parent().find("p.error").hide();
-
-        if(!phone_pattern.test(join_phone)) {
-            $("#join_phone").parent().find("p.error").show();
-        }else {
-            $("#join_phone").parent().find("p.error").hide();
+        let join_phone = $(this).val().trim().replace(/[^0-9]/g, "");
+        let phone_number = "";
+        $(this).parent().find("p.error").show();
+     
+        if(join_phone.length < 4) {
+            return join_phone;
+        }else if(join_phone.length < 7) {
+            phone_number += join_phone.substr(0, 3);
+            phone_number += "-";
+            phone_number += join_phone.substr(3);
+        }else if(join_phone.length < 10) {
+            phone_number += join_phone.substr(0, 2);
+            phone_number += "-";
+            phone_number += join_phone.substr(2, 3);
+            phone_number += "-";
+            phone_number += join_phone.substr(5);
+        }else if(join_phone.length < 11) {
+            phone_number += join_phone.substr(0, 3);
+            phone_number += "-";
+            phone_number += join_phone.substr(3, 3);
+            phone_number += "-";
+            phone_number += join_phone.substr(6);
+        }else if(join_phone.length < 14) {
+            phone_number += join_phone.substr(0, 3);
+            phone_number += "-";
+            phone_number += join_phone.substr(3, 4);
+            phone_number += "-";
+            phone_number += join_phone.substr(7, 4);
+            $(this).parent().find("p.error").hide();
         }
+        
+        $(this).val(phone_number);
+        
     });
 
+
+
 })
+
