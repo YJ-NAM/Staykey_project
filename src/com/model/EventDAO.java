@@ -96,37 +96,12 @@ public class EventDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 
-<<<<<<< HEAD
-        // 검색용 설정
-        String search_sql = " where bbs_no > 0";
-
-        
-        if(map.get("ps_title") != "" && map.get("ps_title") != null) {
-            search_sql += " and bbs_title like '%" + map.get("ps_sess") + "%'";
-        }
-        if(map.get("ps_name") != "" && map.get("ps_name") != null) {
-            search_sql += " and bbs_writer_name like '%" + map.get("ps_name") + "%'";
-        }
-        if(map.get("ps_id") != "" && map.get("ps_id") != null) {
-            search_sql += " and bbs_writer_id like '%" + map.get("ps_id") + "%'";
-        }
-
-        if(!map.get("ps_duse").equals("1")) {
-            String sql_start_date = (String)map.get("ps_start");
-                   sql_start_date = sql_start_date.replace("-", "");
-            String sql_end_date = (String)map.get("ps_end");
-                   sql_end_date = sql_end_date.replace("-", "");
-            search_sql += " and ( (to_char(bbs_showstart, 'YYYYMMDD') >= " + sql_start_date + " and to_char(bbs_showstart, 'YYYYMMDD') <= " + sql_end_date + ")";
-            search_sql += " or (to_char(bbs_showend, 'YYYYMMDD') >= " + sql_start_date + " and to_char(bbs_showend, 'YYYYMMDD') <= " + sql_end_date + ") )";
-        }
-=======
 		} finally {
 			closeConn(rs, pstmt, con);
 		}
 
 		return result;
 	}
->>>>>>> main
 
 	// ======================================================
 	// 이벤트 목록 메서드
@@ -135,20 +110,12 @@ public class EventDAO {
 	public List<EventDTO> eventList(int page, int rowsize, Map<String, Object> map) {
 		List<EventDTO> list = new ArrayList<EventDTO>();
 
-<<<<<<< HEAD
-            if (rs.next())
-                result = rs.getInt(1);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-=======
 		int startNo = (page * rowsize) - (rowsize - 1);
 		int endNo = (page * rowsize);
 
 		// 검색용 설정
 		String search_sql1 = " where bbs_no > 0";
 		String search_sql2 = "";
->>>>>>> main
 
 		if (map.get("ps_name") != "" && map.get("ps_name") != null) {
 			search_sql2 += " and member_name like '%" + map.get("ps_name") + "%'";
@@ -193,11 +160,6 @@ public class EventDAO {
 			pstmt.setInt(2, endNo);
 			rs = pstmt.executeQuery();
 
-<<<<<<< HEAD
-    // ======================================================
-    // 이벤트 목록 메서드
-    // ======================================================
-=======
 			while (rs.next()) {
 				EventDTO dto = new EventDTO();
 
@@ -217,7 +179,6 @@ public class EventDAO {
 				dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
 				dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
 				dto.setBbs_date(rs.getString("bbs_date"));
->>>>>>> main
 
 				list.add(dto);
 			}
@@ -229,30 +190,8 @@ public class EventDAO {
 			closeConn(rs, pstmt, con);
 		}
 
-<<<<<<< HEAD
-        
-        if (map.get("ps_name") != "" && map.get("ps_name") != null) {
-            search_sql2 += " and bbs_writer_name like '%" + map.get("ps_name") + "%'";
-        }
-        if (map.get("ps_id") != "" && map.get("ps_id") != null) {
-            search_sql2 += " and bbs_writer_id like '%" + map.get("ps_id") + "%'";
-        }
-        if (map.get("ps_title") != "" && map.get("ps_title") != null) {
-            search_sql2 += " and bbs_title like '%" + map.get("ps_title") + "%'";
-        }
-
-        if(!map.get("ps_duse").equals("1")) {
-            String sql_start_date = (String)map.get("ps_start");
-                   sql_start_date = sql_start_date.replace("-", "");
-            String sql_end_date = (String)map.get("ps_end");
-                   sql_end_date = sql_end_date.replace("-", "");
-            search_sql2 += " and ( (to_char(bbs_showstart, 'YYYYMMDD') >= " + sql_start_date + " and to_char(bbs_showstart, 'YYYYMMDD') <= " + sql_end_date + ")";
-            search_sql2 += " or (to_char(bbs_showend, 'YYYYMMDD') >= " + sql_start_date + " and to_char(bbs_showend, 'YYYYMMDD') <= " + sql_end_date + ") )";
-        }
-=======
 		return list;
 	}
->>>>>>> main
 
 	// ======================================================
 	// 이벤트 등록 메서드
@@ -300,41 +239,8 @@ public class EventDAO {
 			closeConn(rs, pstmt, con);
 		}
 
-<<<<<<< HEAD
-    // ======================================================
-    // 예약정보 가져오기 메서드
-    // ======================================================
-    public EventDTO getEventInfo(int no) {
-        EventDTO dto = null;
-
-        try {
-            openConn();
-
-            sql = "select * from staykey_event where reserv_sess = ?";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, no);
-            rs = pstmt.executeQuery();
-
-            if(rs.next()) {
-                dto = new EventDTO();
-
-                dto.setBbs_no(rs.getInt("bbs_no"));
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        } finally {
-            closeConn(rs, pstmt, con);
-        }
-
-        return dto;
-    }
-=======
 		return result;
 	}
->>>>>>> main
 
 	/////////////////////////////////////////////////////////////
 	// 매거진 삭제 메서드 + No 재작업
@@ -367,4 +273,39 @@ public class EventDAO {
 		return result;
 	}
 
+
+    // ======================================================
+    // 예약정보 가져오기 메서드
+    // ======================================================
+    public EventDTO getEventInfo(int no) {
+        EventDTO dto = null;
+
+        try {
+            openConn();
+
+            sql = "select * from staykey_event where reserv_sess = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) {
+                dto = new EventDTO();
+
+                dto.setBbs_no(rs.getInt("bbs_no"));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return dto;
+    }
+
+	
+	
+	
 }
