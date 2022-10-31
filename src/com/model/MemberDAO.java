@@ -371,5 +371,40 @@ public class MemberDAO {
         }
         return result;
     }
+    
+    // ======================================================
+    // 회원 아이디 + 비밀번호 체크 메서드 // 멤버 타입 반환 필요
+    // ======================================================
+    public int idPwCheck(String member_id, String member_pw) {
+        int result = 0;
+
+        try {
+            openConn();
+
+            sql = "select member_pw, member_type, member_name from staykey_member where member_id = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, member_id);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) {
+               if(rs.getString("member_pw").equals(member_pw)) { // 비번 일치
+            	   if(rs.getString("member_type").equals("admin")) { // admin
+            		   result = -2; // admin = -2;
+            	   }else { // 아니면 user
+            		   result = -3;
+            	   }
+               }else { // 비번 틀림
+            	   result = -1;
+               }
+            }
+            // 0 return 시 일치하는 아이디 없음
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return result;
+    }
 
 }
