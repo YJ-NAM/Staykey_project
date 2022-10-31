@@ -5,24 +5,25 @@
 <jsp:include page="../layout/layout_header.jsp" />
 
 <c:set var="stay" value="${stayList}" />
-<c:set var="staylist" value="${List}" />
 
 <script type="text/javascript">
-	$("#nav-magazine").addClass("now");
+	$("#nav-event").addClass("now");
 </script>
 
 
 
 <div
 	class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
-	<h2>매거진 등록</h2>
-	<small>매거진을 추가 할 수 있습니다.</small>
+	<h2>이벤트 등록</h2>
+	<small>이벤트를 추가할 수 있습니다.</small>
 </div>
 
 
 <div class="pb100">
 	<form name="write_form" method="post" enctype="multipart/form-data"
-		action="<%=request.getContextPath()%>/admin/magazineWriteOk.do">
+		action="<%=request.getContextPath()%>/admin/eventWriteOk.do">
+		
+		<!-- 작성자, 아이디, 비밀번호 hidden으로 넘기기. -->
 		<input type="hidden" name="mag_writer_name" value="hyunjin" /> <input
 			type="hidden" name="mag_writer_id" value="user1234" /> <input
 			type="hidden" name="mag_writer_pw" value="1234" />
@@ -37,7 +38,7 @@
 
 			<tr>
 				<th>제목</th>
-				<td colspan="3"><input type="text" name="mag_title"
+				<td colspan="3"><input type="text" name="ev_title"
 					maxlength="255" class="form-control" required /></td>
 			</tr>
 
@@ -46,54 +47,8 @@
 			</tr>
 
 			<tr>
-				<th>목록 이미지</th>
-				<td colspan="3"><input type="file" name="mag_list_img"
-					class="form-control w-50" /></td>
-			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>상단 이미지</th>
-				<td colspan="3"><input type="file" name="mag_top_img"
-					class="form-control w-50" /></td>
-			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>유튜브</th>
-				<td colspan="3">
-					<div class="row m-0">
-						<input type="text" name="mag_youtube" value=""
-							class="form-control w-20" />
-						<div class="ml-3">
-							<p class="text-primary">* 유튜브 동영상 주소의 뒷부분을 적어주세요.</p>
-							<p class="text-primary">
-								&nbsp; 예) https://www.youtube.com/watch?v=<b class="text-danger">dLGVvC0MMDw</b>
-							</p>
-						</div>
-					</div>
-				</td>
-			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>상세 이미지1</th>
-				<td colspan="3"><input type="file" name="mag_detail_img1"
-					class="form-control w-50" /></td>
-			</tr>
-
-			<tr>
-				<th>글 내용1</th>
-				<td colspan="3"><textarea name="mag_content1"
+				<th>글 내용</th>
+				<td colspan="3"><textarea name="ev_content"
 						class="form-control" cols="80" rows="10"></textarea></td>
 			</tr>
 
@@ -102,15 +57,9 @@
 			</tr>
 
 			<tr>
-				<th>상세 이미지2</th>
-				<td colspan="3"><input type="file" name="mag_detail_img2"
+				<th>이미지 파일1</th>
+				<td colspan="3"><input type="file" name="ev_file1"
 					class="form-control w-50" /></td>
-			</tr>
-
-			<tr>
-				<th>글 내용2</th>
-				<td colspan="3"><textarea name="mag_content2"
-						class="form-control" cols="80" rows="10"></textarea></td>
 			</tr>
 
 			<tr>
@@ -118,16 +67,39 @@
 			</tr>
 
 			<tr>
-				<th>지도<br /> <a href="https://www.google.com/maps"
-					target="_blank">(구글 맵)</a></th>
-				<td colspan="3"><textarea name="mag_map" class="form-control"
-						cols="80" rows="6"></textarea></td>
+				<th>이미지 파일2</th>
+				<td colspan="3"><input type="file" name="ev_file2"
+					class="form-control w-50" /></td>
 			</tr>
 
 			<tr>
-				<th>글 내용3</th>
-				<td colspan="3"><textarea name="mag_content3"
-						class="form-control" cols="80" rows="10"></textarea></td>
+				<td colspan="4" class="space" nowrap="nowrap"></td>
+			</tr>
+
+			<tr>
+				<th>이미지 파일3</th>
+				<td colspan="3"><input type="file" name="ev_file3"
+					class="form-control w-50" /></td>
+			</tr>
+
+			<tr>
+				<td colspan="4" class="space" nowrap="nowrap"></td>
+			</tr>
+
+			<tr>
+				<th>이미지 파일4</th>
+				<td colspan="3"><input type="file" name="ev_file4"
+					class="form-control w-50" /></td>
+			</tr>
+
+			<tr>
+				<td colspan="4" class="space" nowrap="nowrap"></td>
+			</tr>
+
+			<tr>
+				<th>이미지 파일5</th>
+				<td colspan="3"><input type="file" name="ev_file5"
+					class="form-control w-50" /></td>
 			</tr>
 
 			<tr>
@@ -138,7 +110,7 @@
 				<th>숙소 번호</th>
 				<td colspan="3">
 					<div class="row m-0">
-						<input type="text" name="mag_stayno" value="" id="test"
+						<input type="text" name="ev_stayno" value="" id="test"
 							class="form-control w-30" maxlength="255" />
 						<button type="button" class="btn btn-sm btn-warning ml-2"
 							data-toggle="modal" data-target="#modalCategory">
@@ -147,7 +119,40 @@
 					</div>
 				</td>
 			</tr>
-		</table>
+		
+			<tr>
+				<td colspan="4" class="space" nowrap="nowrap"></td>
+			</tr>
+			
+
+			 <tr>
+                        <th>이벤트 기간</th>
+                        <td colspan="3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" name="ev_start" value="${stay.bbs_showstart.substring(0,10)}" id="startDt" class="form-control text-center eng" />
+                                    </div>
+                                </div>
+
+                                <div class="pt-2">~</div>
+
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" name="ev_end" value="${stay.bbs_showend.substring(0,10)}" id="endDt" class="form-control text-center eng" />
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+			</table>
+	
 
 
 		<div class="gw-button">
@@ -171,6 +176,9 @@
 </div>
 
 
+
+
+<!-- 모달 창 -->
 <div class="modal fade" id="modalCategory" tabindex="-1" type="default"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable">
@@ -183,9 +191,9 @@
 					aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
-
 			</div>
-
+		</div>
+				
 			<div class="modal-body">
 			
 

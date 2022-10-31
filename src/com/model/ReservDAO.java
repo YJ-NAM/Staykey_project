@@ -138,6 +138,7 @@ public class ReservDAO {
         String search_sql1 = " where reserv_no > 0";
         String search_sql2 = "";
 
+
         if(map.get("ps_status") != "" && map.get("ps_status").equals("cancel")) {
             search_sql2 += " and reserv_status = 'cancel'";
         }
@@ -188,6 +189,7 @@ public class ReservDAO {
             order_sql = "reserv_stayname asc";
         }
 
+        System.out.println(search_sql1);
 
         try {
             openConn();

@@ -3,7 +3,7 @@
 <% long time = System.currentTimeMillis(); %>
 <jsp:include page="../layout/layout_header.jsp" />
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/member.css?<%=time%>" />
-
+<script language="javascript" src="<%=request.getContextPath()%>/asset/js/member.js?<%=time%>"></script>
 
 
 <div class="container page-title">
@@ -43,7 +43,7 @@
 
             <div>
                 <label for="join_name">이름</label>
-                <input type="text" name="join_name" id="join_name" placeholder="이름를 입력하세요." required autofocus />
+                <input type="text" name="join_name" id="join_name" placeholder="이름을 입력하세요." required autofocus />
                 <p class="error">1자 이상 10자 이하로 입력해 주세요.</p>
             </div>
 
