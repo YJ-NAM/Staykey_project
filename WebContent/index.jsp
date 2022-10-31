@@ -52,6 +52,22 @@ $(document).ready(function(){
           prevEl: "#promo-container .fa-chevron-left",
         },
     });
+
+
+    var swiper = new Swiper("#event-container", {
+        slidesPerView: 3,
+        spaceBetween: 0,
+        speed: 500,
+        loop: true,
+        touchEnabled: false,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        nextEl: ".main-event .fa-chevron-right",
+        prevEl: ".main-event .fa-chevron-left",
+      });
+    
 });
 
 </script>
@@ -60,7 +76,6 @@ $(document).ready(function(){
 <!-------- 메인 페이지 시작 --------->
 <div id="main-contents" class="main-contents">
     <div class="container-wide main-contents-page">
-
 
         <!-------- 메인 페이지 비주얼 //START --------->
         <div id="main-visual" class="main-visual">
@@ -280,60 +295,210 @@ $(document).ready(function(){
             <div class="sec-title" id="pro-title"><strong>PROMOTION</strong></div>
         <!-------- 프로모션 창 목록 --------->
             <div class= "promo-container swiper-container" id="promo-container">
-                    <div class="fa fa-chevron-left"></div>
-                    <div class="fa fa-chevron-right"></div>
-                    <div class="swiper-pagination">
-                    </div>
-
-                <ul class="swiper-wrapper">
-                    <li class="swiper-slide">
-                        <a href="#">
-                            <img src="http://images.stayfolio.com/system/pictures/images/000/148/148/original/e8525a7fc7d249af9de4b7d775c31ed19f68cbff.jpg?1665989518"/>
-                            <div class="e_date">
-                            1 DAY LEFT
-                            </div>
-                            <div class="promo-title" style="float: right;">
-                                <p class="text">나와 피부에게 주는 오늘의 회복</p>
-                                <p class="small">프룩스 플럭스 호텔</p>
-                            </div>
-                        </a>
-                    </li>
+                    <ul class="swiper-wrapper">
+                        <li class="swiper-slide">
+                            <a href="#">
+                                <div class="promo-title">
+                                    <p class="text">나와 피부에게 주는 오늘의 회복</p>
+                                    <p class="small">프룩스 플럭스 호텔</p>
+                                </div>
+                                <div class="e_date"></div>
+                                <img src="http://images.stayfolio.com/system/pictures/images/000/148/148/original/e8525a7fc7d249af9de4b7d775c31ed19f68cbff.jpg?1665989518"/>
+                            </a>
+                        </li>
 
 
-                    <li class="swiper-slide">
-                        <a href="#">
-                            <img src="http://images.stayfolio.com/system/pictures/images/000/088/674/original/15012b390d92d2fca9cb2bff7b47de7e4b649050.jpg?1629211014"/>
+                        <li class="swiper-slide">
+                            <a href="#">
+                                <img src="http://images.stayfolio.com/system/pictures/images/000/088/674/original/15012b390d92d2fca9cb2bff7b47de7e4b649050.jpg?1629211014"/>
 
-                            <div class="e_date">
+                                <div class="e_date">
 
-                            </div>
-                            <div class="promo-title">
-                                <p class="text" >낮고 고요한 사색의 시간</p>
-                                <p class="small">흐르는 결</p>
-                            </div>
-                        </a>
-                    </li>
+                                </div>
+                                <div class="promo-title">
+                                        <p class="text" >낮고 고요한 사색의 시간</p>
+                                        <p class="small">흐르는 결</p>
+                                </div>
+                            </a>
+                        </li>
 
 
-                    <li class="swiper-slide">
-                        <a href="#">
-                            <img src="//images.stayfolio.com/system/pictures/images/000/075/992/original/5141b3042378cbc8846f93bd524820fb48167128.jpg?1623129791"/>
+                        <li class="swiper-slide">
+                            <a href="#">
+                                <img src="//images.stayfolio.com/system/pictures/images/000/075/992/original/5141b3042378cbc8846f93bd524820fb48167128.jpg?1623129791"/>
 
-                            <div class="e_date">
-                            
-                            </div>
-                            <div class="promo-title">
-                                <p class="text">제주 서편으로의 자발적 유배</p>
-                                <p class="small">고산별곡</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+                                <div class="e_date">
+                                    
+                                </div>
+                                <div class="promo-title">
+                                    <p class="text">제주 서편으로의 자발적 유배</p>
+                                    <p class="small">고산별곡</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                <div class="swiper-pagination"></div>
+                <div class="fa fa-chevron-left"></div>
+                <div class="fa fa-chevron-right"></div>
+                <div class="clear"></div>
             </div>
         </div>
     </div>
     <!-------- 메인 페이지 프로모션 창 // End  -------------->
 
+
+   <!-------- 메인 페이지 이벤트 창 // start --------->
+   <div class="main-event">
+            <div class="sec-title">EVENT</div>
+        <div class="event-container stay-list" id="event-container">
+            <div class="swiper-wrapper">
+                        <div class="swiper-slide stay-box">
+                            <a href="#">
+                                <img src="//images.stayfolio.com/system/pictures/images/000/117/566/display/6e562fe56d75731318ae0c7cb4d3dc380a1d459d.jpg?1648778979"/>
+                                <div class="e_date"></div>
+                                <div class="name">멜로우 맨션</div>
+                                <div class="other">인천/강화</div>
+                                <div class="text">1박 2인<br>숙박권 이벤트</div>
+                                <div class="more">Read more</div>
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide stay-box">
+                            <a href="#">
+                                <img src="//images.stayfolio.com/system/pictures/images/000/132/293/display/14b6cc0a7fe24e0ab119374961a5818a375272ce.jpg?1658394600"/>
+                                <div class="e_date"></div>
+                                <div class="name">온휴가</div>
+                                <div class="other">제주/제주</div>
+                                <div class="text">1박 2인<br>숙박권 이벤트</div>   
+                                <div class="more">Read more</div>
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide stay-box">
+                            <a href="#">
+                                <img src="//images.stayfolio.com/system/pictures/images/000/147/657/original/ff9236bb649baa3c6464feba185b7943b68ecf6f.jpg?1665707694"/>
+                                <div class="e_date"></div>
+                                <div class="name">선흘림</div>
+                                <div class="other">제주/제주</div>
+                                <div class="text">1박 4인<br>숙박권 이벤트</div>
+                                <div class="more">Read more</div>
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide stay-box">
+                            <a href="#">
+                                <img src="//images.stayfolio.com/system/pictures/images/000/120/916/display/337e491a01a57f6aa4fb3c85620e841aa0196044.jpg?1651474647"/>
+                                <div class="e_date"></div>
+                                <div class="name">시나몬</div>
+                                <div class="other">강원/강릉</div>
+                                <div class="text">1박 2인<br>숙박권 이벤트</div>
+                                <div class="more">Read more</div>
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide stay-box">
+                            <a href="#">
+                                <img src="//images.stayfolio.com/system/pictures/images/000/119/466/display/46c8f4d958eeac7e78f09e3bb2d70c25c8548d33.jpg?1650349372"/>
+                                <div class="e_date"></div>
+                                <div class="name">유온</div>
+                                <div class="other">경북/경주</div>
+                                <div class="text">1박 4인/숙박권 이벤트</div>
+                                <div class="more">Read more</div>
+                            </a>
+                        </div>
+            </div>
+        </div>
+    </div>
+    <!-------- 메인 페이지 이벤트 창 // end --------->
+
+
+    <!-------- 메인 페이지 매거진 창 // start --------->
+    <div class="container-wide main-magazine">
+        <div class="swiper-container" id="magazine-container">
+            
+            <!-- <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div> -->
+                
+            <ul class="swiper-wrapper">
+                    
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <img src="https://images.stayfolio.com/system/pictures/images/000/149/523/original/135581dedb1c12eb129bef11419240c8d531501c.jpg?1666732643" />
+                            <div class="stay-info">
+                                <p class="logo"></p>
+                                <p class="text"></p>
+                                <p class="magazine">Magazine</p>
+                                <p class="more">Read more</p>
+                            </div>
+                        </a>
+                    
+                    </li>
+                    
+                
+                    
+                    
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <img src="" />
+                            <div class="stay-info">
+                                <p class="logo"></p>
+                                <p class="text"></p>
+                                <p class="magazine">Magazine</p>
+                                <p class="more">Read more</p>
+                            </div>
+                        </a>
+                    
+                    </li>
+                    
+                
+                    
+                    
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <img src="" />
+                            <div class="stay-info">
+                                <p class="logo"></p>
+                                <p class="text"></p>
+                                <p class="magazine">Magazine</p>
+                                <p class="more">Read more</p>
+                            </div>
+                        </a>
+                    
+                    </li>
+                    
+                
+                    
+                    
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <img src="" />
+                            <div class="stay-info">
+                                <p class="logo"></p>
+                                <p class="text"></p>
+                                <p class="magazine">Magazine</p>
+                                <p class="more">Read more</p>
+                            </div>
+                        </a>
+                    </li>
+
+
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <img src=""/>
+                             <div class="stay-info">
+                                <p class="logo"></p>
+                                <p class="text"></p>
+                                <p class="magazine">Magazine</p>
+                                <p class="more">Read more</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            <div class="swiper-pagination">
+                <span class="magazine-pagination-current"></span>
+                <span class="magazine-pagination-total"></span></div>
+         </div>
+    </div>
 </div>
 
 
