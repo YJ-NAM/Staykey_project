@@ -17,7 +17,6 @@
 </c:otherwise>
 </c:choose>
 
-
 <div class="container page-title">
     <h2>FIND RESULT</h2>
     <h4>${ find } 찾기 결과</h4>
