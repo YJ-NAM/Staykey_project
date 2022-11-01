@@ -52,7 +52,7 @@
         <div class="svr-info container">
             <div class="tit">ROOMS</div>
             <div class="txt">${view.stay_desc}</div>
-            <c:if test="${list.size() > 1}">
+            <c:if test="${list.size() > 2}">
             <div class="swiper-button">
                 <button type="button" class="swiper-button-prev"><i class="fa fa-angle-left"></i></button>
                 <button type="button" class="swiper-button-next"><i class="fa fa-angle-right"></i></button>
@@ -61,7 +61,7 @@
         </div>
 
 
-        <div class="svr-list">
+        <div class="svr-list<c:if test="${list.size() <= 2}"> nomore</c:if>">
             <ul class="swiper-wrapper">
                 <c:choose>
                 <c:when test="${!empty list}">
@@ -97,7 +97,7 @@
         </div>
     </div>
 
-    <c:if test="${list.size() > 1}">
+    <c:if test="${list.size() > 2}">
     <script type="text/javascript">
     var stayviewRoomSwiper = new Swiper(".stay-view .sv-room .svr-list", {
         effect: "slide",

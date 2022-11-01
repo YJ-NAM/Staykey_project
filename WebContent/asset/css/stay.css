@@ -515,6 +515,9 @@
     box-shadow: 13px 15px 30px 0 rgb(0 0 0 / 20%);
     flex-shrink: 0;
 }
+.stay-view .sv-room .svr-list.nomore li {
+    margin-right: 50px;
+}
 .stay-view .sv-room .svr-list li a {
     display: block;
     outline: none;
