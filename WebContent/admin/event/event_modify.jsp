@@ -23,7 +23,7 @@
 		}
 
 		$("#ev_stayno").val(add_val);
-	}	
+	}
 	
 
 	function searchStay(el) {
@@ -96,16 +96,42 @@
 			</colgroup>
 
 			<tr>
-				<th>제목</th>
-				<td colspan="3"><input type="text" name="ev_title"
-					value="${dto.bbs_title}" maxlength="255" class="form-control"
-					required /></td>
-			</tr>
+		        <th>이벤트 기간</th>
+		        <td colspan="3">
+		            <div class="row">
+		                <div class="col-3">
+		                    <div class="input-group">
+		                        <div class="input-group-prepend">
+		                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+		                        </div>
+		                        <input type="text" name="ev_start" value="${dto.bbs_showstart.substring(0,10)}" id="startDt" class="form-control text-center eng" />
+		                    </div>
+		                </div>
+
+		                <div class="pt-2">~</div>
+
+		                <div class="col-3">
+		                    <div class="input-group">
+		                        <div class="input-group-prepend">
+		                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+		                        </div>
+		                        <input type="text" name="ev_end" value="${dto.bbs_showend.substring(0,10)}" id="endDt" class="form-control text-center eng" />
+		                    </div>
+		                </div>
+		            </div>
+		        </td>
+		    </tr>
 
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
+			<tr>
+				<th>제목</th>
+				<td colspan="3"><input type="text" name="ev_title"
+					value="${dto.bbs_title}" maxlength="255" class="form-control"
+					required /></td>
+			</tr>
 
 			<tr>
 				<th>글 내용</th>
@@ -117,9 +143,24 @@
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
+			<tr>
+				<th>숙소 번호</th>
+				<td colspan="3">
+					<div class="row m-0">
+						<input type="text" name="ev_stayno" value="${dto.bbs_stayno}" id="ev_stayno" class="form-control w-30" maxlength="255" />
+						<button type="button" class="btn btn-sm btn-warning ml-2" data-toggle="modal" data-target="#modalCategory"><i class="fa fa-exclamation"></i> 숙소 지정하기</button>
+					</div>
+				</td>
+			</tr>
+
 
 			<tr>
-				<th>이미지 파일1</th>
+				<td colspan="4" class="space" nowrap="nowrap"></td>
+			</tr>
+
+
+			<tr>
+				<th>이미지 파일 1<br />(목록 이미지)</th>
 				<td colspan="3"><input type="file" name="ev_file1"
 					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file1}">
 						<p class="mt-2">
@@ -130,11 +171,7 @@
 			</tr>
 
 			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일2</th>
+				<th>이미지 파일 2<br />(내용 이미지)</th>
 				<td colspan="3"><input type="file" name="ev_file2"
 					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file2}">
 						<p class="mt-2">
@@ -143,99 +180,6 @@
 						</p>
 					</c:if></td>
 			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일3</th>
-				<td colspan="3"><input type="file" name="ev_file3"
-					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file3}">
-						<p class="mt-2">
-							<img src="<%=request.getContextPath()%>${dto.bbs_file3}"
-								style="max-height: 250px;" alt="" />
-						</p>
-					</c:if></td>
-			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일4</th>
-				<td colspan="3"><input type="file" name="ev_file4"
-					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file4}">
-						<p class="mt-2">
-							<img src="<%=request.getContextPath()%>${dto.bbs_file4}"
-								style="max-height: 250px;" alt="" />
-						</p>
-					</c:if></td>
-			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일5</th>
-				<td colspan="3"><input type="file" name="ev_file5"
-					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file5}">
-						<p class="mt-2">
-							<img src="<%=request.getContextPath()%>${dto.bbs_file5}"
-								style="max-height: 250px;" alt="" />
-						</p>
-					</c:if></td>
-			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-				<tr>
-				<th>숙소 번호</th>
-				<td colspan="3">
-					<div class="row m-0">
-						<input type="text" name="ev_stayno" value="${dto.bbs_stayno}" id="ev_stayno" class="form-control w-30" maxlength="255" />
-						<button type="button" class="btn btn-sm btn-warning ml-2" data-toggle="modal" data-target="#modalCategory"><i class="fa fa-exclamation"></i> 숙소 지정하기</button>
-					</div>
-				</td>
-			</tr>
-			
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-			
-			  <tr>
-                        <th>이벤트 기간</th>
-                        <td colspan="3">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                        </div>
-                                        <input type="text" name="ev_start" value="${dto.bbs_showstart.substring(0,10)}" id="startDt" class="form-control text-center eng" />
-                                    </div>
-                                </div>
-
-                                <div class="pt-2">~</div>
-
-                                <div class="col-4">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                        </div>
-                                        <input type="text" name="ev_end" value="${dto.bbs_showend.substring(0,10)}" id="endDt" class="form-control text-center eng" />
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-         
-			
 		</table>
 
 
@@ -245,7 +189,7 @@
 
 				<div class="gwb-center">
 					<button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i> 목록보기</button>
-					<button type="submit" class="btn btn-lg btn-primary mx-1"><i class="fa fa-pencil"></i> 등록하기</button>
+					<button type="submit" class="btn btn-lg btn-primary mx-1"><i class="fa fa-pencil"></i> 수정하기</button>
 				</div>
 
 				<div class="gwb-right"></div>
