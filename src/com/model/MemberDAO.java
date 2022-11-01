@@ -458,7 +458,7 @@ public class MemberDAO {
                 rs = pstmt.executeQuery();
                 if(rs.next()) { // 둘 다 일치
                 	member_pwd = rs.getString("member_pw");          
-                }else { // 이름 없을 때
+                }else { // 아이디 없을 때
                 	member_pwd = "noId";
                 }
             }else { // 이메일 없을 때
