@@ -31,7 +31,7 @@
             <th>이벤트 일자</th>
             <td colspan="5">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
@@ -42,7 +42,7 @@
 
                     <div class="pt-2">~</div>
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
 
-                    <div class="col-3 pt-2">
+                    <div class="col-5 pt-2">
                         <label><input type="checkbox" name="ps_duse" value="1"<c:if test="${map.ps_duse == '1'}"> checked="checked"</c:if> /> 모든 기간 검색</label>
                     </div>
                 </div>
