@@ -160,30 +160,14 @@
 			</tr>
 
 			<tr>
-				<th>이미지 파일 1</th>
+				<th>이미지 파일 1<br />(목록 이미지)</th>
 				<td colspan="3"><input type="file" name="ev_file1" class="form-control w-50" /></td>
 			</tr>
 
 			<tr>
-				<th>이미지 파일 2</th>
+				<th>이미지 파일 2<br />(내용 이미지)</th>
 				<td colspan="3"><input type="file" name="ev_file2" class="form-control w-50" /></td>
 			</tr>
-
-			<tr>
-				<th>이미지 파일 3</th>
-				<td colspan="3"><input type="file" name="ev_file3" class="form-control w-50" /></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일 4</th>
-				<td colspan="3"><input type="file" name="ev_file4" class="form-control w-50" /></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일 5</th>
-				<td colspan="3"><input type="file" name="ev_file5" class="form-control w-50" /></td>
-			</tr>
-			
 			
 		</table>
 

@@ -160,7 +160,7 @@
 
 
 			<tr>
-				<th>이미지 파일 1</th>
+				<th>이미지 파일 1<br />(목록 이미지)</th>
 				<td colspan="3"><input type="file" name="ev_file1"
 					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file1}">
 						<p class="mt-2">
@@ -171,44 +171,11 @@
 			</tr>
 
 			<tr>
-				<th>이미지 파일 2</th>
+				<th>이미지 파일 2<br />(내용 이미지)</th>
 				<td colspan="3"><input type="file" name="ev_file2"
 					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file2}">
 						<p class="mt-2">
 							<img src="<%=request.getContextPath()%>${dto.bbs_file2}"
-								style="max-height: 250px;" alt="" />
-						</p>
-					</c:if></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일 3</th>
-				<td colspan="3"><input type="file" name="ev_file3"
-					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file3}">
-						<p class="mt-2">
-							<img src="<%=request.getContextPath()%>${dto.bbs_file3}"
-								style="max-height: 250px;" alt="" />
-						</p>
-					</c:if></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일 4</th>
-				<td colspan="3"><input type="file" name="ev_file4"
-					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file4}">
-						<p class="mt-2">
-							<img src="<%=request.getContextPath()%>${dto.bbs_file4}"
-								style="max-height: 250px;" alt="" />
-						</p>
-					</c:if></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일 5</th>
-				<td colspan="3"><input type="file" name="ev_file5"
-					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file5}">
-						<p class="mt-2">
-							<img src="<%=request.getContextPath()%>${dto.bbs_file5}"
 								style="max-height: 250px;" alt="" />
 						</p>
 					</c:if></td>
