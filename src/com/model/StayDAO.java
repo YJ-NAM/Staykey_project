@@ -87,25 +87,23 @@ public class StayDAO {
         String search_sql2 = "";
 
         if (!map.get("ps_type").equals("all")) {
-            search_sql2 += "and (";
-
+            search_sql2 += "and (";            
             StringTokenizer tokenizer = new StringTokenizer(map.get("ps_type").toString(), "/");
             while (tokenizer.hasMoreTokens()) {
                 search_sql2 += "stay_type like '%" + tokenizer.nextToken() + "%' or ";
             }
             search_sql2 = search_sql2.substring(0, search_sql2.lastIndexOf("'") + 1);
-            search_sql2 += ")";
-
+            search_sql2 += ")";            
         } else {
             search_sql2 += "";
         }
+        
         if (map.get("ps_name") != "" && map.get("ps_name") != null) {
             search_sql2 += " and stay_name like '%" + map.get("ps_name") + "%'";
         }
 
         if (map.get("ps_location") != "" && map.get("ps_location") != null) { // ps_location 값이 있을 때
-            if (map.get("ps_location").equals("전체")) { // 그 중 전체일 때, ps_location_sub 값이 있으면 stay_location + stay_addr
-                                                       // 합집합
+            if (map.get("ps_location").equals("전체")) { // 그 중 전체일 때, ps_location_sub 값이 있으면 stay_location + stay_addr 합집합
                 if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
                     search_sql2 += " and stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
                             + map.get("ps_location_sub") + "%'";
