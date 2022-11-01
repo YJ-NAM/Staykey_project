@@ -2267,6 +2267,7 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
 /*************************/
 .view-form .event-view {
     width: 100%;
+    margin-top: 30px;
 }
 .view-form .event-view .detail_deal {
     position: relative;
