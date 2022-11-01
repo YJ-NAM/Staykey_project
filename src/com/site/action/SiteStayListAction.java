@@ -20,14 +20,12 @@ public class SiteStayListAction implements Action {
 
         // 뷰에 전달할 매개변수 저장용 맵 생성
         Map<String, Object> map = new HashMap<String, Object>();
-
+        
         StayDAO dao = StayDAO.getInstance();
-
 
         /////////////////////////////////////////////////////////////
         // 검색
         /////////////////////////////////////////////////////////////
-
         // 검색용 변수 정의
         String ps_type = "";
         String[] get_type = null;
@@ -54,7 +52,7 @@ public class SiteStayListAction implements Action {
         if(request.getParameter("ps_name") != null){ ps_name = request.getParameter("ps_name").trim(); }else{ ps_name = ""; }
 
         // 주소값 지역 + 구체적 주소
-        if(request.getParameter("ps_location") != null){ 
+        if(request.getParameter("ps_location") != null) { 
             ps_location = request.getParameter("ps_location"); 
             if(ps_location.equals("전체")) {
                 ps_location = "";
@@ -83,7 +81,6 @@ public class SiteStayListAction implements Action {
         map.put("ps_location_sub", ps_location_sub);
         map.put("ps_phone", ps_phone);
         map.put("ps_order", ps_order);
-
 
 
         /////////////////////////////////////////////////////////////
@@ -122,8 +119,6 @@ public class SiteStayListAction implements Action {
         map.put("pagingWrite", Paging.showPage(allPage, startBlock, endBlock, page, pageUrl));
         request.setAttribute("map", map);
 
-
-
         /////////////////////////////////////////////////////////////
         // 목록 조회 메서드 및 변수 넘기기
         /////////////////////////////////////////////////////////////
@@ -131,8 +126,6 @@ public class SiteStayListAction implements Action {
         List<StayDTO> list = dao.getStayList(page, rowsize, map); 
 
         request.setAttribute("stayList", list);
-
-
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
