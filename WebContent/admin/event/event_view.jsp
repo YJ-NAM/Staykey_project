@@ -47,66 +47,69 @@
 		                    </c:choose>
                         </div>
                      </div>
-                     
 
+
+                    <style type="text/css">
+                    .magazine-view img { max-width: 800px !important; }
+                    </style>
 
                     <div class="magazine-view">
                     
-		                    <!-- 상세 이미지 1 //START -->
-		                    <c:if test="${!empty dto.bbs_file1}">
-		                    <div class="row py-3">
-		                        <div class="col"><img src="<%=request.getContextPath()%>${dto.bbs_file1}" class="topimg" alt="" /></div>
-		                    </div>
-		                    </c:if>
-		                    <!-- 상세 이미지 1 //END -->
+	                    <!-- 상세 이미지 1 //START -->
+	                    <c:if test="${!empty dto.bbs_file1}">
+	                    <div class="row py-3 text-center">
+	                        <div class="col"><img src="<%=request.getContextPath()%>${dto.bbs_file1}" alt="" /></div>
+	                    </div>
+	                    </c:if>
+	                    <!-- 상세 이미지 1 //END -->
 
-		                    <!-- 상세 이미지 2 //START -->
-		                    <c:if test="${!empty dto.bbs_file2}">
-		                    <div class="row py-3">
-		                        <div class="col"><img src="<%=request.getContextPath()%>${dto.bbs_file2}" alt="" /></div>
-		                    </div>
-		                    </c:if>
-		                    <!-- 상세 이미지 2 //END -->
+	                    <!-- 상세 이미지 2 //START -->
+	                    <c:if test="${!empty dto.bbs_file2}">
+	                    <div class="row py-3 text-center">
+	                        <div class="col"><img src="<%=request.getContextPath()%>${dto.bbs_file2}" alt="" /></div>
+	                    </div>
+	                    </c:if>
+	                    <!-- 상세 이미지 2 //END -->
 
-		                   
-		                   
-		                    <!-- 상세 이미지 3 //START -->
-		                    <c:if test="${!empty dto.bbs_file3}">
-		                    <div class="row py-3">
-		                        <div class="col"><img src="<%=request.getContextPath()%>${dto.bbs_file3}" alt="" /></div>
-		                    </div>
-		                    </c:if>
-		                    <!-- 상세 이미지 3 //END -->
-
-
-
-		                    <!-- 상세 이미지 4 //START -->
-		                    <c:if test="${!empty dto.bbs_file4}">
-		                    <div class="row py-3">
-		                        <div class="col"><img src="<%=request.getContextPath()%>${dto.bbs_file4}" alt="" /></div>
-		                    </div>
-		                    </c:if>
-		                    <!-- 상세 이미지 4 //END -->
+	                   
+	                   
+	                    <!-- 상세 이미지 3 //START -->
+	                    <c:if test="${!empty dto.bbs_file3}">
+	                    <div class="row py-3 text-center">
+	                        <div class="col"><img src="<%=request.getContextPath()%>${dto.bbs_file3}" alt="" /></div>
+	                    </div>
+	                    </c:if>
+	                    <!-- 상세 이미지 3 //END -->
 
 
-		                    <!-- 상세 이미지 5 //START -->
-		                    <c:if test="${!empty dto.bbs_file5}">
-		                    <div class="row py-3">
-		                        <div class="col"><img src="<%=request.getContextPath()%>${dto.bbs_file5}" alt="" /></div>
-		                    </div>
-		                    </c:if>
-		                    <!-- 상세 이미지 5 //END -->
+
+	                    <!-- 상세 이미지 4 //START -->
+	                    <c:if test="${!empty dto.bbs_file4}">
+	                    <div class="row py-3 text-center">
+	                        <div class="col"><img src="<%=request.getContextPath()%>${dto.bbs_file4}" alt="" /></div>
+	                    </div>
+	                    </c:if>
+	                    <!-- 상세 이미지 4 //END -->
 
 
-		                    <!-- 글 내용 1 //START -->
-		                    <c:if test="${!empty dto.bbs_content}">
-		                    <div class="row py-3">
-		                        <div class="col">${dto.bbs_content}</div>
-		                    </div>
-		                    </c:if>
-		                    <!-- 글 내용 1 //END -->
+	                    <!-- 상세 이미지 5 //START -->
+	                    <c:if test="${!empty dto.bbs_file5}">
+	                    <div class="row py-3 text-center">
+	                        <div class="col"><img src="<%=request.getContextPath()%>${dto.bbs_file5}" alt="" /></div>
+	                    </div>
+	                    </c:if>
+	                    <!-- 상세 이미지 5 //END -->
 
-		                </div>
+
+	                    <!-- 글 내용 1 //START -->
+	                    <c:if test="${!empty dto.bbs_content}">
+	                    <div class="row py-3">
+	                        <div class="col">${dto.bbs_content}</div>
+	                    </div>
+	                    </c:if>
+	                    <!-- 글 내용 1 //END -->
+
+	                </div>
 
                 </div>
             </div>

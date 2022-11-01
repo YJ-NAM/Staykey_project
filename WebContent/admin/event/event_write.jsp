@@ -91,6 +91,42 @@
 				<col />
 			</colgroup>
 
+
+			<tr>
+            	<th>이벤트 기간</th>
+	            <td colspan="3">
+		            <div class="row">
+		            
+			            <div class="col-3">
+				            <div class="input-group">
+					            <div class="input-group-prepend">
+					           		 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+					            </div>
+				            		<input type="text" name="ev_showstart" id="startDt" class="form-control text-center eng" />
+				            	</div>
+				         </div>
+				         
+				         <div class="pt-2">~</div>
+				         
+				         <div class="col-3">
+				            <div class="input-group">
+				            	<div class="input-group-prepend">
+				            		<span class="input-group-text"><i class="fa fa-calendar"></i></span>
+				            	</div>
+				           		 <input type="text" name="ev_showend" id="endDt" class="form-control text-center eng" />
+				            </div>
+			            </div>
+			            
+		            </div>
+	            </td>
+            </tr>
+
+
+			<tr>
+				<td colspan="4" class="space" nowrap="nowrap"></td>
+			</tr>
+
+
 			<tr>
 				<th>제목</th>
 				<td colspan="3"><input type="text" name="ev_title" maxlength="255" class="form-control" required /></td>
@@ -110,52 +146,6 @@
 			</tr>
 
 			<tr>
-				<th>이미지 파일1</th>
-				<td colspan="3"><input type="file" name="ev_file1" class="form-control w-50" /></td>
-			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-
-			<tr>
-				<th>이미지 파일2</th>
-				<td colspan="3"><input type="file" name="ev_file2" class="form-control w-50" /></td>
-			</tr>
-
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일3</th>
-				<td colspan="3"><input type="file" name="ev_file3" class="form-control w-50" /></td>
-			</tr>
-			
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일4</th>
-				<td colspan="3"><input type="file" name="ev_file4" class="form-control w-50" /></td>
-			</tr>
-			
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
-				<th>이미지 파일5</th>
-				<td colspan="3"><input type="file" name="ev_file5" class="form-control w-50" /></td>
-			</tr>
-			
-			<tr>
-				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-
-			<tr>
 				<th>숙소 번호</th>
 				<td colspan="3">
 					<div class="row m-0">
@@ -168,36 +158,32 @@
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
-			
+
 			<tr>
-            <th>이벤트 기간</th>
-	            <td colspan="3">
-		            <div class="row">
-		            
-			            <div class="col-4">
-				            <div class="input-group">
-					            <div class="input-group-prepend">
-					           		 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-					            </div>
-				            		<input type="text" name="ev_showstart" id="startDt" class="form-control text-center eng" />
-				            	</div>
-				         </div>
-				         
-				         <div class="pt-2">~</div>
-				         
-				         <div class="col-4">
-				            <div class="input-group">
-				            	<div class="input-group-prepend">
-				            		<span class="input-group-text"><i class="fa fa-calendar"></i></span>
-				            	</div>
-				           		 <input type="text" name="ev_showend" id="endDt" class="form-control text-center eng" />
-				            </div>
-			            </div>
-			            
-		            </div>
-	            </td>
-            </tr>
-         
+				<th>이미지 파일 1</th>
+				<td colspan="3"><input type="file" name="ev_file1" class="form-control w-50" /></td>
+			</tr>
+
+			<tr>
+				<th>이미지 파일 2</th>
+				<td colspan="3"><input type="file" name="ev_file2" class="form-control w-50" /></td>
+			</tr>
+
+			<tr>
+				<th>이미지 파일 3</th>
+				<td colspan="3"><input type="file" name="ev_file3" class="form-control w-50" /></td>
+			</tr>
+
+			<tr>
+				<th>이미지 파일 4</th>
+				<td colspan="3"><input type="file" name="ev_file4" class="form-control w-50" /></td>
+			</tr>
+
+			<tr>
+				<th>이미지 파일 5</th>
+				<td colspan="3"><input type="file" name="ev_file5" class="form-control w-50" /></td>
+			</tr>
+			
 			
 		</table>
 
