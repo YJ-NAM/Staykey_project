@@ -15,6 +15,7 @@ public class SiteMemberFindIdPwResultAction implements Action {
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     	MemberDAO dao = MemberDAO.getInstance();
+    	ActionForward forward = new ActionForward();
     	
     	String find_email = request.getParameter("find_email");
     	String find_name =request.getParameter("find_name");
@@ -23,21 +24,9 @@ public class SiteMemberFindIdPwResultAction implements Action {
     	
     	// 아이디 찾기
     	if(find_mode.equals("id")) {
-    		
-    	}else { // 비번 찾기
-    		
-    	}
-    	
-    	// 아이디 찾기 method
-    	String member_id = dao.idFind(find_email, find_name);
-    	// 비밀번호 찾기 method
-    	String member_pwd = dao.pwdFind(find_email, find_id);
-    	
-        ActionForward forward = new ActionForward();
-        
-        // 아이디 찾기
-        if(find_id.equals(null)) { // 아이디 찾기 성공
-	        if(!member_id.equals("noEmail") && !member_id.equals("noName")) {
+    		// 아이디 찾기 method
+    		String member_id = dao.idFind(find_email, find_name);
+    		if(!member_id.equals("noEmail") && !member_id.equals("noName")) {
 	        	request.setAttribute("findId", member_id);
 	        	forward.setRedirect(false);
 	        	forward.setPath("member/member_find_result.jsp");
@@ -50,7 +39,9 @@ public class SiteMemberFindIdPwResultAction implements Action {
 	        	forward.setRedirect(false);
 	        	forward.setPath("member/member_find.jsp");
 	        }
-        }else { // 비밀번호 찾기
+    	}else { // 비번 찾기
+    		// 비밀번호 찾기 method
+    		String member_pwd = dao.pwdFind(find_email, find_id);
         	if(!member_pwd.equals("noEmail") && !member_pwd.equals("noId")) { // 비번 찾기 성공
 	        	request.setAttribute("findPwd", member_pwd);
 	        	forward.setRedirect(false);
@@ -64,7 +55,8 @@ public class SiteMemberFindIdPwResultAction implements Action {
 	        	forward.setRedirect(false);
 	        	forward.setPath("member/member_find.jsp");
 	        }
-        }
+    	}
+    	
         return forward;
     }
 }
