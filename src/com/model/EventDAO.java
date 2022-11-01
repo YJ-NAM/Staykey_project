@@ -273,4 +273,55 @@ public class EventDAO {
 		return result;
 	}
 
+
+
+    // ======================================================
+    // 이벤트정보 가져오기 메서드
+    // ======================================================
+    public EventDTO getEventInfo(int no) {
+        EventDTO dto = null;
+
+        try {
+            openConn();
+
+            sql = "select * from staykey_event where bbs_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) {
+                dto = new EventDTO();
+
+                dto.setBbs_no(rs.getInt("bbs_no"));
+                dto.setBbs_title(rs.getString("bbs_title"));
+                dto.setBbs_content(rs.getString("bbs_content"));
+                dto.setBbs_file1(rs.getString("bbs_file1"));
+                dto.setBbs_file2(rs.getString("bbs_file2"));
+                dto.setBbs_file3(rs.getString("bbs_file3"));
+                dto.setBbs_file4(rs.getString("bbs_file4"));
+                dto.setBbs_file5(rs.getString("bbs_file5"));
+                dto.setBbs_stayno(rs.getString("bbs_stayno"));
+                dto.setBbs_showstart(rs.getString("bbs_showstart"));
+                dto.setBbs_showend(rs.getString("bbs_showend"));
+                dto.setBbs_hit(rs.getInt("bbs_hit"));
+                dto.setBbs_writer_name(rs.getString("bbs_writer_name"));
+                dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
+                dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
+                dto.setBbs_date(rs.getString("bbs_date"));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return dto;
+    }
+
+
+	
+	
 }
