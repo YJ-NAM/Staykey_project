@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% long time = System.currentTimeMillis(); %>
 <!DOCTYPE html>
 <html>
@@ -82,8 +83,23 @@
                 </div>
 
                 <div class="menu-etc">
-                    <a href="<%=request.getContextPath()%>/memberLogin.do">Log-in</a>
-                    <a href="<%=request.getContextPath()%>/memberJoin.do">Join</a>
+                    <c:choose>
+                        <c:when test="${!empty login_id}">
+                        <a href="<%=request.getContextPath()%>/mypageReservList.do" class="mypage-link">MyPage</a>
+                        <ul class="mypage-menu">
+                            <li><a href="<%=request.getContextPath()%>/mypageReservList.do">예약 정보</a></li>
+                            <li><a href="<%=request.getContextPath()%>/mypagePoint.do">적립금 내역</a></li>
+                            <li><a href="<%=request.getContextPath()%>/mypageWish.do">관심 스테이</a></li>
+                            <li><a href="<%=request.getContextPath()%>/mypageQnaList.do">1:1 문의</a></li>
+                            <li><a href="<%=request.getContextPath()%>/mypageInfo.do">회원정보 수정</a></li>
+                        </ul>
+                        <a href="<%=request.getContextPath()%>/memberLogout.do" onClick="return confirm('로그아웃 하시겠습니까?');">LogOut</a>
+                        </c:when>
+                        <c:otherwise>
+                        <a href="<%=request.getContextPath()%>/memberLogin.do">Log-in</a>
+                        <a href="<%=request.getContextPath()%>/memberJoin.do">Join</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${!empty login_id}"><script type="text/javascript">alert('이미 로그인 되어 있습니다.\n이전 페이지로 돌아갑니다.'); history.back();</script></c:if>
+
 <% long time = System.currentTimeMillis(); %>
 <jsp:include page="../layout/layout_header.jsp" />
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/member.css?<%=time%>" />
