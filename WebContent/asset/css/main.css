@@ -518,7 +518,6 @@
     padding: 0 0 50px;
     letter-spacing: 10px;
     z-index: 2;
-    
 }
   
 .main-event .swiper-wrapper {
@@ -571,15 +570,20 @@
 
 .main-magazine {
     margin-top: 110px;
+    width: 100%;
 }
  
 .main-magazine ul {
     font-size: 0;
 }
- 
-.main-magazine ul img {
+
+.main-magazine .swiper-slide {
     width: 100%;
+}
+.main-magazine ul img {
     height: 650px;
+    width: 100%;
+
 }
  
 .main-magazine .stay-info {
@@ -602,7 +606,7 @@
     height: 60px;
     width: 175px;
     margin-bottom: auto;
-    margin-right: auto;
+    margin-right: 30px;
     object-fit: contain;
     background-position: center center;
 }
@@ -647,10 +651,10 @@
     cursor: pointer;
     opacity: 0.4;
  
- }
+}
  
  
- .main-magazine .fa-chevron-right {
+.main-magazine .fa-chevron-right {
     position: absolute;
     font-family: 'FontAwesome';
     font-size: 50px;
@@ -665,4 +669,77 @@
     z-index: 2;
     cursor: pointer;
     opacity: 0.4;
- }
+}
+
+.main-magazine .fa:hover {
+    transition: 0.7s;
+    opacity: 1;
+}
+
+
+/*************************/
+/* 메인 페이지 - 트래블
+/*************************/
+
+.main-travel {
+    margin-top: 110px;
+}
+ 
+.main-travel .sec-title {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    padding: 0 0 50px;
+    letter-spacing: 10px;
+    z-index: 2;
+}
+
+.main-travel .stay-list {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+}
+
+.main-travel .stay-list::before {
+    content: none;
+    position: absolute;
+    display: block;
+    width: 30px;
+}
+ 
+.main-travel .stay-list .stay-box {
+    display: block;
+}
+ 
+.main-travel .stay-list img {
+    width: 410px;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+}
+ 
+.main-travel .stay-list .stay-box .text {
+    font-family: 'NotoSerifKR';
+    margin-top: 40px;
+    font-size: 20px;
+    line-height: 30px;
+    height: 60px;
+}
+ 
+.main-travel .stay-list .stay-box .other {
+    word-spacing: 1.5;
+    font-size: 14px;
+    color: #181818;
+    margin-top: 15px;
+    height: 40px;
+    line-height: 1.5;
+}
+
+.main-travel .more {
+    font-size: 12px;
+    color: #800000;
+    border-bottom: 1px solid #800000;
+    display: inline-block;
+}
+ 

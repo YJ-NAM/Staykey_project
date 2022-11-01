@@ -369,7 +369,7 @@ ${ login_msg }
 
 
    <!-------- 메인 페이지 이벤트 창 // start --------->
-   <div class="main-event">
+   <div class="container main-event">
             <div class="sec-title">EVENT</div>
         <div class="event-container stay-list" id="event-container">
             <div class="swiper-wrapper">
@@ -437,7 +437,6 @@ ${ login_msg }
     <div class="main-magazine">
         <div class="swiper-container" id="magazine-container">
             <ul class="swiper-wrapper">
-                    
                     <li class="swiper-slide">
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/149/523/original/135581dedb1c12eb129bef11419240c8d531501c.jpg?1666732643" />
@@ -489,7 +488,7 @@ ${ login_msg }
                             <img src="https://images.stayfolio.com/system/pictures/images/000/140/370/original/a79d65f3efd11ef8f463e31009661c5e5d96e4c4.jpg?1662352893" />
                             <div class="stay-info">
                                 <img src="https://images.stayfolio.com/system/pictures/images/000/135/567/original/ae9601936496ede84b9e6dcbd340b151fbd063b9.jpg?1660612147" />
-                                <p class="text">마음에 서리는 시간의 기억들</p>
+                                <p class="text">마음에 서리는<br>시간의 기억들</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
                             </div>
@@ -500,6 +499,76 @@ ${ login_msg }
             <div class="fa fa-chevron-right"></div>
          </div>
     </div>
+    <!-------- 메인 페이지 매거진 창 END  --------->
+
+
+
+    <!-------- 메인 페이지 트래블 창 // START --------->
+    <div class="container main-travel">
+            <div class="sec-title">TRAVEL</div>
+        <ul class="stay-list">
+                <li class="stay-box">
+                    <a href="#">
+                        <img src= "https://images.stayfolio.com/system/pictures/images/000/149/246/original/adc58deccc741bb51635db278a750413558ce38a.jpg?1666661803"/>
+                        <div class="text">차분하고 세심한<br>환대를 전하는</div>
+                        <div class="other"><span>부산/중구</span></div>
+                        <div class="more">Read more</div>
+                    </a>
+                </li>
+        
+
+                <li class="stay-box">
+                    <a href="#">
+                        <img src="//images.stayfolio.com/system/pictures/images/000/149/966/original/b415c75e3377f5765ecded49771603aa439fc501.jpg?1667005072" class="img" />
+                        <div class="text">오래도록 기억될<br>우리의 시간</div>
+                        <div class="other"><span>""</span></div>
+                        <div class="more">Read more</div>
+                    </a>
+                </li>
+
+
+                <li class="stay-box">
+                    <a href="#">
+                        <img src="//images.stayfolio.com/system/pictures/images/000/147/020/original/37728b0c88d7f0453cc134b9bd9ab72d9ddba6a2.jpg?1665195702" class="img" />
+                        <div class="text">육지 끝자락에서 느끼는<br>료칸 무드</div>
+                        <div class="other"><span>""</span></div>
+                        <div class="more">Read more</div>
+                    </a>
+                </li>
+
+
+                <li class="stay-box">
+                    <a href="#">
+                        <img src="" class="img" />
+                        <div class="text">" "</div>
+                        <div class="other"><span>""</span></div>
+                        <div class="more">Read more</div>
+                    </a>
+                </li>
+
+
+                <li class="stay-box">
+                    <a href="#">
+                        <img src="" class="img" />
+                        <div class="text">" "</div>
+                        <div class="other"><span>""</span></div>
+                        <div class="more">Read more</div>
+                    </a>
+                </li>
+
+
+                <li class="stay-box">
+                    <a href="#">
+                        <img src="" class="img" />
+                        <div class="text">" "</div>
+                        <div class="other"><span>""</span></div>
+                        <div class="more">Read more</div>
+                    </a>
+                </li>
+            </ul>
+         </div>
+    <!-------- 메인 페이지 트래블 창 // END --------->
+
 </div>
 
 
