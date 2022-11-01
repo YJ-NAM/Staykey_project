@@ -152,7 +152,7 @@
 	
 								<td ${showLink} class="py-4">
 									<p><b class="eng">${dto.bbs_writer_id}</b></p>
-									<p>(${dto.bbs_writer_name })</p>
+									<p>${dto.bbs_writer_name}</p>
 								</td>
 	
 								<td ${showLink} class="eng">${dto.bbs_date.substring(0,10)}<br />${dto.bbs_date.substring(11)}</td>
