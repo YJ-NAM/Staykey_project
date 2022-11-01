@@ -36,6 +36,12 @@ public class StayDTO {
 		private int stay_hit;                 // 조회수(정렬 위한)
 		private int stay_reserv;              // 예약수
 		private String stay_date;             // 투숙일자
+
+		private int room_price_min; // 룸 가격 최저
+		private int room_price_max; // 룸 가격 최고
+		private int room_people_min; // 최소 인원수
+		private int room_people_max; // 최대 인원수
+
 		
 		public int getStay_no() {
 			return stay_no;
@@ -241,6 +247,32 @@ public class StayDTO {
 		public void setStay_date(String stay_date) {
 			this.stay_date = stay_date;
 		}
+
+
+		public int getRoom_price_min() {
+            return room_price_min;
+        }
+        public void setRoom_price_min(int room_price_min) {
+            this.room_price_min = room_price_min;
+        }
+        public int getRoom_price_max() {
+            return room_price_max;
+        }
+        public void setRoom_price_max(int room_price_max) {
+            this.room_price_max = room_price_max;
+        }
+        public int getRoom_people_min() {
+            return room_people_min;
+        }
+        public void setRoom_people_min(int room_people_min) {
+            this.room_people_min = room_people_min;
+        }
+        public int getRoom_people_max() {
+            return room_people_max;
+        }
+        public void setRoom_people_max(int room_people_max) {
+            this.room_people_max = room_people_max;
+        }
 		
 	                                      
 }                                         
