@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% long time = System.currentTimeMillis(); %>
 <!DOCTYPE html>
 <html>
@@ -36,6 +37,10 @@
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/bootstrap-tagsinput.css" />
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/admin/asset/css/style.css?<%=time%>" />
 
+    <c:choose>
+        <c:when test="${empty login_id}"><script type="text/javascript">alert("관리자 로그인 후 접속 할 수 있습니다."); location.href='<%=request.getContextPath()%>/memberLogin.do';</script></c:when>
+        <c:when test="${login_type == 'user'}"><script type="text/javascript">alert("관리자만 접속 할 수 있는 페이지 입니다."); history.back();</script></c:when>
+    </c:choose>
 
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/jquery-3.5.1.min.js"></script>
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/jquery-ui.min.js"></script>
@@ -68,8 +73,9 @@
     <header class="fixed-top">
         <div class="container-xl top-info">
             <h1 class="mr-auto"><a href="<%=request.getContextPath()%>/admin/reservList.do"><img src="<%=request.getContextPath()%>/admin/asset/images/logo.png" alt="StayKey" /></a></h1>
+            <c:if test="${!empty login_id}"><span class="nav-link" style="padding-top: 0.8rem;"><b>${login_name}</b>님 안녕하세요</span></c:if>
             <a class="nav-link" href="<%=request.getContextPath()%>/" target="_blank"><i class="icon-globe"></i> 사이트보기</a>
-            <a class="nav-link" href="<%=request.getContextPath()%>/memberLogout.do" onClick="return confirm('로그아웃 하시겠습니까?');"><i class="icon-power"></i> 로그아웃</a>
+            <c:if test="${!empty login_id}"><a class="nav-link" href="<%=request.getContextPath()%>/memberLogout.do" onClick="return confirm('로그아웃 하시겠습니까?');"><i class="icon-power"></i> 로그아웃</a></c:if>
         </div>
 
         <div class="navbar navbar-expand-md navbar-dark bg-dark">

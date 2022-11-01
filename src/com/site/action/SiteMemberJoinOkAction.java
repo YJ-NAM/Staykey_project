@@ -39,11 +39,12 @@ public class SiteMemberJoinOkAction implements Action {
 		PrintWriter out = response.getWriter();
 		
 		if(res > 0) {
-        	session.setAttribute("login_msg", "<script> alert('성공적으로 회원 가입이 완료되었습니다.'); </script>)");
+        	session.setAttribute("login_msg", "<script>alert('성공적으로 회원 가입이 완료되었습니다.');</script>)");
             forward.setRedirect(true);
             forward.setPath("index.jsp");
 		}else {
-            out.println("<script> alert('회원 등록 중 에러가 발생했습니다.'); history.back(); </script>");
+		    forward = null;
+            out.println("<script>alert('회원 등록 중 에러가 발생했습니다.'); history.back();</script>");
 		}
 		return forward;
 	}
