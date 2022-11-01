@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.controller.Action;
 import com.controller.ActionForward;
-import com.model.EventDAO;
 import com.model.EventDTO;
 import com.model.MagazineDTO;
 import com.model.StayDAO;
@@ -19,23 +18,20 @@ public class AdminEventWriteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-		// write 버튼 누르면 stay 정보가 write로 넘어감.
-		MagazineDTO dto = new MagazineDTO();
-
+		
+		// 수정 버튼 누르면 stay 정보가 수정으로 넘어감.
+		EventDTO dto = new EventDTO();
 		StayDAO sdao = StayDAO.getInstance();
-		// 숙소 정보 가져오기
-        List<StayDTO> slist = sdao.getBbsStayList(dto.getBbs_stayno()); 
-        request.setAttribute("stayList", slist);
-        
-        
+		List<StayDTO> slist = sdao.getBbsStayList(dto.getBbs_stayno());
+		request.setAttribute("stayList", slist);
+		
         ActionForward forward = new ActionForward();
-        
     	forward.setRedirect(false);
-    	
     	forward.setPath("event/event_write.jsp");
-
-        return forward;		
+    	System.out.println("slist" + slist);
+    	
+        return forward;	
+        
 
 	}
 		

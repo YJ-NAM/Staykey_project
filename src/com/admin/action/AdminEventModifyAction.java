@@ -8,43 +8,42 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.controller.Action;
 import com.controller.ActionForward;
-import com.model.MagazineDAO;
+import com.model.EventDAO;
+import com.model.EventDTO;
 import com.model.MagazineDTO;
 import com.model.StayDAO;
 import com.model.StayDTO;
 
-public class AdminMagazineModifyAction implements Action {
+public class AdminEventModifyAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
+
 		// 수정 버튼 누르면 stay 정보가 수정으로 넘어감.
-		MagazineDTO dto = new MagazineDTO();
+		EventDTO dto = new EventDTO();
         StayDAO sdao = StayDAO.getInstance();
         List<StayDTO> slist = sdao.getBbsStayList(dto.getBbs_stayno());
         request.setAttribute("stayList", slist);
 
-		// 주소 클릭 시 받아 옴
+		// 클릭 시 주소로 받아옴.
 		int bbs_no = Integer.parseInt(request.getParameter("bbs_no"));
-		
+
 		// dao 연결
-		MagazineDAO dao = MagazineDAO.getInstance();
-		
+		EventDAO dao = EventDAO.getInstance();
+
 		// 상세 목록 조회 메서드
-		dto = dao.getMagView(bbs_no);
-		
+		dto = dao.getEventInfo(bbs_no);
+
 		// 메서드로 조회해온 값 dto로 넘겨 주기
-		request.setAttribute("magazineModify", dto);
+		request.setAttribute("eventModify", dto);
 
 		// forward 실행
 		ActionForward forward = new ActionForward();
-		
+
 		forward.setRedirect(false);
-		forward.setPath("magazine/magazine_modify.jsp");
-	
+		forward.setPath("event/event_modify.jsp");
+
 		return forward;
-	
-    	
 	}
 
 }

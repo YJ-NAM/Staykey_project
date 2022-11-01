@@ -49,8 +49,8 @@ public class AdminEventWriteOkAction implements Action {
 		String ev_title = multi.getParameter("ev_title");
 		String ev_content = multi.getParameter("ev_content");
 		String ev_stayno = multi.getParameter("ev_stayno");
-		String ev_start = multi.getParameter("ev_start");
-		String ev_end = multi.getParameter("ev_end");
+		String ev_start = multi.getParameter("ev_showstart");
+		String ev_end = multi.getParameter("ev_showend");
 		String ev_writer_name = multi.getParameter("ev_writer_name");
 		String ev_writer_id = multi.getParameter("ev_writer_id");
 		String ev_writer_pw = multi.getParameter("ev_writer_pw");

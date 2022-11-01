@@ -222,16 +222,15 @@ public class MemberDAO {
             pstmt.setString(1, member_id);
             rs = pstmt.executeQuery();
 
-            if (rs.next())
+            if (rs.next()) {
                 result = rs.getInt(1);
-
+            }
         } catch (Exception e) {
             e.printStackTrace();
 
         } finally {
             closeConn(rs, pstmt, con);
         }
-
         return result;
     }
 
@@ -251,27 +250,23 @@ public class MemberDAO {
             if (rs.next()) {
                 count = rs.getInt(1) + 1;
             }
-            sql = "insert into staykey_member values(?, ?, ?, ?, ?, ?, ?, default, default, ?, sysdate)";
+            
+            sql = "insert into staykey_member values(?, default, ?, ?, ?, ?, ?, default, default, ?, sysdate)";
             pstmt = con.prepareStatement(sql);
-
             pstmt.setInt(1, count);
-            pstmt.setString(2, dto.getMember_type());
-            pstmt.setString(3, dto.getMember_id());
-            pstmt.setString(4, dto.getMember_pw());
-            pstmt.setString(5, dto.getMember_name());
-            pstmt.setString(6, dto.getMember_email());
-            pstmt.setString(7, dto.getMember_phone());
-            pstmt.setString(8, dto.getMember_photo());
+            pstmt.setString(2, dto.getMember_id());
+            pstmt.setString(3, dto.getMember_pw());
+            pstmt.setString(4, dto.getMember_name());
+            pstmt.setString(5, dto.getMember_email());
+            pstmt.setString(6, dto.getMember_phone());
+            pstmt.setString(7, dto.getMember_photo());
 
             result = pstmt.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
-
         } finally {
             closeConn(rs, pstmt, con);
         }
-
         return result;
     }
 
@@ -406,5 +401,74 @@ public class MemberDAO {
         }
         return result;
     }
+    
+    // ======================================================
+    // 아이디 찾기
+    // ======================================================
+    public String idFind(String member_email, String member_name) {
+    	String member_id = "";
 
+        try {
+            openConn();
+
+            sql = "select member_name from staykey_member where member_email = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, member_email);
+            rs = pstmt.executeQuery();
+            if(rs.next()) { // 이메일 존재할 때
+                sql = "select member_id from staykey_member where member_email = ? and member_name = ?";
+                pstmt = con.prepareStatement(sql);
+                pstmt.setString(1, member_email);
+                pstmt.setString(2, member_name);
+                rs = pstmt.executeQuery();
+                if(rs.next()) { // 둘 다 일치
+                	member_id = rs.getString("member_id");          
+                }else { // 이름 없을 때
+                	member_id = "noName";
+                }
+            }else { // 이메일 없을 때
+            	member_id = "noEmail";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return member_id;
+    }
+    
+    // ======================================================
+    // 비밀번호 찾기
+    // ======================================================
+    public String pwdFind(String member_email, String member_id) {
+    	String member_pwd = "";
+
+        try {
+            openConn();
+
+            sql = "select member_id from staykey_member where member_email = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, member_email);
+            rs = pstmt.executeQuery();
+            if(rs.next()) { // 이메일 존재할 때
+                sql = "select member_pw from staykey_member where member_email = ? and member_id = ?";
+                pstmt = con.prepareStatement(sql);
+                pstmt.setString(1, member_email);
+                pstmt.setString(2, member_id);
+                rs = pstmt.executeQuery();
+                if(rs.next()) { // 둘 다 일치
+                	member_pwd = rs.getString("member_pw");          
+                }else { // 이름 없을 때
+                	member_pwd = "noId";
+                }
+            }else { // 이메일 없을 때
+            	member_pwd = "noEmail";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return member_pwd;
+    }
 }
