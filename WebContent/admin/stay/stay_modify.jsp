@@ -170,16 +170,17 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션사진</span>
                             </div>                                     
-                            <c:if test="${ !empty stayModify.stay_option1_photo }">
-                                <p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option1_photo }" alt="" width="100px" height="100px"/></p>
-                                <div class="input-group-prepend w-80 justify-content">
-                                &nbsp;                
-                                <div class="form-check form-check-inline">
-				                	<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y6" /> 등록된 사진 삭제</label>
-				                </div> 
-                                </div>
-			                </c:if>
-                            <input type="file" name="stay_option1_photo" class="form-control w-50" value="${ stayModify.stay_option3_photo }" />
+                            <c:if test="${ !empty stayModify.stay_option1_photo }"><p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option1_photo }" alt="" width="100px" height="100px"/></p></c:if>
+							<div class="input-group-prepend w-80 justify-content">
+								<div class="form-control w-100">
+									<input type="file" name="stay_option1_photo" class="w-100" value="${ stayModify.stay_option3_photo }" />
+									<c:if test="${ !empty stayModify.stay_option1_photo }">
+									<div class="mt-2">
+										<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y6" /> 등록된 사진 삭제</label>
+									</div>
+									</c:if>
+								</div>
+							</div>
                         </div>
                     </div>
                 </div>
@@ -223,16 +224,17 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션사진</span>
                             </div>
-                            <c:if test="${ !empty stayModify.stay_option2_photo }">
-                                <p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option2_photo }" alt="" width="100px" height="100px"/></p>
-                                <div class="input-group-prepend w-80 justify-content">
-                                &nbsp;
-                                <div class="form-check form-check-inline">
-				                	<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y7" /> 등록된 사진 삭제</label>
-				                </div> 
-				                </div>
-			                </c:if>
-                            <input type="file" name="stay_option2_photo" class="form-control w-100" />
+                            <c:if test="${ !empty stayModify.stay_option2_photo }"><p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option2_photo }" alt="" width="100px" height="100px"/></p></c:if>
+							<div class="input-group-prepend w-80 justify-content">
+								<div class="form-control w-100">
+									<input type="file" name="stay_option2_photo" class="w-100" value="${ stayModify.stay_option2_photo }" />
+									<c:if test="${ !empty stayModify.stay_option2_photo }">
+									<div class="mt-2">
+										<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y7" /> 등록된 사진 삭제</label>
+									</div>
+									</c:if>
+								</div>
+							</div>
                         </div>
                     </div>
                  </div>
@@ -276,16 +278,17 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">옵션사진</span>
                             </div>
-                            <c:if test="${ !empty stayModify.stay_option3_photo }">
-                                <p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option3_photo }" alt="" width="100px" height="100px"/></p>
-                                <div class="input-group-prepend w-80 justify-content">
-                                &nbsp;                                
-                                <div class="form-check form-check-inline">
-				                	<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y7" /> 등록된 사진 삭제</label>
-				                </div> 
-                                </div>
-			                </c:if>
-                            <input type="file" name="stay_option3_photo" class="form-control w-50" value="${ stayModify.stay_option3_photo }" />
+                            <c:if test="${ !empty stayModify.stay_option3_photo }"><p><img src="${ pageContext.request.contextPath }/${ stayModify.stay_option3_photo }" alt="" width="100px" height="100px"/></p></c:if>
+							<div class="input-group-prepend w-80 justify-content">
+								<div class="form-control w-100">
+									<input type="file" name="stay_option3_photo" class="w-100" value="${ stayModify.stay_option3_photo }" />
+									<c:if test="${ !empty stayModify.stay_option3_photo }">
+									<div class="mt-2">
+										<label class="form-check-label"><input type="checkbox" name="stay_file_delete" value="Y8" /> 등록된 사진 삭제</label>
+									</div>
+									</c:if>
+								</div>
+							</div>
                         </div>
                     </div>
                 </div>
