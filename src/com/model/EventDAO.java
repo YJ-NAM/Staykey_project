@@ -273,55 +273,100 @@ public class EventDAO {
 		return result;
 	}
 
+	// ======================================================
+	// 이벤트정보 가져오기 메서드
+	// ======================================================
+	public EventDTO getEventInfo(int no) {
+		EventDTO dto = null;
+
+		try {
+			openConn();
+
+			sql = "select * from staykey_event where bbs_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				dto = new EventDTO();
+
+				dto.setBbs_no(rs.getInt("bbs_no"));
+				dto.setBbs_title(rs.getString("bbs_title"));
+				dto.setBbs_content(rs.getString("bbs_content"));
+				dto.setBbs_file1(rs.getString("bbs_file1"));
+				dto.setBbs_file2(rs.getString("bbs_file2"));
+				dto.setBbs_file3(rs.getString("bbs_file3"));
+				dto.setBbs_file4(rs.getString("bbs_file4"));
+				dto.setBbs_file5(rs.getString("bbs_file5"));
+				dto.setBbs_stayno(rs.getString("bbs_stayno"));
+				dto.setBbs_showstart(rs.getString("bbs_showstart"));
+				dto.setBbs_showend(rs.getString("bbs_showend"));
+				dto.setBbs_hit(rs.getInt("bbs_hit"));
+				dto.setBbs_writer_name(rs.getString("bbs_writer_name"));
+				dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
+				dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
+				dto.setBbs_date(rs.getString("bbs_date"));
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+
+		return dto;
+	}
+
+	/////////////////////////////////////////////////////////////
+	// 이벤트 수정 메서드
+	/////////////////////////////////////////////////////////////
+
+	public int modifyEvent(EventDTO dto) {
+
+		int result = 0;
+
+		openConn();
 
 
-    // ======================================================
-    // 이벤트정보 가져오기 메서드
-    // ======================================================
-    public EventDTO getEventInfo(int no) {
-        EventDTO dto = null;
+		
+		try {
+			sql = "update staykey_event set bbs_title = ?, bbs_content = ?, bbs_file1 = ?, bbs_file2 = ?, bbs_file3 = ?, "
+					+ "bbs_file4 = ?, bbs_file5 = ?, bbs_stayno = ?, bbs_showstart = ?, bbs_showend = ?, bbs_writer_name = ?, "
+					+ "bbs_writer_id = ?, bbs_writer_pw = ? where bbs_no = ? ";
 
-        try {
-            openConn();
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getBbs_title());
+			pstmt.setString(2, dto.getBbs_content());
+			pstmt.setString(3, dto.getBbs_file1());
+			pstmt.setString(4, dto.getBbs_file2());
+			pstmt.setString(5, dto.getBbs_file3());
+			pstmt.setString(6, dto.getBbs_file4());
+			pstmt.setString(7, dto.getBbs_file5());
+			pstmt.setString(8, dto.getBbs_stayno());
+			pstmt.setString(9, dto.getBbs_showstart());
+			pstmt.setString(10, dto.getBbs_showend());
+			pstmt.setString(11, dto.getBbs_writer_name());
+			pstmt.setString(12, dto.getBbs_writer_id());
+			pstmt.setString(13, dto.getBbs_writer_pw());
+			pstmt.setInt(14, dto.getBbs_no());
 
-            sql = "select * from staykey_event where bbs_no = ?";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, no);
-            rs = pstmt.executeQuery();
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 
-            if(rs.next()) {
-                dto = new EventDTO();
+		finally {
+			closeConn(null, pstmt, con);
+		}
 
-                dto.setBbs_no(rs.getInt("bbs_no"));
-                dto.setBbs_title(rs.getString("bbs_title"));
-                dto.setBbs_content(rs.getString("bbs_content"));
-                dto.setBbs_file1(rs.getString("bbs_file1"));
-                dto.setBbs_file2(rs.getString("bbs_file2"));
-                dto.setBbs_file3(rs.getString("bbs_file3"));
-                dto.setBbs_file4(rs.getString("bbs_file4"));
-                dto.setBbs_file5(rs.getString("bbs_file5"));
-                dto.setBbs_stayno(rs.getString("bbs_stayno"));
-                dto.setBbs_showstart(rs.getString("bbs_showstart"));
-                dto.setBbs_showend(rs.getString("bbs_showend"));
-                dto.setBbs_hit(rs.getInt("bbs_hit"));
-                dto.setBbs_writer_name(rs.getString("bbs_writer_name"));
-                dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
-                dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
-                dto.setBbs_date(rs.getString("bbs_date"));
+		return result;
 
-            }
+	} // modifyMagazine() 종료
 
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        } finally {
-            closeConn(rs, pstmt, con);
-        }
-
-        return dto;
-    }
-
-
-	
-	
 }

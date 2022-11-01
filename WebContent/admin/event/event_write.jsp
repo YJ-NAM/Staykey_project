@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/layout_header.jsp" />
@@ -12,9 +11,9 @@
 <script type="text/javascript">$("#nav-event").addClass("now");</script>
 <script type="text/javascript">
 	function addStayNo(stayno) {
-		let this_val = $("#mag_stayno").val();
+		let this_val = $("#ev_stayno").val();
 		let add_val = this_val;
-	
+
 		if (this_val.length > 0) {
 			if (this_val.indexOf("/" + stayno + "/") == -1) {
 				add_val = this_val + stayno + "/";
@@ -22,31 +21,31 @@
 		} else {
 			add_val = this_val + "/" + stayno + "/";
 		}
-	
-		$("#mag_stayno").val(add_val);
+
+		$("#ev_stayno").val(add_val);
 	}	
 	
-	
+
 	function searchStay(el) {
-	    $.ajax({
-	        type : "post",
-	        url : "staySearchOk.do",
+        $.ajax({
+            type : "post",
+            url : "staySearchOk.do",
 			data: {
 				type : $(el).find("select[name='search_field']").val(),
 				search  : $(el).find("input[name='search_keyword']").val()
 			},
-	        dataType : "html",
-	
-	        success : function(data) {
-	        	let get_data = data.split("◇");
-	
-	        	if(get_data[0] > 0){
+            dataType : "html",
+
+            success : function(data) {
+            	let get_data = data.split("◇");
+
+            	if(get_data[0] > 0){
 	        		$("#search-result").html("");
-	
+
 	        		let epd_data = get_data[1].split("♠");
 	            	for(var i=1; i<epd_data.length; i++) {
 	            		let sub_data = epd_data[i].split("♣");
-	
+
 	            		let setList = "<li class=\"d-flex my-2 align-items-center stayhover\" onclick=\"addStayNo('"+sub_data[0]+"'); close();\" data-dismiss=\"modal\">";
 	            			setList += "<img src=\"<%=request.getContextPath()%>"+sub_data[4]+"\" alt=\"\" width=\"60\" height=\"60\" />";
 							setList += "<div class=\"ml-2\">";
@@ -59,34 +58,30 @@
 	            }else{
 	            	$("#search-result").html("<li class=\"py-3 text-center\">검색된 숙소가 없습니다.</li>");
 	            }
-	        },
-	
-	        error : function(e){
-	            alert("Error : " + e.status);
-	        }
-	    });
-	
-	    return false;
+            },
+
+            error : function(e){
+                alert("Error : " + e.status);
+            }
+        });
+
+        return false;
 	}
 </script>
 
 
 
-<div
-	class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
+<div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
 	<h2>이벤트 등록</h2>
-	<small>이벤트를 추가할 수 있습니다.</small>
+	<small>이벤트를 추가 할 수 있습니다.</small>
 </div>
 
 
 <div class="pb100">
-	<form name="write_form" method="post" enctype="multipart/form-data"
-		action="<%=request.getContextPath()%>/admin/eventWriteOk.do">
-		
-		<!-- 작성자, 아이디, 비밀번호 hidden으로 넘기기. -->
-			<input type="hidden" name="ev_writer_name" value="hyunjin" /> <input
-			type="hidden" name="ev_writer_id" value="user1234" /> <input
-			type="hidden" name="ev_writer_pw" value="1234" />
+	<form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/admin/eventWriteOk.do">
+		<input type="hidden" name="ev_writer_name" value="hyunjin" />
+		<input type="hidden" name="ev_writer_id" value="user1234" />
+		<input type="hidden" name="ev_writer_pw" value="1234" />
 
 		<table class="table-form mt-3">
 			<colgroup>
@@ -98,8 +93,7 @@
 
 			<tr>
 				<th>제목</th>
-				<td colspan="3"><input type="text" name="ev_title"
-					maxlength="255" class="form-control" required /></td>
+				<td colspan="3"><input type="text" name="ev_title" maxlength="255" class="form-control" required /></td>
 			</tr>
 
 			<tr>
@@ -108,8 +102,7 @@
 
 			<tr>
 				<th>글 내용</th>
-				<td colspan="3"><textarea name="ev_content"
-						class="form-control" cols="80" rows="10"></textarea></td>
+				<td colspan="3"><textarea name="ev_content" class="form-control" cols="80" rows="10"></textarea></td>
 			</tr>
 
 			<tr>
@@ -118,18 +111,17 @@
 
 			<tr>
 				<th>이미지 파일1</th>
-				<td colspan="3"><input type="file" name="ev_file1"
-					class="form-control w-50" /></td>
+				<td colspan="3"><input type="file" name="ev_file1" class="form-control w-50" /></td>
 			</tr>
 
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
+
 			<tr>
 				<th>이미지 파일2</th>
-				<td colspan="3"><input type="file" name="ev_file2"
-					class="form-control w-50" /></td>
+				<td colspan="3"><input type="file" name="ev_file2" class="form-control w-50" /></td>
 			</tr>
 
 			<tr>
@@ -138,77 +130,76 @@
 
 			<tr>
 				<th>이미지 파일3</th>
-				<td colspan="3"><input type="file" name="ev_file3"
-					class="form-control w-50" /></td>
+				<td colspan="3"><input type="file" name="ev_file3" class="form-control w-50" /></td>
 			</tr>
-
+			
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
 			<tr>
 				<th>이미지 파일4</th>
-				<td colspan="3"><input type="file" name="ev_file4"
-					class="form-control w-50" /></td>
+				<td colspan="3"><input type="file" name="ev_file4" class="form-control w-50" /></td>
 			</tr>
-
+			
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
 			<tr>
 				<th>이미지 파일5</th>
-				<td colspan="3"><input type="file" name="ev_file5"
-					class="form-control w-50" /></td>
+				<td colspan="3"><input type="file" name="ev_file5" class="form-control w-50" /></td>
 			</tr>
-
+			
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
-			 <tr>
+			<tr>
 				<th>숙소 번호</th>
 				<td colspan="3">
 					<div class="row m-0">
-						<input type="text" name="mag_stayno" value="" id="mag_stayno" class="form-control w-30" maxlength="255" />
+						<input type="text" name="ev_stayno" value="" id="ev_stayno" class="form-control w-30" maxlength="255" />
 						<button type="button" class="btn btn-sm btn-warning ml-2" data-toggle="modal" data-target="#modalCategory"><i class="fa fa-exclamation"></i> 숙소 지정하기</button>
 					</div>
 				</td>
 			</tr>
-		
+			
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr> 
-
-			 	<tr>
-                        <th>이벤트 기간</th>
-                        <td colspan="3">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                        </div>
-                                        <input type="text" name="ev_start" id="startDt" class="form-control text-center eng" />
-                                    </div>
-                                </div>
-
-                                <div class="pt-2">~</div>
-
-                                <div class="col-4">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                        </div>
-                                        <input type="text" name="ev_end" id="endDt" class="form-control text-center eng" />
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    
-			</table>
-	
+			</tr>
+			
+			<tr>
+            <th>이벤트 기간</th>
+	            <td colspan="3">
+		            <div class="row">
+		            
+			            <div class="col-4">
+				            <div class="input-group">
+					            <div class="input-group-prepend">
+					           		 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+					            </div>
+				            		<input type="text" name="ev_showstart" id="startDt" class="form-control text-center eng" />
+				            	</div>
+				         </div>
+				         
+				         <div class="pt-2">~</div>
+				         
+				         <div class="col-4">
+				            <div class="input-group">
+				            	<div class="input-group-prepend">
+				            		<span class="input-group-text"><i class="fa fa-calendar"></i></span>
+				            	</div>
+				           		 <input type="text" name="ev_showstart" id="endDt" class="form-control text-center eng" />
+				            </div>
+			            </div>
+			            
+		            </div>
+	            </td>
+            </tr>
+         
+			
+		</table>
 
 
 		<div class="gw-button">
@@ -216,13 +207,8 @@
 				<div class="gwb-left"></div>
 
 				<div class="gwb-center">
-					<button type="button" class="btn btn-lg btn-outline-secondary mx-1"
-						onclick="history.back();">
-						<i class="fa fa-bars"></i> 목록보기
-					</button>
-					<button type="submit" class="btn btn-lg btn-primary mx-1">
-						<i class="fa fa-pencil"></i> 등록하기
-					</button>
+					<button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i> 목록보기</button>
+					<button type="submit" class="btn btn-lg btn-primary mx-1"><i class="fa fa-pencil"></i> 등록하기</button>
 				</div>
 
 				<div class="gwb-right"></div>
@@ -232,105 +218,60 @@
 </div>
 
 
-
-
-<!-- 모달 창 -->
 <div class="modal fade" id="modalCategory" tabindex="-1" type="default"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">
-					<i class="fa fa-exclamation"></i> 숙소 지정하기
-				</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
+				<h5 class="modal-title"><i class="fa fa-exclamation"></i> 숙소 지정하기</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 			</div>
-		</div>
-				
+
 			<div class="modal-body">
-			
-
-
-				<!-- 숙소 지정 내용 -->
-				<!-- ================================================================== -->
-
-
-				<!-- 검색 설정 : 글 제목, 작성자로 검색 가능 -->
-
-
-				<div>
-					<h2>숙소 검색</h2>
-					<small>등록할 숙소를 검색해 보세요.</small> <br> <br>
-				
-				
-				<!-- 검색 기능 처리 -->
-
-				<form  method="post" onsubmit="return search(this);">
-				<select name="search_field">
+				<form  method="post" onsubmit="return searchStay(this);" class="form-inline">
+				<select name="search_field" class="form-select">
 					<option value="no" selected="selected">숙소 번호</option>
 					<option value="name">숙소 이름</option>
-			
 				</select>
-		
-				<input type="text" name="search_keyword">
-				<input type="submit" value="검색">
-				<br><br>
+				<input type="text" name="search_keyword" value="" class="form-control mx-2" />
+				<button type="submit" class="btn btn-sm btn-primary">검색</button>
 				</form>
-
-
-
 
 				<c:choose>
 					<c:when test="${!empty stay }">
-					<ul class="mb-4" id="search-result">
+					<ul class="my-3" id="search-result">
 						<c:forEach items="${stay}" var="list">
-						<li class="my-2">
-
+						<li class="d-flex my-2 align-items-center stayhover" onclick="addStayNo('${list.stay_no}'); close();" data-dismiss="modal">
 							<c:choose>
-
 								<c:when test="${!empty list.stay_file1}">
 									<img src="<%=request.getContextPath()%>${list.stay_file1}"
 										alt="" width="60" height="60" />
 								</c:when>
-
 								<c:otherwise>
 									<!-- 이미지가 없는 경우 기본 이미지 -->
 									<svg class="bd-placeholder-img" width="60" height="60"
 										xmlns="http://www.w3.org/2000/svg"
 										preserveAspectRatio="xMidYMid slice" focusable="false"
 										role="img">
-					                            <title>${dto.bbs_no}</title>
-					                            <rect width="100%" height="100%"
-											fill="#eee"></rect>
-					                            <text x="48%" y="54%" fill="#888"
-											dy=".1em">no img</text>
-					                        </svg>
+										<title>${dto.bbs_no}</title>
+										<rect width="100%" height="100%" fill="#eee"></rect>
+										<text x="48%" y="54%" fill="#888"dy=".1em">no img</text>
+									</svg>
 								</c:otherwise>
-								
 							</c:choose>
-			
-						
-							<button class="staynobtn" id="staynobtn" onclick="test('${list.stay_no}'); close();" data-dismiss="modal">
-								숙소 번호 : <b> ${list.stay_no} </b> / 숙소 이름 : <b>
-									${list.stay_name}</b>
-							</button>
-							</li>
-
-
+							<div class="ml-2">
+								<p><strong>[${list.stay_no}]</strong> ${list.stay_name}</p>
+								<p>${list.stay_desc}</p>
+							</div>
+						</li>
 						</c:forEach>
 					</ul>
 					</c:when>
 				</c:choose>
-
-
 			</div>
+
 			<div class="modal-footer text-center">
-				<button type="button" id="btn btn-secondary btn-close"
-					data-dismiss="modal">닫기</button>
-					
+				<button type="button" id="btn btn-secondary btn-close" data-dismiss="modal">닫기</button>
 			</div>
 		</div>
 	</div>

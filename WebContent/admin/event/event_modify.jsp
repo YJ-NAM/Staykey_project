@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/layout_header.jsp" />
@@ -7,13 +6,8 @@
 <c:set var="dto" value="${eventModify}" />
 <c:set var="stay" value="${stayList}" />
 
-<!-- 숙소 지정 검색 부분 -->
-<style type="text/css">
-.stayhover:hover {
-	background: #f3f3f3;
-	cursor: pointer;
-}
-</style>
+
+<style type="text/css">.stayhover:hover { background: #f3f3f3; cursor: pointer; }</style>
 <script type="text/javascript">$("#nav-event").addClass("now");</script>
 <script type="text/javascript">
 	function addStayNo(stayno) {
@@ -53,31 +47,25 @@
 	            		let sub_data = epd_data[i].split("♣");
 
 	            		let setList = "<li class=\"d-flex my-2 align-items-center stayhover\" onclick=\"addStayNo('"+sub_data[0]+"'); close();\" data-dismiss=\"modal\">";
-	            			setList += "<img src=\"<%=request.getContextPath()%>
-	"
-										+ sub_data[4]
-										+ "\" alt=\"\" width=\"60\" height=\"60\" />";
-								setList += "<div class=\"ml-2\">";
-								setList += "<p><strong>[" + sub_data[0]
-										+ "]</strong> " + sub_data[2] + "</p>";
-								setList += "<p>" + sub_data[3] + "</p>";
-								setList += "</div>";
-								setList += "</li>";
-								$("#search-result").append(setList);
-							}
-						} else {
-							$("#search-result")
-									.html(
-											"<li class=\"py-3 text-center\">검색된 숙소가 없습니다.</li>");
-						}
-					},
+	            			setList += "<img src=\"<%=request.getContextPath()%>"+sub_data[4]+"\" alt=\"\" width=\"60\" height=\"60\" />";
+							setList += "<div class=\"ml-2\">";
+							setList += "<p><strong>["+sub_data[0]+"]</strong> "+sub_data[2]+"</p>";
+							setList += "<p>"+sub_data[3]+"</p>";
+							setList += "</div>";
+	            			setList += "</li>";
+	        			$("#search-result").append(setList);
+	            	}
+	            }else{
+	            	$("#search-result").html("<li class=\"py-3 text-center\">검색된 숙소가 없습니다.</li>");
+	            }
+            },
 
-					error : function(e) {
-						alert("Error : " + e.status);
-					}
-				});
+            error : function(e){
+                alert("Error : " + e.status);
+            }
+        });
 
-		return false;
+        return false;
 	}
 </script>
 
@@ -121,7 +109,7 @@
 
 			<tr>
 				<th>글 내용</th>
-				<td colspan="3"><textarea name="ev_content1"
+				<td colspan="3"><textarea name="ev_content"
 						class="form-control" cols="80" rows="10">${dto.bbs_content}</textarea></td>
 			</tr>
 
@@ -205,55 +193,50 @@
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
-			<tr>
+				<tr>
 				<th>숙소 번호</th>
 				<td colspan="3">
 					<div class="row m-0">
-						<input type="text" name="ev_stayno" value="${dto.bbs_stayno}"
-							id="ev_stayno" class="form-control w-30" maxlength="255" />
-						<button type="button" class="btn btn-sm btn-warning ml-2"
-							data-toggle="modal" data-target="#modalCategory">
-							<i class="fa fa-exclamation"></i> 숙소 지정하기
-						</button>
+						<input type="text" name="ev_stayno" value="${dto.bbs_stayno}" id="ev_stayno" class="form-control w-30" maxlength="255" />
+						<button type="button" class="btn btn-sm btn-warning ml-2" data-toggle="modal" data-target="#modalCategory"><i class="fa fa-exclamation"></i> 숙소 지정하기</button>
 					</div>
 				</td>
 			</tr>
-
+			
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
+			
+			  <tr>
+                        <th>이벤트 기간</th>
+                        <td colspan="3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" name="ev_start" value="${dto.bbs_showstart.substring(0,10)}" id="startDt" class="form-control text-center eng" />
+                                    </div>
+                                </div>
 
-			<tr>
-				<th>이벤트 기간</th>
-				<td colspan="3">
-					<div class="row">
-						<div class="col-4">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fa fa-calendar"></i></span>
-								</div>
-								<input type="text" name="ev_start" id="startDt" value="${dto.bbs_showstart.substring(0,10)}"
-									class="form-control text-center eng" />
-							</div>
-						</div>
+                                <div class="pt-2">~</div>
 
-						<div class="pt-2">~</div>
-
-						<div class="col-4">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fa fa-calendar"></i></span>
-								</div>
-								<input type="text" name="ev_end" id="endDt" value="${dto.bbs_showend.substring(0,10)}"
-									class="form-control text-center eng" />
-							</div>
-						</div>
-					</div>
-				</td>
-			</tr>
-
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" name="ev_end" value="${dto.bbs_showend.substring(0,10)}" id="endDt" class="form-control text-center eng" />
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+         
+			
 		</table>
-
 
 
 		<div class="gw-button">
@@ -261,13 +244,8 @@
 				<div class="gwb-left"></div>
 
 				<div class="gwb-center">
-					<button type="button" class="btn btn-lg btn-outline-secondary mx-1"
-						onclick="history.back();">
-						<i class="fa fa-bars"></i> 목록보기
-					</button>
-					<button type="submit" class="btn btn-lg btn-primary mx-1">
-						<i class="fa fa-pencil"></i> 등록하기
-					</button>
+					<button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i> 목록보기</button>
+					<button type="submit" class="btn btn-lg btn-primary mx-1"><i class="fa fa-pencil"></i> 등록하기</button>
 				</div>
 
 				<div class="gwb-right"></div>
@@ -282,68 +260,60 @@
 	<div class="modal-dialog modal-dialog-scrollable">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">
-					<i class="fa fa-exclamation"></i> 숙소 지정하기
-				</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
+				<h5 class="modal-title"><i class="fa fa-exclamation"></i> 숙소 지정하기</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 			</div>
 
 			<div class="modal-body">
-				<form method="post" onsubmit="return searchStay(this);"
-					class="form-inline">
-					<select name="search_field" class="form-select">
-						<option value="no" selected="selected">숙소 번호</option>
-						<option value="name">숙소 이름</option>
-					</select> <input type="text" name="search_keyword" value=""
-						class="form-control mx-2" />
-					<button type="submit" class="btn btn-sm btn-primary">검색</button>
+				<form  method="post" onsubmit="return searchStay(this);" class="form-inline">
+				<select name="search_field" class="form-select">
+					<option value="no" selected="selected">숙소 번호</option>
+					<option value="name">숙소 이름</option>
+				</select>
+				<input type="text" name="search_keyword" value="" class="form-control mx-2" />
+				<button type="submit" class="btn btn-sm btn-primary">검색</button>
 				</form>
 
 				<c:choose>
 					<c:when test="${!empty stay }">
-						<ul class="my-3" id="search-result">
-							<c:forEach items="${stay}" var="list">
-								<li class="d-flex my-2 align-items-center stayhover"
-									onclick="addStayNo('${list.stay_no}'); close();"
-									data-dismiss="modal"><c:choose>
-										<c:when test="${!empty list.stay_file1}">
-											<img src="<%=request.getContextPath()%>${list.stay_file1}"
-												alt="" width="60" height="60" />
-										</c:when>
-										<c:otherwise>
-											<!-- 이미지가 없는 경우 기본 이미지 -->
-											<svg class="bd-placeholder-img" width="60" height="60"
-												xmlns="http://www.w3.org/2000/svg"
-												preserveAspectRatio="xMidYMid slice" focusable="false"
-												role="img">
+					<ul class="my-3" id="search-result">
+						<c:forEach items="${stay}" var="list">
+						<li class="d-flex my-2 align-items-center stayhover" onclick="addStayNo('${list.stay_no}'); close();" data-dismiss="modal">
+							<c:choose>
+								<c:when test="${!empty list.stay_file1}">
+									<img src="<%=request.getContextPath()%>${list.stay_file1}"
+										alt="" width="60" height="60" />
+								</c:when>
+								<c:otherwise>
+									<!-- 이미지가 없는 경우 기본 이미지 -->
+									<svg class="bd-placeholder-img" width="60" height="60"
+										xmlns="http://www.w3.org/2000/svg"
+										preserveAspectRatio="xMidYMid slice" focusable="false"
+										role="img">
 										<title>${dto.bbs_no}</title>
 										<rect width="100%" height="100%" fill="#eee"></rect>
-										<text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+										<text x="48%" y="54%" fill="#888"dy=".1em">no img</text>
 									</svg>
-										</c:otherwise>
-									</c:choose>
-									<div class="ml-2">
-										<p>
-											<strong>[${list.stay_no}]</strong> ${list.stay_name}
-										</p>
-										<p>${list.stay_desc}</p>
-									</div></li>
-							</c:forEach>
-						</ul>
+								</c:otherwise>
+							</c:choose>
+							<div class="ml-2">
+								<p><strong>[${list.stay_no}]</strong> ${list.stay_name}</p>
+								<p>${list.stay_desc}</p>
+							</div>
+						</li>
+						</c:forEach>
+					</ul>
 					</c:when>
 				</c:choose>
 			</div>
 
 			<div class="modal-footer text-center">
-				<button type="button" id="btn btn-secondary btn-close"
-					data-dismiss="modal">닫기</button>
+				<button type="button" id="btn btn-secondary btn-close" data-dismiss="modal">닫기</button>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 
 

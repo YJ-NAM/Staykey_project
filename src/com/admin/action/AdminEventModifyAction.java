@@ -10,6 +10,7 @@ import com.controller.Action;
 import com.controller.ActionForward;
 import com.model.EventDAO;
 import com.model.EventDTO;
+import com.model.MagazineDTO;
 import com.model.StayDAO;
 import com.model.StayDTO;
 
@@ -20,9 +21,9 @@ public class AdminEventModifyAction implements Action {
 
 		// 수정 버튼 누르면 stay 정보가 수정으로 넘어감.
 		EventDTO dto = new EventDTO();
-		StayDAO sdao = StayDAO.getInstance();
-		List<StayDTO> slist = sdao.getBbsStayList(dto.getBbs_stayno());
-		request.setAttribute("stayList", slist);
+        StayDAO sdao = StayDAO.getInstance();
+        List<StayDTO> slist = sdao.getBbsStayList(dto.getBbs_stayno());
+        request.setAttribute("stayList", slist);
 
 		// 클릭 시 주소로 받아옴.
 		int bbs_no = Integer.parseInt(request.getParameter("bbs_no"));
