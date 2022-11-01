@@ -132,7 +132,7 @@
                 <td ${showLink} class="eng">${dto.bbs_no}</td>
  				<td ${showLink} class="photo">
                     <c:choose>
-                    <c:when test="${!empty dto.bbs_file1 }"><img src="<%=request.getContextPath()%>${dto.bbs_file1}" alt=""
+                    <c:when test="${!empty dto.bbs_file1 }"><img src="<%=request.getContextPath()%>${dto.bbs_file1}" alt=""k
                      /></c:when>
                     <c:otherwise>
                     <svg class="bd-placeholder-img" width="70" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
