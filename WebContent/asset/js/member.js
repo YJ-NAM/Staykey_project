@@ -26,7 +26,6 @@ $(function() {
     $("#join_id").on("keyup", function(){
         // $(this).parent() => div
         let joinId = $(this).val().trim();
-
         let id_pattern = /^[a-zA-Z0-9]{6,}$/g;
         $("#join_id").parent().find("p.error").show();
 
@@ -208,6 +207,7 @@ function validateForm(form) {
     
             success : function(data) {
                 if(data > 0) {
+                    alert("중복된 아이디입니다. 다시 확인해주세요.");
                     error = true;
                 }
             },
@@ -215,8 +215,10 @@ function validateForm(form) {
                 alert("Error : " + e.status);
             }
         });
-        alert("중복된 아이디입니다. 다시 확인해주세요.");
-        return error;
+        
+        if(error){
+            return false;
+        }
     }
     
     // ========== 비밀번호 유효성 검사 ===========
@@ -252,7 +254,8 @@ function validateForm(form) {
     }
 
     // ========== 전화번호 유효성 검사 ===========
-    if(form.join_phone.value.length != 13) { 
+    let phone_pattern = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/;
+    if(!phone_pattern.test(form.join_phone.value)) { 
         alert("잘못된 전화번호 형식입니다. 다시 확인해주세요.");
         form.join_phone.focus();
         return false;

@@ -402,5 +402,39 @@ public class MemberDAO {
         }
         return result;
     }
+    
+    // ======================================================
+    // 아이디 찾기
+    // ======================================================
+    public String idFind(String member_email, String member_name) {
+    	String member_id = "";
 
+        try {
+            openConn();
+
+            sql = "select member_name from staykey_member where member_email = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, member_email);
+            rs = pstmt.executeQuery();
+            if(rs.next()) { // 이메일 존재할 때
+                sql = "select member_id from staykey_member where member_email = ? and member_name = ?";
+                pstmt = con.prepareStatement(sql);
+                pstmt.setString(1, member_email);
+                pstmt.setString(2, member_name);
+                rs = pstmt.executeQuery();
+                if(rs.next()) { // 둘 다 일치
+                	member_id = rs.getString("member_id");          
+                }else { // 이름 없을 때
+                	member_id = "noName";
+                }
+            }else { // 이메일 없을 때
+            	member_id = "noEmail";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return member_id;
+    }
 }
