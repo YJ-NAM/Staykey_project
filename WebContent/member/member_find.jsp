@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% long time = System.currentTimeMillis(); %>
 <jsp:include page="../layout/layout_header.jsp" />
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/member.css?<%=time%>" />
@@ -15,7 +16,7 @@
 
 
 <div class="container member-form find">
-    <form name="find_form" method="post" action="<%=request.getContextPath()%>/memberFindIdPwOk.do">
+    <form name="find_form" method="post" action="<%=request.getContextPath()%>/memberFindIdPwResult.do">
     <fieldset class="mf-wrap">
         <legend>아이디/비밀번호 찾기</legend>
         <div class="mf-select">
@@ -26,10 +27,10 @@
         <div class="mf-form">
             <p><input type="email" name="find_email" placeholder="가입한 이메일" required autofocus /></p>
             <p id="fid"><input type="text" name="find_name" placeholder="가입한 이름" required /></p>
-            <p id="fpw" class="displaynone"><input type="text" name="find_id" placeholder="가입한 아이디" required /></p>
+            <p id="fpw" class="displaynone"><input type="text" name="find_id" placeholder="가입한 아이디" /></p>
         </div>
 
-        <div class="mf-msg">존재하지 않는 이메일입니다.</div>
+        ${ errMsg }
 
         <div class="mf-btn">
             <p><button type="submit">FIND <span>ID</span></button></p>
