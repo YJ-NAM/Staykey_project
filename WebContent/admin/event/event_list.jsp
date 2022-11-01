@@ -101,19 +101,19 @@
     <table class="table-list hover">
         <colgroup>
             <col width="4.5%">
-            <col width="18%">
-            <col width="13.5%">
-            <col />
-            <col width="9%">
-            <col width="7.2%">
-            <col width="7.2%">
+            <col width="8%">
             <col width="10%">
+            <col />
+            <col width="12%">
+            <col width="8%">
+            <col width="8%">
+            <col width="12%">
         </colgroup>
 
         <thead>
             <tr>
                 <th>No.</th>
-                <th>이벤트이미지</th>
+                <th>이미지</th>
                 <th>이벤트기간</th>
                 <th>제목</th>
                 <th>아이디/작성자</th>
@@ -132,7 +132,7 @@
                 <td ${showLink} class="eng">${dto.bbs_no}</td>
  				<td ${showLink} class="photo">
                     <c:choose>
-                    <c:when test="${!empty dto.bbs_file1 }"><img src="<%=request.getContextPath()%>${dto.bbs_file1}" alt=""
+                    <c:when test="${!empty dto.bbs_file1 }"><img src="<%=request.getContextPath()%>${dto.bbs_file1}" alt=""k
                      /></c:when>
                     <c:otherwise>
                     <svg class="bd-placeholder-img" width="70" height="60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
@@ -143,8 +143,13 @@
                     </c:otherwise>
                     </c:choose>
                 </td>
-                <td ${showLink}> 
-                	<p class="eng">${dto.bbs_showstart.substring(0, 10)} ~ ${dto.bbs_showend.substring(0, 10)}</p>
+                <td ${showLink} class="eng"> 
+                    <c:choose>
+                    <c:when test="${!empty dto.bbs_showstart || !empty dto.bbs_showend }">${dto.bbs_showstart.substring(0, 10)} ~ ${dto.bbs_showend.substring(0, 10)}</c:when>
+                    <c:otherwise>
+    					<b class="text-danger">제한없음</b>
+               		</c:otherwise>
+                    </c:choose>
                 </td>
                 <td ${showLink} class="eng">${dto.bbs_title }</td>
                 <td ${showLink} class="py-4">
