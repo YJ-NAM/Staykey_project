@@ -17,9 +17,9 @@ public class SiteMemberFindIdPwResultAction implements Action {
     	MemberDAO dao = MemberDAO.getInstance();
     	ActionForward forward = new ActionForward();
     	
-    	String find_email = request.getParameter("find_email");
-    	String find_name =request.getParameter("find_name");
-    	String find_id =request.getParameter("find_id");
+    	String find_email = request.getParameter("find_email").trim();
+    	String find_name =request.getParameter("find_name").trim();
+    	String find_id =request.getParameter("find_id").trim();
     	String find_mode = request.getParameter("find_mode");
     	
     	// 아이디 찾기
@@ -56,7 +56,6 @@ public class SiteMemberFindIdPwResultAction implements Action {
 	        	forward.setPath("member/member_find.jsp");
 	        }
     	}
-    	
         return forward;
     }
 }
