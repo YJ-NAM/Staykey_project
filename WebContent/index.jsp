@@ -369,7 +369,7 @@ ${ login_msg }
 
 
    <!-------- 메인 페이지 이벤트 창 // start --------->
-   <div class="main-event">
+   <div class="container main-event">
             <div class="sec-title">EVENT</div>
         <div class="event-container stay-list" id="event-container">
             <div class="swiper-wrapper">
@@ -380,7 +380,6 @@ ${ login_msg }
                                 <div class="name">멜로우 맨션</div>
                                 <div class="other">인천/강화</div>
                                 <div class="text">1박 2인<br>숙박권 이벤트</div>
-                                <div class="more">Read more</div>
                             </a>
                         </div>
 
@@ -391,7 +390,6 @@ ${ login_msg }
                                 <div class="name">온휴가</div>
                                 <div class="other">제주/제주</div>
                                 <div class="text">1박 2인<br>숙박권 이벤트</div>   
-                                <div class="more">Read more</div>
                             </a>
                         </div>
 
@@ -402,7 +400,6 @@ ${ login_msg }
                                 <div class="name">선흘림</div>
                                 <div class="other">제주/제주</div>
                                 <div class="text">1박 4인<br>숙박권 이벤트</div>
-                                <div class="more">Read more</div>
                             </a>
                         </div>
 
@@ -413,7 +410,6 @@ ${ login_msg }
                                 <div class="name">시나몬</div>
                                 <div class="other">강원/강릉</div>
                                 <div class="text">1박 2인<br>숙박권 이벤트</div>
-                                <div class="more">Read more</div>
                             </a>
                         </div>
 
@@ -424,7 +420,6 @@ ${ login_msg }
                                 <div class="name">유온</div>
                                 <div class="other">경북/경주</div>
                                 <div class="text">1박 4인/숙박권 이벤트</div>
-                                <div class="more">Read more</div>
                             </a>
                         </div>
             </div>
@@ -437,7 +432,6 @@ ${ login_msg }
     <div class="main-magazine">
         <div class="swiper-container" id="magazine-container">
             <ul class="swiper-wrapper">
-                    
                     <li class="swiper-slide">
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/149/523/original/135581dedb1c12eb129bef11419240c8d531501c.jpg?1666732643" />
@@ -489,7 +483,7 @@ ${ login_msg }
                             <img src="https://images.stayfolio.com/system/pictures/images/000/140/370/original/a79d65f3efd11ef8f463e31009661c5e5d96e4c4.jpg?1662352893" />
                             <div class="stay-info">
                                 <img src="https://images.stayfolio.com/system/pictures/images/000/135/567/original/ae9601936496ede84b9e6dcbd340b151fbd063b9.jpg?1660612147" />
-                                <p class="text">마음에 서리는 시간의 기억들</p>
+                                <p class="text">마음에 서리는<br>시간의 기억들</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
                             </div>
@@ -499,6 +493,112 @@ ${ login_msg }
             <div class="fa fa-chevron-left"></div>
             <div class="fa fa-chevron-right"></div>
          </div>
+    </div>
+    <!-------- 메인 페이지 매거진 창 END  --------->
+
+
+
+    <!-------- 메인 페이지 트래블 창 // START --------->
+    <div class="container main-travel">
+        <div class="sec-title">TRAVEL</div>
+            <ul class="stay-list">
+                    <li class="stay-box">
+                        <a href="#">
+                            <div class="img" style="background-image:url(https://images.prismic.io/stayfolio-production/e1765be7-12d8-4c86-b211-f95e0d55dde7_Main+banner_pc.jpg?auto=compress,format&rect=0,0,1800,850&w=1800&h=850"></div>
+                            <div class="text">내면으로 이끄는<br>달빛을 따라가다</div>
+                            <div class="other"><span>서울/종로</span></div>
+                            <div class="more">Read more</div>
+                        </a>
+                    </li>
+            
+
+                    <li class="stay-box">
+                        <a href="#">
+                                <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/149/246/original/adc58deccc741bb51635db278a750413558ce38a.jpg?1666661803)"></div>
+                            <div class="text">차분하고 세심한<br>환대를 전하는</div>
+                            <div class="other"><span>부산/중구</span></div>
+                            <div class="more">Read more</div>
+                        </a>
+                    </li>
+                    
+                    <li class="stay-box">
+                        <a href="#">
+                                <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/148/583/original/4c11fe3b141c63b19baaab5ff8f69b7ef96810ee.jpg?1666257238)"></div>
+                            <div class="text">거닐기 좋은 산길<br>나무와 흙의 냄새</div>
+                            <div class="other"><span>강원/강릉</span></div>
+                            <div class="more">Read more</div>
+                        </a>
+                    </li>
+
+
+                    <li class="stay-box">
+                        <a href="#">
+                                <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/148/018/original/14ae80a922f2e590385dd813abb92bbd8cea20e0.jpg?1665772350)"></div>
+                                <div class="text">계절의<br>아름다움이 깃든</div>
+                            <div class="other"><span>제주/제주</span></div>
+                            <div class="more">Read more</div>
+                        </a>
+                    </li>
+
+
+                    <li class="stay-box">
+                        <a href="#">
+                            <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/148/695/original/744c7bcdc9c328753ff0e1bcea55c087b21c8940.png?1666401701)"></div>
+                            <div class="text">잔잔한 위로가<br>필요한 당신에게</div>
+                            <div class="other"><span>서울/종로</span></div>
+                            <div class="more">Read more</div>
+                        </a>
+                    </li>
+
+
+                    <li class="stay-box">
+                        <a href="#">
+                            <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/147/020/original/37728b0c88d7f0453cc134b9bd9ab72d9ddba6a2.jpg?1665195702)"></div>
+                            <div class="text">육지 끝자락에서 즐기는<br>료칸 무드</div>
+                            <div class="other"><span>경상/남해</span></div>
+                            <div class="more">Read more</div>
+                        </a>
+                    </li>
+                </ul>
+         </div>
+    <!-------- 메인 페이지 트래블 창 // END --------->
+
+    <div class="main-thumblist">
+        <div class= "container" id="thumblist-container">
+            <div class="subject">
+            모든 순간이 여행이 되도록
+            </div>
+            <div class="thumblist">
+                <div class="row">
+                    <a href="" class="thumbbox thumb-1">
+                        <img src="//images.stayfolio.com/system/pictures/images/000/088/742/original/6caeed169e4da49de28cefea684d71dfb1acdccd.jpg?1629255692" />
+                        <span class="tag">비비드 디자인</span>
+                    </a>
+
+                    <a href="" class="thumbbox thumb-2">
+                        <img src="//images.stayfolio.com/system/pictures/images/000/088/742/original/6caeed169e4da49de28cefea684d71dfb1acdccd.jpg?1629255692" />
+                        <span class="tag">비비드 디자인</span>
+                    </a>
+
+                    <a href="" class="thumbbox thumb-3">
+                        <img src="//images.stayfolio.com/system/pictures/images/000/088/742/original/6caeed169e4da49de28cefea684d71dfb1acdccd.jpg?1629255692" />
+                        <span class="tag">비비드 디자인</span>
+                    </a>
+
+                    <a href="" class="thumbbox thumb-4">
+                        <img src="//images.stayfolio.com/system/pictures/images/000/088/742/original/6caeed169e4da49de28cefea684d71dfb1acdccd.jpg?1629255692" />
+                        <span class="tag">비비드 디자인</span>
+                    </a>
+
+                    <a href="" class="thumbbox thumb-5">
+                        <img src="//images.stayfolio.com/system/pictures/images/000/088/742/original/6caeed169e4da49de28cefea684d71dfb1acdccd.jpg?1629255692" />
+                        <span class="tag">비비드 디자인</span>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
     </div>
 </div>
 
