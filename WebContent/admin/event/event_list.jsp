@@ -127,7 +127,7 @@
             <c:choose>
             <c:when test="${!empty list }">
             <c:forEach items="${list}" var="dto">
-            <c:set var="showLink" value="onclick=\"popWindow('../admin/eventView.do?no=${dto.bbs_no}', '700', '900');\"" />
+            <c:set var="showLink" value="onclick=\"popWindow('../admin/eventView.do?no=${dto.bbs_no}', '1400', '900');\"" />
             <tr>
                 <td ${showLink} class="eng">${dto.bbs_no}</td>
  				<td ${showLink} class="photo">

@@ -5,9 +5,69 @@
 <jsp:include page="../layout/layout_header.jsp" />
 
 <c:set var="stay" value="${stayList}" />
+<c:set var="staylist" value="${List}" />
 
+
+<style type="text/css">.stayhover:hover { background: #f3f3f3; cursor: pointer; }</style>
+<script type="text/javascript">$("#nav-event").addClass("now");</script>
 <script type="text/javascript">
-	$("#nav-event").addClass("now");
+	function addStayNo(stayno) {
+		let this_val = $("#mag_stayno").val();
+		let add_val = this_val;
+	
+		if (this_val.length > 0) {
+			if (this_val.indexOf("/" + stayno + "/") == -1) {
+				add_val = this_val + stayno + "/";
+			}
+		} else {
+			add_val = this_val + "/" + stayno + "/";
+		}
+	
+		$("#mag_stayno").val(add_val);
+	}	
+	
+	
+	function searchStay(el) {
+	    $.ajax({
+	        type : "post",
+	        url : "staySearchOk.do",
+			data: {
+				type : $(el).find("select[name='search_field']").val(),
+				search  : $(el).find("input[name='search_keyword']").val()
+			},
+	        dataType : "html",
+	
+	        success : function(data) {
+	        	let get_data = data.split("◇");
+	
+	        	if(get_data[0] > 0){
+	        		$("#search-result").html("");
+	
+	        		let epd_data = get_data[1].split("♠");
+	            	for(var i=1; i<epd_data.length; i++) {
+	            		let sub_data = epd_data[i].split("♣");
+	
+	            		let setList = "<li class=\"d-flex my-2 align-items-center stayhover\" onclick=\"addStayNo('"+sub_data[0]+"'); close();\" data-dismiss=\"modal\">";
+	            			setList += "<img src=\"<%=request.getContextPath()%>"+sub_data[4]+"\" alt=\"\" width=\"60\" height=\"60\" />";
+							setList += "<div class=\"ml-2\">";
+							setList += "<p><strong>["+sub_data[0]+"]</strong> "+sub_data[2]+"</p>";
+							setList += "<p>"+sub_data[3]+"</p>";
+							setList += "</div>";
+	            			setList += "</li>";
+	        			$("#search-result").append(setList);
+	            	}
+	            }else{
+	            	$("#search-result").html("<li class=\"py-3 text-center\">검색된 숙소가 없습니다.</li>");
+	            }
+	        },
+	
+	        error : function(e){
+	            alert("Error : " + e.status);
+	        }
+	    });
+	
+	    return false;
+	}
 </script>
 
 
@@ -110,12 +170,8 @@
 				<th>숙소 번호</th>
 				<td colspan="3">
 					<div class="row m-0">
-						<input type="text" name="ev_stayno" value="" id="test"
-							class="form-control w-30" maxlength="255" />
-						<button type="button" class="btn btn-sm btn-warning ml-2"
-							data-toggle="modal" data-target="#modalCategory">
-							<i class="fa fa-exclamation"></i> 숙소 지정하기
-						</button>
+						<input type="text" name="mag_stayno" value="" id="mag_stayno" class="form-control w-30" maxlength="255" />
+						<button type="button" class="btn btn-sm btn-warning ml-2" data-toggle="modal" data-target="#modalCategory"><i class="fa fa-exclamation"></i> 숙소 지정하기</button>
 					</div>
 				</td>
 			</tr>
@@ -281,49 +337,6 @@
 </div>
 
 
-
-
-<script>
-	function test(stayno) {
-		let this_val = $("#test").val();
-		let add_val = this_val;
-
-		if (this_val.length > 0) {
-			if (this_val.indexOf("/" + stayno + "/") == -1) {
-				add_val = this_val + stayno + "/";
-			}
-		} else {
-			add_val = this_val + "/" + stayno + "/";
-		}
-
-		$("#test").val(add_val);
-	
-}	
-	
-
-	function search(el) {
-			$.ajax({
-				type : "post",
-				url : "magazineStaySearch.do",
-				datatype : "jsp",
-				data: {
-					type : $(el).find("select[name='search_field']").val(),
-					search  : $(el).find("input[name='search_keyword']").val()
-				},
-				success : function(data) {
-					$("#search-result").html(data);
-				},
-				
-				error : function(data) {
-					alert("데이터 통신 오류입니다~~~");
-				}
-			});
-			return false;
-		}
-
-	
-	
-		</script>
 
 
 <jsp:include page="../layout/layout_footer.jsp" />
