@@ -3,8 +3,8 @@
 
 <jsp:include page="../layout/layout_header.jsp" />
 
+<c:set var="dto" value="${eventModify}" />
 <c:set var="stay" value="${stayList}" />
-<c:set var="staylist" value="${List}" />
 
 
 <style type="text/css">.stayhover:hover { background: #f3f3f3; cursor: pointer; }</style>
@@ -71,17 +71,21 @@
 
 
 
-<div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
-	<h2>이벤트 등록</h2>
-	<small>이벤트를 추가 할 수 있습니다.</small>
+
+<div
+	class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
+	<h2>이벤트 수정</h2>
+	<small>이벤트를 수정할 수 있습니다.</small>
 </div>
 
 
 <div class="pb100">
-	<form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/admin/eventWriteOk.do">
-		<input type="hidden" name="ev_writer_name" value="hyunjin" />
-		<input type="hidden" name="ev_writer_id" value="user1234" />
-		<input type="hidden" name="ev_writer_pw" value="1234" />
+	<form name="write_form" method="post" enctype="multipart/form-data"
+		action="<%=request.getContextPath()%>/admin/eventModifyOk.do">
+		<input type="hidden" name="ev_no" value="${dto.bbs_no}" /> <input
+			type="hidden" name="ev_writer_name" value="${dto.bbs_writer_name}" />
+		<input type="hidden" name="ev_writer_id" value="${dto.bbs_writer_id}" />
+		<input type="hidden" name="ev_writer_pw" value="${dto.bbs_writer_pw}" />
 
 		<table class="table-form mt-3">
 			<colgroup>
@@ -93,35 +97,51 @@
 
 			<tr>
 				<th>제목</th>
-				<td colspan="3"><input type="text" name="ev_title" maxlength="255" class="form-control" required /></td>
+				<td colspan="3"><input type="text" name="ev_title"
+					value="${dto.bbs_title}" maxlength="255" class="form-control"
+					required /></td>
 			</tr>
 
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
+
 
 			<tr>
 				<th>글 내용</th>
-				<td colspan="3"><textarea name="ev_content" class="form-control" cols="80" rows="10"></textarea></td>
+				<td colspan="3"><textarea name="ev_content"
+						class="form-control" cols="80" rows="10">${dto.bbs_content}</textarea></td>
 			</tr>
 
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
+
 
 			<tr>
 				<th>이미지 파일1</th>
-				<td colspan="3"><input type="file" name="ev_file1" class="form-control w-50" /></td>
+				<td colspan="3"><input type="file" name="ev_file1"
+					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file1}">
+						<p class="mt-2">
+							<img src="<%=request.getContextPath()%>${dto.bbs_file1}"
+								style="max-height: 250px;" alt="" />
+						</p>
+					</c:if></td>
 			</tr>
 
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
-
 			<tr>
 				<th>이미지 파일2</th>
-				<td colspan="3"><input type="file" name="ev_file2" class="form-control w-50" /></td>
+				<td colspan="3"><input type="file" name="ev_file2"
+					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file2}">
+						<p class="mt-2">
+							<img src="<%=request.getContextPath()%>${dto.bbs_file2}"
+								style="max-height: 250px;" alt="" />
+						</p>
+					</c:if></td>
 			</tr>
 
 			<tr>
@@ -130,36 +150,54 @@
 
 			<tr>
 				<th>이미지 파일3</th>
-				<td colspan="3"><input type="file" name="ev_file3" class="form-control w-50" /></td>
+				<td colspan="3"><input type="file" name="ev_file3"
+					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file3}">
+						<p class="mt-2">
+							<img src="<%=request.getContextPath()%>${dto.bbs_file3}"
+								style="max-height: 250px;" alt="" />
+						</p>
+					</c:if></td>
 			</tr>
-			
+
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
 			<tr>
 				<th>이미지 파일4</th>
-				<td colspan="3"><input type="file" name="ev_file4" class="form-control w-50" /></td>
+				<td colspan="3"><input type="file" name="ev_file4"
+					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file4}">
+						<p class="mt-2">
+							<img src="<%=request.getContextPath()%>${dto.bbs_file4}"
+								style="max-height: 250px;" alt="" />
+						</p>
+					</c:if></td>
 			</tr>
-			
+
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
 			<tr>
 				<th>이미지 파일5</th>
-				<td colspan="3"><input type="file" name="ev_file5" class="form-control w-50" /></td>
+				<td colspan="3"><input type="file" name="ev_file5"
+					class="form-control w-50" /> <c:if test="${!empty dto.bbs_file5}">
+						<p class="mt-2">
+							<img src="<%=request.getContextPath()%>${dto.bbs_file5}"
+								style="max-height: 250px;" alt="" />
+						</p>
+					</c:if></td>
 			</tr>
-			
+
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
-			<tr>
+				<tr>
 				<th>숙소 번호</th>
 				<td colspan="3">
 					<div class="row m-0">
-						<input type="text" name="ev_stayno" value="" id="ev_stayno" class="form-control w-30" maxlength="255" />
+						<input type="text" name="ev_stayno" value="${dto.bbs_stayno}" id="ev_stayno" class="form-control w-30" maxlength="255" />
 						<button type="button" class="btn btn-sm btn-warning ml-2" data-toggle="modal" data-target="#modalCategory"><i class="fa fa-exclamation"></i> 숙소 지정하기</button>
 					</div>
 				</td>
@@ -169,34 +207,33 @@
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 			
-			<tr>
-            <th>이벤트 기간</th>
-	            <td colspan="3">
-		            <div class="row">
-		            
-			            <div class="col-4">
-				            <div class="input-group">
-					            <div class="input-group-prepend">
-					           		 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-					            </div>
-				            		<input type="text" name="ev_showstart" id="startDt" class="form-control text-center eng" />
-				            	</div>
-				         </div>
-				         
-				         <div class="pt-2">~</div>
-				         
-				         <div class="col-4">
-				            <div class="input-group">
-				            	<div class="input-group-prepend">
-				            		<span class="input-group-text"><i class="fa fa-calendar"></i></span>
-				            	</div>
-				           		 <input type="text" name="ev_showend" id="endDt" class="form-control text-center eng" />
-				            </div>
-			            </div>
-			            
-		            </div>
-	            </td>
-            </tr>
+			  <tr>
+                        <th>이벤트 기간</th>
+                        <td colspan="3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" name="ev_start" value="${dto.bbs_showstart.substring(0,10)}" id="startDt" class="form-control text-center eng" />
+                                    </div>
+                                </div>
+
+                                <div class="pt-2">~</div>
+
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" name="ev_end" value="${dto.bbs_showend.substring(0,10)}" id="endDt" class="form-control text-center eng" />
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
          
 			
 		</table>

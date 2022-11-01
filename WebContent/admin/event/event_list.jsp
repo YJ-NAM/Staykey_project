@@ -28,7 +28,7 @@
         </colgroup>
         <tr>
 
-            <th>숙박 일자</th>
+            <th>이벤트 일자</th>
             <td colspan="5">
                 <div class="row">
                     <div class="col-4">
@@ -69,7 +69,7 @@
 
     <div class="text-center mb-5">
         <a href="<%=request.getContextPath()%>/admin/eventList.do" class="btn btn-outline-secondary"><i class="fa fa-power-off"></i> 검색 초기화</a>
-        <button type="submit" class="btn btn-secondary mx-2"><i class="fa fa-search"></i> 예약 검색</button>
+        <button type="submit" class="btn btn-secondary mx-2"><i class="fa fa-search"></i> 이벤트 검색</button>
     </div>
     </form>
 
@@ -127,7 +127,7 @@
             <c:choose>
             <c:when test="${!empty list }">
             <c:forEach items="${list}" var="dto">
-            <c:set var="showLink" value="onclick=\"popWindow('../admin/eventView.do?no=${dto.bbs_no}', '700', '900');\"" />
+            <c:set var="showLink" value="onclick=\"popWindow('../admin/eventView.do?no=${dto.bbs_no}', '1400', '900');\"" />
             <tr>
                 <td ${showLink} class="eng">${dto.bbs_no}</td>
  				<td ${showLink} class="photo">

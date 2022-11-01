@@ -29,7 +29,7 @@ public class AdminEventViewAction implements Action {
         
         // 등록된 숙소 목록 정보 메서드
         StayDAO sdao = StayDAO.getInstance();
-        List<StayDTO> slist = sdao.getBbsStayList(dto.getBbs_stayno());
+        List<StayDTO> slist = sdao.getBbsViewList(dto.getBbs_stayno());
         request.setAttribute("stayList", slist);
         
 

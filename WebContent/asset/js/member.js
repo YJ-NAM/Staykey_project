@@ -5,6 +5,9 @@ $(function(){
     $(".member-form.find .mf-select input[type='radio']").on("click", function(){
         $(".member-form.find #fid, .member-form.find #fpw").hide();
         $(".member-form.find #f"+$(this).val()).show();
+
+        $(".member-form.find #fid > input, .member-form.find #fpw > input").removeAttr("required");
+        $(".member-form.find #f"+$(this).val()).find("input").attr("required", "required");
         $(".member-form.find .mf-form input[name='find_email']").focus();
         $(".member-form.find .mf-btn button span").text($(this).val());
     });
@@ -22,12 +25,10 @@ $(function() {
 		type : "post"
 	});
 
-
     // 아이디 확인
     $("#join_id").on("keyup", function(){
         // $(this).parent() => div
         let joinId = $(this).val().trim();
-
         let id_pattern = /^[a-zA-Z0-9]{6,}$/g;
         $("#join_id").parent().find("p.error").show();
 
@@ -180,88 +181,86 @@ $(function() {
         }
         
         $(this).val(phone_number);
-        
     });
-
 });
 
 /////////////////////////////////////////////////////
 // 회원가입 유효성 검사
 /////////////////////////////////////////////////////
 function validateForm(form) {
+    
+    let joinId = form.join_id.value.trim();
+    let error = false;
 
     // ========== 아이디 유효성 검사 ===========
-    if(form.join_id.value == "") {
-        alert("아이디를 입력해 주세요.");
-        form.join_id.focus();
-        return false;
-    }
-
-    if(form.join_id.value.length < 6){
-        alert("아이디는 6글자 이상 입력해주세요.");
-        form.join_id.focus();
-        return false;
-    }
-
-    // 아이디 형식 체크
     let id_pattern = /^[a-zA-Z0-9]{6,}$/g;
-    if(!id_pattern.test(form.join_id.value)) {
+    if(!id_pattern.test(joinId)) {
         alert("아이디 작성 조건에 부합하지 않습니다. 다시 확인해주세요.");
         form.join_id.focus();
         return false;
     }
 
-    // 중복////
-    if(!id_pattern.test(form.join_id.value)) {
-        alert("아이디 작성 조건에 부합하지 않습니다. 다시 확인해주세요.");
-        form.join_id.focus();
-        return false;
-    }
-
-    if(form.join_pw.value == ""){
-        alert("비밀번호를 입력해 주세요.");
-        form.join_pw.focus();
-        return false;
+    // ajax 중복 체크
+    if(joinId.length > 0){
+        $.ajax({
+            type : "post",
+            url : "memberIdCheck.do",
+            data : { paramId : joinId },
+            dataType : "text",
+    
+            success : function(data) {
+                if(data > 0) {
+                    alert("중복된 아이디입니다. 다시 확인해주세요.");
+                    error = true;
+                }
+            },
+            error : function(e){
+                alert("Error : " + e.status);
+            }
+        });
+        
+        if(error){
+            return false;
+        }
     }
     
-    if(!$(".checked").children('li').addClass("on")){
-        if($(this).hasClass("on")) {
+    // ========== 비밀번호 유효성 검사 ===========
+    let pwd_pattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,20}$/;
+    if(!pwd_pattern.test(form.join_pw.value)){
+        alert("비밀번호 작성 조건에 부합하지 않습니다. 다시 확인해주세요.");
         form.join_pw.focus();
         return false;
     }
-}
 
-    if(form.join_pw_re.value == ""){
-        alert("비밀번호 확인을 입력해 주세요.");
-        form.join_pw_re.focus();
-        return false;
-    }
-    if(form.join_pw_re.value.length < 6){
-        alert("비밀번호 확인은 6글자 이상 입력해주세요.");
-        form.join_pw_re.focus();
-        return false;
-    }
-
+    // ========== 비밀번호 체크 유효성 검사 ===========
     if(form.join_pw.value.length > 0 && form.join_pw_re.value.length > 0){
         if(form.join_pw.value != form.join_pw_re.value){
-            alert("비밀번호가 일치하지 않습니다.");
+            alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
             form.join_pw.focus();
             return false;
         }
     }
 
-    if(form.join_name.value == ""){
-        alert("이름을 입력해 주세요.");
+    // ========== 이름 유효성 검사 ===========
+    if(form.join_name.value.length < 2 || form.join_name.value.length > 10){
+        alert("이름은 1자 이상 10자 이하로 입력해주세요.");
         form.join_name.focus();
         return false;
     }
 
-    // 이메일 형식 체크
-    var TEmailChk = /^[0-9a-zA-Z]([-.]?[0-9a-zA-Z])@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]).[a-zA-Z]{2,3}$/i;
-    if(form.join_email.value.match(TEmailChk) != null){
-    }else{
-        alert("잘못된 이메일 형식입니다.\n[이메일]을 다시 입력해 주세요.");
+    // ========== 이메일 유효성 검사 ===========
+    let email_pattern = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+    if(!email_pattern.test(form.join_email.value)) { 
+        alert("잘못된 이메일 형식입니다. 다시 확인해주세요.");
         form.join_email.focus();
+        return false;
+    }
+
+    // ========== 전화번호 유효성 검사 ===========
+    let phone_pattern = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/;
+    if(!phone_pattern.test(form.join_phone.value)) { 
+        alert("잘못된 전화번호 형식입니다. 다시 확인해주세요.");
+        form.join_phone.focus();
         return false;
     }
 
