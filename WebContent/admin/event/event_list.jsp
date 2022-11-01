@@ -159,8 +159,10 @@
                 <td ${showLink} class="eng">${dto.bbs_hit}</td>
                 <td ${showLink} class="eng">${dto.bbs_date.substring(0, 10)}<br />${dto.bbs_date.substring(11)}</td>
                 <td>
-                    <a href="<%=request.getContextPath()%>/admin/eventModify.do?no=${dto.bbs_no}" class="btn btn-sm btn-outline-primary m-1">수정</a>
-                    <a href="<%=request.getContextPath()%>/admin/eventDeleteOk.do?no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                    <a href="<%=request.getContextPath()%>/admin/eventModify.do?bbs_no=${dto.bbs_no}" 
+                    class="btn btn-sm btn-outline-primary m-1">수정</a>
+                    <a href="<%=request.getContextPath()%>/admin/eventDeleteOk.do?bbs_no=${dto.bbs_no}" 
+                    class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
             </tr>
             </c:forEach>

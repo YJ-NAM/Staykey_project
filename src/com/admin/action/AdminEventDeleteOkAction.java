@@ -17,7 +17,7 @@ public class AdminEventDeleteOkAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		 EventDAO dao = EventDAO.getInstance();
+			EventDAO dao = EventDAO.getInstance();
 
 	        String saveFolder = request.getSession().getServletContext().getRealPath("/");
 

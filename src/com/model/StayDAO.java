@@ -785,29 +785,30 @@ public class StayDAO {
     public List<StayDTO> getBbsStayList(String bbs_stay) {
         List<StayDTO> list = new ArrayList<StayDTO>();
 
-        String search_sql = "where stay_no > 0";
+        String search_sql = "where stay_no > 0 ";
 
         if (bbs_stay != null) {
             String tmp_bbs_stay = bbs_stay.substring(1, bbs_stay.length() - 1);
             String[] epd_bbs_stay = tmp_bbs_stay.split("/");
 
-            if (epd_bbs_stay.length > 1) {
-                for (int i = 0; i < epd_bbs_stay.length; i++) {
-                    if (i == 0) {
-                        search_sql += " and (stay_no = '" + epd_bbs_stay[i] + "'";
-                    } else if (i == (epd_bbs_stay.length - 1)) {
-                        search_sql += " or stay_no = '" + epd_bbs_stay[i] + "')";
-                    } else {
-                        search_sql += " or stay_no = '" + epd_bbs_stay[i] + "'";
+            
+            if(epd_bbs_stay.length > 1){
+                for(int i=0; i<epd_bbs_stay.length; i++){
+                    if(i == 0){
+                        search_sql += " and (stay_no = '"+epd_bbs_stay[i]+"')";
+                    }else if(i == (epd_bbs_stay.length-1)){
+                        search_sql += " or (stay_no = '"+epd_bbs_stay[i]+"')";
+                    }else{
+                        search_sql += " or stay_no = '"+epd_bbs_stay[i]+"'";
                     }
                 }
-            } else {
-                search_sql += "stay_no = '" + epd_bbs_stay[0] + "'";
+            }else{
+                search_sql += " and stay_no = '"+epd_bbs_stay[0]+"'";
             }
 
-        } /*
-           * else{ search_sql += " and stay_no < 0"; }
-           */
+		}   
+			 else{ search_sql += " and stay_no < 0"; }
+			 
 
         try {
             openConn();
