@@ -251,27 +251,23 @@ public class MemberDAO {
             if (rs.next()) {
                 count = rs.getInt(1) + 1;
             }
-            sql = "insert into staykey_member values(?, ?, ?, ?, ?, ?, ?, default, default, ?, sysdate)";
+            sql = "insert into staykey_member values(?, default, ?, ?, ?, ?, ?, default, default, ?, sysdate)";
             pstmt = con.prepareStatement(sql);
 
             pstmt.setInt(1, count);
-            pstmt.setString(2, dto.getMember_type());
-            pstmt.setString(3, dto.getMember_id());
-            pstmt.setString(4, dto.getMember_pw());
-            pstmt.setString(5, dto.getMember_name());
-            pstmt.setString(6, dto.getMember_email());
-            pstmt.setString(7, dto.getMember_phone());
-            pstmt.setString(8, dto.getMember_photo());
+            pstmt.setString(2, dto.getMember_id());
+            pstmt.setString(3, dto.getMember_pw());
+            pstmt.setString(4, dto.getMember_name());
+            pstmt.setString(5, dto.getMember_email());
+            pstmt.setString(6, dto.getMember_phone());
+            pstmt.setString(7, dto.getMember_photo());
 
             result = pstmt.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
-
         } finally {
             closeConn(rs, pstmt, con);
         }
-
         return result;
     }
 
