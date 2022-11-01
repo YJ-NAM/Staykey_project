@@ -133,7 +133,7 @@
 								<td ${showLink} class="photo"><c:choose>
 										<c:when test="${!empty dto.bbs_list_img }">
 											<img src="<%=request.getContextPath()%>${dto.bbs_list_img }"
-												alt="" />
+												 alt="" />
 										</c:when>
 										<c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 -->
 											<svg class="bd-placeholder-img" width="60" height="60"

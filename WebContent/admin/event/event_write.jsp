@@ -24,9 +24,9 @@
 		action="<%=request.getContextPath()%>/admin/eventWriteOk.do">
 		
 		<!-- 작성자, 아이디, 비밀번호 hidden으로 넘기기. -->
-		<input type="hidden" name="mag_writer_name" value="hyunjin" /> <input
-			type="hidden" name="mag_writer_id" value="user1234" /> <input
-			type="hidden" name="mag_writer_pw" value="1234" />
+			<input type="hidden" name="ev_writer_name" value="hyunjin" /> <input
+			type="hidden" name="ev_writer_id" value="user1234" /> <input
+			type="hidden" name="ev_writer_pw" value="1234" />
 
 		<table class="table-form mt-3">
 			<colgroup>
@@ -106,7 +106,7 @@
 				<td colspan="4" class="space" nowrap="nowrap"></td>
 			</tr>
 
-			<tr>
+			 <tr>
 				<th>숙소 번호</th>
 				<td colspan="3">
 					<div class="row m-0">
@@ -122,10 +122,9 @@
 		
 			<tr>
 				<td colspan="4" class="space" nowrap="nowrap"></td>
-			</tr>
-			
+			</tr> 
 
-			 <tr>
+			 	<tr>
                         <th>이벤트 기간</th>
                         <td colspan="3">
                             <div class="row">
@@ -134,7 +133,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
-                                        <input type="text" name="ev_start" value="${stay.bbs_showstart.substring(0,10)}" id="startDt" class="form-control text-center eng" />
+                                        <input type="text" name="ev_start" id="startDt" class="form-control text-center eng" />
                                     </div>
                                 </div>
 
@@ -145,12 +144,13 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
-                                        <input type="text" name="ev_end" value="${stay.bbs_showend.substring(0,10)}" id="endDt" class="form-control text-center eng" />
+                                        <input type="text" name="ev_end" id="endDt" class="form-control text-center eng" />
                                     </div>
                                 </div>
                             </div>
                         </td>
                     </tr>
+                    
 			</table>
 	
 

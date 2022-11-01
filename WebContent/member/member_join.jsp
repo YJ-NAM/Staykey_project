@@ -29,7 +29,7 @@
                 <label for="join_pw">비밀번호</label>
                 <input type="password" name="join_pw" id="join_pw" placeholder="비밀번호를 입력하세요." required autofocus />
                 <ul class="checked">
-                    <li class="on">영문</li>
+                    <li>영문</li>
                     <li>숫자</li>
                     <li>특수문자</li>
                     <li>8자 이상 20자 이하</li>
@@ -55,7 +55,7 @@
 
             <div>
                 <label for="join_phone">전화번호</label>
-                <input type="number" name="join_phone" id="join_phone" placeholder="전화번호를 입력하세요." required autofocus />
+                <input type="text" name="join_phone" id="join_phone" placeholder="전화번호를 입력하세요." required autofocus />
                 <p class="error">잘못된 전화번호 형식입니다.</p>
             </div>
         </div>

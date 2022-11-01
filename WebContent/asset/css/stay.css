@@ -237,6 +237,7 @@
 }
 .stay-list .sl-wrap li a:hover .slw-photo {
     border-radius: 10px;
+    opacity: 0.9;
 }
 
 

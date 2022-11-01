@@ -1,6 +1,8 @@
 package com.admin.action;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +20,16 @@ public class AdminEventListAction implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // 이벤트 목록 처리 클래스
+        
+    	
+    	// 현재 날짜
+        LocalDate startNowDate = LocalDate.now();
+        String startDate = startNowDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate endNowDate = LocalDate.now().plusDays(14L); // 오늘로부터 14일후 까지
+        String endDate = endNowDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+    	
+    	// 이벤트 목록 처리 클래스
     	EventDAO dao = EventDAO.getInstance();
     	
         // 뷰에 전달할 매개변수 저장용 맵 생성
@@ -27,18 +38,27 @@ public class AdminEventListAction implements Action {
 
         // 검색용 변수들 정의
         String ps_name = "";
+        String ps_start = "";
+        String ps_end = "";
         String ps_id = "";
         String ps_title = "";
+        String ps_duse = "";
         String ps_order = "";
         if(request.getParameter("ps_name") != null){ ps_name = request.getParameter("ps_name").trim(); }else{ ps_name = ""; }
+        if(request.getParameter("ps_start") != null){ ps_start = request.getParameter("ps_start").trim(); }else{ ps_start = startDate; }
+        if(request.getParameter("ps_end") != null){ ps_end = request.getParameter("ps_end").trim(); }else{ ps_end = endDate; }
         if(request.getParameter("ps_id") != null){ ps_id = request.getParameter("ps_id").trim(); }else{ ps_id = ""; }
         if(request.getParameter("ps_title") != null){ ps_title = request.getParameter("ps_title").trim(); }else{ ps_title = ""; }
+        if(request.getParameter("ps_duse") != null){ ps_duse = request.getParameter("ps_duse").trim(); }else{ ps_duse = ""; }
         if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "register_desc"; }
 
         // 뷰에 전달할 매개변수 추가
         map.put("ps_name", ps_name);
+        map.put("ps_start", ps_start);
+        map.put("ps_end", ps_end);
         map.put("ps_id", ps_id);
         map.put("ps_title", ps_title);
+        map.put("ps_duse", ps_duse);
         map.put("ps_order", ps_order);
 
 
@@ -72,7 +92,7 @@ public class AdminEventListAction implements Action {
 
 
         // 페이지 이동 URL
-        String pageUrl = request.getContextPath()+"/admin/eventList.do?ps_name="+ps_name+"&ps_id="+ps_id+"&ps_title="+ps_title+"&ps_order="+ps_order;
+        String pageUrl = request.getContextPath()+"/admin/eventList.do?ps_name="+ps_name+"&ps_id="+ps_id+"&ps_title="+ps_title+"&ps_order="+ps_order+"&ps_start="+ps_start+"&ps_end="+ps_end+"&ps_duse="+ps_duse;
 
 
         // 뷰에 전달할 매개변수 추가
