@@ -33,6 +33,7 @@ $(function() {
 
         // 아이디 중복여부 확인
         $.ajax({
+            type : "post",
             url : "memberIdCheck.do",
             data : { paramId : joinId },
             dataType : "text",
@@ -117,6 +118,7 @@ $(function() {
                 $("input[name='join_pw_re']").parent().find("p.error").show();
             }
         }
+        
     });
 
     // 이름 확인
@@ -181,7 +183,87 @@ $(function() {
         
     });
 
+});
 
+/////////////////////////////////////////////////////
+// 회원가입 유효성 검사
+/////////////////////////////////////////////////////
+function validateForm(form) {
 
-})
+    // ========== 아이디 유효성 검사 ===========
+    if(form.join_id.value == "") {
+        alert("아이디를 입력해 주세요.");
+        form.join_id.focus();
+        return false;
+    }
+
+    if(form.join_id.value.length < 6){
+        alert("아이디는 6글자 이상 입력해주세요.");
+        form.join_id.focus();
+        return false;
+    }
+
+    // 아이디 형식 체크
+    let id_pattern = /^[a-zA-Z0-9]{6,}$/g;
+    if(!id_pattern.test(form.join_id.value)) {
+        alert("아이디 작성 조건에 부합하지 않습니다. 다시 확인해주세요.");
+        form.join_id.focus();
+        return false;
+    }
+
+    // 중복////
+    if(!id_pattern.test(form.join_id.value)) {
+        alert("아이디 작성 조건에 부합하지 않습니다. 다시 확인해주세요.");
+        form.join_id.focus();
+        return false;
+    }
+
+    if(form.join_pw.value == ""){
+        alert("비밀번호를 입력해 주세요.");
+        form.join_pw.focus();
+        return false;
+    }
+    
+    if(!$(".checked").children('li').addClass("on")){
+        if($(this).hasClass("on")) {
+        form.join_pw.focus();
+        return false;
+    }
+}
+
+    if(form.join_pw_re.value == ""){
+        alert("비밀번호 확인을 입력해 주세요.");
+        form.join_pw_re.focus();
+        return false;
+    }
+    if(form.join_pw_re.value.length < 6){
+        alert("비밀번호 확인은 6글자 이상 입력해주세요.");
+        form.join_pw_re.focus();
+        return false;
+    }
+
+    if(form.join_pw.value.length > 0 && form.join_pw_re.value.length > 0){
+        if(form.join_pw.value != form.join_pw_re.value){
+            alert("비밀번호가 일치하지 않습니다.");
+            form.join_pw.focus();
+            return false;
+        }
+    }
+
+    if(form.join_name.value == ""){
+        alert("이름을 입력해 주세요.");
+        form.join_name.focus();
+        return false;
+    }
+
+    // 이메일 형식 체크
+    var TEmailChk = /^[0-9a-zA-Z]([-.]?[0-9a-zA-Z])@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]).[a-zA-Z]{2,3}$/i;
+    if(form.join_email.value.match(TEmailChk) != null){
+    }else{
+        alert("잘못된 이메일 형식입니다.\n[이메일]을 다시 입력해 주세요.");
+        form.join_email.focus();
+        return false;
+    }
+
+}
 
