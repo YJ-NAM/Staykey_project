@@ -40,7 +40,9 @@
 	                    <!-- 상단 이미지 //START -->
 	                    <c:if test="${!empty dto.bbs_top_img}">
 	                    <div class="row py-3">
-	                        <div class="col"><img src="<%=request.getContextPath()%>${dto.bbs_top_img}" class="topimg" alt="" /></div>
+	                        <div class="col">
+                                <div class="topimg" style="background-image: url('<%=request.getContextPath()%>${dto.bbs_top_img}');"><span>${dto.bbs_title}</span></div>
+                            </div>
 	                    </div>
 	                    </c:if>
 	                    <!-- 상단 이미지 //END -->
