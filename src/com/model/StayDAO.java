@@ -175,7 +175,6 @@ public class StayDAO {
                     + "    ) s" + search_sql1
                     + ") where rnum >= ? and rnum <= ?" + search_sql2;
 
-            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
             pstmt.setInt(2, endNo);
