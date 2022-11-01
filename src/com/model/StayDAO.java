@@ -596,7 +596,7 @@ public class StayDAO {
 		int[] resultArr = null;
 		int result = 0, count = 0;
 		openConn();
-
+ 
 		try {
 			sql = "select max(room_no) from staykey_stay_room";
 			pstmt = con.prepareStatement(sql);
@@ -844,7 +844,7 @@ public class StayDAO {
         return list;
     } // getBbsStayList() 종료
     
-	/////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////
 	// 숙소에 따른 모든 방 번호 조회
 	///////////////////////////////t//////////////////////////////
     public List<Integer> getSelectedRoom(int stay_no) {
@@ -872,33 +872,27 @@ public class StayDAO {
 		return list;
     } // getSelectedRoom() 종료
     
+	//////////////////////////////////////////////////////////////
 	// customer 테이블의 전체 고객을 조회하는 메서드
+	/////////////////////////////////////////////////////////////
 	public String getStayList() {
 		
-		String result = "";
+		String result = "";		
 		
-		
-		try {
-			
-			openConn();
-			
-			sql = "select * from staykey_stay";
-			
-			pstmt = con.prepareStatement(sql);
-			
+		try {			
+			openConn();			
+			sql = "select * from staykey_stay";			
+			pstmt = con.prepareStatement(sql);			
 			rs = pstmt.executeQuery();
 			
 			result += "<staykey_stay>";
 			
-			while(rs.next()) {
-				
-			result += "<staykey_stay>";
-			result += "<stay_no>" + rs.getInt("stay_no") + "</stay_no>";
-			result += "<stay_name>" + rs.getString("stay_name") + "</stay_name>";
-			result += "</staykey_stay>";
-				
-			}
-			
+			while(rs.next()) {				
+				result += "<staykey_stay>";
+				result += "<stay_no>" + rs.getInt("stay_no") + "</stay_no>";
+				result += "<stay_name>" + rs.getString("stay_name") + "</stay_name>";
+				result += "</staykey_stay>";				
+			}			
 			result += "</staykey_stay>";
 			
 		} catch (SQLException e) {
@@ -906,15 +900,9 @@ public class StayDAO {
 			e.printStackTrace();
 		} finally {
 			closeConn(rs, pstmt, con);
-		}
-		
-		return result;
-		
+		}		
+		return result;		
 	}	// getCustomerList() 메서드 end
-	
-
-    
-	
 	
 	/////////////////////////////////////////////////////////////
 	// 숙소 전체 목록 조회(날짜 역순) + 검색 기능

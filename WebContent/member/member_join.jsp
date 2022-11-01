@@ -55,7 +55,7 @@
 
             <div>
                 <label for="join_phone">전화번호</label>
-                <input type="number" name="join_phone" id="join_phone" placeholder="전화번호를 입력하세요." required autofocus />
+                <input type="text" name="join_phone" id="join_phone" placeholder="전화번호를 입력하세요." required autofocus />
                 <p class="error">잘못된 전화번호 형식입니다.</p>
             </div>
         </div>
