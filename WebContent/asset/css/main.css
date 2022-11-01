@@ -584,29 +584,33 @@
  
 .main-magazine .stay-info {
     width: 480px;
-    height: 210px;
+    height: 240px;
     position: absolute;
     display: flex;
+    justify-content: flex-end;
     text-align: center;
     background-color: #fefefe;
     font-family: 'NotoSerifKR';
     top: 40%;
     margin-left: 35%;
     padding: 60px 0;
+    opacity: 0.8;
 }
  
-.main-magazine .stay-info .logo {
+.main-magazine .stay-info img {
     position: absolute;
-    top: 45px;
-    left: 150px;
-    width: 145px;
+    height: 60px;
+    width: 175px;
+    margin-bottom: auto;
+    margin-right: auto;
     object-fit: contain;
+    background-position: center center;
 }
  
 .main-magazine .stay-info .text {
     position: absolute;
     bottom: 25px;
-    right : 60px;
+    right : 55px;
     font-size: 18px;
     color: #333;
     line-height: 1.6;

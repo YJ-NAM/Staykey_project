@@ -442,7 +442,7 @@ ${ login_msg }
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/149/523/original/135581dedb1c12eb129bef11419240c8d531501c.jpg?1666732643" />
                             <div class="stay-info">
-                                <p class="logo"></p>
+                                <img src= "https://images.stayfolio.com/system/pictures/images/000/149/899/original/8fb750bcb410cef63d51c191080e24f8c986a18d.png?1666866407" />
                                 <p class="text">육지의 섬에서<br>완전한 자유를 얻다</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
@@ -457,7 +457,7 @@ ${ login_msg }
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/145/825/original/723b3074a426daf8b64c5558c5628a9aee3e51fc.jpg?1664501407" />
                             <div class="stay-info">
-                                <p class="logo"></p>
+                                <img src="https://images.stayfolio.com/system/pictures/images/000/145/798/original/f1c2bb13fb6839fc5d542a15f0ee2cdfec00b07e.jpg?1664500460" />
                                 <p class="text">가능한 한 Chill하게<br>그러나 즐겁게</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
@@ -473,7 +473,7 @@ ${ login_msg }
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/141/787/original/871d151510e15a774bcd84f5637d657c03a94df8.jpg?1663121653" />
                             <div class="stay-info">
-                                <img src="https://images.stayfolio.com/system/pictures/images/000/141/790/original/0c6ebcdfee1a734d55a624abaad3c49a1d1af3da.jpg?1663121694" class="logo"></img>
+                                <img src="https://images.stayfolio.com/system/pictures/images/000/141/790/original/0c6ebcdfee1a734d55a624abaad3c49a1d1af3da.jpg?1663121694" ></img>
                                 <p class="text">한 척의 우주선 혹은<br>비일상의 궤도에 올라</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
@@ -488,7 +488,7 @@ ${ login_msg }
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/140/370/original/a79d65f3efd11ef8f463e31009661c5e5d96e4c4.jpg?1662352893" />
                             <div class="stay-info">
-                                <p class="logo"></p>
+                                <img src="https://images.stayfolio.com/system/pictures/images/000/135/567/original/ae9601936496ede84b9e6dcbd340b151fbd063b9.jpg?1660612147" />
                                 <p class="text">마음에 서리는 시간의 기억들</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
