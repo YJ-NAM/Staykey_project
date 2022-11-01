@@ -100,14 +100,14 @@
 
     <table class="table-list hover">
         <colgroup>
-            <col width="4.5%">
+            <col width="7%">
+            <col width="7%">
+            <col width="12%">
+            <col />
+            <col width="10%">
+            <col width="10%">
             <col width="8%">
             <col width="10%">
-            <col />
-            <col width="12%">
-            <col width="8%">
-            <col width="8%">
-            <col width="12%">
         </colgroup>
 
         <thead>
@@ -117,8 +117,8 @@
                 <th>이벤트기간</th>
                 <th>제목</th>
                 <th>아이디/작성자</th>
+                <th>작성일자</th>
                 <th>조회수</th>
-                <th>작성일</th>
                 <th>기능</th>
             </tr>
         </thead>
@@ -153,11 +153,11 @@
                 </td>
                 <td ${showLink} class="eng">${dto.bbs_title }</td>
                 <td ${showLink} class="py-4">
-                    <p class="mb-1"><b>${dto.bbs_writer_id}</b></p>
+                    <p><b class="eng">${dto.bbs_writer_id}</b></p>
                     <p>${dto.bbs_writer_name}</p>
                 </td>
-                <td ${showLink} class="eng">${dto.bbs_hit}</td>
                 <td ${showLink} class="eng">${dto.bbs_date.substring(0, 10)}<br />${dto.bbs_date.substring(11)}</td>
+                <td ${showLink} class="eng">${dto.bbs_hit}</td>
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/eventModify.do?bbs_no=${dto.bbs_no}" 
                     class="btn btn-sm btn-outline-primary m-1">수정</a>

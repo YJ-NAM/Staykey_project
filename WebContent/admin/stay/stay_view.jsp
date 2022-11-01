@@ -7,7 +7,7 @@
 <c:set var="view" value="${stayView}" />
 <c:set var="list" value="${roomList}" />
 
-
+<c:if test="${empty view}"><script>alert('잘못된 숙소 번호입니다.'); history.back();</script></c:if>
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>숙소 상세 정보</h2>
