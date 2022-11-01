@@ -309,13 +309,14 @@
 .stay-view .sv-top .svt-info .desc {
     display: inline-block;
     width: 50%;
-    padding: 0 30px 8px;
+    padding: 0 30px 5px 30px;
     font-size: 26px;
     font-weight: 100;
     color: #fff;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    text-align: center;
 }
 .stay-view .sv-top .svt-info .wish {
     display: inline-block;
@@ -771,7 +772,580 @@
     color: #fff;
     background: #000;
 }
+.stay-view .sv-caution .faq_tit {}
+.stay-view .sv-caution .faq_tit .left {
+    clear: both;
+    float: left;
+    width: 17%;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.stay-view .sv-caution .faq_tit .right {
+    float: right;
+    width: 83%;
+    font-size: 16px;
+}
 
+.stay-view .sv-caution .faq_cont {
+    padding-top: 60px;
+}
+.stay-view .sv-caution .faq_cont:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.stay-view .sv-caution .faq_cont .tab_btn {
+    clear: both;
+    float: left;
+    width: 17%;
+    color: #666;
+}
+.stay-view .sv-caution .faq_cont .tab_btn li {
+    margin-bottom: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    padding-right: 6px;
+}
+.stay-view .sv-caution .faq_cont .tab_btn li:hover {
+    color: #999;
+}
+.stay-view .sv-caution .faq_cont .tab_btn li.active {
+    color: #fff;
+}
+
+.stay-view .sv-caution .faq_cont .tab_cont {
+    float: right;
+    width: 83%;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view,
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view.hide {
+    display: none;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view.active {
+    display: block;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view .tit {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl {
+    overflow: hidden;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dt {
+    width: 10%;
+    clear: both;
+    float: left;
+    font-size: 16px;
+    color: #ccc;
+    line-height: 28px;
+    padding-bottom: 30px;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd {
+    width: 90%;
+    float: left;
+    font-size: 14px;
+    color: #888;
+    line-height: 28px;
+    padding-bottom: 30px;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 0;
+    table-layout: fixed;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd table th,
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd table tr {
+    border: 1px solid #444;
+    width: 50%;
+    line-height: 35px;
+    margin: -1px 0 0 -1px;
+    text-align: center;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd table td {
+    border-right: 1px solid #444;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd ul {
+    padding-left: 20px;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd ul li {
+    list-style-type: disc;
+    font-size: 14px;
+    color: #888;
+    line-height: 28px;
+}
+
+
+
+
+
+
+
+/************************/
+/* Room 보기 */
+.stay-room {
+    margin-top: -60px;
+}
+
+.stay-room .sr-top {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+}
+.stay-room .sr-top .srt-name {
+    font-size: 26px;
+    font-weight: 500;
+    color: #000;
+    letter-spacing: -1px;
+}
+.stay-room .sr-top .srt-date {
+    font-size: 16px;
+    color: #000;
+    cursor: pointer;
+    padding: 0 30px 0 0;
+    background: #fff url('../images/select_arrow.png') no-repeat 97% 50%;
+    background-size: 20px 20px;
+}
+.stay-room .sr-top .srt-date em {
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #ddd;
+}
+.stay-room .sr-top .reserv-go {
+    display: inline-block;
+    width: 240px;
+    height: 40px;
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    outline: none;
+    background: #000;
+    border: 1px solid #000;
+}
+.stay-room .sr-top .reserv-go:hover {
+    opacity: 0.8;
+}
+
+
+
+.stay-room .sr-info {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 540px;
+}
+.stay-room .sr-info .sri-left {
+    width: 23%;
+    box-sizing: border-box;
+}
+.stay-room .sr-info .sri-left .tit {
+    font-size: 12px;
+    letter-spacing: 3.5px;
+}
+.stay-room .sr-info .sri-left .name {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 15px;
+}
+.stay-room .sr-info .sri-left .price {
+    font-family: 'Lato';
+    font-size: 18px;
+    letter-spacing: 0;
+    margin-top: 20px;
+}
+.stay-room .sr-info .sri-left .txt {
+    margin-top: 30px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #333;
+}
+.stay-room .sr-info .sri-left .etc {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    width: 23%;
+    margin-top: 30px;
+}
+.stay-room .sr-info .sri-left .tag {
+    position: relative;
+    width: 100%;
+    margin-bottom: 7px;
+    margin-left: -3px;
+}
+.stay-room .sr-info .sri-left .tag span {
+    display: inline-block;
+    line-height: 27px;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    font-size: 13px;
+    color: #333;
+    margin: 0 0 5px -1px;
+}
+.stay-room .sr-info .sri-left .option {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #333;
+}
+
+.stay-room .sr-info .sri-right {
+    position: relative;
+    width: 74.4%;
+    height: 540px;
+    overflow: hidden;
+}
+.stay-room .sr-info .sri-right .swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 1;
+    box-sizing: content-box;
+}
+.stay-room .sr-info .sri-right li.swiper-slide {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    background: #f3f3f3;
+}
+.stay-room .sr-info .sri-right li.swiper-slide .img {
+    width: 100%;
+    height: 540px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.stay-room .sr-info .sri-right .swiper-button-prev,
+.stay-room .sr-info .sri-right .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    opacity: 0.5;
+    background: #000;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stay-room .sr-info .sri-right .swiper-button-prev:hover,
+.stay-room .sr-info .sri-right .swiper-button-next:hover {
+    opacity: 1;
+}
+.stay-room .sr-info .sri-right .swiper-button-prev {
+    left: 0;
+}
+.stay-room .sr-info .sri-right .swiper-button-next {
+    right: 0;
+}
+
+
+
+
+.stay-room .sr-service {
+    margin-top: 50px;
+    border-top: 1px solid #ddd;
+}
+.stay-room .sr-service .row {
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+}
+.stay-room .sr-service .srs-tit {
+    width: 25%;
+    padding-left: 15px;
+    font-size: 12px;
+    letter-spacing: 3.6px;
+    box-sizing: border-box;
+}
+.stay-room .sr-service .srs-list {
+    width: 75%;
+    font-size: 0;
+    padding: 20px 0 40px;
+}
+.stay-room .sr-service .srs-list li {
+    display: inline-block;
+    width: 96px;
+    word-break: keep-all;
+    text-align: center;
+    max-height: 85px;
+    padding-bottom: 3px;
+    font-size: 13px;
+    color: #777;
+    margin: 20px 10px 0 0;
+    vertical-align: top;
+    line-height: 13px;
+    overflow: hidden;
+}
+.stay-room .sr-service .srs-list li i {
+    display: block;
+    width: 50px;
+    height: 33px;
+    margin: 0 auto 13px;
+    background-image: url('../images/sprite.png');
+}
+.stay-room .sr-service .srs-list li i[title*="야외가구"] {
+    background-position: -150px -227px;
+}
+.stay-room .sr-service .srs-list li i[title*="천창"] {
+    background-position: 0 -62px;
+}
+.stay-room .sr-service .srs-list li i[title*="수영장"] {
+    background-position: -150px -194px;
+}
+.stay-room .sr-service .srs-list li i[title*="갤러리"] {
+    background-position: -100px -95px;
+}
+.stay-room .sr-service .srs-list li i[title*="실내 스파"] {
+    background-position: -50px -194px;
+}
+.stay-room .sr-service .srs-list li i[title*="월풀 스파"] {
+    background-position: -100px -227px;
+}
+.stay-room .sr-service .srs-list li i[title*="오픈 배스"] {
+    background-position: -212px -33px;
+}
+.stay-room .sr-service .srs-list li i[title*="썬베드"] {
+    background-position: -100px -194px;
+}
+.stay-room .sr-service .srs-list li i[title*="정원"] {
+    background-position: -50px -161px;
+}
+.stay-room .sr-service .srs-list li i[title*="개별 BBQ 데크"] {
+    background-position: 0 -95px;
+}
+.stay-room .sr-service .srs-list li i[title*="그네"] {
+    background-position: 0 -128px;
+}
+.stay-room .sr-service .srs-list li i[title*="테라스"] {
+    background-position: 0 -227px;
+}
+.stay-room .sr-service .srs-list li i[title*="독립 키친"] {
+    background-position: -112px 0;
+}
+.stay-room .sr-service .srs-list li i[title*="독립 화장실"] {
+    background-position: -50px -62px;
+}
+.stay-room .sr-service .srs-list li i[title*="빅테이블"] {
+    background-position: 0 -29px;
+}
+.stay-room .sr-service .srs-list li i[title*="산책로"] {
+    background-position: -212px -132px;
+}
+.stay-room .sr-service .srs-list li i[title*="웰컴티"] {
+    background-position: -50px -227px;
+}
+.stay-room .sr-service .srs-list li i[title*="조식"] {
+    background-position: -100px -161px;
+}
+.stay-room .sr-service .srs-list li i[title*="주차"] {
+    background-position: -150px -161px;
+}
+.stay-room .sr-service .srs-list li i[title*="빔프로젝트"],
+.stay-room .sr-service .srs-list li i[title*="빔 프로젝터"] {
+    background-position: -62px 0;
+}
+.stay-room .sr-service .srs-list li i[title*="샤워실"] {
+    background-position: -200px -194px;
+}
+.stay-room .sr-service .srs-list li i[title*="공용 키친"] {
+    background-position: -100px -128px;
+}
+.stay-room .sr-service .srs-list li i[title*="공용 화장실"] {
+    background-position: -50px -128px;
+}
+.stay-room .sr-service .srs-list li i[title*="자전거 렌탈"] {
+    background-position: -162px -99px;
+}
+.stay-room .sr-service .srs-list li i[title*="락커"] {
+    background-position: -212px -99px;
+}
+.stay-room .sr-service .srs-list li i[title*="빅테이블"] {
+    background-position: 0 -29px;
+}
+.stay-room .sr-service .srs-list li i[title*="캠핑테이블체어"] {
+    background-position: -212px 0;
+}
+
+
+
+.stay-room .sr-reserv {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0 30px 0;
+    width: 420px;
+    margin: 0 auto;
+    text-align: center;
+}
+.stay-room .sr-reserv .reserv-go {
+    display: block;
+    width: 100%;
+    height: 70px;
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    outline: none;
+    background: #000;
+    border: 1px solid #000;
+}
+.stay-room .sr-reserv .reserv-go:hover {
+    opacity: 0.8;
+}
+
+
+
+.stay-room .sr-other {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 30px auto 0 auto;
+}
+.stay-room .sr-other .sro-title {
+    padding: 0 0 45px;
+    font-size: 12px;
+    color: #181818;
+    font-weight: 700;
+    letter-spacing: 11px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.stay-room .sr-other .sro-list {
+    position: relative;
+    display: block;
+    overflow: visible;
+    box-sizing: border-box;
+    margin: 0 0 -60px 20px;
+    padding: 0;
+    z-index: 1;
+}
+.stay-room .sr-other .sro-list .swiper-button-prev,
+.stay-room .sr-other .sro-list .swiper-button-next {
+    position: absolute;
+    left: auto;
+    top: 0;
+    margin-top: -58px;
+    background: none;
+    font-size: 18px;
+}
+.stay-room .sr-other .sro-list .swiper-button-prev:hover,
+.stay-room .sr-other .sro-list .swiper-button-next:hover {
+    color: #888;
+}
+.stay-room .sr-other .sro-list .swiper-button-prev {
+    right: 38px;
+    margin-left: 16px;
+}
+.stay-room .sr-other .sro-list .swiper-button-next {
+    right: 15px;
+    margin-left: 38px;
+}
+.stay-room .sr-other .sro-list .swiper-wrapper {}
+.stay-room .sr-other .sro-list .swiper-slide {
+    position: relative;
+    width: 376px !important;
+    padding: 0 0 60px 0;
+    text-align: center;
+}
+.stay-room .sr-other .sro-list .nomove {
+    margin-left: 20px;
+    justify-content: center;
+}
+.stay-room .sr-other .sro-list .nomove .swiper-slide {
+    margin-right: 80px;
+}
+.stay-room .sr-other .sro-list .swiper-slide a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .img {
+    width: 100%;
+    height: 250px;
+     background-repeat: no-repeat;
+     background-position: center center;
+     background-size: cover;
+     box-sizing: border-box;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .img.none {
+    background: #f5f5f5;
+    text-align: center;
+    padding-top: 120px;
+    color: #666;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .name {
+    margin-top: 30px;
+    font-size: 22px;
+    color: #181818;
+    font-weight: 500;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .price {
+    margin-top: 15px;
+    font-family: 'Lato';
+    font-size: 14px;
+    color: #000;
+    letter-spacing: 0;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .people {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .bed {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+
+
+
+.daterangepicker {
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+.daterangepicker .drp-calendar {
+    max-width: 300px;
+}
+.daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+    font-family: 'Lato';
+    min-width: 40px;
+    width: 40px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+}
+.daterangepicker td.in-range {
+    background-color: #357ebd;
+    color: #fff;
+    border-color: transparent;
+}
+.daterangepicker td.available:hover,
+.daterangepicker th.available:hover {
+    background-color: #357ebd;
+    color: #fff;
+    font-weight: 600;
+}
 
 
 
