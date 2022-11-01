@@ -52,18 +52,20 @@
         <div class="svr-info container">
             <div class="tit">ROOMS</div>
             <div class="txt">${view.stay_desc}</div>
+            <c:if test="${list.size() > 1}">
             <div class="swiper-button">
                 <button type="button" class="swiper-button-prev"><i class="fa fa-angle-left"></i></button>
                 <button type="button" class="swiper-button-next"><i class="fa fa-angle-right"></i></button>
             </div>
+            </c:if>
         </div>
 
 
         <div class="svr-list">
             <ul class="swiper-wrapper">
                 <c:choose>
-                <c:when test="${ !empty list }">
-                <c:forEach items="${ list }" var="room">
+                <c:when test="${!empty list}">
+                <c:forEach items="${list}" var="room">
                 <li class="swiper-slide">
                     <c:choose>
                         <c:when test="${!empty room.room_photo1}"><a href="<%=request.getContextPath()%>/stayRoom.do?stay_no=${view.stay_no}&room_no=${room.room_no}" style="background-image: url('<%=request.getContextPath()%>${room.room_photo1}');"></c:when>
@@ -94,6 +96,25 @@
             </ul>
         </div>
     </div>
+
+    <c:if test="${list.size() > 1}">
+    <script type="text/javascript">
+    var stayviewRoomSwiper = new Swiper(".stay-view .sv-room .svr-list", {
+        effect: "slide",
+        slidesPerView: 2,
+        width: 970,
+        spaceBetween: 50,
+        speed: 500,
+        loop: true,
+        touchEnabled: true,
+        autoplay: false,
+        navigation: {
+            nextEl: '.stay-view .sv-room .svr-info .swiper-button .swiper-button-next',
+            prevEl: '.stay-view .sv-room .svr-info .swiper-button .swiper-button-prev',
+        }
+    });
+    </script>
+    </c:if>
     <!-- 숙소 Room목록 //START -->
 
 
@@ -144,24 +165,18 @@
             </div>
 
             <div class="faq_cont">
-                <ul class="left tab_btn">
-                    <li class="active">예약 안내</li>
-                    <li class="">이용 안내</li>
-                    <li class="">환불규정</li>
+                <ul class="tab_btn">
+                    <li num="1" class="active">예약 안내</li>
+                    <li num="2">이용 안내</li>
+                    <li num="3">환불규정</li>
                 </ul>
 
-                <div class="right tab_cont">
-                    <c:if test="${!empty view.stay_info1}">
-                    <div>${view.stay_info1}</div>
-                    </c:if>
+                <div class="tab_cont">
+                    <c:if test="${!empty view.stay_info1}">${view.stay_info1}</c:if>
 
-                    <c:if test="${!empty view.stay_info2}">
-                    <div>${view.stay_info2}</div>
-                    </c:if>
+                    <c:if test="${!empty view.stay_info2}">${view.stay_info2}</c:if>
 
-                    <c:if test="${!empty view.stay_info3}">
-                    <div>${view.stay_info3}</div>
-                    </c:if>
+                    <c:if test="${!empty view.stay_info3}">${view.stay_info3}</c:if>
                 </div>
             </div>
         </div>

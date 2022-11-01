@@ -83,20 +83,20 @@ ${ msg }
             <th>숙소 위치</th>
             <td>
             	<select name="ps_location" class="form-select" style="height:34.63px; float: left;">
-            		<option value="전체" selected="selected" <c:if test="${map.ps_location.contains('전체')}"> checked="checked"</c:if>> 전체</option>
-            		<option value="제주" <c:if test="${map.ps_location.contains('제주')}"> checked="checked"</c:if>> 제주</option>
-            		<option value="서울" <c:if test="${map.ps_location.contains('서울')}"> checked="checked"</c:if>> 서울</option>
-            		<option value="강원" <c:if test="${map.ps_location.contains('강원')}"> checked="checked"</c:if>> 강원</option>
-            		<option value="부산" <c:if test="${map.ps_location.contains('부산')}"> checked="checked"</c:if>> 부산</option>
-            		<option value="경기" <c:if test="${map.ps_location.contains('경기')}"> checked="checked"</c:if>> 경기</option>
-            		<option value="충청" <c:if test="${map.ps_location.contains('충청')}"> checked="checked"</c:if>> 충청</option>
-            		<option value="경상" <c:if test="${map.ps_location.contains('경상')}"> checked="checked"</c:if>> 경상</option>
-            		<option value="전라" <c:if test="${map.ps_location.contains('전라')}"> checked="checked"</c:if>> 전라</option>
-            		<option value="인천" <c:if test="${map.ps_location.contains('인천')}"> checked="checked"</c:if>> 인천</option>
-            		<option value="광주" <c:if test="${map.ps_location.contains('광주')}"> checked="checked"</c:if>> 광주</option>
-            		<option value="대전" <c:if test="${map.ps_location.contains('대전')}"> checked="checked"</c:if>> 대전</option>
-            		<option value="대구" <c:if test="${map.ps_location.contains('대구')}"> checked="checked"</c:if>> 대구</option>
-            		<option value="울산" <c:if test="${map.ps_location.contains('울산')}"> checked="checked"</c:if>> 울산</option>
+            		<option value="전체" selected="selected" <c:if test="${map.ps_location.contains('전체')}"> selected="selected"</c:if>> 전체</option>
+            		<option value="제주" <c:if test="${map.ps_location.contains('제주')}"> selected="selected"</c:if>> 제주</option>
+            		<option value="서울" <c:if test="${map.ps_location.contains('서울')}"> selected="selected"</c:if>> 서울</option>
+            		<option value="강원" <c:if test="${map.ps_location.contains('강원')}"> selected="selected"</c:if>> 강원</option>
+            		<option value="부산" <c:if test="${map.ps_location.contains('부산')}"> selected="selected"</c:if>> 부산</option>
+            		<option value="경기" <c:if test="${map.ps_location.contains('경기')}"> selected="selected"</c:if>> 경기</option>
+            		<option value="충청" <c:if test="${map.ps_location.contains('충청')}"> selected="selected"</c:if>> 충청</option>
+            		<option value="경상" <c:if test="${map.ps_location.contains('경상')}"> selected="selected"</c:if>> 경상</option>
+            		<option value="전라" <c:if test="${map.ps_location.contains('전라')}"> selected="selected"</c:if>> 전라</option>
+            		<option value="인천" <c:if test="${map.ps_location.contains('인천')}"> selected="selected"</c:if>> 인천</option>
+            		<option value="광주" <c:if test="${map.ps_location.contains('광주')}"> selected="selected"</c:if>> 광주</option>
+            		<option value="대전" <c:if test="${map.ps_location.contains('대전')}"> selected="selected"</c:if>> 대전</option>
+            		<option value="대구" <c:if test="${map.ps_location.contains('대구')}"> selected="selected"</c:if>> 대구</option>
+            		<option value="울산" <c:if test="${map.ps_location.contains('울산')}"> selected="selected"</c:if>> 울산</option>
             	</select>
             	<input type="text" name="ps_location_sub" value="${map.ps_location_sub}" maxlength="15" class="form-control w-70" style="float: right;" />
             </td>
