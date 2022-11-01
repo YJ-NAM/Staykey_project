@@ -17,8 +17,6 @@ public class SiteMemberJoinOkAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// 회원가입 정보 입력
-		// 회원만? 회원가입?
-		// member_type은... 
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberDTO dto = new MemberDTO();
