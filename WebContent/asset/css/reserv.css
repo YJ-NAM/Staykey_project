@@ -140,13 +140,49 @@
 }
 
 .reserv-form .rf-wrap .rfw-list tbody td.option {}
-.reserv-form .rf-wrap .rfw-list tbody td.option .option-img {}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-img {
+    margin: 0 0 20px;
+}
 .reserv-form .rf-wrap .rfw-list tbody td.option .option-img .img {
+    width: 100%;
+    height: 300px;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
 }
-.reserv-form .rf-wrap .rfw-list tbody td.option .option-select {}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select {
+    margin-bottom: 70px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select:last-child {
+    margin-bottom: 10px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select .tit {
+    font-size: 16px;
+    color: #000;
+    margin: 0 0 15px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select .tit span.price {
+    float: right;
+    font-family: 'Lato';
+    letter-spacing: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select .txt {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.7;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select .sel-option {
+    margin-top: 20px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select .sel-option label {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    margin-right: 30px;
+}
+
+
+
 
 
 .reserv-form .rf-wrap .rfw-button {
