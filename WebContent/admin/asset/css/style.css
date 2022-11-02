@@ -1819,6 +1819,8 @@ main .view-form .vf-comment .vfc-form .vfcf-btn button {
     margin-top: 20px;
 }
 .view-form .room-view .rv-info .rvi-left .txt {
+    height: 120px;
+    overflow: hidden;
     margin-top: 30px;
     font-size: 14px;
     line-height: 1.7;
