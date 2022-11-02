@@ -47,6 +47,9 @@ public class AdminStayRoomModifyOkAction implements Action {
         String features_sum = "";
         String amenities_sum = "";
         String service_sum = "";
+        String room_desc = "";
+        String room_bed = "";
+        String room_tag = "";
         String[] room_file_delete = null;
         List<String> roomList = null;
 
@@ -54,7 +57,7 @@ public class AdminStayRoomModifyOkAction implements Action {
         int room_no = Integer.parseInt(multi.getParameter("room_no"));
         int room_stayno = Integer.parseInt(multi.getParameter("stay_no"));
         String room_name = multi.getParameter("room_name").trim();
-        String room_desc = multi.getParameter("room_desc").trim();
+        if(multi.getParameter("room_desc") != null) { room_desc = multi.getParameter("room_desc").trim(); }
         String room_type = multi.getParameter("room_type").trim();
         int room_price = Integer.parseInt(multi.getParameter("room_price").trim());
         String room_checkin = multi.getParameter("room_checkin").trim();
@@ -62,7 +65,8 @@ public class AdminStayRoomModifyOkAction implements Action {
         int room_people_min = Integer.parseInt(multi.getParameter("room_people_min"));
         int room_people_max = Integer.parseInt(multi.getParameter("room_people_max"));
         int room_size = Integer.parseInt(multi.getParameter("room_size").trim());      
-        String room_bed = multi.getParameter("room_bed").trim();
+        if(multi.getParameter("room_bed") != null) { room_bed = multi.getParameter("room_bed").trim(); }
+        if(multi.getParameter("room_tag") != null) { room_tag = multi.getParameter("room_tag"); }
         
         if(multi.getParameterValues("room_file_delete") != null) {
         	room_file_delete = multi.getParameterValues("room_file_delete");
@@ -94,8 +98,6 @@ public class AdminStayRoomModifyOkAction implements Action {
     		service_sum = "/" + service_sum;
     	}
         
-        String room_tag = multi.getParameter("room_tag");
-
         dto.setRoom_no(room_no);
         dto.setRoom_stayno(room_stayno);
         dto.setRoom_name(room_name);
