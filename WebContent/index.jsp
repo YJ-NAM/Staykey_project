@@ -563,36 +563,36 @@ ${ login_msg }
          </div>
     <!-------- 메인 페이지 트래블 창 // END --------->
 
-    <div class="main-thumblist">
-        <div class= "container" id="thumblist-container">
+    <div class="main-Tagthumb">
+        <div class= "container" id="tagThumb-container">
             <div class="subject">
             모든 순간이 여행이 되도록
             </div>
             <div class="thumblist">
                 <div class="row">
-                    <a href="" class="thumbbox thumb-1">
-                        <img src="//images.stayfolio.com/system/pictures/images/000/088/742/original/6caeed169e4da49de28cefea684d71dfb1acdccd.jpg?1629255692" />
-                        <span class="tag">비비드 디자인</span>
+                    <a href="#" class="thumbbox thumb-0">
+                        <img src="//images.stayfolio.com/system/pictures/images/000/148/108/original/8765c6e673f7a6bc68bbde57276322bc3b7651b6.jpg?1665987235" />
+                        <span class="tag">태국</span>
                     </a>
 
-                    <a href="" class="thumbbox thumb-2">
-                        <img src="//images.stayfolio.com/system/pictures/images/000/088/742/original/6caeed169e4da49de28cefea684d71dfb1acdccd.jpg?1629255692" />
-                        <span class="tag">비비드 디자인</span>
+                    <a href="#" class="thumbbox thumb-1">
+                        <img src="//images.stayfolio.com/system/pictures/images/000/088/745/original/2fd777fc17341806d2231b4abd26a247cc052772.jpg?1629255697" />
+                        <span class="tag">턴테이블</span>
                     </a>
 
-                    <a href="" class="thumbbox thumb-3">
-                        <img src="//images.stayfolio.com/system/pictures/images/000/088/742/original/6caeed169e4da49de28cefea684d71dfb1acdccd.jpg?1629255692" />
-                        <span class="tag">비비드 디자인</span>
+                    <a href="#" class="thumbbox thumb-2">
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/135/889/small/f14cfc7d85b36c23f274f10bf08c1a1c93a00ba4.jpg?1660626621" />
+                        <span class="tag">노천탕</span>
                     </a>
 
-                    <a href="" class="thumbbox thumb-4">
-                        <img src="//images.stayfolio.com/system/pictures/images/000/088/742/original/6caeed169e4da49de28cefea684d71dfb1acdccd.jpg?1629255692" />
-                        <span class="tag">비비드 디자인</span>
+                    <a href="#" class="thumbbox thumb-3">
+                        <img src="//images.stayfolio.com/system/pictures/images/000/118/481/small/3c210ad8097af94bda97ff7a52bfd17ce992a6f9.jpg?1649237277" />
+                        <span class="tag">도심 속 사색</span>
                     </a>
 
-                    <a href="" class="thumbbox thumb-5">
-                        <img src="//images.stayfolio.com/system/pictures/images/000/088/742/original/6caeed169e4da49de28cefea684d71dfb1acdccd.jpg?1629255692" />
-                        <span class="tag">비비드 디자인</span>
+                    <a href="#" class="thumbbox thumb-4">
+                        <img src="//images.stayfolio.com/system/pictures/images/000/089/336/small/a231b86747a1fe8233ae6042f05335ddfc6a5cc5.jpg?1629453497" />
+                        <span class="tag">책의 세계로</span>
                     </a>
                 </div>
             </div>
