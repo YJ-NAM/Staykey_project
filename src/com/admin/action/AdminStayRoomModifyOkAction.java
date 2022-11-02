@@ -42,8 +42,7 @@ public class AdminStayRoomModifyOkAction implements Action {
         }
 
         // 파일 업로드 객체 생성
-        MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8",
-                new DefaultFileRenamePolicy());
+        MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 
         String features_sum = "";
         String amenities_sum = "";
@@ -98,6 +97,7 @@ public class AdminStayRoomModifyOkAction implements Action {
         String room_tag = multi.getParameter("room_tag");
 
         dto.setRoom_no(room_no);
+        dto.setRoom_stayno(room_stayno);
         dto.setRoom_name(room_name);
         dto.setRoom_desc(room_desc);
         dto.setRoom_type(room_type);

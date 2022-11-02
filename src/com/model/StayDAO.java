@@ -695,6 +695,36 @@ public class StayDAO {
 
             result = pstmt.executeUpdate();
             resultArr = new int[] { result, count };
+
+            sql = "update staykey_stay set stay_room_price_min = ? where stay_no = ? and (stay_room_price_min = 0 or stay_room_price_min > ?)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, dto.getRoom_price());
+            pstmt.setInt(2, dto.getRoom_stayno());
+            pstmt.setInt(3, dto.getRoom_price());
+            pstmt.executeUpdate();
+            
+            sql = "update staykey_stay set stay_room_price_max = ? where stay_no = ? and stay_room_price_max < ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, dto.getRoom_price());
+            pstmt.setInt(2, dto.getRoom_stayno());
+            pstmt.setInt(3, dto.getRoom_price());
+            pstmt.executeUpdate();
+
+            sql = "update staykey_stay set stay_room_people_min = ? where stay_no = ? and (stay_room_people_min = 0 or stay_room_people_min > ?)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, dto.getRoom_people_min());
+            pstmt.setInt(2, dto.getRoom_stayno());
+            pstmt.setInt(3, dto.getRoom_people_min());
+            pstmt.executeUpdate();
+            
+            sql = "update staykey_stay set stay_room_people_max = ? where stay_no = ? and stay_room_people_max < ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, dto.getRoom_people_max());
+            pstmt.setInt(2, dto.getRoom_stayno());
+            pstmt.setInt(3, dto.getRoom_people_max());
+            pstmt.executeUpdate();
+            
+
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -784,8 +814,36 @@ public class StayDAO {
             pstmt.setString(18, dto.getRoom_photo5());
             pstmt.setString(19, dto.getRoom_tag());
             pstmt.setInt(20, dto.getRoom_no());
-
             result = pstmt.executeUpdate();
+            
+            sql = "update staykey_stay set stay_room_price_min = ? where stay_no = ? and (stay_room_price_min = 0 or stay_room_price_min > ?)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, dto.getRoom_price());
+            pstmt.setInt(2, dto.getRoom_stayno());
+            pstmt.setInt(3, dto.getRoom_price());
+            pstmt.executeUpdate();
+            
+            sql = "update staykey_stay set stay_room_price_max = ? where stay_no = ? and stay_room_price_max < ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, dto.getRoom_price());
+            pstmt.setInt(2, dto.getRoom_stayno());
+            pstmt.setInt(3, dto.getRoom_price());
+            pstmt.executeUpdate();
+
+            sql = "update staykey_stay set stay_room_people_min = ? where stay_no = ? and (stay_room_people_min = 0 or stay_room_people_min > ?)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, dto.getRoom_people_min());
+            pstmt.setInt(2, dto.getRoom_stayno());
+            pstmt.setInt(3, dto.getRoom_people_min());
+            pstmt.executeUpdate();
+            
+            sql = "update staykey_stay set stay_room_people_max = ? where stay_no = ? and stay_room_people_max < ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, dto.getRoom_people_max());
+            pstmt.setInt(2, dto.getRoom_stayno());
+            pstmt.setInt(3, dto.getRoom_people_max());
+            pstmt.executeUpdate();
+            
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
