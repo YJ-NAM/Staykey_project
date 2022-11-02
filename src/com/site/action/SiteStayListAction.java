@@ -29,11 +29,14 @@ public class SiteStayListAction implements Action {
         /////////////////////////////////////////////////////////////
         // 검색용 변수 정의
         String ps_stay = "";
-
         String ps_type = "";
         String ps_order = "";
         
         if(request.getParameter("ps_stay") != null) { ps_stay = request.getParameter("ps_stay").trim(); }else { ps_stay = ""; }
+        int ps_people_adult = Integer.parseInt(request.getParameter("ps_people_adult"));
+        int ps_people_kid = Integer.parseInt(request.getParameter("ps_people_kid"));
+        int ps_people_baby = Integer.parseInt(request.getParameter("ps_people_baby"));
+        int ps_people = ps_people_adult + ps_people_kid + ps_people_baby;
 
 //        if(request.getParameterValues("ps_type") != null) { 
 //            // ps_type value로 all이 넘어올 때, all 지정
@@ -76,8 +79,8 @@ public class SiteStayListAction implements Action {
 
         // 뷰에 전달할 매개변수 추가
         map.put("ps_stay", ps_stay);
+        map.put("ps_people", ps_people);
         map.put("ps_type", ps_type);
-
         map.put("ps_order", ps_order);
 
 
