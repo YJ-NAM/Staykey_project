@@ -109,8 +109,17 @@
                 <c:if test="${!empty stay.stay_option1_name or !empty stay.stay_option2_name or !empty stay.stay_option3_name}">
                 <tr>
                     <th>추가 옵션 선택</th>
-                    <td>
-                        
+                    <td class="option">
+                        <c:if test="${!empty stay.stay_option1_name}">
+                            <c:if test="${!empty stay.stay_option1_photo}">
+                            <div class="option-img">
+                                <div class="img" style="background-image: url('${stay.stay_option1_photo}');"></div>
+                            </div>
+                            </c:if>
+
+                            <div class="option-select">
+                            </div>
+                        </c:if>
                     </td>
                 </tr>
                 </c:if>
