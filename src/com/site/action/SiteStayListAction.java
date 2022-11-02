@@ -36,14 +36,14 @@ public class SiteStayListAction implements Action {
         int ps_people_kid = 0;
         int ps_people_baby = 0;
         int ps_price_min = 0;
-        int ps_price_max = 1000000;
+        int ps_price_max = 100;
         
         if(request.getParameter("ps_stay") != null) { ps_stay = request.getParameter("ps_stay").trim(); }else { ps_stay = ""; }
         if(request.getParameter("ps_people_adult") != null || request.getParameter("ps_people_kid") != null || request.getParameter("ps_people_baby") != null) {
         	if(request.getParameter("ps_people_adult") != null) { ps_people_adult = Integer.parseInt(request.getParameter("ps_people_adult")); }
         	if(request.getParameter("ps_people_kid") != null) { ps_people_kid = Integer.parseInt(request.getParameter("ps_people_kid")); }
         	if(request.getParameter("ps_people_baby") != null) { ps_people_baby = Integer.parseInt(request.getParameter("ps_people_baby")); }
-        	System.out.println(request.getParameter("ps_people_adult"));
+        	System.out.println("adult > "+request.getParameter("ps_people_adult"));
         	System.out.println("kid > "+request.getParameter("ps_people_kid"));
         	System.out.println("baby > "+request.getParameter("ps_people_baby"));
         }
@@ -51,11 +51,9 @@ public class SiteStayListAction implements Action {
         if(request.getParameter("ps_price_min") != null || request.getParameter("ps_price_max") != null) {
         	if(request.getParameter("ps_price_min") != (null)) { 
         		ps_price_min = Integer.parseInt(request.getParameter("ps_price_min"));
-        		ps_price_min = ps_price_min * 10000;        		
         	}
         	if(request.getParameter("ps_price_max") != (null)) { 
         		ps_price_max = Integer.parseInt(request.getParameter("ps_price_max")); 
-        		ps_price_max = ps_price_max * 10000;
         	}
         }
         
