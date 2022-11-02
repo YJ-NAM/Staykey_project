@@ -41,6 +41,8 @@ public class SiteMemberLoginOkAction implements Action {
 			session.setAttribute("login_id", dto.getMember_id());
 			session.setAttribute("login_pw", dto.getMember_pw());
 			session.setAttribute("login_name", dto.getMember_name());
+            session.setAttribute("login_email", dto.getMember_email());
+            session.setAttribute("login_phone", dto.getMember_phone());
 			session.setAttribute("login_type", "admin");
 
 			request.setAttribute("login_msg", "<script>alert('관리자 로그인 성공!');</script>");
@@ -51,6 +53,8 @@ public class SiteMemberLoginOkAction implements Action {
             session.setAttribute("login_id", dto.getMember_id());
             session.setAttribute("login_pw", dto.getMember_pw());
 			session.setAttribute("login_name", dto.getMember_name());
+            session.setAttribute("login_email", dto.getMember_email());
+            session.setAttribute("login_phone", dto.getMember_phone());
 			session.setAttribute("login_type", "user");
 
 			forward = null;

@@ -146,12 +146,12 @@
                 <div class="map_tit">
                     <div class="title">
                         <p>HELLO.</p>
-                        <p>제주스테이<br />비우다</p>
+                        <p>${view.stay_name}</p>
                     </div>
                     <div class="desc">
-                        <p>제주특별자치도 서귀포시 색달중앙로121번길 45</p>
-                        <p>064-739-5003</p>
-                        <p>saida600@naver.com</p>
+                        <p>${view.stay_addr}</p>
+                        <p>${view.stay_phone}</p>
+                        <p>${view.stay_email}</p>
                     </div>
                 </div>
                 ${view.stay_content3}
