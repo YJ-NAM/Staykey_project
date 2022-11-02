@@ -117,6 +117,7 @@
     background: #f2f2f2;
     color: grey;
 }
+
 .reserv-form .rf-wrap .rfw-list tbody td.people {
     display: flex;
     flex-wrap: wrap;
@@ -138,6 +139,14 @@
     line-height: 1.5;
 }
 
+.reserv-form .rf-wrap .rfw-list tbody td.option {}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-img {}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-img .img {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select {}
 
 
 .reserv-form .rf-wrap .rfw-button {
