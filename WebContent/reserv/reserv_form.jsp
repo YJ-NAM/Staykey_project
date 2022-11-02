@@ -106,10 +106,12 @@
                     </td>
                 </tr>
 
+                <c:if test="${!empty stay.stay_option1_name or !empty stay.stay_option2_name or !empty stay.stay_option3_name}">
                 <tr>
                     <th></th>
                     <td></td>
                 </tr>
+                </c:if>
 
                 <tr>
                     <th></th>
