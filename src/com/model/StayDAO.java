@@ -306,7 +306,33 @@ public class StayDAO {
         String search_sql1 = " where stay_no > 0";
         String search_sql2 = "";
         
-        if (!map.get("ps_type").equals("all")) {
+        // ps_stay : 여행지/숙소
+		if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
+			search_sql2 += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
+					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%'";
+		}
+				
+		// ps_people : 인원
+		if((int)map.get("ps_people_adult") > 0) {
+			int ps_people_num = (int)map.get("ps_people_adult");
+			System.out.println(ps_people_num);
+			search_sql2 += " and stay_room_people_min <= "+ps_people_num;
+		}
+        
+		////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////
+		// ps_price_min / ps_price_max : 가격
+		if((int)map.get("ps_price_min") > 0) {
+			int ps_price_min = (int)map.get("ps_price_min");
+			search_sql2 += " and "+ps_price_min+" <= stay_room_price_min";
+		}
+		if((int)map.get("ps_price_max") < 1000000) {
+			int ps_price_max = (int)map.get("ps_price_max");
+			search_sql2 += " and stay_room_price_max <="+ps_price_max;
+		}
+		
+		// ps_type
+        if(!map.get("ps_type").equals("all")) {
             search_sql2 += "and (";            
             StringTokenizer tokenizer = new StringTokenizer(map.get("ps_type").toString(), "/");
             while (tokenizer.hasMoreTokens()) {
@@ -314,52 +340,10 @@ public class StayDAO {
             }
             search_sql2 = search_sql2.substring(0, search_sql2.lastIndexOf("'") + 1);
             search_sql2 += ")";            
-        } else {
-            search_sql2 += "";
-        }
-
-        if (!map.get("ps_type").equals("all")) {
-            search_sql2 += "and (";            
-            StringTokenizer tokenizer = new StringTokenizer(map.get("ps_type").toString(), "/");
-            while (tokenizer.hasMoreTokens()) {
-                search_sql2 += "stay_type like '%" + tokenizer.nextToken() + "%' or ";
-            }
-            search_sql2 = search_sql2.substring(0, search_sql2.lastIndexOf("'") + 1);
-            search_sql2 += ")";            
-        } else {
+        }else {
             search_sql2 += "";
         }
         
-        if (map.get("ps_name") != "" && map.get("ps_name") != null) {
-            search_sql2 += " and stay_name like '%" + map.get("ps_name") + "%'";
-        }
-
-        if (map.get("ps_location") != "" && map.get("ps_location") != null) { // ps_location 값이 있을 때
-            if (map.get("ps_location").equals("전체")) { // 그 중 전체일 때, ps_location_sub 값이 있으면 stay_location + stay_addr 합집합
-                if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
-                    search_sql2 += " and stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
-                            + map.get("ps_location_sub") + "%'";
-                }
-            } else { // 지역 검색 유 / ps_location_sub 있을 때
-                if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
-                    search_sql2 += " and stay_location like '%" + map.get("ps_location")
-                            + "%' and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
-                            + map.get("ps_location_sub") + "%')";
-                } else {
-                    search_sql2 += " and stay_location like '%" + map.get("ps_location") + "%'";
-                }
-            }
-        } else { // ps_location 없을 때,
-            if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
-                search_sql2 += " and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
-                        + map.get("ps_location_sub") + "%')";
-            }
-        }
-
-        if (map.get("ps_phone") != "" && map.get("ps_phone") != null) {
-            search_sql2 += " and stay_phone like '%" + map.get("ps_phone") + "%'";
-        }
-
         search_sql1 += search_sql2;
 
         // 정렬용 설정
@@ -390,11 +374,13 @@ public class StayDAO {
 
         try {
 
-             sql = "select * from (select row_number() over(order by " + order_sql + ") rnum, s.* from staykey_stay s " + search_sql1 + ") where rnum >= ? and rnum <= ? " + search_sql2;
+            sql = "select * from (select row_number() over(order by " + order_sql + ") rnum, s.* from staykey_stay s" + search_sql1 + ") where rnum >= ? and rnum <= ?" + search_sql2;
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
             pstmt.setInt(2, endNo);
+            
+            System.out.println("sql > "+sql);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -432,8 +418,7 @@ public class StayDAO {
                 dto.setStay_option3_photo(rs.getString("stay_option3_photo"));
                 dto.setStay_hit(rs.getInt("stay_hit"));
                 dto.setStay_reserv(rs.getInt("stay_reserv"));
-                dto.setStay_date(rs.getString("stay_date"));
-                
+                dto.setStay_date(rs.getString("stay_date"));                              
                 dto.setStay_room_price_min(rs.getInt("stay_room_price_min"));
                 dto.setStay_room_price_max(rs.getInt("stay_room_price_max"));
                 dto.setStay_room_people_min(rs.getInt("stay_room_people_min"));
@@ -460,55 +445,47 @@ public class StayDAO {
 
         // 검색용 설정 : 조건에 추가됨
         String search_sql = " where stay_no > 0";
-
-        if (map.get("ps_type") != "" && map.get("ps_type") != null) {
-            if (map.get("ps_type").equals("all")) {
-                // all 값일 때, search_sql 없음
-            } else {
-                search_sql += " and (";
-                String get_type = ((String) map.get("ps_type")).substring(1);
-                String[] epd_type = get_type.split("/");
-                for (int i = 0; i < epd_type.length; i++) {
-                    if (i > 0) {
-                        search_sql += " or ";
-                    }
-                    search_sql += "stay_type = '" + epd_type[i] + "'";
-                }
-                search_sql += ") ";
+        
+        // ps_stay : 여행지/숙소
+		if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
+			search_sql += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
+					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%'";
+		}
+		
+		// ps_people : 인원
+		if((int)map.get("ps_people_adult") > 0) {
+			int ps_people_num = (int)map.get("ps_people_adult");
+			System.out.println(ps_people_num);
+			search_sql += " and stay_room_people_min <= "+ps_people_num;
+		}
+        
+		// ps_price_min / ps_price_max : 가격
+		if((int)map.get("ps_price_min") > 0) {			
+			int ps_price_min = (int)map.get("ps_price_min");
+			search_sql += " and "+ps_price_min+" <= stay_room_people_min";
+		}
+		if((int)map.get("ps_price_max") < 1000000) {
+			int ps_price_max = (int)map.get("ps_price_max");
+			search_sql += " and stay_room_price_max <="+ps_price_max;
+		}
+		
+		// ps_type
+        if(!map.get("ps_type").equals("all")) {
+            search_sql += "and (";            
+            StringTokenizer tokenizer = new StringTokenizer(map.get("ps_type").toString(), "/");
+            while (tokenizer.hasMoreTokens()) {
+                search_sql += "stay_type like '%" + tokenizer.nextToken() + "%' or ";
             }
-        }
-        if (map.get("ps_name") != "" && map.get("ps_name") != null) {
-            search_sql += " and stay_name like '%" + map.get("ps_name") + "%'";
-        }
-        if (map.get("ps_location") != "" && map.get("ps_location") != null) { // ps_location 값이 있을 때
-            if (map.get("ps_location").equals("전체")) { // 그 중 전체일 때, ps_location_sub 값이 있으면 stay_location + stay_addr 합집합
-                if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
-                    search_sql += " and stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
-                            + map.get("ps_location_sub") + "%'";
-                }
-            } else { // 지역 검색 유 / ps_location_sub 있을 때
-                if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
-                    search_sql += " and stay_location like '%" + map.get("ps_location")
-                            + "%' and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
-                            + map.get("ps_location_sub") + "%')";
-                } else {
-                    search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
-                }
-            }
-        } else { // ps_location 없을 때
-            if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
-                search_sql += " and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
-                        + map.get("ps_location_sub") + "%')";
-            }
-        }
-
-        if (map.get("ps_phone") != "" && map.get("ps_phone") != null) {
-            search_sql += " and stay_phone like '%" + map.get("ps_phone") + "%'";
+            search_sql = search_sql.substring(0, search_sql.lastIndexOf("'") + 1);
+            search_sql += ")";            
+        }else {
+            search_sql += "";
         }
 
         try {
-            openConn();
+            openConn();            
             sql = "select count(*) from staykey_stay" + search_sql;
+            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
             if (rs.next()) {
