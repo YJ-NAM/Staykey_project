@@ -29,58 +29,55 @@ public class SiteStayListAction implements Action {
         /////////////////////////////////////////////////////////////
         // 검색용 변수 정의
         String ps_stay = "";
-        String[] get_type = null;
-        String ps_name = "";
-        String ps_location = "";
-        String ps_location_sub = "";
-        String ps_phone = "";
+
+        String ps_type = "";
         String ps_order = "";
+        
+        if(request.getParameter("ps_stay") != null) { ps_stay = request.getParameter("ps_stay").trim(); }else { ps_stay = ""; }
 
-        if(request.getParameterValues("ps_type") != null) { 
-            // ps_type value로 all이 넘어올 때, all 지정
-            get_type = request.getParameterValues("ps_type");
-            if(get_type[0].equals("all")) {
-                ps_type = "all";
-            }else {
-                for(int i = 0; i<get_type.length; i++) {
-                    ps_type += "/" + get_type[i];
-                }
-            }
-        }else {
-            ps_type = "all";
-        }
+//        if(request.getParameterValues("ps_type") != null) { 
+//            // ps_type value로 all이 넘어올 때, all 지정
+//            get_type = request.getParameterValues("ps_type");
+//            if(get_type[0].equals("all")) {
+//                ps_type = "all";
+//            }else {
+//                for(int i = 0; i<get_type.length; i++) {
+//                    ps_type += "/" + get_type[i];
+//                }
+//            }
+//        }else {
+//            ps_type = "all";
+//        }
+//
+//        if(request.getParameter("ps_name") != null){ ps_name = request.getParameter("ps_name").trim(); }else{ ps_name = ""; }
+//
+//        // 주소값 지역 + 구체적 주소
+//        if(request.getParameter("ps_location") != null) { 
+//            ps_location = request.getParameter("ps_location"); 
+//            if(ps_location.equals("전체")) {
+//                ps_location = "";
+//                if(request.getParameter("ps_location_sub") != null) { // 전체 / 검색값 유
+//                    ps_location_sub = request.getParameter("ps_location_sub").trim();
+//                }else { // 전체 / 검색값 무
+//                    ps_location_sub = "";
+//                }
+//            }else { // 전체 아님 / 검색값 유
+//                if(request.getParameter("ps_location_sub") != null) {
+//                    ps_location_sub = request.getParameter("ps_location_sub").trim();
+//                }else { // 전체 아님 / 검색값 무
+//                    ps_location_sub = "";
+//                }
+//            }
+//        }else { 
+//            ps_location = ""; 
+//        }       
 
-        if(request.getParameter("ps_name") != null){ ps_name = request.getParameter("ps_name").trim(); }else{ ps_name = ""; }
-
-        // 주소값 지역 + 구체적 주소
-        if(request.getParameter("ps_location") != null) { 
-            ps_location = request.getParameter("ps_location"); 
-            if(ps_location.equals("전체")) {
-                ps_location = "";
-                if(request.getParameter("ps_location_sub") != null) { // 전체 / 검색값 유
-                    ps_location_sub = request.getParameter("ps_location_sub").trim();
-                }else { // 전체 / 검색값 무
-                    ps_location_sub = "";
-                }
-            }else { // 전체 아님 / 검색값 유
-                if(request.getParameter("ps_location_sub") != null) {
-                    ps_location_sub = request.getParameter("ps_location_sub").trim();
-                }else { // 전체 아님 / 검색값 무
-                    ps_location_sub = "";
-                }
-            }
-        }else { 
-            ps_location = ""; 
-        }       
-        if(request.getParameter("ps_phone") != null){ ps_phone = request.getParameter("ps_phone").trim(); }else{ ps_phone = ""; }
         if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "no_desc"; }
 
         // 뷰에 전달할 매개변수 추가
+        map.put("ps_stay", ps_stay);
         map.put("ps_type", ps_type);
-        map.put("ps_name", ps_name);
-        map.put("ps_location", ps_location);
-        map.put("ps_location_sub", ps_location_sub);
-        map.put("ps_phone", ps_phone);
+
         map.put("ps_order", ps_order);
 
 
@@ -88,11 +85,11 @@ public class SiteStayListAction implements Action {
         // 페이징
         /////////////////////////////////////////////////////////////
         // 페이징 변수들 정의
-        int rowsize = 6; // 한 페이지당 보여질 게시물의 갯수
+        int rowsize = 12; // 한 페이지당 보여질 게시물의 갯수
         int block = 5; // 아래에 보여질 페이지의 최대 블럭 수
 
         // 전체 데이터 개수 count 메서드
-        int totalRecord = dao.getStayTotalCount(map);
+        int totalRecord = dao.getStaySiteTotalCount(map);
         request.setAttribute("listCount", totalRecord);
 
         // 전체 페이지 갯수
@@ -124,11 +121,9 @@ public class SiteStayListAction implements Action {
         // 목록 조회 메서드 및 변수 넘기기
         /////////////////////////////////////////////////////////////
         // 숙소 전체 목록 조회 메서드 : getStayList + 페이징 처리 + 검색(& 검색 시 페이징 처리) 매개변수 추가
-        List<StayDTO> list = dao.getStayList(page, rowsize, map); 
+        List<StayDTO> list = dao.getStaySiteList(page, rowsize, map); 
 
         request.setAttribute("stayList", list);
-
-
 
         // 숙소 유형 배열 넘겨주기
         showArray getArray = new showArray();
