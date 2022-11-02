@@ -43,6 +43,7 @@ public class AdminStayRoomWriteOkAction implements Action {
         String features_sum = "";
         String amenities_sum = "";
         String service_sum = "";
+        String room_tag = "";
 
         // 파라미터 정리
         int stay_stayNo = Integer.parseInt(multi.getParameter("stayNo"));
@@ -56,6 +57,7 @@ public class AdminStayRoomWriteOkAction implements Action {
         int room_people_max = Integer.parseInt(multi.getParameter("room_people_max"));
         int room_size = Integer.parseInt(multi.getParameter("room_size").trim());      
         String room_bed = multi.getParameter("room_bed").trim();
+        if(multi.getParameter("room_tag") != null) { room_tag = multi.getParameter("room_tag"); }
         
         // 체크박스 선택 안 한 경우, null 값 처리
         if(multi.getParameterValues("room_features") != null) {
@@ -82,9 +84,6 @@ public class AdminStayRoomWriteOkAction implements Action {
     		service_sum = "/" + service_sum;
     	}
         
-        String room_tag = multi.getParameter("room_tag");
-        System.out.println("tag 값" + room_tag);
-
         dto.setRoom_stayno(stay_stayNo);
         dto.setRoom_name(room_name);
         dto.setRoom_desc(room_desc);
@@ -135,15 +134,14 @@ public class AdminStayRoomWriteOkAction implements Action {
         ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
         
-        // res[0] = result, res[1] = count
-        int[] res = dao.registerStayRoom(dto);
-        
         // 방 이름 중복 방지
         int roomCheck = dao.noDuplicateRoomName(room_name, stay_stayNo);
         
         if(roomCheck > 0) {
             out.println("<script>alert('중복된 Room 이름이 있습니다. Room 등록을 실패하였습니다.'); history.back(); </script>");
         }else {
+            // res[0] = result, res[1] = count
+            int[] res = dao.registerStayRoom(dto);
             if(res[0] > 0) {
                out.println("<script>alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.href='stayView.do?stay_no="+stay_stayNo+"'; window.close();</script>");
             }else {

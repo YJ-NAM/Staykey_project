@@ -138,12 +138,12 @@ public class AdminStayWriteOkAction implements Action {
 		dto.setStay_option3_photo(map.get("stay_option3_photo").toString());
 
 		int nameCheck = dao.noDuplicateName(stay_name);
-        int res = dao.registerStay(dto);
         
         // 숙소 이름 중복 방지 
         if(nameCheck > 0) {
             out.println("<script>alert('중복된 이름이 있습니다. 숙소 등록을 실패하였습니다.'); history.back(); </script>");
         }else {
+        	int res = dao.registerStay(dto);
         	if (res > 0) {
         		session.setAttribute("msg", "<script> alert('성공적으로 등록되었습니다.'); </script>)");
         		forward.setRedirect(true);
