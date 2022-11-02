@@ -64,7 +64,12 @@ function changeVal(data) {
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" name="ps_people_adult" value="0" <c:if test="${ map.ps_people_adult gt 0 }">value="${ map.ps_people_adult }"</c:if> min="0" max="30" />
+                            	<c:if test="${ empty map.ps_people_adult }">
+                                <input type="number" name="ps_people_adult" value="0" min="0" max="30" />
+                                </c:if>
+                                <c:if test="${ !empty map.ps_people_adult }">
+                                <input type="number" name="ps_people_adult" value="${ map.ps_people_adult }" min="0" max="30" />
+                                </c:if>                                     
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -75,7 +80,12 @@ function changeVal(data) {
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" name="ps_people_kid" value="0" <c:if test="${ map.ps_people_kid gt 0 }">value="${ map.ps_people_kid }"</c:if> min="0" max="7" />
+                            	<c:if test="${ empty map.ps_people_kid }">
+                                <input type="number" name="ps_people_kid" value="0" min="0" max="7" />
+                                </c:if>
+                                <c:if test="${ !empty map.ps_people_kid }">
+                                <input type="number" name="ps_people_kid" value="${ map.ps_people_kid }" min="0" max="7" />
+                                </c:if>
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -86,7 +96,12 @@ function changeVal(data) {
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" name="ps_people_baby" value="0" <c:if test="${ map.ps_people_baby gt 0 }">value="${ map.ps_people_baby }"</c:if> min="0" max="7" />
+                            	<c:if test="${ empty map.ps_people_baby }">
+                                <input type="number" name="ps_people_baby" value="0" min="0" max="7" />
+                                </c:if>
+                                <c:if test="${ !empty map.ps_people_baby }">
+                                <input type="number" name="ps_people_baby" value="${ map.ps_people_baby }" min="0" max="7" />
+                                </c:if>                                
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -107,13 +122,17 @@ function changeVal(data) {
                 <div class="tit">가격 범위</div>
                 <div class="price-input">
                     <div class="input">
-                        <small>최저요금</small>
-                        <span><input type="text" name="ps_price_min" value="10" onkeyup="NumberInput(this);" />만원</span>
+                        <small>최저요금</small>                
+                        <span>
+                        <c:if test="${ empty map.ps_price_min }"><input type="text" name="ps_price_min" value="10" onkeyup="NumberInput(this);" /></c:if>
+                        <c:if test="${ !empty map.ps_price_min }"><input type="text" name="ps_price_min" value="${ map.ps_price_min }" onkeyup="NumberInput(this);" /></c:if>만원</span>
                     </div>
                     <span class="divider">-</span>
                     <div class="input">
                         <small>최고요금</small>
-                        <span><input type="text" name="ps_price_max" value="100" onkeyup="NumberInput(this);" />만원</span>
+                        <span>
+                        <c:if test="${ empty map.ps_price_max }"><input type="text" name="ps_price_max" value="100" onkeyup="NumberInput(this);" /></c:if>
+                        <c:if test="${ !empty map.ps_price_max }"><input type="text" name="ps_price_max" value="${ map.ps_price_max }" onkeyup="NumberInput(this);" /></c:if>만원</span>
                     </div>
                 </div>
                 <div class="btn-wrapper"><button type="button" class="btn-number-search">적용하기</button></div>
