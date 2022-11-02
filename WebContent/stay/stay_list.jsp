@@ -171,11 +171,13 @@
                 <div class="clear"></div>
                 <div class="slw-info">
                     <p class="address">${list.stay_location}</p>
-                    <p class="people">기준 ${list.stay_room_people_min}명 (최대 ${list.stay_room_people_max}명)</p>
+                    <c:if test="${list.stay_room_people_min > 0}"><p class="people">기준 ${list.stay_room_people_min}명 (최대 ${list.stay_room_people_max}명)</p></c:if>
+                    <c:if test="${list.stay_room_price_min > 0}">
                     <p class="price">
                         <fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.stay_room_price_min}" type="currency" /> ~ 
                         <c:if test="${list.stay_room_price_min != list.stay_room_price_max}"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.stay_room_price_max}" type="currency" /></c:if>
                     </p>
+                    </c:if>
                     <p class="reserv">예약하기</p>
                 </div>
                 <c:choose>
