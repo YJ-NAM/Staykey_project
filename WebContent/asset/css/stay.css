@@ -826,6 +826,10 @@
     letter-spacing: 1.5px;
     border-bottom: 1px solid #fff;
 }
+.stay-view .sv-room .svr-list li.nodata {
+    padding-top: 220px;
+    text-align: center;
+}
 
 
 
