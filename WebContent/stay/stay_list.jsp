@@ -151,7 +151,7 @@ function changeVal(data) {
                 <ul class="check-list">
                     <li>
                         <label>
-                            <input type="checkbox" name="ps_type" value="all" checked="checked" />
+                            <input type="checkbox" name="ps_type" value="all"/>
                             <span>전체</span>
                         </label>
                     </li>
@@ -193,7 +193,7 @@ function changeVal(data) {
         <c:forEach items="${stayList}" var="list">
         <li>
             <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${list.stay_no}">
-                <div class="slw-name">${list.stay_name}<span>민박</span></div>
+                <div class="slw-name">${list.stay_name}<span>${list.stay_type}</span></div>
                 <div class="clear"></div>
                 <div class="slw-info">
                     <p class="address">${list.stay_location}</p>
