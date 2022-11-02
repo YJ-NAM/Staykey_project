@@ -9,7 +9,6 @@ public class MemberDTO {
     private String member_name;
     private String member_email;
     private String member_phone;
-    private int member_point;
     private int member_reserv;
     private String member_photo;
     private String member_joindate;
@@ -68,14 +67,6 @@ public class MemberDTO {
 
     public void setMember_phone(String member_phone) {
         this.member_phone = member_phone;
-    }
-
-    public int getMember_point() {
-        return member_point;
-    }
-
-    public void setMember_point(int member_point) {
-        this.member_point = member_point;
     }
 
     public int getMember_reserv() {

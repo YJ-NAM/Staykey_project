@@ -41,61 +41,81 @@
         <div class="rfw-title">Reservations</div>
 
 
-        <ul class="rfw-list">
+        <table class="rfw-list">
+            <colgroup>
+                <col width="38%" />
+                <col />
+            </colgroup>
 
-            <li>
-                <div class="tit">예약 스테이</div>
-                <div class="cont">${room.room_name} / ${room.room_type}</div>
-            </li>
+            <tbody>
+                <tr>
+                    <th>예약 스테이</th>
+                    <td>${room.room_name} / ${room.room_type}</td>
+                </tr>
 
-            <li>
-                <div class="tit">예약일</div>
-                <div class="cont day">${start_date} ~ ${end_date}<em>${daycount}박 ${daycount+1}일</em></div>
-            </li>
+                <tr>
+                    <th>예약일</th>
+                    <td class="day">${start_date} ~ ${end_date}<em>${daycount}박 ${daycount+1}일</em></td>
+                </tr>
 
-            <li>
-                <div class="tit">이름</div>
-                <div class="cont"><input type="text" name="reserv_memname" value="${login_name}" class="input-width" readonly="readonly" /></div>
-            </li>
+                <tr>
+                    <th>이름</th>
+                    <td><input type="text" name="reserv_memname" value="${login_name}" class="input-width" readonly="readonly" /></td>
+                </tr>
 
-            <li>
-                <div class="tit">휴대전화</div>
-                <div class="cont"><input type="text" name="reserv_memphone" value="${login_phone}" class="input-width" readonly="readonly" /></div>
-            </li>
+                <tr>
+                    <th>연락처</th>
+                    <td><input type="text" name="reserv_memphone" value="${login_phone}" class="input-width" readonly="readonly" /></td>
+                </tr>
 
-            <li>
-                <div class="tit">이메일</div>
-                <div class="cont"><input type="text" name="reserv_mememail" value="${login_email}" class="input-width" readonly="readonly" /></div>
-            </li>
+                <tr>
+                    <th>이메일</th>
+                    <td><input type="text" name="reserv_mememail" value="${login_email}" class="input-width" readonly="readonly" /></td>
+                </tr>
 
-            <li>
-                <div class="tit">인원 (최대 ${room.room_people_max}명)</div>
-                <div class="cont people">
-                    <div class="select">
-                        <span>성인</span>
-                        <select class="adult-select">
-                            <option value="1">1명</option>
-                            <option selected="" value="2">2명</option>
-                            <option value="3">3명</option>
-                        </select>
-                    </div>
-                    <div class="select">
-                        <span>아동</span>
-                        <select class="child-select">
-                            <option selected="" value="0">0명</option>
-                            <option value="1">1명</option>
-                            <option value="2">2명</option>
-                        </select>
-                    </div>
-                    <span class="people-txt">아동 : 24개월 ~ 12세<br />영아 : 24개월 미만</span>
-                </div>
-            </li>
+                <tr>
+                    <th>인원 (최대 ${room.room_people_max}명)</th>
+                    <td class="people">
+                        <div class="select">
+                            <span>성인</span>
+                            <select class="adult-select">
+                                <option value="1">1명</option>
+                                <option selected="" value="2">2명</option>
+                                <option value="3">3명</option>
+                            </select>
+                        </div>
+                        <div class="select">
+                            <span>아동</span>
+                            <select class="child-select">
+                                <option selected="" value="0">0명</option>
+                                <option value="1">1명</option>
+                                <option value="2">2명</option>
+                            </select>
+                        </div>
+                        <span class="people-txt">아동 : 24개월 ~ 12세<br />영아 : 24개월 미만</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th></th>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th></th>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th></th>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
 
 
-        </ul>
 
-
-        <div class="rfw-button"><button type="submit">결제하기</button></div>
+        <div class="rfw-button"><button type="submit">예약하기</button></div>
         </form>
     </div>
     <!-- 예약 폼 //END -->

@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
 <jsp:include page="../mypage/mypage_header.jsp" />
-<script type="text/javascript">$("#mymenu-reserv").addClass("now");</script>
+<script type="text/javascript">$("#mymenu-wish").addClass("now");</script>
 
 
 
-<div class="reserv-list">
+<div class="wish-list">
 
-    예약 목록
+    관심 스테이 목록
 
 </div>
 

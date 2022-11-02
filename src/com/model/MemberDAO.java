@@ -159,10 +159,6 @@ public class MemberDAO {
             order_sql = "member_name desc";
         } else if (map.get("ps_order").equals("name_asc")) {
             order_sql = "member_name asc";
-        } else if (map.get("ps_order").equals("point_desc")) {
-            order_sql = "member_point desc";
-        } else if (map.get("ps_order").equals("point_asc")) {
-            order_sql = "member_point asc";
         } else if (map.get("ps_order").equals("count_desc")) {
             order_sql = "member_reserv desc";
         } else if (map.get("ps_order").equals("count_asc")) {
@@ -190,7 +186,6 @@ public class MemberDAO {
                 dto.setMember_name(rs.getString("member_name"));
                 dto.setMember_email(rs.getString("member_email"));
                 dto.setMember_phone(rs.getString("member_phone"));
-                dto.setMember_point(rs.getInt("member_point"));
                 dto.setMember_reserv(rs.getInt("member_reserv"));
                 dto.setMember_photo(rs.getString("member_photo"));
                 dto.setMember_joindate(rs.getString("member_joindate"));
@@ -251,7 +246,7 @@ public class MemberDAO {
                 count = rs.getInt(1) + 1;
             }
             
-            sql = "insert into staykey_member values(?, default, ?, ?, ?, ?, ?, default, default, ?, sysdate)";
+            sql = "insert into staykey_member values(?, default, ?, ?, ?, ?, ?, default, ?, sysdate)";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, count);
             pstmt.setString(2, dto.getMember_id());
@@ -294,7 +289,6 @@ public class MemberDAO {
                 dto.setMember_name(rs.getString("member_name"));
                 dto.setMember_email(rs.getString("member_email"));
                 dto.setMember_phone(rs.getString("member_phone"));
-                dto.setMember_point(rs.getInt("member_point"));
                 dto.setMember_reserv(rs.getInt("member_reserv"));
                 dto.setMember_photo(rs.getString("member_photo"));
                 dto.setMember_joindate(rs.getString("member_joindate"));
@@ -470,5 +464,34 @@ public class MemberDAO {
             closeConn(rs, pstmt, con);
         }
         return member_pwd;
+    }
+
+
+
+    // ======================================================
+    // 예약 횟수 세기
+    // ======================================================
+    public int reservCount(String member_id) {
+        int count = 0;
+
+        try {
+            openConn();
+
+            sql = "select count(*) from staykey_reserv where reserv_status = 'reserv' and reserv_memid = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, member_id);
+            rs = pstmt.executeQuery();
+
+            rs.next();
+            count = rs.getInt(1);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return count;
     }
 }

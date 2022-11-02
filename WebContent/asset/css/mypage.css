@@ -1,0 +1,106 @@
+/*************************/
+/* 마이페이지 관련
+/************************/
+/* 레이아웃 */
+.mypage-wrap {
+    max-width: 1100px;
+    margin: -15px auto 0;
+}
+
+.mypage-wrap .mw-info {
+    clear: both;
+    text-align: center;
+    padding: 0 0 80px;
+    margin: 0 0 80px;
+    border-bottom: 3px solid #000;
+    line-height: 1;
+}
+.mypage-wrap .mw-info .tit {
+    font-size: 30px;
+    font-weight: 500;
+}
+.mypage-wrap .mw-info .count {
+    margin: 20px 0 0;
+    font-size: 18px;
+    color: #999;
+}
+.mypage-wrap .mw-info .count strong {
+    font-family: 'Lato';
+    font-weight: 600;
+    color: #000;
+}
+.mypage-wrap .mw-info .edit {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.mypage-wrap .mw-info .edit span {}
+.mypage-wrap .mw-info .edit a {
+    display: inline-block;
+    font-size: 12px;
+    color: #999;
+    margin-left: 10px;
+}
+.mypage-wrap .mw-info .edit a:before {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    background: #d4d4d4;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.mypage-wrap .mw-info .edit a:hover {
+    color: var(--color);
+}
+
+.mypage-wrap .mw-menu {
+    float: left;
+    width: 25.47%;
+    display: inline-block !important;
+}
+.mypage-wrap .mw-menu ul {
+    margin-bottom: 50px;
+}
+.mypage-wrap .mw-menu ul li {}
+.mypage-wrap .mw-menu ul li a {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 38px;
+    color: #181818;
+}
+.mypage-wrap .mw-menu ul li a:hover {
+    color: var(--color);
+}
+.mypage-wrap .mw-menu ul li.now a {
+    font-weight: 700;
+}
+.mypage-wrap .mw-menu ul li.now:after {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    background: #000;
+    margin: 0 0 4px 10px;
+}
+
+.mypage-wrap .mw-cont {
+    float: right;
+    width: 74.53%;
+    padding: 9px 0 0;
+    position: relative;
+}
+
+
+
+
+/* 예약 목록 */
+.reserv-list {}
+
+
+
+
+
+
+
+
