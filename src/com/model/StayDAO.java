@@ -433,7 +433,7 @@ public class StayDAO {
     } // getStaySiteList() 종료
     
     /////////////////////////////////////////////////////////////
-    // 숙소 전체 data 개수 조회
+    // 숙소 전체 data 개수 조회 / 고객용
     /////////////////////////////////////////////////////////////
     public int getStaySiteTotalCount(Map<String, Object> map) {
         // Map<String, Object> map : 검색용 설정 변수
