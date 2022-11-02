@@ -13,6 +13,7 @@ import com.controller.ActionForward;
 import com.model.StayDAO;
 import com.model.StayDTO;
 import com.util.Paging;
+import com.util.showArray;
 
 public class SiteStayListAction implements Action {
     @Override
@@ -126,6 +127,15 @@ public class SiteStayListAction implements Action {
         List<StayDTO> list = dao.getStayList(page, rowsize, map); 
 
         request.setAttribute("stayList", list);
+
+
+
+        // 숙소 유형 배열 넘겨주기
+        showArray getArray = new showArray();
+        getArray.getList("stayType");
+        List<String> stayType = getArray.listArr;
+        request.setAttribute("stayType", stayType);
+
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
