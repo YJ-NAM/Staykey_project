@@ -38,17 +38,19 @@ public class AdminStayRoomWriteOkAction implements Action {
         }
 
         // 파일 업로드 객체 생성
-        MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8",
-                new DefaultFileRenamePolicy());
+        MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 
         String features_sum = "";
         String amenities_sum = "";
         String service_sum = "";
+        String room_desc = "";
+        String room_bed = "";
+        String room_tag = "";
 
         // 파라미터 정리
         int stay_stayNo = Integer.parseInt(multi.getParameter("stayNo"));
         String room_name = multi.getParameter("room_name").trim();
-        String room_desc = multi.getParameter("room_desc").trim();
+        if(multi.getParameter("room_desc") != null) { room_desc = multi.getParameter("room_desc").trim(); }
         String room_type = multi.getParameter("room_type").trim();
         int room_price = Integer.parseInt(multi.getParameter("room_price").trim());
         String room_checkin = multi.getParameter("room_checkin").trim();
@@ -56,7 +58,8 @@ public class AdminStayRoomWriteOkAction implements Action {
         int room_people_min = Integer.parseInt(multi.getParameter("room_people_min"));
         int room_people_max = Integer.parseInt(multi.getParameter("room_people_max"));
         int room_size = Integer.parseInt(multi.getParameter("room_size").trim());      
-        String room_bed = multi.getParameter("room_bed").trim();
+        if(multi.getParameter("room_bed") != null) { room_bed = multi.getParameter("room_bed").trim(); }
+        if(multi.getParameter("room_tag") != null) { room_tag = multi.getParameter("room_tag"); }
         
         // 체크박스 선택 안 한 경우, null 값 처리
         if(multi.getParameterValues("room_features") != null) {
@@ -83,9 +86,6 @@ public class AdminStayRoomWriteOkAction implements Action {
     		service_sum = "/" + service_sum;
     	}
         
-        String room_tag = multi.getParameter("room_tag");
-        System.out.println("tag 값" + room_tag);
-
         dto.setRoom_stayno(stay_stayNo);
         dto.setRoom_name(room_name);
         dto.setRoom_desc(room_desc);
@@ -133,18 +133,23 @@ public class AdminStayRoomWriteOkAction implements Action {
 		dto.setRoom_photo5(map.get("room5").toString());
 
         StayDAO dao = StayDAO.getInstance();
-        
-        // res[0] = result, res[1] = count
-        int[] res = dao.registerStayRoom(dto);
-        
         ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
-
-        if (res[0] > 0) {
-        	out.println("<script>alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.href='stayView.do?stay_no="+stay_stayNo+"'; window.close();</script>");
-        } else {
-            out.println("<script>alert('Room 등록 중 에러가 발생했습니다.'); history.back();</script>");
-        }
+        
+        // 방 이름 중복 방지
+        int roomCheck = dao.noDuplicateRoomName(room_name, stay_stayNo);
+        
+        if(roomCheck > 0) {
+            out.println("<script>alert('중복된 Room 이름이 있습니다. Room 등록을 실패하였습니다.'); history.back(); </script>");
+        }else {
+            // res[0] = result, res[1] = count
+            int[] res = dao.registerStayRoom(dto);
+            if(res[0] > 0) {
+               out.println("<script>alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.href='stayView.do?stay_no="+stay_stayNo+"'; window.close();</script>");
+            }else {
+               out.println("<script>alert('Room 등록 중 에러가 발생했습니다.'); history.back();</script>");
+            }
+        }        
         return forward;
     }
 }
