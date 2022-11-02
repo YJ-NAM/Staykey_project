@@ -118,6 +118,12 @@
                             </c:if>
 
                             <div class="option-select">
+                                <div class="tit">BBQ Grill (2~4인까지/1세트)<span class="price">₩44,000</span></div>
+                                <div class="txt">바베큐를 하실 수 있도록 숯과 그릴 제공, 테이블과 식기를 세팅해드립니다.(일체 음식 미포함)</div>
+                                <div class="sel_option">
+                                    <label><input type="radio" name="stay_option1_select" value="Y">선택</label>
+                                    <label><input type="radio" name="stay_option1_select" value="N" checked="checked">선택안함</label>
+                                </div>
                             </div>
                         </c:if>
                     </td>

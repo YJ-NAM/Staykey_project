@@ -126,7 +126,7 @@ $(document).ready(function(){
         const getMax = Number($(".stay-search #selectPrice input[name='ps_price_max']").val() + "0000");
         let setPrice = "가격범위";
 
-        if(getMin > 0 && getMax > 0){
+        if(getMax > 0){
             setPrice = setComma(getMin) + " ~ " + setComma(getMax);
         }
 

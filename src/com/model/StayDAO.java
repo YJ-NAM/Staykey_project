@@ -324,11 +324,11 @@ public class StayDAO {
 			int ps_price_min = (int)map.get("ps_price_min") * 10000;
 			search_sql2 += " and "+ps_price_min+" <= stay_room_price_min";
 		}
-		if((int)map.get("ps_price_max") < 100) {
+		if((int)map.get("ps_price_max") > 0) {
 			int ps_price_max = (int)map.get("ps_price_max") * 10000;
 			search_sql2 += " and stay_room_price_max <="+ps_price_max;
 		}
-		
+
 		// ps_type
         if(!map.get("ps_type").equals("all")) {
             search_sql2 += " and (";            
@@ -461,7 +461,7 @@ public class StayDAO {
 			int ps_price_min = (int)map.get("ps_price_min") * 10000;
 			search_sql += " and "+ps_price_min+" <= stay_room_price_min";
 		}
-		if((int)map.get("ps_price_max") < 100) {
+		if((int)map.get("ps_price_max") > 0) {
 			int ps_price_max = (int)map.get("ps_price_max") * 10000;
 			search_sql += " and stay_room_price_max <="+ps_price_max;
 		}
