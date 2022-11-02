@@ -85,6 +85,22 @@ $(document).ready(function(){
             prevEl: '#magazine-container .fa-chevron-left',
         }
     });
+    var swiper = new Swiper("#subPromo-container", {
+        effect: "fade",
+        slidesPerView: 1,
+        spaceBetween: 0,
+        speed: 500,
+        loop: true,
+        touchEnabled: false,
+        navigation: {
+        pagination: {
+          el: ".swiper-pagination",
+          type: "fraction",
+        },
+          nextEl: "#subPromo-container .fa-chevron-right",
+          prevEl: "#subPromo-container .fa-chevron-left",
+        },
+    });
 
       
 });
@@ -125,10 +141,10 @@ ${ login_msg }
 
                 <li class="swiper-slide slider-box">
                     <a href="#">
-                        <img class="" src="https://images.prismic.io/stayfolio-production/c65fe543-b3c7-4695-904c-859609637aa5_Main+banner_pc+1.jpg" />
+                        <img class="" src="https://images.prismic.io/stayfolio-production/ba01ba03-2ce1-4cbd-a7c1-2fa65f95ca1c_HOSHINOYA-OPEN-MAIN-BANNER.jpg?auto=compress,format&rect=0,0,1800,850&w=1800&h=850" />
                         <div class="stay-info">
-                            <p class="title"></p>
-                            <p class="event subtitle">전어회</p>
+                            <p class="title">호시노야</p>
+                            <p class="event subtitle">바쁜 일상을<br>마법처럼 잊혀지도록</p>
                             <p class="more">Read more</p>
                         </div>
                     </a>
@@ -138,8 +154,8 @@ ${ login_msg }
                     <a href="#">
                         <img class="" src="https://images.prismic.io/stayfolio-production/b5310af4-cfb3-4211-859f-37629cf5c0ab_1.jpg" />
                         <div class="stay-info">
-                            <p class="title"></p>
-                            <p class="event subtitle">연어회</p>
+                            <p class="title">정향</p>
+                            <p class="event subtitle">올바른 쉼을 위한 곳</p>
                             <p class="more">Read more</p>
                         </div>
                     </a>
@@ -299,7 +315,7 @@ ${ login_msg }
     </div>
     <!-------- 메인 페이지 신규 창 // END --------->
 
-    <!-------- 메인 페이지 배너 창 --------->
+    <!-------- 메인 페이지 배너 창 // START --------->
     <div class="main-banner">
         <a href="#">
             <div class="banner-wrap">
@@ -307,7 +323,8 @@ ${ login_msg }
             </div>
         </a>
     </div>
-
+    
+    <!-------- 메인 페이지 배너 창 // END --------->
 
     <!-------- 메인 페이지 프로모션 창 // START  -------------->
      <div class="main-promo">
@@ -477,7 +494,6 @@ ${ login_msg }
                     </li>
                     
                 
-                    
                     <li class="swiper-slide">
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/140/370/original/a79d65f3efd11ef8f463e31009661c5e5d96e4c4.jpg?1662352893" />
@@ -562,7 +578,8 @@ ${ login_msg }
                 </ul>
          </div>
     <!-------- 메인 페이지 트래블 창 // END --------->
-
+    
+    <!-------- 메인 페이지 추천 창 // START @@ -->
     <div class="main-Tagthumb">
         <div class= "container" id="tagThumb-container">
             <div class="subject">
@@ -600,6 +617,236 @@ ${ login_msg }
 
         </div>
     </div>
+    <!-------- 메인 페이지 추천 창 // END --------->
+
+
+    <!-------- 메인 페이지 홍보 창 //START --------->
+    <div class="container main-recom">
+        <div class="sec-title">
+            <span class= "title1">지금 바로 떠나는</span>
+            <br>
+            <span class="title2">제주</span>
+        </div>
+
+        <div class="recom-container stay-list" id="recom-container">
+
+            <div class="swiper-wrapper">
+                <div class="swiper-slide stay-box">
+                        <a href="#">
+                            <img class="img" src="https://images.stayfolio.com/system/pictures/images/000/056/240/small/40db9aa6f6ecd37bafa52446e8b4e7184f42421a.jpg?1602986265" />
+                            <div class="title">돌채</div>
+                            <div class="subtitle">
+                                <span>제주/제주</span>
+                            </div>
+                            <div class="other">
+                                <span>우도 섬에서의<br>괜찮은 하루</span>
+                            </div>
+                        </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                        <a href="#">
+                            <img src="https://images.stayfolio.com/system/pictures/images/000/067/454/small/f129c57606f5344fd7aa1625fff9ecbce5730b47.jpg?1617863139" />
+                            <div class="title">스테이 쿠이디</div>
+                            <div class="subtitle">
+                                <span>제주/제주</span>
+                            </div>
+                            <div class="other">
+                                <span>여행에서 만난<br>우리 집</span>
+                            </div>
+                        </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                        <a href="#">
+                            <img src="https://images.stayfolio.com/system/pictures/images/000/107/068/small/625619ccd491cfa77ff029de3664c4d736f894c0.jpg?1640839677" />
+                            <div class="title">두 번째 마음</div>
+                            <div class="subtitle">
+                                <span>제주/서귀포</span>
+                            </div>
+                            <div class="other">
+                                <span>온기가 스며있는<br>당신의 두 번째 집</span>
+                            </div>
+                        </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                        <a href="#">
+                            <img src="https://images.stayfolio.com/system/pictures/images/000/095/856/small/8074ccf4ff07ad66718147184eee206b75ce940f.jpg?1633575582" />
+                            <div class="title">잔월</div>
+                            <div class="subtitle">
+                                <span>제주/제주</span>
+                            </div>
+                            <div class="other">
+                                <span>하나의 지붕<br>청풍명월</span>
+                            </div>
+                        </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/132/917/small/ef9a14919a654ea6afb12e9e635be385dd18d0d5.jpg?1658810430" />
+                        <div class="title">무디타 제주</div>
+                        <div class="subtitle">
+                            <span>제주/제주</span>
+                        </div>
+                        <div class="other">
+                            <span>편안한 시간 속<br>살아나는 감각</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/123/803/original/2edd884b178f7c4db00d858ddd414707ca18d391.jpg?1653369122" />
+                        <div class="title">포도호텔</div>
+                        <div class="subtitle">
+                            <span>제주/서귀포</span>
+                        </div>
+                        <div class="other">
+                            <span>열림과 닫힘<br>그리고 자연</span>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/043/174/small/3846f44ac1d9b758987d477dddb850cec3c1d4de.jpg?1581920657" />
+                        <div class="title">와온</div>
+                        <div class="subtitle">
+                            <span>제주/제주</span>
+                        </div>
+                        <div class="other">
+                            <span>제주의 온기를 전하다</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/044/640/small/a222bc696d6313e07dd2962a5c07dd4a3a40c9f7.jpg?1584782495" />
+                        <div class="title">탐라는일상</div>
+                        <div class="subtitle">
+                            <span>제주/서귀포</span>
+                        </div>
+                        <div class="other">
+                            <span>신비로운 곶자왈과 맞닿다</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/147/330/small/3af0f5d0591eeeab963ad5bb4aff1bc745abfb31.jpg?1665535990" />
+                        <div class="title">섭재</div>
+                        <div class="subtitle">
+                            <span>제주/제주</span>
+                        </div>
+                        <div class="other">
+                            <span>바람을 타고<br>숲의 목소리</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide stay-box">
+                    <a href="#">
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/128/315/small/abd959fa7bb7df58ac1ad4395773b649fab78e5d.jpg?1656563519" />
+                        <div class="title">아녹</div>
+                        <div class="subtitle">
+                            <span>제주/제주</span>
+                        </div>
+                        <div class="other">
+                            <span>편안하고 조용히<br>'아녹'하다</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------- 메인 페이지 홍보 창 // END --------->
+
+    <!-------- 메인 페이지 세컨 프로모션 창 // START --------->
+    <div class="main-subPromo">
+        <div class="container">
+        <!-------- 세컨 프로모션 창 타이틀 --------->
+            <div class="sec-title" id="pro-title">한 해를 배웅하는<br>Stay</div>
+        <!-------- 세컨 프로모션 창 목록 --------->
+            <div class= "subPromo-container swiper-container" id="subPromo-container">
+                    <ul class="swiper-wrapper">
+                        <li class="swiper-slide">
+                            <a href="#">
+                                <img src="//images.stayfolio.com/system/pictures/images/000/075/084/display/a2b6c4c1c352a2ec4bce9ab0438ac5c40fde03d2.jpg?1623027345"/>
+                                <div class="promo-title">
+                                    <p class="text">제주 삼달리의 아름다운 정원</p>
+                                    <p class="small">달리야드</p>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+
+                        <li class="swiper-slide">
+                            <a href="#">
+                                <img src="//images.stayfolio.com/system/pictures/images/000/096/410/original/31042d94154beb7ab807fddbd2b0bbafbb8aaf68.jpg?1633685869"/>
+                                <div class="promo-title">
+                                        <p class="text" >고요한 사색의 공간</p>
+                                        <p class="small">아틴 마루</p>
+                                </div>
+                            </a>
+                        </li>
+
+
+                        <li class="swiper-slide">
+                            <a href="#">
+                                <img src="https://images.stayfolio.com/system/pictures/images/000/112/130/original/8fdac11fac48978d0741d6870ac6c24dd2047c46.jpg?1643351391"/>
+                                <div class="promo-title">
+                                    <p class="text">호근 마을 동산에서 만나는<br>어린 아이</p>
+                                    <p class="small">호근모루</p>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="swiper-slide">
+                            <a href="#">
+                                <img src="https://images.stayfolio.com/system/pictures/images/000/119/773/original/09e945a8bcd6c9aca7dd0ae35651e512c1bbc4c1.jpg?1650804307"/>
+                                <div class="promo-title">
+                                    <p class="text">나를 중심으로<br>돌아가는 우주</p>
+                                    <p class="small">알마게스트</p>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="swiper-slide">
+                            <a href="#">
+                                <img src="https://images.stayfolio.com/system/pictures/images/000/133/108/original/528f06883547e417a7165625197e9c4176e09dc2.jpg?1658905461"/>
+                                <div class="promo-title">
+                                    <p class="text">차가운 공간 속<br>잠재된 배려</p>
+                                    <p class="small">웜댄콜드맨션</p>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="swiper-slide">
+                            <a href="#">
+                                <img src="https://images.stayfolio.com/system/pictures/images/000/116/831/original/55772afd81249d564138d9a0bbc17a10af40b93f.jpg?1648003676"/>
+                                <div class="promo-title">
+                                    <p class="text">자연에서 보내는<br>여유로운 고립</p>
+                                    <p class="small">경주옥</p>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                <div class="swiper-pagination"></div>
+                <div class="fa fa-chevron-left"></div>
+                <div class="fa fa-chevron-right"></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <!-------- 메인 페이지 세컨 배너 창 // START --------->
+
 </div>
 
 
