@@ -172,6 +172,8 @@ public class StayDAO {
                     + "        group by t.stay_no, t.stay_type, t.stay_name, t.stay_desc, t.stay_location, t.stay_addr, t.stay_phone, t.stay_email, t.stay_content1, t.stay_content2, t.stay_content3, t.stay_info1, t.stay_info2, t.stay_info3, t.stay_file1, t.stay_file2, t.stay_file3, t.stay_file4, t.stay_file5, t.stay_option1_name, t.stay_option1_price, t.stay_option1_desc, t.stay_option1_photo, t.stay_option2_name, t.stay_option2_price, t.stay_option2_desc, t.stay_option2_photo, t.stay_option3_name, t.stay_option3_price, t.stay_option3_desc, t.stay_option3_photo, t.stay_hit, t.stay_reserv, t.stay_date, r.room_stayno, r.room_people_min, r.room_people_max"
                     + "    ) s" + search_sql1
                     + ") where rnum >= ? and rnum <= ?" + search_sql2;
+            
+            System.out.println(sql);
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
