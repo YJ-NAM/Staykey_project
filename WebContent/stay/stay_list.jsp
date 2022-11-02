@@ -13,6 +13,13 @@
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/stay.css?<%=time%>" />
 <script language="javascript" src="<%=request.getContextPath()%>/asset/js/stay.js?<%=time%>"></script>
 
+<script>
+
+function changeVal(data) {
+    $("input[name='ps_people_adult'").val(data);
+}
+
+</script>
 
 
 <div class="container page-title">
@@ -46,7 +53,7 @@
     <div class="row">
         <div class="col-auto">
             <label for="ps_people">인원</label>
-            <button type="button" class="ss-button" id="ps_people" value="${ map.ps_people }" >선택하세요</button>
+            <button type="button" class="ss-button" id="ps_people" >선택하세요</button>
 
             <div id="selectNumber" class="layer-select">
                 <button type="button" class="btn-close"></button>
@@ -57,7 +64,7 @@
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" name="ps_people_adult" value="0" min="0" max="30" />
+                                <input type="number" name="ps_people_adult" value="0" <c:if test="${ map.ps_people_adult gt 0 }">value="${ map.ps_people_adult }"</c:if> min="0" max="30" />
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -68,7 +75,7 @@
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" name="ps_people_kid" value="0" min="0" max="7" />
+                                <input type="number" name="ps_people_kid" value="0" <c:if test="${ map.ps_people_kid gt 0 }">value="${ map.ps_people_kid }"</c:if> min="0" max="7" />
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -79,7 +86,7 @@
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" name="ps_people_baby" value="0" min="0" max="7" />
+                                <input type="number" name="ps_people_baby" value="0" <c:if test="${ map.ps_people_baby gt 0 }">value="${ map.ps_people_baby }"</c:if> min="0" max="7" />
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -93,7 +100,7 @@
 
         <div class="col-auto">
             <label for="ps_price">가격범위</label>
-            <button type="button" class="ss-button" id="ps_price" value="${ map.ps_price }">전체</button>
+            <button type="button" class="ss-button" id="ps_price" >전체</button>
 
             <div id="selectPrice" class="layer-select">
                 <button type="button" class="btn-close"></button>
