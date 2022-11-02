@@ -6,6 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="stayList" value="${stayList}" />
+<c:set var="stayType" value="${ stayType }" />
 
 <jsp:include page="../layout/layout_header.jsp" />
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
@@ -46,6 +47,7 @@
         <div class="col-auto">
             <label for="ps_people">인원</label>
             <button type="button" class="ss-button" id="ps_people">선택하세요</button>
+
             <div id="selectNumber" class="layer-select">
                 <button type="button" class="btn-close"></button>
                 <div class="tit">인원</div>
@@ -55,7 +57,7 @@
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" value="0" min="0" max="30" />
+                                <input type="number" name="ps_people_adult" value="0" min="0" max="30" />
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -66,7 +68,7 @@
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" value="0" min="0" max="7" />
+                                <input type="number" name="ps_people_kid" value="0" min="0" max="7" />
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -77,7 +79,7 @@
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" value="0" min="0" max="7" />
+                                <input type="number" name="ps_people_baby" value="0" min="0" max="7" />
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -92,12 +94,51 @@
         <div class="col-auto">
             <label for="ps_price">가격범위</label>
             <button type="button" class="ss-button" id="ps_price">전체</button>
+
+            <div id="selectPrice" class="layer-select">
+                <button type="button" class="btn-close"></button>
+                <div class="tit">가격 범위</div>
+                <div class="price-input">
+                    <div class="input">
+                        <small>최저요금</small>
+                        <span><input type="text" name="ps_price_min" value="10" onkeyup="NumberInput(this);" />만원</span>
+                    </div>
+                    <span class="divider">-</span>
+                    <div class="input">
+                        <small>최고요금</small>
+                        <span><input type="text" name="ps_price_max" value="100" onkeyup="NumberInput(this);" />만원</span>
+                    </div>
+                </div>
+                <div class="btn-wrapper"><button type="button" class="btn-number-search">적용하기</button></div>
+            </div>
         </div>
 
 
         <div class="col-auto">
             <label for="ps_type">스테이 유형</label>
             <button type="button" class="ss-button" id="ps_type">전체</button>
+
+            <div id="selectType" class="layer-select open">
+                <button type="button" class="btn-close">닫기</button>
+                <div class="tit">스테이 유형</div>
+                <div class="btn-wrapper"><button type="button" class="btn-number-search">적용하기</button></div>
+                <ul class="check-list">
+                    <li>
+                        <label>
+                            <input type="checkbox" name="ps_type" value="all" checked="checked" />
+                            <span>전체</span>
+                        </label>
+                    </li>
+                    <c:forEach var="stype" items="${stayType}">
+                    <li>
+                        <label>
+                            <input type="checkbox" name="ps_type" value="${stype}" />
+                            <span>${stype}</span>
+                        </label>
+                    </li>
+                    </c:forEach>
+                </ul>
+            </div>
         </div>
     </div>
 
