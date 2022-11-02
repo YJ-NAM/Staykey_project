@@ -111,7 +111,7 @@ ${ msg }
     </div>
     </form>
 
-	
+	<!-- 숙소 list -->
     <div class="table-top clear">
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 숙소</div>
         <div class="tt-right">
