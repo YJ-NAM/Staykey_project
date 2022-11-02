@@ -313,13 +313,12 @@ public class StayDAO {
 		}
 				
 		// ps_people : 인원
-		if((int)map.get("ps_people_adult") > 0) {
-			int ps_people_num = (int)map.get("ps_people_adult");
+		if((int)map.get("ps_people_adult") > 0 || (int)map.get("ps_people_kid") > 0 || (int)map.get("ps_people_baby") > 0) {
+			int ps_people_num = (int)map.get("ps_people_adult") + (int)map.get("ps_people_kid") + (int)map.get("ps_people_baby");
 			System.out.println(ps_people_num);
-			search_sql2 += " and stay_room_people_min <= "+ps_people_num;
+			search_sql2 += " and "+ps_people_num+" between stay_room_people_min and stay_room_people_max";
 		}
-        
-		////////////////////////////////////////////////////////////////////////////////////
+		
 		////////////////////////////////////////////////////////////////////////////////////
 		// ps_price_min / ps_price_max : 가격
 		if((int)map.get("ps_price_min") > 0) {
