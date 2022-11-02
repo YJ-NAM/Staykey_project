@@ -367,7 +367,7 @@ public class StayDAO {
 
     
     /////////////////////////////////////////////////////////////
-    // 숙소 등록 메서드 + 숙소 번호 지정
+    // 숙소 이름 중복 방지
     /////////////////////////////////////////////////////////////
     public int noDuplicateName(String stay_name) {
     	
@@ -390,6 +390,32 @@ public class StayDAO {
 		}
         return result;
     } // noDuplicateName() 종료
+    
+    /////////////////////////////////////////////////////////////
+    // 같은 숙소 내 방 이름 중복 방지
+    /////////////////////////////////////////////////////////////
+    public int noDuplicateRoomName(String room_name, int room_stayno) {
+    	
+        int result = 0;
+        openConn();
+
+    	sql = "select room_no from staykey_stay_room where room_name = ? and room_stayno = ?";
+        try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, room_name);
+			pstmt.setInt(2, room_stayno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+        return result;
+    } // noDuplicateRoomName() 종료
     
     /////////////////////////////////////////////////////////////
     // 숙소 등록 메서드 + 숙소 번호 지정
