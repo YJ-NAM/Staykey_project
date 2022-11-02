@@ -73,7 +73,7 @@ public class StayDAO {
     } // closeConn() 메서드 end
 
     /////////////////////////////////////////////////////////////
-    // 숙소 전체 목록 조회(날짜 역순) + 검색 기능
+    // 숙소 전체 목록 조회(날짜 역순) + 검색 기능 / 관리자용
     /////////////////////////////////////////////////////////////
     public List<StayDTO> getStayList(int page, int rowsize, Map<String, Object> map) {
 
@@ -217,6 +217,7 @@ public class StayDAO {
         }
         return list;
     } // getStayList() 종료
+    
 
     /////////////////////////////////////////////////////////////
     // 숙소 전체 data 개수 조회
@@ -290,6 +291,235 @@ public class StayDAO {
         }
         return result;
     } // getStayTotalCount() 종료
+    
+    /////////////////////////////////////////////////////////////
+    // 숙소 전체 목록 조회(날짜 역순) + 검색 기능 / 고객용
+    /////////////////////////////////////////////////////////////
+    public List<StayDTO> getStaySiteList(int page, int rowsize, Map<String, Object> map) {
+
+        List<StayDTO> list = new ArrayList<StayDTO>();
+
+        int startNo = (page * rowsize) - (rowsize - 1);
+        int endNo = (page * rowsize);
+
+        // 검색용 설정
+        String search_sql1 = " where stay_no > 0";
+        String search_sql2 = "";
+        
+		if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
+			search_sql2 += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
+					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%'";
+		}
+		
+		if(Integer.parseInt(map.get("ps_people").toString()) > 0) {
+			int ps_people_num = Integer.parseInt(map.get("ps_people").toString());
+			search_sql2 += " and "+ps_people_num+" between stay_room_people_min and stay_room_people_max";
+		}
+        
+        if (!map.get("ps_type").equals("all")) {
+            search_sql2 += "and (";            
+            StringTokenizer tokenizer = new StringTokenizer(map.get("ps_type").toString(), "/");
+            while (tokenizer.hasMoreTokens()) {
+                search_sql2 += "stay_type like '%" + tokenizer.nextToken() + "%' or ";
+            }
+            search_sql2 = search_sql2.substring(0, search_sql2.lastIndexOf("'") + 1);
+            search_sql2 += ")";            
+        } else {
+            search_sql2 += "";
+        }
+        
+        if (map.get("ps_name") != "" && map.get("ps_name") != null) {
+            search_sql2 += " and stay_name like '%" + map.get("ps_name") + "%'";
+        }
+
+        if (map.get("ps_location") != "" && map.get("ps_location") != null) { // ps_location 값이 있을 때
+            if (map.get("ps_location").equals("전체")) { // 그 중 전체일 때, ps_location_sub 값이 있으면 stay_location + stay_addr 합집합
+                if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+                    search_sql2 += " and stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
+                            + map.get("ps_location_sub") + "%'";
+                }
+            } else { // 지역 검색 유 / ps_location_sub 있을 때
+                if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+                    search_sql2 += " and stay_location like '%" + map.get("ps_location")
+                            + "%' and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
+                            + map.get("ps_location_sub") + "%')";
+                } else {
+                    search_sql2 += " and stay_location like '%" + map.get("ps_location") + "%'";
+                }
+            }
+        } else { // ps_location 없을 때,
+            if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+                search_sql2 += " and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
+                        + map.get("ps_location_sub") + "%')";
+            }
+        }
+
+        if (map.get("ps_phone") != "" && map.get("ps_phone") != null) {
+            search_sql2 += " and stay_phone like '%" + map.get("ps_phone") + "%'";
+        }
+
+        search_sql1 += search_sql2;
+
+        // 정렬용 설정
+        String order_sql = "stay_no desc";
+        if (map.get("ps_order").equals("no_desc")) {
+            order_sql = "stay_no desc";
+        } else if (map.get("ps_order").equals("no_asc")) {
+            order_sql = "stay_no asc";
+        } else if (map.get("ps_order").equals("hit_desc")) {
+            order_sql = "stay_hit desc";
+        } else if (map.get("ps_order").equals("hit_asc")) {
+            order_sql = "stay_hit asc";
+        } else if (map.get("ps_order").equals("name_desc")) {
+            order_sql = "stay_name desc";
+        } else if (map.get("ps_order").equals("name_asc")) {
+            order_sql = "stay_name asc";
+        } else if (map.get("ps_order").equals("date_desc")) {
+            order_sql = "stay_date desc";
+        } else if (map.get("ps_order").equals("date_asc")) {
+            order_sql = "stay_date asc";
+        } else if (map.get("ps_order").equals("reserv_desc")) {
+            order_sql = "stay_reserv desc";
+        } else if (map.get("ps_order").equals("reserv_asc")) {
+            order_sql = "stay_reserv asc";
+        }
+
+        openConn();
+
+        try {
+
+             sql = "select * from (select row_number() over(order by " + order_sql + ") rnum, s.* from staykey_stay s " + search_sql1 + ") where rnum >= ? and rnum <= ? " + search_sql2;
+
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, startNo);
+            pstmt.setInt(2, endNo);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                StayDTO dto = new StayDTO();
+                dto.setStay_no(rs.getInt("stay_no"));
+                dto.setStay_type(rs.getString("stay_type"));
+                dto.setStay_name(rs.getString("stay_name"));
+                dto.setStay_desc(rs.getString("stay_desc"));
+                dto.setStay_location(rs.getString("stay_location"));
+                dto.setStay_addr(rs.getString("stay_addr"));
+                dto.setStay_phone(rs.getString("stay_phone"));
+                dto.setStay_email(rs.getString("stay_email"));
+                dto.setStay_content1(rs.getString("stay_content1"));
+                dto.setStay_content2(rs.getString("stay_content2"));
+                dto.setStay_content3(rs.getString("stay_content3"));
+                dto.setStay_info1(rs.getString("stay_info1"));
+                dto.setStay_info2(rs.getString("stay_info2"));
+                dto.setStay_info3(rs.getString("stay_info3"));
+                dto.setStay_file1(rs.getString("stay_file1"));
+                dto.setStay_file2(rs.getString("stay_file2"));
+                dto.setStay_file3(rs.getString("stay_file3"));
+                dto.setStay_file4(rs.getString("stay_file4"));
+                dto.setStay_file5(rs.getString("stay_file5"));
+                dto.setStay_option1_name(rs.getString("stay_option1_name"));
+                dto.setStay_option1_price(rs.getInt("stay_option1_price"));
+                dto.setStay_option1_desc(rs.getString("stay_option1_desc"));
+                dto.setStay_option1_photo(rs.getString("stay_option1_photo"));
+                dto.setStay_option2_name(rs.getString("stay_option2_name"));
+                dto.setStay_option2_price(rs.getInt("stay_option2_price"));
+                dto.setStay_option2_desc(rs.getString("stay_option2_desc"));
+                dto.setStay_option2_photo(rs.getString("stay_option2_photo"));
+                dto.setStay_option3_name(rs.getString("stay_option3_name"));
+                dto.setStay_option3_price(rs.getInt("stay_option3_price"));
+                dto.setStay_option3_desc(rs.getString("stay_option3_desc"));
+                dto.setStay_option3_photo(rs.getString("stay_option3_photo"));
+                dto.setStay_hit(rs.getInt("stay_hit"));
+                dto.setStay_reserv(rs.getInt("stay_reserv"));
+                dto.setStay_date(rs.getString("stay_date"));
+                
+                dto.setStay_room_price_min(rs.getInt("stay_room_price_min"));
+                dto.setStay_room_price_max(rs.getInt("stay_room_price_max"));
+                dto.setStay_room_people_min(rs.getInt("stay_room_people_min"));
+                dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));
+
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return list;
+    } // getStaySiteList() 종료
+    
+    /////////////////////////////////////////////////////////////
+    // 숙소 전체 data 개수 조회
+    /////////////////////////////////////////////////////////////
+    public int getStaySiteTotalCount(Map<String, Object> map) {
+        // Map<String, Object> map : 검색용 설정 변수
+
+        int result = 0;
+
+        // 검색용 설정 : 조건에 추가됨
+        String search_sql = " where stay_no > 0";
+
+        if (map.get("ps_type") != "" && map.get("ps_type") != null) {
+            if (map.get("ps_type").equals("all")) {
+                // all 값일 때, search_sql 없음
+            } else {
+                search_sql += " and (";
+                String get_type = ((String) map.get("ps_type")).substring(1);
+                String[] epd_type = get_type.split("/");
+                for (int i = 0; i < epd_type.length; i++) {
+                    if (i > 0) {
+                        search_sql += " or ";
+                    }
+                    search_sql += "stay_type = '" + epd_type[i] + "'";
+                }
+                search_sql += ") ";
+            }
+        }
+        if (map.get("ps_name") != "" && map.get("ps_name") != null) {
+            search_sql += " and stay_name like '%" + map.get("ps_name") + "%'";
+        }
+        if (map.get("ps_location") != "" && map.get("ps_location") != null) { // ps_location 값이 있을 때
+            if (map.get("ps_location").equals("전체")) { // 그 중 전체일 때, ps_location_sub 값이 있으면 stay_location + stay_addr 합집합
+                if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+                    search_sql += " and stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
+                            + map.get("ps_location_sub") + "%'";
+                }
+            } else { // 지역 검색 유 / ps_location_sub 있을 때
+                if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+                    search_sql += " and stay_location like '%" + map.get("ps_location")
+                            + "%' and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
+                            + map.get("ps_location_sub") + "%')";
+                } else {
+                    search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
+                }
+            }
+        } else { // ps_location 없을 때
+            if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
+                search_sql += " and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
+                        + map.get("ps_location_sub") + "%')";
+            }
+        }
+
+        if (map.get("ps_phone") != "" && map.get("ps_phone") != null) {
+            search_sql += " and stay_phone like '%" + map.get("ps_phone") + "%'";
+        }
+
+        try {
+            openConn();
+            sql = "select count(*) from staykey_stay" + search_sql;
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                result = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return result;
+    } // getStaySiteTotalCount() 종료
 
     /////////////////////////////////////////////////////////////
     // 숙소 상세 목록 조회
@@ -459,10 +689,6 @@ public class StayDAO {
             pstmt.setString(31, dto.getStay_option3_photo());
             pstmt.setInt(32, dto.getStay_hit());            
             pstmt.setInt(33, dto.getStay_reserv());
-            pstmt.setInt(34, dto.getStay_room_price_min());
-            pstmt.setInt(35, dto.getStay_room_price_max());
-            pstmt.setInt(36, dto.getStay_room_people_min());
-            pstmt.setInt(37, dto.getStay_room_people_max());
 
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
