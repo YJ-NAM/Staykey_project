@@ -32,10 +32,12 @@
         <div class="col-auto">
             <label for="ps_start">체크인</label>
             <button type="button" class="ss-button" id="ps_start">선택하세요</button>
+            <input type="hidden" name="ps_start" value="" />
         </div>
         <div class="col-auto">
             <label for="ps_end">체크아웃</label>
             <button type="button" class="ss-button" id="ps_end">선택하세요</button>
+            <input type="hidden" name="ps_end" value="" />
         </div>
         <a href="<%=request.getContextPath()%>/stayList.do" class="ss-reset"><i class="fa fa-refresh"></i></a>
     </div>
@@ -44,11 +46,55 @@
         <div class="col-auto">
             <label for="ps_people">인원</label>
             <button type="button" class="ss-button" id="ps_people">선택하세요</button>
+            <div id="selectNumber" class="layer-select">
+                <button type="button" class="btn-close"></button>
+                <div class="tit">인원</div>
+                <dl>
+                    <dt><span>성인</span></dt>
+                    <dd>
+                        <div class="number-count">
+                            <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
+                            <span class="input-num">
+                                <input type="number" value="0" min="0" max="30" />
+                                <span class="person-count">명</span>
+                            </span>
+                            <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </dd>
+                    <dt><span>아동<small>24개월~12세</small></span></dt>
+                    <dd>
+                        <div class="number-count">
+                            <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
+                            <span class="input-num">
+                                <input type="number" value="0" min="0" max="7" />
+                                <span class="person-count">명</span>
+                            </span>
+                            <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </dd>
+                    <dt><span>영아<small>24개월 미만</small></span></dt>
+                    <dd>
+                        <div class="number-count">
+                            <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
+                            <span class="input-num">
+                                <input type="number" value="0" min="0" max="7" />
+                                <span class="person-count">명</span>
+                            </span>
+                            <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </dd>
+                </dl>
+                <div class="btn-wrapper"><button type="button" class="btn-number-search">적용하기</button></div>
+            </div>
         </div>
+
+
         <div class="col-auto">
             <label for="ps_price">가격범위</label>
             <button type="button" class="ss-button" id="ps_price">전체</button>
         </div>
+
+
         <div class="col-auto">
             <label for="ps_type">스테이 유형</label>
             <button type="button" class="ss-button" id="ps_type">전체</button>
