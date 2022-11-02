@@ -311,13 +311,16 @@ public class StayDAO {
 			search_sql2 += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
 					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%'";
 		}
-		
+				
 		// ps_people : 인원
-		if((int)map.get("ps_people") > 0) {
-			int ps_people_num = (int)map.get("ps_people");
-			search_sql2 += " and stay_room_price_min <= "+ps_people_num;
+		if((int)map.get("ps_people_adult") > 0) {
+			int ps_people_num = (int)map.get("ps_people_adult");
+			System.out.println(ps_people_num);
+			search_sql2 += " and stay_room_people_min <= "+ps_people_num;
 		}
         
+		////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////
 		// ps_price_min / ps_price_max : 가격
 		if((int)map.get("ps_price_min") > 0) {
 			int ps_price_min = (int)map.get("ps_price_min");
@@ -371,11 +374,13 @@ public class StayDAO {
 
         try {
 
-            sql = "select * from (select row_number() over(order by " + order_sql + ") rnum, s.* from staykey_stay s " + search_sql1 + ") where rnum >= ? and rnum <= ? " + search_sql2;
+            sql = "select * from (select row_number() over(order by " + order_sql + ") rnum, s.* from staykey_stay s" + search_sql1 + ") where rnum >= ? and rnum <= ?" + search_sql2;
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
             pstmt.setInt(2, endNo);
+            
+            System.out.println("sql > "+sql);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -448,15 +453,16 @@ public class StayDAO {
 		}
 		
 		// ps_people : 인원
-		if((int)map.get("ps_people") > 0) {
-			int ps_people_num = (int)map.get("ps_people");
-			search_sql += " and stay_room_price_min <= "+ps_people_num;
+		if((int)map.get("ps_people_adult") > 0) {
+			int ps_people_num = (int)map.get("ps_people_adult");
+			System.out.println(ps_people_num);
+			search_sql += " and stay_room_people_min <= "+ps_people_num;
 		}
         
 		// ps_price_min / ps_price_max : 가격
-		if((int)map.get("ps_price_min") > 0) {
+		if((int)map.get("ps_price_min") > 0) {			
 			int ps_price_min = (int)map.get("ps_price_min");
-			search_sql += " and "+ps_price_min+" <= stay_room_price_min";
+			search_sql += " and "+ps_price_min+" <= stay_room_people_min";
 		}
 		if((int)map.get("ps_price_max") < 1000000) {
 			int ps_price_max = (int)map.get("ps_price_max");
@@ -477,8 +483,9 @@ public class StayDAO {
         }
 
         try {
-            openConn();
+            openConn();            
             sql = "select count(*) from staykey_stay" + search_sql;
+            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
             if (rs.next()) {
