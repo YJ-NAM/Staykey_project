@@ -72,43 +72,6 @@ public class SiteStayListAction implements Action {
 		}
 
 
-//        if(request.getParameterValues("ps_type") != null) { 
-//            // ps_type value로 all이 넘어올 때, all 지정
-//            get_type = request.getParameterValues("ps_type");
-//            if(get_type[0].equals("all")) {
-//                ps_type = "all";
-//            }else {
-//                for(int i = 0; i<get_type.length; i++) {
-//                    ps_type += "/" + get_type[i];
-//                }
-//            }
-//        }else {
-//            ps_type = "all";
-//        }
-//
-//        if(request.getParameter("ps_name") != null){ ps_name = request.getParameter("ps_name").trim(); }else{ ps_name = ""; }
-//
-//        // 주소값 지역 + 구체적 주소
-//        if(request.getParameter("ps_location") != null) { 
-//            ps_location = request.getParameter("ps_location"); 
-//            if(ps_location.equals("전체")) {
-//                ps_location = "";
-//                if(request.getParameter("ps_location_sub") != null) { // 전체 / 검색값 유
-//                    ps_location_sub = request.getParameter("ps_location_sub").trim();
-//                }else { // 전체 / 검색값 무
-//                    ps_location_sub = "";
-//                }
-//            }else { // 전체 아님 / 검색값 유
-//                if(request.getParameter("ps_location_sub") != null) {
-//                    ps_location_sub = request.getParameter("ps_location_sub").trim();
-//                }else { // 전체 아님 / 검색값 무
-//                    ps_location_sub = "";
-//                }
-//            }
-//        }else { 
-//            ps_location = ""; 
-//        }       
-
         if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "no_desc"; }
 
         // 뷰에 전달할 매개변수 추가

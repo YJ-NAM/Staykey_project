@@ -319,14 +319,13 @@ public class StayDAO {
 			search_sql2 += " and "+ps_people_num+" between stay_room_people_min and stay_room_people_max";
 		}
 		
-		////////////////////////////////////////////////////////////////////////////////////
 		// ps_price_min / ps_price_max : 가격
 		if((int)map.get("ps_price_min") > 0) {
-			int ps_price_min = (int)map.get("ps_price_min");
+			int ps_price_min = (int)map.get("ps_price_min") * 10000;
 			search_sql2 += " and "+ps_price_min+" <= stay_room_price_min";
 		}
-		if((int)map.get("ps_price_max") < 1000000) {
-			int ps_price_max = (int)map.get("ps_price_max");
+		if((int)map.get("ps_price_max") < 100) {
+			int ps_price_max = (int)map.get("ps_price_max") * 10000;
 			search_sql2 += " and stay_room_price_max <="+ps_price_max;
 		}
 		
@@ -450,21 +449,21 @@ public class StayDAO {
 			search_sql += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
 					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%'";
 		}
-		
+				
 		// ps_people : 인원
-		if((int)map.get("ps_people_adult") > 0) {
-			int ps_people_num = (int)map.get("ps_people_adult");
+		if((int)map.get("ps_people_adult") > 0 || (int)map.get("ps_people_kid") > 0 || (int)map.get("ps_people_baby") > 0) {
+			int ps_people_num = (int)map.get("ps_people_adult") + (int)map.get("ps_people_kid") + (int)map.get("ps_people_baby");
 			System.out.println(ps_people_num);
-			search_sql += " and stay_room_people_min <= "+ps_people_num;
+			search_sql += " and "+ps_people_num+" between stay_room_people_min and stay_room_people_max";
 		}
-        
+		
 		// ps_price_min / ps_price_max : 가격
-		if((int)map.get("ps_price_min") > 0) {			
-			int ps_price_min = (int)map.get("ps_price_min");
-			search_sql += " and "+ps_price_min+" <= stay_room_people_min";
+		if((int)map.get("ps_price_min") > 0) {
+			int ps_price_min = (int)map.get("ps_price_min") * 10000;
+			search_sql += " and "+ps_price_min+" <= stay_room_price_min";
 		}
-		if((int)map.get("ps_price_max") < 1000000) {
-			int ps_price_max = (int)map.get("ps_price_max");
+		if((int)map.get("ps_price_max") < 100) {
+			int ps_price_max = (int)map.get("ps_price_max") * 10000;
 			search_sql += " and stay_room_price_max <="+ps_price_max;
 		}
 		
