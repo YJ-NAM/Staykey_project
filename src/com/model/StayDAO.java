@@ -331,7 +331,7 @@ public class StayDAO {
 		
 		// ps_type
         if(!map.get("ps_type").equals("all")) {
-            search_sql2 += "and (";            
+            search_sql2 += " and (";            
             StringTokenizer tokenizer = new StringTokenizer(map.get("ps_type").toString(), "/");
             while (tokenizer.hasMoreTokens()) {
                 search_sql2 += "stay_type like '%" + tokenizer.nextToken() + "%' or ";
@@ -377,7 +377,6 @@ public class StayDAO {
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
             pstmt.setInt(2, endNo);
-            
             System.out.println("sql > "+sql);
             rs = pstmt.executeQuery();
 
@@ -467,9 +466,9 @@ public class StayDAO {
 			search_sql += " and stay_room_price_max <="+ps_price_max;
 		}
 		
-		// ps_type
+		// ps_type : 스테이 유형
         if(!map.get("ps_type").equals("all")) {
-            search_sql += "and (";            
+            search_sql += " and (";            
             StringTokenizer tokenizer = new StringTokenizer(map.get("ps_type").toString(), "/");
             while (tokenizer.hasMoreTokens()) {
                 search_sql += "stay_type like '%" + tokenizer.nextToken() + "%' or ";
