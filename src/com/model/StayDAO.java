@@ -264,8 +264,7 @@ public class StayDAO {
             search_sql += " and stay_name like '%" + map.get("ps_name") + "%'";
         }
         if (map.get("ps_location") != "" && map.get("ps_location") != null) { // ps_location 값이 있을 때
-            if (map.get("ps_location").equals("전체")) { // 그 중 전체일 때, ps_location_sub 값이 있으면 stay_location + stay_addr
-                                                       // 합집합
+            if (map.get("ps_location").equals("전체")) { // 그 중 전체일 때, ps_location_sub 값이 있으면 stay_location + stay_addr 합집합
                 if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
                     search_sql += " and stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
                             + map.get("ps_location_sub") + "%'";
@@ -279,7 +278,7 @@ public class StayDAO {
                     search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
                 }
             }
-        } else { // ps_location 없을 때,
+        } else { // ps_location 없을 때
             if (map.get("ps_location_sub") != "" && map.get("ps_location_sub") != null) {
                 search_sql += " and (stay_location like '%" + map.get("ps_location_sub") + "%' or stay_addr like '%"
                         + map.get("ps_location_sub") + "%')";
@@ -366,7 +365,6 @@ public class StayDAO {
         }
         return dto;
     } // getStayView() 종료
-
     
     /////////////////////////////////////////////////////////////
     // 숙소 이름 중복 방지
@@ -918,8 +916,6 @@ public class StayDAO {
         }
         return list;
     } // getBbsStayList() 종료
-    
-    
     
     /////////////////////////////////////////////////////////////
     // 게시물에 등록된 숙소 목록 조회 (뷰 페이지용)
