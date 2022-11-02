@@ -201,7 +201,7 @@ public class StayDAO {
                 dto.setStay_hit(rs.getInt("stay_hit"));
                 dto.setStay_reserv(rs.getInt("stay_reserv"));
                 dto.setStay_date(rs.getString("stay_date"));
-
+                
                 dto.setStay_room_price_min(rs.getInt("stay_room_price_min"));
                 dto.setStay_room_price_max(rs.getInt("stay_room_price_max"));
                 dto.setStay_room_people_min(rs.getInt("stay_room_people_min"));
@@ -424,7 +424,7 @@ public class StayDAO {
             }
 
             sql = "insert into staykey_stay values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
-                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, 0, 0, 0, 0)";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, count);
             pstmt.setString(2, dto.getStay_type());
@@ -457,8 +457,12 @@ public class StayDAO {
             pstmt.setInt(29, dto.getStay_option3_price());
             pstmt.setString(30, dto.getStay_option3_desc());
             pstmt.setString(31, dto.getStay_option3_photo());
-            pstmt.setInt(32, dto.getStay_hit());
+            pstmt.setInt(32, dto.getStay_hit());            
             pstmt.setInt(33, dto.getStay_reserv());
+            pstmt.setInt(34, dto.getStay_room_price_min());
+            pstmt.setInt(35, dto.getStay_room_price_max());
+            pstmt.setInt(36, dto.getStay_room_people_min());
+            pstmt.setInt(37, dto.getStay_room_people_max());
 
             result = pstmt.executeUpdate();
         } catch (SQLException e) {

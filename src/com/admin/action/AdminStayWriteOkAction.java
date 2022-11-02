@@ -116,7 +116,7 @@ public class AdminStayWriteOkAction implements Action {
         dto.setStay_option2_name(stay_option2_name);
         dto.setStay_option2_desc(stay_option2_desc);
         dto.setStay_option3_name(stay_option3_name);
-        dto.setStay_option3_desc(stay_option3_desc);        	  
+        dto.setStay_option3_desc(stay_option3_desc);    
 
         // 순서 지정 문제 해결 위함
 	    Map<String, Object> map = new HashMap<String, Object>();	    

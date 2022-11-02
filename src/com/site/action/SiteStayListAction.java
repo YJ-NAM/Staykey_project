@@ -28,7 +28,7 @@ public class SiteStayListAction implements Action {
         // 검색
         /////////////////////////////////////////////////////////////
         // 검색용 변수 정의
-        String ps_type = "";
+        String ps_stay = "";
         String[] get_type = null;
         String ps_name = "";
         String ps_location = "";
