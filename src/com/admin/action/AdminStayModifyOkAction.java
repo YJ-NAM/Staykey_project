@@ -47,13 +47,26 @@ public class AdminStayModifyOkAction implements Action {
 
         String[] stay_file_delete = null;
         List<String> stayList = null;
+        String stay_desc = "";
+        String stay_option1_name = "";
+        String stay_option1_desc = "";
+        String stay_option2_name = "";
+        String stay_option2_desc = "";
+        String stay_option3_name = "";
+        String stay_option3_desc = "";        
+        String stay_content1 = "";
+        String stay_content2 = "";
+        String stay_content3 = "";
+        String stay_info1 = "";
+        String stay_info2 = "";
+        String stay_info3 = "";        
         
         // 파라미터 정리
         // stay_option1~3_price if문... => NumberFormatException 처리 위함
         int stay_no = Integer.parseInt(multi.getParameter("stay_no"));
         String stay_type = multi.getParameter("stay_type");
         String stay_name = multi.getParameter("stay_name").trim();
-        String stay_desc = multi.getParameter("stay_desc").trim();
+        if(multi.getParameter("stay_desc") != null) { stay_desc = multi.getParameter("stay_desc").trim(); }
         String stay_location = multi.getParameter("stay_location").trim();
         String stay_addr = multi.getParameter("stay_addr").trim();
         String stay_phone = multi.getParameter("stay_phone").trim();
@@ -65,31 +78,33 @@ public class AdminStayModifyOkAction implements Action {
         	stayList = Arrays.asList(stay_file_delete);
         }
         
-        String stay_option1_name = multi.getParameter("stay_option1_name").trim();
-
+        if(multi.getParameter("stay_option1_name") != null) { stay_option1_name = multi.getParameter("stay_option1_name").trim(); }
         if(multi.getParameter("stay_option1_price").length() > 0) {
         	int stay_option1_price = Integer.parseInt(multi.getParameter("stay_option1_price").trim());
         	dto.setStay_option1_price(stay_option1_price);
         }
-        String stay_option1_desc = multi.getParameter("stay_option1_desc").trim();
-        String stay_option2_name = multi.getParameter("stay_option2_name").trim();
+        if(multi.getParameter("stay_option1_desc") != null) { stay_option1_desc = multi.getParameter("stay_option1_desc").trim(); }
+        
+        if(multi.getParameter("stay_option2_name") != null) { stay_option2_name = multi.getParameter("stay_option2_name").trim(); }
         if(multi.getParameter("stay_option2_price").length() > 0) {
         	int stay_option2_price = Integer.parseInt(multi.getParameter("stay_option2_price").trim());
         	dto.setStay_option2_price(stay_option2_price);
         }
-        String stay_option2_desc = multi.getParameter("stay_option2_desc").trim();
-        String stay_option3_name = multi.getParameter("stay_option3_name").trim();
+        if(multi.getParameter("stay_option2_desc") != null) { stay_option2_desc = multi.getParameter("stay_option2_desc").trim(); }
+        
+        if(multi.getParameter("stay_option3_name") != null) { stay_option3_name = multi.getParameter("stay_option3_name").trim(); }
         if(multi.getParameter("stay_option3_price").length() > 0) {
         	int stay_option3_price = Integer.parseInt(multi.getParameter("stay_option3_price").trim());
         	dto.setStay_option3_price(stay_option3_price);
         }
-        String stay_option3_desc = multi.getParameter("stay_option3_desc").trim();        
-        String stay_content1 = multi.getParameter("stay_content1").trim();
-        String stay_content2 = multi.getParameter("stay_content2").trim();
-        String stay_content3 = multi.getParameter("stay_content3").trim();
-        String stay_info1 = multi.getParameter("stay_info1").trim();
-        String stay_info2 = multi.getParameter("stay_info2").trim();
-        String stay_info3 = multi.getParameter("stay_info3").trim();
+        if(multi.getParameter("stay_option3_desc") != null) { stay_option3_desc = multi.getParameter("stay_option3_desc").trim(); }         
+        
+        if(multi.getParameter("stay_content1") != null) { stay_content1 = multi.getParameter("stay_content1").trim(); }
+        if(multi.getParameter("stay_content2") != null) { stay_content2 = multi.getParameter("stay_content2").trim(); }
+        if(multi.getParameter("stay_content3") != null) { stay_content3 = multi.getParameter("stay_content3").trim(); }
+        if(multi.getParameter("stay_info1") != null) { stay_info1 = multi.getParameter("stay_info1").trim(); }
+        if(multi.getParameter("stay_info2") != null) { stay_info2 = multi.getParameter("stay_info2").trim(); }
+        if(multi.getParameter("stay_info3") != null) { stay_info3 = multi.getParameter("stay_info3").trim(); }
         
         dto.setStay_no(stay_no);
         dto.setStay_type(stay_type);

@@ -23,7 +23,7 @@ public class SiteMemberLoginOkAction implements Action {
 		String login_id = request.getParameter("login_id").trim();
 		String login_pw = request.getParameter("login_pw").trim();
 
-		int result  = dao.idPwTypeCheck(login_id, login_pw);
+		int result = dao.idPwTypeCheck(login_id, login_pw);
 		MemberDTO dto = dao.getMemberInfo(login_id);
 		ActionForward forward = new ActionForward();
 		HttpSession session = request.getSession();
@@ -41,7 +41,10 @@ public class SiteMemberLoginOkAction implements Action {
 			session.setAttribute("login_id", dto.getMember_id());
 			session.setAttribute("login_pw", dto.getMember_pw());
 			session.setAttribute("login_name", dto.getMember_name());
+            session.setAttribute("login_email", dto.getMember_email());
+            session.setAttribute("login_phone", dto.getMember_phone());
 			session.setAttribute("login_type", "admin");
+			session.setAttribute("login_reserv", dao.reservCount(dto.getMember_id()));
 
 			request.setAttribute("login_msg", "<script>alert('관리자 로그인 성공!');</script>");
 			forward.setRedirect(false);
@@ -51,7 +54,10 @@ public class SiteMemberLoginOkAction implements Action {
             session.setAttribute("login_id", dto.getMember_id());
             session.setAttribute("login_pw", dto.getMember_pw());
 			session.setAttribute("login_name", dto.getMember_name());
+            session.setAttribute("login_email", dto.getMember_email());
+            session.setAttribute("login_phone", dto.getMember_phone());
 			session.setAttribute("login_type", "user");
+			session.setAttribute("login_reserv", dao.reservCount(dto.getMember_id()));
 
 			forward = null;
 			out.println("<script>alert('"+dto.getMember_name()+"님 안녕하세요 :-)'); location.href='index.jsp';</script>");

@@ -34,7 +34,7 @@ public class AdminStayWriteOkAction implements Action {
         // 파일 업로드 설정
         String thisFolder = "/data/stay/";
         String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
-        int fileSize = 25 * 1024 * 1024; // 25MB
+        int fileSize = 30 * 1024 * 1024; // 25MB
         
         // 업로드 폴더 체크 후 없으면 생성
         File dirChk = new File(saveFolder);
@@ -116,7 +116,7 @@ public class AdminStayWriteOkAction implements Action {
         dto.setStay_option2_name(stay_option2_name);
         dto.setStay_option2_desc(stay_option2_desc);
         dto.setStay_option3_name(stay_option3_name);
-        dto.setStay_option3_desc(stay_option3_desc);        	  
+        dto.setStay_option3_desc(stay_option3_desc);    
 
         // 순서 지정 문제 해결 위함
 	    Map<String, Object> map = new HashMap<String, Object>();	    

@@ -6,12 +6,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="stayList" value="${stayList}" />
+<c:set var="stayType" value="${ stayType }" />
 
 <jsp:include page="../layout/layout_header.jsp" />
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/stay.css?<%=time%>" />
 <script language="javascript" src="<%=request.getContextPath()%>/asset/js/stay.js?<%=time%>"></script>
 
+<script>
+
+function changeVal(data) {
+    $("input[name='ps_people_adult'").val(data);
+}
+
+</script>
 
 
 <div class="container page-title">
@@ -27,17 +35,17 @@
     <div class="row">
         <div class="col-auto">
             <label for="ps_stay">여행지/숙소</label>
-            <input type="text" name="ps_stay" id="ps_stay" value="" class="ss-input" />
+            <input type="text" name="ps_stay" id="ps_stay" value="${ map.ps_stay }" class="ss-input" />
         </div>
         <div class="col-auto">
             <label for="ps_start">체크인</label>
             <button type="button" class="ss-button" id="ps_start">선택하세요</button>
-            <input type="hidden" name="ps_start" value="" />
+            <input type="hidden" name="ps_start" value="${ map.ps_start }" />
         </div>
         <div class="col-auto">
             <label for="ps_end">체크아웃</label>
             <button type="button" class="ss-button" id="ps_end">선택하세요</button>
-            <input type="hidden" name="ps_end" value="" />
+            <input type="hidden" name="ps_end" value="${ map.ps_end }" />
         </div>
         <a href="<%=request.getContextPath()%>/stayList.do" class="ss-reset"><i class="fa fa-refresh"></i></a>
     </div>
@@ -45,7 +53,8 @@
     <div class="row">
         <div class="col-auto">
             <label for="ps_people">인원</label>
-            <button type="button" class="ss-button" id="ps_people">선택하세요</button>
+            <button type="button" class="ss-button" id="ps_people" >선택하세요</button>
+
             <div id="selectNumber" class="layer-select">
                 <button type="button" class="btn-close"></button>
                 <div class="tit">인원</div>
@@ -55,7 +64,12 @@
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" value="0" min="0" max="30" />
+                            	<c:if test="${ empty map.ps_people_adult }">
+                                <input type="number" name="ps_people_adult" value="0" min="0" max="30" />
+                                </c:if>
+                                <c:if test="${ !empty map.ps_people_adult }">
+                                <input type="number" name="ps_people_adult" value="${ map.ps_people_adult }" min="0" max="30" />
+                                </c:if>                                     
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -66,7 +80,12 @@
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" value="0" min="0" max="7" />
+                            	<c:if test="${ empty map.ps_people_kid }">
+                                <input type="number" name="ps_people_kid" value="0" min="0" max="7" />
+                                </c:if>
+                                <c:if test="${ !empty map.ps_people_kid }">
+                                <input type="number" name="ps_people_kid" value="${ map.ps_people_kid }" min="0" max="7" />
+                                </c:if>
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -77,7 +96,12 @@
                         <div class="number-count">
                             <button type="button" class="btn-minus"><i class="fa fa-minus"></i></button>
                             <span class="input-num">
-                                <input type="number" value="0" min="0" max="7" />
+                            	<c:if test="${ empty map.ps_people_baby }">
+                                <input type="number" name="ps_people_baby" value="0" min="0" max="7" />
+                                </c:if>
+                                <c:if test="${ !empty map.ps_people_baby }">
+                                <input type="number" name="ps_people_baby" value="${ map.ps_people_baby }" min="0" max="7" />
+                                </c:if>                                
                                 <span class="person-count">명</span>
                             </span>
                             <button type="button" class="btn-plus"><i class="fa fa-plus"></i></button>
@@ -91,13 +115,56 @@
 
         <div class="col-auto">
             <label for="ps_price">가격범위</label>
-            <button type="button" class="ss-button" id="ps_price">전체</button>
+            <button type="button" class="ss-button" id="ps_price" >전체</button>
+
+            <div id="selectPrice" class="layer-select">
+                <button type="button" class="btn-close"></button>
+                <div class="tit">가격 범위</div>
+                <div class="price-input">
+                    <div class="input">
+                        <small>최저요금</small>                
+                        <span>
+                        <c:if test="${ empty map.ps_price_min }"><input type="text" name="ps_price_min" value="10" onkeyup="NumberInput(this);" /></c:if>
+                        <c:if test="${ !empty map.ps_price_min }"><input type="text" name="ps_price_min" value="${ map.ps_price_min }" onkeyup="NumberInput(this);" /></c:if>만원</span>
+                    </div>
+                    <span class="divider">-</span>
+                    <div class="input">
+                        <small>최고요금</small>
+                        <span>
+                        <c:if test="${ empty map.ps_price_max }"><input type="text" name="ps_price_max" value="100" onkeyup="NumberInput(this);" /></c:if>
+                        <c:if test="${ !empty map.ps_price_max }"><input type="text" name="ps_price_max" value="${ map.ps_price_max }" onkeyup="NumberInput(this);" /></c:if>만원</span>
+                    </div>
+                </div>
+                <div class="btn-wrapper"><button type="button" class="btn-number-search">적용하기</button></div>
+            </div>
         </div>
 
 
         <div class="col-auto">
             <label for="ps_type">스테이 유형</label>
-            <button type="button" class="ss-button" id="ps_type">전체</button>
+            <button type="button" class="ss-button" id="ps_type" value=${ map.ps_type }>전체</button>
+
+            <div id="selectType" class="layer-select">
+                <button type="button" class="btn-close">닫기</button>
+                <div class="tit">스테이 유형</div>
+                <div class="btn-wrapper"><button type="button" class="btn-number-search">적용하기</button></div>
+                <ul class="check-list">
+                    <li>
+                        <label>
+                            <input type="checkbox" name="ps_type" value="all"/>
+                            <span>전체</span>
+                        </label>
+                    </li>
+                    <c:forEach var="stype" items="${stayType}">
+                    <li>
+                        <label>
+                            <input type="checkbox" name="ps_type" value="${stype}" <c:if test="${map.ps_type.contains(stype)}"> checked="checked"</c:if> />
+                            <span>${stype}</span>
+                        </label>
+                    </li>
+                    </c:forEach>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -126,15 +193,17 @@
         <c:forEach items="${stayList}" var="list">
         <li>
             <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${list.stay_no}">
-                <div class="slw-name">${list.stay_name}<span>민박</span></div>
+                <div class="slw-name">${list.stay_name}<span>${list.stay_type}</span></div>
                 <div class="clear"></div>
                 <div class="slw-info">
                     <p class="address">${list.stay_location}</p>
-                    <p class="people">기준 ${list.room_people_min}명 (최대 ${list.room_people_max}명)</p>
+                    <c:if test="${list.stay_room_people_min > 0}"><p class="people">기준 ${list.stay_room_people_min}명 (최대 ${list.stay_room_people_max}명)</p></c:if>
+                    <c:if test="${list.stay_room_price_min > 0}">
                     <p class="price">
-                        <fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.room_price_min}" type="currency" /> ~ 
-                        <c:if test="${list.room_price_min != list.room_price_max}"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.room_price_max}" type="currency" /></c:if>
+                        <fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.stay_room_price_min}" type="currency" /> ~ 
+                        <c:if test="${list.stay_room_price_min != list.stay_room_price_max}"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.stay_room_price_max}" type="currency" /></c:if>
                     </p>
+                    </c:if>
                     <p class="reserv">예약하기</p>
                 </div>
                 <c:choose>

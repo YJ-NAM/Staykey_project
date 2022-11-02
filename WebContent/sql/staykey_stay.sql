@@ -33,6 +33,10 @@ create table staykey_stay(
     stay_option3_price number(10),
     stay_option3_desc varchar2(1000),
     stay_option3_photo varchar2(200),
+    stay_room_price_min number(10) default 0,
+    stay_room_price_max number(10) default 0,
+    stay_room_people_min number(10) default 0,
+    stay_room_people_max number(10) default 0,
     stay_hit number(10) default 0,
     stay_reserv number(10) default 0,
     stay_date date default sysdate
@@ -69,12 +73,16 @@ comment on column staykey_stay.stay_option3_name is '옵션3 이름';
 comment on column staykey_stay.stay_option3_price is '옵션3 가격';
 comment on column staykey_stay.stay_option3_desc is '옵션3 설명';
 comment on column staykey_stay.stay_option3_photo is '옵션3 사진';
+comment on column staykey_stay.stay_room_price_min is '숙소 숙박비 최저';
+comment on column staykey_stay.stay_room_price_max is '숙소 숙박비 최고';
+comment on column staykey_stay.stay_room_people_min is '숙소 인원수 최소';
+comment on column staykey_stay.stay_room_people_max is '숙소 인원수 최대';
 comment on column staykey_stay.stay_hit is '숙소 조회수';
 comment on column staykey_stay.stay_reserv is '숙소 예약수';
 comment on column staykey_stay.stay_date is '숙소 등록일자';
 
-insert into staykey_stay values(1, '호스텔', '바구니호스텔', '여행자를 위한 모든 것을 담다', '전라/순천시', '전라남도 순천시 조곡동 153-16', '010-6404-8925', 'bagunihostel@naver.com', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 12, 1, sysdate);
-insert into staykey_stay values(2, '민박', '숙소 이름2', '간략 설명22', '서울/중구', '강원도 속초시 대포동 457-1', '010-2222-2222', 'stayhotel22@stay.com', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 12, 1, sysdate);
-insert into staykey_stay values(3, '펜션', '숙소 이름3', '간략 설명22', '강원/속초', '강원도 속초시 대포동 457-1', '010-3333-3333', 'stayhotel33@stay.com', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 12, 1, sysdate);
+insert into staykey_stay values(1, '호스텔', '바구니호스텔', '여행자를 위한 모든 것을 담다', '전라/순천시', '전라남도 순천시 조곡동 153-16', '010-6404-8925', 'bagunihostel@naver.com', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 0, 0, 0, 0, 12, 1, sysdate);
+insert into staykey_stay values(2, '민박', '숙소 이름2', '간략 설명22', '서울/중구', '강원도 속초시 대포동 457-1', '010-2222-2222', 'stayhotel22@stay.com', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 0, 0, 0, 0, 12, 1, sysdate);
+insert into staykey_stay values(3, '펜션', '숙소 이름3', '간략 설명22', '강원/속초', '강원도 속초시 대포동 457-1', '010-3333-3333', 'stayhotel33@stay.com', '내용 컨텐츠 1', '내용 컨텐츠 2', '내용 컨텐츠 3', '안내사항 1', '안내사항 2', '안내사항 3', null, null, null, null, null, '바베큐 준비', '30000', '옵션1 설명', null, null, 0, null, null, null, 0, null, null, 0, 0, 0, 0, 12, 1, sysdate);
 
 commit;

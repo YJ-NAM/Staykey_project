@@ -47,10 +47,21 @@ $(document).ready(function(){
     $("#ps_people").on("click", function(){
         $("#selectNumber").toggleClass("open");
     });
-    $(".stay-search .layer-select .btn-number-search").on("click", function(){
 
+    // 인원 선택 적용하기 버튼
+    $(".stay-search #selectNumber .btn-number-search").on("click", function(){
+        const getAdult = Number($(".stay-search #selectNumber input[name='ps_people_adult']").val());
+        const getKid = Number($(".stay-search #selectNumber input[name='ps_people_kid']").val());
+        const getBaby = Number($(".stay-search #selectNumber input[name='ps_people_baby']").val());
+        let setPeople = "선택하세요";
+
+        if(getAdult > 0 || getKid > 0 || getBaby > 0){
+            setPeople = "성인 : " + getAdult + ", 아동 : " + getKid + ", 영아 : " + getBaby;
+        }
+
+        $("#ps_people").text(setPeople);
+        $("#selectNumber").removeClass("open");
     });
-
 
 
 
@@ -83,7 +94,7 @@ $(document).ready(function(){
     // 수량 직접 입력 체크
     $(".stay-search .layer-select .number-count input[type='number']").on("keyup", function(){
         const minVal = Number($(this).attr("min"));
-        const maxVal = Number($(this).attr("min"));
+        const maxVal = Number($(this).attr("max"));
         const nowVal = Number($(this).val());
 
         if(nowVal >= maxVal){
@@ -94,6 +105,73 @@ $(document).ready(function(){
             $(this).val(nowVal);
         }
     });
+
+
+    // 닫기 버튼
+    $(".stay-search .layer-select .btn-close").on("click", function(){
+        $(this).parent().removeClass("open");
+    });
+
+
+
+
+    // 가격 범위 클릭
+    $("#ps_price").on("click", function(){
+        $("#selectPrice").toggleClass("open");
+    });
+
+    // 가격 범위 적용하기 버튼
+    $(".stay-search #selectPrice .btn-number-search").on("click", function(){
+        const getMin = Number($(".stay-search #selectPrice input[name='ps_price_min']").val() + "0000");
+        const getMax = Number($(".stay-search #selectPrice input[name='ps_price_max']").val() + "0000");
+        let setPrice = "가격범위";
+
+        if(getMin > 0 && getMax > 0){
+            setPrice = setComma(getMin) + " ~ " + setComma(getMax);
+        }
+
+        $("#ps_price").text(setPrice);
+        $("#selectPrice").removeClass("open");
+    });
+
+
+
+
+    // 스테이 유형 클릭
+    $("#ps_type").on("click", function(){
+        $("#selectType").toggleClass("open");
+    });
+
+    // 스테이 유형 체크박스 클릭
+    $(".stay-search #selectType .check-list li label input[name='ps_type'][value='all']").click(function(){
+        if($(this).prop("checked")){
+            $("input[name='ps_type']").prop("checked", false);
+            $(this).prop("checked", true);
+        }
+    });
+    $(".stay-search #selectType .check-list li label input[name='ps_type'][value!='all']").click(function(){
+        $("input[name='ps_type'][value='all']").prop("checked", false);
+    });
+
+    // 스테이 유형 적용하기 버튼
+    $(".stay-search #selectType .btn-number-search").on("click", function(){
+        let setType = "스테이 유형";
+
+        if(!$(".stay-search #selectType .check-list li label input[name='ps_type'][value='all']").prop("checked")){
+            const chkLength = $(".stay-search #selectType .check-list li label input[name='ps_type'][value!='all']:checked").length;
+            const chkFirst = $(".stay-search #selectType .check-list li label input[name='ps_type'][value!='all']:checked:first-child").val();
+
+            if(chkLength > 1){
+                setType = chkFirst + " 외 " + (chkLength - 1) + "건";
+            }else{
+                setType = chkFirst;
+            }
+        }
+
+        $("#ps_type").text(setType);
+        $("#selectType").removeClass("open");
+    });
+
 
 
 

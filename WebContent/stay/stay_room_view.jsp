@@ -33,7 +33,10 @@
     <div class="sr-top">
         <h3 class="srt-name">${stay.stay_name}</h3>
         <div class="srt-date">날짜를 선택해주세요.</div>
-        <button type="button" class="reserv-go" start="" end="" onclick="reservGo(${stay.stay_no}, ${room.room_no});">예약하기</button>
+        <c:choose>
+            <c:when test="${empty login_id}"><button type="button" class="reserv-go" start="" end="" onclick="alert('회원 로그인 후 예약 할 수 있습니다.'); location.href='<%=request.getContextPath()%>/memberLogin.do';">예약하기</button></c:when>
+            <c:otherwise><button type="button" class="reserv-go" start="" end="" onclick="reservGo(${stay.stay_no}, ${room.room_no});">예약하기</button></c:otherwise>
+        </c:choose>
     </div>
     <!-- 상단 예약하기 //START -->
 
@@ -130,7 +133,10 @@
 
     <!-- 하단 예약하기 //START -->
     <div class="sr-reserv">
-        <button type="button" class="reserv-go" onclick="reservGo(${stay.stay_no}, ${room.room_no});">예약하기</button>
+        <c:choose>
+            <c:when test="${empty login_id}"><button type="button" class="reserv-go" start="" end="" onclick="alert('회원 로그인 후 예약 할 수 있습니다.'); location.href='<%=request.getContextPath()%>/memberLogin.do';">예약하기</button></c:when>
+            <c:otherwise><button type="button" class="reserv-go" start="" end="" onclick="reservGo(${stay.stay_no}, ${room.room_no});">예약하기</button></c:otherwise>
+        </c:choose>
     </div>
     <!-- 하단 예약하기 //START -->
 
