@@ -9,6 +9,95 @@ $(document).ready(function(){
     let gDate = getToday.getDate();
 
 
+
+    // 숙소 목록 페이지에서 작동 시
+    // 숙소 예약 날짜 선택
+    $("#ps_start, #ps_end").daterangepicker({
+        locale: {
+            "separator": "/",
+            "format": 'YYYY-MM-DD',
+            "applyLabel": "확인",
+            "cancelLabel": "취소",
+            "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
+            "monthNames": ["01월", "02월", "03월", "04월", "05월", "06월", "07월", "08월", "09월", "10월", "11월", "12월"]
+        },
+        minDate: gYear+"/"+gMonth+"/"+gDate,
+        maxDate: (gYear+1)+"/"+gMonth+"/"+gDate,
+        autoApply: true,
+        opens: 'center',
+        timePicker: false,
+        showDropdowns: false,
+        singleDatePicker: false,
+        isCustomDate : function(){}
+    });
+
+    // 날짜 선택 적용 시
+    $("#ps_start, #ps_end").on("apply.daterangepicker", function(ev, picker){
+        let sdate = picker.startDate.format('YYYY-MM-DD');
+        let edate = picker.endDate.format('YYYY-MM-DD');
+
+        $(".stay-search input[name='ps_start']").val(sdate);
+        $(".stay-search input[name='ps_end']").val(edate);
+        $("#ps_start").text(sdate.replaceAll("-", ". "));
+        $("#ps_end").text(edate.replaceAll("-", ". "));
+    });
+
+
+    // 인원 선택 클릭
+    $("#ps_people").on("click", function(){
+        $("#selectNumber").toggleClass("open");
+    });
+    $(".stay-search .layer-select .btn-number-search").on("click", function(){
+
+    });
+
+
+
+
+    // 수량 증가 버튼
+    $(".stay-search .layer-select .number-count .btn-plus").on("click", function(){
+        const inputNum = $(this).parent().find(".input-num input");
+        const maxVal = Number(inputNum.attr("max"));
+        const plusVal = Number(inputNum.val()) + 1;
+
+        if(plusVal >= maxVal){
+            inputNum.val(maxVal);
+        }else{
+            inputNum.val(plusVal);
+        }
+    });
+
+    // 수량 차감 버튼
+    $(".stay-search .layer-select .number-count .btn-minus").on("click", function(){
+        const inputNum = $(this).parent().find(".input-num input");
+        const minVal = Number(inputNum.attr("min"));
+        const minusVal = Number(inputNum.val()) - 1;
+
+        if(minusVal <= minVal){
+            inputNum.val(minVal);
+        }else{
+            inputNum.val(minusVal);
+        }
+    });
+
+    // 수량 직접 입력 체크
+    $(".stay-search .layer-select .number-count input[type='number']").on("keyup", function(){
+        const minVal = Number($(this).attr("min"));
+        const maxVal = Number($(this).attr("min"));
+        const nowVal = Number($(this).val());
+
+        if(nowVal >= maxVal){
+            $(this).val(maxVal);
+        }else if(nowVal <= minVal){
+            $(this).val(minVal);
+        }else{
+            $(this).val(nowVal);
+        }
+    });
+
+
+
+    // Room 보기 페이지에서 작동 시
     // 숙소 예약 날짜 선택
     $(".srt-date").daterangepicker({
         locale: {
@@ -29,7 +118,6 @@ $(document).ready(function(){
         isCustomDate : function(){}
     });
 
-
     // 날짜 선택 적용 시
     $(".srt-date").on("apply.daterangepicker", function(ev, picker){
         let sdate = picker.startDate.format('YYYY-MM-DD');
@@ -43,8 +131,6 @@ $(document).ready(function(){
         $(this).html(sdate.replaceAll("-", ". ") + " - " + edate.replaceAll("-", ". ") + "<em>" + between + "박 " + (between+1) + "일</em>");
         $(".stay-room .sr-top .reserv-go").attr("start", sdate).attr("end", edate);
     });
-
-
 
     // 예약하기 버튼 클릭시
     reservGo = function(stay_no, room_no){
