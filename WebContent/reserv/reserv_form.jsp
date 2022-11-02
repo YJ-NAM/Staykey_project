@@ -78,18 +78,28 @@
                     <td class="people">
                         <div class="select">
                             <span>성인</span>
-                            <select class="adult-select">
-                                <option value="1">1명</option>
-                                <option selected="" value="2">2명</option>
-                                <option value="3">3명</option>
+                            <select name="reserv_people_adult">
+                                <c:forEach begin="1" end="${room.room_people_max}" var="i">
+                                <option value="${i}">${i}명</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="select">
                             <span>아동</span>
-                            <select class="child-select">
-                                <option selected="" value="0">0명</option>
-                                <option value="1">1명</option>
-                                <option value="2">2명</option>
+                            <select name="reserv_people_kid">
+                                <option value="0">0명</option>
+                                <c:forEach begin="1" end="${room.room_people_max}" var="j">
+                                <option value="${j}">${j}명</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="select">
+                            <span>영아</span>
+                            <select name="reserv_people_baby">
+                                <option value="0">0명</option>
+                                <c:forEach begin="1" end="${room.room_people_max}" var="k">
+                                <option value="${k}">${k}명</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <span class="people-txt">아동 : 24개월 ~ 12세<br />영아 : 24개월 미만</span>
