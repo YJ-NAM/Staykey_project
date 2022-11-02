@@ -9,7 +9,6 @@ create table staykey_member(
     member_name varchar2(50) not null,
     member_email varchar2(100) not null,
     member_phone varchar2(20) not null,
-    member_point number(10) default 0,
     member_reserv number(5) default 0,
     member_photo varchar2(200),
     member_joindate date default sysdate
@@ -22,13 +21,12 @@ comment on column staykey_member.member_pw is '비밀번호';
 comment on column staykey_member.member_name is '이름';
 comment on column staykey_member.member_email is '이메일';
 comment on column staykey_member.member_phone is '전화번호';
-comment on column staykey_member.member_point is '적립금';
 comment on column staykey_member.member_reserv is '예약횟수';
 comment on column staykey_member.member_photo is '프로필 사진';
 comment on column staykey_member.member_joindate is '가입일자';
 
-insert into staykey_member values(1, 'admin', 'testadmin', '1234', '테스트관리자', 'testadmin@test.com', '010-1111-1111', '0', '0', null, sysdate);
-insert into staykey_member values(2, 'user', 'test', '1234', '테스트회원1', 'testuser@test.com', '010-2222-2222', '1000', '1', null, sysdate);
-insert into staykey_member values(3, 'user', 'test2', '1234', '테스트회원2', 'testuser2@test.com', '010-3333-3333', '2000', '2', null, sysdate);
+insert into staykey_member values(1, 'admin', 'testadmin', '1234', '테스트관리자', 'testadmin@test.com', '010-1111-1111', '0', null, sysdate);
+insert into staykey_member values(2, 'user', 'test', '1234', '테스트회원1', 'testuser@test.com', '010-2222-2222', '1', null, sysdate);
+insert into staykey_member values(3, 'user', 'test2', '1234', '테스트회원2', 'testuser2@test.com', '010-3333-3333', '2', null, sysdate);
 
 commit;

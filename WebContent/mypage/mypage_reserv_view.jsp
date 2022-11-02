@@ -5,9 +5,9 @@
 
 
 
-<div class="reserv-list">
+<div class="reserv-view">
 
-    예약 목록
+    예약 보기
 
 </div>
 

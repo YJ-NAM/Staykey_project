@@ -73,9 +73,6 @@
                 <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>회원이름 역순</option>
                 <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>회원이름 순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="point_desc"<c:if test="${map.ps_order == 'point_desc'}"> selected="selected"</c:if>>적립금 높은</option>
-                <option value="point_asc"<c:if test="${map.ps_order == 'point_asc'}"> selected="selected"</c:if>>적립금 낮은</option>
-                <option value="" disabled="disabled">---------------</option>
                 <option value="count_desc"<c:if test="${map.ps_order == 'count_desc'}"> selected="selected"</c:if>>예약횟수 높은</option>
                 <option value="count_asc"<c:if test="${map.ps_order == 'count_asc'}"> selected="selected"</c:if>>예약횟수 낮은</option>
             </select>
@@ -89,10 +86,9 @@
             <col width="4.5%">
             <col width="7.2%">
             <col width="7.2%">
-            <col width="10%">
-            <col width="18%">
-            <col width="13.5%">
-            <col width="9%">
+            <col width="14%">
+            <col width="20%">
+            <col width="16.5%">
             <col width="7.2%">
             <col />
             <col width="10%">
@@ -106,7 +102,6 @@
                 <th>아이디/이름</th>
                 <th>이메일</th>
                 <th>전화번호</th>
-                <th>보유적립금</th>
                 <th>예약횟수</th>
                 <th>등록일</th>
                 <th>기능</th>
@@ -139,7 +134,6 @@
                 </td>
                 <td ${showLink}>${dto.getMember_email()}</td>
                 <td ${showLink}>${dto.getMember_phone()}</td>
-                <td ${showLink}><fmt:formatNumber value="${dto.getMember_point()}" />점</td>
                 <td ${showLink}><fmt:formatNumber value="${dto.getMember_reserv()}" />번</td>
                 <td ${showLink}>${dto.getMember_joindate().substring(0, 10)}<br />${dto.getMember_joindate().substring(11)}</td>
                 <td>
@@ -152,7 +146,7 @@
 
             <c:otherwise>
             <tr>
-                <td colspan="10" class="nodata">등록된 회원이 없습니다.</td>
+                <td colspan="9" class="nodata">등록된 회원이 없습니다.</td>
             </tr>
             </c:otherwise>
             </c:choose>
@@ -161,7 +155,7 @@
 
         <tfoot>
             <tr>
-                <td colspan="10">
+                <td colspan="9">
                     <table class="paging-table">
                         <colgroup>
                             <col width="120">

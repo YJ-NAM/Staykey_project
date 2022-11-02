@@ -67,27 +67,30 @@
 }
 
 
-.reserv-form .rf-wrap .rfw-list {}
-.reserv-form .rf-wrap .rfw-list li {
+.reserv-form .rf-wrap .rfw-list {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody th,
+.reserv-form .rf-wrap .rfw-list tbody td {
     border-bottom: 1px solid #e6e6e6;
-    display: flex;
-    justify-content: space-between;
     padding: 20px 0;
     line-height: 16px;
+    vertical-align: middle;
+    text-align: left;
 }
-.reserv-form .rf-wrap .rfw-list li > .tit {
+.reserv-form .rf-wrap .rfw-list tbody th {
     font-size: 13px;
-    padding-top: 2px;
 }
-.reserv-form .rf-wrap .rfw-list li > .cont {
-    position: relative;
-    width: 62%;
+.reserv-form .rf-wrap .rfw-list tbody td {
     font-size: 16px;
 }
-.reserv-form .rf-wrap .rfw-list li > .cont.day {
+.reserv-form .rf-wrap .rfw-list tbody td.day {
     font-family: 'Lato';
 }
-.reserv-form .rf-wrap .rfw-list li > .cont.day em {
+.reserv-form .rf-wrap .rfw-list tbody td.day em {
     display: inline-block;
     font-style: normal;
     font-weight: 400;
@@ -95,7 +98,7 @@
     padding-left: 7px;
     border-left: 1px solid #ddd;
 }
-.reserv-form .rf-wrap .rfw-list li > .cont input[type='text'] {
+.reserv-form .rf-wrap .rfw-list tbody td input[type='text'] {
     height: 40px;
     border: 1px solid #e5e5e5;
     padding: 0 10px;
@@ -105,7 +108,7 @@
     margin: -10px 0;
     border-radius: 5px;
 }
-.reserv-form .rf-wrap .rfw-list li > .cont .input-width {
+.reserv-form .rf-wrap .rfw-list tbody td .input-width {
     display: inline-block;
     width: 300px;
     height: 40px;
