@@ -22,7 +22,6 @@ public class ReservDTO {
     private int reserv_option2_price;
     private String reserv_option3_name;
     private int reserv_option3_price;
-    private int reserv_use_point;
     private int reserv_total_price;
     private int reserv_people_max;
     private int reserv_people_adult;
@@ -158,12 +157,6 @@ public class ReservDTO {
     }
     public void setReserv_option3_price(int reserv_option3_price) {
         this.reserv_option3_price = reserv_option3_price;
-    }
-    public int getReserv_use_point() {
-        return reserv_use_point;
-    }
-    public void setReserv_use_point(int reserv_use_point) {
-        this.reserv_use_point = reserv_use_point;
     }
     public int getReserv_total_price() {
         return reserv_total_price;

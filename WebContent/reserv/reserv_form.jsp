@@ -4,6 +4,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<% pageContext.setAttribute("newLine", "\n"); %>
 
 <c:set var="room" value="${ roomView }" />
 <c:set var="stay" value="${ stayView }" />
@@ -113,16 +114,47 @@
                         <c:if test="${!empty stay.stay_option1_name}">
                             <c:if test="${!empty stay.stay_option1_photo}">
                             <div class="option-img">
-                                <div class="img" style="background-image: url('${stay.stay_option1_photo}');"></div>
+                                <div class="img" style="background-image: url('<%=request.getContextPath()%>${stay.stay_option1_photo}');"></div>
                             </div>
                             </c:if>
-
                             <div class="option-select">
-                                <div class="tit">BBQ Grill (2~4인까지/1세트)<span class="price">₩44,000</span></div>
-                                <div class="txt">바베큐를 하실 수 있도록 숯과 그릴 제공, 테이블과 식기를 세팅해드립니다.(일체 음식 미포함)</div>
-                                <div class="sel_option">
-                                    <label><input type="radio" name="stay_option1_select" value="Y">선택</label>
-                                    <label><input type="radio" name="stay_option1_select" value="N" checked="checked">선택안함</label>
+                                <div class="tit">${stay.stay_option1_name}<span class="price"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${stay.stay_option1_price}" type="currency" /></span></div>
+                                <div class="txt">${stay.stay_option1_desc.replace(newLine, '<br />')}</div>
+                                <div class="sel-option">
+                                    <label><input type="radio" name="stay_option1_select" value="Y"> 선택</label>
+                                    <label><input type="radio" name="stay_option1_select" value="N" checked="checked"> 선택안함</label>
+                                </div>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${!empty stay.stay_option2_name}">
+                            <c:if test="${!empty stay.stay_option2_photo}">
+                            <div class="option-img">
+                                <div class="img" style="background-image: url('<%=request.getContextPath()%>${stay.stay_option2_photo}');"></div>
+                            </div>
+                            </c:if>
+                            <div class="option-select">
+                                <div class="tit">${stay.stay_option2_name}<span class="price"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${stay.stay_option2_price}" type="currency" /></span></div>
+                                <div class="txt">${stay.stay_option2_desc.replace(newLine, '<br />')}</div>
+                                <div class="sel-option">
+                                    <label><input type="radio" name="stay_option2_select" value="Y"> 선택</label>
+                                    <label><input type="radio" name="stay_option2_select" value="N" checked="checked"> 선택안함</label>
+                                </div>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${!empty stay.stay_option3_name}">
+                            <c:if test="${!empty stay.stay_option3_photo}">
+                            <div class="option-img">
+                                <div class="img" style="background-image: url('<%=request.getContextPath()%>${stay.stay_option3_photo}');"></div>
+                            </div>
+                            </c:if>
+                            <div class="option-select">
+                                <div class="tit">${stay.stay_option3_name}<span class="price"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${stay.stay_option3_price}" type="currency" /></span></div>
+                                <div class="txt">${stay.stay_option3_desc.replace(newLine, '<br />')}</div>
+                                <div class="sel-option">
+                                    <label><input type="radio" name="stay_option3_select" value="Y"> 선택</label>
+                                    <label><input type="radio" name="stay_option3_select" value="N" checked="checked"> 선택안함</label>
                                 </div>
                             </div>
                         </c:if>

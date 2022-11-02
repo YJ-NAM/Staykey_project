@@ -279,7 +279,6 @@ $(function(){
                         <td colspan="3" class="d-flex">
                             <div class="text-black">숙박 금액<br /><b class="eng"><fmt:formatNumber value="${view.reserv_basic_price}" /></b>원</div>
                             <div class="pl-3 text-success">옵션 금액<br /><b class="eng">+ <fmt:formatNumber value="${view.reserv_option1_price + view.reserv_option2_price + view.reserv_option3_price}" /></b>원</div>
-                            <div class="pl-3 text-danger">적립금 사용<br />- <b class="eng"><fmt:formatNumber value="${view.reserv_use_point}" /></b>원</div>
                         </td>
                     </tr>
                     <tr>
