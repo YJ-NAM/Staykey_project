@@ -132,7 +132,7 @@
                     <c:forEach var="stype" items="${stayType}">
                     <li>
                         <label>
-                            <input type="checkbox" name="ps_type" value="${stype}" />
+                            <input type="checkbox" name="ps_type" value="${stype}" <c:if test="${map.ps_type.contains(stype)}"> checked="checked"</c:if> />
                             <span>${stype}</span>
                         </label>
                     </li>

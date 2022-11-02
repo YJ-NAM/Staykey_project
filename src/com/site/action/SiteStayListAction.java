@@ -30,14 +30,49 @@ public class SiteStayListAction implements Action {
         // 검색용 변수 정의
         String ps_stay = "";
         String ps_type = "";
+        String[] get_type = null;
         String ps_order = "";
+        int ps_people = 0;
+        int ps_people_adult = 0;
+        int ps_people_kid = 0;
+        int ps_people_baby = 0;
+        int ps_price_min = 0;
+        int ps_price_max = 1000000;
 
         
         if(request.getParameter("ps_stay") != null) { ps_stay = request.getParameter("ps_stay").trim(); }else { ps_stay = ""; }
-        int ps_people_adult = Integer.parseInt(request.getParameter("ps_people_adult"));
-        int ps_people_kid = Integer.parseInt(request.getParameter("ps_people_kid"));
-        int ps_people_baby = Integer.parseInt(request.getParameter("ps_people_baby"));
-        int ps_people = ps_people_adult + ps_people_kid + ps_people_baby;
+        if(request.getParameter("ps_people_adult") != null || request.getParameter("ps_people_kid") != null || request.getParameter("ps_people_baby") != null) {
+        	if(request.getParameter("ps_people_adult") != (null)) { ps_people_adult = Integer.parseInt(request.getParameter("ps_people_adult")); }
+        	if(request.getParameter("ps_people_kid") != (null)) { ps_people_adult = Integer.parseInt(request.getParameter("ps_people_kid")); }
+        	if(request.getParameter("ps_people_baby") != (null)) { ps_people_adult = Integer.parseInt(request.getParameter("ps_people_baby")); }
+        	ps_people = ps_people_adult + ps_people_kid + ps_people_baby;
+        }
+        
+        if(request.getParameter("ps_price_min") != null || request.getParameter("ps_price_max") != null) {
+        	if(request.getParameter("ps_price_min") != (null)) { 
+        		ps_price_min = Integer.parseInt(request.getParameter("ps_price_min"));
+        		ps_price_min = ps_price_min * 10000;        		
+        	}
+        	if(request.getParameter("ps_price_max") != (null)) { 
+        		ps_price_max = Integer.parseInt(request.getParameter("ps_price_max")); 
+        		ps_price_max = ps_price_max * 10000;
+        	}
+        }
+        
+    	if(request.getParameterValues("ps_type") != null) { 
+    		// ps_type value로 all이 넘어올 때, all 지정
+			get_type = request.getParameterValues("ps_type");
+			if(get_type[0].equals("all")) {
+				ps_type = "all";
+			}else {
+				for(int i = 0; i<get_type.length; i++) {
+					ps_type += "/" + get_type[i];
+				}
+			}
+		}else {
+			ps_type = "all";
+		}
+
 
 
 //        if(request.getParameterValues("ps_type") != null) { 
@@ -82,6 +117,8 @@ public class SiteStayListAction implements Action {
         // 뷰에 전달할 매개변수 추가
         map.put("ps_stay", ps_stay);
         map.put("ps_people", ps_people);
+        map.put("ps_price_min", ps_price_min);
+        map.put("ps_price_max", ps_price_max);
         map.put("ps_type", ps_type);
         map.put("ps_order", ps_order);
 
