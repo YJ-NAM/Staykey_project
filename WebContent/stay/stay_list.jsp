@@ -118,7 +118,7 @@
             <label for="ps_type">스테이 유형</label>
             <button type="button" class="ss-button" id="ps_type">전체</button>
 
-            <div id="selectType" class="layer-select open">
+            <div id="selectType" class="layer-select">
                 <button type="button" class="btn-close">닫기</button>
                 <div class="tit">스테이 유형</div>
                 <div class="btn-wrapper"><button type="button" class="btn-number-search">적용하기</button></div>
@@ -171,10 +171,10 @@
                 <div class="clear"></div>
                 <div class="slw-info">
                     <p class="address">${list.stay_location}</p>
-                    <p class="people">기준 ${list.room_people_min}명 (최대 ${list.room_people_max}명)</p>
+                    <p class="people">기준 ${list.stay_room_people_min}명 (최대 ${list.stay_room_people_max}명)</p>
                     <p class="price">
-                        <fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.room_price_min}" type="currency" /> ~ 
-                        <c:if test="${list.room_price_min != list.room_price_max}"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.room_price_max}" type="currency" /></c:if>
+                        <fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.stay_room_price_min}" type="currency" /> ~ 
+                        <c:if test="${list.stay_room_price_min != list.stay_room_price_max}"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.stay_room_price_max}" type="currency" /></c:if>
                     </p>
                     <p class="reserv">예약하기</p>
                 </div>
