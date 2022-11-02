@@ -157,21 +157,7 @@ public class StayDAO {
         openConn();
 
         try {
-            // sql = "select * from (select row_number() over(order by " + order_sql + ") rnum, s.* from staykey_stay s " + search_sql1 + ") where rnum >= ? and rnum <= ? " + search_sql2;
-            // 룸 정보 join
-            sql = "select * from ("
-                    + "    select"
-                    + "        row_number() over(order by "+ order_sql +") rnum,"
-                    + "        s.*"
-                    + "    from ("
-                    + "        select"
-                    + "            t.stay_no, t.stay_type, t.stay_name, t.stay_desc, t.stay_location, t.stay_addr, t.stay_phone, t.stay_email, t.stay_content1, t.stay_content2, t.stay_content3, t.stay_info1, t.stay_info2, t.stay_info3, t.stay_file1, t.stay_file2, t.stay_file3, t.stay_file4, t.stay_file5, t.stay_option1_name, t.stay_option1_price, t.stay_option1_desc, t.stay_option1_photo, t.stay_option2_name, t.stay_option2_price, t.stay_option2_desc, t.stay_option2_photo, t.stay_option3_name, t.stay_option3_price, t.stay_option3_desc, t.stay_option3_photo, t.stay_hit, t.stay_reserv, t.stay_date, r.room_stayno, max(r.room_price) as room_price_max, min(r.room_price) as room_price_min, r.room_people_min, r.room_people_max"
-                    + "        from staykey_stay t"
-                    + "        left outer join staykey_stay_room r"
-                    + "        on t.stay_no = r.room_stayno"
-                    + "        group by t.stay_no, t.stay_type, t.stay_name, t.stay_desc, t.stay_location, t.stay_addr, t.stay_phone, t.stay_email, t.stay_content1, t.stay_content2, t.stay_content3, t.stay_info1, t.stay_info2, t.stay_info3, t.stay_file1, t.stay_file2, t.stay_file3, t.stay_file4, t.stay_file5, t.stay_option1_name, t.stay_option1_price, t.stay_option1_desc, t.stay_option1_photo, t.stay_option2_name, t.stay_option2_price, t.stay_option2_desc, t.stay_option2_photo, t.stay_option3_name, t.stay_option3_price, t.stay_option3_desc, t.stay_option3_photo, t.stay_hit, t.stay_reserv, t.stay_date, r.room_stayno, r.room_people_min, r.room_people_max"
-                    + "    ) s" + search_sql1
-                    + ") where rnum >= ? and rnum <= ?" + search_sql2;
+             sql = "select * from (select row_number() over(order by " + order_sql + ") rnum, s.* from staykey_stay s " + search_sql1 + ") where rnum >= ? and rnum <= ? " + search_sql2;
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
@@ -215,10 +201,10 @@ public class StayDAO {
                 dto.setStay_reserv(rs.getInt("stay_reserv"));
                 dto.setStay_date(rs.getString("stay_date"));
 
-                dto.setRoom_price_min(rs.getInt("room_price_min"));
-                dto.setRoom_price_max(rs.getInt("room_price_max"));
-                dto.setRoom_people_min(rs.getInt("room_people_min"));
-                dto.setRoom_people_max(rs.getInt("room_people_max"));
+                dto.setStay_room_price_min(rs.getInt("stay_room_price_min"));
+                dto.setStay_room_price_max(rs.getInt("stay_room_price_max"));
+                dto.setStay_room_people_min(rs.getInt("stay_room_people_min"));
+                dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));
 
                 list.add(dto);
             }
@@ -355,6 +341,10 @@ public class StayDAO {
                 dto.setStay_hit(rs.getInt("stay_hit"));
                 dto.setStay_reserv(rs.getInt("stay_reserv"));
                 dto.setStay_date(rs.getString("stay_date"));
+                dto.setStay_room_price_min(rs.getInt("stay_room_price_min"));
+                dto.setStay_room_price_max(rs.getInt("stay_room_price_max"));
+                dto.setStay_room_people_min(rs.getInt("stay_room_people_min"));
+                dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -904,6 +894,10 @@ public class StayDAO {
                 dto.setStay_hit(rs.getInt("stay_hit"));
                 dto.setStay_reserv(rs.getInt("stay_reserv"));
                 dto.setStay_date(rs.getString("stay_date"));
+                dto.setStay_room_price_min(rs.getInt("stay_room_price_min"));
+                dto.setStay_room_price_max(rs.getInt("stay_room_price_max"));
+                dto.setStay_room_people_min(rs.getInt("stay_room_people_min"));
+                dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));
 
                 list.add(dto);
             }
@@ -995,6 +989,10 @@ public class StayDAO {
                 dto.setStay_hit(rs.getInt("stay_hit"));
                 dto.setStay_reserv(rs.getInt("stay_reserv"));
                 dto.setStay_date(rs.getString("stay_date"));
+                dto.setStay_room_price_min(rs.getInt("stay_room_price_min"));
+                dto.setStay_room_price_max(rs.getInt("stay_room_price_max"));
+                dto.setStay_room_people_min(rs.getInt("stay_room_people_min"));
+                dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));
 
                 list.add(dto);
             }

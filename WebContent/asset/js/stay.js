@@ -142,11 +142,33 @@ $(document).ready(function(){
         $("#selectType").toggleClass("open");
     });
 
+    // 스테이 유형 체크박스 클릭
+    $(".stay-search #selectType .check-list li label input[name='ps_type'][value='all']").click(function(){
+        if($(this).prop("checked")){
+            $("input[name='ps_type']").prop("checked", false);
+            $(this).prop("checked", true);
+        }
+    });
+    $(".stay-search #selectType .check-list li label input[name='ps_type'][value!='all']").click(function(){
+        $("input[name='ps_type'][value='all']").prop("checked", false);
+    });
+
     // 스테이 유형 적용하기 버튼
     $(".stay-search #selectType .btn-number-search").on("click", function(){
-        let setTpe = "스테이 유형";
+        let setType = "스테이 유형";
 
-        $("#ps_type").text(setTpe);
+        if(!$(".stay-search #selectType .check-list li label input[name='ps_type'][value='all']").prop("checked")){
+            const chkLength = $(".stay-search #selectType .check-list li label input[name='ps_type'][value!='all']:checked").length;
+            const chkFirst = $(".stay-search #selectType .check-list li label input[name='ps_type'][value!='all']:checked:first-child").val();
+
+            if(chkLength > 1){
+                setType = chkFirst + " 외 " + (chkLength - 1) + "건";
+            }else{
+                setType = chkFirst;
+            }
+        }
+
+        $("#ps_type").text(setType);
         $("#selectType").removeClass("open");
     });
 

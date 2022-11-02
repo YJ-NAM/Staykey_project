@@ -286,7 +286,38 @@
     padding: 30px 5px 5px;
 }
 
-
+.stay-search #selectType {
+    margin-left: 78px;
+}
+.stay-search .layer-select .check-list {
+    width: 140px;
+    padding-top: 15px;
+}
+.stay-search .layer-select .check-list li {
+    width: 100%;
+    text-align: left;
+    margin-top: 15px;
+    padding-left: 15px;
+}
+.stay-search .layer-select .check-list li > label {
+    width: 100%;
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    line-height: 1;
+    overflow: hidden;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.stay-search .layer-select .check-list li > label > span {
+    display: inline-block;
+    position: relative;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 16px;
+    z-index: 3;
+}
 
 
 
@@ -361,7 +392,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    z-index: 10;
+    z-index: 5;
 }
 .stay-list .sl-wrap li .slw-name span {
     display: block;
