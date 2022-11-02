@@ -44,41 +44,59 @@ public class AdminStayWriteOkAction implements Action {
 
         // 파일 업로드 객체 생성
         MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
-
+        
+        // null 방지
+        String stay_desc = "";
+        String stay_option1_name = "";
+        String stay_option1_desc = "";
+        String stay_option2_name = "";
+        String stay_option2_desc = "";
+        String stay_option3_name = "";
+        String stay_option3_desc = "";        
+        String stay_content1 = "";
+        String stay_content2 = "";
+        String stay_content3 = "";
+        String stay_info1 = "";
+        String stay_info2 = "";
+        String stay_info3 = "";
+        
         // 파라미터 정리
         // stay_option1~3_price if문... => NumberFormatException 처리 위함
         String stay_type = multi.getParameter("stay_type");
-        String stay_name = multi.getParameter("stay_name").trim();        
-        String stay_desc = multi.getParameter("stay_desc").trim();
+        String stay_name = multi.getParameter("stay_name").trim();  
+        if(multi.getParameter("stay_desc") != null) { stay_desc = multi.getParameter("stay_desc").trim(); }
         String stay_location = multi.getParameter("stay_location").trim();
         String stay_addr = multi.getParameter("stay_addr").trim();
         String stay_phone = multi.getParameter("stay_phone").trim();
         String stay_email = multi.getParameter("stay_email").trim();
-        String stay_option1_name = multi.getParameter("stay_option1_name").trim();      
+        
+        if(multi.getParameter("stay_option1_name") != null) { stay_option1_name = multi.getParameter("stay_option1_name").trim(); }
         if(multi.getParameter("stay_option1_price").length() > 0) {
         	int stay_option1_price = Integer.parseInt(multi.getParameter("stay_option1_price").trim());
         	dto.setStay_option1_price(stay_option1_price);
         }
-        String stay_option1_desc = multi.getParameter("stay_option1_desc").trim();
-        String stay_option2_name = multi.getParameter("stay_option2_name").trim();
+        if(multi.getParameter("stay_option1_desc") != null) { stay_option1_desc = multi.getParameter("stay_option1_desc").trim(); }
+        
+        if(multi.getParameter("stay_option2_name") != null) { stay_option2_name = multi.getParameter("stay_option2_name").trim(); }
         if(multi.getParameter("stay_option2_price").length() > 0) {
         	int stay_option2_price = Integer.parseInt(multi.getParameter("stay_option2_price").trim());
         	dto.setStay_option2_price(stay_option2_price);
         }
-        String stay_option2_desc = multi.getParameter("stay_option2_desc").trim();
-        String stay_option3_name = multi.getParameter("stay_option3_name").trim();
+        if(multi.getParameter("stay_option2_desc") != null) { stay_option2_desc = multi.getParameter("stay_option2_desc").trim(); }
+        
+        if(multi.getParameter("stay_option3_name") != null) { stay_option3_name = multi.getParameter("stay_option3_name").trim(); }
         if(multi.getParameter("stay_option3_price").length() > 0) {
         	int stay_option3_price = Integer.parseInt(multi.getParameter("stay_option3_price").trim());
         	dto.setStay_option3_price(stay_option3_price);
         }
+        if(multi.getParameter("stay_option3_desc") != null) { stay_option3_desc = multi.getParameter("stay_option3_desc").trim(); }
         
-        String stay_option3_desc = multi.getParameter("stay_option3_desc").trim();
-        String stay_content1 = multi.getParameter("stay_content1").trim();
-        String stay_content2 = multi.getParameter("stay_content2").trim();
-        String stay_content3 = multi.getParameter("stay_content3").trim();
-        String stay_info1 = multi.getParameter("stay_info1").trim();
-        String stay_info2 = multi.getParameter("stay_info2").trim();
-        String stay_info3 = multi.getParameter("stay_info3").trim();
+        if(multi.getParameter("stay_content1") != null) { stay_content1 = multi.getParameter("stay_content1").trim(); }
+        if(multi.getParameter("stay_content2") != null) { stay_content2 = multi.getParameter("stay_content2").trim(); }
+        if(multi.getParameter("stay_content3") != null) { stay_content3 = multi.getParameter("stay_content3").trim(); }
+        if(multi.getParameter("stay_info1") != null) { stay_info1 = multi.getParameter("stay_info1").trim(); }
+        if(multi.getParameter("stay_info2") != null) { stay_info2 = multi.getParameter("stay_info2").trim(); }
+        if(multi.getParameter("stay_info3") != null) { stay_info3 = multi.getParameter("stay_info3").trim(); }
                 
         dto.setStay_type(stay_type);
         dto.setStay_name(stay_name);
@@ -98,8 +116,7 @@ public class AdminStayWriteOkAction implements Action {
         dto.setStay_option2_name(stay_option2_name);
         dto.setStay_option2_desc(stay_option2_desc);
         dto.setStay_option3_name(stay_option3_name);
-        dto.setStay_option3_desc(stay_option3_desc);
-        	    
+        dto.setStay_option3_desc(stay_option3_desc);        	  
 
         // 순서 지정 문제 해결 위함
 	    Map<String, Object> map = new HashMap<String, Object>();	    
@@ -138,12 +155,13 @@ public class AdminStayWriteOkAction implements Action {
 		dto.setStay_option3_photo(map.get("stay_option3_photo").toString());
 
 		int nameCheck = dao.noDuplicateName(stay_name);
-        int res = dao.registerStay(dto);
         
         // 숙소 이름 중복 방지 
         if(nameCheck > 0) {
             out.println("<script>alert('중복된 이름이 있습니다. 숙소 등록을 실패하였습니다.'); history.back(); </script>");
         }else {
+        	// 숙소 등록 메서드 실행
+        	int res = dao.registerStay(dto);
         	if (res > 0) {
         		session.setAttribute("msg", "<script> alert('성공적으로 등록되었습니다.'); </script>)");
         		forward.setRedirect(true);
