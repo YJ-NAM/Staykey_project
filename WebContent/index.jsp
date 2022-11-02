@@ -571,8 +571,8 @@ ${ login_msg }
             <div class="thumblist">
                 <div class="row">
                     <a href="#" class="thumbbox thumb-0">
-                        <img src="//images.stayfolio.com/system/pictures/images/000/148/108/original/8765c6e673f7a6bc68bbde57276322bc3b7651b6.jpg?1665987235" />
-                        <span class="tag">태국</span>
+                        <img src="//images.stayfolio.com/system/pictures/images/000/088/744/original/0d06c72c85e6c5dc648b0a8c4b35282a79af4ecc.jpg?1629255695" />
+                        <span class="tag">빔 프로젝터</span>
                     </a>
 
                     <a href="#" class="thumbbox thumb-1">
