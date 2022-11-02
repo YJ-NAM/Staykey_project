@@ -46,7 +46,7 @@
     <div class="row">
         <div class="col-auto">
             <label for="ps_people">인원</label>
-            <button type="button" class="ss-button" id="ps_people">선택하세요</button>
+            <button type="button" class="ss-button" id="ps_people" value="${ map.ps_people }" >선택하세요</button>
 
             <div id="selectNumber" class="layer-select">
                 <button type="button" class="btn-close"></button>
@@ -93,7 +93,7 @@
 
         <div class="col-auto">
             <label for="ps_price">가격범위</label>
-            <button type="button" class="ss-button" id="ps_price">전체</button>
+            <button type="button" class="ss-button" id="ps_price" value="${ map.ps_price }">전체</button>
 
             <div id="selectPrice" class="layer-select">
                 <button type="button" class="btn-close"></button>
@@ -116,7 +116,7 @@
 
         <div class="col-auto">
             <label for="ps_type">스테이 유형</label>
-            <button type="button" class="ss-button" id="ps_type">전체</button>
+            <button type="button" class="ss-button" id="ps_type" value=${ map.ps_type }>전체</button>
 
             <div id="selectType" class="layer-select">
                 <button type="button" class="btn-close">닫기</button>
