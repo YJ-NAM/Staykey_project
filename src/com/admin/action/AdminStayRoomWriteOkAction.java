@@ -38,8 +38,7 @@ public class AdminStayRoomWriteOkAction implements Action {
         }
 
         // 파일 업로드 객체 생성
-        MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8",
-                new DefaultFileRenamePolicy());
+        MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 
         String features_sum = "";
         String amenities_sum = "";
@@ -133,18 +132,24 @@ public class AdminStayRoomWriteOkAction implements Action {
 		dto.setRoom_photo5(map.get("room5").toString());
 
         StayDAO dao = StayDAO.getInstance();
+        ActionForward forward = new ActionForward();
+        PrintWriter out = response.getWriter();
         
         // res[0] = result, res[1] = count
         int[] res = dao.registerStayRoom(dto);
         
-        ActionForward forward = new ActionForward();
-        PrintWriter out = response.getWriter();
-
-        if (res[0] > 0) {
-        	out.println("<script>alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.href='stayView.do?stay_no="+stay_stayNo+"'; window.close();</script>");
-        } else {
-            out.println("<script>alert('Room 등록 중 에러가 발생했습니다.'); history.back();</script>");
-        }
+        // 방 이름 중복 방지
+        int roomCheck = dao.noDuplicateRoomName(room_name, stay_stayNo);
+        
+        if(roomCheck > 0) {
+            out.println("<script>alert('중복된 Room 이름이 있습니다. Room 등록을 실패하였습니다.'); history.back(); </script>");
+        }else {
+            if(res[0] > 0) {
+               out.println("<script>alert('성공적으로 Room이 등록되었습니다.'); opener.parent.location.href='stayView.do?stay_no="+stay_stayNo+"'; window.close();</script>");
+            }else {
+               out.println("<script>alert('Room 등록 중 에러가 발생했습니다.'); history.back();</script>");
+            }
+        }        
         return forward;
     }
 }
