@@ -52,7 +52,7 @@
         <div class="svr-info container">
             <div class="tit">ROOMS</div>
             <div class="txt">${view.stay_desc}</div>
-            <c:if test="${list.size() > 1}">
+            <c:if test="${list.size() > 2}">
             <div class="swiper-button">
                 <button type="button" class="swiper-button-prev"><i class="fa fa-angle-left"></i></button>
                 <button type="button" class="swiper-button-next"><i class="fa fa-angle-right"></i></button>
@@ -61,7 +61,7 @@
         </div>
 
 
-        <div class="svr-list">
+        <div class="svr-list<c:if test="${list.size() <= 2}"> nomore</c:if>">
             <ul class="swiper-wrapper">
                 <c:choose>
                 <c:when test="${!empty list}">
@@ -97,7 +97,7 @@
         </div>
     </div>
 
-    <c:if test="${list.size() > 1}">
+    <c:if test="${list.size() > 2}">
     <script type="text/javascript">
     var stayviewRoomSwiper = new Swiper(".stay-view .sv-room .svr-list", {
         effect: "slide",
@@ -142,7 +142,20 @@
 
             <!-- 내용 컨텐츠 3 (구글맵) //start -->
             <c:if test="${!empty view.stay_content3}">
-            <div class="fdetail_map">${view.stay_content3}</div>
+            <div class="fdetail_map">
+                <div class="map_tit">
+                    <div class="title">
+                        <p>HELLO.</p>
+                        <p>제주스테이<br />비우다</p>
+                    </div>
+                    <div class="desc">
+                        <p>제주특별자치도 서귀포시 색달중앙로121번길 45</p>
+                        <p>064-739-5003</p>
+                        <p>saida600@naver.com</p>
+                    </div>
+                </div>
+                ${view.stay_content3}
+            </div>
             </c:if>
             <!-- 내용 컨텐츠 3 (구글맵) //end -->
         </div>

@@ -11,6 +11,20 @@
 
 
 /////////////////////////////////////////////////////
+// 마이페이지 메뉴
+/////////////////////////////////////////////////////
+$(function(){
+    $(".header .h-wrap .menu-etc .mypage-link, .header .h-wrap .menu-etc .mypage-menu").hover(function(){
+        $(".header .h-wrap .menu-etc .mypage-menu").addClass("open");
+    }, function(){
+        $(".header .h-wrap .menu-etc .mypage-menu").removeClass("open");
+    });
+});
+
+
+
+
+/////////////////////////////////////////////////////
 // 팝업창 띄우기
 /////////////////////////////////////////////////////
 popWindow = function(ps_url, ps_width, ps_height){

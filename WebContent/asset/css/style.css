@@ -432,6 +432,57 @@ legend {
 }
 
 
+.header .h-wrap .menu-etc .mypage-menu {
+    position: absolute;
+    top: 75px;
+    margin-left: -30px;
+    width: 125px;
+    background: #fff;
+    padding: 7px 15px;
+    border: 1px solid #e6e6e6;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    -ms-transition: all .2s;
+    transition: all .2s;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 10%);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 2;
+}
+.header .h-wrap .menu-etc .mypage-menu.open {
+    top: 65px;
+    visibility: visible;
+    opacity: 1;
+}
+.header .h-wrap .menu-etc .mypage-menu:after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: calc(50% - 8px);
+    width: 16px;
+    height: 10px;
+    background: url('../images/menu_arrow.png') no-repeat 50%;
+    background-size: cover;
+}
+.header .h-wrap .menu-etc .mypage-menu li {}
+.header .h-wrap .menu-etc .mypage-menu li a {
+    font-size: 14px;
+    font-family: 'Noto Sans KR'; 
+    color: #999;
+    letter-spacing: -0.5px;
+    line-height: 40px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    opacity: 1;
+}
+.header .h-wrap .menu-etc .mypage-menu li a:hover {
+    color: var(--color);
+}
+
+
+
 @media (min-width: 1025px) and (max-width: 1680px) {
     .header .h-wrap {
         padding: 0 var(--xpadding2);

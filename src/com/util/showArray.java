@@ -53,7 +53,7 @@ public class showArray {
             listArr.add("공용 화장실");
             listArr.add("자전거 렌탈");
             listArr.add("락커");
-            listArr.add("빅테이블");
+            listArr.add("픽업");
             listArr.add("캠핑테이블체어");
 
         }else if(type.equals("roomAmeni")){
@@ -77,6 +77,7 @@ public class showArray {
             listArr.add("컨디셔너");
             listArr.add("바디로션");
             listArr.add("바디워시");
+            listArr.add("핸드워시");
             listArr.add("샤워가운");
             listArr.add("빗");
             listArr.add("타월");
@@ -93,6 +94,7 @@ public class showArray {
             listArr.add("조리도구");
             listArr.add("조미료");
             listArr.add("정수기");
+            listArr.add("생수");
 
         }else if(type.equals("roomService")){
             listArr.add("현금영수증");

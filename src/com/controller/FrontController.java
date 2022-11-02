@@ -24,7 +24,7 @@ public class FrontController extends HttpServlet {
 
         String uri = request.getRequestURI();
         String command = uri.replace(request.getContextPath()+"/", "");
-         System.out.println("* Now >>> " + command);
+        System.out.println("* NowPage >>> " + command);
 
 
         Action action = null;
@@ -38,7 +38,6 @@ public class FrontController extends HttpServlet {
 
 
         String value = pro.getProperty(command);
-
 
         if(value.substring(0,7).equals("execute")){
             StringTokenizer st = new StringTokenizer(value, "|");

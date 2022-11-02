@@ -365,6 +365,32 @@ public class StayDAO {
         return dto;
     } // getStayView() 종료
 
+    
+    /////////////////////////////////////////////////////////////
+    // 숙소 등록 메서드 + 숙소 번호 지정
+    /////////////////////////////////////////////////////////////
+    public int noDuplicateName(String stay_name) {
+    	
+        int result = 0;
+        openConn();
+
+    	sql = "select stay_no from staykey_stay where stay_name = ?";
+        try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, stay_name);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+        return result;
+    } // noDuplicateName() 종료
+    
     /////////////////////////////////////////////////////////////
     // 숙소 등록 메서드 + 숙소 번호 지정
     /////////////////////////////////////////////////////////////
