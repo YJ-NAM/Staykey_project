@@ -35,6 +35,7 @@ public class SiteStayListAction implements Action {
         String ps_location_sub = "";
         String ps_phone = "";
         String ps_order = "";
+        String ps_type = "";
 
         if(request.getParameterValues("ps_type") != null) { 
             // ps_type value로 all이 넘어올 때, all 지정
