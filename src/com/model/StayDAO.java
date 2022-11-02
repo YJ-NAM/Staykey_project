@@ -459,10 +459,6 @@ public class StayDAO {
             pstmt.setString(31, dto.getStay_option3_photo());
             pstmt.setInt(32, dto.getStay_hit());            
             pstmt.setInt(33, dto.getStay_reserv());
-            pstmt.setInt(34, dto.getStay_room_price_min());
-            pstmt.setInt(35, dto.getStay_room_price_max());
-            pstmt.setInt(36, dto.getStay_room_people_min());
-            pstmt.setInt(37, dto.getStay_room_people_max());
 
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
