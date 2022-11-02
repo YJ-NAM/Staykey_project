@@ -26,11 +26,14 @@ public class AdminStayWriteOkAction implements Action {
 		// 숙소 등록하기
 		
 		StayDTO dto = new StayDTO();
+		StayDAO dao = StayDAO.getInstance();
+        ActionForward forward = new ActionForward();
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
 	
         // 파일 업로드 설정
         String thisFolder = "/data/stay/";
         String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
-        System.out.println(saveFolder);
         int fileSize = 25 * 1024 * 1024; // 25MB
         
         // 업로드 폴더 체크 후 없으면 생성
@@ -45,7 +48,7 @@ public class AdminStayWriteOkAction implements Action {
         // 파라미터 정리
         // stay_option1~3_price if문... => NumberFormatException 처리 위함
         String stay_type = multi.getParameter("stay_type");
-        String stay_name = multi.getParameter("stay_name").trim();
+        String stay_name = multi.getParameter("stay_name").trim();        
         String stay_desc = multi.getParameter("stay_desc").trim();
         String stay_location = multi.getParameter("stay_location").trim();
         String stay_addr = multi.getParameter("stay_addr").trim();
@@ -134,19 +137,20 @@ public class AdminStayWriteOkAction implements Action {
 		dto.setStay_option2_photo(map.get("stay_option2_photo").toString());
 		dto.setStay_option3_photo(map.get("stay_option3_photo").toString());
 
-        StayDAO dao = StayDAO.getInstance();
+		int nameCheck = dao.noDuplicateName(stay_name);
         int res = dao.registerStay(dto);
-
-        ActionForward forward = new ActionForward();
-        PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
-
-        if (res > 0) {
-        	session.setAttribute("msg", "<script> alert('성공적으로 등록되었습니다.'); </script>)");
-            forward.setRedirect(true);
-            forward.setPath("stayList.do");
-        } else {
-            out.println("<script> alert('숙소 등록 중 에러가 발생했습니다.'); history.back(); </script>");
+        
+        // 숙소 이름 중복 방지 
+        if(nameCheck > 0) {
+            out.println("<script>alert('중복된 이름이 있습니다. 숙소 등록을 실패하였습니다.'); history.back(); </script>");
+        }else {
+        	if (res > 0) {
+        		session.setAttribute("msg", "<script> alert('성공적으로 등록되었습니다.'); </script>)");
+        		forward.setRedirect(true);
+        		forward.setPath("stayList.do");
+        	} else {
+        		out.println("<script> alert('숙소 등록 중 에러가 발생했습니다.'); history.back(); </script>");
+        	}
         }
         return forward;
 	}
