@@ -53,10 +53,10 @@ function changeVal(data) {
     <div class="row">
         <div class="col-auto">
             <label for="ps_people">인원</label>
-            <c:if test="${ !empty map.ps_people_adult || !empty map.ps_people_kid || !empty  map.ps_people_baby }">
+            <c:if test="${ !empty map.ps_people_adult || !empty map.ps_people_kid || !empty map.ps_people_baby }">
             <button type="button" class="ss-button" id="ps_people" >${ map.ps_people_adult + map.ps_people_kid + map.ps_people_baby }</button>
 			</c:if>
-			<c:if test="${ empty map.ps_people_adult && empty map.ps_people_kid && empty  map.ps_people_baby }">
+			<c:if test="${ empty map.ps_people_adult && empty map.ps_people_kid && empty map.ps_people_baby }">
             <button type="button" class="ss-button" id="ps_people" >선택하세요</button>
 			</c:if>
             <div id="selectNumber" class="layer-select">
@@ -146,7 +146,8 @@ function changeVal(data) {
 
         <div class="col-auto">
             <label for="ps_type">스테이 유형</label>
-            <button type="button" class="ss-button" id="ps_type" value=${ map.ps_type }>전체</button>
+            
+            <button type="button" class="ss-button" id="ps_type" value="${ map.ps_type }">전체</button>
 
             <div id="selectType" class="layer-select">
                 <button type="button" class="btn-close">닫기</button>
