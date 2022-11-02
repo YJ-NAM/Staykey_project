@@ -28,17 +28,17 @@
     <div class="row">
         <div class="col-auto">
             <label for="ps_stay">여행지/숙소</label>
-            <input type="text" name="ps_stay" id="ps_stay" value="" class="ss-input" />
+            <input type="text" name="ps_stay" id="ps_stay" value="${ map.ps_stay }" class="ss-input" />
         </div>
         <div class="col-auto">
             <label for="ps_start">체크인</label>
             <button type="button" class="ss-button" id="ps_start">선택하세요</button>
-            <input type="hidden" name="ps_start" value="" />
+            <input type="hidden" name="ps_start" value="${ map.ps_start }" />
         </div>
         <div class="col-auto">
             <label for="ps_end">체크아웃</label>
             <button type="button" class="ss-button" id="ps_end">선택하세요</button>
-            <input type="hidden" name="ps_end" value="" />
+            <input type="hidden" name="ps_end" value="${ map.ps_end }" />
         </div>
         <a href="<%=request.getContextPath()%>/stayList.do" class="ss-reset"><i class="fa fa-refresh"></i></a>
     </div>
@@ -171,11 +171,13 @@
                 <div class="clear"></div>
                 <div class="slw-info">
                     <p class="address">${list.stay_location}</p>
-                    <p class="people">기준 ${list.stay_room_people_min}명 (최대 ${list.stay_room_people_max}명)</p>
+                    <c:if test="${list.stay_room_people_min > 0}"><p class="people">기준 ${list.stay_room_people_min}명 (최대 ${list.stay_room_people_max}명)</p></c:if>
+                    <c:if test="${list.stay_room_price_min > 0}">
                     <p class="price">
                         <fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.stay_room_price_min}" type="currency" /> ~ 
                         <c:if test="${list.stay_room_price_min != list.stay_room_price_max}"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.stay_room_price_max}" type="currency" /></c:if>
                     </p>
+                    </c:if>
                     <p class="reserv">예약하기</p>
                 </div>
                 <c:choose>
