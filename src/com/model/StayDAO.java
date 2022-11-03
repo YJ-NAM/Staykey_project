@@ -313,27 +313,25 @@ public class StayDAO {
 		}
 				
 		// ps_people : 인원
-		if((int)map.get("ps_people_adult") > 0) {
-			int ps_people_num = (int)map.get("ps_people_adult");
+		if((int)map.get("ps_people_adult") > 0 || (int)map.get("ps_people_kid") > 0 || (int)map.get("ps_people_baby") > 0) {
+			int ps_people_num = (int)map.get("ps_people_adult") + (int)map.get("ps_people_kid") + (int)map.get("ps_people_baby");
 			System.out.println(ps_people_num);
-			search_sql2 += " and stay_room_people_min <= "+ps_people_num;
-		}
-        
-		////////////////////////////////////////////////////////////////////////////////////
-		////////////////////////////////////////////////////////////////////////////////////
-		// ps_price_min / ps_price_max : 가격
-		if((int)map.get("ps_price_min") > 0) {
-			int ps_price_min = (int)map.get("ps_price_min");
-			search_sql2 += " and "+ps_price_min+" <= stay_room_price_min";
-		}
-		if((int)map.get("ps_price_max") < 1000000) {
-			int ps_price_max = (int)map.get("ps_price_max");
-			search_sql2 += " and stay_room_price_max <="+ps_price_max;
+			search_sql2 += " and "+ps_people_num+" between stay_room_people_min and stay_room_people_max";
 		}
 		
+		// ps_price_min / ps_price_max : 가격
+		if((int)map.get("ps_price_min") > 0) {
+			int ps_price_min = (int)map.get("ps_price_min") * 10000;
+			search_sql2 += " and "+ps_price_min+" <= stay_room_price_min";
+		}
+		if((int)map.get("ps_price_max") > 0) {
+			int ps_price_max = (int)map.get("ps_price_max") * 10000;
+			search_sql2 += " and stay_room_price_max <="+ps_price_max;
+		}
+
 		// ps_type
         if(!map.get("ps_type").equals("all")) {
-            search_sql2 += "and (";            
+            search_sql2 += " and (";            
             StringTokenizer tokenizer = new StringTokenizer(map.get("ps_type").toString(), "/");
             while (tokenizer.hasMoreTokens()) {
                 search_sql2 += "stay_type like '%" + tokenizer.nextToken() + "%' or ";
@@ -379,7 +377,6 @@ public class StayDAO {
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
             pstmt.setInt(2, endNo);
-            
             System.out.println("sql > "+sql);
             rs = pstmt.executeQuery();
 
@@ -436,7 +433,7 @@ public class StayDAO {
     } // getStaySiteList() 종료
     
     /////////////////////////////////////////////////////////////
-    // 숙소 전체 data 개수 조회
+    // 숙소 전체 data 개수 조회 / 고객용
     /////////////////////////////////////////////////////////////
     public int getStaySiteTotalCount(Map<String, Object> map) {
         // Map<String, Object> map : 검색용 설정 변수
@@ -451,27 +448,27 @@ public class StayDAO {
 			search_sql += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
 					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%'";
 		}
-		
+				
 		// ps_people : 인원
-		if((int)map.get("ps_people_adult") > 0) {
-			int ps_people_num = (int)map.get("ps_people_adult");
+		if((int)map.get("ps_people_adult") > 0 || (int)map.get("ps_people_kid") > 0 || (int)map.get("ps_people_baby") > 0) {
+			int ps_people_num = (int)map.get("ps_people_adult") + (int)map.get("ps_people_kid") + (int)map.get("ps_people_baby");
 			System.out.println(ps_people_num);
-			search_sql += " and stay_room_people_min <= "+ps_people_num;
+			search_sql += " and "+ps_people_num+" between stay_room_people_min and stay_room_people_max";
 		}
-        
+		
 		// ps_price_min / ps_price_max : 가격
-		if((int)map.get("ps_price_min") > 0) {			
-			int ps_price_min = (int)map.get("ps_price_min");
-			search_sql += " and "+ps_price_min+" <= stay_room_people_min";
+		if((int)map.get("ps_price_min") > 0) {
+			int ps_price_min = (int)map.get("ps_price_min") * 10000;
+			search_sql += " and "+ps_price_min+" <= stay_room_price_min";
 		}
-		if((int)map.get("ps_price_max") < 1000000) {
-			int ps_price_max = (int)map.get("ps_price_max");
+		if((int)map.get("ps_price_max") > 0) {
+			int ps_price_max = (int)map.get("ps_price_max") * 10000;
 			search_sql += " and stay_room_price_max <="+ps_price_max;
 		}
 		
-		// ps_type
+		// ps_type : 스테이 유형
         if(!map.get("ps_type").equals("all")) {
-            search_sql += "and (";            
+            search_sql += " and (";            
             StringTokenizer tokenizer = new StringTokenizer(map.get("ps_type").toString(), "/");
             while (tokenizer.hasMoreTokens()) {
                 search_sql += "stay_type like '%" + tokenizer.nextToken() + "%' or ";

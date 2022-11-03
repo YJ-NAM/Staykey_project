@@ -88,7 +88,6 @@
                         <a href="<%=request.getContextPath()%>/mypageReservList.do" class="mypage-link">MyPage</a>
                         <ul class="mypage-menu">
                             <li><a href="<%=request.getContextPath()%>/mypageReservList.do">예약 정보</a></li>
-                            <li><a href="<%=request.getContextPath()%>/mypagePoint.do">적립금 내역</a></li>
                             <li><a href="<%=request.getContextPath()%>/mypageWish.do">관심 스테이</a></li>
                             <li><a href="<%=request.getContextPath()%>/mypageQnaList.do">1:1 문의</a></li>
                             <li><a href="<%=request.getContextPath()%>/mypageInfo.do">회원정보 수정</a></li>

@@ -23,7 +23,6 @@ create table staykey_reserv(
     reserv_option2_price number(10) default 0,
     reserv_option3_name varchar2(50),
     reserv_option3_price number(10) default 0,
-    reserv_use_point number(10) default 0,
     reserv_total_price number(10) default 0,
     reserv_people_adult number(5) default 0,
     reserv_people_kid number(5) default 0,
@@ -54,7 +53,6 @@ comment on column staykey_reserv.reserv_option2_name is '옵션2 이름';
 comment on column staykey_reserv.reserv_option2_price is '옵션2 가격';
 comment on column staykey_reserv.reserv_option3_name is '옵션3 이름';
 comment on column staykey_reserv.reserv_option3_price is '옵션3 가격';
-comment on column staykey_reserv.reserv_use_point is '사용 적립금';
 comment on column staykey_reserv.reserv_total_price is '최종 결제금액';
 comment on column staykey_reserv.reserv_people_adult is '성인 인원수';
 comment on column staykey_reserv.reserv_people_kid is '아동 인원수';
@@ -63,11 +61,11 @@ comment on column staykey_reserv.reserv_pickup is '픽업 여부 (Y/N)';
 comment on column staykey_reserv.reserv_request is '요청사항';
 comment on column staykey_reserv.reserv_date is '예약 일자';
 
-insert into staykey_reserv values(1, 'reserv', '221031-123456', 1, '테스트숙소1', 1, '테스트방1', 'test', '테스트', '010-1111-1111', 'test@test.com', '2022/10/18 12:00:00', '2022/10/20 12:00:00', 2, 150000, '바베큐 세팅', 20000, null, 0, null, 0, 2000, 168000, 2, 1, 0, 'N', '요청사항입력1
+insert into staykey_reserv values(1, 'reserv', '221031-123456', 1, '테스트숙소1', 1, '테스트방1', 'test', '테스트', '010-1111-1111', 'test@test.com', '2022/10/18 12:00:00', '2022/10/20 12:00:00', 2, 150000, '바베큐 세팅', 20000, null, 0, null, 0, 168000, 2, 1, 0, 'N', '요청사항입력1
 줄바꿈', sysdate);
-insert into staykey_reserv values(2, 'cancel', '221031-654321', 2, '테스트숙소2', 2, '테스트방5', 'test2', '테스트2', '010-2222-2222', 'test2@test.com', '2022/10/30 12:00:00', '2022/10/31 12:00:00', 1, 70000, null, 0, null, 0, null, 0, 0, 70000, 2, 0, 0, 'Y', '요청사항입력2
+insert into staykey_reserv values(2, 'cancel', '221031-654321', 2, '테스트숙소2', 2, '테스트방5', 'test2', '테스트2', '010-2222-2222', 'test2@test.com', '2022/10/30 12:00:00', '2022/10/31 12:00:00', 1, 70000, null, 0, null, 0, null, 0, 70000, 2, 0, 0, 'Y', '요청사항입력2
 줄바꿈', sysdate);
-insert into staykey_reserv values(3, 'reserv', '221031-451236', 3, '테스트숙소1', 3, '테스트방3', 'test', '테스트', '010-1111-1111', 'test@test.com', '2022/11/05 12:00:00', '2022/11/06 12:00:00', 1, 90000, '풍선 이벤트', 50000, null, 0, null, 0, 0, 140000, 2, 0, 0, 'N', '요청사항입력3
+insert into staykey_reserv values(3, 'reserv', '221031-451236', 3, '테스트숙소1', 3, '테스트방3', 'test2', '테스트', '010-1111-1111', 'test@test.com', '2022/11/05 12:00:00', '2022/11/06 12:00:00', 1, 90000, '풍선 이벤트', 50000, null, 0, null, 0, 140000, 2, 0, 0, 'N', '요청사항입력3
 줄바꿈', sysdate);
 
 commit;
