@@ -360,17 +360,16 @@ public class QnaDAO {
                 count = rs.getInt(1) + 1;
             }
             
-            sql = "insert into staykey_qna values(?, ?, ?, ?, ?, ?, default, default, ?, ?, ?, sysdate)";
+            sql = "insert into staykey_qna values(?, default, ?, ?, ?, ?, default, default, ?, ?, ?, sysdate)";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, count);
-            pstmt.setString(2, dto.getBbs_status());
-            pstmt.setString(3, dto.getBbs_title());
-            pstmt.setString(4, dto.getBbs_content());
-            pstmt.setString(5, dto.getBbs_file1());
-            pstmt.setString(6, dto.getBbs_file2());
-            pstmt.setString(7, dto.getBbs_writer_name());
-            pstmt.setString(8, dto.getBbs_writer_id());
-            pstmt.setString(9, dto.getBbs_writer_pw());
+            pstmt.setString(2, dto.getBbs_title());
+            pstmt.setString(3, dto.getBbs_content());
+            pstmt.setString(4, dto.getBbs_file1());
+            pstmt.setString(5, dto.getBbs_file2());
+            pstmt.setString(6, dto.getBbs_writer_name());
+            pstmt.setString(7, dto.getBbs_writer_id());
+            pstmt.setString(8, dto.getBbs_writer_pw());
 
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
