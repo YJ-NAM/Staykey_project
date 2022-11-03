@@ -1287,7 +1287,7 @@ public class StayDAO {
             closeConn(rs, pstmt, con);
         }
         return list;
-    } // getBbsStayList() 종료
+    } 
     
     
 
