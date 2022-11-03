@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.controller.Action;
 import com.controller.ActionForward;
+import com.model.EventDAO;
+import com.model.EventDTO;
+import com.model.MagazineDAO;
+import com.model.MagazineDTO;
 import com.model.StayDAO;
 import com.model.StayDTO;
 
@@ -16,10 +20,15 @@ public class SiteMainAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
     	
-    	StayDAO dao = StayDAO.getInstance();
+    	StayDAO stayDAO = StayDAO.getInstance();
+    	EventDAO eventDAO = EventDAO.getInstance();
+    	MagazineDAO magazineDAO = MagazineDAO.getInstance();
     	
+    	//////////////////////////////////////////////////////////////////////////////////
+    	// stay : 숙소
+    	//////////////////////////////////////////////////////////////////////////////////    	
     	// 배열 total count 생성
-    	int stayTotal = dao.getStayTotalCount();    	
+    	int stayTotal = stayDAO.getStayTotalCount();    	
     	
     	// randomNum 담을 변수 
     	int randomNum = 0;
@@ -28,16 +37,30 @@ public class SiteMainAction implements Action {
     	int[] display = new int[5];
     	
     	// stayNums[] : 숙소 번호 담겨 있음
-    	int[] stayNums = dao.getStayNums(stayTotal);
+    	int[] stayNums = stayDAO.getStayNums(stayTotal);
     	
     	for(int i=0; i<display.length; i++) {    		
     		randomNum = (int)(Math.random()*stayTotal) + 1;
     		display[i] = stayNums[randomNum];
     	}
     	
-    	List<StayDTO> list = dao.getStayforMain(display);
-
+    	List<StayDTO> list = stayDAO.getStayforMain(display);
     	request.setAttribute("stayRandom", list);
+    	
+    	//////////////////////////////////////////////////////////////////////////////////
+    	// event : 이벤트
+    	//////////////////////////////////////////////////////////////////////////////////
+    	
+    	List<EventDTO> eventList = eventDAO.getTotalEvent();
+    	request.setAttribute("eventList", eventList);
+    	
+    	//////////////////////////////////////////////////////////////////////////////////
+    	// magazine : 매거진
+    	//////////////////////////////////////////////////////////////////////////////////    	
+    	
+    	List<MagazineDTO> magazineList = magazineDAO.getTotalMagazine();
+    	request.setAttribute("magazineList", magazineList);    	
+    	
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("main.jsp");
