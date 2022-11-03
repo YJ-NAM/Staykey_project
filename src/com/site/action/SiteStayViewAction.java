@@ -43,6 +43,7 @@ public class SiteStayViewAction implements Action {
         request.setAttribute("wishChk", wishChk);
 
 
+
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("stay/stay_view.jsp");

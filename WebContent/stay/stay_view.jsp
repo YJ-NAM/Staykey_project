@@ -1,3 +1,4 @@
+<%@page import="com.model.WishDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% long time = System.currentTimeMillis(); %>
@@ -26,6 +27,7 @@
         <div class="svt-info">
             <div class="name">${view.stay_name}<small>${view.stay_location}</small></div>
             <div class="desc">${view.stay_desc}</div>
+
             <button type="button" class="wish<c:if test="${wishChk == 'Y'}"> on</c:if>" onclick="stayWish(this, '${view.stay_no}', '${login_id}');"><i class="fa fa-heart<c:if test="${wishChk == 'N'}">-o</c:if>"></i> 찜하기</button>
         </div>
 
