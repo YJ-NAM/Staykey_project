@@ -28,6 +28,7 @@ public class SiteStayViewAction implements Action {
         request.setAttribute("roomList", list);
         request.setAttribute("stayView", dto);
 
+
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("stay/stay_view.jsp");

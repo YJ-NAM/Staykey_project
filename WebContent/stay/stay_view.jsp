@@ -1,3 +1,4 @@
+<%@page import="com.model.WishDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% long time = System.currentTimeMillis(); %>
@@ -26,7 +27,10 @@
         <div class="svt-info">
             <div class="name">${view.stay_name}<small>${view.stay_location}</small></div>
             <div class="desc">${view.stay_desc}</div>
-            <button type="button" class="wish on" onclick="alert('찜하기 Ajax 액션');"><i class="fa fa-heart-o"></i> 찜하기</button>
+            
+           <button type="button" class="wish on" onclick="alert('찜하기 Ajax 액션');"><i class="fa fa-heart-o"></i> 찜하기</button>
+		
+	
         </div>
 
         <div class="svt-photo">
