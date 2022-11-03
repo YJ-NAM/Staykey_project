@@ -1575,6 +1575,10 @@ public class StayDAO {
             closeConn(rs, pstmt, con);
         }
     }
+    
+    
+    
+}
 
 }
 
