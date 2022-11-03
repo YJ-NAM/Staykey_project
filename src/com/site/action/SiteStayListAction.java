@@ -39,8 +39,13 @@ public class SiteStayListAction implements Action {
         int ps_price_max = 100;
         String ps_start = "";
         String ps_end = "";
-        
+        String page_write_type = ""; // 버튼에서 값 뜨게 하기 위한 변수
+               
         if(request.getParameter("ps_stay") != null) { ps_stay = request.getParameter("ps_stay").trim(); }else { ps_stay = ""; }
+        
+        if(request.getParameter("ps_start") != null) { ps_start = request.getParameter("ps_start"); }else { ps_start = ""; }
+        if(request.getParameter("ps_end") != null) { ps_end = request.getParameter("ps_end"); }else { ps_end = ""; }
+        
         if(request.getParameter("ps_people_adult") != null || request.getParameter("ps_people_kid") != null || request.getParameter("ps_people_baby") != null) {
         	if(request.getParameter("ps_people_adult") != null) { ps_people_adult = Integer.parseInt(request.getParameter("ps_people_adult")); }
         	if(request.getParameter("ps_people_kid") != null) { ps_people_kid = Integer.parseInt(request.getParameter("ps_people_kid")); }
@@ -56,7 +61,6 @@ public class SiteStayListAction implements Action {
         	}
         }
         
-        String page_write_type = "";
     	if(request.getParameterValues("ps_type") != null) { 
     		// ps_type value로 all이 넘어올 때, all 지정
 			get_type = request.getParameterValues("ps_type");
@@ -80,6 +84,8 @@ public class SiteStayListAction implements Action {
 
         // 뷰에 전달할 매개변수 추가
         map.put("ps_stay", ps_stay);
+        map.put("ps_start", ps_start);
+        map.put("ps_end", ps_end);
         map.put("ps_people_adult", ps_people_adult);
         map.put("ps_people_kid", ps_people_kid);
         map.put("ps_people_baby", ps_people_baby);
@@ -87,8 +93,6 @@ public class SiteStayListAction implements Action {
         map.put("ps_price_max", ps_price_max);
         map.put("ps_type", ps_type);
         map.put("ps_order", ps_order);
-        map.put("ps_start", ps_start);
-        map.put("ps_end", ps_end);
 
 
         /////////////////////////////////////////////////////////////
