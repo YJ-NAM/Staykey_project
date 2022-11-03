@@ -25,7 +25,7 @@ public class SiteMainAction implements Action {
     	int randomNum = 0;
     	
     	// display : 메인에 표시할 총 개수 
-    	int[] display = new int[10];
+    	int[] display = new int[5];
     	
     	// stayNums[] : 숙소 번호 담겨 있음
     	int[] stayNums = dao.getStayNums(stayTotal);
