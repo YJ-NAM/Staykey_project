@@ -113,7 +113,7 @@ ${ login_msg }
             <ul class="swiper-wrapper">
                 <li class="swiper-slide slider-box">
                     <a href="#">
-                    <img class="img" src="https://images.stayfolio.com/system/pictures/images/000/147/185/original/f7795e07092868f683dc1efd5c38e9707a4958f1.jpg?1665466753;"/>
+                    <img class="img" src="https://images.stayfolio.com/system/pictures/images/000/147/185/original/f7795e07092868f683dc1efd5c38e9707a4958f1.jpg?1665466753"/>
                         <div class="stay-info">
                             <p class="title">의귀소담</p>
                             <p class="event subtitle">의귀리에서 찾은 진짜 제주</p>
@@ -124,7 +124,7 @@ ${ login_msg }
 
                 <li class="swiper-slide slider-box">
                     <a href="#">
-                        <img class="img" src="https:////images.stayfolio.com/system/pictures/images/000/149/625/original/2785159fd7d9d314fd5f5c511278464805166703.jpg?1666753232"/>
+                        <img class="img" src="https://images.stayfolio.com/system/pictures/images/000/150/594/original/8a73d224bc958237bffd1c46686c73efe38ecb04.jpg?1667290587"/>
                         <div class="stay-info">
                             <p class="title">월정느루</p>
                             <p class="event subtitle">천천히, 오랫동안</p>
