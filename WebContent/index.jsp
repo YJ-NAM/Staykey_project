@@ -85,23 +85,17 @@ $(document).ready(function(){
             prevEl: '#magazine-container .fa-chevron-left',
         }
     });
-    var swiper = new Swiper("#subPromo-container", {
-        effect: "fade",
-        slidesPerView: 1,
+    var swiper = new Swiper("#recom-container", {
+        slidesPerView: 3,
         spaceBetween: 0,
         speed: 500,
         loop: true,
         touchEnabled: false,
-        navigation: {
-        pagination: {
-          el: ".swiper-pagination",
-          type: "fraction",
-        },
-          nextEl: "#subPromo-container .fa-chevron-right",
-          prevEl: "#subPromo-container .fa-chevron-left",
-        },
-    });
-
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        }
+      });
       
 });
 
@@ -144,7 +138,7 @@ ${ login_msg }
                         <img class="" src="https://images.prismic.io/stayfolio-production/ba01ba03-2ce1-4cbd-a7c1-2fa65f95ca1c_HOSHINOYA-OPEN-MAIN-BANNER.jpg?auto=compress,format&rect=0,0,1800,850&w=1800&h=850" />
                         <div class="stay-info">
                             <p class="title">호시노야</p>
-                            <p class="event subtitle">바쁜 일상을<br>마법처럼 잊혀지도록</p>
+                            <p class="event subtitle">바쁜 일상이<br>마법처럼 잊혀지도록</p>
                             <p class="more">Read more</p>
                         </div>
                     </a>
@@ -453,7 +447,7 @@ ${ login_msg }
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/149/523/original/135581dedb1c12eb129bef11419240c8d531501c.jpg?1666732643" />
                             <div class="stay-info">
-                                <img src= "https://images.stayfolio.com/system/pictures/images/000/149/899/original/8fb750bcb410cef63d51c191080e24f8c986a18d.png?1666866407" />
+                                <h3 class="title">예이제<br>Yeije</h3>
                                 <p class="text">육지의 섬에서<br>완전한 자유를 얻다</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
@@ -468,7 +462,7 @@ ${ login_msg }
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/145/825/original/723b3074a426daf8b64c5558c5628a9aee3e51fc.jpg?1664501407" />
                             <div class="stay-info">
-                                <img src="https://images.stayfolio.com/system/pictures/images/000/145/798/original/f1c2bb13fb6839fc5d542a15f0ee2cdfec00b07e.jpg?1664500460" />
+                                <h3 class="title">Chill<br>Drive-in</h3>
                                 <p class="text">가능한 한 Chill하게<br>그러나 즐겁게</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
@@ -484,7 +478,7 @@ ${ login_msg }
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/141/787/original/871d151510e15a774bcd84f5637d657c03a94df8.jpg?1663121653" />
                             <div class="stay-info">
-                                <img src="https://images.stayfolio.com/system/pictures/images/000/141/790/original/0c6ebcdfee1a734d55a624abaad3c49a1d1af3da.jpg?1663121694" ></img>
+                                <h3 class="title">Warm<br>than cold<br>Mansion</h3>
                                 <p class="text">한 척의 우주선 혹은<br>비일상의 궤도에 올라</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
@@ -498,7 +492,7 @@ ${ login_msg }
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/140/370/original/a79d65f3efd11ef8f463e31009661c5e5d96e4c4.jpg?1662352893" />
                             <div class="stay-info">
-                                <img src="https://images.stayfolio.com/system/pictures/images/000/135/567/original/ae9601936496ede84b9e6dcbd340b151fbd063b9.jpg?1660612147" />
+                                <h3 class="title">서리애<br>Seorier</h3>
                                 <p class="text">마음에 서리는<br>시간의 기억들</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
@@ -530,7 +524,7 @@ ${ login_msg }
 
                     <li class="stay-box">
                         <a href="#">
-                                <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/149/246/original/adc58deccc741bb51635db278a750413558ce38a.jpg?1666661803)"></div>
+                            <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/149/246/original/adc58deccc741bb51635db278a750413558ce38a.jpg?1666661803)"></div>
                             <div class="text">차분하고 세심한<br>환대를 전하는</div>
                             <div class="other"><span>부산/중구</span></div>
                             <div class="more">Read more</div>
@@ -539,7 +533,7 @@ ${ login_msg }
                     
                     <li class="stay-box">
                         <a href="#">
-                                <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/148/583/original/4c11fe3b141c63b19baaab5ff8f69b7ef96810ee.jpg?1666257238)"></div>
+                            <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/148/583/original/4c11fe3b141c63b19baaab5ff8f69b7ef96810ee.jpg?1666257238)"></div>
                             <div class="text">거닐기 좋은 산길<br>나무와 흙의 냄새</div>
                             <div class="other"><span>강원/강릉</span></div>
                             <div class="more">Read more</div>
@@ -549,8 +543,8 @@ ${ login_msg }
 
                     <li class="stay-box">
                         <a href="#">
-                                <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/148/018/original/14ae80a922f2e590385dd813abb92bbd8cea20e0.jpg?1665772350)"></div>
-                                <div class="text">계절의<br>아름다움이 깃든</div>
+                             <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/148/018/original/14ae80a922f2e590385dd813abb92bbd8cea20e0.jpg?1665772350)"></div>
+                            <div class="text">계절의<br>아름다움이 깃든</div>
                             <div class="other"><span>제주/제주</span></div>
                             <div class="more">Read more</div>
                         </a>
@@ -570,9 +564,11 @@ ${ login_msg }
                     <li class="stay-box">
                         <a href="#">
                             <div class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/147/020/original/37728b0c88d7f0453cc134b9bd9ab72d9ddba6a2.jpg?1665195702)"></div>
-                            <div class="text">육지 끝자락에서 즐기는<br>료칸 무드</div>
-                            <div class="other"><span>경상/남해</span></div>
-                            <div class="more">Read more</div>
+                            <div class="info back">
+                                <div class="text">육지 끝자락에서 즐기는<br>료칸 무드</div>
+                                <div class="other"><span>경상/남해</span></div>
+                                <div class="more">Read more</div>
+                            </div>
                         </a>
                     </li>
                 </ul>
@@ -766,86 +762,6 @@ ${ login_msg }
     </div>
     <!-------- 메인 페이지 홍보 창 // END --------->
 
-    <!-------- 메인 페이지 세컨 프로모션 창 // START --------->
-    <div class="main-subPromo">
-        <div class="container">
-        <!-------- 세컨 프로모션 창 타이틀 --------->
-            <div class="sec-title" id="pro-title">한 해를 배웅하는<br>Stay</div>
-        <!-------- 세컨 프로모션 창 목록 --------->
-            <div class= "subPromo-container swiper-container" id="subPromo-container">
-                    <ul class="swiper-wrapper">
-                        <li class="swiper-slide">
-                            <a href="#">
-                                <img src="//images.stayfolio.com/system/pictures/images/000/075/084/display/a2b6c4c1c352a2ec4bce9ab0438ac5c40fde03d2.jpg?1623027345"/>
-                                <div class="promo-title">
-                                    <p class="text">제주 삼달리의 아름다운 정원</p>
-                                    <p class="small">달리야드</p>
-                                </div>
-                                
-                            </a>
-                        </li>
-
-
-                        <li class="swiper-slide">
-                            <a href="#">
-                                <img src="//images.stayfolio.com/system/pictures/images/000/096/410/original/31042d94154beb7ab807fddbd2b0bbafbb8aaf68.jpg?1633685869"/>
-                                <div class="promo-title">
-                                        <p class="text" >고요한 사색의 공간</p>
-                                        <p class="small">아틴 마루</p>
-                                </div>
-                            </a>
-                        </li>
-
-
-                        <li class="swiper-slide">
-                            <a href="#">
-                                <img src="https://images.stayfolio.com/system/pictures/images/000/112/130/original/8fdac11fac48978d0741d6870ac6c24dd2047c46.jpg?1643351391"/>
-                                <div class="promo-title">
-                                    <p class="text">호근 마을 동산에서 만나는<br>어린 아이</p>
-                                    <p class="small">호근모루</p>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="swiper-slide">
-                            <a href="#">
-                                <img src="https://images.stayfolio.com/system/pictures/images/000/119/773/original/09e945a8bcd6c9aca7dd0ae35651e512c1bbc4c1.jpg?1650804307"/>
-                                <div class="promo-title">
-                                    <p class="text">나를 중심으로<br>돌아가는 우주</p>
-                                    <p class="small">알마게스트</p>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="swiper-slide">
-                            <a href="#">
-                                <img src="https://images.stayfolio.com/system/pictures/images/000/133/108/original/528f06883547e417a7165625197e9c4176e09dc2.jpg?1658905461"/>
-                                <div class="promo-title">
-                                    <p class="text">차가운 공간 속<br>잠재된 배려</p>
-                                    <p class="small">웜댄콜드맨션</p>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="swiper-slide">
-                            <a href="#">
-                                <img src="https://images.stayfolio.com/system/pictures/images/000/116/831/original/55772afd81249d564138d9a0bbc17a10af40b93f.jpg?1648003676"/>
-                                <div class="promo-title">
-                                    <p class="text">자연에서 보내는<br>여유로운 고립</p>
-                                    <p class="small">경주옥</p>
-                                </div>
-                            </a>
-                        </li>
-
-                    </ul>
-                <div class="swiper-pagination"></div>
-                <div class="fa fa-chevron-left"></div>
-                <div class="fa fa-chevron-right"></div>
-                <div class="clear"></div>
-            </div>
-        </div>
-    </div>
-    <!-------- 메인 페이지 세컨 배너 창 // START --------->
 
 </div>
 
