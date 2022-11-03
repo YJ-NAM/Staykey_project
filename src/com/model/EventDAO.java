@@ -440,5 +440,30 @@ public class EventDAO {
 		}
 		return list;
 	} // getTotalEvent() 종료
+	
+	// ======================================================
+	// 이벤트 번호에 해당하는 숙소번호 가져오기
+	// ======================================================
+	public String getEventStayNums(int bbs_no) {
+		String eventNums = "";
+		
+		try {
+			openConn();
+			sql = "select bbs_stayno from staykey_event where bbs_no = ?";			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bbs_no);
+			rs = pstmt.executeQuery();			
+			if(rs.next()) {
+				eventNums = rs.getString("bbs_stayno");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+		return eventNums;
+	} // getEventStayNums() 종료
+
 
 }
