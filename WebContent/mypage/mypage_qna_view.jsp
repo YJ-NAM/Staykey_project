@@ -136,8 +136,8 @@
 
 	                        <c:if test="${dto.bbs_status == 'send'}">
 	                           	<td class="text-center">
-	                    			<a href="<%=request.getContextPath()%>/mypageQnaDelete.do?no=${qdto.comment_no}&qna_no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-	                    			<a href="<%=request.getContextPath()%>/mypageQnaModify.do?no=${qdto.comment_no}&qna_no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1">수정</a>
+	                    			<a href="<%=request.getContextPath()%>/mypageQnaDeleteOk.do?comment_no=${qdto.comment_no}&qna_no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+	                    			<a href="<%=request.getContextPath()%>/mypageQnaModify.do?comment_no=${qdto.comment_no}&qna_no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1">수정</a>
 	                			</td>
 							</c:if>	 
                             </tr>
