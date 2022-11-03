@@ -3,12 +3,136 @@
 /************************/
 
 /* 이벤트 목록 */
-.event-list {}
+.main-event{
 
+}
 
+.more {
 
+}
 
+.event-visual {
+    margin: 0 auto;
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+}
 
+.event-visual .img {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+}
 
+.event-visual .house-info {
+    background-color: #fefefe;
+    width: 320px;
+    height: 300px;
+}
 
+.event-visual .text {
+
+}
+
+.event-visual .event {
+
+}
+
+.event-visual .more {
+
+}
+
+.promo-box {
+
+}
+
+.promo-box .sec-title {
+
+}
+
+.promo-box .promo-list {
+
+}
+
+.promo-box .promo-list .swiper-wrapper {
+
+}
+
+.promo-box .promo-list .swiper-slide {
+
+}
+
+.promo-box .promo-list img {
+
+}
+
+.promo-box .promo-list .e-date{
+
+}
+
+.promo-box .promo-list .info {
+
+}
+
+.promo-box .promo-list .small-title {
+
+}
+
+.promo-box .promo-list .title {
+
+}
+
+.promo-box .promo-list .text {
+
+}
+
+.promo-box .promo-list .more {
+
+}
+
+.event-box {
+
+}
+
+.event-box .sec-title {
+
+}
+
+.event-box .swiper-container {
+
+}
+
+.event-box .swiper-wrapper {
+
+}
+
+.event-box .swiper-slide {
+
+}
+
+.event-box a {
+
+}
+
+.event-box .e-date {
+
+}
+
+.event-box .name {
+
+}
+
+.event-box .swiper-slide span {
+
+}
+
+.event-box .text {
+
+}
+
+.event-box .swiper-slide .more {
+
+}
 

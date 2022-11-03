@@ -66,7 +66,7 @@
                     <div class= "journal-info">
                         <p class="number">Chapter 4</p>
                         <p class="name">마음에 서리는<br>시간의 기억들</p>
-                        <p class="text">서리애</p>
+                        <p class="text">서리어</p>
                         <p class="more">Read more</p>
                     </div>
                 </a>

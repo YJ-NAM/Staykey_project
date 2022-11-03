@@ -112,8 +112,7 @@ ${ login_msg }
         <div id="main-visual" class="main-visual">
             <ul class="swiper-wrapper">
                 <li class="swiper-slide slider-box">
-                    <a href="#">
-                    <img class="img" src="https://images.stayfolio.com/system/pictures/images/000/147/185/original/f7795e07092868f683dc1efd5c38e9707a4958f1.jpg?1665466753"/>
+                    <a href="#" class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/147/185/original/f7795e07092868f683dc1efd5c38e9707a4958f1.jpg?1665466753)">
                         <div class="stay-info">
                             <p class="title">의귀소담</p>
                             <p class="event subtitle">의귀리에서 찾은 진짜 제주</p>
@@ -123,8 +122,7 @@ ${ login_msg }
                 </li>
 
                 <li class="swiper-slide slider-box">
-                    <a href="#">
-                        <img class="img" src="https://images.stayfolio.com/system/pictures/images/000/150/594/original/8a73d224bc958237bffd1c46686c73efe38ecb04.jpg?1667290587"/>
+                    <a href="#" class="img" style="background-image:url(https://images.stayfolio.com/system/pictures/images/000/150/594/original/8a73d224bc958237bffd1c46686c73efe38ecb04.jpg?1667290587)">
                         <div class="stay-info">
                             <p class="title">월정느루</p>
                             <p class="event subtitle">천천히, 오랫동안</p>
@@ -134,8 +132,7 @@ ${ login_msg }
                 </li>
 
                 <li class="swiper-slide slider-box">
-                    <a href="#">
-                        <img class="" src="https://images.prismic.io/stayfolio-production/ba01ba03-2ce1-4cbd-a7c1-2fa65f95ca1c_HOSHINOYA-OPEN-MAIN-BANNER.jpg?auto=compress,format&rect=0,0,1800,850&w=1800&h=850" />
+                    <a href="#" class="img" style="background-image:url(https://images.prismic.io/stayfolio-production/ba01ba03-2ce1-4cbd-a7c1-2fa65f95ca1c_HOSHINOYA-OPEN-MAIN-BANNER.jpg?auto=compress,format&rect=0,0,1800,850&w=1800&h=850)">
                         <div class="stay-info">
                             <p class="title">호시노야</p>
                             <p class="event subtitle">바쁜 일상이<br>마법처럼 잊혀지도록</p>
@@ -145,8 +142,7 @@ ${ login_msg }
                 </li>
 
                 <li class="swiper-slide slider-box">
-                    <a href="#">
-                        <img class="" src="https://images.prismic.io/stayfolio-production/b5310af4-cfb3-4211-859f-37629cf5c0ab_1.jpg" />
+                    <a href="#" class="img" style="background-image:url(https://images.prismic.io/stayfolio-production/b5310af4-cfb3-4211-859f-37629cf5c0ab_1.jpg)">
                         <div class="stay-info">
                             <p class="title">정향</p>
                             <p class="event subtitle">올바른 쉼을 위한 곳</p>
@@ -492,7 +488,7 @@ ${ login_msg }
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/140/370/original/a79d65f3efd11ef8f463e31009661c5e5d96e4c4.jpg?1662352893" />
                             <div class="stay-info">
-                                <h3 class="title">서리애<br>Seorier</h3>
+                                <h3 class="title">서리<br>Seorier</h3>
                                 <p class="text">마음에 서리는<br>시간의 기억들</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
