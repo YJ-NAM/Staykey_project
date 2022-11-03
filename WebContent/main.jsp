@@ -8,7 +8,7 @@
 <c:set var="stay" value="${ stayRandom }"/>
 <c:set var="event" value="${ eventList }"/>
 <c:set var="magazine" value="${ magazineList }"/>
-
+<c:set var="stayName" value="${ stayName }"/>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -152,7 +152,14 @@ ${ login_msg }
             <div class="swiper-wrapper">
                 <div class="swiper-slide stay-box">
                   <c:forEach items="${ stay }" var="list">                
-                        <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${list.stay_file2}');">
+	                    <c:choose>
+	                	<c:when test="${ !empty list.stay_file2}">
+	                    <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${list.stay_file2}');">
+	                    </c:when>
+	                    <c:when test="${ !empty list.stay_file3}">
+	                    <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${list.stay_file3}');">
+	                    </c:when>
+	                    </c:choose>
                             <div class="title">${ list.stay_name }</div>
                             <div class="subtitle">
                                 <span>${ list.stay_location }</span>
@@ -194,7 +201,7 @@ ${ login_msg }
                             <a href="#">
                                 <div class="promo-title">
                                     <p class="text">${ event.bbs_title }</p>
-                                    <p class="small">고민중</p>
+                                    <p class="small">${ stayName }</p>
                                 </div>
                                 <div class="e_date"></div>
                                 <img src="http://images.stayfolio.com/system/pictures/images/000/148/148/original/e8525a7fc7d249af9de4b7d775c31ed19f68cbff.jpg?1665989518"/>

@@ -52,7 +52,41 @@ public class SiteMainAction implements Action {
     	//////////////////////////////////////////////////////////////////////////////////
     	
     	List<EventDTO> eventList = eventDAO.getTotalEvent();
+    	
+    	// 이벤트 번호에 따른 숙소 이름 조회
+    	int bbs_no = 0;
+    	String eventStayNums = "";
+    	String[] eventNums = null;
+    	String[] stayName = null;
+    	int[] stayIntName = null;
+    	
+    	// 모든 이벤트의 bbs_no(이벤트 번호)에 해당하는 숙소 번호값 추출
+    	for(int i=0; i<eventList.size(); i++) {    		
+    		bbs_no = eventList.get(i).getBbs_no();
+    		eventStayNums = eventDAO.getEventStayNums(bbs_no);
+    	}
+    	
+    	// 숙소 번호 split해서 해당하는 값 int로 형변환 후 getStayView 메서드 실행
+    	// getStay_name으로 숙소명 추출 -> list에 해당하는 모든 값 add
+    	eventNums = eventStayNums.split("/");
+    	stayName = new String[eventNums.length];
+    	System.out.println();
+    	for(int i=0; i<eventNums.length; i++) {
+    		System.out.println(eventNums[i]);
+    		stayIntName[i] = Integer.parseInt(eventNums[i]);
+    		System.out.println(stayIntName[i]);
+			/*
+			 * stayName[i] =
+			 * stayDAO.getStayView(Integer.parseInt(eventNums[i])).getStay_name();
+			 * System.out.println("현록이변심"+stayName[i]);
+			 */
+    	}
+    	
+    	
+    	
+    	request.setAttribute("stayName", stayName);
     	request.setAttribute("eventList", eventList);
+    
     	
     	//////////////////////////////////////////////////////////////////////////////////
     	// magazine : 매거진
