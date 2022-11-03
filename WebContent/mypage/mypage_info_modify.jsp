@@ -9,7 +9,7 @@
 
 <script type="text/javascript">$("#mymenu-info").addClass("now");  
 
- function join_check() {
+ function same_check() {
 	 
     var form = document.write_form;
 
@@ -24,6 +24,8 @@
     
     };
     
+    
+    
 </script>
     
 
@@ -34,8 +36,9 @@
 		<div class="container member-form">
 	    
 	        
-	    <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/mypageInfoOk.do" onsubmit="return join_check();">
+	    <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/mypageInfoOk.do" onsubmit="return same_check();">
            <input type="hidden" name="member_id" value="${dto.member_id}" />
+           <input type="hidden" name="mypage_pw_old" value="${dto.member_pw}" />
 			
 
             프로필 사진
@@ -107,8 +110,10 @@
                 
                <div>
                 <label for="mypage_pw">비밀번호</label>
-                <br>
-                <input type="password" name="mypage_pw" id="mypage_pw" placeholder="비밀번호를 입력하세요." required autofocus />
+ 
+				                
+				<br>
+                <input type="password" name="mypage_pw" id="mypage_pw" placeholder="변경할 비밀번호" required autofocus />
                 <ul class="checked">
                     <li>영문</li>
                     <li>숫자</li>
@@ -118,17 +123,20 @@
             </div>
 
             <div>
-                <input type="password" name="mypage_pw_re" placeholder="비밀번호를 확인해 주세요." required autofocus />
+                <input type="password" name="mypage_pw_re" placeholder="변경할 비밀번호 확인" required autofocus />
                 <p class="error">비밀번호가 일치하지 않습니다.</p>
             </div>
-            <br>           
-                
-        
-        
-	
+            <br>      
+            
+            
+            <label for="check_marketing">
+            	<input type="checkbox" id="check_marketing"><span>마케팅 정보 수신 동의 (선택)</span></label>     
+       				<br>         
+       
+	       				<br> 
 	    <div class="mf-btn">
 	        <button type="submit" class="btn_bk"> 저장하기 </button>
-	                        
+	               
            	<a href="<%=request.getContextPath()%>/memberLogout.do" class="btn_wh" 
            	onClick="return confirm('로그아웃 하시겠습니까?');"> &nbsp; 로그아웃 &nbsp; </a>
         </div>
