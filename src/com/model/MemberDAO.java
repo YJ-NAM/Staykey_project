@@ -495,6 +495,38 @@ public class MemberDAO {
         return count;
     }
 
+    
+    
+    // ======================================================
+    // 회원정보를 업데이트 하는 메서드 (site에서)
+    // ======================================================
+    public int membersiteModify(MemberDTO dto) {
+        int result = 0;
+
+        try {
+            openConn();
+            sql = "update staykey_member set member_type = default, member_pw = ?, member_name = ?, member_email = ?, member_phone = ?, member_photo = ? where member_id = ?";
+            pstmt = con.prepareStatement(sql);
+
+            pstmt.setString(1, dto.getMember_pw());
+            pstmt.setString(2, dto.getMember_name());
+            pstmt.setString(3, dto.getMember_email());
+            pstmt.setString(4, dto.getMember_phone());
+            pstmt.setString(5, dto.getMember_photo());
+            pstmt.setString(6, dto.getMember_id());
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(pstmt, con);
+        }
+        return result;
+    }
+    
+
+
 
 
     // ======================================================

@@ -7,25 +7,45 @@
 
 <c:set var="dto" value="${member}" />
 
-<script type="text/javascript">$("#mymenu-info").addClass("now");</script>
+<script type="text/javascript">$("#mymenu-info").addClass("now");  
 
+ function join_check() {
+	 
+    var form = document.write_form;
+
+    if(form.mypage_pw.value.length > 0 && form.mypage_pw_re.value.length > 0){
+        if(form.mypage_pw.value != form.mypage_pw_re.value){
+            alert("[비밀번호]가 일치하지 않습니다.");
+            form.mypage_pw.focus();
+            return false;
+        }
+        
+    }
+    
+    };
+    
+</script>
+    
 
 <h3>회원 정보 수정</h3>
 <br>
 
 
 		<div class="container member-form">
-
-    <form name="write_form" method="post" action="<%=request.getContextPath() %>/mypageInfoOk.do" 
-    onsubmit="return join_check();">
-   
-           
+	    
+	        
+	    <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/mypageInfoOk.do" onsubmit="return join_check();">
+           <input type="hidden" name="member_id" value="${dto.member_id}" />
+			
 
             프로필 사진
-           	<p><input type="file" name="member_photo" class="form-control w-50" /></p>
-                <c:if test="${!empty dto.getMember_photo()}"><p class="mt-2">
-                <img src="<%=request.getContextPath()%>${dto.getMember_photo()}" style="max-width: 400px;" alt="" /></p></c:if>
-        	<br />
+	        <p><input type="file" name="member_photo" class="form-control w-50" />
+                <c:if test="${!empty dto.member_photo}">
+               		<p class="mt-2"><img src="<%=request.getContextPath()%>${dto.member_photo}" 
+              		style="max-width: 400px;" alt="" /></p>
+                </c:if>
+            </p>
+            <br />
        
          	이메일
             <p><input type="text" name="member_email" value="${dto.member_email}" maxlength="100" class="form-control" required /></p>
@@ -79,29 +99,40 @@
 		<option value="+852">홍콩 +852</option>
 		</select>
 		</p>
-		
-        	<p><input type="text" name="member_email" value="${dto.getMember_phone()}" maxlength="100" class="form-control" required /></p>
+        	<p><input type="text" name="member_phone" value="${dto.getMember_phone()}" maxlength="100" class="form-control" required /></p>
       	  <br />
         
                 
-            비밀번호
-            <p><input type="password" placeholder="변경할 비밀번호" name="member_pw_change" maxlength="50" class="form-control w-80" /></p> <br>
-            <p><input type="password" placeholder="변경할 비밀번호 확인" name="member_pw_check" maxlength="50" class="form-control w-80" /></p>
-     	  
-     	   <br />
- 
-       	   <br /> 
-			<p><input type="checkbox" id="check"><label for="check">마케팅 정보 수신 동의 (선택)</label></p>
-      	  <br />		
+                <!-- 비밀번호 영역 -->
+                
+               <div>
+                <label for="mypage_pw">비밀번호</label>
+                <br>
+                <input type="password" name="mypage_pw" id="mypage_pw" placeholder="비밀번호를 입력하세요." required autofocus />
+                <ul class="checked">
+                    <li>영문</li>
+                    <li>숫자</li>
+                    <li>특수문자</li>
+                    <li>8자 이상 20자 이하</li>
+                </ul>
+            </div>
+
+            <div>
+                <input type="password" name="mypage_pw_re" placeholder="비밀번호를 확인해 주세요." required autofocus />
+                <p class="error">비밀번호가 일치하지 않습니다.</p>
+            </div>
+            <br>           
+                
         
         
-		</form>
 	
 	    <div class="mf-btn">
-	        <button type="submit" class="btn_bk">저장하기</button>
-			<button type="button" class="btn_wh">로그아웃</button>
-      
+	        <button type="submit" class="btn_bk"> 저장하기 </button>
+	                        
+           	<a href="<%=request.getContextPath()%>/memberLogout.do" class="btn_wh" 
+           	onClick="return confirm('로그아웃 하시겠습니까?');"> &nbsp; 로그아웃 &nbsp; </a>
         </div>
+		</form>
 
 </div>
 
