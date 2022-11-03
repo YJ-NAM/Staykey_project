@@ -40,14 +40,13 @@ public class SiteMypageWishAction implements Action {
 		
 		/* List<StayDTO> sdto = dao.getStayWish(dto.get(getStay_no()); */
 		/* request.setAttribute("list", sdto); */
-		 
-    	        
+
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("mypage/mypage_wish_list.jsp");
 
-        return forward;	
-        
+        return forward;
+
     }
-    
+
 }

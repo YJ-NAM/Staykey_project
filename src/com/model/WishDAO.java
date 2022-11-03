@@ -181,7 +181,7 @@ public class WishDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-            	
+
             	WishDTO dto = new WishDTO();
             	
             	dto.setWish_no(rs.getInt("wish_no"));
@@ -191,7 +191,12 @@ public class WishDAO {
 
             	
                 list.add(dto);
+
+
+            	
+
                 
+
             }
 
         } catch (SQLException e) {
