@@ -168,9 +168,9 @@ public class WishDAO {
     // ======================================================
     // 찜하기 정보 가져오는 메서드
     // ======================================================
-    public List<Integer> getWishInfo(String id) {
+    public List<WishDTO> getWishInfo(String id) {
     	
-    	List<Integer> list = new ArrayList<Integer>();
+    	List<WishDTO> list = new ArrayList<WishDTO>();
 
         try {
             openConn();
@@ -181,8 +181,14 @@ public class WishDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-            	System.out.println("rs"+rs.getInt("wish_stayno"));
-                list.add(rs.getInt("wish_stayno"));
+            	WishDTO dto = new WishDTO();
+            	
+            	dto.setWish_no(rs.getInt("wish_no"));
+            	dto.setWish_stayno(rs.getInt("wish_stayno"));
+            	dto.setWish_memid(rs.getString("wish_memid"));
+            	dto.setWish_date(rs.getString("wish_date"));
+            	
+                list.add(dto);
             }
 
         } catch (SQLException e) {
