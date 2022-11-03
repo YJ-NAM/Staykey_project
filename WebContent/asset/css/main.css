@@ -299,10 +299,10 @@
     -ms-flex-pack: center;
     -webkit-justify-content: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
+    -webkit-box-align: top;
+    -ms-flex-align: top;
+    -webkit-align-items: top;
+    align-items: top;
 
 }
 
@@ -892,10 +892,10 @@
     -ms-flex-pack: center;
     -webkit-justify-content: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
+    -webkit-box-align: top;
+    -ms-flex-align: top;
+    -webkit-align-items: top;
+    align-items: top;
 }
 
 .main-recom .stay-list .swiper-slide:hover{
