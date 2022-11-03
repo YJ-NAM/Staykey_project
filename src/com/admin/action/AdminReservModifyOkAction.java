@@ -104,7 +104,7 @@ public class AdminReservModifyOkAction implements Action {
 
         // 숙박요금
         int reserv_basic_price = room.getRoom_price() * reserv_daycount;
-        int reserv_total_price = reserv_basic_price + reserv_option1_price + reserv_option2_price + reserv_option3_price - info.getReserv_use_point();
+        int reserv_total_price = reserv_basic_price + reserv_option1_price + reserv_option2_price + reserv_option3_price;
 
 
         // 데이터 수정입력

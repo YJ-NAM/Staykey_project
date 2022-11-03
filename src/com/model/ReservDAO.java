@@ -226,7 +226,6 @@ public class ReservDAO {
                 dto.setReserv_option2_price(rs.getInt("reserv_option2_price"));
                 dto.setReserv_option3_name(rs.getString("reserv_option3_name"));
                 dto.setReserv_option3_price(rs.getInt("reserv_option3_price"));
-                dto.setReserv_use_point(rs.getInt("reserv_use_point"));
                 dto.setReserv_total_price(rs.getInt("reserv_total_price"));
                 dto.setReserv_people_adult(rs.getInt("reserv_people_adult"));
                 dto.setReserv_people_kid(rs.getInt("reserv_people_kid"));
@@ -291,7 +290,6 @@ public class ReservDAO {
                 dto.setReserv_option2_price(rs.getInt("reserv_option2_price"));
                 dto.setReserv_option3_name(rs.getString("reserv_option3_name"));
                 dto.setReserv_option3_price(rs.getInt("reserv_option3_price"));
-                dto.setReserv_use_point(rs.getInt("reserv_use_point"));
                 dto.setReserv_total_price(rs.getInt("reserv_total_price"));
                 dto.setReserv_people_adult(rs.getInt("reserv_people_adult"));
                 dto.setReserv_people_kid(rs.getInt("reserv_people_kid"));
