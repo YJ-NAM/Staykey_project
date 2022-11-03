@@ -4,7 +4,9 @@
 <jsp:include page="../mypage/mypage_header.jsp" />
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<c:set var="staylist" value="${list}" />
 
 <script type="text/javascript">
 	$("#mymenu-wish").addClass("now");
@@ -16,35 +18,42 @@
 
 <br>
 <br>
-<c:forEach items="${ stay }" var="dto">
-<!-- 이름 영역 -->
-<div class="name">
-	<span class="ellipsis" style="padding-bottom: 0px;">
-		${dto.stay_name} </span>
-</div>
-<br>
+<c:forEach items="${staylist}" var="dto">
+	<!-- 이름 영역 -->
+	<div class="name">
+		<span class="ellipsis" style="padding-bottom: 0px;">
+			${dto.stay_name} </span>
+	</div>
+	<br>
 
-<!-- 위치, 인원, 가격 영역 -->
-<div>
-	<p class="option">
-		${dto.stay_location}<br> 
-		최소 ${dto.stay_room_people_min}명 / 최대 ${dto.stay_room_people_max}명<br>
-		₩<fmt:formatNumber value="${dto.stay_room_price_min}" /> ~ ₩<fmt:formatNumber value="${dto.stay_room_price_max}" />
-	</p>
-</div>
-<br><br>
+	<!-- 위치, 인원, 가격 영역 -->
+	<div>
+		<p class="option">
+
+
+			${dto.stay_location}<br> 최소 ${dto.stay_room_people_min}명 / 최대
+			${dto.stay_room_people_max}명<br> ₩
+			<fmt:formatNumber value="${dto.stay_room_price_min}" />
+			~ ₩
+			<fmt:formatNumber value="${dto.stay_room_price_max}" />
+		</p>
+	</div>
+	<br>
+	<br>
 </c:forEach>
 <!-- 예약하기 버튼 -->
 <div class="btns">
 	<button type="button" class="btn_bk">
 		<a href="https://booking.stayfolio.com/places/on-a">예약하기</a>
 	</button>
-</div>
-
-<!-- 이미지 영역 -->
-<div class="likestay_img" style="padding-top: 0px;">
 
 
+	<!-- 이미지 영역 -->
+<%-- 	<div class="likestay_img" style="padding-top: 0px;">
+		<p>${dto.stay_file1}</p> --%>
+		<!-- 컨텍스트하기 -->
+
+	</div>
 
 
 	<jsp:include page="../mypage/mypage_footer.jsp" />
