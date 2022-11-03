@@ -110,6 +110,7 @@
     letter-spacing: 2px;
     display: inline-block;
     font-family: 'NotoSerifKR';
+    border-bottom: 1px solid #800000;
 }
  
 .stay-list .stay-box .text {
@@ -166,7 +167,6 @@
     letter-spacing: 2px;
     display: inline-block;
     font-family: 'NotoSerifKR';
-    border-bottom: 1px solid #800000;
 }
 
 
@@ -179,7 +179,7 @@
 .main-visual {
     margin: 0 auto;
     width: 100%;
-    height: 650px;
+    height: 800px;
     overflow: hidden;
 
 }
@@ -228,7 +228,7 @@
 .main-visual ul .swiper-slide a .img{
     display: block;
     width: 100%;
-    height: 650px;
+    height: px;
     background-size: cover;
     background-position: center center;
 }
@@ -303,10 +303,11 @@
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
+
 }
 
 .main-new .stay-list .swiper-slide:hover{
-    transform: scale(0.97); 
+    transform: scale(1.05); 
     transition: 0.4s;
 }
 
@@ -316,30 +317,6 @@
     text-align: center;
     font-family: 'NotoSerifKR';
     font-size: 16px;
-}
-
-.main-new .icon-arrow-left {
-    position: absolute;
-    top: inherit;
-    left: 50%;
-    margin-left: 40px;
-    bottom: 0;
-    background-position: 0 -15px;
-    width: 10px;
-    height: 20px;
-    z-index: 11;
-}
- 
-.main-new .icon-arrow-right {
-    position: absolute;
-    top: inherit;
-    left: 180px;
-    margin-left: 60px;
-    bottom: 0;
-    width: 10px;
-    height: 20px;
-    z-index: 11;
-    background-position: 0 0;
 }
  
 
@@ -580,12 +557,12 @@
 .main-magazine .swiper-slide {
     width: 100%;
 }
+
 .main-magazine ul img {
     height: 650px;
     width: 100%;
-
 }
- 
+
 .main-magazine .stay-info {
     width: 480px;
     height: 240px;
@@ -598,9 +575,9 @@
     top: 40%;
     margin-left: 35%;
     padding: 60px 0;
-    opacity: 0.8;
 }
- 
+
+
 .main-magazine .stay-info img {
     position: absolute;
     height: 60px;
@@ -611,6 +588,17 @@
     background-position: center center;
 }
  
+
+.main-magazine .stay-info h3{
+    position: absolute;
+    right: 60px;
+    font-size: 20px;
+    font-family: 'Abril Fatface', cursive;
+    text-align: right;
+    color: #800000;
+    letter-spacing: 3px;
+}
+
 .main-magazine .stay-info .text {
     position: absolute;
     bottom: 25px;
@@ -623,7 +611,7 @@
 .main-magazine .stay-info .magazine { 
     position: absolute;
     top: 35px;
-    left: 35px;
+    left: 30px;
     font-size: 13px;
     color: #181818;
     letter-spacing: 5px;
@@ -709,8 +697,10 @@
     padding: 0;
     text-align: left;
     padding: 0 30px 80px 0;
+    cursor: pointer;
 }
- 
+
+
 .main-travel .stay-list .stay-box .img {
     width: 380px;
     height: 380px;
@@ -722,7 +712,17 @@
     padding-bottom: 100%;
     display: block;
 }
- 
+
+.main-travel .stay-list .stay-box a {
+    filter: brightness(.7);
+	-webkit-transition: .4s ease-in-out;
+	transition: .4s ease-in-out;
+}
+
+.main-travel .stay-list .stay-box a:hover {
+    filter: brightness(1);
+}
+
 .main-travel .stay-list .stay-box .text {
     font-family: 'NotoSerifKR';
     margin-top: 40px;
@@ -732,7 +732,7 @@
 }
  
 .main-travel .stay-list .stay-box .other {
-    word-spacing: 1.5;
+    letter-spacing: 1.5;
     font-size: 14px;
     color: #181818;
     margin-top: 15px;
@@ -744,7 +744,6 @@
     margin-top: 0;
     font-size: 12px;
     color: #800000;
-    border-bottom: 1px solid #800000;
     display: inline-block;
 }
 
@@ -900,7 +899,7 @@
 }
 
 .main-recom .stay-list .swiper-slide:hover{
-    transform: scale(0.97); 
+    transform: scale(1.05); 
     transition: 0.4s;
 }
 
@@ -925,105 +924,3 @@
     object-fit: cover;
 }
 
-/*************************/
-/* 메인 페이지 - 서브 프로모션 
-/*************************/
-
-.main-subP {
-    position: relative;
-    width: 100%;
-    background-color: #fefefe;
-    padding: 120px 0;
-}
-
-.main-subPromo .container {
-    max-width: 1330px;
-    overflow: hidden;
-    padding: 0 20px;
-}
-
-.main-subPromo .container .sec-title {
-    font-size: 14px;
-    position: absolute;
-    letter-spacing: 5px;
-    top: 35%;
-    margin: auto 0;
-    right : 20px;
-    z-index: 2;
-}
-
-.main-subPromo .swiper-container {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-.main-subPromo .swiper-wrapper {
-    position: relative;
-    margin: 0 auto;
-}
- 
-.main-subPromo .swiper-slide {
-    width: 1290px;
-    height: 540px;
-    background-color: #f5f5f5;
-}
-
-.main-subPromo .swiper-slide .promo-title {
-    position: absolute;
-    top: 50%;
-    color: #000;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 1.5;
-    font-family: 'NotoSerifKR';
-    float: right;
-}
-
-.main-subPromo .subPromo-container .small {
-    -webkit-margin-collapse: collapse;
-    font-size: 16px;
-    color: #000;
-}
-
-.main-subPromo .subPromo-container .swiper-wrapper img {
-    float: left;
-    width: 940px;
-    height: 540px;
-    display: block;
-    object-fit: cover;
-}
-
-
-.main-subPromo .subPromo-container .fa-chevron-left {
-    display: absolute;
-    position: relative;
-    bottom: 20px;
-    left: 40px;
-    width: 10px;
-    height: 20px;
-    z-index: 2;
-    padding-right: 40px;
-}
-
-.main-subPromo .subPromo-container .fa-chevron-left:hover{
-    color: #800000;
-    opacity: 0.5;
-    transition: 0.3s;
-}
- 
-.main-subPromo .subPromo-container .fa-chevron-right {
-    display: absolute;
-    position: relative;
-    bottom: 20px;
-    left: 60px;
-    width: 10px;
-    height: 20px;
-    z-index: 2;
-}
-
-.main-subPromo .subPromo-container .fa-chevron-right:hover{
-    color: #800000;
-    opacity: 0.5;
-    transition: 0.3s;
-}
