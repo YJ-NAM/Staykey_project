@@ -113,3 +113,51 @@
 
 
 
+
+
+/* 회원 정보 수정 버튼 */
+.btn_bk {
+    color: #fff;
+}
+.btn_bk {
+    background: #000;
+    border: 1px solid #000;
+}
+
+
+.btn_wh {
+    color: #000000;
+    background: #ffffff;
+    border: 1px solid #000;
+}
+
+
+/* 비밀번호 입력 창*/
+
+
+ .checked {
+    margin: 8px 0;
+    justify-content: space-between;
+} 
+
+.checked li {
+    font-size: 14px;
+    font-weight: 400;
+    color: #bbb;
+    
+}
+.checked li:before {
+    font-family: 'FontAwesome';
+    content: "\f00c";
+    margin-right: 3px;
+}
+.checked li.on {
+    color: var(--color);
+}
+.error {
+    color: var(--color);
+    margin: 8px 0;
+    display: none;
+}
+
+
