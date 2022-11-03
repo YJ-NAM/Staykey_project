@@ -3,12 +3,113 @@
 /************************/
 
 /* 매거진 목록 */
-.magazine-list {}
 
 
+.page-title {
+    border-bottom: 1px solid #800000;
+}
+.container {
+    max-width: 1330px;
+    margin: 0 auto;
+    padding: 0 20px;
+    padding-top: 70px;
+    position: relative;
+}
+
+.list-container {
+    text-align: center;
+}
+
+.list-container .journal-list {
+    font-size: 0;
+    margin: -32px -15px -15px;
+}
+
+.journal-list .journal-box {
+    width: 50%;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    vertical-align: top;
+    border: 15px solid transparent;
+    filter: brightness(.8);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.journal-list .journal-box img {
+    position: relative;
+    width: 630px;
+    height: 640px;
+    overflow: hidden;
+    background-position: center center;
+
+}
+.journal-list .journal-box:hover {
+    filter: brightness(1);
+}
+
+.journal-list .journal-box .journal-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fefefe;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 300px;
+    opacity: .8;
+    text-align: center;
+    margin: -150px 0 0 -150px;
+}
+
+.journal-list .journal-box .number {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 25px;
+    color: #696969;
+    word-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.journal-list .journal-box .name {
+    width: 100%;
+    font-size: 20px;
+    line-height: 1.5;
+    padding: 0 30px;
+    font-family: 'NotoSerifKR';
+    color: #000;
+}
 
 
+.journal-list .journal-box .text {
+    font-size: 16px;
+    color: #000;
+    margin-top: 20px;
+    font-family: 'NotoSerifKR';
+}
 
+.journal-list .journal-box .more {
+    display: inline-block;
+    margin-top: 15px;
+    font-family: 'NotoSerifKR';
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 1.5; 
+    color: #800000;
+}
 
+.journal-box .more::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #800000;
+    transition: width .3s;
+}
 
-
+.journal-box .more:hover::after {
+    width: 100%;
+    transition: width .3s;
+}
