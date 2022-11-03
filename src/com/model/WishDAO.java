@@ -66,16 +66,100 @@ public class WishDAO {
 
 
     // ======================================================
-    // 
+    // 숙소 찜하기 추가
     // ======================================================
+    public String addWish(int stay_no, String member_id) {
+        String result = "add_no";
+
+        try {
+            openConn();
+
+            int count = 0;
+
+            sql = "select max(wish_no) from staykey_member_wish";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            if(rs.next()) count = rs.getInt(1) + 1;
+
+            sql = "insert into staykey_member_wish values(?, ?, ?, default)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, count);
+            pstmt.setInt(2, stay_no);
+            pstmt.setString(3, member_id);
+            int chk = pstmt.executeUpdate();
+
+            if(chk > 0) result = "add_ok";
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
+    }
+
+
+
+
+    // ======================================================
+    // 숙소 찜하기 삭제
+    // ======================================================
+    public String delWish(int stay_no, String member_id) {
+        String result = "del_no";
+
+        try {
+            openConn();
+
+            sql = "delete from staykey_member_wish where wish_stayno = ? and wish_memid = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, stay_no);
+            pstmt.setString(2, member_id);
+            int chk = pstmt.executeUpdate();
+
+            if(chk > 0) result = "del_ok";
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(pstmt, con);
+        }
+
+        return result;
+    }
 
 
 
 
 
+    // ======================================================
+    // 해당 숙소 찜하기 정보 확인
+    // ======================================================
+    public String chkStayWish(int stay_no, String member_id) {
+        String result = "N";
 
+        try {
+            openConn();
 
+            sql = "select * from staykey_member_wish where wish_stayno = ? and wish_memid = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, stay_no);
+            pstmt.setString(2, member_id);
+            rs = pstmt.executeQuery();
 
+            if(rs.next()) result = "Y";
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
+    }
 
 
 

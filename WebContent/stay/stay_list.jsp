@@ -4,8 +4,9 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<c:set var="stayList" value="${stayList}" />
+<c:set var="stayList" value="${ stayList }" />
 <c:set var="stayType" value="${ stayType }" />
 
 <jsp:include page="../layout/layout_header.jsp" />
@@ -13,13 +14,10 @@
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/stay.css?<%=time%>" />
 <script language="javascript" src="<%=request.getContextPath()%>/asset/js/stay.js?<%=time%>"></script>
 
-
 <div class="container page-title">
     <h2>find stay</h2>
     <h4>머무는 것 자체로 여행이 되는 공간</h4>
 </div>
-
-
 
 
 <div class="container stay-search">
@@ -31,12 +29,26 @@
         </div>
         <div class="col-auto">
             <label for="ps_start">체크인</label>
-            <button type="button" class="ss-button" id="ps_start">선택하세요</button>
+            <c:choose>
+	            <c:when test="${ empty map.ps_start }">
+	            <button type="button" class="ss-button" id="ps_start">선택하세요</button>
+	            </c:when>
+	            <c:otherwise>
+	            <button type="button" class="ss-button" id="ps_start">${ map.ps_start }</button>           
+	            </c:otherwise>
+            </c:choose>
             <input type="hidden" name="ps_start" value="${ map.ps_start }" />
         </div>
         <div class="col-auto">
             <label for="ps_end">체크아웃</label>
-            <button type="button" class="ss-button" id="ps_end">선택하세요</button>
+            <c:choose>
+	            <c:when test="${ empty map.ps_end }">
+	            <button type="button" class="ss-button" id="ps_end">선택하세요</button>
+	            </c:when>
+	            <c:otherwise>
+	            <button type="button" class="ss-button" id="ps_end">${ map.ps_end }</button>           
+	            </c:otherwise>
+            </c:choose>
             <input type="hidden" name="ps_end" value="${ map.ps_end }" />
         </div>
         <a href="<%=request.getContextPath()%>/stayList.do" class="ss-reset"><i class="fa fa-refresh"></i></a>
@@ -45,12 +57,14 @@
     <div class="row">
         <div class="col-auto">
             <label for="ps_people">인원</label>
-            <c:if test="${ !empty map.ps_people_adult || !empty map.ps_people_kid || !empty map.ps_people_baby }">
-            <button type="button" class="ss-button" id="ps_people" >${ map.ps_people_adult + map.ps_people_kid + map.ps_people_baby }</button>
-			</c:if>
-			<c:if test="${ empty map.ps_people_adult && empty map.ps_people_kid && empty map.ps_people_baby }">
-            <button type="button" class="ss-button" id="ps_people" >선택하세요</button>
-			</c:if>
+            <c:choose>
+	            <c:when test="${ map.ps_people_adult == 0 && map.ps_people_kid == 0 && map.ps_people_baby == 0 }">
+	            <button type="button" class="ss-button" id="ps_people" >선택하세요</button>
+				</c:when>
+				<c:otherwise>
+	            <button type="button" class="ss-button" id="ps_people" >성인 : ${map.ps_people_adult}, 아동 : ${map.ps_people_kid}, 영아 : ${map.ps_people_baby}</button>
+				</c:otherwise>
+			</c:choose>
             <div id="selectNumber" class="layer-select">
                 <button type="button" class="btn-close"></button>
                 <div class="tit">인원</div>
@@ -111,8 +125,16 @@
 
         <div class="col-auto">
             <label for="ps_price">가격범위</label>
-            <button type="button" class="ss-button" id="ps_price" >전체</button>
-
+            <c:choose>
+	            <c:when test="${ map.ps_price_min == 0 && map.ps_price_max == 100 }">
+	            <button type="button" class="ss-button" id="ps_price" >전체</button>
+	            </c:when>
+	            <c:otherwise>
+	            <button type="button" class="ss-button" id="ps_price" >
+	            <fmt:formatNumber value="${ map.ps_price_min*10000 }"></fmt:formatNumber> ~ <fmt:formatNumber value="${ map.ps_price_max*10000 }"></fmt:formatNumber>
+	            </button>
+	            </c:otherwise>
+			</c:choose>
             <div id="selectPrice" class="layer-select">
                 <button type="button" class="btn-close"></button>
                 <div class="tit">가격 범위</div>
@@ -138,9 +160,14 @@
 
         <div class="col-auto">
             <label for="ps_type">스테이 유형</label>
-            
-            <button type="button" class="ss-button" id="ps_type" value="${ map.ps_type }">전체</button>
-
+            <c:choose>
+	            <c:when test="${ map.ps_type.contains('all') }">
+	            <button type="button" class="ss-button" id="ps_type">전체</button>
+	            </c:when>        
+	            <c:otherwise>
+	            <button type="button" class="ss-button" id="ps_type">${wType}</button> 
+		        </c:otherwise>
+			</c:choose>
             <div id="selectType" class="layer-select">
                 <button type="button" class="btn-close">닫기</button>
                 <div class="tit">스테이 유형</div>
@@ -148,7 +175,7 @@
                 <ul class="check-list">
                     <li>
                         <label>
-                            <input type="checkbox" name="ps_type" value="all"/>
+                            <input type="checkbox" name="ps_type" value="all" <c:if test="${map.ps_type.contains('all')}"> checked="checked"</c:if> />                            
                             <span>전체</span>
                         </label>
                     </li>
@@ -170,14 +197,15 @@
 </div>
 
 
-
+<!-- ps_order -->
+<c:set var="ps_link" value="stayList.do?ps_stay=${map.ps_stay}&ps_start=${map.ps_start}&ps_end=${map.ps_end}&ps_people_adult=${map.ps_people_adult}&ps_people_kid=${map.ps_people_kid}&ps_people_baby=${map.ps_people_baby}&ps_price_min=${map.ps_price_min}&ps_price_max=${map.ps_price_max}&ps_type=${map.ps_type}&ps_order=" />
 
 <ul class="container stay-order">
-    <li><a href="#" class="now">추천순</a></li>
-    <li><a href="#">최신순</a></li>
-    <li><a href="#">인기순</a></li>
-    <li><a href="#">높은 가격순</a></li>
-    <li><a href="#">낮은 가격순</a></li>
+    <li><a href="${ ps_link }reserv_desc" class="now">추천순</a></li>
+    <li><a href="${ ps_link }date_desc" >최신순</a></li>
+    <li><a href="${ ps_link }hit_desc" >인기순</a></li>
+    <li><a href="${ ps_link }room_price_max_desc" >높은 가격순</a></li>
+    <li><a href="${ ps_link }room_price_min_asc" >낮은 가격순</a></li>
 </ul>
 
 
