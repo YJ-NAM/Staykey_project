@@ -209,8 +209,6 @@
 </ul>
 
 
-
-
 <div class="container stay-list">
     <ul class="sl-wrap">
     <c:choose>
