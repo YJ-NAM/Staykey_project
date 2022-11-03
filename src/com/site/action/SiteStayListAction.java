@@ -37,6 +37,8 @@ public class SiteStayListAction implements Action {
         int ps_people_baby = 0;
         int ps_price_min = 0;
         int ps_price_max = 100;
+        String ps_start = "";
+        String ps_end = "";
         
         if(request.getParameter("ps_stay") != null) { ps_stay = request.getParameter("ps_stay").trim(); }else { ps_stay = ""; }
         if(request.getParameter("ps_people_adult") != null || request.getParameter("ps_people_kid") != null || request.getParameter("ps_people_baby") != null) {
@@ -85,6 +87,8 @@ public class SiteStayListAction implements Action {
         map.put("ps_price_max", ps_price_max);
         map.put("ps_type", ps_type);
         map.put("ps_order", ps_order);
+        map.put("ps_start", ps_start);
+        map.put("ps_end", ps_end);
 
 
         /////////////////////////////////////////////////////////////
