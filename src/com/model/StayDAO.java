@@ -1430,7 +1430,7 @@ public class StayDAO {
         try {
             openConn();
 
-            sql = "update staykey_stay set stay_reserv = stay_reserv - 1 where stay_no = ?";
+            sql = "update staykey_stay set stay_reserv = stay_reserv - 1 where stay_no = ? and stay_reserv > 0";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, stay_no);
             pstmt.executeUpdate();

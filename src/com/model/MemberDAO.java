@@ -526,7 +526,7 @@ public class MemberDAO {
         try {
             openConn();
 
-            sql = "update staykey_member set member_reserv = member_reserv - 1 where member_id = ?";
+            sql = "update staykey_member set member_reserv = member_reserv - 1 where member_id = ? and member_reserv > 0";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, member_id);
             pstmt.executeUpdate();
