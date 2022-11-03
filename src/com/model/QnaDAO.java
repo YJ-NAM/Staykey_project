@@ -299,6 +299,90 @@ public class QnaDAO {
     }
    
     
+    // ======================================================
+    // 마이페이지 회원 문의글 목록 메서드
+    // ======================================================
+    public List<QnaDTO> qnaMemberList(String id) {
+        List<QnaDTO> list = new ArrayList<QnaDTO>();
+        
+        System.out.println(id);
+        try {
+        	
+            openConn();
+
+            sql = "select * from staykey_qna where bbs_writer_id = ?";
+            
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                QnaDTO dto = new QnaDTO();
+                dto.setBbs_no(rs.getInt("bbs_no"));
+                dto.setBbs_status(rs.getString("bbs_status"));
+                dto.setBbs_title(rs.getString("bbs_title"));
+                dto.setBbs_content(rs.getString("bbs_content"));
+                dto.setBbs_file1(rs.getString("bbs_file1"));
+                dto.setBbs_file2(rs.getString("bbs_file2"));
+                dto.setBbs_hit(rs.getInt("bbs_hit"));
+                dto.setBbs_comment(rs.getInt("bbs_comment"));
+                dto.setBbs_writer_name(rs.getString("bbs_writer_name"));
+                dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
+                dto.setBbs_date(rs.getString("bbs_date"));
+                dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
+                
+                list.add(dto);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return list;
+    }
+    
+
+    // ======================================================
+    // 문의글 등록 메서드
+    // ======================================================
+    public int registerQna(QnaDTO dto) {
+        int result = 0, count = 0;
+
+        try {
+            openConn();
+
+            sql = "select max(bbs_no) from staykey_qna";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                count = rs.getInt(1) + 1;
+            }
+            
+            sql = "insert into staykey_qna values(?, ?, ?, ?, ?, ?, default, default, ?, ?, ?, sysdate)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, count);
+            pstmt.setString(2, dto.getBbs_status());
+            pstmt.setString(3, dto.getBbs_title());
+            pstmt.setString(4, dto.getBbs_content());
+            pstmt.setString(5, dto.getBbs_file1());
+            pstmt.setString(6, dto.getBbs_file2());
+            pstmt.setString(7, dto.getBbs_writer_name());
+            pstmt.setString(8, dto.getBbs_writer_id());
+            pstmt.setString(9, dto.getBbs_writer_pw());
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return result;
+    }
+
+    
+    
     
     
     

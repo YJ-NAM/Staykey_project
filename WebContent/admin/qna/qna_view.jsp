@@ -196,7 +196,6 @@
                    		<input type="hidden" name="comment_writer_name" value="rock" />
 						<input type="hidden" name="comment_writer_id" value="admin1234" />
 						<input type="hidden" name="comment_writer_pw" value="1234" />
-                     <c:if test="${!empty qList }">
                      <table class="table-form mt-2">
                      	<colgroup>
                             <col width="18%" />
@@ -212,7 +211,6 @@
                             </td>
 					    </tr> 
 			   		</table>
-			   		</c:if>
 			   		</form>	
 			   		
 			   		
