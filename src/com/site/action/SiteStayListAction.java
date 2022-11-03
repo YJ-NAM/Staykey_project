@@ -37,15 +37,19 @@ public class SiteStayListAction implements Action {
         int ps_people_baby = 0;
         int ps_price_min = 0;
         int ps_price_max = 100;
-        
+        String ps_start = "";
+        String ps_end = "";
+        String page_write_type = ""; // 버튼에서 값 뜨게 하기 위한 변수
+               
         if(request.getParameter("ps_stay") != null) { ps_stay = request.getParameter("ps_stay").trim(); }else { ps_stay = ""; }
+        
+        if(request.getParameter("ps_start") != null) { ps_start = request.getParameter("ps_start"); }else { ps_start = ""; }
+        if(request.getParameter("ps_end") != null) { ps_end = request.getParameter("ps_end"); }else { ps_end = ""; }
+        
         if(request.getParameter("ps_people_adult") != null || request.getParameter("ps_people_kid") != null || request.getParameter("ps_people_baby") != null) {
         	if(request.getParameter("ps_people_adult") != null) { ps_people_adult = Integer.parseInt(request.getParameter("ps_people_adult")); }
         	if(request.getParameter("ps_people_kid") != null) { ps_people_kid = Integer.parseInt(request.getParameter("ps_people_kid")); }
         	if(request.getParameter("ps_people_baby") != null) { ps_people_baby = Integer.parseInt(request.getParameter("ps_people_baby")); }
-        	System.out.println("adult > "+request.getParameter("ps_people_adult"));
-        	System.out.println("kid > "+request.getParameter("ps_people_kid"));
-        	System.out.println("baby > "+request.getParameter("ps_people_baby"));
         }
         
         if(request.getParameter("ps_price_min") != null || request.getParameter("ps_price_max") != null) {
@@ -66,16 +70,22 @@ public class SiteStayListAction implements Action {
 				for(int i=0; i<get_type.length; i++) {
 					ps_type += "/" + get_type[i];
 				}
+				if(get_type.length > 1) {
+					page_write_type = get_type[0] + " 외 " + (get_type.length - 1) + "건";
+				}else{
+					page_write_type = get_type[0];
+				}
 			}
 		}else {
 			ps_type = "all";
 		}
 
-
         if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "no_desc"; }
 
         // 뷰에 전달할 매개변수 추가
         map.put("ps_stay", ps_stay);
+        map.put("ps_start", ps_start);
+        map.put("ps_end", ps_end);
         map.put("ps_people_adult", ps_people_adult);
         map.put("ps_people_kid", ps_people_kid);
         map.put("ps_people_baby", ps_people_baby);
@@ -141,6 +151,8 @@ public class SiteStayListAction implements Action {
         forward.setRedirect(false);
         forward.setPath("stay/stay_list.jsp");
 
+        request.setAttribute("wType", page_write_type);
+        
         return forward;
     }
 

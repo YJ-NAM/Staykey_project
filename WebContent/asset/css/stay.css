@@ -465,6 +465,11 @@
     border-radius: 10px;
     opacity: 0.9;
 }
+.stay-list .sl-wrap li.nodata {
+    width: 100%;
+    text-align: center;
+    padding: 100px 0 100px 87px;
+}
 
 
 

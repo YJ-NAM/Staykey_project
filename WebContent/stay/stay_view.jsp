@@ -27,10 +27,8 @@
         <div class="svt-info">
             <div class="name">${view.stay_name}<small>${view.stay_location}</small></div>
             <div class="desc">${view.stay_desc}</div>
-            
-           <button type="button" class="wish on" onclick="alert('찜하기 Ajax 액션');"><i class="fa fa-heart-o"></i> 찜하기</button>
-		
-	
+
+            <button type="button" class="wish<c:if test="${wishChk == 'Y'}"> on</c:if>" onclick="stayWish(this, '${view.stay_no}', '${login_id}');"><i class="fa fa-heart<c:if test="${wishChk == 'N'}">-o</c:if>"></i> 찜하기</button>
         </div>
 
         <div class="svt-photo">

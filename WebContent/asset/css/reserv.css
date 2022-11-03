@@ -51,7 +51,7 @@
     background: #fff;
 }
 .reserv-form .rf-wrap form {
-    max-width: 850px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .reserv-form .rf-wrap .rfw-title {
@@ -77,7 +77,7 @@
     border-bottom: 1px solid #e6e6e6;
     padding: 20px 0;
     line-height: 16px;
-    vertical-align: middle;
+    vertical-align: top;
     text-align: left;
 }
 .reserv-form .rf-wrap .rfw-list tbody th {
@@ -181,7 +181,177 @@
     margin-right: 30px;
 }
 
+.reserv-form .rf-wrap .rfw-list tbody td textarea {
+    border: 1px solid #e5e5e5;
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 15px;
+    resize: none;
+}
+.reserv-form .rf-wrap .rfw-list tbody td textarea:focus {
+    border-color: var(--color);
+}
 
+.reserv-form .rf-wrap .rfw-list tbody td.total-price {}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl {
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt {
+    padding: 7px 0;
+    clear: both;
+    float: left;
+    font-weight: 400;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt:first-child {
+    padding-top: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt > .stay {
+    word-break: break-word;
+    color: #000;
+    display: inline-block;
+    margin-left: 10px;
+    letter-spacing: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt > .plus-option-tit {
+    float: left;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt > ul.plus-option-wrap {
+    float: left;
+    margin-left: 10px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt > ul.plus-option-wrap li.plus-option {
+    word-break: break-word;
+    color: #000;
+    letter-spacing: 0;
+    margin-bottom: 3px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dd {
+    float: right;
+    text-align: right;
+    padding: 7px 0;
+    font-family: 'Lato';
+    font-weight: 400;
+    letter-spacing: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dd:first-child {
+    padding-top: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt.total {
+    padding: 0;
+    margin-top: 20px;
+    color: #000;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dd.total {
+    color: #000;
+    font-family: 'Lato';
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+
+
+.reserv-form .rf-wrap .rfw-agree {}
+.reserv-form .rf-wrap .rfw-agree .title {
+    font-size: 20px;
+    font-weight: 400;
+    color: #363636;
+    text-align: center;
+    margin: 80px 0 20px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold {}
+.reserv-form .rf-wrap .rfw-agree .fold > li {
+    padding: 17px 0 17px 20px;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+    background: url('../images/select_arrow.png') no-repeat;
+    background-size: 20px 20px;
+    background-position: 98% 17px;
+    cursor: pointer;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li.agree-all {
+    height: 55px;
+    border: none;
+    background: #f5f5f5;
+    font-size: 16px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li label {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    cursor: pointer;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view {
+    position: relative;
+    font-size: 12px;
+    color: #555;
+    line-height: 2;
+    margin: 0 -20px;
+    padding: 20px 40px;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: none;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view {
+    margin-top: 20px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view .tit {
+    display: none;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl {
+    overflow: hidden;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dt {
+    width: 20%;
+    clear: both;
+    float: left;
+    font-size: 16px;
+    color: #555;
+    line-height: 28px;
+    padding-bottom: 30px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd {
+    width: 80%;
+    float: left;
+    font-size: 14px;
+    color: #666;
+    line-height: 28px;
+    padding-bottom: 30px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 0;
+    table-layout: fixed;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd table th,
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd table tr {
+    border: 1px solid #444;
+    width: 50%;
+    line-height: 35px;
+    margin: -1px 0 0 -1px;
+    text-align: center;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd table td {
+    border-right: 1px solid #444;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd ul {
+    padding-left: 20px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd ul li {
+    list-style-type: disc;
+    font-size: 14px;
+    color: #888;
+    line-height: 28px;
+}
 
 
 

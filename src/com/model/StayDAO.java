@@ -311,11 +311,26 @@ public class StayDAO {
 			search_sql2 += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
 					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%'";
 		}
+		
+		////////////////////////////////////////////////////////////////
+		// reserv_start, reserv_end 값 필요 from staykey_reserv
+		/////////////////////////////////////////////////////////////////
+		// ps_start : 체크인날짜
+//		if(map.get("ps_start") != "" && map.get("ps_start") != null) {
+//			search_sql2 += " and  like '%" + map.get("ps_stay") + "%' or stay_name like '%"
+//					+ map.get("ps_start") + "%' or stay_addr like '%" + map.get("ps_start") + "%'";
+//		}
+//		
+//		// ps_end : 체크아웃날짜
+//		if(map.get("ps_end") != "" && map.get("ps_end") != null) {
+//			search_sql2 += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
+//					+ map.get("ps_end") + "%' or stay_addr like '%" + map.get("ps_end") + "%'";
+//		}
+		////////////////////////////////////////////////////////////////////
 				
 		// ps_people : 인원
 		if((int)map.get("ps_people_adult") > 0 || (int)map.get("ps_people_kid") > 0 || (int)map.get("ps_people_baby") > 0) {
 			int ps_people_num = (int)map.get("ps_people_adult") + (int)map.get("ps_people_kid") + (int)map.get("ps_people_baby");
-			System.out.println(ps_people_num);
 			search_sql2 += " and "+ps_people_num+" between stay_room_people_min and stay_room_people_max";
 		}
 		
@@ -345,29 +360,19 @@ public class StayDAO {
         search_sql1 += search_sql2;
 
         // 정렬용 설정
-        String order_sql = "stay_no desc";
-        if (map.get("ps_order").equals("no_desc")) {
-            order_sql = "stay_no desc";
-        } else if (map.get("ps_order").equals("no_asc")) {
-            order_sql = "stay_no asc";
-        } else if (map.get("ps_order").equals("hit_desc")) {
-            order_sql = "stay_hit desc";
-        } else if (map.get("ps_order").equals("hit_asc")) {
-            order_sql = "stay_hit asc";
-        } else if (map.get("ps_order").equals("name_desc")) {
-            order_sql = "stay_name desc";
-        } else if (map.get("ps_order").equals("name_asc")) {
-            order_sql = "stay_name asc";
+        String order_sql = "stay_reserv desc";
+        if (map.get("ps_order").equals("reserv_desc")) {
+            order_sql = "stay_reserv desc";
         } else if (map.get("ps_order").equals("date_desc")) {
             order_sql = "stay_date desc";
-        } else if (map.get("ps_order").equals("date_asc")) {
-            order_sql = "stay_date asc";
-        } else if (map.get("ps_order").equals("reserv_desc")) {
-            order_sql = "stay_reserv desc";
-        } else if (map.get("ps_order").equals("reserv_asc")) {
-            order_sql = "stay_reserv asc";
-        }
-
+        } else if (map.get("ps_order").equals("hit_desc")) {
+            order_sql = "stay_hit desc";
+        } else if (map.get("ps_order").equals("room_price_max_desc")) {
+            order_sql = "stay_room_price_max desc";
+        } else if (map.get("ps_order").equals("room_price_min_asc")) {
+            order_sql = "stay_room_price_min asc";
+        } 
+        
         openConn();
 
         try {
@@ -445,9 +450,26 @@ public class StayDAO {
         
         // ps_stay : 여행지/숙소
 		if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
+			System.out.println(map.get("ps_stay"));
 			search_sql += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
 					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%'";
 		}
+		
+		////////////////////////////////////////////////////////////////
+		// reserv_start, reserv_end 값 필요 from staykey_reserv
+		/////////////////////////////////////////////////////////////////
+		// ps_start : 체크인날짜
+//		if(map.get("ps_start") != "" && map.get("ps_start") != null) {
+//			search_sql += " and  like '%" + map.get("ps_stay") + "%' or stay_name like '%"
+//					+ map.get("ps_start") + "%' or stay_addr like '%" + map.get("ps_start") + "%'";
+//		}
+//		
+//		// ps_end : 체크아웃날짜
+//		if(map.get("ps_end") != "" && map.get("ps_end") != null) {
+//			search_sql += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
+//					+ map.get("ps_end") + "%' or stay_addr like '%" + map.get("ps_end") + "%'";
+//		}
+		////////////////////////////////////////////////////////////////////
 				
 		// ps_people : 인원
 		if((int)map.get("ps_people_adult") > 0 || (int)map.get("ps_people_kid") > 0 || (int)map.get("ps_people_baby") > 0) {
