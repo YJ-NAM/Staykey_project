@@ -43,9 +43,6 @@ public class SiteStayListAction implements Action {
         	if(request.getParameter("ps_people_adult") != null) { ps_people_adult = Integer.parseInt(request.getParameter("ps_people_adult")); }
         	if(request.getParameter("ps_people_kid") != null) { ps_people_kid = Integer.parseInt(request.getParameter("ps_people_kid")); }
         	if(request.getParameter("ps_people_baby") != null) { ps_people_baby = Integer.parseInt(request.getParameter("ps_people_baby")); }
-        	System.out.println("adult > "+request.getParameter("ps_people_adult"));
-        	System.out.println("kid > "+request.getParameter("ps_people_kid"));
-        	System.out.println("baby > "+request.getParameter("ps_people_baby"));
         }
         
         if(request.getParameter("ps_price_min") != null || request.getParameter("ps_price_max") != null) {
@@ -57,6 +54,7 @@ public class SiteStayListAction implements Action {
         	}
         }
         
+        String page_write_type = "";
     	if(request.getParameterValues("ps_type") != null) { 
     		// ps_type value로 all이 넘어올 때, all 지정
 			get_type = request.getParameterValues("ps_type");
@@ -66,11 +64,15 @@ public class SiteStayListAction implements Action {
 				for(int i=0; i<get_type.length; i++) {
 					ps_type += "/" + get_type[i];
 				}
+				if(get_type.length > 1) {
+					page_write_type = get_type[0] + " 외 " + (get_type.length - 1) + "건";
+				}else{
+					page_write_type = get_type[0];
+				}
 			}
 		}else {
 			ps_type = "all";
 		}
-
 
         if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "no_desc"; }
 
@@ -141,6 +143,8 @@ public class SiteStayListAction implements Action {
         forward.setRedirect(false);
         forward.setPath("stay/stay_list.jsp");
 
+        request.setAttribute("wType", page_write_type);
+        
         return forward;
     }
 
