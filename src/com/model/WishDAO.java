@@ -3,6 +3,9 @@ package com.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -160,6 +163,38 @@ public class WishDAO {
 
         return result;
     }
+    
+    
+    // ======================================================
+    // 찜하기 정보 가져오는 메서드
+    // ======================================================
+    public List<Integer> getWishInfo(String id) {
+    	
+    	List<Integer> list = new ArrayList<Integer>();
+
+        try {
+            openConn();
+
+            sql = "select wish_stayno from staykey_member_wish where wish_memid = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+            	System.out.println("rs"+rs.getInt("wish_stayno"));
+                list.add(rs.getInt("wish_stayno"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return list;
+    }
+    
 
 
 

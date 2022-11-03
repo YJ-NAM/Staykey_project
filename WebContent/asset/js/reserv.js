@@ -96,7 +96,19 @@ function chkReservForm(form) {
         return false;
     }
 
-    form.submit;
+
+    let showMsg = "* 스테이 이름 : " + $(".reserv-form input[name='reserv_stayname']").val() + "\n";
+        showMsg += "* Room 선택 : " + $(".reserv-form input[name='reserv_roomname']").val() + "\n";
+        showMsg += "* 숙박 기간 : " + $(".reserv-form input[name='reserv_start']").val().substr(0,10) + " ~ " + $(".reserv-form input[name='reserv_end']").val().substr(0,10) + " (" + $(".reserv-form input[name='reserv_daycount']").val() + "박 " + (Number($(".reserv-form input[name='reserv_daycount']").val())+1) + "일)\n";
+        showMsg += "* 숙박 인원 : 성인 " + $(".reserv-form select[name='reserv_people_adult']").val() + "명, 아동 " + $(".reserv-form select[name='reserv_people_kid']").val() + "명, 영아 " + $(".reserv-form select[name='reserv_people_baby']").val() + "명\n\n";
+        showMsg += "* 최종 결제금액 : " + setComma(Number($(".reserv-form input[name='reserv_total_price']").val())) + "원\n\n";
+        showMsg += "위 예약내용이 맞으신가요?\n내용을 확인 하시면 예약이 완료됩니다. :-)";
+
+    if(confirm(showMsg)){
+        form.submit;
+    }else{
+        return false;
+    }
 }
 
 

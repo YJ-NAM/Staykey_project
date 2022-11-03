@@ -359,5 +359,51 @@ public class MagazineDAO {
 		return result;
 
 	} // modifyMagazine() 종료
+		
+	// ======================================================
+	// 모든 매거진 정보 가져오기
+	// ======================================================
+	public List<MagazineDTO> getTotalMagazine() {
+		List<MagazineDTO> list = new ArrayList<MagazineDTO>();
+
+		try {
+			openConn();
+
+			sql = "select * from staykey_magazine";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MagazineDTO dto = new MagazineDTO();
+
+				dto.setBbs_no(rs.getInt("bbs_no"));
+				dto.setBbs_title(rs.getString("bbs_title"));
+				dto.setBbs_list_img(rs.getString("bbs_list_img"));
+				dto.setBbs_top_img(rs.getString("bbs_top_img"));
+				dto.setBbs_youtube(rs.getString("bbs_youtube"));
+				dto.setBbs_detail_img1(rs.getString("bbs_detail_img1"));
+				dto.setBbs_content1(rs.getString("bbs_content1"));
+				dto.setBbs_detail_img2(rs.getString("bbs_detail_img2"));
+				dto.setBbs_content2(rs.getString("bbs_content2"));
+				dto.setBbs_map(rs.getString("bbs_map"));
+				dto.setBbs_content3(rs.getString("bbs_content3"));
+				dto.setBbs_stayno(rs.getString("bbs_stayno"));
+				dto.setBbs_hit(rs.getInt("bbs_hit"));
+				dto.setBbs_writer_name(rs.getString("bbs_writer_name"));
+				dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
+				dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
+				dto.setBbs_date(rs.getString("bbs_date"));
+
+				list.add(dto);
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+		return list;
+	} // getTotalMagazine() 종료	
 
 }
