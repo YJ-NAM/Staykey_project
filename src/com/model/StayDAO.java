@@ -22,15 +22,12 @@ public class StayDAO {
 
     private static StayDAO instance;
 
-    private StayDAO() {
-    } // 기본 생성자
+    private StayDAO() {} // 기본 생성자
 
     public static StayDAO getInstance() {
-
         if (instance == null) {
             instance = new StayDAO();
         }
-
         return instance;
     }
 
@@ -40,13 +37,11 @@ public class StayDAO {
     public void openConn() {
 
         try {
-
             Context ctx = new InitialContext();
             DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle"); // 동일
             con = ds.getConnection();
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -963,7 +958,7 @@ public class StayDAO {
     } // registerStayRoom() 종료
 
     /////////////////////////////////////////////////////////////
-    // 방 정보 가져오기 메서드 @노동진
+    // 방 정보 가져오기 메서드
     /////////////////////////////////////////////////////////////
     public StayRoomDTO getRoomInfo(int stay_no, int room_no) {
         StayRoomDTO dto = null;
@@ -983,6 +978,7 @@ public class StayDAO {
                 dto.setRoom_stayno(rs.getInt("room_stayno"));
                 dto.setRoom_name(rs.getString("room_name"));
                 dto.setRoom_desc(rs.getString("room_desc"));
+                dto.setRoom_price(rs.getInt("room_price"));
                 dto.setRoom_checkin(rs.getString("room_checkin"));
                 dto.setRoom_checkout(rs.getString("room_checkout"));
                 dto.setRoom_people_min(rs.getInt("room_people_min"));
@@ -1351,6 +1347,8 @@ public class StayDAO {
         return result;
     } // getCustomerList() 메서드 end
 
+
+
     /////////////////////////////////////////////////////////////
     // 숙소 전체 목록 조회(날짜 역순) + 검색 기능
     /////////////////////////////////////////////////////////////
@@ -1397,5 +1395,53 @@ public class StayDAO {
         }
         return list;
     }
+
+
+
+
+
+    /////////////////////////////////////////////////////////////
+    // 숙소 예약 횟수 증가
+    /////////////////////////////////////////////////////////////
+    public void plusStayReservCount(int stay_no) {
+        try {
+            openConn();
+
+            sql = "update staykey_stay set stay_reserv = stay_reserv + 1 where stay_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, stay_no);
+            pstmt.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+    }
+
+
+
+
+    /////////////////////////////////////////////////////////////
+    // 숙소 예약 횟수 감소
+    /////////////////////////////////////////////////////////////
+    public void minusStayReservCount(int stay_no) {
+        try {
+            openConn();
+
+            sql = "update staykey_stay set stay_reserv = stay_reserv - 1 where stay_no = ? and stay_reserv > 0";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, stay_no);
+            pstmt.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+    }
+
 
 }
