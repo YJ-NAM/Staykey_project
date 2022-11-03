@@ -157,19 +157,12 @@ ${ login_msg }
     </div>
     <!-------- 메인 페이지 비주얼 //END --------->
 
-
-
-
-    
-
     <!-------- 메인 페이지 신규 창 //START --------->
     <div class="container main-new">
         <div class="sec-title">
             <strong>Stay:Key로 여는 새로운 경험</strong>
         </div>
-
         <div class="new-container stay-list" id="new-container">
-
             <div class="swiper-wrapper">
                 <div class="swiper-slide stay-box">
                         <a href="#">
@@ -183,7 +176,6 @@ ${ login_msg }
                             </div>
                         </a>
                 </div>
-
                 <div class="swiper-slide stay-box">
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/105/686/original/0c046e3258a34c039a041b8a679586eac6d86b08.jpg?1640251254" />
@@ -196,7 +188,6 @@ ${ login_msg }
                             </div>
                         </a>
                 </div>
-
                 <div class="swiper-slide stay-box">
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/072/793/original/a85c030e3ae1ed36bda4a7d4444debe8d4edd344.jpg?1621839513" />
@@ -209,7 +200,6 @@ ${ login_msg }
                             </div>
                         </a>
                 </div>
-
                 <div class="swiper-slide stay-box">
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/078/487/original/fed4b2a88ae247cba7e87a74ff8e8f0efaec753c.jpg?1624414143" />
@@ -222,7 +212,6 @@ ${ login_msg }
                             </div>
                         </a>
                 </div>
-
                 <div class="swiper-slide stay-box">
                     <a href="#">
                         <img src="https://images.stayfolio.com/system/pictures/images/000/126/065/original/80ad8add0dc98fafcc76b18332ad6a4b2d903f30.jpg?1655169615" />
@@ -235,7 +224,6 @@ ${ login_msg }
                         </div>
                     </a>
                 </div>
-
                 <div class="swiper-slide stay-box">
                     <a href="#">
                         <img src="https://images.stayfolio.com/system/pictures/images/000/071/961/original/42470820f1906ded8cb4a0b93de5950d06a187c5.jpg?1621244347" />
@@ -248,7 +236,6 @@ ${ login_msg }
                         </div>
                     </a>
                 </div>
-
                 <div class="swiper-slide stay-box">
                     <a href="#">
                         <img src="https://images.stayfolio.com/system/pictures/images/000/075/909/original/0a4b4164fb4d670eadad5a5b435cd9ac73e4be4b.jpg?1623127639" />
@@ -261,7 +248,6 @@ ${ login_msg }
                         </div>
                     </a>
                 </div>
-
                 <div class="swiper-slide stay-box">
                     <a href="#">
                         <img src="https://images.stayfolio.com/system/pictures/images/000/023/126/original/a547d693b0cc77c5061ec9cb71b697da519cbd70.jpg?1510115251" />
@@ -274,7 +260,6 @@ ${ login_msg }
                         </div>
                     </a>
                 </div>
-
                 <div class="swiper-slide stay-box">
                     <a href="#">
                         <img src="https://images.stayfolio.com/system/pictures/images/000/150/183/original/844830d39ffeee287176cdbb216b615c07bb6b80.jpg?1667184244" />
@@ -287,7 +272,6 @@ ${ login_msg }
                         </div>
                     </a>
                 </div>
-
                 <div class="swiper-slide stay-box">
                     <a href="#">
                         <img src="https://images.stayfolio.com/system/pictures/images/000/070/079/original/a16bb0e4a3f9f5e5ef99834c9a652c4dcc2526f6.jpg?1619510674" />
@@ -304,6 +288,7 @@ ${ login_msg }
         </div>
     </div>
     <!-------- 메인 페이지 신규 창 // END --------->
+
 
     <!-------- 메인 페이지 배너 창 // START --------->
     <div class="main-banner">
@@ -488,7 +473,7 @@ ${ login_msg }
                         <a href="#">
                             <img src="https://images.stayfolio.com/system/pictures/images/000/140/370/original/a79d65f3efd11ef8f463e31009661c5e5d96e4c4.jpg?1662352893" />
                             <div class="stay-info">
-                                <h3 class="title">서리<br>Seorier</h3>
+                                <h3 class="title">서리어<br>Seorier</h3>
                                 <p class="text">마음에 서리는<br>시간의 기억들</p>
                                 <p class="magazine">MAGAZINE</p>
                                 <p class="more">Read more</p>
