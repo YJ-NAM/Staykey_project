@@ -79,7 +79,6 @@ public class SiteMypageQnaWriteOkAction implements Action {
         dto.setBbs_writer_name(name);
         dto.setBbs_title(bbs_title);
         dto.setBbs_content(bbs_content);
-        dto.setBbs_status("send");
         
         int res = dao.registerQna(dto);
         

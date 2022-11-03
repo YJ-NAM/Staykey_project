@@ -45,7 +45,7 @@ public class SiteMypageWishAction implements Action {
     	StayDAO sdao = StayDAO.getInstance();
     	for(int i=0; i<list.size(); i++) {
     		stayNo[i] = (int) list.get(i);
-    		sdto = sdao.getStayView(stayNo[i]);
+    		sdto = sdao.getStayWish(stayNo[i]);
     	
     	}
     	
