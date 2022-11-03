@@ -222,7 +222,7 @@ ${ login_msg }
                                 <span>서울/종로</span>
                             </div>
                             <div class="other">
-                                <span>작고 소박한 즐거움, 이호소락</span>
+                                <span>작고 소박한 즐거움<br>이호소락</span>
                             </div>
                         </a>
                 </div>
@@ -235,7 +235,7 @@ ${ login_msg }
                             <span>충북/진천</span>
                         </div>
                         <div class="other">
-                            <span>시간은 기억으로, 공간은 추억으로</span>
+                            <span>시간은 기억으로<br>공간은 추억으로</span>
                         </div>
                     </a>
                 </div>
@@ -268,39 +268,39 @@ ${ login_msg }
 
                 <div class="swiper-slide stay-box">
                     <a href="#">
-                        <img src="https:////images.stayfolio.com/system/pictures/images/000/078/487/original/fed4b2a88ae247cba7e87a74ff8e8f0efaec753c.jpg?1624414143" />
-                        <div class="title">이호소락</div>
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/023/126/original/a547d693b0cc77c5061ec9cb71b697da519cbd70.jpg?1510115251" />
+                        <div class="title">아담한옥</div>
                         <div class="subtitle">
                             <span>서울/종로</span>
                         </div>
                         <div class="other">
-                            <span>작고 소박한 즐거움, 이호소락</span>
+                            <span>현대인의 동굴<br>사색의 한옥</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="swiper-slide stay-box">
                     <a href="#">
-                        <img src="https:////images.stayfolio.com/system/pictures/images/000/078/487/original/fed4b2a88ae247cba7e87a74ff8e8f0efaec753c.jpg?1624414143" />
-                        <div class="title">이호소락</div>
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/150/183/original/844830d39ffeee287176cdbb216b615c07bb6b80.jpg?1667184244" />
+                        <div class="title">신돌집</div>
                         <div class="subtitle">
-                            <span>서울/종로</span>
+                            <span>제주/서귀포</span>
                         </div>
                         <div class="other">
-                            <span>작고 소박한 즐거움, 이호소락</span>
+                            <span>제주 신도리의<br>새로운 돌집</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="swiper-slide stay-box">
                     <a href="#">
-                        <img src="https:////images.stayfolio.com/system/pictures/images/000/078/487/original/fed4b2a88ae247cba7e87a74ff8e8f0efaec753c.jpg?1624414143" />
-                        <div class="title">이호소락</div>
+                        <img src="https://images.stayfolio.com/system/pictures/images/000/070/079/original/a16bb0e4a3f9f5e5ef99834c9a652c4dcc2526f6.jpg?1619510674" />
+                        <div class="title">테라스 마크</div>
                         <div class="subtitle">
-                            <span>서울/종로</span>
+                            <span>강원/강릉</span>
                         </div>
                         <div class="other">
-                            <span>작고 소박한 즐거움, 이호소락</span>
+                            <span>바다가 건네는 위로</span>
                         </div>
                     </a>
                 </div>
