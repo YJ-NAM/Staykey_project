@@ -52,6 +52,8 @@ public class SiteStayListAction implements Action {
         	if(request.getParameter("ps_people_baby") != null) { ps_people_baby = Integer.parseInt(request.getParameter("ps_people_baby")); }
         }
         
+        System.out.println(ps_people_adult);
+        
         if(request.getParameter("ps_price_min") != null || request.getParameter("ps_price_max") != null) {
         	if(request.getParameter("ps_price_min") != (null)) { 
         		ps_price_min = Integer.parseInt(request.getParameter("ps_price_min"));

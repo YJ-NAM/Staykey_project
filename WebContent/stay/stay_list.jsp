@@ -198,25 +198,14 @@
 
 
 <!-- ps_order -->
-<c:set var="ps_link" value="location.href='<%=request.getContextPath()%>/stay/stayList.do?ps_stay=${map.ps_type}&ps_start=${map.ps_start}
-    &ps_end=${map.ps_end}&ps_people_adult=${map.ps_location_sub}&ps_people_kid=${map.ps_people_kid}&ps_people_baby=${map.ps_people_baby}&
-    ps_price_min=${map.ps_price_min}&ps_price_max=${map.ps_price_max}&ps_type=${map.ps_type}&ps_order=" />
-
+<c:set var="ps_link" value="stayList.do?ps_stay=${map.ps_type}&ps_start=${map.ps_start}&ps_end=${map.ps_end}&ps_people_adult=${map.ps_people_adult}&ps_people_kid=${map.ps_people_kid}&ps_people_baby=${map.ps_people_baby}&ps_price_min=${map.ps_price_min}&ps_price_max=${map.ps_price_max}&ps_type=${map.ps_type}&ps_order=" />
 
 <ul class="container stay-order">
-    <li><a href="${ ps_link }+${map.ps_order == 'reserv_desc'}" class="now">추천순</a></li>
-    <li><a href="location.href='<%=request.getContextPath()%>/stay/stayList.do?ps_stay=${map.ps_type}&ps_start=${map.ps_start}
-    &ps_end=${map.ps_end}&ps_people_adult=${map.ps_location_sub}&ps_people_kid=${map.ps_people_kid}&ps_people_baby=${map.ps_people_baby}&
-    ps_price_min=${map.ps_price_min}&ps_price_max=${map.ps_price_max}&ps_type=${map.ps_type}&ps_order=${map.ps_order == 'date_desc'}" >최신순</a></li>
-    <li><a href="location.href='<%=request.getContextPath()%>/stay/stayList.do?ps_stay=${map.ps_type}&ps_start=${map.ps_start}
-    &ps_end=${map.ps_end}&ps_people_adult=${map.ps_location_sub}&ps_people_kid=${map.ps_people_kid}&ps_people_baby=${map.ps_people_baby}&
-    ps_price_min=${map.ps_price_min}&ps_price_max=${map.ps_price_max}&ps_type=${map.ps_type}&ps_order=${map.ps_order == 'hit_desc'}" >인기순</a></li>
-    <li><a href="location.href='<%=request.getContextPath()%>/stay/stayList.do?ps_stay=${map.ps_type}&ps_start=${map.ps_start}
-    &ps_end=${map.ps_end}&ps_people_adult=${map.ps_location_sub}&ps_people_kid=${map.ps_people_kid}&ps_people_baby=${map.ps_people_baby}&
-    ps_price_min=${map.ps_price_min}&ps_price_max=${map.ps_price_max}&ps_type=${map.ps_type}&ps_order=${map.ps_order == 'room_price_max desc'}" >높은 가격순</a></li>
-    <li><a href="location.href='<%=request.getContextPath()%>/stay/stayList.do?ps_stay=${map.ps_type}&ps_start=${map.ps_start}
-    &ps_end=${map.ps_end}&ps_people_adult=${map.ps_location_sub}&ps_people_kid=${map.ps_people_kid}&ps_people_baby=${map.ps_people_baby}&
-    ps_price_min=${map.ps_price_min}&ps_price_max=${map.ps_price_max}&ps_type=${map.ps_type}&ps_order=${map.ps_order == 'room_price_min asc'}" >낮은 가격순</a></li>
+    <li><a href="${ ps_link }${map.ps_order}" class="now">추천순</a></li>
+    <li><a href="${ ps_link }${map.ps_order}" >최신순</a></li>
+    <li><a href="${ ps_link }${map.ps_order}" >인기순</a></li>
+    <li><a href="${ ps_link }${map.ps_order}" >높은 가격순</a></li>
+    <li><a href="${ ps_link }${map.ps_order}" >낮은 가격순</a></li>
 </ul>
 
 
