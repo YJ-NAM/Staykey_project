@@ -27,7 +27,6 @@ public class AdminQnaViewAction implements Action {
         QnaCommentDAO commentDao = QnaCommentDAO.getInstance();
         List<QnaCommentDTO> commentDto = commentDao.getQnaCommentInfo(no);
 
-        
         request.setAttribute("qna", dto);
         request.setAttribute("List", commentDto);
         

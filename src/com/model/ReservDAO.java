@@ -3,7 +3,9 @@ package com.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -367,7 +369,128 @@ public class ReservDAO {
 
 
 
+    // ======================================================
+    // 글자 수 맞춰서 0 붙이기
+    // ======================================================
+    public String setLength(int val){
+        String temp = "";
 
+        for(int i = (int)(Math.log10(val)+1); i<6; i++){
+            temp += "0";
+        }
+
+        return temp + val;
+    }
+
+
+
+    // ======================================================
+    // 예약번호 만들기
+    // ======================================================
+    public String makeReservSess() {
+        String result = "";
+
+
+        // 주문번호 앞(날짜) 생성
+        SimpleDateFormat nowDateFormat = new SimpleDateFormat("yyMMdd");
+        Calendar c1 = Calendar.getInstance();
+        String sessHeader = nowDateFormat.format(c1.getTime());
+
+
+        // 오늘날짜 주문건 체크
+        String chkSess = null;
+
+        try {
+            openConn();
+
+            sql = "select reserv_sess from staykey_reserv where reserv_sess like '%" + sessHeader + "%' order by reserv_sess desc";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) chkSess = rs.getString(1);
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+
+        // 주문번호 생성
+        if(chkSess != null) {
+            String[] epdSess = chkSess.split("_");
+            int tmp = Integer.parseInt(epdSess[1]) + 1;
+            String sessFooter = setLength(tmp);
+            result = sessHeader + "-" + sessFooter; 
+        }else{
+            result = sessHeader + "-000001"; 
+        }
+
+        return result;
+    }
+
+
+
+
+
+
+    // ======================================================
+    // 예약 정보 입력하기
+    // ======================================================
+    public int insertReserv(ReservDTO dto) {
+        int result = 0, count = 0;
+
+        try {
+            openConn();
+
+            sql = "select max(reserv_no) from staykey_reserv";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) count = rs.getInt(1) + 1;
+
+
+            sql = "insert into staykey_reserv values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, TO_DATE(?, 'YYYY/MM/DD HH24:MI:SS'), TO_DATE(?, 'YYYY/MM/DD HH24:MI:SS'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, count);
+            pstmt.setString(2, "reserv");
+            pstmt.setString(3, dto.getReserv_sess());
+            pstmt.setInt(4, dto.getReserv_stayno());
+            pstmt.setString(5, dto.getReserv_stayname());
+            pstmt.setInt(6, dto.getReserv_roomno());
+            pstmt.setString(7, dto.getReserv_roomname());
+            pstmt.setString(8, dto.getReserv_memid());
+            pstmt.setString(9, dto.getReserv_memname());
+            pstmt.setString(10, dto.getReserv_memphone());
+            pstmt.setString(11, dto.getReserv_mememail());
+            pstmt.setString(12, dto.getReserv_start());
+            pstmt.setString(13, dto.getReserv_end());
+            pstmt.setInt(14, dto.getReserv_daycount());
+            pstmt.setInt(15, dto.getReserv_basic_price());
+            pstmt.setString(16, dto.getReserv_option1_name());
+            pstmt.setInt(17, dto.getReserv_option1_price());
+            pstmt.setString(18, dto.getReserv_option2_name());
+            pstmt.setInt(19, dto.getReserv_option2_price());
+            pstmt.setString(20, dto.getReserv_option3_name());
+            pstmt.setInt(21, dto.getReserv_option3_price());
+            pstmt.setInt(22, dto.getReserv_total_price());
+            pstmt.setInt(23, dto.getReserv_people_adult());
+            pstmt.setInt(24, dto.getReserv_people_kid());
+            pstmt.setInt(25, dto.getReserv_people_baby());
+            pstmt.setString(26, dto.getReserv_pickup());
+            pstmt.setString(27, dto.getReserv_request());
+            result = pstmt.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
+    }
 
 
 }
