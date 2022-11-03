@@ -3,7 +3,7 @@ drop table staykey_qna purge;
 
 create table staykey_qna(
     bbs_no number(5) primary key,
-    bbs_status varchar2(50) not null,
+    bbs_status varchar2(50) default 'send',
     bbs_title varchar2(100) not null,
     bbs_content varchar2(2000) not null,
     bbs_file1 varchar2(200),
