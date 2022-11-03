@@ -1409,13 +1409,13 @@ public class StayDAO {
         	sub_sql += "stay_no = "+stay_no[i]+" or ";
         }        
         
-        sub_sql = sub_sql.substring(0, sub_sql.lastIndexOf("or")+1);
-        sub_sql = ")";
+        sub_sql = sub_sql.substring(0, sub_sql.lastIndexOf("or"));
+        sub_sql += ")";
         
         try {        	
         	openConn();
             sql = "select * from staykey_stay where "+sub_sql;
-
+            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 

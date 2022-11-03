@@ -5,6 +5,7 @@
 <% long time = System.currentTimeMillis(); %>
 <jsp:include page="layout/layout_header.jsp" />
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/main.css?<%=time%>" />
+<c:set var="stay" value="${ stayRandom }"/>
 
 
 <script type="text/javascript">
@@ -111,49 +112,17 @@ ${ login_msg }
         <!-------- 메인 페이지 비주얼 //START --------->
         <div id="main-visual" class="main-visual">
             <ul class="swiper-wrapper">
+                <c:forEach items="${ stay }" var="list">
                 <li class="swiper-slide slider-box">
-                    <a href="#">
-                    <img class="img" src="https://images.stayfolio.com/system/pictures/images/000/147/185/original/f7795e07092868f683dc1efd5c38e9707a4958f1.jpg?1665466753"/>
+                    <a href="<%=request.getContextPath()%>/stayList.do?stay_no=${list.stay_no}" style="background-image: url('<%=request.getContextPath()%>${stay.stay_file1}');">
                         <div class="stay-info">
-                            <p class="title">의귀소담</p>
-                            <p class="event subtitle">의귀리에서 찾은 진짜 제주</p>
-                            <p class="more">Read more</p>
+                            <p class="title">${ list.stay_name }</p>
+                            <p class="event subtitle">${ list.stay_desc }</p>
+                            <p class="more"></p>
                         </div>
                     </a>
                 </li>
-
-                <li class="swiper-slide slider-box">
-                    <a href="#">
-                        <img class="img" src="https://images.stayfolio.com/system/pictures/images/000/150/594/original/8a73d224bc958237bffd1c46686c73efe38ecb04.jpg?1667290587"/>
-                        <div class="stay-info">
-                            <p class="title">월정느루</p>
-                            <p class="event subtitle">천천히, 오랫동안</p>
-                            <p class="more">Read more</p>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="swiper-slide slider-box">
-                    <a href="#">
-                        <img class="" src="https://images.prismic.io/stayfolio-production/ba01ba03-2ce1-4cbd-a7c1-2fa65f95ca1c_HOSHINOYA-OPEN-MAIN-BANNER.jpg?auto=compress,format&rect=0,0,1800,850&w=1800&h=850" />
-                        <div class="stay-info">
-                            <p class="title">호시노야</p>
-                            <p class="event subtitle">바쁜 일상이<br>마법처럼 잊혀지도록</p>
-                            <p class="more">Read more</p>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="swiper-slide slider-box">
-                    <a href="#">
-                        <img class="" src="https://images.prismic.io/stayfolio-production/b5310af4-cfb3-4211-859f-37629cf5c0ab_1.jpg" />
-                        <div class="stay-info">
-                            <p class="title">정향</p>
-                            <p class="event subtitle">올바른 쉼을 위한 곳</p>
-                            <p class="more">Read more</p>
-                        </div>
-                    </a>
-                </li>
+				</c:forEach>
             </ul>
             <i class="fa fa-chevron-left"></i>
             <i class="fa fa-chevron-right"></i>
@@ -162,9 +131,6 @@ ${ login_msg }
     <!-------- 메인 페이지 비주얼 //END --------->
 
 
-
-
-    
 
     <!-------- 메인 페이지 신규 창 //START --------->
     <div class="container main-new">
@@ -176,137 +142,24 @@ ${ login_msg }
 
             <div class="swiper-wrapper">
                 <div class="swiper-slide stay-box">
+                  <c:forEach items="${ stay }" var="list">                
                         <a href="#">
                             <img class="img" src="https://images.stayfolio.com/system/pictures/images/000/088/425/original/4c745f673dc5c91bff78dfef019da95786b22e9e.jpg?1628906575" />
-                            <div class="title">비 온 후 풍경</div>
+                            <div class="title">${ list.stay_name }</div>
                             <div class="subtitle">
-                                <span>강원/양양</span>
+                                <span>${ list.stay_location }</span>
                             </div>
                             <div class="other">
-                                <span>자연과 하나된 프라이빗 휴식</span>
+                                <span>${ list.stay_desc }</span>
                             </div>
                         </a>
+                   </c:forEach>                        
                 </div>
 
-                <div class="swiper-slide stay-box">
-                        <a href="#">
-                            <img src="https://images.stayfolio.com/system/pictures/images/000/105/686/original/0c046e3258a34c039a041b8a679586eac6d86b08.jpg?1640251254" />
-                            <div class="title">굿올데이즈 호텔</div>
-                            <div class="subtitle">
-                                <span>부산/중구</span>
-                            </div>
-                            <div class="other">
-                                <span>좋았던 옛 시절을 회상하는</span>
-                            </div>
-                        </a>
-                </div>
-
-                <div class="swiper-slide stay-box">
-                        <a href="#">
-                            <img src="https://images.stayfolio.com/system/pictures/images/000/072/793/original/a85c030e3ae1ed36bda4a7d4444debe8d4edd344.jpg?1621839513" />
-                            <div class="title">의림여관</div>
-                            <div class="subtitle">
-                                <span>강원/춘천</span>
-                            </div>
-                            <div class="other">
-                                <span>숲속 나그네의 집</span>
-                            </div>
-                        </a>
-                </div>
-
-                <div class="swiper-slide stay-box">
-                        <a href="#">
-                            <img src="https://images.stayfolio.com/system/pictures/images/000/078/487/original/fed4b2a88ae247cba7e87a74ff8e8f0efaec753c.jpg?1624414143" />
-                            <div class="title">이호소락</div>
-                            <div class="subtitle">
-                                <span>서울/종로</span>
-                            </div>
-                            <div class="other">
-                                <span>작고 소박한 즐거움<br>이호소락</span>
-                            </div>
-                        </a>
-                </div>
-
-                <div class="swiper-slide stay-box">
-                    <a href="#">
-                        <img src="https://images.stayfolio.com/system/pictures/images/000/126/065/original/80ad8add0dc98fafcc76b18332ad6a4b2d903f30.jpg?1655169615" />
-                        <div class="title">시기공추</div>
-                        <div class="subtitle">
-                            <span>충북/진천</span>
-                        </div>
-                        <div class="other">
-                            <span>시간은 기억으로<br>공간은 추억으로</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="swiper-slide stay-box">
-                    <a href="#">
-                        <img src="https://images.stayfolio.com/system/pictures/images/000/071/961/original/42470820f1906ded8cb4a0b93de5950d06a187c5.jpg?1621244347" />
-                        <div class="title">몬도마노</div>
-                        <div class="subtitle">
-                            <span>전남/목포</span>
-                        </div>
-                        <div class="other">
-                            <span>당신이 만드는 영원한 세계</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="swiper-slide stay-box">
-                    <a href="#">
-                        <img src="https://images.stayfolio.com/system/pictures/images/000/075/909/original/0a4b4164fb4d670eadad5a5b435cd9ac73e4be4b.jpg?1623127639" />
-                        <div class="title">온화가</div>
-                        <div class="subtitle">
-                            <span>강원/강릉</span>
-                        </div>
-                        <div class="other">
-                            <span>따뜻하고 고즈넉한 휴식</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="swiper-slide stay-box">
-                    <a href="#">
-                        <img src="https://images.stayfolio.com/system/pictures/images/000/023/126/original/a547d693b0cc77c5061ec9cb71b697da519cbd70.jpg?1510115251" />
-                        <div class="title">아담한옥</div>
-                        <div class="subtitle">
-                            <span>서울/종로</span>
-                        </div>
-                        <div class="other">
-                            <span>현대인의 동굴<br>사색의 한옥</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="swiper-slide stay-box">
-                    <a href="#">
-                        <img src="https://images.stayfolio.com/system/pictures/images/000/150/183/original/844830d39ffeee287176cdbb216b615c07bb6b80.jpg?1667184244" />
-                        <div class="title">신돌집</div>
-                        <div class="subtitle">
-                            <span>제주/서귀포</span>
-                        </div>
-                        <div class="other">
-                            <span>제주 신도리의<br>새로운 돌집</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="swiper-slide stay-box">
-                    <a href="#">
-                        <img src="https://images.stayfolio.com/system/pictures/images/000/070/079/original/a16bb0e4a3f9f5e5ef99834c9a652c4dcc2526f6.jpg?1619510674" />
-                        <div class="title">테라스 마크</div>
-                        <div class="subtitle">
-                            <span>강원/강릉</span>
-                        </div>
-                        <div class="other">
-                            <span>바다가 건네는 위로</span>
-                        </div>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
+    
     <!-------- 메인 페이지 신규 창 // END --------->
 
     <!-------- 메인 페이지 배너 창 // START --------->
@@ -319,6 +172,7 @@ ${ login_msg }
     </div>
     
     <!-------- 메인 페이지 배너 창 // END --------->
+    
 
     <!-------- 메인 페이지 프로모션 창 // START  -------------->
      <div class="main-promo">
