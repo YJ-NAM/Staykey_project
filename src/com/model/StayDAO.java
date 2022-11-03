@@ -643,7 +643,7 @@ public class StayDAO {
                 dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));
                 
                 list.add(dto);
-                
+                System.out.println("dto" + dto);
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block

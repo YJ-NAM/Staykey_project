@@ -175,20 +175,28 @@ public class WishDAO {
         try {
             openConn();
 
-            sql = "select wish_stayno from staykey_member_wish where wish_memid = ?";
+            sql = "select * from staykey_member_wish where wish_memid = ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
+
             	WishDTO dto = new WishDTO();
             	
             	dto.setWish_no(rs.getInt("wish_no"));
             	dto.setWish_stayno(rs.getInt("wish_stayno"));
             	dto.setWish_memid(rs.getString("wish_memid"));
             	dto.setWish_date(rs.getString("wish_date"));
+
             	
                 list.add(dto);
+
+
+            	
+
+                
+
             }
 
         } catch (SQLException e) {
