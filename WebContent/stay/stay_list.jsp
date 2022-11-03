@@ -13,14 +13,6 @@
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/stay.css?<%=time%>" />
 <script language="javascript" src="<%=request.getContextPath()%>/asset/js/stay.js?<%=time%>"></script>
 
-<script>
-
-function changeVal(data) {
-    $("input[name='ps_people_adult'").val(data);
-}
-
-</script>
-
 
 <div class="container page-title">
     <h2>find stay</h2>
