@@ -126,9 +126,9 @@ public class SiteStayListAction implements Action {
         if(endBlock > allPage){
             endBlock = allPage;
         }
-
+        
         // 페이지 이동 URL
-        String pageUrl = request.getContextPath()+"/stayList.do?";
+        String pageUrl = request.getContextPath()+"/stayList.do?ps_stay="+ps_stay+"&ps_start="+ps_start+"&ps_end="+ps_end+"&ps_people_adult="+ps_people_adult+"&ps_people_kid="+ps_people_kid+"&ps_people_baby="+ps_people_baby+"&ps_price_min="+ps_price_min+"&ps_price_max="+ps_price_max+"&ps_type="+ps_type+"&ps_order="+ps_order;
 
         // 뷰에 전달할 매개변수 추가
         map.put("pagingWrite", Paging.showPage(allPage, startBlock, endBlock, page, pageUrl));
@@ -147,7 +147,6 @@ public class SiteStayListAction implements Action {
         getArray.getList("stayType");
         List<String> stayType = getArray.listArr;
         request.setAttribute("stayType", stayType);
-
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
