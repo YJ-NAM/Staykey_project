@@ -517,21 +517,28 @@ public class StayDAO {
     /////////////////////////////////////////////////////////////
     // 숙소 상세 목록 조회
     /////////////////////////////////////////////////////////////
-    public StayDTO getStayView(int no) {
+    public List<StayDTO> getStayView(int no) {
 
-        StayDTO dto = null;
+        List<StayDTO> list = new ArrayList<StayDTO>();
+        
+        System.out.println(no);
+        
         openConn();
 
         try {
+        	
             sql = "select * from staykey_stay where stay_no = ?";
+            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, no);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                dto = new StayDTO();
+                StayDTO dto = new StayDTO();
+                
                 dto.setStay_no(rs.getInt("stay_no"));
                 dto.setStay_type(rs.getString("stay_type"));
+                System.out.println(rs.getString("stay_name"));
                 dto.setStay_name(rs.getString("stay_name"));
                 dto.setStay_desc(rs.getString("stay_desc"));
                 dto.setStay_location(rs.getString("stay_location"));
@@ -568,6 +575,9 @@ public class StayDAO {
                 dto.setStay_room_price_max(rs.getInt("stay_room_price_max"));
                 dto.setStay_room_people_min(rs.getInt("stay_room_people_min"));
                 dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));
+                
+                list.add(dto);
+                
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -575,7 +585,7 @@ public class StayDAO {
         } finally {
             closeConn(rs, pstmt, con);
         }
-        return dto;
+        return list;
     } // getStayView() 종료
     
     /////////////////////////////////////////////////////////////
