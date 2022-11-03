@@ -1566,5 +1566,5 @@ public class StayDAO {
         }
     }
 
-
+}
 
