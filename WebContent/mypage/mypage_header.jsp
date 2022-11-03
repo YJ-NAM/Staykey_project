@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% long time = System.currentTimeMillis(); %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${empty login_id}"><script type="text/javascript">alert("회원 로그인이 필요한 페이지입니다."); location.href='<%=request.getContextPath()%>/memberLogin.do';</script></c:if>
+
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/mypage.css?<%=time%>" />
 <script language="javascript" src="<%=request.getContextPath()%>/asset/js/mypage.js?<%=time%>">
 </script>
