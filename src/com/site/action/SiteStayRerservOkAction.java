@@ -2,15 +2,16 @@ package com.site.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLClientInfoException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.controller.Action;
 import com.controller.ActionForward;
+import com.model.MemberDAO;
 import com.model.ReservDAO;
 import com.model.ReservDTO;
+import com.model.StayDAO;
 
 public class SiteStayRerservOkAction implements Action {
 
@@ -35,7 +36,6 @@ public class SiteStayRerservOkAction implements Action {
         String reserv_end = request.getParameter("reserv_end");
         int reserv_daycount = Integer.parseInt(request.getParameter("reserv_daycount"));
         int reserv_basic_price = Integer.parseInt(request.getParameter("reserv_basic_price"));
-        int reserv_total_price = Integer.parseInt(request.getParameter("reserv_total_price"));
         int reserv_people_adult = Integer.parseInt(request.getParameter("reserv_people_adult"));
         int reserv_people_kid = Integer.parseInt(request.getParameter("reserv_people_kid"));
         int reserv_people_baby = Integer.parseInt(request.getParameter("reserv_people_baby"));
@@ -62,6 +62,8 @@ public class SiteStayRerservOkAction implements Action {
             reserv_option3_name = request.getParameter("reserv_option3_name");
             reserv_option3_price = Integer.parseInt(request.getParameter("reserv_option3_price"));
         }
+
+        int reserv_total_price = reserv_basic_price + reserv_option1_price + reserv_option2_price + reserv_option3_price;
 
 
         // 객체에 저장
@@ -122,10 +124,13 @@ public class SiteStayRerservOkAction implements Action {
 
 
         // 숙소 정보에 예약 횟수 늘리기
+        StayDAO sdao = StayDAO.getInstance();
+        sdao.plusStayReservCount(reserv_stayno);
 
 
         // 회원정보에 예약 횟수 늘리기
-
+        MemberDAO mdao = MemberDAO.getInstance();
+        mdao.plusMemReservCount(reserv_memid);
 
 
         PrintWriter out = response.getWriter();

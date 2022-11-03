@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.controller.Action;
 import com.controller.ActionForward;
+import com.model.MemberDAO;
 import com.model.ReservDAO;
 import com.model.ReservDTO;
 import com.model.StayDAO;
@@ -47,6 +48,23 @@ public class AdminReservModifyOkAction implements Action {
         // 기존 예약정보 불러옴
         ReservDAO dao = ReservDAO.getInstance();
         ReservDTO info = dao.getReservInfo(reserv_sess);
+
+
+
+        // 예약 상태 변경시 예약횟수 처리
+        StayDAO sdao = StayDAO.getInstance();
+        MemberDAO mdao = MemberDAO.getInstance();
+
+        // 취소로 변경시 (감소)
+        if(!reserv_status.equals(info.getReserv_status()) && reserv_status.equals("cancel")) {
+            sdao.minusStayReservCount(info.getReserv_stayno()); // 숙소정보
+            mdao.minusMemReservCount(info.getReserv_memid()); // 회원정보
+        }else if(!reserv_status.equals(info.getReserv_status()) && reserv_status.equals("reserv")) {
+            sdao.plusStayReservCount(info.getReserv_stayno()); // 숙소정보
+            mdao.plusMemReservCount(info.getReserv_memid()); // 회원정보
+        }
+
+
 
         // 룸 정보 불러옴
         StayDAO rdao = StayDAO.getInstance();
@@ -87,17 +105,17 @@ public class AdminReservModifyOkAction implements Action {
 
         // 선택옵션 정리
         if(reserv_option1_data != "" && reserv_option1_data != null){
-            String[] epd_option1 = reserv_option1_data.split("/");
+            String[] epd_option1 = reserv_option1_data.split("♣");
             reserv_option1_name = epd_option1[0];
             reserv_option1_price = Integer.parseInt(epd_option1[1]);
         }
         if(reserv_option2_data != "" && reserv_option2_data != null){
-            String[] epd_option2 = reserv_option2_data.split("/");
+            String[] epd_option2 = reserv_option2_data.split("♣");
             reserv_option2_name = epd_option2[0];
             reserv_option2_price = Integer.parseInt(epd_option2[1]);
         }
         if(reserv_option3_data != "" && reserv_option3_data != null){
-            String[] epd_option3 = reserv_option3_data.split("/");
+            String[] epd_option3 = reserv_option3_data.split("♣");
             reserv_option3_name = epd_option3[0];
             reserv_option3_price = Integer.parseInt(epd_option3[1]);
         }
