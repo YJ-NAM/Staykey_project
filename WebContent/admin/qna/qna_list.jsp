@@ -119,7 +119,7 @@
 
             <c:otherwise>
             <tr>
-                <td colspan="10" class="nodata">등록된 일대일 문의가 없습니다.</td>
+                <td colspan="7" class="nodata">등록된 일대일 문의가 없습니다.</td>
             </tr>
             </c:otherwise>
             </c:choose>
@@ -128,7 +128,7 @@
 
         <tfoot>
             <tr>
-                <td colspan="10">
+                <td colspan="7">
                     <table class="paging-table">
                         <tbody>
                             <tr>
