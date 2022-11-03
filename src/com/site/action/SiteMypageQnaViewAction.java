@@ -21,7 +21,6 @@ public class SiteMypageQnaViewAction implements Action {
     	// 마이페이지 1대1 문의 상세내역 비지니스 로직.
     	int no = Integer.parseInt(request.getParameter("no").trim());
     	
-    	HttpSession session = request.getSession();
     	
         QnaDAO dao = QnaDAO.getInstance();
         QnaDTO dto = dao.getQnaInfo(no);
@@ -29,8 +28,8 @@ public class SiteMypageQnaViewAction implements Action {
         QnaCommentDAO commentDao = QnaCommentDAO.getInstance();
         List<QnaCommentDTO> commentDto = commentDao.getQnaCommentInfo(no);
 
-		session.setAttribute("qna", dto);
-		session.setAttribute("List", commentDto);
+        request.setAttribute("qna", dto);
+        request.setAttribute("List", commentDto);
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
