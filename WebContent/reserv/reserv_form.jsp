@@ -173,18 +173,16 @@
                     <th>예상 결제금액</th>
                     <td class="total-price">
                         <dl>
-                            <dt>객실 요금<span class="plus_option">Deluxe / 원룸형  ₩280000 * 3 박</span></dt>
+                            <dt>객실 요금<span class="stay">${room.room_name} / ${room.room_type} &nbsp; <fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${room.room_price}" type="currency" /> * ${daycount}박</span></dt>
                             <dd>₩840,000</dd>
                             <dt>
                                 <span class="plus-option-tit">추가 옵션</span>
                                 <ul class="plus-option-wrap">
-                                    <li class="plus_option">한우 BBQ SET (2인분 1세트)</li>
-                                    <li class="plus_option">조식(추가인원 조식신청시)</li>
+                                    <li class="plus-option">한우 BBQ SET (2인분 1세트)</li>
+                                    <li class="plus-option">조식(추가인원 조식신청시)</li>
                                 </ul>
                             </dt>
                             <dd>₩179,300</dd>
-                            <dt>할인금액</dt>
-                            <dd>- ₩28,000</dd>
                             <dt class="total"></dt>
                             <dd class="total">₩812,000</dd>
                         </dl>
