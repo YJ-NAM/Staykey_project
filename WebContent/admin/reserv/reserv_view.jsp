@@ -121,9 +121,9 @@
                     <tr>
                         <th>옵션 신청</th>
                         <td>
-                            <c:if test="${!empty view.reserv_option1_name}"><p>${view.reserv_option1_name} (<fmt:formatNumber value="${view.reserv_option1_price}" />원)</p></c:if>
-                            <c:if test="${!empty view.reserv_option2_name}"><p>${view.reserv_option2_name} (<fmt:formatNumber value="${view.reserv_option2_price}" />원)</p></c:if>
-                            <c:if test="${!empty view.reserv_option3_name}"><p>${view.reserv_option3_name} (<fmt:formatNumber value="${view.reserv_option3_price}" />원)</p></c:if>
+                            <c:if test="${!empty view.reserv_option1_name}"><p class="my-2">${view.reserv_option1_name} (<fmt:formatNumber value="${view.reserv_option1_price}" />원)</p></c:if>
+                            <c:if test="${!empty view.reserv_option2_name}"><p class="my-2">${view.reserv_option2_name} (<fmt:formatNumber value="${view.reserv_option2_price}" />원)</p></c:if>
+                            <c:if test="${!empty view.reserv_option3_name}"><p class="my-2">${view.reserv_option3_name} (<fmt:formatNumber value="${view.reserv_option3_price}" />원)</p></c:if>
                         </td>
                     </tr>
                     </c:if>

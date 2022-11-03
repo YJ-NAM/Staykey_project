@@ -15,31 +15,28 @@ import com.model.StayDTO;
 import com.model.WishDAO;
 import com.model.WishDTO;
 
-public class SiteMypageWishActioㅋn implements Action {
+public class SiteMypageWishAction implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    			
+
     	 int wish_stayno = Integer.parseInt(request.getParameter("wish_stayno"));
 
          // 상세 정보 조회 메서드
          WishDAO dao = WishDAO.getInstance();
-         WishDTO dto = dao.getMagView(wish_stayno);
-         request.setAttribute("wish", dto);
+         // WishDTO dto = dao.getMagView(wish_stayno);
+         // request.setAttribute("wish", dto);
 
          // 등록된 숙소 목록 정보 메서드
          StayDAO sdao = StayDAO.getInstance();
-         List<StayDTO> slist = sdao.getBbsViewList(dto.getBbs_stayno());
-         request.setAttribute("stayList", slist);
+         // List<StayDTO> slist = sdao.getBbsViewList(dto.getBbs_stayno());
+         // request.setAttribute("stayList", slist);
 
-    	
+
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("mypage/mypage_wish_list.jsp");
-    	
+
         return forward;	
-    	        
-
-    		}
-
+    }
 }

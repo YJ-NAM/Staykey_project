@@ -195,11 +195,11 @@ $(function(){
                         <td>
                             <div class="row">
                                 <c:if test="${!empty stay.stay_option1_name}">
-                                <div class="col-auto">
+                                <div class="col-auto my-2">
                                     <div>${stay.stay_option1_name} (<fmt:formatNumber value="${stay.stay_option1_price}" />원)</div>
                                     <div>
                                         <div class="form-check form-check-inline">
-                                            <label class="form-check-label"><input type="radio" name="reserv_option1_name" value="${stay.stay_option1_name}/${stay.stay_option1_price}" class="form-check-input"<c:if test="${!empty view.reserv_option1_name}"> checked="checked"</c:if> /> 선택</label>
+                                            <label class="form-check-label"><input type="radio" name="reserv_option1_name" value="${stay.stay_option1_name}♣${stay.stay_option1_price}" class="form-check-input"<c:if test="${!empty view.reserv_option1_name}"> checked="checked"</c:if> /> 선택</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <label class="form-check-label"><input type="radio" name="reserv_option1_name" value="" class="form-check-input"<c:if test="${empty view.reserv_option1_name}"> checked="checked"</c:if> /> 안함</label>
@@ -209,11 +209,11 @@ $(function(){
                                 </c:if>
 
                                 <c:if test="${!empty stay.stay_option2_name}">
-                                <div class="col-auto">
+                                <div class="col-auto my-2">
                                     <div>${stay.stay_option2_name} (<fmt:formatNumber value="${stay.stay_option2_price}" />원)</div>
                                     <div>
                                         <div class="form-check form-check-inline">
-                                            <label class="form-check-label"><input type="radio" name="reserv_option2_name" value="${stay.stay_option2_name}/${stay.stay_option2_price}" class="form-check-input"<c:if test="${!empty view.reserv_option2_name}"> checked="checked"</c:if> /> 선택</label>
+                                            <label class="form-check-label"><input type="radio" name="reserv_option2_name" value="${stay.stay_option2_name}♣${stay.stay_option2_price}" class="form-check-input"<c:if test="${!empty view.reserv_option2_name}"> checked="checked"</c:if> /> 선택</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <label class="form-check-label"><input type="radio" name="reserv_option2_name" value="" class="form-check-input"<c:if test="${empty view.reserv_option2_name}"> checked="checked"</c:if> /> 안함</label>
@@ -223,11 +223,11 @@ $(function(){
                                 </c:if>
 
                                 <c:if test="${!empty stay.stay_option3_name}">
-                                <div class="col-auto">
+                                <div class="col-auto my-2">
                                     <div>${stay.stay_option3_name} (<fmt:formatNumber value="${stay.stay_option3_price}" />원)</div>
                                     <div>
                                         <div class="form-check form-check-inline">
-                                            <label class="form-check-label"><input type="radio" name="reserv_option3_name" value="${stay.stay_option3_name}/${stay.stay_option3_price}" class="form-check-input"<c:if test="${!empty view.reserv_option3_name}"> checked="checked"</c:if> /> 선택</label>
+                                            <label class="form-check-label"><input type="radio" name="reserv_option3_name" value="${stay.stay_option3_name}♣${stay.stay_option3_price}" class="form-check-input"<c:if test="${!empty view.reserv_option3_name}"> checked="checked"</c:if> /> 선택</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <label class="form-check-label"><input type="radio" name="reserv_option3_name" value="" class="form-check-input"<c:if test="${empty view.reserv_option3_name}"> checked="checked"</c:if> /> 안함</label>
