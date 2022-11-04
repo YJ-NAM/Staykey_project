@@ -18,18 +18,17 @@
 
     <div class="container list-container">
         <ul class="journal-list"> 
-        <c:forEach items="${ magazine }" var="mgz" begin="0" end="4">
-            <li class="journal-box">
-                <a href="#">
-                    <img src="<%=request.getContextPath()%>${mgz.bbs_list_img}" />
-                    <div class="journal-info">
-                        <p class="name"><c:forTokens items="${ mgz.bbs_title }" delims="<" var="desc" begin="0" end="0">${ desc }</c:forTokens></p>
-                        <p class="more">Read more</p>
-                    </div>
-                </a>
-            </li>
- 		</c:forEach>  
-
+            <c:forEach items="${ magazine }" var="mgz" begin="0" end="3">
+                <li class="journal-box">
+                    <a href="<%=request.getContextPath()%>/magazineView.do?bbs_no=${mgz.bbs_no }">
+                        <img src="<%=request.getContextPath()%>${mgz.bbs_top_img}" />
+                        <div class="journal-info">
+                            <p class="name"><c:forTokens items="${ mgz.bbs_title }" delims="<" var="desc" begin="0" end="0">${ desc }</c:forTokens></p>
+                            <p class="more">Read more</p>
+                        </div>
+                    </a>
+                </li>
+            </c:forEach>  
         </ul>
     </div>
 
