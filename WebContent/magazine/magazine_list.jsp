@@ -18,7 +18,7 @@
 
     <div class="container list-container">
         <ul class="journal-list"> 
-        <c:forEach items="${ magazine }" var="mgz">
+        <c:forEach items="${ magazine }" var="mgz" begin="0" end="4">
             <li class="journal-box">
                 <a href="#">
                     <img src="<%=request.getContextPath()%>${mgz.bbs_list_img}" />

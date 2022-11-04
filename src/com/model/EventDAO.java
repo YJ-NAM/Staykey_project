@@ -431,6 +431,8 @@ public class EventDAO {
 				dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
 				dto.setBbs_date(rs.getString("bbs_date"));
 				
+				// 이벤트 정보에 따른 숙소정보 추출
+				
 				if(rs.getString("bbs_stayno") != null) {
 					String bbs_stayno = rs.getString("bbs_stayno");
 					bbs_stayno = bbs_stayno.substring(1);
@@ -448,11 +450,15 @@ public class EventDAO {
 		         		pstmt = con.prepareStatement(sql);
 		         		pstmt.setInt(1, stayIntNums[i]);
 		         		rs = pstmt.executeQuery();
+		         		
 		         		if(rs.next()) {
-		         			stayNames[i] = rs.getString("stay_name");                
+		         			stayNames[i] = rs.getString("stay_name");
 		         		}					
 		            }
-				}				
+		    		// stay_no => 어차피 String 값으로 저장되므로 stayNames의 random 이름 값으로 저장
+		    		dto.setBbs_stayno(stayNames[(int)Math.random()*stayNames.length + 1]);
+				}
+				
 				list.add(dto);
 			}
 		} catch (Exception e) {
