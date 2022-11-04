@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header_popup.jsp" />
 
+<% pageContext.setAttribute("newLine", "\n"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="dto" value="${qna}" />
 <c:set var="qList" value="${List}" />
 
-<script type="text/javascript">
-	opener.parent.location.reload();
-</script>
+<script type="text/javascript">opener.parent.location.reload();</script>
 	
 <style type="text/css">body { padding: 0 30px !important; }</style>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
@@ -117,7 +116,7 @@
                     </tr>
                     <tr> 
                         <th>문의내용</th>
-                        <td colspan="3" >${dto.bbs_content}</td>
+                        <td colspan="3" >${dto.bbs_content.replace(newLine, "<br />")}</td>
                     </tr>
                     <tr>
                         <th>첨부파일</th>
@@ -193,9 +192,9 @@
                     
                      <form name="write_form" method="post" action="<%=request.getContextPath() %>/admin/qnaCommentOk.do?no=${comment_qnano}">
                    		<%-- 이름, 아이디, 비밀번호 임시로 받음. --%>
-                   		<input type="hidden" name="comment_writer_name" value="rock" />
-						<input type="hidden" name="comment_writer_id" value="admin1234" />
-						<input type="hidden" name="comment_writer_pw" value="1234" />
+                   		<input type="hidden" name="comment_writer_name" value="${login_name}" />
+						<input type="hidden" name="comment_writer_id" value="${login_id}" />
+						<input type="hidden" name="comment_writer_pw" value="${login_pw}" />
                      <table class="table-form mt-2">
                      	<colgroup>
                             <col width="18%" />
@@ -205,7 +204,7 @@
 					    <tr> 
 					        <th>댓글 내용</th>										
 							<td> 
-								<textarea name="comment_content" cols="20" rows="3" class="form-control" ></textarea></td>
+								<textarea name="comment_content" cols="20" rows="3" class="form-control" required></textarea></td>
                             <td class="text-center">
                                 <button type="submit" class="btn btn-lg btn-primary w-100 h-100"><i class="fa fa-pencil"></i> 쓰기</button>
                             </td>

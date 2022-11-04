@@ -310,6 +310,31 @@ public class MagazineDAO {
 
 	}
 
+
+
+    // ======================================================
+    // 매거진 조회수 늘리기
+    // ======================================================
+	public void plusMagHit(int bbs_no) {
+	    try {
+	        openConn();
+
+	        sql = "update staykey_magazine set bbs_hit = bbs_hit + 1 where bbs_no = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, bbs_no);
+	        pstmt.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(pstmt, con);
+        }
+	}
+
+
+
+
 	/////////////////////////////////////////////////////////////
 	// 매거진 삭제 메서드 + No 재작업
 	/////////////////////////////////////////////////////////////
