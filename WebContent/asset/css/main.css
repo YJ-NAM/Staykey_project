@@ -612,7 +612,7 @@
 
 .main-magazine .stay-info .text {
     position: absolute;
-    bottom: 25px;
+    bottom: 30px;
     right : 55px;
     font-size: 18px;
     color: #333;
@@ -742,11 +742,12 @@
     margin-top: 30px;
     padding-bottom: 30px;
     font-size: 20px;
-    line-height: 35px;
+    line-height: 30px;
     height: 60px;
 }
  
 .main-travel .stay-list .stay-box .other {
+    padding-top: 10px;
     letter-spacing: 1.5;
     font-size: 14px;
     color: #181818;
