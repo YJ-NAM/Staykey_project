@@ -649,7 +649,33 @@ public class ReservDAO {
     }
     
 
-    
+ // ======================================================
+    // 예약 숙소 삭제 + 글번호 재작업 메서드
+    // ======================================================
+    public int deleteReserv(int no) {
+        int result = 0;
+
+        try {
+            openConn();
+
+            sql = "delete from staykey_reserv where reserv_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            result = pstmt.executeUpdate();
+
+
+            sql = "update staykey_reserv set reserv_no = reserv_no - 1 where reserv_no > ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return result;
+    }
     
     
     
