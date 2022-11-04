@@ -47,6 +47,23 @@ $(document).ready(function(){
         $("#h_ps_start").val(sdate);
         $("#h_ps_end").val(edate);
     });
+
+    $("#hidden-btn").on("show.daterangepicker", function(ev, picker){
+        $(".daterangepicker").addClass("modify");
+    });
+
+    $("#FindDate").on("hide.bs.modal", function(e) {
+        $(".daterangepicker.modify").removeClass("modify").css("display", "none");
+    })
+
+
+    // modal 실행시 스크롤 안되게
+    $("#FindLoc, #FindDate").on("show.bs.modal", function(e) {
+        $("html").addClass("noscroll");
+    })
+    $("#FindLoc, #FindDate").on("hide.bs.modal", function(e) {
+        $("html").removeClass("noscroll");
+    })
 });
 
 

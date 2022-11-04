@@ -1557,34 +1557,7 @@
 
 
 
-.daterangepicker {
-    padding: 20px;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-}
-.daterangepicker .drp-calendar {
-    max-width: 300px;
-}
-.daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
-    font-family: 'Lato';
-    min-width: 40px;
-    width: 40px;
-    height: 32px;
-    line-height: 32px;
-    font-size: 14px;
-}
-.daterangepicker td.in-range {
-    background-color: #357ebd;
-    color: #fff;
-    border-color: transparent;
-}
-.daterangepicker td.available:hover,
-.daterangepicker th.available:hover {
-    background-color: #357ebd;
-    color: #fff;
-    font-weight: 600;
-}
+
 
 
 
