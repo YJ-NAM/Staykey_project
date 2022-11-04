@@ -13,13 +13,15 @@ import com.model.MemberDAO;
 import com.model.MemberDTO;
 import com.model.ReservDAO;
 import com.model.ReservDTO;
+import com.model.StayDAO;
+import com.model.StayDTO;
 
 public class SiteMypageReservListAction implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-
+    	// 아이디로 예약 정보 리스트 가져오기
     	ReservDAO dao = ReservDAO.getInstance();
 		
     	HttpSession session = request.getSession();
@@ -28,8 +30,12 @@ public class SiteMypageReservListAction implements Action {
     	List<ReservDTO> list = dao.getMyReservInfo(id);
         request.setAttribute("reservList", list);
     	
-		System.out.println("뜨나?"+list);
-		
+        
+		  // 숙소 번호로 숙소 사진 가져오기 
+		  List<StayDTO> ilist = dao.getImgReservInfo(id);
+		  request.setAttribute("imgList", ilist);
+		 
+        
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("mypage/mypage_reserv_list.jsp");
