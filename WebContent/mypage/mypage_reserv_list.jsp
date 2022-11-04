@@ -28,27 +28,6 @@
 
 	<!-- 이미지 영역 -->
 	
-	
-<%-- 	<c:forEach items="${stayList}" var="stayList">
-	<img src="<%=request.getContextPath()%>${stayList.stay_file1 }" alt="" width="400" height="250"/>
-	</c:forEach> --%>
-
- 		<%-- 	<c:choose>
-				<c:when test="${!empty stayList.stay_file1}"> 
-					<img src="<%=request.getContextPath()%>${stayList.stay_file1 }" alt="" width="400" height="250"/>
-					
- 				</c:when>
-						<c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 -->
-							<svg class="bd-placeholder-img" width="60" height="60"
-								xmlns="http://www.w3.org/2000/svg"
-								preserveAspectRatio="xMidYMid slice" focusable="false"
-								role="img">
-	                            <title>${dto.bbs_no}</title>
-	                            <rect width="100%" height="100%" fill="#eee"></rect>
-	                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
-	                        </svg>
-						</c:otherwise> 
-			</c:choose> --%>
 
 	<c:forEach items="${reservList}" var="dto">
 		
@@ -56,8 +35,7 @@
 		
 		
 		<img src="<%=request.getContextPath()%>${img.stay_file1 }" alt="" width="400" height="250"/>
-					
-					
+				
 	
 	<!-- 예약 상태 -->
 	
@@ -112,7 +90,7 @@
 	 	<div class="btns">
 			<br>
 			<button type="button" class="btn_bk">
-				<a href="<%=request.getContextPath()%>/stayView.do?stay_no=${dto.stay_no}">예약 상세 확인</a>
+				<a href="<%=request.getContextPath()%>/mypageReservView.do?reserv_sess=${dto.reserv_sess}">예약 상세 확인</a>
 			</button>
 		</div>
 		<br> <br> <br>
