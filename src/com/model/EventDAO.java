@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -403,6 +404,7 @@ public class EventDAO {
 	// ======================================================
 	public List<EventDTO> getTotalEvent() {
 		List<EventDTO> list = new ArrayList<EventDTO>();
+        String[] stayName = null;
 
 		try {
 			openConn();
@@ -421,7 +423,6 @@ public class EventDAO {
 				dto.setBbs_file3(rs.getString("bbs_file3"));
 				dto.setBbs_file4(rs.getString("bbs_file4"));
 				dto.setBbs_file5(rs.getString("bbs_file5"));
-				dto.setBbs_stayno(rs.getString("bbs_stayno"));
 				dto.setBbs_showstart(rs.getString("bbs_showstart"));
 				dto.setBbs_showend(rs.getString("bbs_showend"));
 				dto.setBbs_hit(rs.getInt("bbs_hit"));
@@ -429,9 +430,37 @@ public class EventDAO {
 				dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
 				dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
 				dto.setBbs_date(rs.getString("bbs_date"));
+				
+				// 이벤트 정보에 따른 숙소정보 추출
+				
+				if(rs.getString("bbs_stayno") != null) {
+					String bbs_stayno = rs.getString("bbs_stayno");
+					bbs_stayno = bbs_stayno.substring(1);
+		    		StringTokenizer tokenizer = new StringTokenizer(bbs_stayno, "/");				    		
+		        	String[] stayNums = new String[tokenizer.countTokens()];
+		        	int[] stayIntNums = new int[tokenizer.countTokens()];
+		        	String[] stayNames = new String[tokenizer.countTokens()];
+		        	int i = 0;
+		    		while(tokenizer.hasMoreTokens()) {
+		    			stayNums[i] = tokenizer.nextToken();
+		             	stayIntNums[i] = Integer.parseInt(stayNums[i]);
+		         		i++;
+		         		
+		         		sql = "select stay_name from staykey_stay where stay_no = ?";
+		         		pstmt = con.prepareStatement(sql);
+		         		pstmt.setInt(1, stayIntNums[i]);
+		         		rs = pstmt.executeQuery();
+		         		
+		         		if(rs.next()) {
+		         			stayNames[i] = rs.getString("stay_name");
+		         		}					
+		            }
+		    		// stay_no => 어차피 String 값으로 저장되므로 stayNames의 random 이름 값으로 저장
+		    		dto.setBbs_stayno(stayNames[(int)Math.random()*stayNames.length + 1]);
+				}
+				
 				list.add(dto);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 

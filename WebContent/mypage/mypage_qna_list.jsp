@@ -10,7 +10,6 @@
 <script type="text/javascript">$("#mymenu-qna").addClass("now");</script>
 
 <div class="qna-list">
-    <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/mypageQnaModify.do" onsubmit="return join_check();">
     <table class="table-list hover">
         <colgroup>
             <col width="15%">
@@ -78,7 +77,6 @@
             </tr>
         </tfoot>
     </table>
-    </form>
 </div>
 
 
