@@ -30,6 +30,39 @@
     border-top: 1px solid #dadada;
     border-bottom: 1px solid #dadada;
 }
+.event-list .el-promotion .swiper-pagination-fraction,
+.event-list .el-promotion .swiper-button-prev,
+.event-list .el-promotion .swiper-button-next {
+    position: absolute;
+    top: -20px;
+    left: auto;
+    right: 50%;
+    background: none;
+    font-size: 14px;
+}
+.event-list .el-promotion .swiper-pagination-fraction {
+    width: auto;
+    bottom: auto;
+    margin-right: -540px;
+    margin-top: -20px;
+    font-family: 'Lato';
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+.event-list .el-promotion .swiper-pagination-current {
+    font-weight: 600;
+}
+.event-list .el-promotion .swiper-button-prev {
+    margin-right: -585px;
+}
+.event-list .el-promotion .swiper-button-next {
+    margin-right: -615px;
+}
+.event-list .el-promotion .swiper-button-prev:hover,
+.event-list .el-promotion .swiper-button-next:hover {
+    color: var(--color);
+}
+
 .event-list .el-promotion ul {
     position: relative;
     margin-left: -60px;

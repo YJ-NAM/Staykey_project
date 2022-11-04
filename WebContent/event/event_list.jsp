@@ -10,6 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="event" value="${eList}"/>
+<c:set var="stay" value="${sList}"/>
 
 
 <div class="container page-title">
@@ -27,6 +28,9 @@
         <h4 class="elp-title">PROMOTION</h4>
 
         <div class="elp-wrap">
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"><i class="fa fa-chevron-left"></i></div>
+            <div class="swiper-button-next"><i class="fa fa-chevron-right"></i></div>
             <ul class="swiper-wrapper">
                 <c:forEach items="${event}" var="list">
                 <li class="swiper-slide">
@@ -54,8 +58,16 @@
             loop: true,
             touchEnabled: false,
             autoplay: {
-                delay: 3000,
+                delay: 5000,
                 disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                type: "fraction"
+            },
+            navigation: {
+                nextEl: '.event-list .el-promotion .elp-wrap .swiper-button-next',
+                prevEl: '.event-list .el-promotion .elp-wrap .swiper-button-prev',
             }
         });
     });
@@ -71,6 +83,12 @@
     <div class="el-event">
         <h4 class="elp-title">EVENT</h4>
 
+
+        <c:if test="${!empty stay }">
+            <c:forEach var="stay" items="${stay}">
+                ${stay.stay_photo}<br />${stay.stay_no}<br />${stay.stay_name}<br />${stay.stay_location}<br />${stay.bbs_title}<br />${stay.bbs_day}<hr />
+            </c:forEach>
+        </c:if>
 
     </div>
     <!-- 이벤트 //END -->

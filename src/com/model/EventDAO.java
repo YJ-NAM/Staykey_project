@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -505,8 +505,13 @@ public class EventDAO {
 		return eventNums;
 	} // getEventStayNums() 종료
 
+
+
+
+
+
     // ======================================================
-    // 이벤트 목록(사이트 게시판 화면) 메서드
+    // 이벤트 목록(사이트 게시판 화면) 메서드 @노동진
     // ======================================================
     public List<EventDTO> getBbsEventList() {
         List<EventDTO> list = new ArrayList<EventDTO>();
@@ -536,8 +541,8 @@ public class EventDAO {
                 dto.setBbs_date(rs.getString("bbs_date"));
 
                 // 오늘(현재) 기준으로 이벤트 남은 날짜
+                // eventDate.remainDate(시작일자, 종료일자)
                 String remain_date = eventDate.remainDate(rs.getString("bbs_showstart"), rs.getString("bbs_showend"));
-                System.out.println(remain_date);
 
                 dto.setBbs_showstart(remain_date);
                 dto.setBbs_showend(null);
@@ -551,6 +556,77 @@ public class EventDAO {
         } finally {
             closeConn(rs, pstmt, con);
         }
+
+        return list;
+    }
+
+
+
+
+
+
+    // ======================================================
+    // 이벤트 숙소 목록(사이트 게시판 화면) 메서드 @노동진
+    // ======================================================
+    public List<HashMap<String, String>> getEventStayList() {
+        List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+
+        try {
+            openConn();
+
+            sql = "select * from staykey_event order by bbs_date desc";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+                String get_stayno = rs.getNString("bbs_stayno").substring(1, rs.getNString("bbs_stayno").length() - 1);
+                String[] epd_stayno = get_stayno.split("/");
+
+                // 쪼갠 숙소 번호로 반복
+                for(int i=0; i<epd_stayno.length; i++){
+                    sql2 = "select * from staykey_stay where stay_no = ?";
+                    pstmt2 = con.prepareStatement(sql2);
+                    pstmt2.setInt(1, Integer.parseInt(epd_stayno[i]));
+                    rs2 = pstmt2.executeQuery();
+
+                    // 숙소 정보가 있으면 HashMap에 데이터 저장하고, 그 HashMap을 ArrayList에 넣기
+                    if(rs2.next()) {
+                        HashMap<String, String> data = new HashMap<String, String>();
+
+                        data.put("stay_no", epd_stayno[i]);
+                        data.put("stay_name", rs2.getString("stay_name"));
+                        data.put("stay_location", rs2.getString("stay_location"));
+                        data.put("bbs_title", rs.getString("bbs_title").replaceAll("<br />", "").replaceAll("<br>", ""));
+                        data.put("bbs_day", eventDate.remainDate(rs.getString("bbs_showstart"), rs.getString("bbs_showend")));
+
+                        if(rs2.getString("stay_file1") != null) {
+                            data.put("stay_photo", rs2.getString("stay_file1"));
+                        }else if(rs2.getString("stay_file2") != null) {
+                            data.put("stay_photo", rs2.getString("stay_file2"));
+                        }else if(rs2.getString("stay_file3") != null) {
+                            data.put("stay_photo", rs2.getString("stay_file3"));
+                        }else if(rs2.getString("stay_file4") != null) {
+                            data.put("stay_photo", rs2.getString("stay_file4"));
+                        }else if(rs2.getString("stay_file5") != null) {
+                            data.put("stay_photo", rs2.getString("stay_file5"));
+                        }else{
+                            data.put("stay_photo", null);
+                        }
+
+                        list.add(data);
+                    }
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        System.out.println(list);
 
         return list;
     }
