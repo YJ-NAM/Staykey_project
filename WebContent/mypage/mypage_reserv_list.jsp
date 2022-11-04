@@ -84,13 +84,11 @@
 	<!-- 결제 금액 -->
 	<p> ₩ <fmt:formatNumber value="${dto.reserv_total_price}" /> </p>
 	<br>
-
 	</c:if>
 	</c:forEach>
 		</c:forEach>
 		
 		
-
 	<!-- 예약 상세 확인 버튼 -->
 	 	<div class="btns">
 			<br>
@@ -98,11 +96,6 @@
 				<a href="<%=request.getContextPath()%>/mypageReservView.do?reserv_sess=${dto.reserv_sess}">예약 상세 확인</a>
 			</button>
 		</div>
-		
-	</c:forEach>
-		</c:forEach>
-		
-		
 		<br> <br> <br>
 
 	</div> 
