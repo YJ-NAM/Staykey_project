@@ -78,17 +78,18 @@ public class SiteMainAction implements Action {
     		// bbs_no : 이벤트 번호
     		int bbs_no = eventList.get(i).getBbs_no();    	
     		// getEventStayNums(bbs_no) : 이벤트에 해당하는 숙소 번호 : String
-    		// getStayNum(String) => List<Integer>로 쪼개서 추출
-    		
+    		// getStayNum(String) => List<Integer>로 쪼개서 추출    		
     		List<Integer> stayList = eventDAO.getStayNum(eventDAO.getEventStayNums(bbs_no));
-    		eventDTO = eventDAO.getEventInfo(bbs_no);
-    		eventName = eventDTO.getBbs_title();
     		int[] stay_no = new int[stayList.size()];    		
     		for(int j=0; j<stayList.size(); j++) {
     			stay_no[j] = stayList.get(j);
     		}    		
     		// 숙소 번호에 따른 숙소 정보 추출
-    		eventStayList = stayDAO.getStayforMain(stay_no);    		
+    		// 이벤트 이름
+    		eventName = eventDAO.getEventInfo(bbs_no).getBbs_title();
+    		// 해당 숙소 정보가 담긴 list
+    		eventStayList = stayDAO.getStayforMain(stay_no);    
+    		
     	}
     	request.setAttribute("eventName", eventName);
     	request.setAttribute("eventStay", eventStayList);    	    
