@@ -1641,6 +1641,30 @@ public class StayDAO {
         }
     }
     
+    /////////////////////////////////////////////////////////////
+    // 숙소 번호에 따른 숙소 이름 추출
+    /////////////////////////////////////////////////////////////    
+    public String getStayName(int no) {
+        String stayName = "";
+        openConn();
+
+        try {        	
+            sql = "select stay_name from staykey_stay where stay_no = ?";
+            System.out.println(sql);
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            rs = pstmt.executeQuery();
+            if(rs.next()) {
+                stayName = rs.getString("stay_name");                
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+        return stayName;
+    } // getStayName() 종료    
 
 }
 
