@@ -24,11 +24,6 @@ public class SiteMagazineListAction implements Action {
         // 뷰에 전달할 매개변수 저장용 맵 생성
         Map<String, Object> map = new HashMap<String, Object>();
 
-    	//////////////////////////////////////////////////////////////////////////////////
-    	// magazine : 매거진
-    	//////////////////////////////////////////////////////////////////////////////////    	
-    	
-    	
         /////////////////////////////////////////////////////////////
         // 페이징
         /////////////////////////////////////////////////////////////
@@ -65,8 +60,11 @@ public class SiteMagazineListAction implements Action {
         map.put("pagingWrite", Paging.showPage(allPage, startBlock, endBlock, page, pageUrl));
         request.setAttribute("map", map);
         
+        //////////////////////////////////////////////////////////////////////////////////
+        // magazine : 매거진
+        //////////////////////////////////////////////////////////////////////////////////    	
+        
         List<MagazineDTO> magazineList = magazineDAO.getTotalMagazine(page, rowsize);
-        List<MagazineDTO> list = magazineDAO.magazineList(page, rowsize, map);
         request.setAttribute("magazineList", magazineList);  
         
         ActionForward forward = new ActionForward();
@@ -77,3 +75,4 @@ public class SiteMagazineListAction implements Action {
     }
 
 }
+

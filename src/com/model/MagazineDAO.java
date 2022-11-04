@@ -398,9 +398,8 @@ public class MagazineDAO {
 
 		try {
 			openConn();
-		
 
-			sql = "select * from staykey_magazine where rnum >= ? and rnum <= ?";
+			sql = "select * from (select row_number() over(order by bbs_date desc) rnum, b.* from staykey_magazine b) where rnum >= ? and rnum <= ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startNo);
 			pstmt.setInt(2, endNo);
