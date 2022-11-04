@@ -83,7 +83,6 @@ public class SiteStayListAction implements Action {
 			ps_type = "all";
 		}
 
-
         // 주소값 지역
         if(request.getParameter("ps_location") != null){ 
             ps_location = request.getParameter("ps_location"); 
@@ -93,7 +92,6 @@ public class SiteStayListAction implements Action {
         }else { 
             ps_location = ""; 
         }
-
 
         if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "no_desc"; }
 
