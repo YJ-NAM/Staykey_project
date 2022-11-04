@@ -275,22 +275,22 @@ ${ login_msg }
             <ul class="stay-list">
 			<c:forEach items="${ stay }" var="list">
 				<li class="stay-box">
-				<c:choose>
-						<c:when test="${ !empty list.stay_file3 }">
-						 <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
-                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file3}" />
-						</c:when>
-						<c:when test="${ !empty list.stay_file4 }">
-						 <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
-                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file4}" />
-						</c:when>
-					</c:choose>
-					<div class="text">${ list.stay_desc }</div>
-					<div class="other">
-						<span>${ list.stay_location }</span>
-					</div>
-					<div class="more">Read more</div> 
-					</a>
+                    <c:choose>
+                            <c:when test="${ !empty list.stay_file3 }">
+                            <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
+                                <img class="img" src="<%=request.getContextPath()%>${list.stay_file3}" />
+                            </c:when>
+                            <c:when test="${ !empty list.stay_file4 }">
+                            <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
+                                <img class="img" src="<%=request.getContextPath()%>${list.stay_file4}" />
+                            </c:when>
+                    </c:choose>
+                        <div class="text">${ list.stay_desc }</div>
+                        <div class="other">
+                            <span>${ list.stay_location }</span>
+                        </div>
+                        <div class="more">Read more</div> 
+                    </a>
 				</li>
 			</c:forEach>
 		</ul>
