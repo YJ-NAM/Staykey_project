@@ -18,7 +18,6 @@
     <!-- 내용 //START -->
     <div class="row vf-body">
         <div class="col-lg mb-4">
-        <form action="<%=request.getContextPath()%>/admin/qnaModifyOk.do?no=${dto.bbs_no}" method="post">
             <table class="table-form w-100">
                 <colgroup>
                     <col width="17%" />
@@ -49,7 +48,6 @@
                     </tr>
                 </tbody>
             </table>
-            </form>
         </div>
     </div>
     <!-- 내용 //END -->
@@ -153,7 +151,7 @@
         					
                          </tbody>
                     </table>
-                    <c:if test="${dto.bbs_status == 'ing' || dto.bbs_status == 'send'}">
+                    <c:if test="${dto.bbs_status == 'send' && !empty comment_qnano}">
                      <form name="write_form" method="post" action="<%=request.getContextPath() %>/mypageQnaCommentOk.do?no=${comment_qnano}">
                      <table class="table-form mt-2">
                      	<colgroup>

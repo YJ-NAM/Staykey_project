@@ -18,7 +18,7 @@ public class AdminQnaCommentOkAction implements Action {
 		// 문의글 답변추가 비지니스 로직.
 		QnaCommentDTO dto = new QnaCommentDTO();
 		QnaCommentDAO dao= QnaCommentDAO.getInstance();
-		
+        ActionForward forward = new ActionForward();
 		
         PrintWriter out = response.getWriter();
         
@@ -27,6 +27,10 @@ public class AdminQnaCommentOkAction implements Action {
 		
 		if(comment_content.length() <= 0) {
         	out.println("<script>alert('답변 내용을 입력해주세요.'); history.back();</script>");
+            forward.setRedirect(true);
+            forward.setPath("qnaView.do?no="+no);
+            return forward;
+
 		}
 		
 		// 히든값으로 넘어옴.
@@ -43,7 +47,6 @@ public class AdminQnaCommentOkAction implements Action {
 		
         int res = dao.registerComment(dto);
 
-        ActionForward forward = new ActionForward();
 
 
         if (res > 0) {
