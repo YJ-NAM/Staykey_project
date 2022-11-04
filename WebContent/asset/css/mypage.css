@@ -161,3 +161,14 @@
 }
 
 
+.status {
+	    font-size: 20px;
+	    color: #bbb;
+}
+
+.status_notyet {
+		font-size: 20px;
+	    color: #000000;
+}
+
+
