@@ -390,14 +390,20 @@ public class MagazineDAO {
 	// ======================================================
 	// 모든 매거진 정보 가져오기
 	// ======================================================
-	public List<MagazineDTO> getTotalMagazine() {
+	public List<MagazineDTO> getTotalMagazine(int page, int rowsize) {
 		List<MagazineDTO> list = new ArrayList<MagazineDTO>();
+		
+		int startNo = (page * rowsize) - (rowsize - 1);
+		int endNo = (page * rowsize);
 
 		try {
 			openConn();
+		
 
-			sql = "select * from staykey_magazine";
+			sql = "select * from staykey_magazine where rnum >= ? and rnum <= ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startNo);
+			pstmt.setInt(2, endNo);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
