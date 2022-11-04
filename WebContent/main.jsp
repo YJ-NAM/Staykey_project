@@ -201,10 +201,12 @@ ${ login_msg }
                             <a href="#">
                                 <div class="promo-title">
                                     <p class="text">${ event.bbs_title }</p>
-                                    <p class="small">${ stayName }</p>
+                                    <c:forEach items="${ stayName }" var="name">
+                                    <p class="small">${ name.value }</p>
+                                    </c:forEach>
                                 </div>
                                 <div class="e_date"></div>
-                                <img src="http://images.stayfolio.com/system/pictures/images/000/148/148/original/e8525a7fc7d249af9de4b7d775c31ed19f68cbff.jpg?1665989518"/>
+                                <img src="<%=request.getContextPath()%>${event.bbs_file1}"/>
                             </a>
                         </li>
 					</c:forEach>                        
@@ -271,7 +273,8 @@ ${ login_msg }
         <div class="sec-title">TRAVEL</div>
             <ul class="stay-list">
 			<c:forEach items="${ stay }" var="list">
-				<li class="stay-box"><c:choose>
+				<li class="stay-box">
+				<c:choose>
 						<c:when test="${ !empty list.stay_file3 }">
 							<a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${list.stay_file3}');">
 						</c:when>
@@ -283,10 +286,11 @@ ${ login_msg }
 					<div class="other">
 						<span>${ list.stay_location }</span>
 					</div>
-					<div class="more">Read more</div> </a></li>
+					<div class="more">Read more</div> 
+					</a></li>
 			</c:forEach>
 		</ul>
-         </div>
+    </div>
     <!-------- 메인 페이지 트래블 창 // END --------->
     
     <!-------- 메인 페이지 추천 창 // START @@ -->
