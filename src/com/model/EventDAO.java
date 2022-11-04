@@ -361,8 +361,6 @@ public class EventDAO {
 		int result = 0;
 
 		openConn();
-
-
 		
 		try {
 			sql = "update staykey_event set bbs_title = ?, bbs_content = ?, bbs_file1 = ?, bbs_file2 = ?, bbs_file3 = ?, "
@@ -408,18 +406,19 @@ public class EventDAO {
 	// ======================================================
 	public List<EventDTO> getTotalEvent() {
 		List<EventDTO> list = new ArrayList<EventDTO>();
-        String[] stayName = null;
-
 		try {
 			openConn();
 
 			sql = "select * from staykey_event";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			int ran = 0;
 			
 			while(rs.next()) {
 				EventDTO dto = new EventDTO();
+				System.out.println("random"+ran);
 				dto.setBbs_no(rs.getInt("bbs_no"));
+				System.out.println(rs.getString("bbs_title"));
 				dto.setBbs_title(rs.getString("bbs_title"));
 				dto.setBbs_content(rs.getString("bbs_content"));
 				dto.setBbs_file1(rs.getString("bbs_file1"));
@@ -436,34 +435,33 @@ public class EventDAO {
 				dto.setBbs_date(rs.getString("bbs_date"));
 				
 				// 이벤트 정보에 따른 숙소정보 추출
-				
+				String stayNameNo = "";
 				if(rs.getString("bbs_stayno") != null) {
 					String bbs_stayno = rs.getString("bbs_stayno");
 					bbs_stayno = bbs_stayno.substring(1);
-		    		StringTokenizer tokenizer = new StringTokenizer(bbs_stayno, "/");				    		
-		        	String[] stayNums = new String[tokenizer.countTokens()];
-		        	int[] stayIntNums = new int[tokenizer.countTokens()];
-		        	String[] stayNames = new String[tokenizer.countTokens()];
-		        	int i = 0;
+		    		StringTokenizer tokenizer = new StringTokenizer(bbs_stayno, "/");	
+		    		List<Integer> tokens = new ArrayList<Integer>();
+		    		List<String> tokenNames = new ArrayList<String>();
+		    		int i=0;
 		    		while(tokenizer.hasMoreTokens()) {
-		    			stayNums[i] = tokenizer.nextToken();
-		             	stayIntNums[i] = Integer.parseInt(stayNums[i]);
-		         		i++;
-		         		
+		    			tokens.add(Integer.parseInt(tokenizer.nextToken()));
 		         		sql = "select stay_name from staykey_stay where stay_no = ?";
 		         		pstmt = con.prepareStatement(sql);
-		         		pstmt.setInt(1, stayIntNums[i]);
-		         		rs = pstmt.executeQuery();
-		         		
+		         		pstmt.setInt(1, tokens.get(i));
+		         		rs = pstmt.executeQuery();		         		
 		         		if(rs.next()) {
-		         			stayNames[i] = rs.getString("stay_name");
+		         			tokenNames.add(rs.getString("stay_name"));
 		         		}					
+		         		i++;
 		            }
 		    		// stay_no => 어차피 String 값으로 저장되므로 stayNames의 random 이름 값으로 저장
-		    		dto.setBbs_stayno(stayNames[(int)Math.random()*stayNames.length + 1]);
+		    		stayNameNo = tokenNames.get((int)(Math.random()*tokenNames.size()));
+		    		System.out.println("랜덤이름 : "+stayNameNo);
 				}
+				dto.setBbs_stayno(stayNameNo);
 				
 				list.add(dto);
+				ran++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -471,6 +469,7 @@ public class EventDAO {
 		} finally {
 			closeConn(rs, pstmt, con);
 		}
+		System.out.println("사이즈"+list.size());
 		return list;
 	} // getTotalEvent() 종료
 	

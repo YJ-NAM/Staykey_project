@@ -9,6 +9,9 @@
 <c:set var="event" value="${ eventList }"/>
 <c:set var="magazine" value="${ magazineList }"/>
 <c:set var="stayName" value="${ stayName }"/>
+<c:forEach items="${ event }" var="eve">
+	<c:out value="${ eve.bbs_title }" />
+</c:forEach>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -201,9 +204,7 @@ ${ login_msg }
                             <a href="#">
                                 <div class="promo-title">
                                     <p class="text">${ event.bbs_title }</p>
-                                    <c:forEach items="${ stayName }" var="name">
-                                    <p class="small">${ name.value }</p>
-                                    </c:forEach>
+                                    <p class="small">${ event.bbs_stayno }</p>
                                 </div>
                                 <div class="e_date"></div>
                                 <img src="<%=request.getContextPath()%>${event.bbs_file1}"/>

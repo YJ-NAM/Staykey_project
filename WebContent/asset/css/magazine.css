@@ -37,11 +37,12 @@
 	transition: .3s ease-in-out;
 }
 
-.journal-list .journal-box a> img {
+.journal-list .journal-box img {
     position: relative;
     width: 630px;
     height: 640px;
     overflow: hidden;
+    object-fit: cover;
     background-position: center center;
 
 }
@@ -74,21 +75,15 @@
 }
 
 .journal-list .journal-box .name {
-    width: 100%;
+    width: 70%;
     font-size: 20px;
     line-height: 1.5;
     padding: 0 30px;
     font-family: 'NotoSerifKR';
     color: #000;
+    word-break: keep-all;
 }
 
-
-.journal-list .journal-box .text {
-    font-size: 16px;
-    color: #000;
-    margin-top: 20px;
-    font-family: 'NotoSerifKR';
-}
 
 .journal-list .journal-box .more {
     display: inline-block;

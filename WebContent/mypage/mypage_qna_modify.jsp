@@ -38,7 +38,7 @@
 	            <div class="gwb-left"></div>
 	
 	            <div class="gwb-center">
-	                <button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i> 취소하기</button>
+	                <button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i>뒤로가기</button>
 	                <button type="submit" class="btn btn-lg btn-success mx-1"><i class="fa fa-save"></i> 수정하기</button>
 	            </div>
 	

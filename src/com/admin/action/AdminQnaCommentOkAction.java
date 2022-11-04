@@ -18,12 +18,20 @@ public class AdminQnaCommentOkAction implements Action {
 		// 문의글 답변추가 비지니스 로직.
 		QnaCommentDTO dto = new QnaCommentDTO();
 		QnaCommentDAO dao= QnaCommentDAO.getInstance();
-        ActionForward forward = new ActionForward();
 		
+        int no = 0;
+
+        ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
         
-		int no = Integer.parseInt(request.getParameter("no").trim());
+        if(request.getParameter("no").length() > 0) {
+        	no = Integer.parseInt(request.getParameter("no").trim());
+        }else {
+        	no = dao.upCommentNo();
+        }
 		String comment_content = request.getParameter("comment_content").trim();
+
+		
 		
 		if(comment_content.length() <= 0) {
         	out.println("<script>alert('답변 내용을 입력해주세요.'); history.back();</script>");
