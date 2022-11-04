@@ -33,9 +33,10 @@
          </c:if>
         </ul>
     </div>
+    
 ${map.pagingWrite}
-</div>
 
+</div>
 
 
 <jsp:include page="../layout/layout_footer.jsp" />
