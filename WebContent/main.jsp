@@ -9,9 +9,6 @@
 <c:set var="event" value="${ eventList }"/>
 <c:set var="magazine" value="${ magazineList }"/>
 <c:set var="stayName" value="${ stayName }"/>
-<c:forEach items="${ event }" var="eve">
-	<c:out value="${ eve.bbs_title }" />
-</c:forEach>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -154,13 +151,15 @@ ${ login_msg }
 
             <div class="swiper-wrapper">
                 <div class="swiper-slide stay-box">
-                  <c:forEach items="${ stay }" var="list">                
+                  <c:forEach items="${ stay }" var="list" begin="0" end="3">                
 	                    <c:choose>
 	                	<c:when test="${ !empty list.stay_file2}">
-	                    <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${list.stay_file2}');">
+	                    <a href="#">
+                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file2}" />
 	                    </c:when>
 	                    <c:when test="${ !empty list.stay_file3}">
-	                    <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${list.stay_file3}');">
+	                    <a href="#">
+                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file3}" />
 	                    </c:when>
 	                    </c:choose>
                             <div class="title">${ list.stay_name }</div>
@@ -250,8 +249,9 @@ ${ login_msg }
             <ul class="swiper-wrapper">
             	<c:forEach items="${ magazine }" var="mgz">
                     <li class="swiper-slide">
-<%--                         <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${mgz.bbs_list_img}');">
- --%>                            <div class="stay-info">
+                    
+                      <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${mgz.bbs_list_img}');">
+                        <div class="stay-info">
                                 <h3 class="title"><c:forTokens items="${ mgz.bbs_title }" delims="<" var="title" begin="1" end="1">${ title }</c:forTokens></h3>
                                 <p class="text"><c:forTokens items="${ mgz.bbs_title }" delims="<" var="desc" begin="0" end="0">${ desc }</c:forTokens> </p>
                                 <p class="magazine">MAGAZINE</p>
@@ -277,10 +277,12 @@ ${ login_msg }
 				<li class="stay-box">
 				<c:choose>
 						<c:when test="${ !empty list.stay_file3 }">
-							<a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${list.stay_file3}');">
+						 <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
+                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file3}" />
 						</c:when>
 						<c:when test="${ !empty list.stay_file4 }">
-							<a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${list.stay_file4}');">
+						 <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
+                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file4}" />
 						</c:when>
 					</c:choose>
 					<div class="text">${ list.stay_desc }</div>
@@ -288,7 +290,8 @@ ${ login_msg }
 						<span>${ list.stay_location }</span>
 					</div>
 					<div class="more">Read more</div> 
-					</a></li>
+					</a>
+				</li>
 			</c:forEach>
 		</ul>
     </div>
@@ -350,22 +353,25 @@ ${ login_msg }
                 <div class="swiper-slide stay-box">
 	               	 <c:choose>
 		               	  <c:when test="${ !empty list.stay_file4 }">
-	                      <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${list.stay_file4}');">
-	                      </c:when>
+							 <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
+	                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file4}" />	                      
+                          </c:when>
 	                      <c:when test="${ !empty list.stay_file5 }">
-	                      <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${list.stay_file5}');">                       
-	                      </c:when>
+							 <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
+	                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file5}" />	                      
+                          </c:when>
 	                      <c:when test="${ !empty list.stay_file1 }">
-	                      <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${list.stay_file1}');">                       
-	                      </c:when>
+							 <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
+	                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file1}" />	                      
+                          </c:when>
 	                  </c:choose>
-                           <div class="title">${ list.stay_name }</div>
-                           <div class="subtitle">
-                               <span>${ list.stay_location }</span>
-                           </div>
-                           <div class="other">
-                               <span>${ list.stay_desc }</span>
-                           </div>
+                      <div class="title">${ list.stay_name }</div>
+                      <div class="subtitle">
+                          <span>${ list.stay_location }</span>
+                      </div>
+                      <div class="other">
+                          <span>${ list.stay_desc }</span>
+                      </div>
                       </a>
                 </div>
 				</c:forEach>                
