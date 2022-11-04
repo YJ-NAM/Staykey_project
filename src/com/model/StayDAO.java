@@ -1293,7 +1293,6 @@ public class StayDAO {
             String tmp_bbs_stay = bbs_stay.substring(1, bbs_stay.length() - 1);
             String[] epd_bbs_stay = tmp_bbs_stay.split("/");
 
-            
             if(epd_bbs_stay.length > 1){
                 for(int i=0; i<epd_bbs_stay.length; i++){
                     if(i == 0){
@@ -1371,8 +1370,6 @@ public class StayDAO {
         }
         return list;
     } 
-    
-    
 
     //////////////////////////////////////////////////////////////
     // 숙소에 따른 모든 방 번호 조회
@@ -1660,7 +1657,7 @@ public class StayDAO {
 
         try {        	
         	// 도시가 제주인 곳
-            sql = "select * from staykey_stay where stay_location like '"+keyword+"%'";
+            sql = "select * from staykey_stay where stay_location like '%"+keyword+"%'";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
             

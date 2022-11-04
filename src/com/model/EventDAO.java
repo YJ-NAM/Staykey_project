@@ -596,9 +596,25 @@ public class EventDAO {
                         data.put("stay_no", epd_stayno[i]);
                         data.put("stay_name", rs2.getString("stay_name"));
                         data.put("stay_location", rs2.getString("stay_location"));
+                        data.put("stay_room_people_min", rs2.getString("stay_room_people_min"));                      
                         data.put("bbs_title", rs.getString("bbs_title"));
+                        data.put("bbs_no", rs.getString("bbs_no"));                        
                         data.put("bbs_day", eventDate.remainDate(rs.getString("bbs_showstart"), rs.getString("bbs_showend")));
-
+                        
+                        if(rs.getString("bbs_file1") != null) {
+                            data.put("bbs_photo", rs.getString("bbs_file1"));
+                        }else if(rs.getString("bbs_file2") != null) {
+                            data.put("bbs_photo", rs.getString("bbs_file2"));
+                        }else if(rs.getString("bbs_file3") != null) {
+                            data.put("bbs_photo", rs.getString("bbs_file3"));
+                        }else if(rs.getString("bbs_file4") != null) {
+                            data.put("bbs_photo", rs.getString("bbs_file4"));
+                        }else if(rs.getString("bbs_file5") != null) {
+                            data.put("bbs_photo", rs.getString("bbs_file5"));
+                        }else{
+                            data.put("bbs_photo", null);
+                        }
+                        
                         if(rs2.getString("stay_file1") != null) {
                             data.put("stay_photo", rs2.getString("stay_file1"));
                         }else if(rs2.getString("stay_file2") != null) {
