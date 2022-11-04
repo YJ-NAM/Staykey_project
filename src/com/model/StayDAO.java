@@ -1547,11 +1547,10 @@ public class StayDAO {
                 dto.setStay_room_price_min(rs.getInt("stay_room_price_min"));
                 dto.setStay_room_price_max(rs.getInt("stay_room_price_max"));
                 dto.setStay_room_people_min(rs.getInt("stay_room_people_min"));
-                dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));
+                dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));                
                 
-                
-
                 list.add(dto);
+                
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -1561,8 +1560,6 @@ public class StayDAO {
         }
         return list;
     } // getStayList() 종료
-    
-    
     
     
     /////////////////////////////////////////////////////////////
