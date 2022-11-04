@@ -66,19 +66,13 @@ public class SiteMainAction implements Action {
     	//////////////////////////////////////////////////////////////////////////////////
     	// event : 이벤트
     	////////////////////////////////////////////////////////////////////////////////// 
-    	
-    	// 전체 이벤트 목록
-    	List<EventDTO> eventList = eventDAO.getTotalEvent();
-    	request.setAttribute("eventList", eventList);	
-    	
-        List<HashMap<String, String>> sList = eventDAO.getEventStayList();
-        // 이벤트 숙소 목록
+    	// 전체 이벤트 목록 + 이벤트에 따른 숙소 목록
+    	List<HashMap<String, String>> sList = eventDAO.getEventStayList();
         request.setAttribute("sList", sList);
 
     	//////////////////////////////////////////////////////////////////////////////////
     	// magazine : 매거진
-    	//////////////////////////////////////////////////////////////////////////////////    	
-    	
+    	//////////////////////////////////////////////////////////////////////////////////  	
     	List<MagazineDTO> magazineList = magazineDAO.getTotalMagazine();
     	request.setAttribute("magazineList", magazineList);    	
     	

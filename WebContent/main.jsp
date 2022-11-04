@@ -10,7 +10,6 @@
 <c:set var="rStay" value="${ randomStay }"/>
 <c:set var="kStay" value="${ keywordStay }"/>
 <c:set var="keyword" value="${ keyword }"/>
-<c:set var="eList" value="${ eventList }"/>
 <c:set var="mList" value="${ magazineList }"/>
 <c:set var="sList" value="${ sList }"/>
 

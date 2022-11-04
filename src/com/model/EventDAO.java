@@ -403,69 +403,6 @@ public class EventDAO {
 	
 	
 	// ======================================================
-	// 모든 이벤트 정보 가져오기
-	// ======================================================
-	public List<EventDTO> getTotalEvent() {
-		
-		List<EventDTO> list = new ArrayList<EventDTO>();
-		String stayNameNo = "";
-		List<String> splitNames = new ArrayList<String>();
-
-		try {
-			openConn();
-
-			sql = "select * from staykey_event";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				EventDTO dto = new EventDTO();
-				dto.setBbs_no(rs.getInt("bbs_no"));
-				dto.setBbs_title(rs.getString("bbs_title"));
-				dto.setBbs_content(rs.getString("bbs_content"));
-				dto.setBbs_file1(rs.getString("bbs_file1"));
-				dto.setBbs_file2(rs.getString("bbs_file2"));
-				dto.setBbs_file3(rs.getString("bbs_file3"));
-				dto.setBbs_file4(rs.getString("bbs_file4"));
-				dto.setBbs_file5(rs.getString("bbs_file5"));
-				dto.setBbs_showstart(rs.getString("bbs_showstart"));
-				dto.setBbs_showend(rs.getString("bbs_showend"));
-				dto.setBbs_hit(rs.getInt("bbs_hit"));
-				dto.setBbs_writer_name(rs.getString("bbs_writer_name"));
-				dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
-				dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
-				dto.setBbs_date(rs.getString("bbs_date"));
-				
-				////////////////////////////////////////////////////////////////
-				// 이벤트 정보에 따른 숙소정보 추출		
-				////////////////////////////////////////////////////////////////				
-				List<Integer> splits = getStayNum(rs.getString("bbs_stayno"));
-				String stayName = "";
-
-				for(int i=0; i<splits.size(); i++) {									
-					sql2 = "select stay_name from staykey_stay where stay_no = ?";
-					pstmt2 = con.prepareStatement(sql2);
-					pstmt2.setInt(1, splits.get(i));
-					rs2 = pstmt2.executeQuery();		         		
-					if(rs2.next()) {
-						stayName = rs2.getString(1);
-					}		
-					splitNames.add(stayName);
-					// stay_no => 어차피 String 값으로 저장되므로 stayNames의 random 이름 값으로 저장
-					stayNameNo = splitNames.get((int)(Math.random()*splitNames.size()));					
-				}
-				dto.setBbs_stayno(stayNameNo);
-				list.add(dto);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeConn(rs, pstmt, con);
-		}
-		return list;
-	} // getTotalEvent() 종료
-	
-	// ======================================================
 	// 이벤트 bbs_stayno에 따른 숙소 No 추출 메서드
 	// ======================================================
 	public List<Integer> getStayNum(String bbs_stayno) {
