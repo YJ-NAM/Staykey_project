@@ -84,6 +84,8 @@
         <h4 class="elp-title">EVENT</h4>
 
 
+
+
         <c:if test="${!empty stay }">
             <c:forEach var="stay" items="${stay}">
                 ${stay.stay_photo}<br />${stay.stay_no}<br />${stay.stay_name}<br />${stay.stay_location}<br />${stay.bbs_title}<br />${stay.bbs_day}<hr />
