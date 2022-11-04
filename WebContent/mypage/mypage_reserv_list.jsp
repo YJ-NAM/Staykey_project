@@ -17,9 +17,13 @@
 <div class="reserv-list">
 
 	<p class="status_notyet">
-	다가올 예약  &nbsp;&nbsp; 
-	<span class="status">
-	| &nbsp;&nbsp; 이용 완료 </span>
+			<a href="#">다가올 예약 </a> &nbsp;&nbsp; 
+		<span class="status">
+			| &nbsp;&nbsp; 
+			<a href="<%=request.getContextPath()%>/mypageReservCompletionList.do">이용 완료 </a>
+		</span>
+	</p>
+	
 	<br> <br> <br>
 
 	<!-- 이미지 영역 -->
@@ -53,14 +57,14 @@
 		<c:set var="stt" value="${dto.reserv_status }" />
 		
 			<c:if test="${stt eq 'reserv'}">
-				<c:set var="result" value="예약 완료" />
+				<c:set var="result" value="예약 중" />
 			</c:if>
 		
 				<c:if test="${stt eq 'cancle'}">
 					<c:set var="result" value="예약 취소" />
 				</c:if> 
 			
-			<p>${result}</p>
+			<p><b>${result}</b></p>
 		
 
 	<br>
