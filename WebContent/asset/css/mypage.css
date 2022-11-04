@@ -118,8 +118,6 @@
 /* 회원 정보 수정 버튼 */
 .btn_bk {
     color: #fff;
-}
-.btn_bk {
     background: #000;
     border: 1px solid #000;
 }
