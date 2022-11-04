@@ -28,8 +28,6 @@ public class SiteMagazineListAction implements Action {
     	// magazine : 매거진
     	//////////////////////////////////////////////////////////////////////////////////    	
     	
-    	List<MagazineDTO> magazineList = magazineDAO.getTotalMagazine();
-    	request.setAttribute("magazineList", magazineList);  
     	
         /////////////////////////////////////////////////////////////
         // 페이징
@@ -41,7 +39,6 @@ public class SiteMagazineListAction implements Action {
         // 전체 데이터 개수 count 메서드
         int totalRecord = magazineDAO.getTotalCount();
         request.setAttribute("magazineCount", totalRecord);
-        System.out.println("TotalCount >> " + totalRecord);
 
         // 전체 페이지 갯수
         int allPage = (int)Math.ceil(totalRecord/(double)rowsize);
@@ -67,7 +64,11 @@ public class SiteMagazineListAction implements Action {
         // 뷰에 전달할 매개변수 추가
         map.put("pagingWrite", Paging.showPage(allPage, startBlock, endBlock, page, pageUrl));
         request.setAttribute("map", map);
-
+        
+        List<MagazineDTO> magazineList = magazineDAO.getTotalMagazine(page, rowsize);
+        List<MagazineDTO> list = magazineDAO.magazineList(page, rowsize, map);
+        request.setAttribute("magazineList", magazineList);  
+        
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("magazine/magazine_list.jsp");
