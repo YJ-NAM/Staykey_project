@@ -10,6 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="event" value="${eList}"/>
+<c:set var="stay" value="${sList}"/>
 
 
 <div class="container page-title">
@@ -82,6 +83,12 @@
     <div class="el-event">
         <h4 class="elp-title">EVENT</h4>
 
+
+        <c:if test="${!empty stay }">
+            <c:forEach var="stay" items="${stay}">
+                ${stay.stay_photo}<br />${stay.stay_no}<br />${stay.stay_name}<br />${stay.stay_location}<br />${stay.bbs_title}<br />${stay.bbs_day}<hr />
+            </c:forEach>
+        </c:if>
 
     </div>
     <!-- 이벤트 //END -->
