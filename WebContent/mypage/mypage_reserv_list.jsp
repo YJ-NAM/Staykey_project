@@ -16,8 +16,11 @@
 
 <div class="reserv-list">
 
-	예약 목록 <br>
-	<br> <br>
+	<p class="status_notyet">
+	다가올 예약  &nbsp;&nbsp; 
+	<span class="status">
+	| &nbsp;&nbsp; 이용 완료 </span>
+	<br> <br> <br>
 
 	<!-- 이미지 영역 -->
 	
