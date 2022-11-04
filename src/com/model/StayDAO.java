@@ -1661,7 +1661,8 @@ public class StayDAO {
         openConn();
 
         try {        	
-            sql = "select * from staykey_stay where stay_location like '%"+keyword+"%'";
+        	// 도시가 제주인 곳
+            sql = "select * from staykey_stay where stay_location like '"+keyword+"%'";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
             
