@@ -9,6 +9,9 @@
 <c:set var="selectedStay" value="${ selectedStay }"/>
 <c:set var="keyword" value="${ keyword }"/>
 <c:set var="event" value="${ eventList }"/>
+
+<c:set var="stayEvent" value="${ eventStay }"/>
+
 <c:set var="magazine" value="${ magazineList }"/>
 <c:set var="stayName" value="${ stayName }"/>
 
@@ -222,20 +225,32 @@ ${ login_msg }
     </div>
     <!-------- 메인 페이지 프로모션 창 // End  -------------->
 
-
-   <!-------- 메인 페이지 이벤트 창 : 조인 필요 // start --------->
+	<!-- 현재 작업중 -->
+   <!-------- 메인 페이지 이벤트 창 // start --------->
    <div class="container main-event">
             <div class="sec-title">EVENT</div>
         <div class="event-container stay-list" id="event-container">
             <div class="swiper-wrapper">
-           		 <c:forEach items="${ event }" var="eventStay">
+           		 <c:forEach items="${ stayEvent }" var="stayEvent">
                      <div class="swiper-slide stay-box">
-                         <a href="#">
-                             <img src="//images.stayfolio.com/system/pictures/images/000/117/566/display/6e562fe56d75731318ae0c7cb4d3dc380a1d459d.jpg?1648778979"/>
+	                    <c:choose>
+                            <c:when test="${ !empty stayEvent.stay_file2 }">
+                            <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ stayEvent.stay_no }">
+                                <img class="img" src="<%=request.getContextPath()%>${stayEvent.stay_file2}" />
+                            </c:when>
+                            <c:when test="${ !empty stayEvent.stay_file3 }">
+                            <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ stayEvent.stay_no }">
+                                <img class="img" src="<%=request.getContextPath()%>${stayEvent.stay_file3}" />
+                            </c:when>
+                            <c:when test="${ !empty stayEvent.stay_file4 }">
+                            <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ stayEvent.stay_no }">
+                                <img class="img" src="<%=request.getContextPath()%>${stayEvent.stay_file4}" />
+                            </c:when>
+	                    </c:choose>
                              <div class="e_date"></div>
-                             <div class="name">멜로우 맨션</div>
-                             <div class="other">인천/강화</div>
-                             <div class="text">1박 2인<br>숙박권 이벤트</div>
+                             <div class="name">${ stayEvent.stay_name }</div>
+                             <div class="other">${ stayEvent.stay_location }</div>
+                             <div class="text">1박 ${ stayEvent.stay_room_people_min }인<br>${ eventName } 이벤트</div>
                          </a>
                      </div>
                  </c:forEach>
@@ -275,7 +290,7 @@ ${ login_msg }
     <div class="container main-travel">
         <div class="sec-title">TRAVEL</div>
             <ul class="stay-list">
-			<c:forEach items="${ stay }" var="list">
+			<c:forEach items="${ stay }" var="list" begin="0" end="5">
 				<li class="stay-box">
                     <c:choose>
                             <c:when test="${ !empty list.stay_file3 }">
