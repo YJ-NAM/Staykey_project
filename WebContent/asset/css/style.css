@@ -848,6 +848,35 @@ legend {
 
 
 
+/*************************/
+/* search-modal
+/*************************/
+.search-modal {
+    line-height: 1;
+}
+.search-modal .modal-content {
+    padding: 40px 20px;
+}
+.search-modal .modal-header .modal-title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #333;
+    padding: 15px 0 30px;
+}
+.search-modal .modal-header .close {
+    font-size: 38px;
+    margin-top: -10px;
+}
+.search-modal .modal-header .close:hover {
+  -webkit-animation: spin 1s infinite linear;
+  -moz-animation: spin 1s infinite linear;
+  -o-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+}
+.search-modal .modal-body {}
+.search-modal .modal-body button[type='submit'] {}
+
+
 
 
 

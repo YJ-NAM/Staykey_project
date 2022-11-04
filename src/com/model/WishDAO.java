@@ -17,6 +17,10 @@ public class WishDAO {
     ResultSet rs = null;
     String sql = null;
 
+    PreparedStatement pstmt2 = null;
+    ResultSet rs2 = null;
+    String sql2 = null;
+
     private static WishDAO instance;
 
     private WishDAO() {}
@@ -168,9 +172,8 @@ public class WishDAO {
     // ======================================================
     // 찜하기 정보 가져오는 메서드
     // ======================================================
-    public List<WishDTO> getWishInfo(String id) {
-    	
-    	List<WishDTO> list = new ArrayList<WishDTO>();
+    public List<StayDTO> getWishInfo(String id) {
+    	List<StayDTO> list = new ArrayList<StayDTO>();
 
         try {
             openConn();
@@ -181,29 +184,63 @@ public class WishDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
+                sql2 = "select * from staykey_stay where stay_no = ?";
+                pstmt2 = con.prepareStatement(sql2);
+                pstmt2.setInt(1, rs.getInt("wish_stayno"));
+                rs2 = pstmt2.executeQuery();
 
-            	WishDTO dto = new WishDTO();
-            	
-            	dto.setWish_no(rs.getInt("wish_no"));
-            	dto.setWish_stayno(rs.getInt("wish_stayno"));
-            	dto.setWish_memid(rs.getString("wish_memid"));
-            	dto.setWish_date(rs.getString("wish_date"));
+                while(rs2.next()) {
+                    StayDTO sdto = new StayDTO();
 
-            	
-                list.add(dto);
+                    sdto.setStay_no(rs2.getInt("stay_no"));
+                    sdto.setStay_type(rs2.getString("stay_type"));
+                    sdto.setStay_name(rs2.getString("stay_name"));
+                    sdto.setStay_desc(rs2.getString("stay_desc"));
+                    sdto.setStay_location(rs2.getString("stay_location"));
+                    sdto.setStay_addr(rs2.getString("stay_addr"));
+                    sdto.setStay_phone(rs2.getString("stay_phone"));
+                    sdto.setStay_email(rs2.getString("stay_email"));
+                    sdto.setStay_content1(rs2.getString("stay_content1"));
+                    sdto.setStay_content2(rs2.getString("stay_content2"));
+                    sdto.setStay_content3(rs2.getString("stay_content3"));
+                    sdto.setStay_info1(rs2.getString("stay_info1"));
+                    sdto.setStay_info2(rs2.getString("stay_info2"));
+                    sdto.setStay_info3(rs2.getString("stay_info3"));
+                    sdto.setStay_file1(rs2.getString("stay_file1"));
+                    sdto.setStay_file2(rs2.getString("stay_file2"));
+                    sdto.setStay_file3(rs2.getString("stay_file3"));
+                    sdto.setStay_file4(rs2.getString("stay_file4"));
+                    sdto.setStay_file5(rs2.getString("stay_file5"));
+                    sdto.setStay_option1_name(rs2.getString("stay_option1_name"));
+                    sdto.setStay_option1_price(rs2.getInt("stay_option1_price"));
+                    sdto.setStay_option1_desc(rs2.getString("stay_option1_desc"));
+                    sdto.setStay_option1_photo(rs2.getString("stay_option1_photo"));
+                    sdto.setStay_option2_name(rs2.getString("stay_option2_name"));
+                    sdto.setStay_option2_price(rs2.getInt("stay_option2_price"));
+                    sdto.setStay_option2_desc(rs2.getString("stay_option2_desc"));
+                    sdto.setStay_option2_photo(rs2.getString("stay_option2_photo"));
+                    sdto.setStay_option3_name(rs2.getString("stay_option3_name"));
+                    sdto.setStay_option3_price(rs2.getInt("stay_option3_price"));
+                    sdto.setStay_option3_desc(rs2.getString("stay_option3_desc"));
+                    sdto.setStay_option3_photo(rs2.getString("stay_option3_photo"));
+                    sdto.setStay_hit(rs2.getInt("stay_hit"));
+                    sdto.setStay_reserv(rs2.getInt("stay_reserv"));
+                    sdto.setStay_date(rs2.getString("stay_date"));
+                    sdto.setStay_room_price_min(rs2.getInt("stay_room_price_min"));
+                    sdto.setStay_room_price_max(rs2.getInt("stay_room_price_max"));
+                    sdto.setStay_room_people_min(rs2.getInt("stay_room_people_min"));
+                    sdto.setStay_room_people_max(rs2.getInt("stay_room_people_max"));
 
-
-            	
-
-                
-
+                    list.add(sdto);
+                }
             }
 
-        } catch (SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
 
         } finally {
             closeConn(rs, pstmt, con);
+            closeConn(rs2, pstmt2, con);
         }
 
         return list;
