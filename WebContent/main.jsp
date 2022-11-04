@@ -1,19 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <% long time = System.currentTimeMillis(); %>
 <jsp:include page="layout/layout_header.jsp" />
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/asset/css/main.css?<%=time%>" />
-<c:set var="stay" value="${ stayRandom }"/>
-<c:set var="selectedStay" value="${ selectedStay }"/>
+
+<c:set var="rStay" value="${ randomStay }"/>
+<c:set var="kStay" value="${ keywordStay }"/>
 <c:set var="keyword" value="${ keyword }"/>
-<c:set var="event" value="${ eventList }"/>
+<c:set var="mList" value="${ magazineList }"/>
+<c:set var="sList" value="${ sList }"/>
 
-<c:set var="stayEvent" value="${ eventStay }"/>
-
-<c:set var="magazine" value="${ magazineList }"/>
-<c:set var="stayName" value="${ stayName }"/>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -114,12 +113,12 @@ ${ login_msg }
 
 <!-------- 메인 페이지 시작 --------->
 <div id="main-contents" class="main-contents">
+	<c:if test="${!empty rStay }">
     <div class="container-wide main-contents-page">
-    
         <!-------- 메인 페이지 비주얼 //START --------->
         <div id="main-visual" class="main-visual">
             <ul class="swiper-wrapper">
-                <c:forEach items="${ stay }" var="list">
+                <c:forEach items="${ rStay }" var="list">
                 <li class="swiper-slide slider-box">
                 	<c:choose>
                 	<c:when test="${ !empty list.stay_file1 }">
@@ -145,7 +144,6 @@ ${ login_msg }
     <!-------- 메인 페이지 비주얼 //END --------->
 
 
-
     <!-------- 메인 페이지 신규 창 //START --------->
     <div class="container main-new">
         <div class="sec-title">
@@ -153,30 +151,29 @@ ${ login_msg }
         </div>
 
         <div class="new-container stay-list" id="new-container">
-                <div class="swiper-wrapper">
-                    <c:forEach items="${ stay }" var="list">    
-                    <div class="swiper-slide stay-box">
-                            <c:choose>
-                                <c:when test="${ !empty list.stay_file2}">
-                                    <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
-                                        <img class="img" src="<%=request.getContextPath()%>${list.stay_file2}" />
-                                </c:when>
-                            </c:choose>
-
-                            <div class="title">${ list.stay_name }</div>
-                            <div class="subtitle">
-                                <span>${ list.stay_location }</span>
-                            </div>
-                            <div class="other">
-                                <span>${ list.stay_desc }</span>
-                            </div>
-                        </a>
-                    </div>    
-                    </c:forEach>   
-                </div>                 
+            <div class="swiper-wrapper">
+                <c:forEach items="${ rStay }" var="list">    
+                <div class="swiper-slide stay-box">
+                        <c:choose>
+                            <c:when test="${ !empty list.stay_file2}">
+                                <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
+                                    <img class="img" src="<%=request.getContextPath()%>${list.stay_file2}" />
+                            </c:when>
+                        </c:choose>
+                        <div class="title">${ list.stay_name }</div>
+                        <div class="subtitle">
+                            <span>${ list.stay_location }</span>
+                        </div>
+                        <div class="other">
+                            <span>${ list.stay_desc }</span>
+                        </div>
+                    </a>
+                </div>    
+                </c:forEach>   
+            </div>                 
         </div>
     </div>
-    
+	</c:if>
     <!-------- 메인 페이지 신규 창 // END --------->
 
     <!-------- 메인 페이지 배너 창 // START --------->
@@ -192,22 +189,24 @@ ${ login_msg }
     
 
     <!-------- 메인 페이지 프로모션 창 : 이벤트 // START  -------------->
+    <c:if test="${!empty sList }">    
      <div class="main-promo">
         <div class="container">
         <!-------- 프로모션 창 타이틀 --------->
-            <div class="sec-title" id="pro-title"><strong>PROMOTION</strong></div>
+        <div class="sec-title" id="pro-title"><strong>PROMOTION</strong></div>
         <!-------- 프로모션 창 목록 --------->
             <div class= "promo-container swiper-container" id="promo-container">
                     <ul class="swiper-wrapper">
-                     <c:forEach items="${ event }" var="event">
+                     <c:forEach items="${ sList }" var="list">
                         <li class="swiper-slide">
-                            <a href="<%=request.getContextPath()%>/eventList.do?bbs_no=${ event.bbs_no }">
+                            <a href="<%=request.getContextPath()%>/eventList.do?bbs_no=${ list.bbs_no }">
                                 <div class="promo-title">
-                                    <p class="text">${ event.bbs_title }</p>
-                                    <p class="small">${ event.bbs_stayno }</p>
+                                    <p class="text">${ list.bbs_title }</p>
+                                    <p class="small">${ list.stay_name }</p>
                                 </div>
-                                <div class="e_date"></div>
-                                <img src="<%=request.getContextPath()%>${event.bbs_file1}"/>
+                                <div class="e_date"><c:if test="${ list.bbs_day != 'N'}"><span>${ list.bbs_day } days<br />left!</span></c:if></div>
+                                <img src="<%=request.getContextPath()%>${ list.stay_photo }"/>
+                                <!-- bbs photo? stay photo? -->
                             </a>
                         </li>
 					</c:forEach>                        
@@ -219,58 +218,52 @@ ${ login_msg }
             </div>
         </div>
     </div>
+    </c:if>
     <!-------- 메인 페이지 프로모션 창 // End  -------------->
 
-	<!-- 현재 작업중 -->
+   <!-- 현재 작업중 -->
    <!-------- 메인 페이지 이벤트 창 // start --------->
+   <c:if test="${!empty sList }">       
    <div class="container main-event">
-            <div class="sec-title">EVENT</div>
+      <div class="sec-title">EVENT</div>
         <div class="event-container stay-list" id="event-container">
             <div class="swiper-wrapper">
-           		 <c:forEach items="${ stayEvent }" var="stayEvent">
+           		 <c:forEach items="${ sList }" var="list">
                      <div class="swiper-slide stay-box">
-	                    <c:choose>
-                            <c:when test="${ !empty stayEvent.stay_file2 }">
-                            <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ stayEvent.stay_no }">
-                                <img class="img" src="<%=request.getContextPath()%>${stayEvent.stay_file2}" />
-                            </c:when>
-                            <c:when test="${ !empty stayEvent.stay_file3 }">
-                            <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ stayEvent.stay_no }">
-                                <img class="img" src="<%=request.getContextPath()%>${stayEvent.stay_file3}" />
-                            </c:when>
-                            <c:when test="${ !empty stayEvent.stay_file4 }">
-                            <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ stayEvent.stay_no }">
-                                <img class="img" src="<%=request.getContextPath()%>${stayEvent.stay_file4}" />
-                            </c:when>
-	                    </c:choose>
-                             <div class="e_date"></div>
-                             <div class="name">${ stayEvent.stay_name }</div>
-                             <div class="other">${ stayEvent.stay_location }</div>
-                             <div class="text">1박 ${ stayEvent.stay_room_people_min }인<br>${ eventName } 이벤트</div>
-                         </a>
+                        <c:if test="${ !empty list.stay_photo }">
+                        <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
+                            <img class="img" src="<%=request.getContextPath()%>${ list.stay_photo }" />
+                        </c:if>
+                        <div class="e_date"><c:if test="${ list.bbs_day != 'N'}"><span>${ list.bbs_day } days<br />left!</span></c:if></div>
+                        <div class="name">${ list.stay_name }</div>
+                        <div class="other">${ list.stay_location }</div>
+                        <div class="text">1박 ${ list.stay_room_people_min }인<br>${ list.bbs_title } 이벤트</div>
+                        <!-- bbs_title 짤림...ㅠㅠ -->
+                        </a>
                      </div>
                  </c:forEach>
             </div>
         </div>
     </div>
+    </c:if>
     <!-------- 메인 페이지 이벤트 창 // end --------->
 
-
+	<!-- 매거진 창 없음... 안보임... 해결 필요 data 있음  -->
     <!-------- 메인 페이지 매거진 창 // start --------->
+    <c:if test="${!empty mList }">  
     <div class="main-magazine">
         <div class="swiper-container" id="magazine-container">
             <ul class="swiper-wrapper">
-            	<c:forEach items="${ magazine }" var="mgz">
-                    <li class="swiper-slide">
-                    
-                      <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }" style="background-image: url('<%=request.getContextPath()%>${mgz.bbs_list_img}');">
+            	<c:forEach items="${ mList }" var="mgz">
+                    <li class="swiper-slide">                    
+                      <a href="<%=request.getContextPath()%>/magazineView.do?bbs_no=${ mgz.bbs_no }" style="background-image: url('<%=request.getContextPath()%>${ mgz.bbs_list_img }');">
                         <div class="stay-info">
-                                <h3 class="title"><c:forTokens items="${ mgz.bbs_title }" delims="<" var="title" begin="1" end="1">${ title }</c:forTokens></h3>
-                                <p class="text"><c:forTokens items="${ mgz.bbs_title }" delims="<" var="desc" begin="0" end="0">${ desc }</c:forTokens> </p>
-                                <p class="magazine">MAGAZINE</p>
-                                <p class="more">Read more</p>
-                            </div>
-                        </a>                    
+                           <h3 class="title"><c:forTokens items="${ mgz.bbs_title }" delims="<" var="title" begin="1" end="1">${ fn:substringBefore(title, ">") }</c:forTokens></h3>                           
+                           <p class="text"><c:forTokens items="${ mgz.bbs_title }" delims="<" var="desc" begin="0" end="0">${ desc }</c:forTokens> </p>
+                           <p class="magazine">MAGAZINE</p>
+                           <p class="more">Read more</p>
+                        </div>
+                       </a>                    
                     </li>
                 </c:forEach>                
              </ul> 
@@ -278,24 +271,27 @@ ${ login_msg }
             <div class="fa fa-chevron-right"></div>
          </div>
     </div>
+    </c:if>    
+    <c:if test="${ empty mList }">나야나</c:if>
     <!-------- 메인 페이지 매거진 창 END  --------->
 
 
 
     <!-------- 메인 페이지 트래블 창 // START --------->
+    <c:if test="${!empty rStay }">    
     <div class="container main-travel">
         <div class="sec-title">TRAVEL</div>
             <ul class="stay-list">
-			<c:forEach items="${ stay }" var="list" begin="0" end="5">
+			<c:forEach items="${ rStay }" var="list" begin="0" end="5">
 				<li class="stay-box">
                     <c:choose>
                             <c:when test="${ !empty list.stay_file3 }">
                             <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
-                                <img class="img" src="<%=request.getContextPath()%>${list.stay_file3}" />
+                                <img class="img" src="<%=request.getContextPath()%>${ list.stay_file3 }" />
                             </c:when>
                             <c:when test="${ !empty list.stay_file4 }">
                             <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
-                                <img class="img" src="<%=request.getContextPath()%>${list.stay_file4}" />
+                                <img class="img" src="<%=request.getContextPath()%>${ list.stay_file4 }" />
                             </c:when>
                     </c:choose>
                         <div class="text">${ list.stay_desc }</div>
@@ -308,9 +304,11 @@ ${ login_msg }
 			</c:forEach>
 		</ul>
     </div>
+    </c:if>
     <!-------- 메인 페이지 트래블 창 // END --------->
     
     <!-------- 메인 페이지 추천 창 // START @@ -->
+    <!-- 이 부분은... 뭘로... 채워야할지... -->
     <div class="main-Tagthumb">
         <div class= "container" id="tagThumb-container">
             <div class="subject">
@@ -344,14 +342,13 @@ ${ login_msg }
                     </a>
                 </div>
             </div>
-
-
         </div>
     </div>
     <!-------- 메인 페이지 추천 창 // END --------->
 
 
     <!-------- 메인 페이지 홍보 창 //START --------->
+    <c:if test="${!empty kStay }">        
     <div class="container main-recom">
         <div class="sec-title">
             <span class= "title1">지금 바로 떠나는</span>
@@ -362,20 +359,20 @@ ${ login_msg }
         <div class="recom-container stay-list" id="recom-container">
 
             <div class="swiper-wrapper">
-            	<c:forEach items="${ selectedStay }" var="list">
+            	<c:forEach items="${ kStay }" var="list">
                 <div class="swiper-slide stay-box">
 	               	 <c:choose>
 		               	  <c:when test="${ !empty list.stay_file4 }">
 							 <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
-	                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file4}" />	                      
+	                            <img class="img" src="<%=request.getContextPath()%>${ list.stay_file4 }" />	                      
                           </c:when>
 	                      <c:when test="${ !empty list.stay_file5 }">
 							 <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
-	                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file5}" />	                      
+	                            <img class="img" src="<%=request.getContextPath()%>${ list.stay_file5 }" />	                      
                           </c:when>
 	                      <c:when test="${ !empty list.stay_file1 }">
 							 <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
-	                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file1}" />	                      
+	                            <img class="img" src="<%=request.getContextPath()%>${ list.stay_file1 }" />	                      
                           </c:when>
 	                  </c:choose>
                       <div class="title">${ list.stay_name }</div>
@@ -385,14 +382,14 @@ ${ login_msg }
                       <div class="other">
                           <span>${ list.stay_desc }</span>
                       </div>
-
                       </a>
                 </div>
 				</c:forEach>                
             </div>
         </div>
     </div>
-    <!-------- 메인 페이지 홍보 창 // END ㅇㅂㅇ --------->
+    </c:if>
+    <!-------- 메인 페이지 홍보 창 // END --------->
 
 
 </div>

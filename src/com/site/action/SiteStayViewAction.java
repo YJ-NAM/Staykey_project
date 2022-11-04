@@ -22,10 +22,8 @@ public class SiteStayViewAction implements Action {
         int stayNo = Integer.parseInt(request.getParameter("stay_no"));
         StayDAO dao = StayDAO.getInstance();
 
-
         // 숙소 조회수 늘리기
         dao.plusStayHitCount(stayNo);
-
 
         // getStayView() : 상세 정보 조회 메서드
         StayDTO dto = dao.getStayView(stayNo);
@@ -34,7 +32,6 @@ public class SiteStayViewAction implements Action {
         // getStayRoomList() : 전체 room 정보 목록 조회 메서드
         List<StayRoomDTO> list = dao.getStayRoomList(stayNo);
         request.setAttribute("roomList", list);
-
 
         // 찜 목록 체크하기
         HttpSession session = request.getSession();
@@ -46,8 +43,6 @@ public class SiteStayViewAction implements Action {
             wishChk = wdao.chkStayWish(stayNo, login_id);
         }
         request.setAttribute("wishChk", wishChk);
-
-
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);

@@ -51,53 +51,28 @@ public class SiteMainAction implements Action {
     		display[i] = stayNums.get(randomNum);
     	}
     	
-    	List<StayDTO> list = stayDAO.getStayforMain(display);
-    	request.setAttribute("stayRandom", list);
+    	List<StayDTO> randomStay = stayDAO.getStayforMain(display);
+    	request.setAttribute("randomStay", randomStay);
     	
     	////////////////////////////////////////////////////////////////
     	// 키워드에 따른 선택된 값만 추출
-    	// 관리자 창에서 설정할 수 있으면 좋을 것 같음...
+    	// 관리자 창에서 키워드 설정할 수 있으면 좋을 것 같음...
     	String keyword = "제주";
-    	EventDTO eventDTO = new EventDTO();
     	
-    	List<StayDTO> selectedStay = stayDAO.getSelectedStay(keyword);
+    	List<StayDTO> keywordStay = stayDAO.getSelectedStay(keyword);
     	request.setAttribute("keyword", keyword);
-    	request.setAttribute("selectedStay", selectedStay);
+    	request.setAttribute("keywordStay", keywordStay);
 
     	//////////////////////////////////////////////////////////////////////////////////
     	// event : 이벤트
     	////////////////////////////////////////////////////////////////////////////////// 
-    	
-    	List<EventDTO> eventList = eventDAO.getTotalEvent();
-    	request.setAttribute("eventList", eventList);	
-    	List<StayDTO> eventStayList = new ArrayList<StayDTO>();
-    	String eventName = "";
-    	
-    	// 모든 bbs_no(이벤트 번호) 따른 숙소 번호 추출
-    	for(int i=0; i<eventList.size(); i++) {  
-    		// bbs_no : 이벤트 번호
-    		int bbs_no = eventList.get(i).getBbs_no();    	
-    		// getEventStayNums(bbs_no) : 이벤트에 해당하는 숙소 번호 : String
-    		// getStayNum(String) => List<Integer>로 쪼개서 추출    		
-    		List<Integer> stayList = eventDAO.getStayNum(eventDAO.getEventStayNums(bbs_no));
-    		int[] stay_no = new int[stayList.size()];    		
-    		for(int j=0; j<stayList.size(); j++) {
-    			stay_no[j] = stayList.get(j);
-    		}    		
-    		// 숙소 번호에 따른 숙소 정보 추출
-    		// 이벤트 이름
-    		eventName = eventDAO.getEventInfo(bbs_no).getBbs_title();
-    		// 해당 숙소 정보가 담긴 list
-    		eventStayList = stayDAO.getStayforMain(stay_no);    
-    		
-    	}
-    	request.setAttribute("eventName", eventName);
-    	request.setAttribute("eventStay", eventStayList);    	    
+    	// 전체 이벤트 목록 + 이벤트에 따른 숙소 목록
+    	List<HashMap<String, String>> sList = eventDAO.getEventStayList();
+        request.setAttribute("sList", sList);
 
     	//////////////////////////////////////////////////////////////////////////////////
     	// magazine : 매거진
-    	//////////////////////////////////////////////////////////////////////////////////    	
-    	
+    	//////////////////////////////////////////////////////////////////////////////////  	
     	List<MagazineDTO> magazineList = magazineDAO.getTotalMagazine();
     	request.setAttribute("magazineList", magazineList);    	
     	
