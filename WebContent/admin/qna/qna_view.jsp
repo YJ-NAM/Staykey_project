@@ -175,7 +175,7 @@
                                 <td class="text-left">${qdto.comment_content}</td>
                                 <td class="text-center">${qdto.comment_date}</td>
 	                           	<td class="text-center">
-	                    			<a href="<%=request.getContextPath()%>/admin/qnaCommentDeleteOk.do?no=${qdto.comment_no}&qna_no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+	                    			<a href="<%=request.getContextPath()%>/admin/qnaCommendDeleteOk.do?no=${qdto.comment_no}&qna_no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
 	                			</td>
                             </tr>
                             </c:forEach>

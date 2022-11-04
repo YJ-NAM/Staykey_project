@@ -18,6 +18,7 @@ public class AdminQnaCommendDeleteOkAction implements Action {
 		int no = Integer.parseInt(request.getParameter("no").trim());
 		int qna_no = Integer.parseInt(request.getParameter("qna_no").trim());
 		QnaCommentDAO dao = QnaCommentDAO.getInstance();
+
 		
 		int res = dao.deleteComment(no);
 		
