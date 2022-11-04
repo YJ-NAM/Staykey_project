@@ -176,18 +176,6 @@
         </div>
     </div>
 
-  
-	
-
-
-
-    <!-- 버튼 //START -->
-    <div class="d-flex justify-content-center mb-3">
-        <button type="button" class="btn btn-outline-secondary" onclick="window.print();"><i class="fa fa-print"></i> 인쇄하기</button>
-        <button type="button" class="btn btn-secondary ml-2" onclick="window.close();"><i class="fa fa-times"></i> 창닫기</button>
-    </div>
-    <!-- 버튼 //END -->
-
 </div>
 
 
