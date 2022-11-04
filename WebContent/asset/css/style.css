@@ -517,6 +517,9 @@ legend {
     .header .h-wrap .h-nav ul li a {
         padding: 20px;
     }
+    .header .h-wrap .h-nav ul li a.now:after {
+        margin-left: 20px
+    }
 }
 @media (max-width: 1024px) {
     .header .h-wrap {
@@ -527,6 +530,9 @@ legend {
     }
     .header .h-wrap .h-nav ul li a {
         padding: 20px 10px;
+    }
+    .header .h-wrap .h-nav ul li a.now:after {
+        margin-left: 9px
     }
 }
 

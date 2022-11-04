@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
 
+<% pageContext.setAttribute("newLine", "\n"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <c:set var="dto" value="${member}" />
 
@@ -63,35 +65,35 @@
         	
         	<td colspan="3">
 	        	<b>접근성:</b>
-		        	<select name="review_point1" class="form-select">
+		        	<select name="review_point1" class="form-select mr-4">
 	                	<c:forEach begin="1" end="10" var="i">
 	                    	<option value="${i}"<c:if test="${dto.review_point1 == i}"> selected="selected"</c:if>>${i}</option>
 	                	</c:forEach>
 	                </select>
 					
 				<b>서비스:</b>
-					<select name="review_point2" class="form-select">
+					<select name="review_point2" class="form-select mr-4">
 	                     <c:forEach begin="1" end="10" var="i">
 	                     	<option value="${i}"<c:if test="${dto.review_point2 == i}"> selected="selected"</c:if>>${i}</option>
 	                     </c:forEach>
 	                </select>
 	
 		        <b>객실시설:</b>
-					<select name="review_point3" class="form-select">
+					<select name="review_point3" class="form-select mr-4">
                     	<c:forEach begin="1" end="10" var="i">
                         	<option value="${i}"<c:if test="${dto.review_point3 == i}"> selected="selected"</c:if>>${i}</option>
                         </c:forEach>
                 	</select>
 						
 				<b>부대시설:</b>
-					<select name="review_point4" class="form-select">
+					<select name="review_point4" class="form-select mr-4">
                     	<c:forEach begin="1" end="10" var="i">
                         	<option value="${i}"<c:if test="${dto.review_point4 == i}"> selected="selected"</c:if>>${i}</option>
                         </c:forEach>
                 	</select>	
                 	
 	        	<b>식음료:</b>
-					<select name="review_point5" class="form-select">
+					<select name="review_point5" class="form-select mr-4">
                     	<c:forEach begin="1" end="10" var="i">
                         	<option value="${i}"<c:if test="${dto.review_point5 == i}"> selected="selected"</c:if>>${i}</option>
                         </c:forEach>
@@ -102,13 +104,13 @@
                     	<c:forEach begin="1" end="10" var="i">
                         	<option value="${i}"<c:if test="${dto.review_point6 == i}"> selected="selected"</c:if>>${i}</option>
                         </c:forEach>
-                	</select>	
+                	</select>
        		</td>
         </tr>
         
         <tr> 
         	<th>리뷰 내용</th>										
-			<td colspan="3"><textarea name="review_content" cols="20" rows="4" class="form-control" >${dto.review_content.replace("<br />", "")}</textarea></td>
+			<td colspan="3"><textarea name="review_content" cols="20" rows="4" class="form-control" >${dto.review_content.replace("<br />", newLine)}</textarea></td>
         </tr>
         
         <tr>

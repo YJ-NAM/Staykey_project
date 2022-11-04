@@ -79,9 +79,9 @@
 
 <div class="pb100">
 	<form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/admin/magazineWriteOk.do">
-		<input type="hidden" name="mag_writer_name" value="hyunjin" />
-		<input type="hidden" name="mag_writer_id" value="user1234" />
-		<input type="hidden" name="mag_writer_pw" value="1234" />
+		<input type="hidden" name="mag_writer_name" value="${login_name}" />
+		<input type="hidden" name="mag_writer_id" value="${login_id}" />
+		<input type="hidden" name="mag_writer_pw" value="${login_pw}" />
 
 		<table class="table-form mt-3">
 			<colgroup>

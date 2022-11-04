@@ -82,8 +82,8 @@
 <div class="pb100">
 	<form name="write_form" method="post" enctype="multipart/form-data"
 		action="<%=request.getContextPath()%>/admin/eventModifyOk.do">
-		<input type="hidden" name="ev_no" value="${dto.bbs_no}" /> <input
-			type="hidden" name="ev_writer_name" value="${dto.bbs_writer_name}" />
+		<input type="hidden" name="ev_no" value="${dto.bbs_no}" />
+		<input type="hidden" name="ev_writer_name" value="${dto.bbs_writer_name}" />
 		<input type="hidden" name="ev_writer_id" value="${dto.bbs_writer_id}" />
 		<input type="hidden" name="ev_writer_pw" value="${dto.bbs_writer_pw}" />
 
