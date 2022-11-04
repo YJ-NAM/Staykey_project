@@ -110,7 +110,6 @@
 }
 
 .page-paging {
-    border-top: 1px solid #800000;
     position: relative;
     max-width: 1330px;
     padding: 0;
@@ -121,3 +120,4 @@
     vertical-align: top;
     font-family: 'NotoSerifKR';
 }
+
