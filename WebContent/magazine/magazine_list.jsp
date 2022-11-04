@@ -50,9 +50,7 @@
 
 </div>
 
-
 ${map.pagingWrite}
-
 
 
 <jsp:include page="../layout/layout_footer.jsp" />
