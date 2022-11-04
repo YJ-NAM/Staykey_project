@@ -4,11 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -16,6 +12,8 @@ import java.util.StringTokenizer;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import com.util.eventDate;
 
 public class EventDAO {
 	Connection con = null;
@@ -411,9 +409,7 @@ public class EventDAO {
 		
 		List<EventDTO> list = new ArrayList<EventDTO>();
 		String stayNameNo = "";
-		List<Integer> splits = new ArrayList<Integer>();
 		List<String> splitNames = new ArrayList<String>();
-
 
 		try {
 			openConn();
@@ -441,15 +437,12 @@ public class EventDAO {
 				dto.setBbs_date(rs.getString("bbs_date"));
 				
 				////////////////////////////////////////////////////////////////
-				/////////////////////////////////////////////////////////
 				// 이벤트 정보에 따른 숙소정보 추출		
-				String bbs_stayno = rs.getString("bbs_stayno");
-				String[] splitStayNo = bbs_stayno.substring(1).split("/");
+				////////////////////////////////////////////////////////////////				
+				List<Integer> splits = getStayNum(rs.getString("bbs_stayno"));
 				String stayName = "";
-				for(int i=0; i<splitStayNo.length; i++) {	
-					System.out.println(i);
-					splits.add(Integer.parseInt(splitStayNo[i]));
-					
+
+				for(int i=0; i<splits.size(); i++) {									
 					sql2 = "select stay_name from staykey_stay where stay_no = ?";
 					pstmt2 = con.prepareStatement(sql2);
 					pstmt2.setInt(1, splits.get(i));
@@ -466,14 +459,28 @@ public class EventDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		} finally {
 			closeConn(rs, pstmt, con);
 		}
-		System.out.println("사이즈"+list.size());
 		return list;
 	} // getTotalEvent() 종료
 	
+	// ======================================================
+	// 이벤트 bbs_stayno에 따른 숙소 No 추출 메서드
+	// ======================================================
+	public List<Integer> getStayNum(String bbs_stayno) {
+		
+		// 변수 선언
+		List<Integer> splitsInts = new ArrayList<Integer>();
+
+		String[] splitNums = bbs_stayno.substring(1).split("/");
+		for(int i=0; i<splitNums.length; i++) {	
+			splitsInts.add(Integer.parseInt(splitNums[i]));			
+		}
+		return splitsInts;
+	} // getStayNum() 종료
+	
+
 	// ======================================================
 	// 이벤트 번호에 해당하는 숙소번호 가져오기
 	// ======================================================
@@ -497,13 +504,6 @@ public class EventDAO {
 		}
 		return eventNums;
 	} // getEventStayNums() 종료
-
-
-
-
-
-
-
 
     // ======================================================
     // 이벤트 목록(사이트 게시판 화면) 메서드
@@ -535,41 +535,12 @@ public class EventDAO {
                 dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
                 dto.setBbs_date(rs.getString("bbs_date"));
 
-                String done_start = "";
-                String done_end = "";
-                if(rs.getString("bbs_showstart") != null && rs.getString("bbs_showend") != null) {
-                    Date get_today = new Date();
-                    DateFormat todayFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                // 오늘(현재) 기준으로 이벤트 남은 날짜
+                String remain_date = eventDate.remainDate(rs.getString("bbs_showstart"), rs.getString("bbs_showend"));
+                System.out.println(remain_date);
 
-                    // String 타입으로 날짜 정리 완료
-                    String show_today = todayFormat.format(get_today);
-                    String show_start = rs.getString("bbs_showstart");
-                    String show_end = rs.getString("bbs_showend");
-
-                    // 날짜 체크를 위한 처리
-                    DateFormat chkFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-
-                    // 오늘 기준으로 날짜 체크
-//                    if(show_start <= show_today && show_today <= show_end){
-//                    }
-
-                    DateFormat calcFormat = new SimpleDateFormat("yyyyMMdd");
-                    int remain_day = 0;
-
-                    try {
-                        Date d1 = calcFormat.parse(show_end.substring(0, 10).replace("-", ""));
-                        Date d2 = calcFormat.parse(show_start.substring(0, 10).replace("-", ""));
-                        remain_day = (int)(((d1.getTime() - d2.getTime()) / 1000) / (24*60*60));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    done_end = remain_day+"";
-
-                    System.out.println(show_start + " ~ " + show_end + " = " + done_end);
-                }
-
-                dto.setBbs_showstart(done_start);
-                dto.setBbs_showend(done_end);
+                dto.setBbs_showstart(remain_date);
+                dto.setBbs_showend(null);
 
                 list.add(dto);
             }
