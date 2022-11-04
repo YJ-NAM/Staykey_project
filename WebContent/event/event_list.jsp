@@ -80,19 +80,57 @@
 
 
     <!-- 이벤트 //START -->
+    <c:if test="${!empty stay }">
     <div class="el-event">
         <h4 class="elp-title">EVENT</h4>
 
-
-
-
-        <c:if test="${!empty stay }">
-            <c:forEach var="stay" items="${stay}">
-                ${stay.stay_photo}<br />${stay.stay_no}<br />${stay.stay_name}<br />${stay.stay_location}<br />${stay.bbs_title}<br />${stay.bbs_day}<hr />
-            </c:forEach>
-        </c:if>
-
+        <div class="elp-wrap">
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"><i class="fa fa-chevron-left"></i></div>
+            <div class="swiper-button-next"><i class="fa fa-chevron-right"></i></div>
+            <ul class="swiper-wrapper">
+                <c:forEach var="stay" items="${stay}">
+                <li class="swiper-slide">
+                    <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${stay.stay_no}">
+                        <c:if test="${!empty stay.stay_photo}"><div class="e_img" style="background-image:url('<%=request.getContextPath()%>${stay.stay_photo}');"><c:if test="${stay.bbs_day != 'N'}"><span>${stay.bbs_day} days<br />left!</span></c:if></div></c:if>
+                        <div class="e_info">
+                            <p class="stay">${stay.stay_name}</p>
+                            <p class="location">${stay.stay_location}</p>
+                            <p class="title">${stay.bbs_title}</p>
+                            <p class="more">자세히 보기</p>
+                        </div>
+                    </a>
+                </li>
+                </c:forEach>
+            </ul>
+        </div>
     </div>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var visualSwiper = new Swiper(".event-list .el-event .elp-wrap", {
+            effect: "slide",
+            slidesPerView: 3,
+            spaceBetween: 0,
+            speed: 500,
+            loop: true,
+            touchEnabled: false,
+            autoplay: {
+                delay: 7000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                type: "fraction"
+            },
+            navigation: {
+                nextEl: '.event-list .el-event .elp-wrap .swiper-button-next',
+                prevEl: '.event-list .el-event .elp-wrap .swiper-button-prev',
+            }
+        });
+    });
+    </script>
+    </c:if>
     <!-- 이벤트 //END -->
 </div>
 

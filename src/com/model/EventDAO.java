@@ -596,7 +596,7 @@ public class EventDAO {
                         data.put("stay_no", epd_stayno[i]);
                         data.put("stay_name", rs2.getString("stay_name"));
                         data.put("stay_location", rs2.getString("stay_location"));
-                        data.put("bbs_title", rs.getString("bbs_title").replaceAll("<br />", "").replaceAll("<br>", ""));
+                        data.put("bbs_title", rs.getString("bbs_title"));
                         data.put("bbs_day", eventDate.remainDate(rs.getString("bbs_showstart"), rs.getString("bbs_showend")));
 
                         if(rs2.getString("stay_file1") != null) {
