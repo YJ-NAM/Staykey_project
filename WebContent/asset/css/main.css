@@ -258,7 +258,7 @@
 
 .main-visual .stay-info .title {
    padding-top: 20px;
-   font-size: 24px; 
+   font-size: 22px; 
    font-weight: bold;
    color: #000;
    letter-spacing: 3px;
@@ -747,7 +747,6 @@
 }
  
 .main-travel .stay-list .stay-box .other {
-    padding-top: 10px;
     letter-spacing: 1.5;
     font-size: 14px;
     color: #181818;
