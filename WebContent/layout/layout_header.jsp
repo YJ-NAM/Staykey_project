@@ -60,6 +60,45 @@
 
 
 
+
+    <!-- 어디로 갈까요? 검색 Modal // START -->
+    <div class="modal search-modal" id="FindLoc" tabindex="-1" aria-labelledby="FindDateLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">어디로 갈까요?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="loc_search" method="post" action="<%=request.getContextPath()%>/stayList.do">
+                    <input type="text" name="ps_stay" placeholder="원하는 스테이/지역을 검색해 보세요." />
+                    <ul>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do">국내전체</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=제주">제주</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=서울">서울</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=강원">강원</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=부산">부산</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=경기">경기</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=충청">충청</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=경상">경상</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=전라">전라</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=인천">인천</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=광주">광주</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=대전">대전</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=대구">대구</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=울산">울산</a></li>
+                    </ul>
+                    <button type="submit">SEARCH <i class="icon-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 어디로 갈까요? 검색 Modal // END -->
+
+
     <!-- 언제 떠날까요? 검색 Modal // START -->
     <div class="modal search-modal" id="FindDate" tabindex="-1" aria-labelledby="FindDateLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -72,9 +111,9 @@
                 </div>
                 <div class="modal-body">
                     <form name="date_search" method="post" action="<%=request.getContextPath()%>/stayList.do">
-                    <input type="hidden" id="hidden-btn" />
-                    <input type="text" name="ps_start" value="${ map.ps_start }" id="h_ps_start" />
-                    <input type="text" name="ps_end" value="${ map.ps_end }" id="h_ps_end" />
+                    <input type="text" id="hidden-btn" />
+                    <input type="hidden" name="ps_start" value="${ map.ps_start }" id="h_ps_start" />
+                    <input type="hidden" name="ps_end" value="${ map.ps_end }" id="h_ps_end" />
                     <button type="submit">SEARCH <i class="icon-arrow-right"></i></button>
                     </form>
                 </div>
@@ -95,7 +134,7 @@
 
 
             <div class="h-location flex-grow-1">
-                <button type="button"><i class="icon-location-pin"></i>어디로 갈까요?</button>
+                <button type="button" data-toggle="modal" data-target="#FindLoc"><i class="icon-location-pin"></i>어디로 갈까요?</button>
                 <button type="button" data-toggle="modal" data-target="#FindDate" onclick="$('#hidden-btn').trigger('click');"><i class="icon-calendar"></i>언제 떠날까요?</button>
             </div>
 

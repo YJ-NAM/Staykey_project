@@ -351,7 +351,13 @@ public class StayDAO {
         }else {
             search_sql2 += "";
         }
-        
+
+
+        // ps_location 값이 있을 때
+        if (map.get("ps_location") != "" && map.get("ps_location") != null) {
+            search_sql2 += " and stay_location like '%" + map.get("ps_location") + "%'";
+        }
+
         search_sql1 += search_sql2;
 
         // 정렬용 설정
@@ -494,6 +500,12 @@ public class StayDAO {
             search_sql += ")";            
         }else {
             search_sql += "";
+        }
+
+
+        // ps_location 값이 있을 때
+        if (map.get("ps_location") != "" && map.get("ps_location") != null) {
+            search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
         }
 
         try {
@@ -1666,6 +1678,31 @@ public class StayDAO {
         return stayName;
     } // getStayName() 종료    
 
+
+
+
+
+
+    
+    /////////////////////////////////////////////////////////////
+    // 숙소 보기 조회수 늘리기
+    /////////////////////////////////////////////////////////////
+    public void plusStayHitCount(int stay_no) {
+        try {
+            openConn();
+
+            sql = "update staykey_stay set stay_hit = stay_hit + 1 where stay_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, stay_no);
+            pstmt.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+    }
 }
 
 

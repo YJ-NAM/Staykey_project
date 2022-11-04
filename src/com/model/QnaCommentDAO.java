@@ -211,6 +211,68 @@ public class QnaCommentDAO {
     }
 
     
+    // ======================================================
+    // 댓글 정보 가져오는 메서드
+    // ======================================================
+    public QnaCommentDTO getCommentInfo(int no) {
+    	QnaCommentDTO dto = null;
+
+        try {
+            openConn();
+
+            sql = "select * from staykey_qna_comment where comment_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                dto = new QnaCommentDTO();
+                
+                dto.setComment_no(rs.getInt("comment_no"));
+                dto.setComment_qnano(rs.getInt("comment_qnano"));
+                dto.setComment_content(rs.getString("comment_content"));
+                dto.setComment_writer_name(rs.getString("comment_writer_name"));
+                dto.setComment_writer_id(rs.getString("comment_writer_pw"));
+                dto.setComment_date(rs.getString("comment_date"));
+                
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return dto;
+    }
+
+    
+
+    // ======================================================
+    // 댓글을 업데이트 하는 메서드
+    // ======================================================
+    public int commentModify(QnaCommentDTO dto) {
+        int result = 0;
+
+        try {
+            openConn();
+            sql = "update staykey_qna_comment set comment_content = ? where comment_no = ?";
+            pstmt = con.prepareStatement(sql);
+
+            pstmt.setString(1, dto.getComment_content());
+            pstmt.setInt(2, dto.getComment_no());
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConn(pstmt, con);
+        }
+        return result;
+    }
+    
     
     
 

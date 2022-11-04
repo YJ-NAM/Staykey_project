@@ -19,8 +19,11 @@ public class SiteMypageQnaCommentOkAction implements Action {
 		// 문의글 답변 비지니스 로직.
 		int no = Integer.parseInt(request.getParameter("no").trim());
 		String comment_content = request.getParameter("comment_content").trim();
+		System.out.println(no);
 		HttpSession session = request.getSession();
+        ActionForward forward = new ActionForward();
 
+		
 		QnaCommentDTO dto = new QnaCommentDTO();
 		QnaCommentDAO dao= QnaCommentDAO.getInstance();
 		
@@ -28,7 +31,11 @@ public class SiteMypageQnaCommentOkAction implements Action {
 
 		if(comment_content.length() <= 0) {
         	out.println("<script>alert('답변 내용을 입력해주세요.'); history.back();</script>");
+            forward.setRedirect(true);
+            forward.setPath("mypageQnaView.do?no="+no);
+            return forward;
 		}
+
 		
 		String login_name = (String)session.getAttribute("login_name");
 		String id = (String)session.getAttribute("login_id");
@@ -42,7 +49,6 @@ public class SiteMypageQnaCommentOkAction implements Action {
 
         int res = dao.registerComment(dto);
 
-        ActionForward forward = new ActionForward();
 
 
         if (res > 0) {
