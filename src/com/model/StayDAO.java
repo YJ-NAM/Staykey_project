@@ -351,7 +351,13 @@ public class StayDAO {
         }else {
             search_sql2 += "";
         }
-        
+
+
+        // ps_location 값이 있을 때
+        if (map.get("ps_location") != "" && map.get("ps_location") != null) {
+            search_sql2 += " and stay_location like '%" + map.get("ps_location") + "%'";
+        }
+
         search_sql1 += search_sql2;
 
         // 정렬용 설정
@@ -494,6 +500,12 @@ public class StayDAO {
             search_sql += ")";            
         }else {
             search_sql += "";
+        }
+
+
+        // ps_location 값이 있을 때
+        if (map.get("ps_location") != "" && map.get("ps_location") != null) {
+            search_sql += " and stay_location like '%" + map.get("ps_location") + "%'";
         }
 
         try {
