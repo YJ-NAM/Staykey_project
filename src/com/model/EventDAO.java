@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -493,6 +497,93 @@ public class EventDAO {
 		}
 		return eventNums;
 	} // getEventStayNums() 종료
+
+
+
+
+
+
+
+
+    // ======================================================
+    // 이벤트 목록(사이트 게시판 화면) 메서드
+    // ======================================================
+    public List<EventDTO> getBbsEventList() {
+        List<EventDTO> list = new ArrayList<EventDTO>();
+
+        try {
+            openConn();
+
+            sql = "select * from staykey_event order by bbs_date desc";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+                EventDTO dto = new EventDTO();
+
+                dto.setBbs_no(rs.getInt("bbs_no"));
+                dto.setBbs_title(rs.getString("bbs_title"));
+                dto.setBbs_content(rs.getString("bbs_content"));
+                dto.setBbs_file1(rs.getString("bbs_file1"));
+                dto.setBbs_file2(rs.getString("bbs_file2"));
+                dto.setBbs_file3(rs.getString("bbs_file3"));
+                dto.setBbs_file4(rs.getString("bbs_file4"));
+                dto.setBbs_file5(rs.getString("bbs_file5"));
+                dto.setBbs_hit(rs.getInt("bbs_hit"));
+                dto.setBbs_writer_name(rs.getString("bbs_writer_name"));
+                dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
+                dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
+                dto.setBbs_date(rs.getString("bbs_date"));
+
+                String done_start = "";
+                String done_end = "";
+                if(rs.getString("bbs_showstart") != null && rs.getString("bbs_showend") != null) {
+                    Date get_today = new Date();
+                    DateFormat todayFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    // String 타입으로 날짜 정리 완료
+                    String show_today = todayFormat.format(get_today);
+                    String show_start = rs.getString("bbs_showstart");
+                    String show_end = rs.getString("bbs_showend");
+
+                    // 날짜 체크를 위한 처리
+                    DateFormat chkFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+
+                    // 오늘 기준으로 날짜 체크
+//                    if(show_start <= show_today && show_today <= show_end){
+//                    }
+
+                    DateFormat calcFormat = new SimpleDateFormat("yyyyMMdd");
+                    int remain_day = 0;
+
+                    try {
+                        Date d1 = calcFormat.parse(show_end.substring(0, 10).replace("-", ""));
+                        Date d2 = calcFormat.parse(show_start.substring(0, 10).replace("-", ""));
+                        remain_day = (int)(((d1.getTime() - d2.getTime()) / 1000) / (24*60*60));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    done_end = remain_day+"";
+
+                    System.out.println(show_start + " ~ " + show_end + " = " + done_end);
+                }
+
+                dto.setBbs_showstart(done_start);
+                dto.setBbs_showend(done_end);
+
+                list.add(dto);
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return list;
+    }
+
 
 
 }
