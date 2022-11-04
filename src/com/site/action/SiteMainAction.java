@@ -52,6 +52,7 @@ public class SiteMainAction implements Action {
     	List<StayDTO> list = stayDAO.getStayforMain(display);
     	request.setAttribute("stayRandom", list);
     	
+    	////////////////////////////////////////////////////////////////
     	// 키워드에 따른 선택된 값만 추출
     	// 관리자 창에서 설정할 수 있으면 좋을 것 같음...
     	String keyword = "제주";
