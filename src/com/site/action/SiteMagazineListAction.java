@@ -29,7 +29,6 @@ public class SiteMagazineListAction implements Action {
     	//////////////////////////////////////////////////////////////////////////////////    	
     	
     	List<MagazineDTO> magazineList = magazineDAO.getTotalMagazine();
-    	request.setAttribute("magazineList", magazineList);  
     	
         /////////////////////////////////////////////////////////////
         // 페이징
@@ -67,7 +66,8 @@ public class SiteMagazineListAction implements Action {
         // 뷰에 전달할 매개변수 추가
         map.put("pagingWrite", Paging.showPage(allPage, startBlock, endBlock, page, pageUrl));
         request.setAttribute("map", map);
-
+        request.setAttribute("magazineList", magazineList);  
+        
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("magazine/magazine_list.jsp");

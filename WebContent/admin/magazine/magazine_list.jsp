@@ -130,7 +130,8 @@
 							<tr>
 								<td ${showLink} class="eng">${dto.bbs_no }</td>
 	
-								<td ${showLink} class="photo"><c:choose>
+								<td ${showLink} class="photo">
+								<c:choose>
 										<c:when test="${!empty dto.bbs_list_img }">
 											<img src="<%=request.getContextPath()%>${dto.bbs_list_img }"
 												 alt="" />
@@ -145,7 +146,8 @@
 					                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
 					                        </svg>
 										</c:otherwise>
-									</c:choose></td>
+									</c:choose>
+								</td>
 	
 	
 								<td ${showLink} class="eng">${dto.bbs_title}</td>
