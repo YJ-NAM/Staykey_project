@@ -16,7 +16,7 @@ $(document).ready(function(){
         effect: "fade",
         slidesPerView: 1,
         spaceBetween: 0,
-        speed: 500,
+        speed: 600,
         loop: true,
         touchEnabled: false,
         autoplay: {
@@ -126,7 +126,7 @@ ${ login_msg }
                     </c:choose>
                         <div class="stay-info">
                             <p class="title">${ list.stay_name }</p>
-                            <p class="event subtitle">${ list.stay_desc }</p>
+                            <p class="subtitle">${ list.stay_desc }</p>
                             <p class="more"></p>
                         </div>
                     </a>
@@ -150,28 +150,26 @@ ${ login_msg }
         <div class="new-container stay-list" id="new-container">
 
             <div class="swiper-wrapper">
+                <c:forEach items="${ stay }" var="list">
                 <div class="swiper-slide stay-box">
-                  <c:forEach items="${ stay }" var="list" begin="0" end="3">                
-	                    <c:choose>
+	                <c:choose>
 	                	<c:when test="${ !empty list.stay_file2}">
-	                    <a href="#">
-                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file2}" />
+	                        <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no}">
+                        <img class="img" src="<%=request.getContextPath()%>${list.stay_file2}" />
 	                    </c:when>
-	                    <c:when test="${ !empty list.stay_file3}">
-	                    <a href="#">
-                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file3}" />
-	                    </c:when>
-	                    </c:choose>
-                            <div class="title">${ list.stay_name }</div>
-                            <div class="subtitle">
-                                <span>${ list.stay_location }</span>
-                            </div>
-                            <div class="other">
-                                <span>${ list.stay_desc }</span>
-                            </div>
+	                </c:choose>
+
+                        <div class="title">${ list.stay_name }</div>
+                        <div class="subtitle">
+                            <span>${ list.stay_location }</span>
+                        </div>
+                        <div class="other">
+                            <span>${ list.stay_desc }</span>
+                        </div>
                         </a>
-                   </c:forEach>                        
                 </div>
+                </c:forEach>     
+
             </div>
         </div>
     </div>
@@ -382,7 +380,6 @@ ${ login_msg }
                 </div>
 				</c:forEach>                
 				
-				룰루
             </div>
         </div>
     </div>
