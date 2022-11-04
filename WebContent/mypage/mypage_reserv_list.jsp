@@ -7,24 +7,24 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="reservList" value="${reservList}" />
-<c:set var="stayList" value="${stayList}" />
+<c:set var="imgList" value="${imgList}" />
 
 <script type="text/javascript">
 	$("#mymenu-reserv").addClass("now");
 </script>
 
-
+	
 <div class="reserv-list">
 
-	<p class="status_notyet">
-			<a href="#">다가올 예약 </a> &nbsp;&nbsp; 
-		<span class="status">
-			| &nbsp;&nbsp; 
-			<a href="<%=request.getContextPath()%>/mypageReservCompletionList.do">이용 완료 </a>
-		</span>
-	</p>
-	
-	<br> <br> <br>
+    <p class="status_notyet">
+            <a href="#">다가올 예약 </a> &nbsp;&nbsp; 
+        <span class="status">
+            | &nbsp;&nbsp; 
+            <a href="<%=request.getContextPath()%>/mypageReservCompletionList.do">이용 완료 </a>
+        </span>
+    </p>
+
+    <br> <br> <br>
 
 	<!-- 이미지 영역 -->
 	
@@ -51,7 +51,14 @@
 			</c:choose> --%>
 
 	<c:forEach items="${reservList}" var="dto">
-
+		
+		<c:forEach items="${imgList}" var="img">
+		
+		
+		<img src="<%=request.getContextPath()%>${img.stay_file1 }" alt="" width="400" height="250"/>
+					
+					
+	
 	<!-- 예약 상태 -->
 	
 		<c:set var="stt" value="${dto.reserv_status }" />
@@ -97,7 +104,7 @@
 	<p> ₩ <fmt:formatNumber value="${dto.reserv_total_price}" /> </p>
 	<br>
 	
-	
+	</c:forEach>
 		</c:forEach>
 		
 		
