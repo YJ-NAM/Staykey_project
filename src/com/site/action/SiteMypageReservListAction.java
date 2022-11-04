@@ -13,8 +13,6 @@ import com.model.MemberDAO;
 import com.model.MemberDTO;
 import com.model.ReservDAO;
 import com.model.ReservDTO;
-import com.model.StayDTO;
-import com.model.WishDAO;
 
 public class SiteMypageReservListAction implements Action {
 
