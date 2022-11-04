@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -536,6 +535,7 @@ public class EventDAO {
                 dto.setBbs_date(rs.getString("bbs_date"));
 
                 // 오늘(현재) 기준으로 이벤트 남은 날짜
+                // eventDate.remainDate(시작일자, 종료일자)
                 String remain_date = eventDate.remainDate(rs.getString("bbs_showstart"), rs.getString("bbs_showend"));
                 System.out.println(remain_date);
 

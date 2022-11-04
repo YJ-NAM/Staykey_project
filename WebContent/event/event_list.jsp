@@ -27,6 +27,9 @@
         <h4 class="elp-title">PROMOTION</h4>
 
         <div class="elp-wrap">
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"><i class="fa fa-chevron-left"></i></div>
+            <div class="swiper-button-next"><i class="fa fa-chevron-right"></i></div>
             <ul class="swiper-wrapper">
                 <c:forEach items="${event}" var="list">
                 <li class="swiper-slide">
@@ -54,8 +57,16 @@
             loop: true,
             touchEnabled: false,
             autoplay: {
-                delay: 3000,
+                delay: 5000,
                 disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                type: "fraction"
+            },
+            navigation: {
+                nextEl: '.event-list .el-promotion .elp-wrap .swiper-button-next',
+                prevEl: '.event-list .el-promotion .elp-wrap .swiper-button-prev',
             }
         });
     });
