@@ -11,6 +11,49 @@
 
 
 /////////////////////////////////////////////////////
+// 상단 날짜선택 검색
+/////////////////////////////////////////////////////
+$(document).ready(function(){
+    // 오늘 날짜
+    let getHToday = new Date();
+    let gHYear = getHToday.getFullYear();
+    let gHMonth = getHToday.getMonth() + 1;
+    let gHDate = getHToday.getDate();
+
+    $("#hidden-btn").daterangepicker({
+        locale: {
+            "separator": "/",
+            "format": 'YYYY-MM-DD',
+            "applyLabel": "확인",
+            "cancelLabel": "취소",
+            "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
+            "monthNames": ["01월", "02월", "03월", "04월", "05월", "06월", "07월", "08월", "09월", "10월", "11월", "12월"]
+        },
+        minDate: gHYear+"/"+gHMonth+"/"+gHDate,
+        maxDate: (gHYear+1)+"/"+gHMonth+"/"+gHDate,
+        autoApply: true,
+        opens: 'center',
+        timePicker: false,
+        showDropdowns: false,
+        singleDatePicker: false,
+        alwaysShowCalendars: true
+    });
+
+    // 날짜 선택 적용 시
+    $("#hidden-btn").on("apply.daterangepicker", function(ev, picker){
+        let sdate = picker.startDate.format('YYYY-MM-DD');
+        let edate = picker.endDate.format('YYYY-MM-DD');
+
+        $("#h_ps_start").val(sdate);
+        $("#h_ps_end").val(edate);
+    });
+});
+
+
+
+
+
+/////////////////////////////////////////////////////
 // 마이페이지 메뉴
 /////////////////////////////////////////////////////
 $(function(){

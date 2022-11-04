@@ -59,6 +59,33 @@
 
 
 
+
+    <!-- 언제 떠날까요? 검색 Modal // START -->
+    <div class="modal search-modal" id="FindDate" tabindex="-1" aria-labelledby="FindDateLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">언제 떠날까요?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="date_search" method="post" action="<%=request.getContextPath()%>/stayList.do">
+                    <input type="hidden" id="hidden-btn" />
+                    <input type="text" name="ps_start" value="${ map.ps_start }" id="h_ps_start" />
+                    <input type="text" name="ps_end" value="${ map.ps_end }" id="h_ps_end" />
+                    <button type="submit">SEARCH <i class="icon-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 언제 떠날까요? 검색 Modal // END -->
+
+
+
+
     <!-- header //START -->
     <header class="header">
         <div class="h-wrap">
@@ -69,7 +96,7 @@
 
             <div class="h-location flex-grow-1">
                 <button type="button"><i class="icon-location-pin"></i>어디로 갈까요?</button>
-                <button type="button"><i class="icon-calendar"></i>언제 떠날까요?</button>
+                <button type="button" data-toggle="modal" data-target="#FindDate" onclick="$('#hidden-btn').trigger('click');"><i class="icon-calendar"></i>언제 떠날까요?</button>
             </div>
 
 
