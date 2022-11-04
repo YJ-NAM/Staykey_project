@@ -303,8 +303,8 @@ public class StayDAO {
         
         // ps_stay : 여행지/숙소
 		if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
-			search_sql2 += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
-					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%'";
+			search_sql2 += " and (stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
+					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%')";
 		}
 		
 		////////////////////////////////////////////////////////////////
@@ -452,8 +452,8 @@ public class StayDAO {
         // ps_stay : 여행지/숙소
 		if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
 			System.out.println(map.get("ps_stay"));
-			search_sql += " and stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
-					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%'";
+			search_sql += " and (stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
+					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%')";
 		}
 		
 		////////////////////////////////////////////////////////////////
@@ -1287,7 +1287,7 @@ public class StayDAO {
     public List<StayDTO> getBbsViewList(String bbs_stay) {
         List<StayDTO> list = new ArrayList<StayDTO>();
 
-        String search_sql = "where stay_no > 0 ";
+        String search_sql = "where stay_no > 0";
 
         if (bbs_stay != null) {
             String tmp_bbs_stay = bbs_stay.substring(1, bbs_stay.length() - 1);
@@ -1307,10 +1307,8 @@ public class StayDAO {
             }else{
                 search_sql += " and stay_no = '"+epd_bbs_stay[0]+"'";
             }
-
-		}   
-		 else{ search_sql += " and stay_no < 0"; } 
-			// 이게 있어야 뷰 페이지에서 숙소 정보가 올바르게 뜸
+		}else{ search_sql += " and stay_no < 0"; } 
+		// 이게 있어야 뷰 페이지에서 숙소 정보가 올바르게 뜸
 
         try {
             openConn();
