@@ -6,6 +6,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+
 <c:set var="reservList" value="${reservList}" />
 <c:set var="imgList" value="${imgList}" />
 
@@ -53,7 +56,7 @@
 	<c:forEach items="${reservList}" var="dto">
 		
 		<c:forEach items="${imgList}" var="img">
-		
+		<c:if test="${dto.reserv_start > today }">
 		
 		<img src="<%=request.getContextPath()%>${img.stay_file1 }" alt="" width="400" height="250"/>
 					
@@ -103,7 +106,7 @@
 	<!-- 결제 금액 -->
 	<p> ₩ <fmt:formatNumber value="${dto.reserv_total_price}" /> </p>
 	<br>
-	
+	</c:if>
 	</c:forEach>
 		</c:forEach>
 		
