@@ -21,7 +21,12 @@ public class SiteStayViewAction implements Action {
 
         int stayNo = Integer.parseInt(request.getParameter("stay_no"));
         StayDAO dao = StayDAO.getInstance();
-        
+
+
+        // 숙소 조회수 늘리기
+        dao.plusStayHitCount(stayNo);
+
+
         // getStayView() : 상세 정보 조회 메서드
         StayDTO dto = dao.getStayView(stayNo);
         request.setAttribute("stayView", dto);
