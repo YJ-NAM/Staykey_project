@@ -3,6 +3,7 @@ package com.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,7 +19,7 @@ public class ReservDAO {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     String sql = null;
-
+    
     private static ReservDAO instance;
 
     private ReservDAO() {
@@ -492,5 +493,75 @@ public class ReservDAO {
         return result;
     }
 
+    
+    // ======================================================
+    // 예약한 숙소의 정보 가져오는 메서드 (아이디로)
+    // ======================================================
+    public List<ReservDTO> getMyReservInfo(String id) {
+      
+    	List<ReservDTO> list = new ArrayList<ReservDTO>();
+  	
+    	    	
+        try {
+            openConn();
+
+            sql = "select * from staykey_reserv where reserv_memid = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+            	ReservDTO dto = new ReservDTO();
+
+                dto.setReserv_no(rs.getInt("reserv_no"));
+                dto.setReserv_status(rs.getString("reserv_status"));
+                dto.setReserv_sess(rs.getString("reserv_sess"));
+                dto.setReserv_stayno(rs.getInt("reserv_stayno"));
+                dto.setReserv_stayname(rs.getString("reserv_stayname"));
+                dto.setReserv_roomno(rs.getInt("reserv_roomno"));
+                dto.setReserv_roomname(rs.getString("reserv_roomname"));
+                dto.setReserv_memid(rs.getString("reserv_memid"));
+                dto.setReserv_memname(rs.getString("reserv_memname"));
+                dto.setReserv_memphone(rs.getString("reserv_memphone"));
+                dto.setReserv_mememail(rs.getString("reserv_mememail"));
+                dto.setReserv_start(rs.getString("reserv_start"));
+                dto.setReserv_end(rs.getString("reserv_end"));
+                dto.setReserv_daycount(rs.getInt("reserv_daycount"));
+                dto.setReserv_basic_price(rs.getInt("reserv_basic_price"));
+                dto.setReserv_option1_name(rs.getString("reserv_option1_name"));
+                dto.setReserv_option1_price(rs.getInt("reserv_option1_price"));
+                dto.setReserv_option2_name(rs.getString("reserv_option2_name"));
+                dto.setReserv_option2_price(rs.getInt("reserv_option2_price"));
+                dto.setReserv_option3_name(rs.getString("reserv_option3_name"));
+                dto.setReserv_option3_price(rs.getInt("reserv_option3_price"));
+                dto.setReserv_total_price(rs.getInt("reserv_total_price"));
+                dto.setReserv_people_adult(rs.getInt("reserv_people_adult"));
+                dto.setReserv_people_kid(rs.getInt("reserv_people_kid"));
+                dto.setReserv_people_baby(rs.getInt("reserv_people_baby"));
+                dto.setReserv_pickup(rs.getString("reserv_pickup"));
+                dto.setReserv_request(rs.getString("reserv_request").replace("\n", "<br />"));
+                dto.setReserv_date(rs.getString("reserv_date"));
+                
+                list.add(dto);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return list;
+    }
+
+
+
+
+
+    
+    
+    
+    
 
 }

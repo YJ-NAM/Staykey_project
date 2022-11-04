@@ -19,6 +19,29 @@
 <br>
 <br>
 <c:forEach items="${staylist}" var="dto">
+
+
+	<!-- 이미지 영역 -->
+
+ 			<c:choose>
+				<c:when test="${!empty dto.stay_file1}"> 
+					<img src="<%=request.getContextPath()%>${dto.stay_file1 }" alt="" width="400" height="250"/>
+					
+ 				</c:when>
+						<c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 -->
+							<svg class="bd-placeholder-img" width="60" height="60"
+								xmlns="http://www.w3.org/2000/svg"
+								preserveAspectRatio="xMidYMid slice" focusable="false"
+								role="img">
+	                            <title>${dto.bbs_no}</title>
+	                            <rect width="100%" height="100%" fill="#eee"></rect>
+	                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
+	                        </svg>
+						</c:otherwise> 
+			</c:choose>
+			
+					
+					
 	<!-- 이름 영역 -->
 	<div class="name">
 		<span class="ellipsis" style="padding-bottom: 0px;">
@@ -37,23 +60,19 @@
 			~ ₩
 			<fmt:formatNumber value="${dto.stay_room_price_max}" />
 		</p>
-	</div>
-	<br>
-	<br>
-</c:forEach>
+		
 <!-- 예약하기 버튼 -->
 <div class="btns">
+	<br>
 	<button type="button" class="btn_bk">
-		<a href="https://booking.stayfolio.com/places/on-a">예약하기</a>
+		<a href="<%=request.getContextPath()%>/stayView.do?stay_no=${dto.stay_no}">예약하기</a>
 	</button>
-
-
-	<!-- 이미지 영역 -->
-<%-- 	<div class="likestay_img" style="padding-top: 0px;">
-		<p>${dto.stay_file1}</p> --%>
-		<!-- 컨텍스트하기 -->
+	</div>
+	<br>	<br>	<br>
 
 	</div>
+	
+</c:forEach>
 
 
 	<jsp:include page="../mypage/mypage_footer.jsp" />
