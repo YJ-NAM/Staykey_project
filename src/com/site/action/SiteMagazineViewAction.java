@@ -1,7 +1,8 @@
 package com.site.action;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,26 +16,57 @@ import com.model.StayDTO;
 
 public class SiteMagazineViewAction implements Action {
 
-	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// 매거진 뷰 페이지
-		int bbs_no = Integer.parseInt(request.getParameter("bbs_no"));
+    @Override
+    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        // 상세 정보 조회 메서드
+        int bbs_no = Integer.parseInt(request.getParameter("bbs_no"));
+
+        // 매거진 정보 가져오기
         MagazineDAO dao = MagazineDAO.getInstance();
         MagazineDTO dto = dao.getMagView(bbs_no);
-        request.setAttribute("magazineView", dto);
-        
-        // 등록된 숙소 목록 정보 메서드
-        StayDAO stayDAO = StayDAO.getInstance();
-        List<StayDTO> stayList = stayDAO.getBbsViewList(dto.getBbs_stayno());
-        request.setAttribute("stayList", stayList);
+        request.setAttribute("magazine", dto);
+
+
+        // 매거진 스테이 이름
+        String stayName = null;
+        Pattern pattern = Pattern.compile("[<](.*?)[>]");
+        Matcher matcher = pattern.matcher(dto.getBbs_title());
+        if(matcher.find()){
+            stayName = matcher.group(1).trim();
+        }
+        request.setAttribute("stay_name", stayName);
+
+
+        // 조회수 늘리기
+        dao.plusMagHit(bbs_no);
+
+
+        // 매거진 숙소 정보 가져오기
+        int result_stay_no = 0;
+        if(dto.getBbs_stayno() != null) {
+            String tmp_stay_no = dto.getBbs_stayno().substring(1, dto.getBbs_stayno().length() - 1);
+            if(tmp_stay_no.contains("/")) {
+                String[] epd_stay_no = tmp_stay_no.split("/");
+                result_stay_no = Integer.parseInt(epd_stay_no[0]);
+            }else{
+                result_stay_no = Integer.parseInt(tmp_stay_no);
+            }
+            request.setAttribute("stay_no", result_stay_no);
+        }
+    
+        StayDTO sdto = null;
+        if(result_stay_no > 0){
+            StayDAO sdao = StayDAO.getInstance();
+            sdto = sdao.getStayView(result_stay_no);
+        }
+        request.setAttribute("sdto", sdto);
+
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("magazine/magazine_view.jsp");
 
         return forward;
-	}
+    }
 
 }
