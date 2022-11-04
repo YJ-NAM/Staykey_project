@@ -286,7 +286,7 @@
 
 
 .main-new { 
-    margin: 110px auto 0;
+    margin: 100px auto 0;
     padding: 20px;
 }
 
@@ -327,7 +327,7 @@
 
 .main-new .sec-title {
     letter-spacing: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     text-align: center;
     font-family: 'NotoSerifKR';
     font-size: 16px;
@@ -696,7 +696,7 @@
     font-size: 14px;
     font-weight: 400;
     text-align: center;
-    padding: 0 0 50px;
+    padding: 0 0 60px;
     letter-spacing: 10px;
     z-index: 2;
 }
@@ -722,10 +722,10 @@
     height: 380px;
     background-size: cover;
     background-position: center center;
+    object-fit: cover;
     position: relative;
     overflow: hidden;
     margin: auto;
-    padding-bottom: 100%;
     display: block;
 }
 
@@ -740,10 +740,14 @@
 }
 
 .main-travel .stay-list .stay-box .text {
+    left: 20px;
     font-family: 'NotoSerifKR';
+    word-break: keep-all;
+    letter-spacing: 1.5;
     margin-top: 40px;
+    padding-bottom: 20px;
     font-size: 20px;
-    line-height: 30px;
+    line-height: 35px;
     height: 60px;
 }
  
