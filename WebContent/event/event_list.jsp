@@ -31,7 +31,7 @@
                 <c:forEach items="${event}" var="list">
                 <li class="swiper-slide">
                     <a href="<%=request.getContextPath()%>/eventView.do?bbs_no=${list.bbs_no}">
-                        <div class="e_img" style="background-image:url('<%=request.getContextPath()%>${list.bbs_file1}');"><span>13 days left!</span></div>
+                        <div class="e_img" style="background-image:url('<%=request.getContextPath()%>${list.bbs_file1}');"><c:if test="${list.bbs_showstart != 'N'}"><span>${list.bbs_showstart} days<br />left!</span></c:if></div>
                         <div class="e_info">
                             <p class="txt">PROMOTION</p>
                             <p class="tit">${list.bbs_title}</p>
@@ -43,6 +43,23 @@
             </ul>
         </div>
     </div>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var visualSwiper = new Swiper(".event-list .el-promotion .elp-wrap", {
+            effect: "slide",
+            slidesPerView: 2,
+            spaceBetween: 0,
+            speed: 500,
+            loop: true,
+            touchEnabled: false,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            }
+        });
+    });
+    </script>
     </c:if>
     <!-- 프로모션 //END -->
 

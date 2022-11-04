@@ -1490,7 +1490,6 @@ public class StayDAO {
     /////////////////////////////////////////////////////////////
     public List<StayDTO> getStayforMain(int[] stay_no) {    	
         List<StayDTO> list = new ArrayList<StayDTO>();
-
         
         String sub_sql = "(";
         
@@ -1548,9 +1547,10 @@ public class StayDAO {
                 dto.setStay_room_price_min(rs.getInt("stay_room_price_min"));
                 dto.setStay_room_price_max(rs.getInt("stay_room_price_max"));
                 dto.setStay_room_people_min(rs.getInt("stay_room_people_min"));
-                dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));
-
+                dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));                
+                
                 list.add(dto);
+                
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -1586,12 +1586,11 @@ public class StayDAO {
     }
 
 	/////////////////////////////////////////////////////////////
-	// 숙소 번호들 저장 메서드
+	// 모든 숙소 번호 추출
 	/////////////////////////////////////////////////////////////
-	public int[] getStayNums(int stayTotal) {
+	public List<Integer> getStayNums() {
 		
-		int[] count = new int[stayTotal];
-		int i = 0;
+		List<Integer> stayNo = new ArrayList<Integer>();
 		openConn();
 
 		try {
@@ -1599,8 +1598,8 @@ public class StayDAO {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				count[i] = rs.getInt(1);
-				i++;
+				int stay_no = rs.getInt(1);
+				stayNo.add(stay_no);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -1608,7 +1607,7 @@ public class StayDAO {
 		} finally {
 			closeConn(rs, pstmt, con);
 		}
-		return count;
+		return stayNo;
 	}
 
 
@@ -1717,12 +1716,6 @@ public class StayDAO {
         }
         return list;
     } // getSelectedStay() 종료    
-
-
-
-
-
-
 
     
     /////////////////////////////////////////////////////////////
