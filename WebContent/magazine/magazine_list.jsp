@@ -18,7 +18,8 @@
 
     <div class="container list-container">
         <ul class="journal-list"> 
-            <c:forEach items="${ magazine }" var="mgz" begin="0" end="3">
+        <c:if test="${ !empty magazine }">
+            <c:forEach items="${ magazine }" var="mgz">
                 <li class="journal-box">
                     <a href="<%=request.getContextPath()%>/magazineView.do?bbs_no=${mgz.bbs_no }">
                         <img src="<%=request.getContextPath()%>${mgz.bbs_top_img}" />
@@ -29,11 +30,12 @@
                     </a>
                 </li>
             </c:forEach>  
+         </c:if>
         </ul>
     </div>
+${map.pagingWrite}
 </div>
 
-${map.pagingWrite}
 
 
 <jsp:include page="../layout/layout_footer.jsp" />
