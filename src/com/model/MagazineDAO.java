@@ -72,7 +72,7 @@ public class MagazineDAO {
 	}
 
 	// ======================================================
-	// DB 전체 데이터 갯수 메서드
+	// DB 전체 데이터 갯수 메서드 + 검색 기능
 	// ======================================================
 	public int getTotalCount(Map<String, Object> map) {
 		int result = 0;
@@ -87,6 +87,33 @@ public class MagazineDAO {
 			openConn();
 
 			sql = "select count(*) from staykey_magazine" + search_sql;
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next())
+				result = rs.getInt(1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			closeConn(rs, pstmt, con);
+		}
+
+		return result;
+	}
+	
+	// ======================================================
+	// DB 전체 데이터 갯수 메서드
+	// ======================================================
+	public int getTotalCount() {
+		int result = 0;
+
+		// 검색용 설정
+		try {
+			openConn();
+
+			sql = "select count(*) from staykey_magazine";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 

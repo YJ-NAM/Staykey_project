@@ -256,26 +256,21 @@
     /* box-shadow: 3px 3px 3px #808080; */
  }
 
-.main-visual .logo {
-   text-align: center;
-} 
-
-.main-visual .stay-info .text {
-   margin-top: 30px;
-   font-size: 17px; 
+.main-visual .stay-info .title {
+   padding-top: 20px;
+   font-size: 22px; 
    font-weight: bold;
-   color: #800000;
-   line-height: 1.5;
+   color: #000;
+   letter-spacing: 3px;
 }
 
-.main-visual .stay-info .event {
-   font-size: 13px;
+.main-visual .stay-info .subtitle {
+   font-size: 15px;
    color: #800000;
    font-weight: 500;
    font-family: 'NotoSerifKR';
-   letter-spacing: 2px;
-   margin: 30px 20px 20px;
-   padding-top: 15px;
+   letter-spacing: 3px;
+   margin: 30px;
    word-break: keep-all;
 }
 
@@ -286,7 +281,7 @@
 
 
 .main-new { 
-    margin: 110px auto 0;
+    margin: 100px auto 0;
     padding: 20px;
 }
 
@@ -327,7 +322,7 @@
 
 .main-new .sec-title {
     letter-spacing: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     text-align: center;
     font-family: 'NotoSerifKR';
     font-size: 16px;
@@ -617,7 +612,7 @@
 
 .main-magazine .stay-info .text {
     position: absolute;
-    bottom: 25px;
+    bottom: 30px;
     right : 55px;
     font-size: 18px;
     color: #333;
@@ -696,7 +691,7 @@
     font-size: 14px;
     font-weight: 400;
     text-align: center;
-    padding: 0 0 50px;
+    padding: 0 0 60px;
     letter-spacing: 10px;
     z-index: 2;
 }
@@ -722,10 +717,10 @@
     height: 380px;
     background-size: cover;
     background-position: center center;
+    object-fit: cover;
     position: relative;
     overflow: hidden;
     margin: auto;
-    padding-bottom: 100%;
     display: block;
 }
 
@@ -740,8 +735,12 @@
 }
 
 .main-travel .stay-list .stay-box .text {
+    left: 30px;
     font-family: 'NotoSerifKR';
-    margin-top: 40px;
+    word-break: keep-all;
+    letter-spacing: 1.5;
+    margin-top: 30px;
+    padding-bottom: 30px;
     font-size: 20px;
     line-height: 30px;
     height: 60px;
@@ -751,7 +750,6 @@
     letter-spacing: 1.5;
     font-size: 14px;
     color: #181818;
-    margin-top: 15px;
     height: 40px;
     line-height: 1.5;
 }

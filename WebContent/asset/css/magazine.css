@@ -108,3 +108,16 @@
     width: 100%;
     transition: width .3s;
 }
+
+.page-paging {
+    position: relative;
+    max-width: 1330px;
+    padding: 0;
+    margin: 70px auto;
+    text-align: center;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: top;
+    font-family: 'NotoSerifKR';
+}
+

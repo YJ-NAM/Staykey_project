@@ -19,7 +19,10 @@ public class EventDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+	PreparedStatement pstmt2 = null;
+	ResultSet rs2 = null;
 	String sql = null;
+	String sql2 = null;
 
 	private static EventDAO instance;
 
@@ -403,20 +406,21 @@ public class EventDAO {
 	// 모든 이벤트 정보 가져오기
 	// ======================================================
 	public List<EventDTO> getTotalEvent() {
+		
 		List<EventDTO> list = new ArrayList<EventDTO>();
+		String stayNameNo = "";
+		List<String> splitNames = new ArrayList<String>();
+
 		try {
 			openConn();
 
 			sql = "select * from staykey_event";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			int ran = 0;
 			
 			while(rs.next()) {
 				EventDTO dto = new EventDTO();
-				System.out.println("random"+ran);
 				dto.setBbs_no(rs.getInt("bbs_no"));
-				System.out.println(rs.getString("bbs_title"));
 				dto.setBbs_title(rs.getString("bbs_title"));
 				dto.setBbs_content(rs.getString("bbs_content"));
 				dto.setBbs_file1(rs.getString("bbs_file1"));
@@ -432,45 +436,51 @@ public class EventDAO {
 				dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
 				dto.setBbs_date(rs.getString("bbs_date"));
 				
-				// 이벤트 정보에 따른 숙소정보 추출
-				String stayNameNo = "";
-				if(rs.getString("bbs_stayno") != null) {
-					String bbs_stayno = rs.getString("bbs_stayno");
-					bbs_stayno = bbs_stayno.substring(1);
-		    		StringTokenizer tokenizer = new StringTokenizer(bbs_stayno, "/");	
-		    		List<Integer> tokens = new ArrayList<Integer>();
-		    		List<String> tokenNames = new ArrayList<String>();
-		    		int i=0;
-		    		while(tokenizer.hasMoreTokens()) {
-		    			tokens.add(Integer.parseInt(tokenizer.nextToken()));
-		         		sql = "select stay_name from staykey_stay where stay_no = ?";
-		         		pstmt = con.prepareStatement(sql);
-		         		pstmt.setInt(1, tokens.get(i));
-		         		rs = pstmt.executeQuery();		         		
-		         		if(rs.next()) {
-		         			tokenNames.add(rs.getString("stay_name"));
-		         		}					
-		         		i++;
-		            }
-		    		// stay_no => 어차피 String 값으로 저장되므로 stayNames의 random 이름 값으로 저장
-		    		stayNameNo = tokenNames.get((int)(Math.random()*tokenNames.size()));
-		    		System.out.println("랜덤이름 : "+stayNameNo);
+				////////////////////////////////////////////////////////////////
+				// 이벤트 정보에 따른 숙소정보 추출		
+				////////////////////////////////////////////////////////////////				
+				List<Integer> splits = getStayNum(rs.getString("bbs_stayno"));
+				String stayName = "";
+
+				for(int i=0; i<splits.size(); i++) {									
+					sql2 = "select stay_name from staykey_stay where stay_no = ?";
+					pstmt2 = con.prepareStatement(sql2);
+					pstmt2.setInt(1, splits.get(i));
+					rs2 = pstmt2.executeQuery();		         		
+					if(rs2.next()) {
+						stayName = rs2.getString(1);
+					}		
+					splitNames.add(stayName);
+					// stay_no => 어차피 String 값으로 저장되므로 stayNames의 random 이름 값으로 저장
+					stayNameNo = splitNames.get((int)(Math.random()*splitNames.size()));					
 				}
 				dto.setBbs_stayno(stayNameNo);
-				
 				list.add(dto);
-				ran++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		} finally {
 			closeConn(rs, pstmt, con);
 		}
-		System.out.println("사이즈"+list.size());
 		return list;
 	} // getTotalEvent() 종료
 	
+	// ======================================================
+	// 이벤트 bbs_stayno에 따른 숙소 No 추출 메서드
+	// ======================================================
+	public List<Integer> getStayNum(String bbs_stayno) {
+		
+		// 변수 선언
+		List<Integer> splitsInts = new ArrayList<Integer>();
+
+		String[] splitNums = bbs_stayno.substring(1).split("/");
+		for(int i=0; i<splitNums.length; i++) {	
+			splitsInts.add(Integer.parseInt(splitNums[i]));			
+		}
+		return splitsInts;
+	} // getStayNum() 종료
+	
+
 	// ======================================================
 	// 이벤트 번호에 해당하는 숙소번호 가져오기
 	// ======================================================
@@ -494,13 +504,6 @@ public class EventDAO {
 		}
 		return eventNums;
 	} // getEventStayNums() 종료
-
-
-
-
-
-
-
 
     // ======================================================
     // 이벤트 목록(사이트 게시판 화면) 메서드
