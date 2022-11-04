@@ -411,9 +411,7 @@ public class EventDAO {
 		
 		List<EventDTO> list = new ArrayList<EventDTO>();
 		String stayNameNo = "";
-		List<Integer> splits = new ArrayList<Integer>();
 		List<String> splitNames = new ArrayList<String>();
-
 
 		try {
 			openConn();
@@ -441,15 +439,12 @@ public class EventDAO {
 				dto.setBbs_date(rs.getString("bbs_date"));
 				
 				////////////////////////////////////////////////////////////////
-				/////////////////////////////////////////////////////////
 				// 이벤트 정보에 따른 숙소정보 추출		
-				String bbs_stayno = rs.getString("bbs_stayno");
-				String[] splitStayNo = bbs_stayno.substring(1).split("/");
+				////////////////////////////////////////////////////////////////				
+				List<Integer> splits = getStayNum(rs.getString("bbs_stayno"));
 				String stayName = "";
-				for(int i=0; i<splitStayNo.length; i++) {	
-					System.out.println(i);
-					splits.add(Integer.parseInt(splitStayNo[i]));
-					
+
+				for(int i=0; i<splits.size(); i++) {									
 					sql2 = "select stay_name from staykey_stay where stay_no = ?";
 					pstmt2 = con.prepareStatement(sql2);
 					pstmt2.setInt(1, splits.get(i));
@@ -466,14 +461,28 @@ public class EventDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		} finally {
 			closeConn(rs, pstmt, con);
 		}
-		System.out.println("사이즈"+list.size());
 		return list;
 	} // getTotalEvent() 종료
 	
+	// ======================================================
+	// 이벤트 bbs_stayno에 따른 숙소 No 추출 메서드
+	// ======================================================
+	public List<Integer> getStayNum(String bbs_stayno) {
+		
+		// 변수 선언
+		List<Integer> splitsInts = new ArrayList<Integer>();
+
+		String[] splitNums = bbs_stayno.substring(1).split("/");
+		for(int i=0; i<splitNums.length; i++) {	
+			splitsInts.add(Integer.parseInt(splitNums[i]));			
+		}
+		return splitsInts;
+	} // getStayNum() 종료
+	
+
 	// ======================================================
 	// 이벤트 번호에 해당하는 숙소번호 가져오기
 	// ======================================================
@@ -497,13 +506,6 @@ public class EventDAO {
 		}
 		return eventNums;
 	} // getEventStayNums() 종료
-
-
-
-
-
-
-
 
     // ======================================================
     // 이벤트 목록(사이트 게시판 화면) 메서드
