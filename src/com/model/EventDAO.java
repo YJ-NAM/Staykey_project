@@ -4,11 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -16,6 +12,8 @@ import java.util.StringTokenizer;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import com.util.eventDate;
 
 public class EventDAO {
 	Connection con = null;
@@ -537,41 +535,12 @@ public class EventDAO {
                 dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
                 dto.setBbs_date(rs.getString("bbs_date"));
 
-                String done_start = "";
-                String done_end = "";
-                if(rs.getString("bbs_showstart") != null && rs.getString("bbs_showend") != null) {
-                    Date get_today = new Date();
-                    DateFormat todayFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                // 오늘(현재) 기준으로 이벤트 남은 날짜
+                String remain_date = eventDate.remainDate(rs.getString("bbs_showstart"), rs.getString("bbs_showend"));
+                System.out.println(remain_date);
 
-                    // String 타입으로 날짜 정리 완료
-                    String show_today = todayFormat.format(get_today);
-                    String show_start = rs.getString("bbs_showstart");
-                    String show_end = rs.getString("bbs_showend");
-
-                    // 날짜 체크를 위한 처리
-                    DateFormat chkFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-
-                    // 오늘 기준으로 날짜 체크
-//                    if(show_start <= show_today && show_today <= show_end){
-//                    }
-
-                    DateFormat calcFormat = new SimpleDateFormat("yyyyMMdd");
-                    int remain_day = 0;
-
-                    try {
-                        Date d1 = calcFormat.parse(show_end.substring(0, 10).replace("-", ""));
-                        Date d2 = calcFormat.parse(show_start.substring(0, 10).replace("-", ""));
-                        remain_day = (int)(((d1.getTime() - d2.getTime()) / 1000) / (24*60*60));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    done_end = remain_day+"";
-
-                    System.out.println(show_start + " ~ " + show_end + " = " + done_end);
-                }
-
-                dto.setBbs_showstart(done_start);
-                dto.setBbs_showend(done_end);
+                dto.setBbs_showstart(remain_date);
+                dto.setBbs_showend(null);
 
                 list.add(dto);
             }
