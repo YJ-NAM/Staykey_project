@@ -153,20 +153,16 @@ ${ login_msg }
         </div>
 
         <div class="new-container stay-list" id="new-container">
+                <div class="swiper-wrapper">
+                    <c:forEach items="${ stay }" var="list">    
+                    <div class="swiper-slide stay-box">
+                            <c:choose>
+                                <c:when test="${ !empty list.stay_file2}">
+                                    <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
+                                        <img class="img" src="<%=request.getContextPath()%>${list.stay_file2}" />
+                                </c:when>
+                            </c:choose>
 
-            <div class="swiper-wrapper">
-                <div class="swiper-slide stay-box">
-                  <c:forEach items="${ stay }" var="list" begin="0" end="3">                
-	                    <c:choose>
-	                	<c:when test="${ !empty list.stay_file2}">
-	                    <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
-                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file2}" />
-	                    </c:when>
-	                    <c:when test="${ !empty list.stay_file3}">
-	                    <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${ list.stay_no }">
-                            <img class="img" src="<%=request.getContextPath()%>${list.stay_file3}" />
-	                    </c:when>
-	                    </c:choose>
                             <div class="title">${ list.stay_name }</div>
                             <div class="subtitle">
                                 <span>${ list.stay_location }</span>
@@ -175,9 +171,9 @@ ${ login_msg }
                                 <span>${ list.stay_desc }</span>
                             </div>
                         </a>
-                   </c:forEach>                        
-                </div>
-            </div>
+                    </div>    
+                    </c:forEach>   
+                </div>                 
         </div>
     </div>
     
@@ -389,6 +385,7 @@ ${ login_msg }
                       <div class="other">
                           <span>${ list.stay_desc }</span>
                       </div>
+
                       </a>
                 </div>
 				</c:forEach>                
