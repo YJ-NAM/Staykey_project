@@ -31,23 +31,6 @@
             </c:forEach>  
         </ul>
     </div>
-
-    <div class="page-paging">
-        <span class= "nolink"><i class= "fa fa-angle-double-left"></i></span>
-        <span class= "nolink"><i class= "fa fa-angle-left" ></i></span>
-        <ol>
-            <li class="now "></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ol>    
-        <span></span>
-        <span></span>
-
-    </div>
-
 </div>
 
 ${map.pagingWrite}
