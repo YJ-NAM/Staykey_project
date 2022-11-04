@@ -17,7 +17,6 @@ public class SiteMypageWishAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
     	
-    	// 1. 찜에 숙소 번호 가져오기
     	// 찜 dao
     	WishDAO dao = WishDAO.getInstance();
 		
@@ -25,9 +24,7 @@ public class SiteMypageWishAction implements Action {
     	HttpSession session = request.getSession();
     	String id = (String)session.getAttribute("login_id");
     	
-
-    	// 2. 현재 회원 아이디로 찜한 숙소 목록 가져오기
-    	// 위 dto로 숙소번호 가져와서 dto.get()으로 해서 select로 선택
+    	// 아이디로 숙소번호 가져오고 그 숙소번호로 내역을 가져오는 메서드 만들음
 		List<StayDTO> slist = dao.getWishInfo(id);
 		request.setAttribute("list", slist);
 
