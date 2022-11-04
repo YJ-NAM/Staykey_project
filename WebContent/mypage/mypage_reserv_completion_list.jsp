@@ -10,49 +10,40 @@
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 
 <c:set var="reservList" value="${reservList}" />
-<c:set var="imgList" value="${imgList}" />
+<c:set var="stayList" value="${stayList}" />
 
 <script type="text/javascript">
 	$("#mymenu-reserv").addClass("now");
 </script>
 
-	
+
 <div class="reserv-list">
 
-    <p class="status_notyet">
-            <a href="#">다가올 예약 </a> &nbsp;&nbsp; 
-        <span class="status">
-            | &nbsp;&nbsp; 
-            <a href="<%=request.getContextPath()%>/mypageReservCompletionList.do">이용 완료 </a>
-        </span>
-    </p>
-
-    <br> <br> <br>
-
-	<!-- 이미지 영역 -->
+	<p class="status_notyet">
+			<a href="<%=request.getContextPath()%>/mypageReservList.do">다가올 예약 </a> &nbsp;&nbsp; 
+		<span class="status">
+			| &nbsp;&nbsp; 
+			<a href="#">이용 완료 </a>
+		</span>
+	</p>
 	
+	<br> <br> <br>
 
 	<c:forEach items="${reservList}" var="dto">
 		
 		<c:forEach items="${imgList}" var="img">
-		<c:if test="${dto.reserv_start > today }">
+		<c:if test="${dto.reserv_start < today }">
 		
 		<img src="<%=request.getContextPath()%>${img.stay_file1 }" alt="" width="400" height="250"/>
-				
+					
+					
 	
 	<!-- 예약 상태 -->
 	
 		<c:set var="stt" value="${dto.reserv_status }" />
 		
-			<c:if test="${stt eq 'reserv'}">
-				<c:set var="result" value="예약 중" />
-			</c:if>
-		
-				<c:if test="${stt eq 'cancle'}">
-					<c:set var="result" value="예약 취소" />
-				</c:if> 
 			
-			<p><b>${result}</b></p>
+			<p><b class="text-danger">이용 완료</b></p>
 		
 
 	<br>
@@ -87,18 +78,9 @@
 	</c:if>
 	</c:forEach>
 		</c:forEach>
-		
-		
-	<!-- 예약 상세 확인 버튼 -->
-	 	<div class="btns">
-			<br>
-			<button type="button" class="btn_bk">
-				<a href="<%=request.getContextPath()%>/mypageReservView.do?reserv_sess=${dto.reserv_sess}">예약 상세 확인</a>
-			</button>
-		</div>
-		<br> <br> <br>
+	
 
-	</div> 
+</div>	
 
 
 <jsp:include page="../mypage/mypage_footer.jsp" />

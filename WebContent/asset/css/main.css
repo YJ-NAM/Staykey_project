@@ -256,26 +256,21 @@
     /* box-shadow: 3px 3px 3px #808080; */
  }
 
-.main-visual .logo {
-   text-align: center;
-} 
-
-.main-visual .stay-info .text {
-   margin-top: 30px;
-   font-size: 17px; 
+.main-visual .stay-info .title {
+   padding-top: 20px;
+   font-size: 22px; 
    font-weight: bold;
-   color: #800000;
-   line-height: 1.5;
+   color: #000;
+   letter-spacing: 3px;
 }
 
-.main-visual .stay-info .event {
-   font-size: 13px;
+.main-visual .stay-info .subtitle {
+   font-size: 15px;
    color: #800000;
    font-weight: 500;
    font-family: 'NotoSerifKR';
-   letter-spacing: 2px;
-   margin: 30px 20px 20px;
-   padding-top: 15px;
+   letter-spacing: 3px;
+   margin: 30px;
    word-break: keep-all;
 }
 
@@ -617,7 +612,7 @@
 
 .main-magazine .stay-info .text {
     position: absolute;
-    bottom: 25px;
+    bottom: 30px;
     right : 55px;
     font-size: 18px;
     color: #333;
@@ -740,13 +735,14 @@
 }
 
 .main-travel .stay-list .stay-box .text {
-    left: 20px;
+    left: 30px;
     font-family: 'NotoSerifKR';
     word-break: keep-all;
     letter-spacing: 1.5;
-    margin-top: 40px;
+    margin-top: 30px;
+    padding-bottom: 30px;
     font-size: 20px;
-    line-height: 35px;
+    line-height: 30px;
     height: 60px;
 }
  
@@ -754,7 +750,6 @@
     letter-spacing: 1.5;
     font-size: 14px;
     color: #181818;
-    margin-top: 15px;
     height: 40px;
     line-height: 1.5;
 }

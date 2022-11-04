@@ -29,11 +29,9 @@
     </div>
     <!-- 마이페이지 정보 //END -->
 
-
-
     <!-- 마이페이지 메뉴 //START -->
     <div class="mw-menu">
-        <ul>
+        <ul>																					
             <li id="mymenu-reserv"><a href="<%=request.getContextPath()%>/mypageReservList.do">예약 정보</a></li>
             <li id="mymenu-wish"><a href="<%=request.getContextPath()%>/mypageWish.do">관심 스테이</a></li>
             <li id="mymenu-qna"><a href="<%=request.getContextPath()%>/mypageQnaList.do">1:1 문의</a></li>
