@@ -1678,6 +1678,31 @@ public class StayDAO {
         return stayName;
     } // getStayName() 종료    
 
+
+
+
+
+
+    
+    /////////////////////////////////////////////////////////////
+    // 숙소 보기 조회수 늘리기
+    /////////////////////////////////////////////////////////////
+    public void plusStayHitCount(int stay_no) {
+        try {
+            openConn();
+
+            sql = "update staykey_stay set stay_hit = stay_hit + 1 where stay_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, stay_no);
+            pstmt.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+    }
 }
 
 

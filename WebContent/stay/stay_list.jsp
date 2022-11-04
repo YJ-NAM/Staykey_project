@@ -201,11 +201,11 @@
 <c:set var="ps_link" value="stayList.do?ps_stay=${map.ps_stay}&ps_start=${map.ps_start}&ps_end=${map.ps_end}&ps_people_adult=${map.ps_people_adult}&ps_people_kid=${map.ps_people_kid}&ps_people_baby=${map.ps_people_baby}&ps_price_min=${map.ps_price_min}&ps_price_max=${map.ps_price_max}&ps_type=${map.ps_type}&ps_order=" />
 
 <ul class="container stay-order">
-    <li><a href="${ ps_link }reserv_desc" class="now">추천순</a></li>
-    <li><a href="${ ps_link }date_desc" >최신순</a></li>
-    <li><a href="${ ps_link }hit_desc" >인기순</a></li>
-    <li><a href="${ ps_link }room_price_max_desc" >높은 가격순</a></li>
-    <li><a href="${ ps_link }room_price_min_asc" >낮은 가격순</a></li>
+    <li><a href="${ ps_link }reserv_desc"<c:choose><c:when test="${map.ps_order == 'reserv_desc'}"> class="now"</c:when><c:when test="${map.ps_order == 'no_desc'}"> class="now"</c:when></c:choose>>추천순</a></li>
+    <li><a href="${ ps_link }date_desc"<c:if test="${map.ps_order == 'date_desc'}"> class="now"</c:if>>최신순</a></li>
+    <li><a href="${ ps_link }hit_desc"<c:if test="${map.ps_order == 'hit_desc'}"> class="now"</c:if>>인기순</a></li>
+    <li><a href="${ ps_link }room_price_max_desc"<c:if test="${map.ps_order == 'room_price_max_desc'}"> class="now"</c:if>>높은 가격순</a></li>
+    <li><a href="${ ps_link }room_price_min_asc"<c:if test="${map.ps_order == 'room_price_min_asc'}"> class="now"</c:if>>낮은 가격순</a></li>
 </ul>
 
 
