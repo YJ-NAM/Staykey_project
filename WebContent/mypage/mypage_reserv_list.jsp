@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../layout/layout_header.jsp" />
 <jsp:include page="../mypage/mypage_header.jsp" />
 
@@ -10,95 +9,56 @@
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 
 <c:set var="reservList" value="${reservList}" />
-<c:set var="imgList" value="${imgList}" />
 
-<script type="text/javascript">
-	$("#mymenu-reserv").addClass("now");
-</script>
+<script type="text/javascript">$("#mymenu-reserv").addClass("now");</script>
 
 	
 <div class="reserv-list">
 
-    <p class="status_notyet">
-            <a href="#">다가올 예약 </a> &nbsp;&nbsp; 
-        <span class="status">
-            | &nbsp;&nbsp; 
-            <a href="<%=request.getContextPath()%>/mypageReservCompletionList.do">이용 완료 </a>
-        </span>
-    </p>
+	<div class="rl-tab">
+		<ul>
+			<li class="<c:if test="${getType == 'come'}">now</c:if>"><a href="<%=request.getContextPath()%>/mypageReservList.do?type=come">다가올 예약</a></li>
+			<li class="<c:if test="${getType == 'done'}">now</c:if>"><a href="<%=request.getContextPath()%>/mypageReservList.do?type=done">이용 완료</a></li>
+			<li class="<c:if test="${getType == 'cancel'}">now</c:if>"><a href="<%=request.getContextPath()%>/mypageReservList.do?type=cancel">취소 내역</a></li>
+		</ul>
+	</div>
 
-    <br> <br> <br>
 
-	<!-- 이미지 영역 -->
-	
 
-	<c:forEach items="${reservList}" var="dto">
-		
-		<c:forEach items="${imgList}" var="img">
-		<c:if test="${dto.reserv_start > today }">
-		
-		<img src="<%=request.getContextPath()%>${img.stay_file1 }" alt="" width="400" height="250"/>
-				
-	
-	<!-- 예약 상태 -->
-	
-		<c:set var="stt" value="${dto.reserv_status }" />
-		
-			<c:if test="${stt eq 'reserv'}">
-				<c:set var="result" value="예약 중" />
-			</c:if>
-		
-				<c:if test="${stt eq 'cancle'}">
-					<c:set var="result" value="예약 취소" />
-				</c:if> 
-			
-			<p><b>${result}</b></p>
-		
-
-	<br>
-	
-
- 	<!-- 숙소 이름 -->
-	<p>${dto.reserv_stayname}</p>
-	<br>
-	
-
-	<!-- 2022.01.01~2022.0102 (1박) 날짜 -->
-	
-	<fmt:parseDate var="start" value="${dto.reserv_start}" pattern="yyyy-MM-dd HH:mm"/>
-	<fmt:formatDate var="reserv_start" value="${start}" pattern="yyyy.MM.dd"/>
-
-	<fmt:parseDate var="end" value="${dto.reserv_end}" pattern="yyyy-MM-dd HH:mm"/>
-	<fmt:formatDate var="reserv_end" value="${end}" pattern="yyyy.MM.dd"/>
-	
-	<p>${reserv_start } ~ ${reserv_end } (${dto.reserv_daycount }박) </p>
-	
-
-	
-	<!-- 룸타입 / 예약 인원 -->
-	<c:set var="allpeople" value="${dto.reserv_people_adult + dto.reserv_people_kid + dto.reserv_people_baby}"></c:set>
-
-	 <p>${dto.reserv_roomname} / ${allpeople}명
-	 </p>
-	
-	<!-- 결제 금액 -->
-	<p> ₩ <fmt:formatNumber value="${dto.reserv_total_price}" /> </p>
-	<br>
-	</c:if>
-	</c:forEach>
+	<ul class="rl-list">
+		<c:choose>
+		<c:when test="${!empty reservList}">
+		<c:forEach var="list" items="${reservList}">
+		<li class="<c:if test="${getType == list.reserv_class}">show</c:if>">
+			<a href="<%=request.getContextPath()%>/stayView.do?stay_no=${list.reserv_stayno}" class="rll-photo" style="background-image: url('<%=request.getContextPath()%>${list.reserv_stay_photo}');"></a>
+			<div class="rll-info">
+				<p class="sess">${list.reserv_sess}</p>
+				<p class="name">${list.reserv_stayname}<small>${list.reserv_roomname}</small></p>
+				<p class="date">${list.reserv_start.substring(0,10).replace("-", ". ")} ~ ${list.reserv_end.substring(0,10).replace("-", ". ")} (${list.reserv_daycount}박)</p>
+				<p class="people">
+					<c:if test="${list.reserv_people_adult > 0}"><span>성인 ${list.reserv_people_adult}명</span></c:if>
+					<c:if test="${list.reserv_people_kid > 0}"><span>아동 ${list.reserv_people_kid}명</span></c:if>
+					<c:if test="${list.reserv_people_baby > 0}"><span>영아 ${list.reserv_people_baby}명</span></c:if>
+				</p>
+				<p class="price"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.reserv_total_price}" type="currency" /></p>
+				<p class="link"><a href="<%=request.getContextPath()%>/stayView.do?stay_no=${list.reserv_stayno}"><i class="fa fa-search"></i> 예약상세내역</a></p>
+			</div>
+		</li>
 		</c:forEach>
-		
-		
-	<!-- 예약 상세 확인 버튼 -->
-	 	<div class="btns">
-			<br>
-			<button type="button" class="btn_bk">
-				<a href="<%=request.getContextPath()%>/mypageReservView.do?reserv_sess=${dto.reserv_sess}">예약 상세 확인</a>
-			</button>
-		</div>
-		<br> <br> <br>
+		</c:when>
 
-	</div> 
+		<c:otherwise>
+		<li class="nodata">
+			<p><img src="<%=request.getContextPath()%>/asset/images/no_reserv.png" alt="" /></p>
+			<p>예약 정보가 없습니다. 새로운 스테이를 찾아 떠나보세요.</p>
+			<a href="<%=request.getContextPath()%>/stayList.do">FIND STAY</a>
+		</li>
+		</c:otherwise>
+		</c:choose>
+	</ul>
+
+</div>
+
 
 
 <jsp:include page="../mypage/mypage_footer.jsp" />

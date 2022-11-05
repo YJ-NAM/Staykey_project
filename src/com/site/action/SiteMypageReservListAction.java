@@ -9,33 +9,27 @@ import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
-import com.model.MemberDAO;
-import com.model.MemberDTO;
 import com.model.ReservDAO;
 import com.model.ReservDTO;
-import com.model.StayDAO;
-import com.model.StayDTO;
 
 public class SiteMypageReservListAction implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    	// 아이디로 예약 정보 리스트 가져오기
-    	ReservDAO dao = ReservDAO.getInstance();
-		
     	HttpSession session = request.getSession();
     	String id = (String)session.getAttribute("login_id");
-    	
+
+        // 아이디로 예약 정보 리스트 가져오기
+        ReservDAO dao = ReservDAO.getInstance();
     	List<ReservDTO> list = dao.getMyReservInfo(id);
         request.setAttribute("reservList", list);
-    	
-        
-		  // 숙소 번호로 숙소 사진 가져오기 
-		  List<StayDTO> ilist = dao.getImgReservInfo(id);
-		  request.setAttribute("imgList", ilist);
-		 
-        
+
+        // 현재 페이지 타입 가져오기
+        String nowType = request.getParameter("type");
+        if(nowType == "" || nowType == null) nowType = "come";
+        request.setAttribute("getType", nowType);
+
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("mypage/mypage_reserv_list.jsp");

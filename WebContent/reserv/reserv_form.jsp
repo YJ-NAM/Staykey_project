@@ -122,11 +122,13 @@
                     </td>
                 </tr>
 
-                <c:if test="${!empty stay.stay_option1_name or !empty stay.stay_option2_name or !empty stay.stay_option3_name}">
+                <c:choose>
+                <c:when test="${!empty stay.stay_option1_name or !empty stay.stay_option2_name or !empty stay.stay_option3_name}">
                 <tr>
                     <th>추가 옵션 선택</th>
                     <td class="option">
-                        <c:if test="${!empty stay.stay_option1_name}">
+                        <c:choose>
+                        <c:when test="${!empty stay.stay_option1_name}">
                             <c:if test="${!empty stay.stay_option1_photo}">
                             <div class="option-img">
                                 <div class="img" style="background-image: url('<%=request.getContextPath()%>${stay.stay_option1_photo}');"></div>
@@ -140,9 +142,12 @@
                                     <label><input type="radio" name="stay_option1_select" value="N" num="1" checked="checked" /> 선택안함</label>
                                 </div>
                             </div>
-                        </c:if>
+                        </c:when>
+                        <c:otherwise><input type="hidden" name="stay_option1_select" value="N" /></c:otherwise>
+                        </c:choose>
 
-                        <c:if test="${!empty stay.stay_option2_name}">
+                        <c:choose>
+                        <c:when test="${!empty stay.stay_option2_name}">
                             <c:if test="${!empty stay.stay_option2_photo}">
                             <div class="option-img">
                                 <div class="img" style="background-image: url('<%=request.getContextPath()%>${stay.stay_option2_photo}');"></div>
@@ -156,9 +161,12 @@
                                     <label><input type="radio" name="stay_option2_select" value="N" num="2" checked="checked" /> 선택안함</label>
                                 </div>
                             </div>
-                        </c:if>
+                        </c:when>
+                        <c:otherwise><input type="hidden" name="stay_option2_select" value="N" /></c:otherwise>
+                        </c:choose>
 
-                        <c:if test="${!empty stay.stay_option3_name}">
+                        <c:choose>
+                        <c:when test="${!empty stay.stay_option3_name}">
                             <c:if test="${!empty stay.stay_option3_photo}">
                             <div class="option-img">
                                 <div class="img" style="background-image: url('<%=request.getContextPath()%>${stay.stay_option3_photo}');"></div>
@@ -172,10 +180,19 @@
                                     <label><input type="radio" name="stay_option3_select" value="N" num="3" checked="checked" /> 선택안함</label>
                                 </div>
                             </div>
-                        </c:if>
+                        </c:when>
+                        <c:otherwise><input type="hidden" name="stay_option3_select" value="N" /></c:otherwise>
+                        </c:choose>
                     </td>
                 </tr>
-                </c:if>
+                </c:when>
+
+                <c:otherwise>
+                <input type="hidden" name="stay_option1_select" value="N" />
+                <input type="hidden" name="stay_option2_select" value="N" />
+                <input type="hidden" name="stay_option3_select" value="N" />
+                </c:otherwise>
+                </c:choose>
 
                 <tr>
                     <th>요청사항</th>

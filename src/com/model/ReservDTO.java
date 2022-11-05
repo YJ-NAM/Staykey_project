@@ -31,6 +31,9 @@ public class ReservDTO {
     private String reserv_request;
     private String reserv_date;
 
+    private String reserv_class;
+    private String reserv_stay_photo;
+
 
     public int getReserv_no() {
         return reserv_no;
@@ -205,5 +208,18 @@ public class ReservDTO {
     }
     public void setReserv_date(String reserv_date) {
         this.reserv_date = reserv_date;
+    }
+
+    public String getReserv_class() {
+        return reserv_class;
+    }
+    public void setReserv_class(String reserv_class) {
+        this.reserv_class = reserv_class;
+    }
+    public String getReserv_stay_photo() {
+        return reserv_stay_photo;
+    }
+    public void setReserv_stay_photo(String reserv_stay_photo) {
+        this.reserv_stay_photo = reserv_stay_photo;
     }
 }
