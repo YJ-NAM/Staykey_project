@@ -316,7 +316,6 @@ stayWish = function(btn, stay_no, member_id) {
 
 // 찜하기(목록 페이지) Ajax
 addWish = function(btn, stay_no, member_id) {
-    let thisBtn = btn;
 
     // 회원 체크
     if(!member_id || member_id == null || member_id == "undefined" || member_id == ""){
@@ -327,7 +326,7 @@ addWish = function(btn, stay_no, member_id) {
 
     // 찜 되어 있는 숙소인지 여부
     let wish_mode = "add";
-    if($(thisBtn).hasClass("on")) {
+    if($(btn).hasClass("on")) {
         wish_mode = "del";
     }
 
@@ -342,22 +341,21 @@ addWish = function(btn, stay_no, member_id) {
             member_id : member_id
         },
 
-        success : function(data, thisBtn) {
-            thisBtn.addClass("asdasdasd");
-            // let wish_btn = $(".stay-view .sv-top .svt-info .wish");
-            // let wish_ico = $(".stay-view .sv-top .svt-info .wish > i");
+        success : function(data) {
+            let wish_btn = $("#stay_"+stay_no+" .slw-wish");
+            let wish_ico = $("#stay_"+stay_no+" .slw-wish > i");
 
-            // if(data.trim() == "add_ok") {
-            //     wish_btn.addClass("on");
-            //     wish_ico.removeClass("fa-heart-o").addClass("fa-heart");
+            if(data.trim() == "add_ok") {
+                wish_btn.addClass("on");
+                wish_ico.removeClass("fa-heart-o").addClass("fa-heart");
 
-            // }else if(data.trim() == "del_ok") {
-            //     wish_btn.removeClass("on");
-            //     wish_ico.removeClass("fa-heart").addClass("fa-heart-o");
+            }else if(data.trim() == "del_ok") {
+                wish_btn.removeClass("on");
+                wish_ico.removeClass("fa-heart").addClass("fa-heart-o");
 
-            // }else{
-            //     alert('처리중 오류가 발생하였습니다.');
-            // }
+            }else{
+                alert('처리중 오류가 발생하였습니다.');
+            }
         },
 
         error : function(e){
