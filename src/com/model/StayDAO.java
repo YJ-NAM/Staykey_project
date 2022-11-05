@@ -459,7 +459,14 @@ public class StayDAO {
 		////////////////////////////////////////////////////////////////
 		// reserv_start, reserv_end 값 필요 from staykey_reserv
 		/////////////////////////////////////////////////////////////////
-		// ps_start : 체크인날짜
+		
+		////////////////////////////////////////////////////////////////		
+//		select s.stay_name, s.stay_no, r.reserv_roomno, r.reserv_roomname, r.reserv_start, r.reserv_end
+//		from staykey_stay s
+//		join staykey_reserv r
+//		on s.stay_no = r.reserv_stayno;
+		////////////////////////////////////////////////////////////////
+//		// ps_start : 체크인날짜
 //		if(map.get("ps_start") != "" && map.get("ps_start") != null) {
 //			search_sql += " and  like '%" + map.get("ps_stay") + "%' or stay_name like '%"
 //					+ map.get("ps_start") + "%' or stay_addr like '%" + map.get("ps_start") + "%'";
@@ -530,14 +537,12 @@ public class StayDAO {
     // 숙소 상세 목록 조회
     /////////////////////////////////////////////////////////////
     public StayDTO getStayView(int no) {
-
         StayDTO dto = null;
         openConn();
 
         try {
         	
             sql = "select * from staykey_stay where stay_no = ?";
-            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, no);
             rs = pstmt.executeQuery();
@@ -598,25 +603,20 @@ public class StayDAO {
     public List<StayDTO> getStayWish(int no) {
 
         List<StayDTO> list = new ArrayList<StayDTO>();
-        
-        System.out.println(no);
-        
+               
         openConn();
 
         try {
         	
             sql = "select * from staykey_stay where stay_no = ?";
-            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, no);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                StayDTO dto = new StayDTO();
-                
+                StayDTO dto = new StayDTO();                
                 dto.setStay_no(rs.getInt("stay_no"));
                 dto.setStay_type(rs.getString("stay_type"));
-                System.out.println(rs.getString("stay_name"));
                 dto.setStay_name(rs.getString("stay_name"));
                 dto.setStay_desc(rs.getString("stay_desc"));
                 dto.setStay_location(rs.getString("stay_location"));
@@ -655,7 +655,6 @@ public class StayDAO {
                 dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));
                 
                 list.add(dto);
-                System.out.println("dto" + dto);
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -964,7 +963,7 @@ public class StayDAO {
 
     /////////////////////////////////////////////////////////////
     // 방 등록 메서드 + 방 번호 지정
-    /////////////////////////////// t//////////////////////////////
+    /////////////////////////////////////////////////////////////
     public int[] registerStayRoom(StayRoomDTO dto) {
 
         // result 값 및 room_no 받기 위한 int[] 변수 선언
