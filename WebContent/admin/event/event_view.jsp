@@ -24,7 +24,7 @@
         <div class="col-lg mb-4">
             <div class="card">
                 <div class="card-body p-4">
-                    <h2>${dto.bbs_title}</h2>
+                    <h2>${dto.bbs_title.replace("<br />", "").replace("<br>", "")}</h2>
 
                     <div class="d-flex py-2 border-bottom vfb-info">
                         <div class="col text-left">
@@ -55,7 +55,7 @@
                             <div class="deal_img">
                                 <p class="img" style="background-image: url('<%=request.getContextPath()%>${dto.bbs_file1}');"></p>
                             </div>
-                            ${dto.bbs_content}
+                            ${dto.bbs_content.replaceAll("스테이폴리오", "스테이:키")}
                         </div>
 
 

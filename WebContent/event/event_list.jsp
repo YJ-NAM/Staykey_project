@@ -39,6 +39,7 @@
                         <div class="e_info">
                             <p class="txt">PROMOTION</p>
                             <p class="tit">${list.bbs_title}</p>
+                            <c:if test="${!empty list.bbs_stayname}"><p class="stay">${list.bbs_stayname}</p></c:if>
                             <p class="more">read more</p>
                         </div>
                     </a>

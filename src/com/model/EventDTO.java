@@ -10,6 +10,7 @@ public class EventDTO {
     private String bbs_file4;
     private String bbs_file5;
     private String bbs_stayno;
+    private String bbs_stayname;
     private String bbs_showstart;
     private String bbs_showend;
     private int bbs_hit;
@@ -72,6 +73,12 @@ public class EventDTO {
     }
     public void setBbs_stayno(String bbs_stayno) {
         this.bbs_stayno = bbs_stayno;
+    }
+    public String getBbs_stayname() {
+        return bbs_stayname;
+    }
+    public void setBbs_stayname(String bbs_stayname) {
+        this.bbs_stayname = bbs_stayname;
     }
     public String getBbs_showstart() {
         return bbs_showstart;
