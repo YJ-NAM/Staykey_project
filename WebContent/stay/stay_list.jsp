@@ -214,7 +214,7 @@
     <c:choose>
         <c:when test="${!empty stayList }">
         <c:forEach items="${stayList}" var="list">
-        <li>
+        <li id="stay_${list.stay_no}">
             <button type="button" class="slw-wish<c:if test="${list.stay_wish_check == 'Y'}"> on</c:if>" onclick="addWish(this, '${list.stay_no}', '${login_id}');"><i class="fa fa-heart<c:if test="${list.stay_wish_check == 'N'}">-o</c:if>"></i></button>
 
             <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${list.stay_no}">
