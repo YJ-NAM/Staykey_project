@@ -42,6 +42,8 @@ public class StayDTO {
 		private int stay_room_people_min;     // 최소 인원수
 		private int stay_room_people_max;     // 최대 인원수
 
+		private String stay_wish_check;       // 찜목록 체크
+
 		
 		public int getStay_no() {
 			return stay_no;
@@ -272,6 +274,12 @@ public class StayDTO {
         }
         public void setStay_room_people_max(int stay_room_people_max) {
             this.stay_room_people_max = stay_room_people_max;
+        }
+        public String getStay_wish_check() {
+            return stay_wish_check;
+        }
+        public void setStay_wish_check(String stay_wish_check) {
+            this.stay_wish_check = stay_wish_check;
         }
 
                   

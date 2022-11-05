@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
@@ -150,9 +151,12 @@ public class SiteStayListAction implements Action {
         // 목록 조회 메서드 및 변수 넘기기
         /////////////////////////////////////////////////////////////
         // 숙소 전체 목록 조회 메서드 : getStayList + 페이징 처리 + 검색(& 검색 시 페이징 처리) 매개변수 추가
-        List<StayDTO> list = dao.getStaySiteList(page, rowsize, map); 
+        HttpSession session = request.getSession();
+        String login_id = (String) session.getAttribute("login_id");
+        List<StayDTO> list = dao.getStaySiteList(page, rowsize, map, login_id);
 
         request.setAttribute("stayList", list);
+
 
         // 숙소 유형 배열 넘겨주기
         showArray getArray = new showArray();
