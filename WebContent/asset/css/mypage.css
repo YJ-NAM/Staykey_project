@@ -252,6 +252,217 @@
 /* 예약 보기 */
 .reserv-view {}
 
+.reserv-view .rv-body {
+    color: #333;
+}
+.reserv-view .rv-body h4 {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 48px;
+}
+.reserv-view .rv-body .table-form {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    border-top: 2px solid #000;
+}
+.reserv-view .rv-body .table-form th,
+.reserv-view .rv-body .table-form td {
+    margin: 0;
+    padding: 18px 14px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #666;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd !important;
+}
+.reserv-view .rv-body .table-form th {}
+.reserv-view .rv-body .table-form td {
+    color: #181818;
+}
+
+.reserv-view .rv-body .table-form .my-2 {
+    margin-top: .5rem !important;
+    margin-bottom: .5rem !important;
+}
+.reserv-view .rv-body .table-form .pl-2 {
+    padding-left: 0.5rem !important;
+}
+.reserv-view .rv-body .table-form .pl-3 {
+    padding-left: 1rem !important;
+}
+.reserv-view .rv-body .table-form .eng {
+    font-family: 'Lato';
+    letter-spacing: 0;
+}
+.reserv-view .rv-body .table-form td.space {
+    padding: 0 !important;
+    height: 15px;
+}
+.reserv-view .rv-body .table-form td.request {
+    line-height: 27px;
+}
+
+.reserv-view .rv-body .table-form td.stay-info {
+    padding: 30px 0 15px 0;
+    border-bottom: 0 !important;
+}
+.reserv-view .rv-body .table-form td.stay-info .si-wrap {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 300px;
+}
+
+.reserv-view .rv-body .table-form td.stay-info .si-wrap .siw-left {
+    position: relative;
+    width: 65%;
+    height: 300px;
+    overflow: hidden;
+}
+.reserv-view .rv-body .table-form td.stay-info .si-wrap .siw-left .photo {
+    width: 100%;
+    height: 300px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.reserv-view .rv-body .table-form td.stay-info .si-wrap .siw-right {
+    width: 30%;
+    box-sizing: border-box;
+}
+.reserv-view .rv-body .table-form td.stay-info .si-wrap .siw-right .tit {
+    font-size: 12px;
+    letter-spacing: 3.5px;
+}
+.reserv-view .rv-body .table-form td.stay-info .si-wrap .siw-right .name {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 15px;
+}
+.reserv-view .rv-body .table-form td.stay-info .si-wrap .siw-right .txt {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #333;
+}
+.reserv-view .rv-body .table-form td.stay-info .si-wrap .siw-right .etc {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    margin-top: 25px;
+}
+.reserv-view .rv-body .table-form td.stay-info .si-wrap .siw-right .etc p {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #333;
+}
+
+.reserv-view .rv-btn {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+.reserv-view .rv-btn button {
+    display: inline-block;
+    width: 150px;
+    height: 48px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    color: #fff;
+    background: #000;
+    border: 1px solid #000;
+    margin: 0 5px;
+}
+.reserv-view .rv-btn button:hover {
+    opacity: 0.8;
+}
+.reserv-view .rv-btn button.cancel {
+    color: #191919;
+    background: #fff;
+    border-color: #000;
+}
+.reserv-view .rv-btn button.cancel:hover {
+    color: var(--color);
+    border-color: var(--color);
+}
+
+
+#reserv-cancel {}
+#reserv-cancel .modal-header {
+    border-bottom: 0;
+}
+#reserv-cancel .modal-header .modal-title {
+    font-weight: 500;
+}
+#reserv-cancel .modal-header .modal-title small {
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    color: #666;
+    line-height: 17px;
+}
+#reserv-cancel .modal-body p.text {
+    font-size: 14px;
+    color: #444;
+}
+#reserv-cancel .modal-body p.input {
+    margin-top: 15px;
+}
+#reserv-cancel .modal-body p.input input {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 7px 10px;
+    text-align: center;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+}
+#reserv-cancel .modal-body p.input input:focus {
+    color: var(--color);
+    border-color: var(--color);
+}
+#reserv-cancel .modal-body p.button {
+    margin-top: 15px;
+}
+#reserv-cancel .modal-body p.button button {
+    display: inline-block;
+    width: 100px;
+    height: 36px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    color: #fff;
+    background: var(--color);
+    border: 1px solid var(--color);
+    border-radius: 7px;
+    margin: 0 5px;
+}
+#reserv-cancel .modal-body p.button button:hover {
+    opacity: 0.8;
+}
+#reserv-cancel .modal-body p.button button.close {
+    background: #000;
+    border: 1px solid #000;
+}
+
 
 
 
@@ -353,6 +564,10 @@
 
 
 
+
+
+
+/* 회원 정보 수정 */
 
 
 
