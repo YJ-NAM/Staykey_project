@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -424,7 +426,7 @@ public class ReservDAO {
 
         // 주문번호 생성
         if(chkSess != null) {
-            String[] epdSess = chkSess.split("_");
+            String[] epdSess = chkSess.split("-");
             int tmp = Integer.parseInt(epdSess[1]) + 1;
             String sessFooter = setLength(tmp);
             result = sessHeader + "-" + sessFooter; 
@@ -498,18 +500,18 @@ public class ReservDAO {
     }
 
     
+
+
     // ======================================================
     // 예약한 숙소의 정보 가져오는 메서드 (아이디로)
     // ======================================================
     public List<ReservDTO> getMyReservInfo(String id) {
-      
     	List<ReservDTO> list = new ArrayList<ReservDTO>();
-  	
-    	
+
         try {
             openConn();
 
-            sql = "select * from staykey_reserv where reserv_memid = ?";
+            sql = "select * from staykey_reserv where reserv_memid = ? order by reserv_date desc";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
@@ -545,12 +547,63 @@ public class ReservDAO {
                 dto.setReserv_pickup(rs.getString("reserv_pickup"));
                 dto.setReserv_request(rs.getString("reserv_request").replace("\n", "<br />"));
                 dto.setReserv_date(rs.getString("reserv_date"));
-              
-                
+
+
+                // 현재 상태 설정
+                String reservClass = "";
+                if(rs.getString("reserv_status").equals("cancel")){
+                    reservClass = "cancel";
+
+                }else{
+                    // 현재 날짜
+                    Date get_today = new Date();
+                    DateFormat todayFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    // String 타입으로 날짜 정리
+                    String show_today = todayFormat.format(get_today);
+                    String show_end = rs.getString("reserv_end");
+
+                    // Date 타입으로 날짜 정리
+                    DateFormat chkFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                    Date r_today = chkFormat.parse(show_today.replace("-", "").replace(" ", "").replace(":", ""));
+                    Date r_end = chkFormat.parse(show_end.replace("-", "").replace(" ", "").replace(":", ""));
+
+                    if(r_today.compareTo(r_end) > 0){ // 완료된 예약
+                        reservClass = "done";
+                    }else{
+                        reservClass = "come"; // 다가오는 예약
+                    }
+                }
+                dto.setReserv_class(reservClass);
+
+
+                // 스테이 사진
+                String reservStayPhoto = null;
+                sql2 = "select * from staykey_stay where stay_no = ?";
+                pstmt2 = con.prepareStatement(sql2);
+                pstmt2.setInt(1, rs.getInt("reserv_stayno"));
+                rs2 = pstmt2.executeQuery();
+
+                while(rs2.next()) {
+                    if(rs2.getString("stay_file1") != null){
+                        reservStayPhoto = rs2.getString("stay_file1");
+                    }else if(rs2.getString("stay_file2") != null){
+                        reservStayPhoto = rs2.getString("stay_file2");
+                    }else if(rs2.getString("stay_file3") != null){
+                        reservStayPhoto = rs2.getString("stay_file3");
+                    }else if(rs2.getString("stay_file4") != null){
+                        reservStayPhoto = rs2.getString("stay_file4");
+                    }else if(rs2.getString("stay_file5") != null){
+                        reservStayPhoto = rs2.getString("stay_file5");
+                    }
+                }
+                dto.setReserv_stay_photo(reservStayPhoto);
+
+
                 list.add(dto);
             }
 
-        } catch (Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
 
         } finally {
@@ -566,9 +619,7 @@ public class ReservDAO {
     // ======================================================
     // 예약한 숙소의 이미지 가져오는 메서드 (아이디로)
     // ======================================================
-   
     public List<StayDTO> getImgReservInfo(String id) {
-    	
     	List<StayDTO> list = new ArrayList<StayDTO>();
 
         try {

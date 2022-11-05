@@ -14,6 +14,8 @@
 
 <div class="wish-list">
 	<ul class="wl-list">
+		<c:choose>
+		<c:when test="${!empty staylist}">
 		<c:forEach var="dto" items="${staylist}">
 		<li>
 			<div class="wll-info">
@@ -29,6 +31,12 @@
 			<a href="<%=request.getContextPath()%>/stayView.do?stay_no=${dto.stay_no}" class="wll-photo" style="background-image: url('<%=request.getContextPath()%>${dto.stay_file1 }');"></a>
 		</li>
 		</c:forEach>
+		</c:when>
+
+		<c:otherwise>
+		<li class="nodata">등록된 관심 스테이가 없습니다.</li>
+		</c:otherwise>
+		</c:choose>
 	</ul>
 
 
