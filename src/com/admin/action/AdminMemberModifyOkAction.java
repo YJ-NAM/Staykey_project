@@ -26,7 +26,7 @@ public class AdminMemberModifyOkAction implements Action {
         // 파일 업로드 설정
         String thisFolder = "/data/profile/";
         String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
-        int fileSize = 10 * 1024 * 1024; // 10MB
+        int fileSize = 20 * 1024 * 1024; // 10MB
 
         // 업로드 폴더 체크 후 없으면 생성
         File dirChk = new File(saveFolder);
