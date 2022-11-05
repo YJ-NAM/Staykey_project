@@ -8,72 +8,37 @@
 
 <c:set var="staylist" value="${list}" />
 
-<script type="text/javascript">
-	$("#mymenu-wish").addClass("now");
-</script>
+<script type="text/javascript">$("#mymenu-wish").addClass("now");</script>
 
 
 
-<div class="wish-list">관심 스테이 목록</div>
+<div class="wish-list">
+	<ul class="wl-list">
+		<c:forEach var="dto" items="${staylist}">
+		<li>
+			<div class="wll-info">
+				<p class="name">${dto.stay_name}</p>
+				<p class="loc">${dto.stay_location}</p>
+				<p class="people">최소 ${dto.stay_room_people_min}명 / 최대 ${dto.stay_room_people_max}명</p>
+				<p class="price"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${dto.stay_room_price_min}" type="currency" /> ~ <c:if test="${dto.stay_room_price_min < dto.stay_room_price_max}"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${dto.stay_room_price_max}" type="currency" /></c:if></p>
+				<p class="link">
+					<a href="<%=request.getContextPath()%>/stayView.do?stay_no=${dto.stay_no}"><i class="fa fa-check"></i> 예약하기</a>
+					<button type="button" onclick="delWish('${dto.stay_name}', '${dto.stay_no}', '${login_id}');"><i class="fa fa-trash-o"></i> 찜삭제</button>
+				</p>
+			</div>
+			<a href="<%=request.getContextPath()%>/stayView.do?stay_no=${dto.stay_no}" class="wll-photo" style="background-image: url('<%=request.getContextPath()%>${dto.stay_file1 }');"></a>
+		</li>
+		</c:forEach>
+	</ul>
 
-<br>
-<br>
-<c:forEach items="${staylist}" var="dto">
 
-
-	<!-- 이미지 영역 -->
-
- 			<c:choose>
-				<c:when test="${!empty dto.stay_file1}"> 
-					<img src="<%=request.getContextPath()%>${dto.stay_file1 }" alt="" width="400" height="250"/>
-					
- 				</c:when>
-						<c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 -->
-							<svg class="bd-placeholder-img" width="60" height="60"
-								xmlns="http://www.w3.org/2000/svg"
-								preserveAspectRatio="xMidYMid slice" focusable="false"
-								role="img">
-	                            <title>${dto.bbs_no}</title>
-	                            <rect width="100%" height="100%" fill="#eee"></rect>
-	                            <text x="48%" y="54%" fill="#888" dy=".1em">no img</text>
-	                        </svg>
-						</c:otherwise> 
-			</c:choose>
-			
-					
-					
-	<!-- 이름 영역 -->
-	<div class="name">
-		<span class="ellipsis" style="padding-bottom: 0px;">
-			${dto.stay_name} </span>
+	<div class="wl-paging">
+		${map.pagingWrite}
 	</div>
-	<br>
-
-	<!-- 위치, 인원, 가격 영역 -->
-	<div>
-		<p class="option">
+</div>
 
 
-			${dto.stay_location}<br> 최소 ${dto.stay_room_people_min}명 / 최대
-			${dto.stay_room_people_max}명<br> ₩
-			<fmt:formatNumber value="${dto.stay_room_price_min}" />
-			~ ₩
-			<fmt:formatNumber value="${dto.stay_room_price_max}" />
-		</p>
-		
-<!-- 예약하기 버튼 -->
-<div class="btns">
-	<br>
-	<button type="button" class="btn_bk">
-		<a href="<%=request.getContextPath()%>/stayView.do?stay_no=${dto.stay_no}">예약하기</a>
-	</button>
-	</div>
-	<br>	<br>	<br>
-
-	</div>
-	
-</c:forEach>
 
 
-	<jsp:include page="../mypage/mypage_footer.jsp" />
-	<jsp:include page="../layout/layout_footer.jsp" />
+<jsp:include page="../mypage/mypage_footer.jsp" />
+<jsp:include page="../layout/layout_footer.jsp" />
