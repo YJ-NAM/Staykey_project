@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
+import com.model.MemberDAO;
 import com.model.ReservDAO;
 import com.model.ReservDTO;
 
@@ -22,7 +23,7 @@ public class SiteMypageReservListAction implements Action {
 
         // 아이디로 예약 정보 리스트 가져오기
         ReservDAO dao = ReservDAO.getInstance();
-    	List<ReservDTO> list = dao.getMyReservInfo(id);
+    	List<ReservDTO> list = dao.getSiteReservList(id);
         request.setAttribute("reservList", list);
 
         // 현재 페이지 타입 가져오기
@@ -34,6 +35,8 @@ public class SiteMypageReservListAction implements Action {
         forward.setRedirect(false);
         forward.setPath("mypage/mypage_reserv_list.jsp");
 
+        MemberDAO mdao = MemberDAO.getInstance();
+        mdao.reservCount(id);
         return forward;
     }
 

@@ -5,9 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<jsp:useBean id="now" class="java.util.Date" />
-<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-
 <c:set var="reservList" value="${reservList}" />
 
 <script type="text/javascript">$("#mymenu-reserv").addClass("now");</script>
@@ -41,7 +38,7 @@
 					<c:if test="${list.reserv_people_baby > 0}"><span>영아 ${list.reserv_people_baby}명</span></c:if>
 				</p>
 				<p class="price"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.reserv_total_price}" type="currency" /></p>
-				<p class="link"><a href="<%=request.getContextPath()%>/stayView.do?stay_no=${list.reserv_stayno}"><i class="fa fa-search"></i> 예약상세내역</a></p>
+				<p class="link"><a href="<%=request.getContextPath()%>/mypageReservView.do?reserv_sess=${list.reserv_sess}"><i class="fa fa-search"></i> 예약상세내역</a></p>
 			</div>
 		</li>
 		</c:forEach>

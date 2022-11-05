@@ -3,7 +3,6 @@ package com.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -503,9 +502,9 @@ public class ReservDAO {
 
 
     // ======================================================
-    // 예약한 숙소의 정보 가져오는 메서드 (아이디로)
+    // 예약내역 목록 메서드 (사이트)
     // ======================================================
-    public List<ReservDTO> getMyReservInfo(String id) {
+    public List<ReservDTO> getSiteReservList(String id) {
     	List<ReservDTO> list = new ArrayList<ReservDTO>();
 
         try {
@@ -615,120 +614,37 @@ public class ReservDAO {
 
 
 
-
     // ======================================================
-    // 예약한 숙소의 이미지 가져오는 메서드 (아이디로)
+    // 예약 취소하기 메서드 (사이트)
     // ======================================================
-    public List<StayDTO> getImgReservInfo(String id) {
-    	List<StayDTO> list = new ArrayList<StayDTO>();
-
-        try {
-            openConn();
-
-            sql = "select * from staykey_reserv where reserv_memid = ?";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, id);
-            rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                sql2 = "select * from staykey_stay where stay_no = ?";
-                pstmt2 = con.prepareStatement(sql2);
-                pstmt2.setInt(1, rs.getInt("reserv_stayno"));
-                rs2 = pstmt2.executeQuery();
-                
-
-                while(rs2.next()) {
-                    StayDTO sdto = new StayDTO();
-
-                    sdto.setStay_no(rs2.getInt("stay_no"));
-                    sdto.setStay_type(rs2.getString("stay_type"));
-                    sdto.setStay_name(rs2.getString("stay_name"));
-                    sdto.setStay_desc(rs2.getString("stay_desc"));
-                    sdto.setStay_location(rs2.getString("stay_location"));
-                    sdto.setStay_addr(rs2.getString("stay_addr"));
-                    sdto.setStay_phone(rs2.getString("stay_phone"));
-                    sdto.setStay_email(rs2.getString("stay_email"));
-                    sdto.setStay_content1(rs2.getString("stay_content1"));
-                    sdto.setStay_content2(rs2.getString("stay_content2"));
-                    sdto.setStay_content3(rs2.getString("stay_content3"));
-                    sdto.setStay_info1(rs2.getString("stay_info1"));
-                    sdto.setStay_info2(rs2.getString("stay_info2"));
-                    sdto.setStay_info3(rs2.getString("stay_info3"));
-                    sdto.setStay_file1(rs2.getString("stay_file1"));
-                    sdto.setStay_file2(rs2.getString("stay_file2"));
-                    sdto.setStay_file3(rs2.getString("stay_file3"));
-                    sdto.setStay_file4(rs2.getString("stay_file4"));
-                    sdto.setStay_file5(rs2.getString("stay_file5"));
-                    sdto.setStay_option1_name(rs2.getString("stay_option1_name"));
-                    sdto.setStay_option1_price(rs2.getInt("stay_option1_price"));
-                    sdto.setStay_option1_desc(rs2.getString("stay_option1_desc"));
-                    sdto.setStay_option1_photo(rs2.getString("stay_option1_photo"));
-                    sdto.setStay_option2_name(rs2.getString("stay_option2_name"));
-                    sdto.setStay_option2_price(rs2.getInt("stay_option2_price"));
-                    sdto.setStay_option2_desc(rs2.getString("stay_option2_desc"));
-                    sdto.setStay_option2_photo(rs2.getString("stay_option2_photo"));
-                    sdto.setStay_option3_name(rs2.getString("stay_option3_name"));
-                    sdto.setStay_option3_price(rs2.getInt("stay_option3_price"));
-                    sdto.setStay_option3_desc(rs2.getString("stay_option3_desc"));
-                    sdto.setStay_option3_photo(rs2.getString("stay_option3_photo"));
-                    sdto.setStay_hit(rs2.getInt("stay_hit"));
-                    sdto.setStay_reserv(rs2.getInt("stay_reserv"));
-                    sdto.setStay_date(rs2.getString("stay_date"));
-                    sdto.setStay_room_price_min(rs2.getInt("stay_room_price_min"));
-                    sdto.setStay_room_price_max(rs2.getInt("stay_room_price_max"));
-                    sdto.setStay_room_people_min(rs2.getInt("stay_room_people_min"));
-                    sdto.setStay_room_people_max(rs2.getInt("stay_room_people_max"));
-
-                    list.add(sdto);
-                    
-                }
-            }        
-
-        } catch(SQLException e) {
-            e.printStackTrace();
-
-        } finally {
-            closeConn(rs, pstmt, con);
-            closeConn(rs2, pstmt2, con);
-        }
-        
-        
-        return list;
-        
-
-        
-    }
-    
-
- // ======================================================
-    // 예약 숙소 삭제 + 글번호 재작업 메서드
-    // ======================================================
-    public int deleteReserv(int no) {
+    public int cancelReserv(int reserv_no, String reserv_sess, String reserv_pw, String login_pw) {
         int result = 0;
 
         try {
             openConn();
 
-            sql = "delete from staykey_reserv where reserv_no = ?";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, no);
-            result = pstmt.executeUpdate();
+            // 로그인 비밀번호 체크
+            if(reserv_pw.equals(login_pw)){
+                sql = "update staykey_reserv set reserv_status = 'cancel' where reserv_no = ? and reserv_sess = ?";
+                pstmt = con.prepareStatement(sql);
+                pstmt.setInt(1, reserv_no);
+                pstmt.setString(2, reserv_sess);
+                result = pstmt.executeUpdate();
 
+            }else{
+                result = -1;
+            }
 
-            sql = "update staykey_reserv set reserv_no = reserv_no - 1 where reserv_no > ?";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, no);
-            pstmt.executeUpdate();
-
-        } catch (SQLException e) {
+        } catch(Exception e) {
             e.printStackTrace();
+
         } finally {
             closeConn(rs, pstmt, con);
         }
+
         return result;
     }
-    
-    
-    
+
+
 
 }

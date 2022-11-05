@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -469,7 +472,7 @@ public class MemberDAO {
 
 
     // ======================================================
-    // 예약 횟수 세기
+    // 예약 횟수 세기 (이용완료된 내역만 카운트)
     // ======================================================
     public int reservCount(String member_id) {
         int count = 0;
@@ -477,9 +480,15 @@ public class MemberDAO {
         try {
             openConn();
 
-            sql = "select count(*) from staykey_reserv where reserv_status = 'reserv' and reserv_memid = ?";
+            // 현재 날짜
+            Date get_today = new Date();
+            DateFormat todayFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            String show_today = todayFormat.format(get_today);
+
+            sql = "select count(*) from staykey_reserv where reserv_status = 'reserv' and reserv_memid = ? and reserv_end < TO_DATE(?, 'YYYY/MM/DD HH24:MI:SS')";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, member_id);
+            pstmt.setString(2, show_today);
             rs = pstmt.executeQuery();
 
             rs.next();
