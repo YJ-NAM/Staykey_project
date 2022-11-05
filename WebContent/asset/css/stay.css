@@ -459,12 +459,27 @@
     -moz-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     -ms-transition: all .2s ease-in-out;
-    transition:all .2s ease-in-out
+    transition:all .2s ease-in-out;
+    z-index: 1;
 }
 .stay-list .sl-wrap li a:hover .slw-photo {
     border-radius: 10px;
     opacity: 0.9;
 }
+.stay-list .sl-wrap li .slw-wish {
+    position: absolute;
+    right: 0;
+    margin-top: 119px;
+    padding: 7px 12px;
+    z-index: 2;
+    color: #fff;
+    font-size: 24px;
+    opacity: 0.8;
+}
+.stay-list .sl-wrap li .slw-wish.on {
+    opacity: 1;
+}
+
 .stay-list .sl-wrap li.nodata {
     width: 100%;
     text-align: center;

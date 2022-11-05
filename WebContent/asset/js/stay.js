@@ -258,7 +258,7 @@ $(document).ready(function(){
 
 
 
-// 찜하기 Ajax
+// 찜하기(보기 페이지) Ajax
 stayWish = function(btn, stay_no, member_id) {
 
     // 회원 체크
@@ -310,5 +310,61 @@ stayWish = function(btn, stay_no, member_id) {
 }
 
 
+
+
+
+
+// 찜하기(목록 페이지) Ajax
+addWish = function(btn, stay_no, member_id) {
+    let thisBtn = btn;
+
+    // 회원 체크
+    if(!member_id || member_id == null || member_id == "undefined" || member_id == ""){
+        alert("회원 로그인 후 사용 하실 수 있습니다.");
+        return false;
+    }
+
+
+    // 찜 되어 있는 숙소인지 여부
+    let wish_mode = "add";
+    if($(thisBtn).hasClass("on")) {
+        wish_mode = "del";
+    }
+
+
+    $.ajax({
+        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        type : "post",
+        url : "stayWishOk.do",
+        data : {
+            wish_mode : wish_mode,
+            stay_no : stay_no,
+            member_id : member_id
+        },
+
+        success : function(data, thisBtn) {
+            thisBtn.addClass("asdasdasd");
+            // let wish_btn = $(".stay-view .sv-top .svt-info .wish");
+            // let wish_ico = $(".stay-view .sv-top .svt-info .wish > i");
+
+            // if(data.trim() == "add_ok") {
+            //     wish_btn.addClass("on");
+            //     wish_ico.removeClass("fa-heart-o").addClass("fa-heart");
+
+            // }else if(data.trim() == "del_ok") {
+            //     wish_btn.removeClass("on");
+            //     wish_ico.removeClass("fa-heart").addClass("fa-heart-o");
+
+            // }else{
+            //     alert('처리중 오류가 발생하였습니다.');
+            // }
+        },
+
+        error : function(e){
+            alert("Error : " + e.status);
+        }
+    });
+
+}
 
 

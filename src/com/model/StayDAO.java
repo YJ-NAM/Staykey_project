@@ -290,7 +290,7 @@ public class StayDAO {
     /////////////////////////////////////////////////////////////
     // 숙소 전체 목록 조회(날짜 역순) + 검색 기능 / 고객용
     /////////////////////////////////////////////////////////////
-    public List<StayDTO> getStaySiteList(int page, int rowsize, Map<String, Object> map) {
+    public List<StayDTO> getStaySiteList(int page, int rowsize, Map<String, Object> map, String login_id) {
 
         List<StayDTO> list = new ArrayList<StayDTO>();
 
@@ -426,6 +426,17 @@ public class StayDAO {
                 dto.setStay_room_price_max(rs.getInt("stay_room_price_max"));
                 dto.setStay_room_people_min(rs.getInt("stay_room_people_min"));
                 dto.setStay_room_people_max(rs.getInt("stay_room_people_max"));
+
+
+                // 찜 목록 체크하기
+                String wishChk = "N";
+                int this_stayno = rs.getInt("stay_no");
+                if(login_id != null){
+                    WishDAO wdao = WishDAO.getInstance();
+                    wishChk = wdao.chkStayWish(this_stayno, login_id);
+                }
+                dto.setStay_wish_check(wishChk);
+
 
                 list.add(dto);
             }
