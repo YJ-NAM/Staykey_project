@@ -16,17 +16,18 @@ public class WishDAO {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     String sql = null;
-
+    
     PreparedStatement pstmt2 = null;
     ResultSet rs2 = null;
     String sql2 = null;
-
+    
     private static WishDAO instance;
 
-    private WishDAO() {}
+    private WishDAO() {
+    }
 
     public static WishDAO getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new WishDAO();
         }
 
@@ -67,6 +68,34 @@ public class WishDAO {
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    // ======================================================
+    // DB 전체 데이터 갯수 메서드
+    // ======================================================
+    public int getTotalCount(String member_id) {
+        int result = 0;
+
+        // 검색용 설정
+        try {
+            openConn();
+
+            sql = "select count(*) from staykey_member_wish where wish_memid = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, member_id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) result = rs.getInt(1);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
     }
 
 
@@ -169,18 +198,26 @@ public class WishDAO {
     }
     
     
+
+
     // ======================================================
-    // 찜하기 정보 가져오는 메서드
+    // 찜 목록 가져오는 메서드
     // ======================================================
-    public List<StayDTO> getWishInfo(String id) {
-    	List<StayDTO> list = new ArrayList<StayDTO>();
+    public List<StayDTO> getWishInfo(int page, int rowsize, String id) {
+        List<StayDTO> list = new ArrayList<StayDTO>();
+
+        int startNo = (page * rowsize) - (rowsize - 1);
+        int endNo = (page * rowsize);
 
         try {
             openConn();
 
-            sql = "select * from staykey_member_wish where wish_memid = ?";
+            sql = "select * from (select row_number() over(order by wish_date desc) rnum, b.* from staykey_member_wish b where wish_memid = ?) where wish_memid = ? and rnum >= ? and rnum <= ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, id);
+            pstmt.setString(2, id);
+            pstmt.setInt(3, startNo);
+            pstmt.setInt(4, endNo);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {

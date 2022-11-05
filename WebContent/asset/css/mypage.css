@@ -94,6 +94,7 @@
 
 
 
+
 /* 예약 목록 */
 .reserv-list {}
 
@@ -104,11 +105,94 @@
 
 
 /* 관심 스테이 */
-.ellipsis
- {
- 	font-size: 25px;
+.wish-list {}
+
+.wish-list .wl-list {
+    position: relative;
+    width: 100%;
+    margin: 0 0 100px;
+}
+.wish-list .wl-list li {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 80px;
+}
+.wish-list .wl-list li .wll-info {
+    display: block;
+    width: 50%;
+    box-sizing: border-box;
+    padding-right: 50px;
+}
+.wish-list .wl-list li .wll-info .name {
+    display: block;
+    width: 100%;
+    margin-bottom: 18px;
+    font-size: 32px;
+    line-height: 100%;
     font-weight: 400;
- }
+    letter-spacing: -0.5px;
+    color: #000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.wish-list .wl-list li .wll-info .loc {
+    color: #333;
+    line-height: 1.8;
+}
+.wish-list .wl-list li .wll-info .people {}
+.wish-list .wl-list li .wll-info .price {
+    font-family: 'Lato';
+}
+.wish-list .wl-list li .wll-info .link {
+    margin-top: 20px;
+}
+.wish-list .wl-list li .wll-info .link a,
+.wish-list .wl-list li .wll-info .link button {
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+}
+.wish-list .wl-list li .wll-info .link a {
+    padding-top: 8px;
+    color: #fff;
+    background: #000;
+    border: 1px solid #000;
+}
+.wish-list .wl-list li .wll-info .link a:hover {
+    opacity: 0.8;
+}
+.wish-list .wl-list li .wll-info .link button {
+    background: #fff;
+    border: 1px solid #000;
+    margin-left: 10px;
+}
+.wish-list .wl-list li .wll-info .link button:hover {
+    color: var(--color);
+    border-color: var(--color);
+}
+.wish-list .wl-list li .wll-photo {
+    display: block;
+    width: 50%;
+    height: 250px;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.wish-list .wl-list li .wll-photo:hover {
+    opacity: 0.8;
+}
+
+.wish-list .wl-paging {}
+
+
 
 
 
