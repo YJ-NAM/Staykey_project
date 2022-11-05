@@ -151,7 +151,7 @@
                		</c:otherwise>
                     </c:choose>
                 </td>
-                <td ${showLink} class="eng">${dto.bbs_title }</td>
+                <td ${showLink} class="eng">${dto.bbs_title.replace("<br />", "").replace("<br>", "")}</td>
                 <td ${showLink} class="py-4">
                     <p><b class="eng">${dto.bbs_writer_id}</b></p>
                     <p>${dto.bbs_writer_name}</p>

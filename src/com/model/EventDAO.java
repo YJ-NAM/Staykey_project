@@ -341,6 +341,26 @@ public class EventDAO {
 				dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
 				dto.setBbs_date(rs.getString("bbs_date"));
 
+
+                // 등록된 숙소 목록
+                if(rs.getString("bbs_stayno") != null){
+                    String get_stayno = rs.getString("bbs_stayno").substring(1, rs.getString("bbs_stayno").length() - 1);
+                    String[] epd_stayno = get_stayno.split("/");
+
+                    // 쪼갠 숙소 번호로 반복
+                    String done_stayname = null;
+                    for(int i=0; i<epd_stayno.length; i++){
+                        sql2 = "select * from staykey_stay where stay_no = ?";
+                        pstmt2 = con.prepareStatement(sql2);
+                        pstmt2.setInt(1, Integer.parseInt(epd_stayno[i]));
+                        rs2 = pstmt2.executeQuery();
+
+                        if(i < 5 && rs2.next()) {
+                            done_stayname += ", " + rs2.getString("stay_name");
+                        }
+                    }
+                    dto.setBbs_stayname(done_stayname.replace("null, ", ""));
+                }
 			}
 
 		} catch (Exception e) {
@@ -477,6 +497,27 @@ public class EventDAO {
                 dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
                 dto.setBbs_date(rs.getString("bbs_date"));
 
+                // 등록된 숙소 목록
+                if(rs.getString("bbs_stayno") != null){
+                    String get_stayno = rs.getString("bbs_stayno").substring(1, rs.getString("bbs_stayno").length() - 1);
+                    String[] epd_stayno = get_stayno.split("/");
+
+                    // 쪼갠 숙소 번호로 반복
+                    String done_stayname = null;
+                    for(int i=0; i<epd_stayno.length; i++){
+                        sql2 = "select * from staykey_stay where stay_no = ?";
+                        pstmt2 = con.prepareStatement(sql2);
+                        pstmt2.setInt(1, Integer.parseInt(epd_stayno[i]));
+                        rs2 = pstmt2.executeQuery();
+
+                        if(i < 5 && rs2.next()) {
+                            done_stayname += ", " + rs2.getString("stay_name");
+                        }
+                    }
+                    dto.setBbs_stayname(done_stayname.replace("null, ", ""));
+                }
+
+
                 // 오늘(현재) 기준으로 이벤트 남은 날짜
                 // eventDate.remainDate(시작일자, 종료일자)
                 String remain_date = eventDate.remainDate(rs.getString("bbs_showstart"), rs.getString("bbs_showend"));
@@ -516,7 +557,7 @@ public class EventDAO {
             rs = pstmt.executeQuery();
 
             while(rs.next()) {
-                String get_stayno = rs.getNString("bbs_stayno").substring(1, rs.getNString("bbs_stayno").length() - 1);
+                String get_stayno = rs.getString("bbs_stayno").substring(1, rs.getString("bbs_stayno").length() - 1);
                 String[] epd_stayno = get_stayno.split("/");
 
                 // 쪼갠 숙소 번호로 반복
