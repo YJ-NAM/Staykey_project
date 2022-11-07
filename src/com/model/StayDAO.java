@@ -312,24 +312,6 @@ public class StayDAO {
 		////////////////////////////////////////////////////////////////
 		// reserv_start, reserv_end 값 필요 from staykey_reserv
 		/////////////////////////////////////////////////////////////////
-		
-//        select * from 
-//        (select row_number() over(order by stay_no desc) rnum, 
-//        s.*, r.* from staykey_stay s 
-//        left outer join staykey_reserv r
-//		on s.stay_no = r.reserv_stayno
-//        and not (r.reserv_roomno in 
-//        (select r.reserv_roomno 
-//        from staykey_stay s 
-//        join staykey_reserv r
-//        on s.stay_no = r.reserv_stayno
-//        where stay_no > 0
-//        and ((to_char(reserv_start, 'YYYYMMDD') >= '20221104' and to_char(reserv_start, 'YYYYMMDD') <= '20221231') or
-//        (to_char(reserv_end, 'YYYYMMDD') >= '20221104' and to_char(reserv_end, 'YYYYMMDD') <= '20221231'))
-//        and reserv_status='reserv')))
-//        where rnum >= 1 and rnum <= 100 and stay_no > 0;
-		
-		// 일단 중간저장
 
 		// ps_start : 체크인날짜 & ps_end : 체크아웃날짜
 		if((map.get("ps_start") != "" && map.get("ps_start") != null) && (map.get("ps_end") != "" && map.get("ps_end") != null)) {
@@ -340,8 +322,8 @@ public class StayDAO {
 			search_sql3 = ", r.*";
 			search_sql4 = " left outer join staykey_reserv r on s.stay_no = r.reserv_stayno and not (r.reserv_roomno in "
 					+ "(select r.reserv_roomno from staykey_stay s join staykey_reserv r on s.stay_no = r.reserv_stayno";
-			search_sql2 += " and ((to_char(reserv_start, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_start, 'YYYYMMDD') <= " + sql_end_date + ")";
-			search_sql2 += " or (to_char(reserv_end, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_end, 'YYYYMMDD') <= " + sql_end_date + ")) and reserv_status = 'reserv'))";			
+			search_sql4 += " and ((to_char(reserv_start, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_start, 'YYYYMMDD') <= " + sql_end_date + ")";
+			search_sql4 += " or (to_char(reserv_end, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_end, 'YYYYMMDD') <= " + sql_end_date + ")) and reserv_status = 'reserv'))";			
 		}
 						
 		// ps_people : 인원
