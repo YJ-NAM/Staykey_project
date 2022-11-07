@@ -257,7 +257,6 @@ public class QnaDAO {
             pstmt.setInt(1, no);
             result = pstmt.executeUpdate();
 
-            
             sql = "update staykey_qna set bbs_no = bbs_no - 1 where bbs_no > ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, no);
@@ -421,10 +420,13 @@ public class QnaDAO {
         return result;
     }
 
-    
-    
-    
-    
+
+
+
+
+    // ======================================================
+    // 문의글 수정 메서드
+    // ======================================================
     
     
 
