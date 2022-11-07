@@ -301,6 +301,7 @@ public class StayDAO {
         String search_sql1 = " where stay_no > 0";
         String search_sql2 = "";
         String search_sql3 = "";
+        String search_sql4 = "";
         
         // ps_stay : 여행지/숙소
 		if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
@@ -313,29 +314,36 @@ public class StayDAO {
 		/////////////////////////////////////////////////////////////////
 		
 //        select * from 
-//        (select row_number() over(order by stay_reserv desc) rnum, 
-//        s.stay_no, r.* from staykey_stay s 
-//        join staykey_reserv r
+//        (select row_number() over(order by stay_no desc) rnum, 
+//        s.*, r.* from staykey_stay s 
+//        left outer join staykey_reserv r
 //		on s.stay_no = r.reserv_stayno
-//        where stay_no = 48 and reserv_roomno = 65)
-//        where rnum >= 1 and rnum <= 100 and stay_no > 0 and ((to_char(reserv_start, 'YYYYMMDD') >= '20221104' and to_char(reserv_start, 'YYYYMMDD') <= '20221231') 
-//        or (to_char(reserv_end, 'YYYYMMDD') >= '20221104' and to_char(reserv_end, 'YYYYMMDD') <= '20221231')) and reserv_status = 'reserv';
-//        
-//        sql = "select * from (select row_number() over(order by " + order_sql + ") rnum, s.* from staykey_stay s" + search_sql1 + ") where rnum >= ? and rnum <= ?" + search_sql2;
+//        and not (r.reserv_roomno in 
+//        (select r.reserv_roomno 
+//        from staykey_stay s 
+//        join staykey_reserv r
+//        on s.stay_no = r.reserv_stayno
+//        where stay_no > 0
+//        and ((to_char(reserv_start, 'YYYYMMDD') >= '20221104' and to_char(reserv_start, 'YYYYMMDD') <= '20221231') or
+//        (to_char(reserv_end, 'YYYYMMDD') >= '20221104' and to_char(reserv_end, 'YYYYMMDD') <= '20221231'))
+//        and reserv_status='reserv')))
+//        where rnum >= 1 and rnum <= 100 and stay_no > 0;
+		
+		// 일단 중간저장
 
-        
 		// ps_start : 체크인날짜 & ps_end : 체크아웃날짜
 		if((map.get("ps_start") != "" && map.get("ps_start") != null) && (map.get("ps_end") != "" && map.get("ps_end") != null)) {
 			String sql_start_date = (String)map.get("ps_start");
 			sql_start_date = sql_start_date.replace("-", "");
 			String sql_end_date = (String)map.get("ps_end");
 			sql_end_date = sql_end_date.replace("-", "");
-			search_sql3 = "join staykey_reserv r on s.stay_no = r.reserv_stayno";
+			search_sql3 = ", r.*";
+			search_sql4 = " left outer join staykey_reserv r on s.stay_no = r.reserv_stayno and not (r.reserv_roomno in "
+					+ "(select r.reserv_roomno from staykey_stay s join staykey_reserv r on s.stay_no = r.reserv_stayno";
 			search_sql2 += " and ((to_char(reserv_start, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_start, 'YYYYMMDD') <= " + sql_end_date + ")";
-			search_sql2 += " or (to_char(reserv_end, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_end, 'YYYYMMDD') <= " + sql_end_date + ")) and reserv_status = 'reserv'";			
+			search_sql2 += " or (to_char(reserv_end, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_end, 'YYYYMMDD') <= " + sql_end_date + ")) and reserv_status = 'reserv'))";			
 		}
-		
-				
+						
 		// ps_people : 인원
 		if((int)map.get("ps_people_adult") > 0 || (int)map.get("ps_people_kid") > 0 || (int)map.get("ps_people_baby") > 0) {
 			int ps_people_num = (int)map.get("ps_people_adult") + (int)map.get("ps_people_kid") + (int)map.get("ps_people_baby");
@@ -391,7 +399,8 @@ public class StayDAO {
 
         try {
 
-            sql = "select * from (select row_number() over(order by " + order_sql + ") rnum, s.* " + search_sql3 + " from staykey_stay s" + search_sql1 + ") where rnum >= ? and rnum <= ?" + search_sql2;
+            sql = "select * from (select row_number() over(order by " + order_sql + ") rnum, s.*"
+            +search_sql3 + " from staykey_stay s" + search_sql4 + search_sql1 + ") where rnum >= ? and rnum <= ?" + search_sql2;
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
