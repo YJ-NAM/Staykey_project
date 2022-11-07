@@ -25,7 +25,6 @@ public class AdminQnaCommentOkAction implements Action {
         
         int no = Integer.parseInt(request.getParameter("no").trim());
 		String comment_content = request.getParameter("comment_content").trim();
-		System.out.println(no);
 		
 		
 		if(comment_content.length() <= 0) {
