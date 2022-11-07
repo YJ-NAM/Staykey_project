@@ -298,10 +298,11 @@ public class StayDAO {
         int endNo = (page * rowsize);
 
         // 검색용 설정
-        String search_sql1 = " where stay_no > 0";
+        String search_sql1 = " where stay_no > 0 ";
         String search_sql2 = "";
         String search_sql3 = "";
         String search_sql4 = "";
+        String search_sql5 = "s.*";
         
         // ps_stay : 여행지/숙소
 		if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
@@ -309,22 +310,7 @@ public class StayDAO {
 					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%')";
 		}
 		
-		////////////////////////////////////////////////////////////////
-		// reserv_start, reserv_end 값 필요 from staykey_reserv
-		/////////////////////////////////////////////////////////////////
-
-		// ps_start : 체크인날짜 & ps_end : 체크아웃날짜
-		if((map.get("ps_start") != "" && map.get("ps_start") != null) && (map.get("ps_end") != "" && map.get("ps_end") != null)) {
-			String sql_start_date = (String)map.get("ps_start");
-			sql_start_date = sql_start_date.replace("-", "");
-			String sql_end_date = (String)map.get("ps_end");
-			sql_end_date = sql_end_date.replace("-", "");
-			search_sql3 = ", r.*";
-			search_sql4 = " left outer join staykey_reserv r on s.stay_no = r.reserv_stayno and not (r.reserv_roomno in "
-					+ "(select r.reserv_roomno from staykey_stay s join staykey_reserv r on s.stay_no = r.reserv_stayno";
-			search_sql4 += " and ((to_char(reserv_start, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_start, 'YYYYMMDD') <= " + sql_end_date + ")";
-			search_sql4 += " or (to_char(reserv_end, 'YYYYMMDD') >= " + sql_start_date + " and to_char(reserv_end, 'YYYYMMDD') <= " + sql_end_date + ")) and reserv_status = 'reserv'))";			
-		}
+		
 						
 		// ps_people : 인원
 		if((int)map.get("ps_people_adult") > 0 || (int)map.get("ps_people_kid") > 0 || (int)map.get("ps_people_baby") > 0) {
@@ -362,6 +348,32 @@ public class StayDAO {
         }
 
         search_sql1 += search_sql2;
+        
+		////////////////////////////////////////////////////////////////
+		// reserv_start, reserv_end 값 필요 from staykey_reserv
+		/////////////////////////////////////////////////////////////////
+		// ps_start : 체크인날짜 & ps_end : 체크아웃날짜
+		if((map.get("ps_start") != "" && map.get("ps_start") != null) && (map.get("ps_end") != "" && map.get("ps_end") != null)) {
+		String sql_start_date = (String)map.get("ps_start");
+		sql_start_date = sql_start_date.replace("-", "");
+		String sql_end_date = (String)map.get("ps_end");
+		sql_end_date = sql_end_date.replace("-", "");
+		search_sql1 = "";
+		search_sql3 = "distinct ";
+		search_sql5 = "s.stay_no, s.stay_type, s.stay_name, s.stay_desc, s.stay_location, s.stay_addr, s.stay_file1, "
+		+ "s.stay_file2, s.stay_file3, s.stay_file4, s.stay_file5, s.stay_hit, s.stay_reserv, s.stay_date, "
+		+ "s.stay_room_price_min, s.stay_room_price_max, s.stay_room_people_min, s.stay_room_people_max, "
+		+ "r.reserv_status, r.reserv_stayno, r.reserv_roomno, to_char(r.reserv_start, 'YYYYMMDD'), to_char(r.reserv_end, 'YYYYMMDD')";
+		search_sql4 = "left outer join staykey_reserv r on s.stay_no = r.reserv_stayno where (r.reserv_stayno not in "
+		+ "(select distinct reserv_stayno from staykey_reserv where ((to_char(reserv_start, 'YYYYMMDD') >= "+sql_start_date+" and to_char(reserv_start, 'YYYYMMDD') <= "+sql_end_date+")"
+		+ " or (to_char(reserv_end, 'YYYYMMDD') >= "+sql_start_date+" and to_char(reserv_end, 'YYYYMMDD') <= "+sql_end_date+")) and (reserv_status is not null or reserv_status = 'reserv'))"
+		+ " or r.reserv_stayno is null) "
+		+ "group by s.stay_no, s.stay_type, s.stay_name, s.stay_desc, s.stay_location, s.stay_addr, s.stay_file1, s.stay_file2, s.stay_file3, "
+		+ "s.stay_file4, s.stay_file5, s.stay_hit, s.stay_reserv, s.stay_date, s.stay_room_price_min, s.stay_room_price_max, s.stay_room_people_min, s.stay_room_people_max, "
+		+ "r.reserv_status, r.reserv_stayno, r.reserv_roomno, r.reserv_start, r.reserv_end ";
+		}
+        
+        
 
         // 정렬용 설정
         String order_sql = "stay_reserv desc";
@@ -377,12 +389,13 @@ public class StayDAO {
             order_sql = "stay_room_price_min asc";
         } 
         
+        
         openConn();
 
         try {
 
-            sql = "select * from (select row_number() over(order by " + order_sql + ") rnum, s.*"
-            +search_sql3 + " from staykey_stay s" + search_sql4 + search_sql1 + ") where rnum >= ? and rnum <= ?" + search_sql2;
+        	sql = "select * from (select " + search_sql3 + "row_number() over(order by " + order_sql + ") rnum, " + search_sql5
+        	            + " from staykey_stay s " + search_sql4 + search_sql1 +"order by s."+ order_sql + ") where rnum >= ? and rnum <= ?" + search_sql2;
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
