@@ -31,6 +31,7 @@
                         <td>
                             <c:choose>
                             <c:when test="${dto.getMember_type() == 'admin'}">관리자</c:when>
+                            <c:when test="${dto.getMember_type() == 'exit'}">탈퇴회원</c:when>
                             <c:otherwise>일반회원</c:otherwise>
                             </c:choose>
                         </td>
@@ -49,6 +50,7 @@
                         <td colspan="2" class="space" nowrap="nowrap"></td>
                     </tr>
 
+                    <c:if test="${dto.getMember_type() != 'exit'}">
                     <tr>
                         <th>이름</th>
                         <td>${dto.getMember_name()}</td>
@@ -75,6 +77,7 @@
                     <tr>
                         <td colspan="2" class="space" nowrap="nowrap"></td>
                     </tr>
+                    </c:if>
 
                     <tr>
                         <th>가입일자</th>

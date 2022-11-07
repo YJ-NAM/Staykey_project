@@ -504,17 +504,20 @@ public class MemberDAO {
         return count;
     }
 
-    
-    
+
+
+
+
     // ======================================================
-    // 회원정보를 업데이트 하는 메서드 (site에서)
+    // 회원정보를 수정하는 메서드 (사이트)
     // ======================================================
-    public int membersiteModify(MemberDTO dto) {
+    public int infoModifySite(MemberDTO dto) {
         int result = 0;
 
         try {
             openConn();
-            sql = "update staykey_member set member_type = default, member_pw = ?, member_name = ?, member_email = ?, member_phone = ?, member_photo = ? where member_id = ?";
+
+            sql = "update staykey_member set member_pw = ?, member_name = ?, member_email = ?, member_phone = ?, member_photo = ? where member_id = ?";
             pstmt = con.prepareStatement(sql);
 
             pstmt.setString(1, dto.getMember_pw());
@@ -528,12 +531,45 @@ public class MemberDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+
         } finally {
             closeConn(pstmt, con);
         }
+
         return result;
     }
     
+
+
+    // ======================================================
+    // 회원 탈퇴 처리 메서드 (사이트)
+    // ======================================================
+    public int exitMember(String member_id) {
+        int result = 0;
+
+        try {
+            openConn();
+
+            sql = "update staykey_member set member_type = ?, member_pw = ?, member_name = ?, member_email = ?, member_phone = ?, member_reserv = default, member_photo = default where member_id = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, "exit");
+            pstmt.setString(2, "1234wqer5678!!");
+            pstmt.setString(3, "탈퇴회원");
+            pstmt.setString(4, "exit@exit.com");
+            pstmt.setString(5, "010-0000-0000");
+            pstmt.setString(6, member_id);
+            result = pstmt.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(pstmt, con);
+        }
+
+        return result;
+    }
+
 
 
 
