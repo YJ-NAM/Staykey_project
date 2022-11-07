@@ -17,6 +17,8 @@
 <div class="qna-write">
     <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/mypageQnaModifyOk.do">
     <input type="hidden" name="bbs_no" value="${dto.bbs_no}" />
+    <input type="hidden" name="ori_file1" value="${dto.bbs_file1}" />
+    <input type="hidden" name="ori_file2" value="${dto.bbs_file2}" />
     <table class="table-form">
         <colgroup>
             <col width="16%" />
