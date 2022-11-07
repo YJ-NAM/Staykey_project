@@ -189,8 +189,8 @@
         					
                          </tbody>
                     </table>
-                    
-                     <form name="write_form" method="post" action="<%=request.getContextPath() %>/admin/qnaCommentOk.do?no=${comment_qnano}">
+                     <c:if test="${dto.bbs_status == 'send'}">
+                     <form name="write_form" method="post" action="<%=request.getContextPath() %>/admin/qnaCommentOk.do?no=${dto.bbs_no}">
                    		<%-- 이름, 아이디, 비밀번호 임시로 받음. --%>
                    		<input type="hidden" name="comment_writer_name" value="${login_name}" />
 						<input type="hidden" name="comment_writer_id" value="${login_id}" />
@@ -211,7 +211,7 @@
 					    </tr> 
 			   		</table>
 			   		</form>	
-			   		
+			   		</c:if>
 			   		
                 </div>
             </div>
