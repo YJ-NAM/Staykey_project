@@ -298,11 +298,11 @@ public class StayDAO {
         int endNo = (page * rowsize);
 
         // 검색용 설정
-        String search_sql1 = " where stay_no > 0 ";
+        String search_sql1 = "where stay_no > 0";
         String search_sql2 = "";
         String search_sql3 = "";
         String search_sql4 = "";
-        String search_sql5 = "";
+        String search_sql5 = "s.*";
         
         // ps_stay : 여행지/숙소
 		if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
@@ -375,7 +375,7 @@ public class StayDAO {
 			+ " s.stay_option3_name, s.stay_option3_price, s.stay_option3_desc, s.stay_option3_photo,"
 			+ " s.stay_hit, s.stay_reserv, s.stay_date, s.stay_room_price_min, s.stay_room_price_max,"
 			+ " s.stay_room_people_min, s.stay_room_people_max,"
-			+ " r.reserv_status, r.reserv_stayno, r.reserv_roomno, r.reserv_start, r.reserv_end ";
+			+ " r.reserv_status, r.reserv_stayno, r.reserv_roomno, r.reserv_start, r.reserv_end";
 		}
         
         
@@ -399,13 +399,13 @@ public class StayDAO {
 
         try {
 
-        	sql = "select * from (select " + search_sql3 + "row_number() over(order by " + order_sql + ") rnum, s.*" + search_sql5
-        	            + " from staykey_stay s " + search_sql4 + search_sql1 +"order by s."+ order_sql + ") where rnum >= ? and rnum <= ?" + search_sql2;
+        	sql = "select * from (select " + search_sql3 + "row_number() over(order by " + order_sql + ") rnum, " + search_sql5
+        	            + " from staykey_stay s " + search_sql4 + search_sql1 +" order by s."+ order_sql + ") where rnum >= ? and rnum <= ?" + search_sql2;
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
             pstmt.setInt(2, endNo);
-            System.out.println("sql > "+sql);
+            System.out.println("sql >> "+sql);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -459,7 +459,6 @@ public class StayDAO {
                 }
                 dto.setStay_wish_check(wishChk);
 
-
                 list.add(dto);
             }
         } catch (SQLException e) {
@@ -468,6 +467,7 @@ public class StayDAO {
         } finally {
             closeConn(rs, pstmt, con);
         }
+
         return list;
     } // getStaySiteList() 종료
     
@@ -552,7 +552,7 @@ public class StayDAO {
 
         try {
             openConn();            
-            sql = "select count(*) from "+search_sql2+" staykey_stay " +search_sql3+ search_sql;
+            sql = "select count(*) from "+search_sql2+" staykey_stay "+search_sql3+ search_sql;
             System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
