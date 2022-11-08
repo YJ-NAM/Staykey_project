@@ -210,7 +210,6 @@
 
 
 <div class="container stay-list">
-asdasd > ${stayList.size()}
     <ul class="sl-wrap">
     <c:choose>
         <c:when test="${!empty stayList }">

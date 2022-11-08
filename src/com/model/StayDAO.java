@@ -311,9 +311,7 @@ public class StayDAO {
 			search_sql2 += " and (stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
 					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%')";
 		}
-		
-		
-						
+							
 		// ps_people : 인원
 		if((int)map.get("ps_people_adult") > 0 || (int)map.get("ps_people_kid") > 0 || (int)map.get("ps_people_baby") > 0) {
 			int ps_people_num = (int)map.get("ps_people_adult") + (int)map.get("ps_people_kid") + (int)map.get("ps_people_baby");
@@ -363,8 +361,7 @@ public class StayDAO {
 			search_sql1 = "";
 			connector = "where";
 			search_sql3 = "distinct ";
-			search_sql5 = "s.stay_no, s.stay_type, s.stay_name, s.stay_desc, s.stay_location, s.stay_addr, s.stay_phone, s.stay_email, s.stay_content1, s.stay_content2, s.stay_content3, s.stay_info1, s.stay_info2, s.stay_info3, s.stay_file1, s.stay_file2, s.stay_file3, s.stay_file4, s.stay_file5, s.stay_option1_name, s.stay_option1_price, s.stay_option1_desc, s.stay_option1_photo, s.stay_option2_name, s.stay_option2_price, s.stay_option2_desc, s.stay_option2_photo, s.stay_option3_name, s.stay_option3_price, s.stay_option3_desc, s.stay_option3_photo, s.stay_hit, s.stay_reserv, s.stay_date, s.stay_room_price_min, s.stay_room_price_max, s.stay_room_people_min, s.stay_room_people_max," 
-					+ " r.reserv_status, r.reserv_stayno, r.reserv_roomno, to_char(r.reserv_start, 'YYYYMMDD'), to_char(r.reserv_end, 'YYYYMMDD')";
+			search_sql5 = "s.stay_no, s.stay_type, s.stay_name, s.stay_desc, s.stay_location, s.stay_addr, s.stay_phone, s.stay_email, s.stay_content1, s.stay_content2, s.stay_content3, s.stay_info1, s.stay_info2, s.stay_info3, s.stay_file1, s.stay_file2, s.stay_file3, s.stay_file4, s.stay_file5, s.stay_option1_name, s.stay_option1_price, s.stay_option1_desc, s.stay_option1_photo, s.stay_option2_name, s.stay_option2_price, s.stay_option2_desc, s.stay_option2_photo, s.stay_option3_name, s.stay_option3_price, s.stay_option3_desc, s.stay_option3_photo, s.stay_hit, s.stay_reserv, s.stay_date, s.stay_room_price_min, s.stay_room_price_max, s.stay_room_people_min, s.stay_room_people_max"; 
 			search_sql4 = "left outer join staykey_reserv r on s.stay_no = r.reserv_stayno "
 					+ "where (r.reserv_stayno not in "
 			+ "(select distinct reserv_stayno from staykey_reserv "
@@ -378,30 +375,29 @@ public class StayDAO {
 			+ " s.stay_option2_name, s.stay_option2_price, s.stay_option2_desc, s.stay_option2_photo,"
 			+ " s.stay_option3_name, s.stay_option3_price, s.stay_option3_desc, s.stay_option3_photo,"
 			+ " s.stay_hit, s.stay_reserv, s.stay_date, s.stay_room_price_min, s.stay_room_price_max,"
-			+ " s.stay_room_people_min, s.stay_room_people_max,"
-			+ " r.reserv_status, r.reserv_stayno, r.reserv_roomno, r.reserv_start, r.reserv_end";
+			+ " s.stay_room_people_min, s.stay_room_people_max";
 		}              
 
         // 정렬용 설정
-        String order_sql = "stay_reserv desc";
+        String order_sql = "stay_reserv desc, stay_no desc";
         if (map.get("ps_order").equals("reserv_desc")) {
-            order_sql = "stay_reserv desc";
+            order_sql = "stay_reserv desc, stay_no desc";
         } else if (map.get("ps_order").equals("date_desc")) {
-            order_sql = "stay_date desc";
+            order_sql = "stay_date desc, stay_no desc";
         } else if (map.get("ps_order").equals("hit_desc")) {
-            order_sql = "stay_hit desc";
+            order_sql = "stay_hit desc, stay_no desc";
         } else if (map.get("ps_order").equals("room_price_max_desc")) {
-            order_sql = "stay_room_price_max desc";
+            order_sql = "stay_room_price_max desc, stay_no desc";
         } else if (map.get("ps_order").equals("room_price_min_asc")) {
-            order_sql = "stay_room_price_min asc";
+            order_sql = "stay_room_price_min asc, stay_no desc";
         }         
         
         openConn();
 
         try {
-
+        	// sql4 -> left outer join~ / sql6 -> group by
         	sql = "select * from (select " + search_sql3 + "row_number() over(order by " + order_sql + ") rnum, " + search_sql5
-        	            + " from staykey_stay s " + search_sql4 + search_sql1 + search_sql2 + search_sql6+" order by s."+ order_sql + ") " + search_sql1 + connector +" rnum >= ? and rnum <= ? ";
+        	            + " from staykey_stay s " + search_sql4 + search_sql1 + search_sql2 + search_sql6 + " order by s."+ order_sql + ") " + search_sql1 + connector +" rnum >= ? and rnum <= ? ";
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
@@ -499,7 +495,7 @@ public class StayDAO {
 			sql_start_date = sql_start_date.replace("-", "");
 			String sql_end_date = (String)map.get("ps_end");
 			sql_end_date = sql_end_date.replace("-", "");		
-			search_sql2 = "(select s.*, r.reserv_status, r.reserv_stayno, r.reserv_roomno, to_char(r.reserv_start, 'YYYYMMDD'), to_char(r.reserv_end, 'YYYYMMDD') from";
+			search_sql2 = "(select s.* from";
 			search_sql3 = "s left outer join staykey_reserv r on s.stay_no = r.reserv_stayno "
 					+ "where (r.reserv_stayno not in "
 			+ "(select distinct reserv_stayno from staykey_reserv "
@@ -513,8 +509,7 @@ public class StayDAO {
 			+ " s.stay_option2_name, s.stay_option2_price, s.stay_option2_desc, s.stay_option2_photo,"
 			+ " s.stay_option3_name, s.stay_option3_price, s.stay_option3_desc, s.stay_option3_photo,"
 			+ " s.stay_hit, s.stay_reserv, s.stay_date, s.stay_room_price_min, s.stay_room_price_max,"
-			+ " s.stay_room_people_min, s.stay_room_people_max,"
-			+ " r.reserv_status, r.reserv_stayno, r.reserv_roomno, r.reserv_start, r.reserv_end)";
+			+ " s.stay_room_people_min, s.stay_room_people_max)";
 		}
 						
 		// ps_people : 인원
