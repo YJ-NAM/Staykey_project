@@ -167,7 +167,6 @@ public class SiteStayListAction implements Action {
 
         request.setAttribute("stayList", list);
 
-        System.out.println(page_write_type);
         // 숙소 유형 배열 넘겨주기
         showArray getArray = new showArray();
         getArray.getList("stayType");
