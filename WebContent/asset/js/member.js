@@ -200,7 +200,7 @@ function validateForm(form) {
     }
 
     // ajax 중복 체크
-    if(joinId.length > 0){
+    if(joinId.length > 0) {
         $.ajax({
             type : "post",
             url : "memberIdCheck.do",
@@ -210,6 +210,10 @@ function validateForm(form) {
             success : function(data) {
                 if(data > 0) {
                     alert("중복된 아이디입니다. 다시 확인해주세요.");
+                    error = false;
+                    form.join_id.value = "";
+                    form.join_id.focus();
+                }else {
                     error = true;
                 }
             },
@@ -218,9 +222,7 @@ function validateForm(form) {
             }
         });
         
-        if(error){
-            return false;
-        }
+        return error;
     }
     
     // ========== 비밀번호 유효성 검사 ===========
