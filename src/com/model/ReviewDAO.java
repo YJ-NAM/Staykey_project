@@ -455,6 +455,58 @@ public class ReviewDAO {
         return result;
     }
     
-    
+
+
+
+
+    // ======================================================
+    // 후기 등록 하는 메서드
+    // ======================================================
+    public int writeReview(ReviewDTO dto) {
+        int result = 0, count = 0;
+
+        try {
+            openConn();
+
+            sql = "select max(review_no) from staykey_review";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) count = rs.getInt(1) + 1;
+
+            sql = "insert into staykey_review values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+            pstmt = con.prepareStatement(sql);
+
+            pstmt.setInt(1, count);
+            pstmt.setInt(2, dto.getReview_stayno());
+            pstmt.setString(3, dto.getReview_stayname());
+            pstmt.setInt(4, dto.getReview_roomno());
+            pstmt.setString(5, dto.getReview_roomname());
+            pstmt.setDouble(6, dto.getReview_point_total());
+            pstmt.setInt(7, dto.getReview_point1());
+            pstmt.setInt(8, dto.getReview_point2());
+            pstmt.setInt(9, dto.getReview_point3());
+            pstmt.setInt(10, dto.getReview_point4());
+            pstmt.setInt(11, dto.getReview_point5());
+            pstmt.setInt(12, dto.getReview_point6());
+            pstmt.setString(13, dto.getReview_content());
+            pstmt.setString(14, dto.getReview_file());
+            pstmt.setString(15, dto.getReview_id());
+            pstmt.setString(16, dto.getReview_pw());
+            pstmt.setString(17, dto.getReview_name());
+
+            result = pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(pstmt, con);
+        }
+
+        return result;
+    }
+
+
     
 }

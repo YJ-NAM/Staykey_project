@@ -167,6 +167,7 @@
     </div>
     </c:if>
     <!-- 숙소 상세정보 //END -->
+    <div id="viewReivew">&nbsp;</div>
 
 
 
@@ -222,6 +223,14 @@
                     <tr class="rcont" id="show_${review.review_no}">
                         <td colspan="2" nowrap="nowrap"></td>
                         <td colspan="3">
+                            <dl>
+                                <dt>접근성</dt><dd><b>${review.review_point1}</b>점</dd>
+                                <dt>서비스</dt><dd><b>${review.review_point2}</b>점</dd>
+                                <dt>객실시</dt><dd><b>${review.review_point3}</b>점</dd>
+                                <dt>부대시설</dt><dd><b>${review.review_point4}</b>점</dd>
+                                <dt>식음</dt><dd><b>${review.review_point5}</b>점</dd>
+                                <dt>만족도</dt><dd><b>${review.review_point6}</b>점</dd>
+                            </dl>
                             <c:if test="${!empty review.review_file}"><p><img src="<%=request.getContextPath()%>${review.review_file}" alt="" /></p></c:if>
                             <p>${review.review_content.replace(newLine, "<br />")}</p>
                         </td>

@@ -602,6 +602,24 @@ public class ReservDAO {
                 dto.setReserv_stay_photo(reservStayPhoto);
 
 
+                // 리뷰 작성여부
+                String reservReview = "N";
+                int reservReviewRoom = 0;
+                sql2 = "select count(*) from staykey_review where review_stayno = ? and review_roomno = ? and review_id = ?";
+                pstmt2 = con.prepareStatement(sql2);
+                pstmt2.setInt(1, rs.getInt("reserv_stayno"));
+                pstmt2.setInt(2, rs.getInt("reserv_roomno"));
+                pstmt2.setString(3, id);
+                rs2 = pstmt2.executeQuery();
+
+                if(rs2.next() && rs2.getInt(1) > 0) {
+                    reservReview = "Y";
+                    reservReviewRoom = rs.getInt("reserv_roomno");
+                }
+                dto.setReserv_review(reservReview);
+                dto.setReserv_review_roomno(reservReviewRoom);
+
+
                 list.add(dto);
             }
 

@@ -1143,6 +1143,36 @@
 }
 .stay-view .sv-review .svr-list table tr.rcont td {
     line-height: 1.7;
+    padding-bottom: 35px;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 0;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dt {
+    display: inline-block;
+    margin: 7px 0;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dt:before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: #000;
+    border-radius: 50%;
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dd {
+    display: inline-block;
+    margin: 7px 20px 7px 10px;
+    font-size: 14px;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dd > b {
+    font-family: 'Lato';
+    font-size: 17px;
 }
 .stay-view .sv-review .svr-list table tr.rcont img {
     width: 80%;

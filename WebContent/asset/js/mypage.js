@@ -234,8 +234,16 @@ function validateForm(form) {
 
 
 
-
-
+/////////////////////////////////////////////////////
+// 예약목록 리뷰 작성 폼 적요
+/////////////////////////////////////////////////////
+function setReviewWrite(stay_no, stay_name, room_no, room_name) {
+    $("#review-write .modal-header .modal-title span").text(stay_name);
+    $("#review-write input[name='review_stayno']").val(stay_no);
+    $("#review-write input[name='review_stayname']").val(stay_name);
+    $("#review-write input[name='review_roomno']").val(room_no);
+    $("#review-write input[name='review_roomname']").val(room_name);
+}
 
 
 
