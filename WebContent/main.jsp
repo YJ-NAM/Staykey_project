@@ -9,6 +9,7 @@
 
 
 <c:set var="rStay" value="${ randomStay }"/>
+<c:set var="rBanner" value="${ randomBanner }"/>
 <c:set var="eList" value="${ eList }"/>
 <c:set var="sList" value="${ sList }"/>
 <c:set var="mList" value="${ magazineList }"/>
@@ -75,14 +76,16 @@
 
 
 
+    <c:if test="${!empty rBanner }">
     <!-------- 배너 //START --------->
     <div class="main-banner">
-        <a href="#">
-            <p>경주옥</p>
-            <small>자연 속에서 보내는 여유로운 고립</small>
+        <a href="<%=request.getContextPath()%>/stayView.do?stay_no=${rBanner.stay_no}" style="background-image: url('<%=request.getContextPath()%>${rBanner.stay_file1}');">
+            <p>${rBanner.stay_name}</p>
+            <small>${rBanner.stay_desc}</small>
         </a>
     </div>
     <!-------- 배너 //END --------->
+    </c:if>
 
 
 
