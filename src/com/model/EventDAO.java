@@ -476,7 +476,7 @@ public class EventDAO {
         try {
             openConn();
 
-            sql = "select * from staykey_event order by bbs_date desc";
+            sql = "select * from staykey_event where (bbs_file1 is not null or bbs_file2 is not null) order by bbs_date desc";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
