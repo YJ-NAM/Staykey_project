@@ -136,7 +136,7 @@
 			<tr>
 				<th>글 내용</th>
 				<td colspan="3"><textarea name="ev_content"
-						class="form-control" cols="80" rows="10">${dto.bbs_content}</textarea></td>
+						class="form-control" cols="80" rows="10" required>${dto.bbs_content} </textarea></td>
 			</tr>
 
 			<tr>
