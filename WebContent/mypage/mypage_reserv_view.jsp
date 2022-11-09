@@ -249,7 +249,7 @@
     <!-- 버튼 //START -->
     <div class="rv-btn">
     	<c:if test="${cancel_ok == 'Y'}"><button type="button" class="cancel" data-toggle="modal" data-target="#reserv-cancel">예약취소</button></c:if>
-    	<button type="button" onclick="history.back();">목록보기</button>
+    	<button type="button" onclick="location.href='<%=request.getContextPath()%>/mypageReservList.do'">목록보기</button>
     </div>
     <!-- 버튼 //END -->
 </div>
