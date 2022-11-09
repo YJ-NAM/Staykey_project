@@ -206,6 +206,7 @@ function validateForm(form) {
             url : "memberIdCheck.do",
             data : { paramId : joinId },
             dataType : "text",
+            async : false,
     
             success : function(data) {
                 if(data > 0) {
@@ -220,8 +221,7 @@ function validateForm(form) {
             error : function(e){
                 alert("Error : " + e.status);
             }
-        });
-        
+        });        
         return error;
     }
     
