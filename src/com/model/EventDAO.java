@@ -541,10 +541,31 @@ public class EventDAO {
 
 
 
+    // ======================================================
+    // 이벤트 조회수 늘리기
+    // ======================================================
+    public void plusEventCount(int bbs_no) {
+        try {
+            openConn();
+
+            sql = "update staykey_event set bbs_hit = bbs_hit + 1 where bbs_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, bbs_no);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(pstmt, con);
+        }
+    }
+
+
 
 
     // ======================================================
-    // 이벤트 숙소 목록(사이트 게시판 화면) 메서드 @노동진
+    // 이벤트 숙소 목록(사이트 게시판 화면) 메서드
     // ======================================================
     public List<HashMap<String, String>> getEventStayList() {
         List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
