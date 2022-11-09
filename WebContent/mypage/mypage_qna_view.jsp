@@ -130,7 +130,14 @@
                 <tbody>
                     <c:forEach items="${qList}" var="qdto">
                     <tr>
+                    	<c:choose>
+                    	<c:when test="${dto.bbs_writer_name == qdto.comment_writer_name}">
                         <td class="text-center"><b>${qdto.comment_writer_name}</b></td>
+                        </c:when>
+                        <c:otherwise>
+                        <td class="text-center text-danger"><b>관리자</b></td>
+                        </c:otherwise>
+                        </c:choose>
                         <td class="text-left">${qdto.comment_content}</td>
                         <td class="text-center eng">${qdto.comment_date}</td>
                         <c:choose>
