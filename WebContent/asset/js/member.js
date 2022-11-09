@@ -197,7 +197,7 @@ function validateForm(form) {
         alert("아이디 작성 조건에 부합하지 않습니다. 다시 확인해주세요.");
         form.join_id.focus();
         form.join_id.value = "";
-        $("#join_id").parent().find("p.error").show().html("6자 이상, 영문 또는 숫자를 입력해주세요.");
+        $("#join_id").parent().find("p.error").hide();
         return false;
     }
 
@@ -209,6 +209,7 @@ function validateForm(form) {
         form.join_pw.value = "";
         form.join_pw_re.value = "";
         $(".checked").children('li').removeClass("on"); 
+        $("input[name='join_pw_re']").parent().find("p.error").hide();      
         return false;
     }
 
@@ -219,6 +220,7 @@ function validateForm(form) {
             form.join_pw.focus();
             form.join_pw.value = "";
             form.join_pw_re.value = "";
+            $(".checked").children('li').removeClass("on");             
             $("input[name='join_pw_re']").parent().find("p.error").hide();        
             return false;
         }
@@ -266,8 +268,9 @@ function validateForm(form) {
                 if(data > 0) {
                     alert("중복된 아이디입니다. 다시 확인해주세요.");
                     error = false;
-                    form.join_id.value = "";
                     form.join_id.focus();
+                    form.join_id.value = "";                    
+                    $("#join_id").parent().find("p.error").hide();                    
                 }else {
                     error = true;
                 }
