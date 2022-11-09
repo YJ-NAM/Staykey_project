@@ -131,7 +131,7 @@
                     <c:forEach items="${qList}" var="qdto">
                     <tr>
                     	<c:choose>
-                    	<c:when test="${dto.bbs_writer_name == qdto.comment_writer_name}">
+                    	<c:when test="${dto.bbs_writer_id == qdto.comment_writer_id}">
                         <td class="text-center"><b>${qdto.comment_writer_name}</b></td>
                         </c:when>
                         <c:otherwise>
@@ -141,7 +141,7 @@
                         <td class="text-left">${qdto.comment_content}</td>
                         <td class="text-center eng">${qdto.comment_date}</td>
                         <c:choose>
-                        <c:when test="${dto.bbs_status == 'send' && dto.bbs_writer_name == qdto.comment_writer_name}">
+                        <c:when test="${dto.bbs_status == 'send' && dto.bbs_writer_id == qdto.comment_writer_id}">
                        	<td class="text-center">
                 			<a href="<%=request.getContextPath()%>/mypageQnaCommentDeleteOk.do?comment_no=${qdto.comment_no}&qna_no=${dto.bbs_no}" onclick="return confirm('정말 삭제하시겠습니까?');" class="delbtn">삭제</a>
             			</td>
