@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.controller.Action;
 import com.controller.ActionForward;
+import com.model.QnaCommentDAO;
 import com.model.QnaDAO;
 import com.model.QnaDTO;
 
@@ -20,6 +21,8 @@ public class AdminQnaDeleteOkAction implements Action {
 		
 		int no = Integer.parseInt(request.getParameter("no").trim());
 		QnaDAO dao = QnaDAO.getInstance();
+		QnaCommentDAO CommentDao = QnaCommentDAO.getInstance();
+
 		
 		// 파일 저장 폴더
         String saveFolder = request.getSession().getServletContext().getRealPath("/");
@@ -51,12 +54,13 @@ public class AdminQnaDeleteOkAction implements Action {
 		}
 
 		int res = dao.deleteQna(no);
-		
+		int yes = CommentDao.deleteQnaComment(no);
+
 		ActionForward forward = new ActionForward();
 		PrintWriter out = response.getWriter();
 
 		
-        if (res > 0) {
+        if (res > 0 && yes > 0) {
             forward.setRedirect(true);
             forward.setPath("qnaList.do");
         } else {
