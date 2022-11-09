@@ -85,8 +85,7 @@
                 
                 <option value="bbs_hit_desc"<c:if test="${map.ps_order == 'bbs_hit_desc'}"> selected="selected"</c:if>>조회수 역순</option>
                 <option value="bbs_hit_asc"<c:if test="${map.ps_order == 'bbs_hit_asc'}"> selected="selected"</c:if>>조회수 순</option>
-                <option value="" disabled="disabled">---------------</option>
-				
+
 				
 				</select>
 			</div>
