@@ -87,7 +87,9 @@ public class ReservDAO {
         // 검색용 설정
         String search_sql = " where reserv_no > 0";
 
-        if(map.get("ps_status") != "" && map.get("ps_status").equals("cancel")) {
+        if(map.get("ps_status") != "" && map.get("ps_status").equals("reserv")) {
+            search_sql += " and reserv_status = 'reserv'";
+        }else if(map.get("ps_status") != "" && map.get("ps_status").equals("cancel")) {
             search_sql += " and reserv_status = 'cancel'";
         }
         if(map.get("ps_sess") != "" && map.get("ps_sess") != null) {
@@ -144,7 +146,9 @@ public class ReservDAO {
         String search_sql2 = "";
 
 
-        if(map.get("ps_status") != "" && map.get("ps_status").equals("cancel")) {
+        if(map.get("ps_status") != "" && map.get("ps_status").equals("reserv")) {
+            search_sql2 += " and reserv_status = 'reserv'";
+        }else if(map.get("ps_status") != "" && map.get("ps_status").equals("cancel")) {
             search_sql2 += " and reserv_status = 'cancel'";
         }
         if(map.get("ps_sess") != "" && map.get("ps_sess") != null) {
