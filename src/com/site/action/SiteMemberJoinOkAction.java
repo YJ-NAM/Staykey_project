@@ -39,7 +39,7 @@ public class SiteMemberJoinOkAction implements Action {
 		PrintWriter out = response.getWriter();
 		
 		if(res > 0) {
-        	session.setAttribute("login_msg", "<script>alert('성공적으로 회원 가입이 완료되었습니다.');</script>)");
+        	session.setAttribute("join_msg", "<script>alert('성공적으로 회원 가입이 완료되었습니다.');</script>)");
             forward.setRedirect(true);
             forward.setPath("index.jsp");
 		}else {
