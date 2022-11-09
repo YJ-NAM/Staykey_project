@@ -87,8 +87,8 @@
                 <option value="title_desc"<c:if test="${map.ps_order == 'title_desc'}"> selected="selected"</c:if>>글제목 역순</option>
                 <option value="title_asc"<c:if test="${map.ps_order == 'title_asc'}"> selected="selected"</c:if>>글제목 순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="hit_asc"<c:if test="${map.ps_order == 'hit_asc'}"> selected="selected"</c:if>>조회수 역순</option>
-                <option value="hit_desc"<c:if test="${map.ps_order == 'hit_desc'}"> selected="selected"</c:if>>조회수 순</option>
+                <option value="hit_desc"<c:if test="${map.ps_order == 'hit_desc'}"> selected="selected"</c:if>>조회수 역순</option>
+                <option value="hit_asc"<c:if test="${map.ps_order == 'hit_asc'}"> selected="selected"</c:if>>조회수 순</option>
                 <option value="" disabled="disabled">---------------</option>
                 <option value="show_desc"<c:if test="${map.ps_order == 'show_desc'}"> selected="selected"</c:if>>이벤트일자 최신</option>
                 <option value="show_asc"<c:if test="${map.ps_order == 'show_asc'}"> selected="selected"</c:if>>이벤트일자 예전</option>
