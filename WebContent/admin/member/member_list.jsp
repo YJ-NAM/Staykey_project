@@ -133,7 +133,7 @@
                 </td>
                 <td ${showLink} class="py-4">
                     <p class="mb-1"><b>${dto.getMember_name()}</b></p>
-                    <p>${dto.getMember_id()}</p>
+                    <p class="eng">${dto.getMember_id()}</p>
                 </td>
                 <td class="eng" ${showLink}>
                     <c:choose>

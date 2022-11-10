@@ -108,8 +108,8 @@
                 	<p><b>${dto.bbs_writer_name}</b></p>
                 	<p class="eng">${dto.bbs_writer_id}</p>
                 </td>
-                <td ${showLink}>${dto.bbs_hit}</td>
-                <td ${showLink}>${dto.bbs_date.substring(0, 10)}<br />${dto.bbs_date.substring(11)}</td>
+                <td ${showLink} class="eng">${dto.bbs_hit}</td>
+                <td ${showLink} class="eng">${dto.bbs_date.substring(0, 10)}<br />${dto.bbs_date.substring(11)}</td>
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/qnaDeleteOk.do?no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>
