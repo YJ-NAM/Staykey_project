@@ -102,7 +102,7 @@
                 <th>No.</th>
                 <th>유형</th>
                 <th>사진</th>
-                <th>아이디/이름</th>
+                <th>이름<br>아이디</th>
                 <th>이메일</th>
                 <th>전화번호</th>
                 <th>예약횟수</th>
@@ -132,8 +132,8 @@
                     </c:choose>
                 </td>
                 <td ${showLink} class="py-4">
-                    <p class="mb-1"><b>${dto.getMember_id()}</b></p>
-                    <p>${dto.getMember_name()}</p>
+                    <p class="mb-1"><b>${dto.getMember_name()}</b></p>
+                    <p>${dto.getMember_id()}</p>
                 </td>
                 <td ${showLink}>
                     <c:choose>
