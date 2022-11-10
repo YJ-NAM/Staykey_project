@@ -124,6 +124,7 @@
                         <th class="text-center">내용</th>
                         <th class="text-center">작성일</th>
                         <c:if test="${dto.bbs_status == 'send'}"><th class="text-center">기능</th></c:if>
+                        <c:if test="${dto.bbs_status != 'send'}"><th class="text-center"></th></c:if>
                     </tr>
                 </thead>
 
