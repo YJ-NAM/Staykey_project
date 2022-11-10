@@ -187,10 +187,16 @@
                             <tr>
                                 <c:choose>
 		                    	<c:when test="${dto.bbs_writer_id == qdto.comment_writer_id}">
-		                        <td class="text-center"><b>${qdto.comment_writer_name}</b></td>
+		                        <td class="text-center">
+		                        <p class="mb-1"><b>${qdto.comment_writer_id}</b></p>
+		                        <p>${qdto.comment_writer_name}</p>
+		                        </td>
 		                        </c:when>
 		                        <c:otherwise>
-		                        <td class="text-center text-danger"><b>관리자</b></td>
+		                        <td class="text-center text-primary">
+		                        <p class="mb-1"><b>${qdto.comment_writer_id}(관리자)</b></p>
+		                        <p>${qdto.comment_writer_name}</p>
+		                        </td>
 		                        </c:otherwise>
 		                        </c:choose>
                                 <td class="text-left">${qdto.comment_content}</td>
