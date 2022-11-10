@@ -29,11 +29,14 @@
         </colgroup>
 
         <tr>
-           <th>숙소명</th>
-           <td colspan="3">
+           <th>숙소 이름</th>
+           <td>
              	<input type="text" name="review_stayname" value="${dto.review_stayname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
-           		<input type="text" name="review_roomname" value="${dto.review_roomname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
            </td>
+           <th>사용 객실</th>            
+           <td>
+            	<input type="text" name="review_roomname" value=" ${dto.review_roomname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
+           </td>                  
         </tr>
         
         <tr>
