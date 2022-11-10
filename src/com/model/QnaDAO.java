@@ -264,6 +264,7 @@ public class QnaDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+
         } finally {
             closeConn(rs, pstmt, con);
         }
@@ -386,8 +387,9 @@ public class QnaDAO {
     // ======================================================
     // 문의글 등록 메서드
     // ======================================================
-    public int registerQna(QnaDTO dto) {
-        int result = 0, count = 0;
+    public String registerQna(QnaDTO dto) {
+        String result = null;
+        int count = 0;
 
         try {
             openConn();
@@ -411,12 +413,16 @@ public class QnaDAO {
             pstmt.setString(7, dto.getBbs_writer_id());
             pstmt.setString(8, dto.getBbs_writer_pw());
 
-            result = pstmt.executeUpdate();
+            int res = pstmt.executeUpdate();
+            result = res + "/" + count;
+
         } catch (SQLException e) {
             e.printStackTrace();
+
         } finally {
             closeConn(rs, pstmt, con);
         }
+
         return result;
     }
 

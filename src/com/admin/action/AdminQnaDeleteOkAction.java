@@ -56,11 +56,12 @@ public class AdminQnaDeleteOkAction implements Action {
 		int res = dao.deleteQna(no);
 		int yes = CommentDao.deleteQnaComment(no);
 
+
 		ActionForward forward = new ActionForward();
 		PrintWriter out = response.getWriter();
 
 		
-        if (res > 0 && yes > 0) {
+        if (res > 0) {
             forward.setRedirect(true);
             forward.setPath("qnaList.do");
         } else {
