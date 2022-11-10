@@ -39,7 +39,8 @@
                             <c:if test="${dto.bbs_status == 'done'}"><span class="text-danger">완료</span></c:if>
                         </td>
                         <td colspan="2">
-                            <form action="<%=request.getContextPath()%>/admin/qnaModifyOk.do?no=${dto.bbs_no}" method="post">
+                            <form action="<%=request.getContextPath()%>/admin/qnaModifyOk.do" method="post">
+                            <input type="hidden" name="no" value="${dto.bbs_no}" />
                         	<select name="bbs_status" class="form-select">
                                 <option value="send"<c:if test="${dto.bbs_status == 'send'}"> selected="selected"</c:if>>대기</option>
                         		<option value="ing"<c:if test="${dto.bbs_status == 'ing'}"> selected="selected"</c:if>>처리중</option>
@@ -187,10 +188,16 @@
                             <tr>
                                 <c:choose>
 		                    	<c:when test="${dto.bbs_writer_id == qdto.comment_writer_id}">
-		                        <td class="text-center"><b>${qdto.comment_writer_name}</b></td>
+		                        <td class="text-center">
+		                        <p class="mb-1"><b>${qdto.comment_writer_id}</b></p>
+		                        <p>${qdto.comment_writer_name}</p>
+		                        </td>
 		                        </c:when>
 		                        <c:otherwise>
-		                        <td class="text-center text-danger"><b>관리자</b></td>
+		                        <td class="text-center text-primary">
+		                        <p class="mb-1"><b>${qdto.comment_writer_id}(관리자)</b></p>
+		                        <p>${qdto.comment_writer_name}</p>
+		                        </td>
 		                        </c:otherwise>
 		                        </c:choose>
                                 <td class="text-left">${qdto.comment_content}</td>
