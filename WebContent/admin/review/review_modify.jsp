@@ -8,7 +8,7 @@
 
 <c:set var="dto" value="${member}" />
 
-
+<script type="text/javascript">$("#nav-review").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>후기 수정</h2>
     <small>후기의 정보를 수정 할 수 있습니다.</small>
