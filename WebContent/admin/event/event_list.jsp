@@ -153,8 +153,8 @@
                 </td>
                 <td ${showLink} class="eng">${dto.bbs_title.replace("<br />", "").replace("<br>", "")}</td>
                 <td ${showLink} class="py-4">
-                    <p><b class="eng">${dto.bbs_writer_name}</b></p>
-                    <p>${dto.bbs_writer_id}</p>
+                    <p><b>${dto.bbs_writer_name}</b></p>
+                    <p class="eng">${dto.bbs_writer_id}</p>
                 </td>
                 <td ${showLink} class="eng">${dto.bbs_date.substring(0, 10)}<br />${dto.bbs_date.substring(11)}</td>
                 <td ${showLink} class="eng">${dto.bbs_hit}</td>
