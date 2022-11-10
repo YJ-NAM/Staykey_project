@@ -236,8 +236,8 @@ public class QnaDAO {
         } catch (SQLException e) {
             e.printStackTrace();
 
-//        } finally {
-//            closeConn(rs, pstmt, con);
+        } finally {
+            closeConn(rs, pstmt, con);
         }
 
         return dto;
