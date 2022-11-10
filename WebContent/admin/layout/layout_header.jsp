@@ -55,35 +55,43 @@
 
     <script type="text/javascript">
     const wsurl = "ws://localhost:8888/Staykey_project/webSocket";
-    var webSocket = new WebSocket(wsurl);
+    function connectWebSocket() {
+        let webSocket = new WebSocket(wsurl);
 
-    // 웹소켓 서버에 연결됐을 때 실행
-    webSocket.onopen = function(event) {
-        console.log("***** 웹소켓 서버 연결 됨 *****");
-    };
+        webSocket.onmessage = function(event) {
+            console.log(" *** >> " + event.data);
+            var epd_data = event.data.split("|");
+            var m_type = epd_data[0]; //구분
+            var m_name = epd_data[1]; //이름
+            var m_id = epd_data[2]; //아이디
+            var m_cont = epd_data[3]; //내용
+            var m_num = epd_data[4]; //링크No
 
-    // 웹소켓이 닫혔을 때(서버와의 연결이 끊겼을 때) 실행
-    webSocket.onclose = function(event) {
-        console.log("***** 웹소켓 서버 연결 끊김 *****");
-        setTimeout(function(){
-            webSocket = new WebSocket(wsurl);
-            console.log("***** 웹소켓 서버 재 연결 *****");
-        });
-    };
+            if(m_cont != ""){
+                popToast(m_type, m_name, m_id, m_cont, m_num);
+            }
+        };
 
-    // 메시지를 받았을 때 실행
-    webSocket.onmessage = function(event) {
-        var message = event.data.split("|");
-        var m_type = message[0]; //구분
-        var m_name = message[1]; //이름
-        var m_id = message[2]; //아이디
-        var m_cont = message[3]; //내용
-        var m_num = message[4]; //링크No
+        webSocket.onopen = function() {
+            console.log(" *** webSocket Connect...");
+        };
 
-        if(m_cont != ""){
-            popToast(m_type, m_name, m_id, m_cont, m_num);
-        }
-    };
+        webSocket.onclose = function() {
+            console.log(" *** webSocket Disconnect...");
+            setTimeout(function() {
+                webSocket = connectWebSocket();
+            });
+        };
+
+        webSocket.onerror = function() {
+            console.log(" *** webSocket Error...");
+        };
+
+        return webSocket;
+    }
+
+    // 웹 소켓 생성
+    var webSocket = connectWebSocket();
     </script>
 </head>
 <body>
