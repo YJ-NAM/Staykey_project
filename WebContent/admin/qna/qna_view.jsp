@@ -39,7 +39,8 @@
                             <c:if test="${dto.bbs_status == 'done'}"><span class="text-danger">완료</span></c:if>
                         </td>
                         <td colspan="2">
-                            <form action="<%=request.getContextPath()%>/admin/qnaModifyOk.do?no=${dto.bbs_no}" method="post">
+                            <form action="<%=request.getContextPath()%>/admin/qnaModifyOk.do" method="post">
+                            <input type="hidden" name="no" value="${dto.bbs_no}" />
                         	<select name="bbs_status" class="form-select">
                                 <option value="send"<c:if test="${dto.bbs_status == 'send'}"> selected="selected"</c:if>>대기</option>
                         		<option value="ing"<c:if test="${dto.bbs_status == 'ing'}"> selected="selected"</c:if>>처리중</option>

@@ -190,12 +190,12 @@ public class QnaDAO {
                 
                 list.add(dto);
             }
+            closeConn(rs, pstmt, con);
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            closeConn(rs, pstmt, con);
-        }
+        }finally {
+		}
         return list;
     }
 
@@ -230,14 +230,12 @@ public class QnaDAO {
                 dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
                 dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
                 dto.setBbs_date(rs.getString("bbs_date"));
-
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        } finally {
             closeConn(rs, pstmt, con);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
         }
 
         return dto;
