@@ -13,9 +13,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 
-
-
-
 public class ReviewDAO {
     Connection con = null;
     PreparedStatement pstmt = null;
@@ -184,8 +181,16 @@ public class ReviewDAO {
                 dto.setReview_point3(rs.getInt("review_point3"));
                 dto.setReview_point4(rs.getInt("review_point4"));
                 dto.setReview_point5(rs.getInt("review_point5"));
-                dto.setReview_point6(rs.getInt("review_point6"));
-                dto.setReview_content(rs.getString("review_content"));
+                dto.setReview_point6(rs.getInt("review_point6"));    
+                String reviewContent = rs.getString("review_content");      
+                if(reviewContent.contains("시발") || reviewContent.contains("미친") || reviewContent.contains("새끼") || reviewContent.contains("시팔")|| reviewContent.contains("미쳤나")) {
+                	reviewContent = reviewContent.replace("시발", "***");
+                	reviewContent = reviewContent.replace("미친", "***");
+                	reviewContent = reviewContent.replace("새끼", "***");
+                	reviewContent = reviewContent.replace("시팔", "***");
+                	reviewContent = reviewContent.replace("미쳤나", "***");
+                }              
+                dto.setReview_content(reviewContent);
                 dto.setReview_file(rs.getString("review_file"));
                 dto.setReview_id(rs.getString("review_id"));
                 dto.setReview_pw(rs.getString("review_pw"));
@@ -232,7 +237,15 @@ public class ReviewDAO {
                 dto.setReview_point4(rs.getInt("review_point4"));
                 dto.setReview_point5(rs.getInt("review_point5"));
                 dto.setReview_point6(rs.getInt("review_point6"));
-                dto.setReview_content(rs.getString("review_content").replace("\n", "<br />"));
+                String reviewContent = rs.getString("review_content").replace("\n", "<br />");      
+                if(reviewContent.contains("시발") || reviewContent.contains("미친") || reviewContent.contains("새끼") || reviewContent.contains("시팔")|| reviewContent.contains("미쳤나")) {
+                	reviewContent = reviewContent.replace("시발", "***");
+                	reviewContent = reviewContent.replace("미친", "***");
+                	reviewContent = reviewContent.replace("새끼", "***");
+                	reviewContent = reviewContent.replace("시팔", "***");
+                	reviewContent = reviewContent.replace("미쳤나", "***");
+                }       
+                dto.setReview_content(reviewContent);
                 dto.setReview_file(rs.getString("review_file"));
                 dto.setReview_id(rs.getString("review_id"));
                 dto.setReview_pw(rs.getString("review_pw"));
@@ -281,7 +294,7 @@ public class ReviewDAO {
 
     
     // ======================================================
-    // 후기를 수정 하는 메서드
+    // 후기를 수정하는 메서드
     // ======================================================
     public int reviewModify(ReviewDTO dto) {
         int result = 0;
@@ -347,7 +360,15 @@ public class ReviewDAO {
                 dto.setReview_point4(rs.getInt("review_point4"));
                 dto.setReview_point5(rs.getInt("review_point5"));
                 dto.setReview_point6(rs.getInt("review_point6"));
-                dto.setReview_content(rs.getString("review_content"));
+                String reviewContent = rs.getString("review_content").replace("\n", "<br />");      
+                if(reviewContent.contains("시발") || reviewContent.contains("미친") || reviewContent.contains("새끼") || reviewContent.contains("시팔")|| reviewContent.contains("미쳤나")) {
+                	reviewContent = reviewContent.replace("시발", "***");
+                	reviewContent = reviewContent.replace("미친", "***");
+                	reviewContent = reviewContent.replace("새끼", "***");
+                	reviewContent = reviewContent.replace("시팔", "***");
+                	reviewContent = reviewContent.replace("미쳤나", "***");
+                }      
+                dto.setReview_content(reviewContent);
                 dto.setReview_file(rs.getString("review_file"));
                 dto.setReview_id(rs.getString("review_id"));
                 dto.setReview_pw(rs.getString("review_pw"));
