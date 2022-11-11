@@ -182,15 +182,11 @@ public class ReviewDAO {
                 dto.setReview_point4(rs.getInt("review_point4"));
                 dto.setReview_point5(rs.getInt("review_point5"));
                 dto.setReview_point6(rs.getInt("review_point6"));    
-                String reviewContent = rs.getString("review_content");      
+                String reviewContent = rs.getString("review_content");
                 if(reviewContent.contains("시발") || reviewContent.contains("미친") || reviewContent.contains("새끼") || reviewContent.contains("시팔") || reviewContent.contains("미쳤나") || reviewContent.contains("존나")) {
-                	reviewContent = reviewContent.replace("시발", "***");
-                	reviewContent = reviewContent.replace("미친", "***");
-                	reviewContent = reviewContent.replace("새끼", "***");
-                	reviewContent = reviewContent.replace("시팔", "***");
-                	reviewContent = reviewContent.replace("미쳤나", "***");
-                	reviewContent = reviewContent.replace("존나", "***");
-                }              
+                	reviewContent = reviewContent.replace("시발", "***").replace("미친", "***").replace("새끼", "***").replace("시팔", "***").replace("미쳤나", "***").replace("존나", "***");
+
+                }
                 dto.setReview_content(reviewContent);
                 dto.setReview_file(rs.getString("review_file"));
                 dto.setReview_id(rs.getString("review_id"));
@@ -240,12 +236,7 @@ public class ReviewDAO {
                 dto.setReview_point6(rs.getInt("review_point6"));
                 String reviewContent = rs.getString("review_content");      
                 if(reviewContent.contains("시발") || reviewContent.contains("미친") || reviewContent.contains("새끼") || reviewContent.contains("시팔") || reviewContent.contains("미쳤나") || reviewContent.contains("존나")) {
-                	reviewContent = reviewContent.replace("시발", "***");
-                	reviewContent = reviewContent.replace("미친", "***");
-                	reviewContent = reviewContent.replace("새끼", "***");
-                	reviewContent = reviewContent.replace("시팔", "***");
-                	reviewContent = reviewContent.replace("미쳤나", "***");
-                	reviewContent = reviewContent.replace("존나", "***");
+                	reviewContent = reviewContent.replace("시발", "***").replace("미친", "***").replace("새끼", "***").replace("시팔", "***").replace("미쳤나", "***").replace("존나", "***");
                 }              
                 dto.setReview_content(reviewContent);
                 dto.setReview_file(rs.getString("review_file"));
@@ -262,9 +253,6 @@ public class ReviewDAO {
         }
         return dto;
     }
-    
-    
-    
 
     
     // ======================================================
@@ -364,12 +352,7 @@ public class ReviewDAO {
                 dto.setReview_point6(rs.getInt("review_point6"));
                 String reviewContent = rs.getString("review_content");      
                 if(reviewContent.contains("시발") || reviewContent.contains("미친") || reviewContent.contains("새끼") || reviewContent.contains("시팔") || reviewContent.contains("미쳤나") || reviewContent.contains("존나")) {
-                	reviewContent = reviewContent.replace("시발", "***");
-                	reviewContent = reviewContent.replace("미친", "***");
-                	reviewContent = reviewContent.replace("새끼", "***");
-                	reviewContent = reviewContent.replace("시팔", "***");
-                	reviewContent = reviewContent.replace("미쳤나", "***");
-                	reviewContent = reviewContent.replace("존나", "***");
+                	reviewContent = reviewContent.replace("시발", "***").replace("미친", "***").replace("새끼", "***").replace("시팔", "***").replace("미쳤나", "***").replace("존나", "***");
                 }              
                 dto.setReview_content(reviewContent);
                 dto.setReview_file(rs.getString("review_file"));
