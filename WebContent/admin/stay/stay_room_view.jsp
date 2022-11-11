@@ -42,7 +42,7 @@ ${ msg }
                                     <div class="option">
                                         <p>체크인 ${room.room_checkin} / 체크아웃 ${room.room_checkout}</p>
                                         <p>기준 인원 <fmt:formatNumber value="${room.room_people_min}" />명 (최대 인원 <fmt:formatNumber value="${room.room_people_max}" />명)</p>
-                                        <p>${room.room_type}</p>원
+                                        <p>${room.room_type}</p>
                                         <p>객실면적 ${room.room_size}㎡</p>
                                         <p>${room.room_bed}</p>
                                     </div>
