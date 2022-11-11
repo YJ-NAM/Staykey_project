@@ -32,7 +32,6 @@ public class FrontController extends HttpServlet {
         // 콘솔 표시 정보
         String show_page = command;
         String show_user = null;
-        String getQueryString = request.getQueryString(); //쿼리스트링
         Enumeration getFormData = request.getParameterNames(); // 폼 데이터
 
 
@@ -59,23 +58,13 @@ public class FrontController extends HttpServlet {
         System.out.println("\n| ----------------------------------------------------------------------------- |");
         System.out.println("| * 접속자 =>>> " + show_user);
         System.out.println("| * 페이지 =>>> " + show_page);
-        if(getQueryString != null) {
-            String[] epdQueryString = getQueryString.split("&");
-            for(int i=0; i<epdQueryString.length; i++){
-                String[] subQueryString = epdQueryString[i].split("=");
-                if(subQueryString.length > 1){
-                    System.out.println("|         =>>> " + subQueryString[0] + " : " + URLDecoder.decode(subQueryString[1], "utf-8"));
-                }
-            }
-        }
-
         if(getFormData != null && command != "memberLoginOk.do" && command != "memberFindIdPwOk.do" && command != "memberJoinOk.do") {
             while(getFormData.hasMoreElements()){
                 String formKey = (String) getFormData.nextElement();
                 String[] formValues = request.getParameterValues(formKey);     
                 for(String formValue : formValues){
                     if(formValue.length() > 0 && formValue != null){
-                        System.out.println("|         =>>> " + formKey + " : " + formValue);
+                        System.out.println("|          =>>> " + formKey + " : " + formValue);
                     }
                 }   
             }
