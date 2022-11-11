@@ -19,7 +19,7 @@
 
 <br/>
 
-## :orange_circle: 실행화면
+## :blue_circle: 실행화면
 ![img1](./readme_img/readme_1.jpg)
 
 <br/>
