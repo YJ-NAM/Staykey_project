@@ -17,6 +17,7 @@ popToast = function(m_type, m_name, m_id, m_cont, m_num) {
     let show_icon = "";
     let show_title = "";
     let show_link = "";
+    let show_size = 0;
 
 
     // 1:1 문의
@@ -24,24 +25,28 @@ popToast = function(m_type, m_name, m_id, m_cont, m_num) {
         show_icon = "icon-speech";
         show_title = "1:1 문의 게시물";
         show_link = "qnaView.do?no";
+        show_size = 700;
 
     // 예약 접수
     }else if(m_type == "reserv"){
         show_icon = "icon-plane";
         show_title = "예약 접수";
         show_link = "reservView.do?sess";
+        show_size = 700;
 
     // 후기 등록
     }else if(m_type == "review"){
         show_icon = "icon-note";
         show_title = "후기 등록";
         show_link = "reviewView.do?id";
+        show_size = 700;
 
     // 신규 회원
     }else if(m_type == "join"){
         show_icon = "icon-people";
         show_title = "회원 가입";
         show_link = "memberView.do?id";
+        show_size = 800;
 
     }
 
@@ -61,7 +66,7 @@ popToast = function(m_type, m_name, m_id, m_cont, m_num) {
         toastHTML += "\t\t<button type=\"button\" class=\"ml-2 mb-1 close\" data-dismiss=\"toast\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n";
         toastHTML += "\t</div>\n";
         toastHTML += "\t<div class=\"toast-body\">\n";
-        toastHTML += "\t\t<a href=\"javascript:popWindow('../admin/"+show_link+"="+m_num+"', 700, 900);\">";
+        toastHTML += "\t\t<a href=\"javascript:popWindow('../admin/"+show_link+"="+m_num+"', "+show_size+", 900);\">";
         toastHTML += "\t\t\t" + m_cont + "\n";
         toastHTML += "\t\t\t<div class=\"clear\"><small class=\"text-muted float-left\"><i class=\"icon-user\"></i> "+m_name+" ("+m_id+")</small><small class=\"text-muted float-right\"><i class=\"icon-clock\"></i> "+m_hou+":"+m_min+":"+m_sec+"</small></div>\n";
         toastHTML += "\t\t</a>\n";
