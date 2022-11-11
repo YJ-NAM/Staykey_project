@@ -347,12 +347,15 @@ header.fixed-top .top-info a.nav-link {
     -webkit-transition: all 0.3s ease-out 0s;
     -o-transition: all 0.3s ease-out 0s;
     transition: all 0.3s ease-out 0s;
+    border-radius: 7px;
 }
 #toast-wrap .toast .toast-header {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.8);
     padding: .35rem .75rem;
     background: #212529;
+    border-top-left-radius: calc(7px - 1px);
+    border-top-right-radius: calc(7px - 1px);
 }
 #toast-wrap .toast .toast-header i {
     font-size: 1.25rem;

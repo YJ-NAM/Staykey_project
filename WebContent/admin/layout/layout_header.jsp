@@ -54,7 +54,7 @@
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/script.js?<%=time%>"></script>
 
     <script type="text/javascript">
-    const wsurl = "ws://localhost:8888/Staykey_project/webSocket";
+    const wsurl = "ws://121.164.91.191:8080/Staykey_project/webSocket";
     function connectWebSocket() {
         let webSocket = new WebSocket(wsurl);
 

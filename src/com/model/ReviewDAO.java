@@ -462,8 +462,9 @@ public class ReviewDAO {
     // ======================================================
     // 후기 등록 하는 메서드
     // ======================================================
-    public int writeReview(ReviewDTO dto) {
-        int result = 0, count = 0;
+    public String writeReview(ReviewDTO dto) {
+        String result = null;
+        int count = 0;
 
         try {
             openConn();
@@ -495,13 +496,14 @@ public class ReviewDAO {
             pstmt.setString(16, dto.getReview_pw());
             pstmt.setString(17, dto.getReview_name());
 
-            result = pstmt.executeUpdate();
+            int res = pstmt.executeUpdate();
+            result = res + "/" + count;
 
         } catch (Exception e) {
             e.printStackTrace();
 
         } finally {
-            closeConn(pstmt, con);
+            closeConn(rs, pstmt, con);
         }
 
         return result;
