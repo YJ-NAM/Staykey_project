@@ -8,7 +8,7 @@
 
 <br/>
 
-## Description
+## :purple_circle: Description
 설명 설명
 
 설명 설명
@@ -19,7 +19,7 @@
 
 <br/>
 
-### 실행화면
+## :orange_circle: 실행화면
 ![img1](./readme_img/readme_1.jpg)
 
 <br/>
@@ -30,19 +30,34 @@
 
 <br/>
 
-## Environment
-> JAVA (jdk-11.0.16.1)
-> 
-> Oracle Database Express Edition (XE) Release 11.2.0.2.0
->
-> JDBC
+## :yellow_circle: Environment
+
+- JAVA (jdk-11.0.16.1)
+
+- Apache Tomcat 9.0.65
+- Oracle Database Express Edition (XE) Release 11.2.0.2.0
+- JDBC
 
 
 <br/>
 
-## Work
+## :red_circle: API
 
-- ndj111 : 
+- Swiper.js [:link:](https://swiperjs.com/)
+
+- Date Range Picker.js [:link:](https://www.daterangepicker.com/)
+- BootStrap [:link:](https://getbootstrap.com/)
+- Google Fonts [:link:](https://fonts.google.com/)
+- Font Awesome [:link:](https://fontawesome.com/)
+- Simple Line Icons [:link:](https://simplelineicons.github.io/)
+
+
+<br/>
+
+## :green_circle: Work
+
+- ndj111
+  - asdasdasd
 
 - YJ-NAM : 
 - bbbmore :
