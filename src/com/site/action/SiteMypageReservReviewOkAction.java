@@ -105,7 +105,8 @@ public class SiteMypageReservReviewOkAction implements Action {
             if(review_cont.length() > 35) review_cont = review_cont.substring(0, 35) + "...";
             out.println("<script>var webSocket = new WebSocket(\"ws://121.164.91.191:8080/Staykey_project/webSocket\"); "
                     + "webSocket.onopen = function(event) { webSocket.send(\"review|"+review_name+"|"+review_id+"|"+review_cont+"|"+num+"\"); "
-                    + "webSocket.close(); }; location.href='mypageReservList.do?type=done';</script>");
+                    + "webSocket.close(); };</script>");
+            out.println("<script>setTimeout(function(){ location.href='mypageReservList.do?type=done'; }, 500);</script>");
 
         }else{
             // 에러 중 등록 된 파일 삭제

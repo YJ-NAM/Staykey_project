@@ -94,7 +94,8 @@ public class SiteMypageQnaWriteOkAction implements Action {
         if (result != null && res > 0) {
             out.println("<script>var webSocket = new WebSocket(\"ws://121.164.91.191:8080/Staykey_project/webSocket\"); "
                     + "webSocket.onopen = function(event) { webSocket.send(\"qna|"+name+"|"+id+"|"+bbs_title+"|"+num+"\"); "
-                    + "webSocket.close(); }; location.href='mypageQnaList.do';</script>");
+                    + "webSocket.close(); };</script>");
+            out.println("<script>setTimeout(function(){ location.href='mypageQnaList.do'; }, 500);</script>");
 
         }else{
             out.println("<script>alert('문의글 등록 중 에러가 발생하였습니다.'); history.back();</script>");
