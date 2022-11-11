@@ -39,7 +39,8 @@ public class SiteMemberJoinOkAction implements Action {
         if (res > 0) {
             out.println("<script>var webSocket = new WebSocket(\"ws://121.164.91.191:8080/Staykey_project/webSocket\"); "
                     + "webSocket.onopen = function(event) { webSocket.send(\"join|"+member_name+"|"+member_id+"|"+member_name+"님 회원가입|"+member_id+"\"); "
-                    + "webSocket.close(); }; alert('스테이:키의 회원이 되어주셔서 감사합니다 :-)'); location.href='main.do';</script>");
+                    + "webSocket.close(); };</script>");
+            out.println("<script>setTimeout(function(){ alert('스테이:키의 회원이 되어주셔서 감사합니다 :-)'); location.href='main.do'; }, 500);</script>");
 
 		}else{
             out.println("<script>alert('회원 가입 중 에러가 발생했습니다.'); history.back();</script>");
