@@ -58,7 +58,7 @@ public class FrontController extends HttpServlet {
         System.out.println("\n| ----------------------------------------------------------------------------- |");
         System.out.println("| * 접속자 =>>> " + show_user);
         System.out.println("| * 페이지 =>>> " + show_page);
-        if(getFormData != null && command != "memberLoginOk.do" && command != "memberFindIdPwOk.do" && command != "memberJoinOk.do") {
+        if(getFormData != null && !command.equals("memberLoginOk.do") && !command.equals("memberFindIdPwOk.do") && !command.equals("memberJoinOk.do")) {
             while(getFormData.hasMoreElements()){
                 String formKey = (String) getFormData.nextElement();
                 String[] formValues = request.getParameterValues(formKey);     
