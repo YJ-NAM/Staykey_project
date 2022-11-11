@@ -90,12 +90,22 @@ public class SiteMypageReservReviewOkAction implements Action {
         }
 
 
-        ActionForward forward = new ActionForward();
-        int result = dao.writeReview(dto);
 
-        if(result > 0) {
-            forward.setRedirect(true);
-            forward.setPath("mypageReservList.do?type=done");
+        String[] result = dao.writeReview(dto).split("/");
+        int res = 0;
+        int num = 0;
+
+        if(result != null) {
+            res = Integer.parseInt(result[0]);
+            num = Integer.parseInt(result[1]);
+        }
+
+        if (result != null && res > 0) {
+            String review_cont = review_content.replaceAll("(\r\n|\r|\n|\n\r)", "<br />");
+            if(review_cont.length() > 35) review_cont = review_cont.substring(0, 35) + "...";
+            out.println("<script>var webSocket = new WebSocket(\"ws://121.164.91.191:8080/Staykey_project/webSocket\"); "
+                    + "webSocket.onopen = function(event) { webSocket.send(\"review|"+review_name+"|"+review_id+"|"+review_cont+"|"+num+"\"); "
+                    + "webSocket.close(); }; location.href='mypageReservList.do?type=done';</script>");
 
         }else{
             // 에러 중 등록 된 파일 삭제
@@ -115,11 +125,10 @@ public class SiteMypageReservReviewOkAction implements Action {
                 }
             }
 
-            forward = null;
             out.println("<script>alert('후기 등록 중 에러가 발생하였습니다.'); history.back();</script>");
         }
 
-        return forward;
+        return null;
     }
 
 }
