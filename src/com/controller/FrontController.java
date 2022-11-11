@@ -69,7 +69,7 @@ public class FrontController extends HttpServlet {
             }
         }
 
-        if(getFormData != null) {
+        if(getFormData != null && command != "memberLoginOk.do" && command != "memberFindIdPwOk.do" && command != "memberJoinOk.do") {
             while(getFormData.hasMoreElements()){
                 String formKey = (String) getFormData.nextElement();
                 String[] formValues = request.getParameterValues(formKey);     
