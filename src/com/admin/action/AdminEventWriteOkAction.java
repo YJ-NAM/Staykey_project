@@ -25,7 +25,6 @@ public class AdminEventWriteOkAction implements Action {
 		// 파일 업로드 설정
 		String thisFolder = "/data/event/";
 		String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
-		System.out.println(saveFolder);
 		int fileSize = 10 * 1024 * 1024; // 10MB
 
 		// 업로드 폴더 체크 후 없으면 생성
@@ -48,7 +47,6 @@ public class AdminEventWriteOkAction implements Action {
 		String ev_writer_name = multi.getParameter("ev_writer_name");
 		String ev_writer_id = multi.getParameter("ev_writer_id");
 		String ev_writer_pw = multi.getParameter("ev_writer_pw");
-		System.out.println("123123");
 
 		
 		// 첨부파일 이름 변경 처리
@@ -124,7 +122,6 @@ public class AdminEventWriteOkAction implements Action {
 			String fileDBName = thisFolder + mag_flie_rename;
 			dto.setBbs_file5(fileDBName);
 		}
-		System.out.println("여긴가");
 
 		
 		dto.setBbs_title(ev_title);

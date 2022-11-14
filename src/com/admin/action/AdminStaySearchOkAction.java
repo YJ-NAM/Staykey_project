@@ -51,7 +51,6 @@ public class AdminStaySearchOkAction implements Action {
 
 		PrintWriter out = response.getWriter();
 		out.println(result);
-		System.out.println(result);
 
 		return null;
 	}

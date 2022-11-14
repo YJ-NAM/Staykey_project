@@ -26,7 +26,6 @@ public class AdminMagazineWriteAction implements Action {
         ActionForward forward = new ActionForward();
     	forward.setRedirect(false);
     	forward.setPath("magazine/magazine_write.jsp");
-    	System.out.println("slist" + slist);
 
         return forward;		
 	}

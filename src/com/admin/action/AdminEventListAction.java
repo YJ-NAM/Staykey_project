@@ -23,7 +23,7 @@ public class AdminEventListAction implements Action {
         
     	
     	// 현재 날짜
-        LocalDate startNowDate = LocalDate.now();
+        LocalDate startNowDate = LocalDate.now().minusDays(30L); // 오늘로부터 30일전 부터
         String startDate = startNowDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate endNowDate = LocalDate.now().plusDays(30L); // 오늘로부터 30일후 까지
         String endDate = endNowDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));

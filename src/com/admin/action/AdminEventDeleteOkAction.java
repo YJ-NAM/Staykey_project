@@ -35,7 +35,6 @@ public class AdminEventDeleteOkAction implements Action {
 
 		        if (bbs_file1 != null) {
 		            File del_image = new File(saveFolder + bbs_file1);
-		            System.out.println(del_image);
 		            if (del_image.exists()) {
 		                del_image.delete();
 		            }
@@ -43,7 +42,6 @@ public class AdminEventDeleteOkAction implements Action {
 		        
 		        if (bbs_file2 != null) {
 		        	File del_image = new File(saveFolder + bbs_file2);
-		        	System.out.println(del_image);
 		        	if (del_image.exists()) {
 		        		del_image.delete();
 		        	}
@@ -51,7 +49,6 @@ public class AdminEventDeleteOkAction implements Action {
 		        
 		        if (bbs_file3 != null) {
 		        	File del_image = new File(saveFolder + bbs_file3);
-		        	System.out.println(del_image);
 		        	if (del_image.exists()) {
 		        		del_image.delete();
 		        	}
@@ -59,7 +56,6 @@ public class AdminEventDeleteOkAction implements Action {
 		        
 		        if (bbs_file4 != null) {
 		        	File del_image = new File(saveFolder + bbs_file4);
-		        	System.out.println(del_image);
 		        	if (del_image.exists()) {
 		        		del_image.delete();
 		        	}
@@ -67,7 +63,6 @@ public class AdminEventDeleteOkAction implements Action {
 		        
 		        if (bbs_file5 != null) {
 		        	File del_image = new File(saveFolder + bbs_file5);
-		        	System.out.println(del_image);
 		        	if (del_image.exists()) {
 		        		del_image.delete();
 		        	}

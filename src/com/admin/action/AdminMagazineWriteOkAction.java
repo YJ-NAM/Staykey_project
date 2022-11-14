@@ -24,7 +24,6 @@ public class AdminMagazineWriteOkAction implements Action {
 		// 파일 업로드 설정
 		String thisFolder = "/data/magazine/";
 		String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
-		System.out.println(saveFolder);
 		int fileSize = 10 * 1024 * 1024; // 10MB
 
 		// 업로드 폴더 체크 후 없으면 생성
