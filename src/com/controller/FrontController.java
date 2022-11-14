@@ -55,7 +55,7 @@ public class FrontController extends HttpServlet {
         }
 
 
-        System.out.println("\n| ----------------------------------------------------------------------------- |");
+        System.out.println("| ----------------------------------------------------------------------------- |");
         System.out.println("| * 접속자 =>>> " + show_user);
         System.out.println("| * 페이지 =>>> " + show_page);
         if(getFormData != null && !command.equals("memberLoginOk.do") && !command.equals("memberFindIdPwOk.do") && !command.equals("memberJoinOk.do")) {

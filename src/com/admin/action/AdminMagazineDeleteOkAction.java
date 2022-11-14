@@ -31,7 +31,6 @@ public class AdminMagazineDeleteOkAction implements Action {
 
         if (bbs_list_img != null) {
             File del_image = new File(saveFolder + bbs_list_img);
-            System.out.println(del_image);
             if (del_image.exists()) {
                 del_image.delete();
             }

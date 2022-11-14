@@ -28,7 +28,6 @@ public class AdminReviewDeleteOkAction implements Action {
 		String review_file = dto.getReview_file();
 
 		if (review_file != null) {
-			System.out.println(saveFolder + review_file);
 			File del_pimage = new File(saveFolder + review_file);
 			if (del_pimage.exists()) {
 				if (del_pimage.delete()) {

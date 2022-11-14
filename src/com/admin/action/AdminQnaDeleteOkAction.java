@@ -54,7 +54,7 @@ public class AdminQnaDeleteOkAction implements Action {
 		}
 
 		int res = dao.deleteQna(no);
-		int yes = CommentDao.deleteQnaComment(no);
+		CommentDao.deleteQnaComment(no);
 
 
 		ActionForward forward = new ActionForward();

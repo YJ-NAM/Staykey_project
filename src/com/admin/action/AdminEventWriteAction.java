@@ -27,7 +27,6 @@ public class AdminEventWriteAction implements Action {
         ActionForward forward = new ActionForward();
     	forward.setRedirect(false);
     	forward.setPath("event/event_write.jsp");
-    	System.out.println("slist" + slist);
     	
         return forward;	
         
