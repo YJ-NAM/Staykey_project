@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,macos,windows,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,macos,windows,java
 
+자료/
+
 ### Eclipse ###
 .metadata
 readme_img/
