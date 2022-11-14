@@ -370,11 +370,11 @@ legend {
     text-align: center;
 }
 .header .h-wrap .h-location button {
+	margin: 0 19px;
     padding: 10px;
     background-color: transparent;
-    font-family: 'NotoSerifKR';
     font-size: 17px;
-    font-weight: 500;
+    font-weight: 400;
     color:  #444;
     letter-spacing: -1px;
 }
@@ -410,9 +410,8 @@ legend {
     align-items: center;
     padding: 20px 30px;
     color: var(--color);
-    font-family: 'NotoSerifKR';
     font-size: 17px;
-    font-weight: 500;
+    font-weight: 400;
 }
 .header .h-wrap .h-nav ul li a:hover {
     color: #ffb9b1;
@@ -434,8 +433,7 @@ legend {
 }
 .header .h-wrap .menu-etc a {
     display: block;
-    font-family: 'Abril Fatface', cursive;
-    font-size: 18px;
+    font-size: 17px;
     color: var(--color);
     letter-spacing: 1px;
     background-color: transparent;
@@ -578,7 +576,6 @@ legend {
     box-sizing: border-box;
 }
 .footer .f-wrap .fw-cs h4 {
-    font-family: 'NotoSerifKR';
     font-size: 18px;
     font-weight: 500;
     color: var(--color);

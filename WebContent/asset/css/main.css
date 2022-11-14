@@ -54,10 +54,9 @@
     padding: 0 0;
 }
 .swiper-slide .title {
-    font-family: 'NotoSerifKR';
     text-align: center;
     font-size: 24px;
-    font-weight: 300;
+    font-weight: 400;
     color: #000;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
@@ -108,7 +107,6 @@
     line-height: 30px;
     letter-spacing: 2px;
     display: inline-block;
-    font-family: 'NotoSerifKR';
     border-bottom: 1px solid #800000;
 }
 .stay-list .stay-box .text {
@@ -126,7 +124,6 @@
     font-size: 22px;
     color: #000;
     font-weight: 400;
-    font-family: 'NotoSerifKR';
 }
 
 
@@ -134,9 +131,7 @@
     font-size: 12px;
     color: #000;
     letter-spacing: 10px;
-    font-weight: 500;
-    font-family: 'NotoSerifKR';
- 
+    font-weight: 450; 
 }
  
 .e_date {
@@ -160,13 +155,7 @@
     line-height: 30px;
     letter-spacing: 2px;
     display: inline-block;
-    font-family: 'NotoSerifKR';
 }
-
-
-
-
-
 
 
 /*************************/
@@ -208,16 +197,15 @@
 }
 .main-visual ul .swiper-slide a .mv-info .tit {
    font-size: 28px; 
-   font-weight: bold;
+   font-weight: 450;
    color: #000;
 }
 .main-visual ul .swiper-slide a .mv-info .sub {
     width: 60%;
     font-size: 15px;
     color: #800000;
-    font-weight: 500;
-    font-family: 'NotoSerifKR';
-    letter-spacing: 3px;
+    font-weight: 400;
+    letter-spacing: 1px;
     margin: 30px auto 0 auto;
     word-break: keep-all;
 }
@@ -264,10 +252,9 @@
 }
 .main-new .mn-title {
     margin-bottom: 30px;
-    font-family: 'NotoSerifKR';
     font-weight: 500;
     font-size: 16px;
-    letter-spacing: 10px;
+    letter-spacing: 5px;
     text-align: center;
 }
 .main-new .mn-container {
@@ -363,6 +350,7 @@
     font-size: 16px;
     font-weight: 300;
     line-height: 24px;
+    letter-spacing: 1px;
     color: #fff;
  }
 
@@ -633,7 +621,7 @@
 .main-event .me-wrap li .e_info p.stay {
     margin-top: 30px;
     font-size: 22px;
-    font-weight: 500;
+    font-weight: 450;
     color: #181818;
 }
 .main-event .me-wrap li:hover .e_info p.stay {
@@ -709,7 +697,6 @@
     position: absolute;
     background-color: #fefefe;
     opacity: 0.8;
-    font-family: 'NotoSerifKR';
     padding: 60px 0;
 }
 .main-magazine .mm-info .mag { 
@@ -728,7 +715,8 @@
     font-size: 26px;
     text-align: right;
     color: #800000;
-    letter-spacing: 3px;
+    font-weight: 425;
+    letter-spacing: 1px;
     z-index: 2;
 }
 .main-magazine .mm-info .tit span {
@@ -831,7 +819,6 @@
 }
 .main-travel .stay-list .stay-box .text {
     left: 30px;
-    font-family: 'NotoSerifKR';
     word-break: keep-all;
     letter-spacing: 1.5;
     margin-top: 30px;
@@ -874,7 +861,6 @@
     letter-spacing: 10px;
     margin-bottom: 50px;
     text-align: center;
-    font-family: 'NotoSerifKR';
     font-size: 16px;
     font-weight: 400;
     line-height: 30px;

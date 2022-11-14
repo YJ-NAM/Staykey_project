@@ -161,8 +161,8 @@
                         <a href="<%=request.getContextPath()%>/memberLogout.do" onClick="return confirm('로그아웃 하시겠습니까?');">LogOut</a>
                         </c:when>
                         <c:otherwise>
-                        <a href="<%=request.getContextPath()%>/memberLogin.do">Log-in</a>
-                        <a href="<%=request.getContextPath()%>/memberJoin.do">Join</a>
+                        <a href="<%=request.getContextPath()%>/memberLogin.do">LOGIN</a>
+                        <a href="<%=request.getContextPath()%>/memberJoin.do">JOIN</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
